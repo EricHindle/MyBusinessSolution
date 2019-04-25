@@ -1,0 +1,144 @@
+﻿Imports System.Text
+
+Public Class job
+    Private _jobId As Integer
+    Private _jobName As String
+    Private _jobDescription As String
+    Private _jobCost As Decimal
+    Private _jobPrice As Decimal
+    Private _jobCompleted As Boolean
+    Private _jobCreated As DateTime
+    Private _jobChanged As DateTime?
+    Private _jobCustomerId As Integer
+    Public Property jobCustomerId() As Integer
+        Get
+            Return _jobCustomerId
+        End Get
+        Set(ByVal value As Integer)
+            _jobCustomerId = value
+        End Set
+    End Property
+    Public Property jobChanged() As DateTime?
+        Get
+            Return _jobChanged
+        End Get
+        Set(ByVal value As DateTime?)
+            _jobChanged = value
+        End Set
+    End Property
+    Public Property jobCreated() As DateTime
+        Get
+            Return _jobCreated
+        End Get
+        Set(ByVal value As DateTime)
+            _jobCreated = value
+        End Set
+    End Property
+    Public Property isJobCompleted() As Boolean
+        Get
+            Return _jobCompleted
+        End Get
+        Set(ByVal value As Boolean)
+            _jobCompleted = value
+        End Set
+    End Property
+    Public Property jobPrice() As Decimal
+        Get
+            Return _jobPrice
+        End Get
+        Set(ByVal value As Decimal)
+            _jobPrice = value
+        End Set
+    End Property
+    Public Property jobCost() As Decimal
+        Get
+            Return _jobCost
+        End Get
+        Set(ByVal value As Decimal)
+            _jobCost = value
+        End Set
+    End Property
+    Public Property jobDescription() As String
+        Get
+            Return _jobDescription
+        End Get
+        Set(ByVal value As String)
+            _jobDescription = value
+        End Set
+    End Property
+    Public Property jobName() As String
+        Get
+            Return _jobName
+        End Get
+        Set(ByVal value As String)
+            _jobName = value
+        End Set
+    End Property
+    Public Property jobId() As Integer
+        Get
+            Return _jobId
+        End Get
+        Set(ByVal value As Integer)
+            _jobId = value
+        End Set
+    End Property
+
+    Public Sub New(ByVal pJobId As Integer, _
+                    ByVal pJobCustomer As Integer, _
+                    ByVal pJobName As String, _
+                    ByVal pJobDescription As String, _
+                    ByVal pJobCost As Decimal, _
+                    ByVal pJobPrice As Decimal, _
+                    ByVal pJobCompleted As Boolean, _
+                    ByVal pJobCreated As DateTime, _
+                    ByVal pJobChanged As DateTime?)
+        _jobId = pJobId
+        _jobCustomerId = pJobCustomer
+        _jobName = pJobName
+        _jobDescription = pJobDescription
+        _jobCost = pJobCost
+        _jobPrice = pJobPrice
+        _jobCompleted = pJobCompleted
+        _jobCreated = pJobCreated
+        _jobChanged = pJobChanged
+    End Sub
+
+    Public Overrides Function ToString() As String
+
+
+        Return AuditString()
+    End Function
+    Public Function AuditString() As String
+        Dim sb As New StringBuilder
+        sb _
+        .Append("jobId=[") _
+        .Append(_jobId) _
+        .Append("], ") _
+        .Append("name=[") _
+        .Append(_jobName) _
+        .Append("], ") _
+        .Append("description=[") _
+        .Append(_jobDescription) _
+        .Append("], ") _
+        .Append("customer=[") _
+        .Append(_jobCustomerId) _
+        .Append("], ") _
+        .Append("cost=[") _
+        .Append(_jobCost) _
+        .Append("], ") _
+        .Append("price=[") _
+        .Append(_jobPrice) _
+        .Append("], ") _
+        .Append("completed=[") _
+        .Append(_jobCompleted) _
+        .Append("], ") _
+        .Append("created=[") _
+        .Append(_jobCreated) _
+        .Append("], ") _
+        .Append("changed=[") _
+        .Append(_jobChanged) _
+        .Append("]")
+        Return sb.ToString
+    End Function
+
+End Class

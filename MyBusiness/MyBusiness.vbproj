@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0A36E1C3-9831-4723-A99A-E3A3823B3D79}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>MyBusiness.My.MyApplication</StartupObject>
+    <RootNamespace>MyBusiness</RootNamespace>
+    <AssemblyName>MyBusiness</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>MyBusiness.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>MyBusiness.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Api.Maps.Service, Version=0.9.2.18986, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\InstallationFiles\GoogleMaps\Google.Api.Maps.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="i00SpellCheck, Version=1.0.0.30038, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\InstallationFiles\i00SpellCheck.exe</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\InstallationFiles\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customer\frmCustomerMaint.designer.vb">
+      <DependentUpon>frmCustomerMaint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\frmCustomerMaint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\frmViewCust.Designer.vb">
+      <DependentUpon>frmViewCust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\frmViewCust.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diary\frmDiary.designer.vb">
+      <DependentUpon>frmDiary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Diary\frmDiary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diary\frmReminder.designer.vb">
+      <DependentUpon>frmReminder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Diary\frmReminder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\Address.vb" />
+    <Compile Include="Domain\AddressBuilder.vb" />
+    <Compile Include="Domain\Customer.vb" />
+    <Compile Include="Domain\CustomerBuilder.vb" />
+    <Compile Include="Domain\Email.vb" />
+    <Compile Include="Domain\EmailBuilder.vb" />
+    <Compile Include="Domain\Job.vb" />
+    <Compile Include="Domain\JobBuilder.vb" />
+    <Compile Include="Domain\Product.vb" />
+    <Compile Include="Domain\ProductBuilder.vb" />
+    <Compile Include="Domain\Reminder.vb" />
+    <Compile Include="Domain\ReminderBuilder.vb" />
+    <Compile Include="Domain\ReportColumn.vb" />
+    <Compile Include="Domain\ReportColumnBuilder.vb" />
+    <Compile Include="Domain\Supplier.vb" />
+    <Compile Include="Domain\SupplierBuilder.vb" />
+    <Compile Include="Domain\Task.vb" />
+    <Compile Include="Domain\TaskBuilder.vb" />
+    <Compile Include="Domain\User.vb" />
+    <Compile Include="Domain\UserBuilder.vb" />
+    <Compile Include="Email\EmailUtil.vb" />
+    <Compile Include="Imaging\ImageUtil.vb" />
+    <Compile Include="Invoice\clsRtfConstants.vb" />
+    <Compile Include="Invoice\dlgViewInvoice.Designer.vb">
+      <DependentUpon>dlgViewInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\dlgViewInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\InvoicePrinter.vb" />
+    <Compile Include="Job\frmJob.designer.vb">
+      <DependentUpon>frmJob.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Job\frmJob.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\frmJobProducts.designer.vb">
+      <DependentUpon>frmJobProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Job\frmJobProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\frmTask.designer.vb">
+      <DependentUpon>frmTask.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Job\frmTask.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\modJobCommon.vb" />
+    <Compile Include="Logging\AuditUtil.vb" />
+    <Compile Include="Logging\frmAuditItem.designer.vb">
+      <DependentUpon>frmAuditItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Logging\frmAuditItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logging\frmDisplayAudit.designer.vb">
+      <DependentUpon>frmDisplayAudit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Logging\frmDisplayAudit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logging\frmLogViewer.designer.vb">
+      <DependentUpon>frmLogViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Logging\frmLogViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logging\LogUtil.vb" />
+    <Compile Include="Mapping\frmMapViewer.designer.vb">
+      <DependentUpon>frmMapViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Mapping\frmMapViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mapping\GeoInfo.vb" />
+    <Compile Include="Mapping\GeoPos.vb" />
+    <Compile Include="Mapping\GeoPosBuilder.vb" />
+    <Compile Include="Mapping\GeoResponse.vb" />
+    <Compile Include="Mapping\GeoResponseBuilder.vb" />
+    <Compile Include="Mapping\GeoResponseTransformer.vb" />
+    <Compile Include="Mapping\GeoResult.vb" />
+    <Compile Include="Mapping\GeoResultBuilder.vb" />
+    <Compile Include="Mapping\GoogleGeoInfo.vb" />
+    <Compile Include="Mapping\GoogleMapUtil.vb" />
+    <Compile Include="Mapping\GoogleStaticMap.vb" />
+    <Compile Include="Mapping\MappingUtil.vb" />
+    <Compile Include="Mapping\MapQuestGeoInfo.vb" />
+    <Compile Include="Mapping\MapQuestMapUtil.vb" />
+    <Compile Include="Mapping\MapQuestResponse.vb" />
+    <Compile Include="Mapping\modInteractiveMap.vb" />
+    <Compile Include="Menus\frmMain.designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MSOffice\OfficeUtil.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Domain\netwyrksDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\netwyrksDataSet.vb">
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AuthenticationException.vb" />
+    <Compile Include="Security\AuthenticationUtil.vb" />
+    <Compile Include="Security\AuthorisationUtil.vb" />
+    <Compile Include="Security\EncryptionUtil.vb" />
+    <Compile Include="Security\frmChangePassword.designer.vb">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmChangePassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmPasswordRequest.designer.vb">
+      <DependentUpon>frmPasswordRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmPasswordRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmResetUserPassword.designer.vb">
+      <DependentUpon>frmResetUserPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmResetUserPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmUserControl.designer.vb">
+      <DependentUpon>frmUserControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmUserControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\LoginForm.designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Security\LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\netwyrksIIdentity.vb" />
+    <Compile Include="Security\netwyrksIPrincipal.vb" />
+    <Compile Include="Supplier\frmProduct.designer.vb">
+      <DependentUpon>frmProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\frmProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmSupplier.designer.vb">
+      <DependentUpon>frmSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\frmSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\ConvertUtil.vb" />
+    <Compile Include="Utilities\ExportUtil.vb" />
+    <Compile Include="Utilities\FileTransformer.vb" />
+    <Compile Include="Utilities\FileUtil.vb" />
+    <Compile Include="Utilities\frmAbout.designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmDateRange.designer.vb">
+      <DependentUpon>frmDateRange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmDateRange.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmGlobalSettings.designer.vb">
+      <DependentUpon>frmGlobalSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmGlobalSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmInfoSplash.Designer.vb">
+      <DependentUpon>frmInfoSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmInfoSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmInstallationTest.designer.vb">
+      <DependentUpon>frmInstallationTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmInstallationTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmOptions.Designer.vb">
+      <DependentUpon>frmOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\GlobalSettings.vb" />
+    <Compile Include="Utilities\iTextManager.vb" />
+    <Compile Include="Utilities\ModuleCodes.vb" />
+    <Compile Include="Utilities\netwyrksCommon.vb" />
+    <Compile Include="Utilities\netwyrksConstants.vb" />
+    <Compile Include="Utilities\netwyrksErrorCodes.vb" />
+    <Compile Include="Utilities\PrintUtil.vb" />
+    <Compile Include="Utilities\ReportDefinition.vb" />
+    <Compile Include="Utilities\RichTextBoxEx.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\RtfManager.vb" />
+    <Compile Include="Utilities\SpellCheckUtil.vb" />
+    <Compile Include="Utilities\TextUtil.vb" />
+    <Compile Include="Utilities\ValidationUtil.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Customer\frmCustomerMaint.resx">
+      <DependentUpon>frmCustomerMaint.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\frmViewCust.resx">
+      <DependentUpon>frmViewCust.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diary\frmDiary.resx">
+      <DependentUpon>frmDiary.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diary\frmReminder.resx">
+      <DependentUpon>frmReminder.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\dlgViewInvoice.resx">
+      <DependentUpon>dlgViewInvoice.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\frmJob.resx">
+      <DependentUpon>frmJob.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\frmJobProducts.resx">
+      <DependentUpon>frmJobProducts.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\frmTask.resx">
+      <DependentUpon>frmTask.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logging\frmAuditItem.resx">
+      <DependentUpon>frmAuditItem.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logging\frmDisplayAudit.resx">
+      <DependentUpon>frmDisplayAudit.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logging\frmLogViewer.resx">
+      <DependentUpon>frmLogViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\frmMapViewer.resx">
+      <DependentUpon>frmMapViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmPasswordRequest.resx">
+      <DependentUpon>frmPasswordRequest.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmResetUserPassword.resx">
+      <DependentUpon>frmResetUserPassword.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmUserControl.resx">
+      <DependentUpon>frmUserControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmProduct.resx">
+      <DependentUpon>frmProduct.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmSupplier.resx">
+      <DependentUpon>frmSupplier.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmAbout.resx">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmDateRange.resx">
+      <DependentUpon>frmDateRange.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmGlobalSettings.resx">
+      <DependentUpon>frmGlobalSettings.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmInfoSplash.resx">
+      <DependentUpon>frmInfoSplash.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmInstallationTest.resx">
+      <DependentUpon>frmInstallationTest.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmOptions.resx">
+      <DependentUpon>frmOptions.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Domain\netwyrksDataSet.xsc">
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Domain\netwyrksDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>netwyrksDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Domain\netwyrksDataSet.xss">
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\abandon.png" />
+    <Content Include="Images\anubis.ico" />
+    <Content Include="Images\anubis_button.png" />
+    <Content Include="Images\anubis_icon_2.jpg" />
+    <Content Include="Images\calllogbutton.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\diary.png" />
+    <Content Include="Images\email-icon.jpg" />
+    <Content Include="Images\emailbutton.png" />
+    <Content Include="Images\enterbutton.png" />
+    <Content Include="Images\envelope.jpg" />
+    <Content Include="Images\excelbutton.png" />
+    <Content Include="Images\exitbutton.png" />
+    <Content Include="Images\export button.png" />
+    <Content Include="Images\gauge42.png" />
+    <None Include="Resources\MyBusiness.png" />
+    <None Include="Images\glossy-button.png" />
+    <Content Include="Images\image.png" />
+    <Content Include="Images\mapbutton.png" />
+    <Content Include="Images\menustrip.jpg" />
+    <Content Include="Images\pdfbutton.png" />
+    <Content Include="Images\phone.jpg" />
+    <Content Include="Images\phone.png" />
+    <Content Include="Images\PhoneCall.png" />
+    <Content Include="Images\printbutton.png" />
+    <Content Include="Images\statusstrip.jpg" />
+    <Content Include="Images\wordbutton.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

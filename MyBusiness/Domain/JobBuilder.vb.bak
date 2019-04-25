@@ -1,0 +1,109 @@
+﻿Public Class jobBuilder
+    Private _jobId As Integer
+    Private _jobName As String
+    Private _jobDescription As String
+    Private _jobCost As Decimal
+    Private _jobPrice As Decimal
+    Private _jobCompleted As Boolean
+    Private _jobCreated As DateTime
+    Private _jobChanged As DateTime?
+    Private _jobCustomerId As Integer
+    Public Shared Function aJobBuilder() As jobBuilder
+        Return New jobBuilder
+    End Function
+    Public Function startingWith(ByVal jobId As Integer) As jobBuilder
+        Dim oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
+        Dim oJobTable As New netwyrksDataSet.jobDataTable
+        Dim oJobRow As netwyrksDataSet.jobRow = Nothing
+        Dim i As Integer = oJobTa.FillById(oJobTable, jobId)
+        If i > 0 Then
+            oJobRow = oJobTable.Rows(0)
+        End If
+        oJobTa.Dispose()
+        oJobTable.Dispose()
+        Return startingWith(oJobRow)
+    End Function
+
+    Public Function startingWith(ByVal oJob As job) As jobBuilder
+        With oJob
+            _jobId = .jobId
+            _jobName = .jobName
+            _jobDescription = .jobDescription
+            _jobCost = .jobCost
+            _jobPrice = .jobPrice
+            _jobCompleted = .isJobCompleted
+            _jobCreated = .jobCreated
+            _jobChanged = .jobChanged
+            _jobCustomerId = .jobCustomerId
+        End With
+        Return Me
+    End Function
+    Public Function startingWith(ByVal oJob As netwyrksDataSet.jobRow) As jobBuilder
+
+        With oJob
+            .Isjob_changedNull()
+            _jobId = .job_id
+            _jobName = .job_name
+            _jobDescription = .job_description
+            _jobCost = .job_cost
+            _jobPrice = .job_price
+            _jobCompleted = .job_completed
+            _jobCreated = .job_created
+            _jobChanged = If(.Isjob_changedNull(), Nothing, .job_changed)
+            _jobCustomerId = .job_customer_id
+        End With
+        Return Me
+    End Function
+    Public Function startingWithNothing() As jobBuilder
+        _jobId = -1
+        _jobName = ""
+            _jobDescription = ""
+            _jobCost = 0
+            _jobPrice = 0
+            _jobCompleted = False
+            _jobCreated = Now
+            _jobChanged = Nothing
+            _jobCustomerId = -1
+        Return Me
+    End Function
+    Public Function withJobId(ByVal pJobId As Integer) As jobBuilder
+        _jobId = pJobId
+        Return Me
+    End Function
+    Public Function withJobCustomerId(ByVal pJobCustomerId As Integer) As jobBuilder
+        _jobCustomerId = pJobCustomerId
+        Return Me
+    End Function
+    Public Function withJobName(ByVal pJobName As String) As jobBuilder
+        _jobName = pJobName
+        Return Me
+    End Function
+    Public Function withJobDescription(ByVal pJobDescription As String) As jobBuilder
+        _jobDescription = pJobDescription
+        Return Me
+    End Function
+    Public Function withJobCost(ByVal pJobCost As Decimal) As jobBuilder
+        _jobCost = pJobCost
+        Return Me
+    End Function
+    Public Function withJobPrice(ByVal pJobPrice As Decimal) As jobBuilder
+        _jobPrice = pJobPrice
+        Return Me
+    End Function
+    Public Function withJobCompleted(ByVal pJobCompleted As Boolean) As jobBuilder
+        _jobCompleted = pJobCompleted
+        Return Me
+    End Function
+    Public Function withJobCreated(ByVal pJobCreated As DateTime) As jobBuilder
+        _jobCreated = pJobCreated
+        Return Me
+    End Function
+    Public Function withJobChanged(ByVal pJobChanged As DateTime?) As jobBuilder
+        _jobChanged = pJobChanged
+        Return Me
+    End Function
+
+    Public Function build() As job
+        Return New job(_jobId, _jobCustomerId, _jobName, _jobDescription, _jobCost, _jobPrice, _jobCompleted, _jobCreated, _jobChanged)
+    End Function
+End Class
