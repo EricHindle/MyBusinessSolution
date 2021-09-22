@@ -4,26 +4,28 @@
 '
 ' Author Eric Hindle
 
-Public Class frmTask
+Public Class FrmTask
+#Region "variables"
     Private _taskbuilder As TaskBuilder
     Private _taskId As Integer
     Private _task As Task
     Private _jobId As Integer
-    Private _job As job
+    Private _job As Job
     Private _newTask As Task
     Private isLoading As Boolean = False
-    Private oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-    Private oTaskTable As New netwyrksDataSet.taskDataTable
-    Public Property theJob() As job
+    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
+    Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
+#End Region
+#Region "properties"
+    Public Property TheJob() As Job
         Get
             Return _job
         End Get
-        Set(ByVal value As job)
+        Set(ByVal value As Job)
             _job = value
         End Set
     End Property
-
-    Public Property taskId() As Integer
+    Public Property TaskId() As Integer
         Get
             Return _taskId
         End Get
@@ -31,8 +33,7 @@ Public Class frmTask
             _taskId = value
         End Set
     End Property
-
-    Public Property thetask() As TaskBuilder
+    Public Property Thetask() As TaskBuilder
         Get
             Return _taskbuilder
         End Get
@@ -40,55 +41,77 @@ Public Class frmTask
             _taskbuilder = value
         End Set
     End Property
-
-    Private Sub btnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
+#End Region
+#Region "form handlers"
+    Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
-
-    Private Sub frmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub FrmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Debug("Closing", Me.Name)
         oTaskTa.Dispose()
         oTaskTable.Dispose()
     End Sub
-
-    Private Sub frmTask_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub FrmTask_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         LogUtil.Debug("Starting", Me.Name)
         isLoading = True
         If _job IsNot Nothing Then
-            _jobId = _job.jobId
-            lblJobName.Text = _job.jobName
+            _jobId = _job.JobId
+            lblJobName.Text = _job.JobName
         Else
             MsgBox("Error: no job selected", MsgBoxStyle.Exclamation, "Error")
             showStatus(lblStatus, "No job selected", Me.Name, True)
         End If
         If _taskId > 0 Then
-            _taskbuilder = TaskBuilder.aTaskBuilder.startingWith(_taskId)
-            _task = _taskbuilder.build
-            fillTaskDetails()
+            _taskbuilder = TaskBuilder.ATaskBuilder.StartingWith(_taskId)
+            _task = _taskbuilder.Build
+            FillTaskDetails()
         Else
-            newTask()
+            NewTask()
             _taskId = -1
         End If
         isLoading = False
     End Sub
-
-    Private Sub fillTaskDetails()
+    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        With _taskbuilder.Build
+            _newTask = TaskBuilder.ATaskBuilder.WithTaskName(txtTaskName.Text.Trim) _
+            .WithTaskDescription(rtbDescription.Text.Trim) _
+            .WithTaskCost(nudCost.Value) _
+            .WithTaskTime(nudTime.Value) _
+            .WithTaskCompleted(chkCompleted.Checked) _
+            .WithTaskStartDue(dtpStartDate.Value.Date) _
+            .WithTaskStarted(chkStarted.Checked) _
+            .WithTaskCreated(.TaskCreated) _
+            .WithTaskChanged(.TaskChanged) _
+            .WithTaskJobId(_jobId) _
+            .WithTaskTaxable(chkTaxable.Checked) _
+            .WithTaskTaxRate(nudTaxRate.Value) _
+            .Build()
+        End With
+        Dim newtaskId As Integer = -1
+        If _taskId > 0 Then
+            Amendtask()
+        Else
+            Inserttask()
+        End If
+    End Sub
+#End Region
+#Region "subroutines"
+    Private Sub FillTaskDetails()
         With _task
-            txtTaskName.Text = .taskName
-            rtbDescription.Text = .taskDescription
-            nudCost.Value = .taskCost
-            nudTime.Value = .taskHours
-            dtpStartDate.Value = If(.taskStartDue Is Nothing, Now.Date, CDate(.taskStartDue).Date)
-            chkStarted.Checked = .isTaskStarted
-            chkCompleted.Checked = .istaskCompleted
-            chkTaxable.Checked = .isTaskTaxable
-            nudTaxRate.Value = .taskTaxRate
+            txtTaskName.Text = .TaskName
+            rtbDescription.Text = .TaskDescription
+            nudCost.Value = .TaskCost
+            nudTime.Value = .TaskHours
+            dtpStartDate.Value = If(.TaskStartDue Is Nothing, Now.Date, CDate(.TaskStartDue).Date)
+            chkStarted.Checked = .IsTaskStarted
+            chkCompleted.Checked = .IstaskCompleted
+            chkTaxable.Checked = .IsTaskTaxable
+            nudTaxRate.Value = .TaskTaxRate
         End With
         LogUtil.Debug("Existing task " & CStr(_taskId), Me.Name)
 
     End Sub
-
-    Private Sub clearTaskDetails()
+    Private Sub ClearTaskDetails()
         txtTaskName.Text = ""
         rtbDescription.Text = ""
         nudCost.Value = 0
@@ -97,43 +120,17 @@ Public Class frmTask
         chkStarted.Checked = False
         chkCompleted.Checked = False
     End Sub
-
-    Private Sub newTask()
+    Private Sub NewTask()
         LogUtil.Debug("New task", Me.Name())
-        clearTaskDetails()
-        _taskbuilder = TaskBuilder.aTaskBuilder.startingWithNothing
+        ClearTaskDetails()
+        _taskbuilder = TaskBuilder.ATaskBuilder.StartingWithNothing
     End Sub
-
-    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        With _taskbuilder.build
-            _newTask = TaskBuilder.aTaskBuilder.withTaskName(txtTaskName.Text.Trim) _
-            .withTaskDescription(rtbDescription.Text.Trim) _
-            .withTaskCost(nudCost.Value) _
-            .withTaskTime(nudTime.Value) _
-            .withTaskCompleted(chkCompleted.Checked) _
-            .withTaskStartDue(dtpStartDate.Value.Date) _
-            .withTaskStarted(chkStarted.Checked) _
-            .withTaskCreated(.taskCreated) _
-            .withTaskChanged(.taskChanged) _
-            .withTaskJobId(_jobId) _
-            .withTaskTaxable(chkTaxable.Checked) _
-            .withTaskTaxRate(nudTaxRate.Value) _
-            .build()
-        End With
-        Dim newtaskId As Integer = -1
-        If _taskId > 0 Then
-            amendtask()
-        Else
-            inserttask()
-        End If
-    End Sub
-
-    Private Function amendtask() As Boolean
+    Private Function Amendtask() As Boolean
         Dim isAmendOk As Boolean = False
         LogUtil.Debug("Updating task " & CStr(_taskId), Me.Name)
         With _newTask
-            If oTaskTa.UpdateTask(.taskName, .taskDescription, .taskCost, .taskHours, .taskStartDue, .isTaskStarted, .istaskCompleted, Now, .taskJobId, .isTaskTaxable, .taskTaxRate, _taskId) = 1 Then
-                AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
+            If oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, _taskId) = 1 Then
+                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
                 isAmendOk = True
                 showStatus(lblStatus, "Task updated OK", Me.Name, True)
             Else
@@ -144,14 +141,13 @@ Public Class frmTask
         End With
         Return isAmendOk
     End Function
-
-    Private Function inserttask() As Boolean
+    Private Function Inserttask() As Boolean
         Dim isInsertOk As Boolean
         LogUtil.Debug("Inserting task", Me.Name)
         With _newTask
-            _taskId = oTaskTa.InsertTask(.taskName, .taskDescription, .taskCost, .taskHours, .taskStartDue, .isTaskStarted, .istaskCompleted, Now, .taskJobId, .isTaskTaxable, .taskTaxRate)
+            _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
             If _taskId > 0 Then
-                AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
+                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
                 showStatus(lblStatus, "Task " & CStr(_taskId) & " Created OK", Me.Name, True)
             Else
@@ -161,5 +157,5 @@ Public Class frmTask
         End With
         Return isInsertOk
     End Function
-
+#End Region
 End Class

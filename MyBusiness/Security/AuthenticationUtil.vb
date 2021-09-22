@@ -23,8 +23,8 @@ Public Class AuthenticationUtil
 
 #End Region
 #Region "Variables"
-    Private Shared sha1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
-    Private Shared minPwdLen As Integer = GlobalSettings.getIntegerSetting("minPwdLen")
+    Private Shared ReadOnly sha1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
+    Private Shared ReadOnly minPwdLen As Integer = GlobalSettings.getIntegerSetting("minPwdLen")
     Private Shared oDict As FlatFileDictionary = Nothing
 #End Region
 #Region "Salt"
@@ -155,8 +155,6 @@ Public Class AuthenticationUtil
     End Function
 #End Region
 #Region "Users"
-
-
     ''' <summary>
     ''' Permanently remove a user
     ''' </summary>

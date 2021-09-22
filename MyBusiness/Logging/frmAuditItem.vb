@@ -7,15 +7,15 @@
 Public Class frmAuditItem
 #Region "Contants"
     Private Const FORM_NAME As String = "audit item"
+
 #End Region
 #Region "Private variable instances"
-    Private RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Customer
-    Private oAuditTa As New netwyrksDataSetTableAdapters.auditTableAdapter
-    Private oAuditTable As New netwyrksDataSet.auditDataTable
+    Private ReadOnly oAuditTa As New netwyrksDataSetTableAdapters.auditTableAdapter
+    Private ReadOnly oAuditTable As New netwyrksDataSet.auditDataTable
 #End Region
 #Region "Properties"
     Private _auditItemId As Integer
-    Public Property auditItemId() As Integer
+    Public Property AuditItemId() As Integer
         Get
             Return _auditItemId
         End Get
@@ -26,17 +26,17 @@ Public Class frmAuditItem
 
 #End Region
 #Region "Form Event Handlers"
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
 
-    Private Sub form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oAuditTa.Dispose()
         oAuditTable.Dispose()
         LogUtil.Debug("Closed", FORM_NAME)
     End Sub
 
-    Private Sub form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
 
@@ -50,11 +50,11 @@ Public Class frmAuditItem
 #End Region
 
 #Region "Subroutines"
-    Private Sub logStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information, Optional ByVal errorCode As String = Nothing)
+    Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information, Optional ByVal errorCode As String = Nothing)
         lblStatus.Text = sText
         If islogged Then LogUtil.addLog(sText, level, FORM_NAME, errorCode)
     End Sub
-    Private Sub fillAuditItem()
+    Private Sub FillAuditItem()
         Dim oRow As netwyrksDataSet.auditRow = oAuditTable.Rows(0)
         lblAction.Text = oRow.audit_action.ToUpper
         lblComputerName.Text = oRow.audit_computer_name
@@ -63,7 +63,7 @@ Public Class frmAuditItem
         lblRecordType.Text = oRow.audit_record_type
         lblUserCode.Text = oRow.audit_user_id
     End Sub
-    Private Sub clearForm()
+    Private Sub ClearForm()
         lblAction.Text = ""
         lblComputerName.Text = ""
         lblDateChanged.Text = ""

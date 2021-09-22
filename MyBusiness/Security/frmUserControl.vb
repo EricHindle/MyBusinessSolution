@@ -151,16 +151,16 @@ Public Class frmUserControl
     Private Function GetAccessType(ByVal salt As String) As String
         Dim roleName As String = "Suspended"
         If rbAdministrator.Checked Then
-            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Administrator)
+            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Administrator)
         End If
         If rbOperator.Checked Then
-            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Operatr)
+            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Operatr)
         End If
         If rbGuest.Checked Then
-            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Guest)
+            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Guest)
         End If
         If rbSuspend.Checked Then
-            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Suspended)
+            roleName = AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Suspended)
         End If
         Return AuthenticationUtil.GetHashed(salt & roleName)
     End Function
@@ -244,13 +244,13 @@ Public Class frmUserControl
 
         lblExists.Text = "User Exists"
         Select Case role
-            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Operatr))
+            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Operatr))
                 rbOperator.Checked = True
-            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Administrator))
+            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Administrator))
                 rbAdministrator.Checked = True
-            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Guest))
+            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Guest))
                 rbGuest.Checked = True
-            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.sersRole.Suspended))
+            Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.getRoleName(AuthorisationUtil.AccessRole.Suspended))
                 rbSuspend.Checked = True
             Case Else
                 rbSuspend.Checked = True

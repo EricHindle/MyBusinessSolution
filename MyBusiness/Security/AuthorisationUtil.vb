@@ -10,7 +10,7 @@
 ''' </summary>
 ''' <remarks></remarks>
 Public Class AuthorisationUtil
-    Public Enum sersRole
+    Public Enum AccessRole
         Administrator
         Manager
         Executive
@@ -19,11 +19,11 @@ Public Class AuthorisationUtil
         Profile
         Suspended
     End Enum
-    Public Shared Function getRoleName(ByVal roleValue As sersRole) As String
-        Return [Enum].GetName(GetType(sersRole), roleValue)
+    Public Shared Function GetRoleName(ByVal roleValue As AccessRole) As String
+        Return [Enum].GetName(GetType(AccessRole), roleValue)
     End Function
 
-    Public Shared Function getCurrentUserid()
+    Public Shared Function GetCurrentUserid()
         Dim myIdentity As netwyrksIIdentity
         myIdentity = My.User.CurrentPrincipal.Identity
         Return myIdentity.userId

@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 
-Public Class frmChangePassword
+Public Class FrmChangePassword
 #Region "Contants"
     Private Const FORM_NAME As String = "change password"
     Private Const CURRENT_TEXT As String = "Current Password"
@@ -12,16 +12,16 @@ Public Class frmChangePassword
     Private Const RETYPE_TEXT As String = "Re-Type New Password"
 #End Region
 #Region "Private variable instances"
-    Private RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.User
+    Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.User
     Private userId As Integer = 0
-    Private salt As String = ""
+    Private ReadOnly salt As String = ""
     Private myIdentity As netwyrksIIdentity = Nothing
-    Private oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private oTable As New netwyrksDataSet.userDataTable
+    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
+    Private ReadOnly oTable As New netwyrksDataSet.userDataTable
 #End Region
 #Region "properties"
     Private _forceChange As Boolean
-    Public Property forceChange() As Boolean
+    Public Property ForceChange() As Boolean
         Get
             Return _forceChange
         End Get
@@ -29,32 +29,28 @@ Public Class frmChangePassword
             _forceChange = value
         End Set
     End Property
-
 #End Region
 #Region "Form"
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
-
-    Private Sub form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oTable.Dispose()
         oTa.Dispose()
         LogUtil.Debug("Closed", FORM_NAME)
     End Sub
-
-    Private Sub form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
         myIdentity = My.User.CurrentPrincipal.Identity
         userId = myIdentity.userId
-        lblForceChange.Visible = forceChange
+        lblForceChange.Visible = ForceChange
         SetTextboxToDefault(txtCurrent, CURRENT_TEXT)
         SetTextboxToDefault(txtNew, NEW_TEXT)
         SetTextboxToDefault(txtCopy, RETYPE_TEXT)
     End Sub
-
-    Private Sub textBox_Enter(sender As Object, e As EventArgs) Handles txtCurrent.Enter, txtNew.Enter, txtCopy.Enter
+    Private Sub TextBox_Enter(sender As Object, e As EventArgs) Handles txtCurrent.Enter, txtNew.Enter, txtCopy.Enter
         Dim tb As TextBox = DirectCast(sender, TextBox)
         Dim stdText As String = ""
         Select Case tb.Name
@@ -75,7 +71,6 @@ Public Class frmChangePassword
             End If
         End With
     End Sub
-
     Private Sub SetTextboxToDefault(ByRef oTextBox As TextBox, ByVal stdText As String)
 
         With oTextBox
@@ -86,8 +81,7 @@ Public Class frmChangePassword
             .Text = stdText
         End With
     End Sub
-
-    Private Sub btnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
+    Private Sub BtnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
         Me.DialogResult = DialogResult.Cancel
         Try
             Dim iMinLen As Integer = GlobalSettings.getSetting("MinPwdLen")
@@ -111,7 +105,7 @@ Public Class frmChangePassword
                 ' Store new password
                 If StoreNewPassword() Then
                     ' Successful login with password change
-                    logStatus("User password changed OK", True, TraceEventType.Information)
+                    LogStatus("User password changed OK", True, TraceEventType.Information)
                     Me.DialogResult = DialogResult.OK
                     Me.Close()
                 Else
@@ -130,8 +124,7 @@ Public Class frmChangePassword
             SetTextboxToDefault(txtCopy, RETYPE_TEXT)
         End Try
     End Sub
-
-    Private Sub txtCurrent_Leave(sender As Object, e As EventArgs) Handles txtCurrent.Leave, txtNew.Leave, txtCopy.Leave
+    Private Sub TxtCurrent_Leave(sender As Object, e As EventArgs) Handles txtCurrent.Leave, txtNew.Leave, txtCopy.Leave
         Dim tb As TextBox = DirectCast(sender, TextBox)
         If tb.Text = "" Then
             Dim stdText As String = ""
@@ -148,24 +141,21 @@ Public Class frmChangePassword
 
         End If
     End Sub
-
-    Private Sub btnPwdGen_Click(sender As Object, e As EventArgs) Handles btnPwdGen.Click
+    Private Sub BtnPwdGen_Click(sender As Object, e As EventArgs) Handles btnPwdGen.Click
         lblPwd.Text = AuthenticationUtil.generateWordyPassword
         My.Computer.Clipboard.SetText(lblPwd.Text)
     End Sub
-
 #End Region
-
 #Region "Subroutines"
-    Private Sub logStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
+    Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
         lblStatus.Text = sText
-        If islogged Then LogUtil.addLog(sText, level, FORM_NAME)
+        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME)
     End Sub
     Private Function StoreNewPassword() As Boolean
         Dim rtnval As Boolean = False
         Try
             If AuthenticationUtil.SavePassword(userId, Trim(txtNew.Text)) Then
-                AuditUtil.addAudit(AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update,, "Password changed")
+                AuditUtil.AddAudit(AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update,, "Password changed")
                 rtnval = True
             End If
         Catch ex As Exception
@@ -175,7 +165,4 @@ Public Class frmChangePassword
         Return rtnval
     End Function
 #End Region
-
-
-
 End Class

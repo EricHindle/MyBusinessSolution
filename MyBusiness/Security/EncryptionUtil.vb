@@ -14,39 +14,42 @@ Imports MyBusiness.NetwyrksErrorCodes
 ''' </summary>
 ''' <remarks></remarks>
 Public Class EncryptionUtil
+#Region "constants"
     Public Const ENCRYPTION_KEY As String = "D7xoTK1T987eXa2z"
     Private Const BUFFER_SIZE As Integer = 4096
     Private Const KEY_SIZE_BYTES As Integer = 32
     Private Const IV_SIZE_BYTES As Integer = 16
     Private Const HEADER_SIZE_BYTES As Integer = 7
     Private Const BLOCK_SIZE As Integer = 128
+#End Region
+#Region "variables"
     Private Shared fsInput As System.IO.Stream
     Private Shared fsOutput As System.IO.FileStream
     Private Shared msOutput As System.IO.MemoryStream
     Private Shared msInput As System.IO.MemoryStream
     Private Shared bKey() As Byte
     Private Shared bIV() As Byte
-    Private Shared headerString As String = "ANUBIS "
+    Private Shared ReadOnly headerString As String = "ANUBIS "
     Private Shared headerBytes(HEADER_SIZE_BYTES) As Byte
-    Private Shared bytBuffer(BUFFER_SIZE) As Byte
+    Private Shared ReadOnly bytBuffer(BUFFER_SIZE) As Byte
     Private Shared lngBytesProcessed As Long = 0
     Private Shared lngFileLength As Long = 0
     Private Shared intBytesInCurrentBlock As Integer
-    Private Shared cspRijndael As New System.Security.Cryptography.RijndaelManaged
+    Private Shared ReadOnly cspRijndael As New System.Security.Cryptography.RijndaelManaged
     Private Shared csCryptoStream As CryptoStream = Nothing
     Private Shared _password As String
     Private Shared _passwordBytes As Byte()
-
+#End Region
+#Region "functions"
     ''' <summary>
     ''' Encrypt text with the built-in key
     ''' </summary>
     ''' <param name="sText"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function encryptText(ByVal sText As String) As String
-        Return encryptText(sText, ENCRYPTION_KEY)
+    Public Shared Function EncryptText(ByVal sText As String) As String
+        Return EncryptText(sText, ENCRYPTION_KEY)
     End Function
-
     ''' <summary>
     ''' Encrypt text with a given key
     ''' </summary>
@@ -56,7 +59,7 @@ Public Class EncryptionUtil
     ''' <remarks> Electronic Code Book mode
     ''' Triple Data Encryption Algorithm
     ''' </remarks>
-    Public Shared Function encryptText(ByVal sText As String, ByVal key As String) As String
+    Public Shared Function EncryptText(ByVal sText As String, ByVal key As String) As String
         ' Encrypt text
         Dim rtnVal As String = ""
         Try
@@ -69,29 +72,27 @@ Public Class EncryptionUtil
                 tdes.Padding = PaddingMode.PKCS7
                 Dim cTransform As ICryptoTransform = tdes.CreateEncryptor()
                 'transform the specified region of bytes array to resultArray
-                Dim resultArray As Byte() = _
-                  cTransform.TransformFinalBlock(toEncryptArray, 0, _
+                Dim resultArray As Byte() =
+                  cTransform.TransformFinalBlock(toEncryptArray, 0,
                   toEncryptArray.Length)
                 'Release resources held by TripleDes Encryptor
                 tdes.Clear()
-                'Return the encrypted data into unreadable string format
+                'Return the Encrypted data into unreadable string format
                 rtnVal = Convert.ToBase64String(resultArray, 0, resultArray.Length)
             End If
         Catch ex As Exception
         End Try
         Return rtnVal
     End Function
-
     ''' <summary>
     ''' Decrypt text with built-in key
     ''' </summary>
     ''' <param name="sText"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function decryptText(ByVal sText As String) As String
-        Return decryptText(sText, ENCRYPTION_KEY)
+    Public Shared Function DecryptText(ByVal sText As String) As String
+        Return DecryptText(sText, ENCRYPTION_KEY)
     End Function
-
     ''' <summary>
     ''' Decrypt text with given key
     ''' </summary>
@@ -99,7 +100,7 @@ Public Class EncryptionUtil
     ''' <param name="key"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function decryptText(ByVal sText As String, ByVal key As String) As String
+    Public Shared Function DecryptText(ByVal sText As String, ByVal key As String) As String
         ' Decrypt text
         'get the byte code of the string
         Dim rtnVal As String = ""
@@ -116,7 +117,7 @@ Public Class EncryptionUtil
                 tdes.Padding = PaddingMode.PKCS7
 
                 Dim cTransform As ICryptoTransform = tdes.CreateDecryptor()
-                Dim resultArray As Byte() = cTransform.TransformFinalBlock( _
+                Dim resultArray As Byte() = cTransform.TransformFinalBlock(
                                  toEncryptArray, 0, toEncryptArray.Length)
                 'Release resources held by TripleDes Encryptor                
                 tdes.Clear()
@@ -127,7 +128,6 @@ Public Class EncryptionUtil
         End Try
         Return rtnVal
     End Function
-
     ''' <summary>
     ''' Encrypt a byte array and write the results to a file
     ''' </summary>
@@ -135,7 +135,7 @@ Public Class EncryptionUtil
     ''' <param name="toFile"></param>
     ''' <returns>True if encrypted file is created OK</returns>
     ''' <remarks>A header is added to the bytes to be encrypted</remarks>
-    Public Shared Function encryptBytesToFile(ByRef fromBytes As Byte(), ByVal toFile As String) As Boolean
+    Public Shared Function EncryptBytesToFile(ByRef fromBytes As Byte(), ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
         If Not isInitialised() Then Return False
         If fromBytes Is Nothing Then Return False
@@ -153,7 +153,7 @@ Public Class EncryptionUtil
                 lngBytesProcessed += CLng(intBytesInCurrentBlock)
             End While
         Catch ex As Exception
-            LogUtil.Exception("Error transforming bytes", ex, "encryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming bytes", ex, "EncryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
@@ -166,15 +166,14 @@ Public Class EncryptionUtil
         End If
         Return isTransformOK
     End Function
-
     ''' <summary>
-    ''' Encrypt the contents of an unencrypted file and create a new encrypted file
+    ''' Encrypt the contents of an unEncrypted file and create a new encrypted file
     ''' </summary>
     ''' <param name="fromFile"></param>
     ''' <param name="toFile"></param>
     ''' <returns>True if encrypted file is created OK</returns>
     ''' <remarks>A header is added to the bytes to be encrypted</remarks>
-    Public Shared Function encryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
+    Public Shared Function EncryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
         If Not isInitialised() Then Return False
         If Not File.Exists(fromFile) Then Return False
@@ -191,7 +190,7 @@ Public Class EncryptionUtil
                 lngBytesProcessed += CLng(intBytesInCurrentBlock)
             End While
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "encryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "EncryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
@@ -204,7 +203,6 @@ Public Class EncryptionUtil
         End If
         Return isTransformOK
     End Function
-
     ''' <summary>
     ''' Encrypt a the contents of a file to a byte array
     ''' </summary>
@@ -212,7 +210,7 @@ Public Class EncryptionUtil
     ''' <returns>An encrypted byte array</returns>
     ''' <remarks>A header is added to the bytes to be encrypted
     ''' Used for storing an attachment</remarks>
-    Public Shared Function encryptFileToBytes(ByVal fromFile As String) As Byte()
+    Public Shared Function EncryptFileToBytes(ByVal fromFile As String) As Byte()
         Dim toBytes As Byte() = Nothing
         If Not isInitialised() Then Return Nothing
         If Not File.Exists(fromFile) Then Return Nothing
@@ -231,13 +229,12 @@ Public Class EncryptionUtil
             csCryptoStream.Close()
             toBytes = msOutput.ToArray()
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "encryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "EncryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
         Finally
             closeStreams()
         End Try
         Return toBytes
     End Function
-
     ''' <summary>
     ''' Decrypts an enecypted byte array and writes the resulting bytes to a file
     ''' </summary>
@@ -246,7 +243,7 @@ Public Class EncryptionUtil
     ''' <returns>True if decrypted file is produced oK</returns>
     ''' <remarks>Byte array must contain the valid header string
     ''' Used for retrieving a stored attachment</remarks>
-    Public Shared Function decryptBytesToFile(ByVal fromBytes As Byte(), ByVal toFile As String) As Boolean
+    Public Shared Function DecryptBytesToFile(ByVal fromBytes As Byte(), ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
         If Not isInitialised() Then Return Nothing
         Try
@@ -267,14 +264,13 @@ Public Class EncryptionUtil
                 isTransformOK = False
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming bytes", ex, "decryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming bytes", ex, "DecryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
             isTransformOK = False
         Finally
             closeStreams()
         End Try
         Return isTransformOK
     End Function
-
     ''' <summary>
     ''' Decrypts an encrypted file
     ''' </summary>
@@ -282,7 +278,7 @@ Public Class EncryptionUtil
     ''' <param name="toFile"></param>
     ''' <returns>True if file is decrypted OK</returns>
     ''' <remarks>File must contain the valid header string</remarks>
-    Public Shared Function decryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
+    Public Shared Function DecryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
         If Not isInitialised() Then Return False
         If Not File.Exists(fromFile) Then Return False
@@ -305,7 +301,7 @@ Public Class EncryptionUtil
                 LogUtil.Problem("Invalid file header in " & fromFile)
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "decryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
@@ -318,8 +314,7 @@ Public Class EncryptionUtil
         End If
         Return isTransformOK
     End Function
-
-    Public Shared Function decryptFileToBytes(ByVal fromFile As String) As MemoryStream
+    Public Shared Function DecryptFileToBytes(ByVal fromFile As String) As MemoryStream
         '   Dim toBytes As Byte() = Nothing
         If Not isInitialised() Then Return Nothing
         If Not File.Exists(fromFile) Then Return Nothing
@@ -340,7 +335,7 @@ Public Class EncryptionUtil
                 LogUtil.Problem("Invalid file header in " & fromFile)
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "decryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
@@ -348,10 +343,8 @@ Public Class EncryptionUtil
             closeStreams()
         End Try
         Return msOutput
-
     End Function
-
-    Public Shared Function decryptBytesToBytes(ByVal fromBytes As Byte()) As MemoryStream
+    Public Shared Function DecryptBytesToBytes(ByVal fromBytes As Byte()) As MemoryStream
         '  Dim toBytes As Byte() = Nothing
         If Not isInitialised() Then Return Nothing
         Try
@@ -372,17 +365,15 @@ Public Class EncryptionUtil
 
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "decryptBytesToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptBytesToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
             closeStreams()
         End Try
-
         Return msOutput
     End Function
-
     Private Shared Function isInitialised() As Boolean
         isInitialised = False
         _password = AuthenticationUtil.TRANSFORM_INITIALISER
@@ -402,15 +393,12 @@ Public Class EncryptionUtil
         End With
         isInitialised = True
     End Function
-
     Public Shared Function ConvertStringToBytes(ByVal sString As String) As Byte()
         Return New UnicodeEncoding().GetBytes(sString)
     End Function
-
     Public Shared Function ConvertBytesToString(ByVal bytes() As Byte) As String
         Return New UnicodeEncoding().GetString(bytes)
     End Function
-
     Private Shared Sub closeStreams()
         If fsOutput IsNot Nothing Then
             fsOutput.Close()
@@ -423,7 +411,6 @@ Public Class EncryptionUtil
             csCryptoStream = Nothing
         End If
     End Sub
-
     ''' <summary>
     ''' Checks that first bytes match the header string
     ''' </summary>
@@ -442,7 +429,6 @@ Public Class EncryptionUtil
         End If
         lngBytesProcessed = headerBytes.Length
     End Function
-
     ''' <summary>
     ''' Checks that first bytes match the header string
     ''' </summary>
@@ -461,4 +447,5 @@ Public Class EncryptionUtil
         End Try
         Return isValid
     End Function
+#End Region
 End Class

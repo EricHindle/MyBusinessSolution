@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmLogViewer
+Partial Class FrmLogViewer
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -35,13 +35,17 @@ Partial Class frmLogViewer
         Me.CopyAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendToSupportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
-        Me.btnNoZoom = New System.Windows.Forms.Button()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.BtnToday = New System.Windows.Forms.Button()
+        Me.BtnNextFile = New System.Windows.Forms.Button()
+        Me.BtnPrevFile = New System.Windows.Forms.Button()
+        Me.BtnClearLog = New System.Windows.Forms.Button()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.btnNoZoom = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OK_Button
@@ -128,37 +132,6 @@ Partial Class frmLogViewer
         Me.SendToSupportToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.SendToSupportToolStripMenuItem.Text = "Send to Support"
         '
-        'TrackBar1
-        '
-        Me.TrackBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TrackBar1.AutoSize = False
-        Me.TrackBar1.Location = New System.Drawing.Point(191, 393)
-        Me.TrackBar1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TrackBar1.Maximum = 30
-        Me.TrackBar1.Minimum = 5
-        Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(189, 23)
-        Me.TrackBar1.TabIndex = 2
-        Me.TrackBar1.TickFrequency = 5
-        Me.TrackBar1.Value = 10
-        Me.TrackBar1.Visible = False
-        '
-        'btnNoZoom
-        '
-        Me.btnNoZoom.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnNoZoom.AutoSize = True
-        Me.btnNoZoom.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnNoZoom.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNoZoom.ForeColor = System.Drawing.Color.Black
-        Me.btnNoZoom.Location = New System.Drawing.Point(387, 386)
-        Me.btnNoZoom.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnNoZoom.Name = "btnNoZoom"
-        Me.btnNoZoom.Size = New System.Drawing.Size(34, 31)
-        Me.btnNoZoom.TabIndex = 3
-        Me.btnNoZoom.Text = "1"
-        Me.btnNoZoom.UseVisualStyleBackColor = True
-        Me.btnNoZoom.Visible = False
-        '
         'lblFormName
         '
         Me.lblFormName.AutoSize = True
@@ -184,6 +157,101 @@ Partial Class frmLogViewer
         Me.PictureBox1.TabIndex = 110
         Me.PictureBox1.TabStop = False
         '
+        'BtnToday
+        '
+        Me.BtnToday.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnToday.AutoSize = True
+        Me.BtnToday.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnToday.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnToday.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnToday.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnToday.Location = New System.Drawing.Point(535, 387)
+        Me.BtnToday.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnToday.Name = "BtnToday"
+        Me.BtnToday.Size = New System.Drawing.Size(60, 28)
+        Me.BtnToday.TabIndex = 116
+        Me.BtnToday.Text = "Today"
+        Me.BtnToday.UseVisualStyleBackColor = True
+        '
+        'BtnNextFile
+        '
+        Me.BtnNextFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnNextFile.AutoSize = True
+        Me.BtnNextFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnNextFile.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnNextFile.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNextFile.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnNextFile.Location = New System.Drawing.Point(610, 387)
+        Me.BtnNextFile.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnNextFile.Name = "BtnNextFile"
+        Me.BtnNextFile.Size = New System.Drawing.Size(40, 28)
+        Me.BtnNextFile.TabIndex = 115
+        Me.BtnNextFile.Text = ">>"
+        Me.BtnNextFile.UseVisualStyleBackColor = True
+        '
+        'BtnPrevFile
+        '
+        Me.BtnPrevFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnPrevFile.AutoSize = True
+        Me.BtnPrevFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnPrevFile.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnPrevFile.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnPrevFile.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnPrevFile.Location = New System.Drawing.Point(480, 386)
+        Me.BtnPrevFile.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnPrevFile.Name = "BtnPrevFile"
+        Me.BtnPrevFile.Size = New System.Drawing.Size(40, 28)
+        Me.BtnPrevFile.TabIndex = 114
+        Me.BtnPrevFile.Text = "<<"
+        Me.BtnPrevFile.UseVisualStyleBackColor = True
+        '
+        'BtnClearLog
+        '
+        Me.BtnClearLog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnClearLog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnClearLog.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnClearLog.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnClearLog.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnClearLog.Location = New System.Drawing.Point(14, 377)
+        Me.BtnClearLog.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnClearLog.Name = "BtnClearLog"
+        Me.BtnClearLog.Size = New System.Drawing.Size(93, 38)
+        Me.BtnClearLog.TabIndex = 113
+        Me.BtnClearLog.Text = "Clear Log"
+        Me.BtnClearLog.UseVisualStyleBackColor = True
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.Location = New System.Drawing.Point(191, 385)
+        Me.TrackBar1.Margin = New System.Windows.Forms.Padding(2)
+        Me.TrackBar1.Maximum = 30
+        Me.TrackBar1.Minimum = 5
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(189, 23)
+        Me.TrackBar1.TabIndex = 111
+        Me.TrackBar1.TickFrequency = 5
+        Me.TrackBar1.Value = 10
+        Me.TrackBar1.Visible = False
+        '
+        'btnNoZoom
+        '
+        Me.btnNoZoom.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnNoZoom.AutoSize = True
+        Me.btnNoZoom.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnNoZoom.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnNoZoom.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNoZoom.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.btnNoZoom.Location = New System.Drawing.Point(393, 386)
+        Me.btnNoZoom.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnNoZoom.Name = "btnNoZoom"
+        Me.btnNoZoom.Size = New System.Drawing.Size(26, 28)
+        Me.btnNoZoom.TabIndex = 112
+        Me.btnNoZoom.Text = "1"
+        Me.btnNoZoom.UseVisualStyleBackColor = True
+        Me.btnNoZoom.Visible = False
+        '
         'frmLogViewer
         '
         Me.AcceptButton = Me.OK_Button
@@ -191,10 +259,14 @@ Partial Class frmLogViewer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(782, 426)
-        Me.Controls.Add(Me.lblFormName)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.BtnToday)
+        Me.Controls.Add(Me.BtnNextFile)
+        Me.Controls.Add(Me.BtnPrevFile)
+        Me.Controls.Add(Me.BtnClearLog)
         Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.btnNoZoom)
+        Me.Controls.Add(Me.lblFormName)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.rtbLog)
         Me.Controls.Add(Me.OK_Button)
         Me.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -208,16 +280,14 @@ Partial Class frmLogViewer
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents rtbLog As System.Windows.Forms.RichTextBox
-    Friend WithEvents TrackBar1 As System.Windows.Forms.TrackBar
-    Friend WithEvents btnNoZoom As System.Windows.Forms.Button
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents WrapTextToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
@@ -229,5 +299,10 @@ Partial Class frmLogViewer
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SendToSupportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-
+    Friend WithEvents BtnToday As Button
+    Friend WithEvents BtnNextFile As Button
+    Friend WithEvents BtnPrevFile As Button
+    Friend WithEvents BtnClearLog As Button
+    Friend WithEvents TrackBar1 As TrackBar
+    Friend WithEvents btnNoZoom As Button
 End Class

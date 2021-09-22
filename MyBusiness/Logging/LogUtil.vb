@@ -12,8 +12,7 @@ Public Class LogUtil
     Private Shared _LogFolder As String
     Private Shared isConfigured As Boolean = False
     Private Shared _isDebugOn As Boolean
-
-    Public Shared Property isDebugOn() As Boolean
+    Public Shared Property IsDebugOn() As Boolean
         Get
             Return _isDebugOn
         End Get
@@ -21,7 +20,6 @@ Public Class LogUtil
             _isDebugOn = value
         End Set
     End Property
-
     Public Shared Property LogFolder() As String
         Get
             Return _LogFolder
@@ -31,9 +29,7 @@ Public Class LogUtil
         End Set
     End Property
 #End Region
-
 #Region "Start / stop"
-
     Public Shared Sub InitialiseLogging()
         If isConfigured = False Then
 
@@ -66,7 +62,7 @@ Public Class LogUtil
     End Sub
 #End Region
 #Region "Add log"
-    Public Shared Sub addLog(ByVal sText As String, Optional ByVal severity As TraceEventType = TraceEventType.Information, Optional ByVal sSub As String = "", Optional ByVal errorCode As String = Nothing, Optional ByRef padCt As Integer = 0)
+    Public Shared Sub AddLog(ByVal sText As String, Optional ByVal severity As TraceEventType = TraceEventType.Information, Optional ByVal sSub As String = "", Optional ByVal errorCode As String = Nothing, Optional ByRef padCt As Integer = 0)
         InitialiseLogging()
         Dim thisThread As String = "{" & CStr(Thread.CurrentThread.ManagedThreadId) & "} "
         padCt += (6 - thisThread.Length)
@@ -85,11 +81,11 @@ Public Class LogUtil
         End If
         My.Application.Log.WriteEntry(sPrefix & sText, severity)
     End Sub
-    Public Shared Sub addExceptionLog(ByVal ex As Exception, ByVal sText As String, Optional ByVal eventType As TraceEventType = TraceEventType.Error, Optional ByVal sSub As String = "", Optional ByVal errorCode As String = Nothing, Optional ByRef padCt As Integer = 0)
+    Public Shared Sub AddExceptionLog(ByVal ex As Exception, ByVal sText As String, Optional ByVal eventType As TraceEventType = TraceEventType.Error, Optional ByVal sSub As String = "", Optional ByVal errorCode As String = Nothing, Optional ByRef padCt As Integer = 0)
         InitialiseLogging()
         Dim exMessage As String = If(ex Is Nothing, "no excepion message", ex.Message)
         Dim sErrorText = sText & " : Exception - " & exMessage
-        addLog(sErrorText, eventType, sSub, errorCode, padCt)
+        AddLog(sErrorText, eventType, sSub, errorCode, padCt)
     End Sub
     Public Shared Sub Info(ByVal pStr As String, Optional ByVal psub As String = "")
         addLog(pStr, TraceEventType.Information, psub)
@@ -115,11 +111,13 @@ Public Class LogUtil
     Public Shared Sub Exception(ByVal pStr As String, ByVal pEx As Exception, Optional ByVal psub As String = "", Optional ByVal errorCode As String = Nothing)
         addExceptionLog(pEx, pStr, TraceEventType.Error, psub, errorCode, 6)
     End Sub
-
 #End Region
 #Region "Log file"
-    Public Shared Function getLogfileName() As String
+    Public Shared Function GetLogfileName() As String
         Return My.Application.Log.DefaultFileLogWriter.FullLogFileName
+    End Function
+    Public Shared Function GetLogfileName(newDate As Date) As String
+        Return Path.Combine(LogUtil.LogFolder, My.Application.Log.DefaultFileLogWriter.BaseFileName & "-" & Format(newDate, "yyyy-MM-dd") & ".log")
     End Function
     Public Shared Sub ClearLogFile()
         Dim sLogFile As String = getLogfileName()
@@ -169,6 +167,5 @@ Public Class LogUtil
     '    End If
     '    Return isSent
     'End Function
-
 #End Region
 End Class
