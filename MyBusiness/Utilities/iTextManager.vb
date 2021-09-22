@@ -1,14 +1,19 @@
-﻿Imports iTextSharp.text.pdf
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Imports iTextSharp.text.pdf
 Imports iTextSharp.text
 Imports System.IO
 
-Public Class iTextManager
+Public Class ITextManager
     Public Shared headerFont As iTextSharp.text.Font
     Public Shared bodyFont As iTextSharp.text.Font
     Public Shared companyNameFont As iTextSharp.text.Font
     Public Shared companyAddressFont As iTextSharp.text.Font
     Public Shared bodyLargeFont As iTextSharp.text.Font
-
     Public Sub New()
         Dim _fontFolder As String = Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Fonts")
         FontFactory.RegisterDirectory(_fontFolder)
@@ -18,8 +23,7 @@ Public Class iTextManager
         companyAddressFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvCmpyAddrFont.Name, My.Settings.InvCmpyAddrFont.Size)
         bodyLargeFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvBodyLargeFont.Name, My.Settings.InvBodyLargeFont.Size)
     End Sub
-
-    Public Function createImageCell(ByVal path As String) As PdfPCell
+    Public Function CreateImageCell(ByVal path As String) As PdfPCell
         Dim img As iTextSharp.text.Image = Nothing
         If String.IsNullOrEmpty(path) = False Then
             Try
@@ -34,8 +38,7 @@ Public Class iTextManager
         Dim cell As PdfPCell = New PdfPCell(img, True)
         Return cell
     End Function
-
-    Public Function buildTableHeaderCell(ByVal pCellValue As String) As PdfPCell
+    Public Function BuildTableHeaderCell(ByVal pCellValue As String) As PdfPCell
         Dim _hdrCellValue As New Paragraph(pCellValue, bodyFont)
         Dim _tableHdrCell As New iTextSharp.text.pdf.PdfPCell(_hdrCellValue)
         _tableHdrCell.BackgroundColor = New BaseColor(194, 217, 255)
@@ -43,14 +46,14 @@ Public Class iTextManager
         _tableHdrCell.Border = iTextSharp.text.Rectangle.NO_BORDER
         Return _tableHdrCell
     End Function
-    Public Function buildTableCell(ByVal pCellValue As String, Optional ByVal pAlignment As Integer = Element.ALIGN_RIGHT) As PdfPCell
+    Public Function BuildTableCell(ByVal pCellValue As String, Optional ByVal pAlignment As Integer = Element.ALIGN_RIGHT) As PdfPCell
         Dim _cellValue As New Paragraph(pCellValue, bodyFont)
         Dim _tableCell As New iTextSharp.text.pdf.PdfPCell(_cellValue)
         _tableCell.HorizontalAlignment = pAlignment
         _tableCell.Border = iTextSharp.text.Rectangle.NO_BORDER
         Return _tableCell
     End Function
-    Public Function buildTable(ByVal columnWidths As Single()) As PdfPTable
+    Public Function BuildTable(ByVal columnWidths As Single()) As PdfPTable
         Dim _table As New iTextSharp.text.pdf.PdfPTable(columnWidths.Length)
         _table.WidthPercentage = 100.0F
         _table.SetWidths(columnWidths)
@@ -58,12 +61,9 @@ Public Class iTextManager
         _table.SpacingAfter = 10.0F
         Return _table
     End Function
-
-    Public Function emptyCell() As PdfPCell
+    Public Function EmptyCell() As PdfPCell
         Dim _emptyCell As New iTextSharp.text.pdf.PdfPCell(New Paragraph(" "))
         _emptyCell.Border = iTextSharp.text.Rectangle.NO_BORDER
         Return _emptyCell
     End Function
-
-
 End Class

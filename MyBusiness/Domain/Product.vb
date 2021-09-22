@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -15,15 +15,15 @@ Public Class Product
     Private _productChanged As DateTime?
     Private _productTaxable As Boolean
     Private _productTaxRate As Decimal?
-    Public Property productTaxRate() As Decimal?
+    Public Property ProductTaxRate() As Decimal?
         Get
-            Return _productTaxrate
+            Return _productTaxRate
         End Get
         Set(ByVal value As Decimal?)
-            _productTaxrate = value
+            _productTaxRate = value
         End Set
     End Property
-    Public Property isProductTaxable() As Boolean
+    Public Property IsProductTaxable() As Boolean
         Get
             Return _productTaxable
         End Get
@@ -31,7 +31,7 @@ Public Class Product
             _productTaxable = value
         End Set
     End Property
-    Public Property productId() As Integer
+    Public Property ProductId() As Integer
         Get
             Return _productId
         End Get
@@ -39,7 +39,7 @@ Public Class Product
             _productId = value
         End Set
     End Property
-    Public Property productName() As String
+    Public Property ProductName() As String
         Get
             Return _productName
         End Get
@@ -47,15 +47,15 @@ Public Class Product
             _productName = value
         End Set
     End Property
-    Public Property productDescription() As String
+    Public Property ProductDescription() As String
         Get
-            Return If(_productDescription Is Nothing, "", _productDescription)
+            Return If(_productDescription, "")
         End Get
         Set(ByVal value As String)
             _productDescription = value
         End Set
     End Property
-    Public Property productSupplierId() As Integer
+    Public Property ProductSupplierId() As Integer
         Get
             Return _productSupplierId
         End Get
@@ -63,7 +63,7 @@ Public Class Product
             _productSupplierId = value
         End Set
     End Property
-    Public Property productCost() As Decimal
+    Public Property ProductCost() As Decimal
         Get
             Return _productCost
         End Get
@@ -71,8 +71,7 @@ Public Class Product
             _productCost = value
         End Set
     End Property
-
-    Public Property productPrice() As Decimal
+    Public Property ProductPrice() As Decimal
         Get
             Return _productPrice
         End Get
@@ -80,8 +79,7 @@ Public Class Product
             _productPrice = value
         End Set
     End Property
-
-    Public Property productCreated() As DateTime
+    Public Property ProductCreated() As DateTime
         Get
             Return _productCreated
         End Get
@@ -89,7 +87,7 @@ Public Class Product
             _productCreated = value
         End Set
     End Property
-    Public Property productChanged() As DateTime?
+    Public Property ProductChanged() As DateTime?
         Get
             Return _productChanged
         End Get
@@ -97,17 +95,16 @@ Public Class Product
             _productChanged = value
         End Set
     End Property
-
-    Public Sub New(ByVal pProductId As Integer, _
-                    ByVal pProductName As String, _
-                    ByVal pProductDescription As String, _
-                    ByVal pProductSupplierId As Integer, _
-                    ByVal pProductCost As Decimal, _
-                    ByVal pProductPrice As Decimal, _
-                    ByVal pProductCreated As DateTime, _
-                    ByVal pProductChanged As DateTime?, _
-                    ByVal pProductTaxable As Boolean, _
-                    ByVal pProductRate As Decimal? _
+    Public Sub New(ByVal pProductId As Integer,
+                    ByVal pProductName As String,
+                    ByVal pProductDescription As String,
+                    ByVal pProductSupplierId As Integer,
+                    ByVal pProductCost As Decimal,
+                    ByVal pProductPrice As Decimal,
+                    ByVal pProductCreated As DateTime,
+                    ByVal pProductChanged As DateTime?,
+                    ByVal pProductTaxable As Boolean,
+                    ByVal pProductRate As Decimal?
                   )
         _productId = pProductId
         _productName = pProductName
@@ -118,6 +115,6 @@ Public Class Product
         _productCreated = pProductCreated
         _productChanged = pProductChanged
         _productTaxable = pProductTaxable
-        _productTaxrate = pProductRate
+        _productTaxRate = pProductRate
     End Sub
 End Class

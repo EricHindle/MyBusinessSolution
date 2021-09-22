@@ -1,4 +1,8 @@
-﻿
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
 
 Imports System.IO
 Imports System.Threading
@@ -131,40 +135,40 @@ Public Class LogUtil
         GetLogContents = My.Computer.FileSystem.ReadAllText(sLogFile)
         My.Application.Log.DefaultFileLogWriter.Write("")
     End Function
-    Public Shared Function SendLogFileToSupport() As Boolean
-        Dim isSent As Boolean = False
-        Dim oSupportAddress As String = GlobalSettings.getSetting("SupportEmail")
-        Dim oSupportAddresses As String() = EmailUtil.MakeEmailAddressList(oSupportAddress)
+    'Public Shared Function SendLogFileToSupport() As Boolean
+    '    Dim isSent As Boolean = False
+    '    Dim oSupportAddress As String = GlobalSettings.getSetting("SupportEmail")
+    '    Dim oSupportAddresses As String() = EmailUtil.MakeEmailAddressList(oSupportAddress)
 
-        Dim userId As Integer = currentUser.userId
-        Dim fromAddress As String = ""
-        Dim tempLogFile As String = Path.Combine(sTempFolder, Path.GetFileName(LogUtil.getLogfileName))
-        If My.Settings.useSMTP = True Then
-            Dim aSenders As String() = EmailUtil.getEmailsenders
-            Dim _sender As String = ""
-            If aSenders.Length > 0 Then
-                _sender = aSenders(0)
-            End If
-            fromAddress = If(My.Settings.SMTPUsername = "", _sender, My.Settings.SMTPUsername)
-        End If
-        If oSupportAddresses.Length > 0 Then
-            Try
-                If My.Computer.FileSystem.FileExists(tempLogFile) Then My.Computer.FileSystem.DeleteFile(tempLogFile)
-                My.Computer.FileSystem.CopyFile(LogUtil.getLogfileName, tempLogFile)
-                If EmailUtil.SendMail(oSupportAddresses, New String() {}, "Logfile contents", "See attached", tempLogFile, Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatPlain, fromAddress, Microsoft.Office.Interop.Outlook.OlImportance.olImportanceLow, True) Then
-                    isSent = True
-                    LogUtil.Info("Log file sent to support at " & oSupportAddress, "SendLogFileToSupport")
-                End If
-                '   My.Computer.FileSystem.DeleteFile(tempLogFile)
-            Catch ex As Exception
-                isSent = False
-                LogUtil.Exception("Failed to send log", ex, "SendLogFileToSupport")
-            End Try
-        Else
-            MsgBox("No support address found", MsgBoxStyle.Exclamation, "Error")
-        End If
-        Return isSent
-    End Function
+    '    Dim userId As Integer = currentUser.userId
+    '    Dim fromAddress As String = ""
+    '    Dim tempLogFile As String = Path.Combine(sTempFolder, Path.GetFileName(LogUtil.getLogfileName))
+
+    '    Dim aSenders As String() = EmailUtil.getEmailsenders
+    '        Dim _sender As String = ""
+    '        If aSenders.Length > 0 Then
+    '            _sender = aSenders(0)
+    '        End If
+    '        fromAddress = If(My.Settings.SMTPUsername = "", _sender, My.Settings.SMTPUsername)
+
+    '    If oSupportAddresses.Length > 0 Then
+    '        Try
+    '            If My.Computer.FileSystem.FileExists(tempLogFile) Then My.Computer.FileSystem.DeleteFile(tempLogFile)
+    '            My.Computer.FileSystem.CopyFile(LogUtil.getLogfileName, tempLogFile)
+    '            If EmailUtil.SendMail(oSupportAddresses, New String() {}, "Logfile contents", "See attached", tempLogFile, False, fromAddress, True) Then
+    '                isSent = True
+    '                LogUtil.Info("Log file sent to support at " & oSupportAddress, "SendLogFileToSupport")
+    '            End If
+    '            '   My.Computer.FileSystem.DeleteFile(tempLogFile)
+    '        Catch ex As Exception
+    '            isSent = False
+    '            LogUtil.Exception("Failed to send log", ex, "SendLogFileToSupport")
+    '        End Try
+    '    Else
+    '        MsgBox("No support address found", MsgBoxStyle.Exclamation, "Error")
+    '    End If
+    '    Return isSent
+    'End Function
 
 #End Region
 End Class

@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -377,18 +377,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property useSMTP() As Boolean
-            Get
-                Return CType(Me("useSMTP"),Boolean)
-            End Get
-            Set
-                Me("useSMTP") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property SMTPUsername() As String
             Get
@@ -396,18 +384,6 @@ Namespace My
             End Get
             Set
                 Me("SMTPUsername") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property OutlookAccount() As String
-            Get
-                Return CType(Me("OutlookAccount"),String)
-            End Get
-            Set
-                Me("OutlookAccount") = value
             End Set
         End Property
         
@@ -485,7 +461,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property emailFormat() As String
             Get
                 Return CType(Me("emailFormat"),String)
@@ -498,8 +474,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=root;password=dkk.mysql;persistsecurityinfo=True;databas"& _ 
-            "e=netwyrks")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=ehindle;password=dkk.mysql;persistsecurityinfo=True;data"& _ 
+            "base=netwyrks")>  _
         Public ReadOnly Property netwyrksConnectionString() As String
             Get
                 Return CType(Me("netwyrksConnectionString"),String)

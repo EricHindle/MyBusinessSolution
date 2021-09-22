@@ -83,13 +83,7 @@
     <Setting Name="splchkCaseErrorColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="useSMTP" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="SMTPUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="OutlookAccount" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SMTPPassword" Type="System.String" Scope="User">
@@ -111,15 +105,15 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="emailFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="netwyrksConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=127.0.0.1;user id=root;password=dkk.mysql;persistsecurityinfo=True;database=netwyrks&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;server=127.0.0.1;user id=ehindle;password=dkk.mysql;persistsecurityinfo=True;database=netwyrks&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=127.0.0.1;user id=root;password=dkk.mysql;persistsecurityinfo=True;database=netwyrks</Value>
+      <Value Profile="(Default)">server=127.0.0.1;user id=ehindle;password=dkk.mysql;persistsecurityinfo=True;database=netwyrks</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.0.0</Value>

@@ -1,4 +1,10 @@
-﻿Public Class frmAuditItem
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class frmAuditItem
 #Region "Contants"
     Private Const FORM_NAME As String = "audit item"
 #End Region

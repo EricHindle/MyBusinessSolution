@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmCustomerMaint
+Partial Class FrmCustomerMaint
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,8 +22,11 @@ Partial Class frmCustomerMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCustomerMaint))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCustomerMaint))
         Me.pnlCustomer = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.nudDays = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.rtbCustNotes = New System.Windows.Forms.RichTextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -41,13 +44,13 @@ Partial Class frmCustomerMaint
         Me.txtCustAddr1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtCustName = New System.Windows.Forms.TextBox()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnClose = New System.Windows.Forms.Button()
+        Me.BtnUpdate = New System.Windows.Forms.Button()
+        Me.BtnClose = New System.Windows.Forms.Button()
         Me.pnlJobs = New System.Windows.Forms.Panel()
-        Me.chkCompleted = New System.Windows.Forms.CheckBox()
-        Me.btnAddJob = New System.Windows.Forms.Button()
+        Me.ChkCompleted = New System.Windows.Forms.CheckBox()
+        Me.BtnAddJob = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.dgvJobs = New System.Windows.Forms.DataGridView()
+        Me.DgvJobs = New System.Windows.Forms.DataGridView()
         Me.jobId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jobName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jobCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -55,16 +58,13 @@ Partial Class frmCustomerMaint
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.nudDays = New System.Windows.Forms.NumericUpDown()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.pnlCustomer.SuspendLayout()
+        CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJobs.SuspendLayout()
-        CType(Me.dgvJobs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlCustomer
@@ -95,6 +95,31 @@ Partial Class frmCustomerMaint
         Me.pnlCustomer.Name = "pnlCustomer"
         Me.pnlCustomer.Size = New System.Drawing.Size(516, 505)
         Me.pnlCustomer.TabIndex = 0
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(418, 302)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(37, 17)
+        Me.Label10.TabIndex = 19
+        Me.Label10.Text = "days"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(292, 302)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(46, 17)
+        Me.Label9.TabIndex = 18
+        Me.Label9.Text = "Terms"
+        '
+        'nudDays
+        '
+        Me.nudDays.Location = New System.Drawing.Point(345, 300)
+        Me.nudDays.Name = "nudDays"
+        Me.nudDays.Size = New System.Drawing.Size(67, 24)
+        Me.nudDays.TabIndex = 9
         '
         'Label7
         '
@@ -249,27 +274,27 @@ Partial Class frmCustomerMaint
         Me.txtCustName.Size = New System.Drawing.Size(401, 27)
         Me.txtCustName.TabIndex = 0
         '
-        'btnUpdate
+        'BtnUpdate
         '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.Location = New System.Drawing.Point(13, 572)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(117, 43)
-        Me.btnUpdate.TabIndex = 2
-        Me.btnUpdate.Text = "Update"
-        Me.btnUpdate.UseVisualStyleBackColor = True
+        Me.BtnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdate.Location = New System.Drawing.Point(13, 572)
+        Me.BtnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BtnUpdate.Name = "BtnUpdate"
+        Me.BtnUpdate.Size = New System.Drawing.Size(117, 43)
+        Me.BtnUpdate.TabIndex = 2
+        Me.BtnUpdate.Text = "Update"
+        Me.BtnUpdate.UseVisualStyleBackColor = True
         '
-        'btnClose
+        'BtnClose
         '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.Location = New System.Drawing.Point(408, 572)
-        Me.btnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(117, 43)
-        Me.btnClose.TabIndex = 3
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
+        Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnClose.Location = New System.Drawing.Point(408, 572)
+        Me.BtnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(117, 43)
+        Me.BtnClose.TabIndex = 3
+        Me.BtnClose.Text = "Close"
+        Me.BtnClose.UseVisualStyleBackColor = True
         '
         'pnlJobs
         '
@@ -277,35 +302,35 @@ Partial Class frmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlJobs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlJobs.Controls.Add(Me.chkCompleted)
-        Me.pnlJobs.Controls.Add(Me.btnAddJob)
+        Me.pnlJobs.Controls.Add(Me.ChkCompleted)
+        Me.pnlJobs.Controls.Add(Me.BtnAddJob)
         Me.pnlJobs.Controls.Add(Me.Label8)
-        Me.pnlJobs.Controls.Add(Me.dgvJobs)
+        Me.pnlJobs.Controls.Add(Me.DgvJobs)
         Me.pnlJobs.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlJobs.Location = New System.Drawing.Point(534, 49)
         Me.pnlJobs.Name = "pnlJobs"
         Me.pnlJobs.Size = New System.Drawing.Size(405, 516)
         Me.pnlJobs.TabIndex = 1
         '
-        'chkCompleted
+        'ChkCompleted
         '
-        Me.chkCompleted.AutoSize = True
-        Me.chkCompleted.Location = New System.Drawing.Point(6, 483)
-        Me.chkCompleted.Name = "chkCompleted"
-        Me.chkCompleted.Size = New System.Drawing.Size(145, 18)
-        Me.chkCompleted.TabIndex = 3
-        Me.chkCompleted.Text = "Show completed jobs"
-        Me.chkCompleted.UseVisualStyleBackColor = True
+        Me.ChkCompleted.AutoSize = True
+        Me.ChkCompleted.Location = New System.Drawing.Point(6, 483)
+        Me.ChkCompleted.Name = "ChkCompleted"
+        Me.ChkCompleted.Size = New System.Drawing.Size(145, 18)
+        Me.ChkCompleted.TabIndex = 3
+        Me.ChkCompleted.Text = "Show completed jobs"
+        Me.ChkCompleted.UseVisualStyleBackColor = True
         '
-        'btnAddJob
+        'BtnAddJob
         '
-        Me.btnAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddJob.Location = New System.Drawing.Point(296, 476)
-        Me.btnAddJob.Name = "btnAddJob"
-        Me.btnAddJob.Size = New System.Drawing.Size(95, 31)
-        Me.btnAddJob.TabIndex = 0
-        Me.btnAddJob.Text = "Add Job"
-        Me.btnAddJob.UseVisualStyleBackColor = True
+        Me.BtnAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddJob.Location = New System.Drawing.Point(296, 476)
+        Me.BtnAddJob.Name = "BtnAddJob"
+        Me.BtnAddJob.Size = New System.Drawing.Size(95, 31)
+        Me.BtnAddJob.TabIndex = 0
+        Me.BtnAddJob.Text = "Add Job"
+        Me.BtnAddJob.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -316,24 +341,24 @@ Partial Class frmCustomerMaint
         Me.Label8.TabIndex = 1
         Me.Label8.Text = "Jobs"
         '
-        'dgvJobs
+        'DgvJobs
         '
-        Me.dgvJobs.AllowUserToAddRows = False
-        Me.dgvJobs.AllowUserToDeleteRows = False
-        Me.dgvJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvJobs.AllowUserToAddRows = False
+        Me.DgvJobs.AllowUserToDeleteRows = False
+        Me.DgvJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvJobs.BackgroundColor = System.Drawing.Color.Gainsboro
-        Me.dgvJobs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobCompleted})
-        Me.dgvJobs.Location = New System.Drawing.Point(6, 27)
-        Me.dgvJobs.Name = "dgvJobs"
-        Me.dgvJobs.ReadOnly = True
-        Me.dgvJobs.RowHeadersVisible = False
-        Me.dgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvJobs.Size = New System.Drawing.Size(394, 436)
-        Me.dgvJobs.TabIndex = 2
+        Me.DgvJobs.BackgroundColor = System.Drawing.Color.Gainsboro
+        Me.DgvJobs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.DgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobCompleted})
+        Me.DgvJobs.Location = New System.Drawing.Point(6, 27)
+        Me.DgvJobs.Name = "DgvJobs"
+        Me.DgvJobs.ReadOnly = True
+        Me.DgvJobs.RowHeadersVisible = False
+        Me.DgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvJobs.Size = New System.Drawing.Size(394, 436)
+        Me.DgvJobs.TabIndex = 2
         '
         'jobId
         '
@@ -403,32 +428,7 @@ Partial Class frmCustomerMaint
         Me.lblStatus.Padding = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.lblStatus.Size = New System.Drawing.Size(7, 17)
         '
-        'nudDays
-        '
-        Me.nudDays.Location = New System.Drawing.Point(345, 300)
-        Me.nudDays.Name = "nudDays"
-        Me.nudDays.Size = New System.Drawing.Size(67, 24)
-        Me.nudDays.TabIndex = 9
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(292, 302)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(46, 17)
-        Me.Label9.TabIndex = 18
-        Me.Label9.Text = "Terms"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(418, 302)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(37, 17)
-        Me.Label10.TabIndex = 19
-        Me.Label10.Text = "days"
-        '
-        'frmCustomerMaint
+        'FrmCustomerMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -439,26 +439,26 @@ Partial Class frmCustomerMaint
         Me.Controls.Add(Me.lblScreenName)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.pnlJobs)
-        Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnUpdate)
+        Me.Controls.Add(Me.BtnClose)
+        Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.pnlCustomer)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmCustomerMaint"
+        Me.Name = "FrmCustomerMaint"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.pnlCustomer.ResumeLayout(False)
         Me.pnlCustomer.PerformLayout()
+        CType(Me.nudDays, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlJobs.ResumeLayout(False)
         Me.pnlJobs.PerformLayout()
-        CType(Me.dgvJobs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvJobs, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.nudDays, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -481,17 +481,17 @@ Partial Class frmCustomerMaint
     Friend WithEvents txtCustAddr1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtCustName As TextBox
-    Friend WithEvents btnUpdate As Button
-    Friend WithEvents btnClose As Button
+    Friend WithEvents BtnUpdate As Button
+    Friend WithEvents BtnClose As Button
     Friend WithEvents pnlJobs As Panel
-    Friend WithEvents dgvJobs As DataGridView
+    Friend WithEvents DgvJobs As DataGridView
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents Label8 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
-    Friend WithEvents btnAddJob As Button
+    Friend WithEvents BtnAddJob As Button
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents chkCompleted As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkCompleted As System.Windows.Forms.CheckBox
     Friend WithEvents jobId As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents jobName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents jobCompleted As System.Windows.Forms.DataGridViewTextBoxColumn

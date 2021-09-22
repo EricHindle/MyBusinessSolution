@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -23,18 +23,17 @@ Public Class Email
     Private _sendDate As Date
     Private _transport As String
     Private _importance As String
-
-    Public Sub New(ByVal pToAddress As List(Of String), _
-                   ByVal pCcAddress As List(Of String), _
-                   ByVal pSubject As String, _
-                   ByVal pBody As List(Of String), _
-                   ByVal pAttachment As String, _
-                   ByVal pFormat As String, _
-                   ByVal pReadReceipt As Boolean, _
-                   ByVal pDeliveryReport As Boolean, _
-                   ByVal pFromaddress As String, _
-                   ByVal pSendDate As Date, _
-                   ByVal pTransport As String, _
+    Public Sub New(ByVal pToAddress As List(Of String),
+                   ByVal pCcAddress As List(Of String),
+                   ByVal pSubject As String,
+                   ByVal pBody As List(Of String),
+                   ByVal pAttachment As String,
+                   ByVal pFormat As String,
+                   ByVal pReadReceipt As Boolean,
+                   ByVal pDeliveryReport As Boolean,
+                   ByVal pFromaddress As String,
+                   ByVal pSendDate As Date,
+                   ByVal pTransport As String,
                    ByVal pImportance As String)
 
         _toAddress = pToAddress
@@ -50,7 +49,6 @@ Public Class Email
         _transport = pTransport
         _importance = pImportance
     End Sub
-
     Public Property Importance() As String
         Get
             Return _importance
@@ -59,7 +57,6 @@ Public Class Email
             _importance = value
         End Set
     End Property
-
     Public Property Transport() As String
         Get
             Return _transport
@@ -68,7 +65,6 @@ Public Class Email
             _transport = value
         End Set
     End Property
-
     Public Property SendDate() As Date
         Get
             Return _sendDate
@@ -77,7 +73,6 @@ Public Class Email
             _sendDate = value
         End Set
     End Property
-
     Public Property Fromaddress() As String
         Get
             Return _fromAddress
@@ -86,7 +81,6 @@ Public Class Email
             _fromAddress = value
         End Set
     End Property
-
     Public Property DeliveryReport() As Boolean
         Get
             Return _deliveryReport
@@ -95,7 +89,6 @@ Public Class Email
             _deliveryReport = value
         End Set
     End Property
-
     Public Property ReadReceipt() As Boolean
         Get
             Return _readReceipt
@@ -104,7 +97,6 @@ Public Class Email
             _readReceipt = value
         End Set
     End Property
-
     Public Property BodyFormat() As String
         Get
             Return _format
@@ -113,7 +105,6 @@ Public Class Email
             _format = value
         End Set
     End Property
-
     Public Property Attachment() As String
         Get
             Return _attachment
@@ -122,7 +113,6 @@ Public Class Email
             _attachment = value
         End Set
     End Property
-
     Public Property ToAddress() As List(Of String)
         Get
             Return _toAddress
@@ -131,7 +121,6 @@ Public Class Email
             _toAddress = value
         End Set
     End Property
-
     Public Property CcAddress() As List(Of String)
         Get
             Return _ccAddress
@@ -140,7 +129,6 @@ Public Class Email
             _ccAddress = value
         End Set
     End Property
-
     Public Property Subject() As String
         Get
             Return _subject
@@ -149,7 +137,6 @@ Public Class Email
             _subject = value
         End Set
     End Property
-
     Public Property Body() As List(Of String)
         Get
             Return _body
@@ -158,11 +145,9 @@ Public Class Email
             _body = value
         End Set
     End Property
-
     Public Function BodyString() As String
         Return Join(_body.ToArray, vbCrLf)
     End Function
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
 
@@ -191,6 +176,4 @@ Public Class Email
             .Append("]]")
         Return sb.ToString
     End Function
-
-
 End Class

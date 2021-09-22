@@ -1,4 +1,10 @@
-﻿Public Class frmSupplier
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class frmSupplier
     Private oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
     Private oSuppTable As New netwyrksDataSet.supplierDataTable
     Private _currentSupplier As SupplierBuilder = Nothing

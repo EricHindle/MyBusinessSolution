@@ -8,7 +8,7 @@
 
 Imports Google.Api.Maps.Service.Geocoding
 Imports System.Text
-Imports MyBusiness.netwyrksErrorCodes
+Imports MyBusiness.NetwyrksErrorCodes
 Public Class GoogleGeoInfo
     Inherits GeoInfo
 

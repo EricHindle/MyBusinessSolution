@@ -1,6 +1,9 @@
-﻿Imports System
-Imports System.Windows.Forms
-Imports System.Drawing
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
 Imports System.Runtime.InteropServices
 Imports System.Drawing.Printing
 

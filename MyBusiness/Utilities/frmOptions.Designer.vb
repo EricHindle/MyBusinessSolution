@@ -84,7 +84,7 @@ Partial Class frmOptions
         Me.rbText = New System.Windows.Forms.RadioButton()
         Me.rbHTML = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btnCreateFolders = New System.Windows.Forms.Button()
+        Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtReportFolder = New System.Windows.Forms.TextBox()
@@ -892,7 +892,7 @@ Partial Class frmOptions
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage2.Controls.Add(Me.btnCreateFolders)
+        Me.TabPage2.Controls.Add(Me.BtnCreateFolders)
         Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.GroupBox2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
@@ -905,13 +905,13 @@ Partial Class frmOptions
         '
         'btnCreateFolders
         '
-        Me.btnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnCreateFolders.Location = New System.Drawing.Point(121, 451)
-        Me.btnCreateFolders.Name = "btnCreateFolders"
-        Me.btnCreateFolders.Size = New System.Drawing.Size(223, 23)
-        Me.btnCreateFolders.TabIndex = 2
-        Me.btnCreateFolders.Text = "Create missing folders"
-        Me.btnCreateFolders.UseVisualStyleBackColor = True
+        Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnCreateFolders.Location = New System.Drawing.Point(121, 451)
+        Me.BtnCreateFolders.Name = "btnCreateFolders"
+        Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
+        Me.BtnCreateFolders.TabIndex = 2
+        Me.BtnCreateFolders.Text = "Create missing folders"
+        Me.BtnCreateFolders.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -1475,7 +1475,7 @@ Partial Class frmOptions
     Friend WithEvents mFieldSelect As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents lblFormName As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents btnCreateFolders As System.Windows.Forms.Button
+    Friend WithEvents BtnCreateFolders As System.Windows.Forms.Button
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents rbMapQuest As System.Windows.Forms.RadioButton
     Friend WithEvents rbGoogle As System.Windows.Forms.RadioButton

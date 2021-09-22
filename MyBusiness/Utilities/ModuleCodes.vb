@@ -1,8 +1,8 @@
-﻿' Copyright (c) 2015, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Nov 2015
 
 ''' <summary>
 ''' Module access codes

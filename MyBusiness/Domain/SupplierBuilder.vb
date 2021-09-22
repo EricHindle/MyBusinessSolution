@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -14,44 +14,41 @@ Public Class SupplierBuilder
     Private _supplierDiscount As Decimal
     Private _supplierCreated As DateTime
     Private _supplierChanged As DateTime?
-    Public Shared Function aSupplierBuilder() As SupplierBuilder
+    Public Shared Function ASupplierBuilder() As SupplierBuilder
         Return New SupplierBuilder
     End Function
-    Public Function startingWith(ByVal SupplierId As Integer) As SupplierBuilder
+    Public Function StartingWith(ByVal SupplierId As Integer) As SupplierBuilder
         Dim oSupplierTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
         Dim oSupplierTable As New netwyrksDataSet.supplierDataTable
-        Dim oSupplierRow As netwyrksDataSet.supplierRow = Nothing
         If oSupplierTa.FillById(oSupplierTable, SupplierId) > 0 Then
-            startingWith(oSupplierTable.Rows(0))
+            StartingWith(oSupplierTable.Rows(0))
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         oSupplierTa.Dispose()
         oSupplierTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oSupplier As Supplier) As SupplierBuilder
+    Public Function StartingWith(ByVal oSupplier As Supplier) As SupplierBuilder
         With oSupplier
-            _supplierId = .supplierId
-            _supplierName = .supplierName
-            _supplierAddress = .supplierAddress
-            _supplierEmail = .supplierEmail
-            _supplierPhone = .supplierPhone
-            _supplierNotes = .supplierNotes
-            _supplierDiscount = .supplierDiscount
-            _supplierCreated = .supplierCreated
-            _supplierChanged = .supplierChanged
-
+            _supplierId = .SupplierId
+            _supplierName = .SupplierName
+            _supplierAddress = .SupplierAddress
+            _supplierEmail = .SupplierEmail
+            _supplierPhone = .SupplierPhone
+            _supplierNotes = .SupplierNotes
+            _supplierDiscount = .SupplierDiscount
+            _supplierCreated = .SupplierCreated
+            _supplierChanged = .SupplierChanged
         End With
         Return Me
     End Function
-    Public Function startingWith(ByVal oSupplier As netwyrksDataSet.supplierRow) As SupplierBuilder
+    Public Function StartingWith(ByVal oSupplier As netwyrksDataSet.supplierRow) As SupplierBuilder
 
         With oSupplier
             _supplierId = .supplier_id
             _supplierName = .supplier_name
-            _supplierAddress = AddressBuilder.anAddress.startingWith(oSupplier).build
+            _supplierAddress = AddressBuilder.AnAddress.StartingWith(oSupplier).Build
             _supplierEmail = If(.Issupplier_emailNull, "", .supplier_email)
             _supplierPhone = If(.Issupplier_telephoneNull, "", .supplier_telephone)
             _supplierNotes = If(.Issupplier_notesNull, "", .supplier_notes)
@@ -65,10 +62,10 @@ Public Class SupplierBuilder
         End With
         Return Me
     End Function
-    Public Function startingWithNothing() As SupplierBuilder
+    Public Function StartingWithNothing() As SupplierBuilder
         _supplierId = -1
         _supplierName = ""
-        _supplierAddress = AddressBuilder.anAddress.startingWithNothing.build
+        _supplierAddress = AddressBuilder.AnAddress.StartingWithNothing.Build
         _supplierEmail = ""
         _supplierPhone = ""
         _supplierNotes = ""
@@ -77,51 +74,51 @@ Public Class SupplierBuilder
         _supplierChanged = Nothing
         Return Me
     End Function
-    Public Function withSupplierId(ByVal pSupplierId As Integer) As SupplierBuilder
+    Public Function WithSupplierId(ByVal pSupplierId As Integer) As SupplierBuilder
         _supplierId = pSupplierId
         Return Me
     End Function
-    Public Function withSupplierName(ByVal pSupplierName As String) As SupplierBuilder
+    Public Function WithSupplierName(ByVal pSupplierName As String) As SupplierBuilder
         _supplierName = pSupplierName
         Return Me
     End Function
-    Public Function withSupplierAddress(ByVal pSupplierAddress As Address) As SupplierBuilder
+    Public Function WithSupplierAddress(ByVal pSupplierAddress As Address) As SupplierBuilder
         _supplierAddress = pSupplierAddress
         Return Me
     End Function
-    Public Function withSupplierPhone(ByVal pSupplierPhone As String) As SupplierBuilder
+    Public Function WithSupplierPhone(ByVal pSupplierPhone As String) As SupplierBuilder
         _supplierPhone = pSupplierPhone
         Return Me
     End Function
-    Public Function withSupplierEmail(ByVal pSupplierEmail As String) As SupplierBuilder
+    Public Function WithSupplierEmail(ByVal pSupplierEmail As String) As SupplierBuilder
         _supplierEmail = pSupplierEmail
         Return Me
     End Function
-    Public Function withSupplierDiscount(ByVal pSupplierDiscount As Decimal) As SupplierBuilder
+    Public Function WithSupplierDiscount(ByVal pSupplierDiscount As Decimal) As SupplierBuilder
         _supplierDiscount = pSupplierDiscount
         Return Me
     End Function
-    Public Function withSupplierNotes(ByVal pSupplierNotes As String) As SupplierBuilder
+    Public Function WithSupplierNotes(ByVal pSupplierNotes As String) As SupplierBuilder
         _supplierNotes = pSupplierNotes
         Return Me
     End Function
-    Public Function withSupplierCreated(ByVal pSupplierCreated As DateTime) As SupplierBuilder
+    Public Function WithSupplierCreated(ByVal pSupplierCreated As DateTime) As SupplierBuilder
         _supplierCreated = pSupplierCreated
         Return Me
     End Function
-    Public Function withSupplierChanged(ByVal pSupplierChanged As DateTime?) As SupplierBuilder
+    Public Function WithSupplierChanged(ByVal pSupplierChanged As DateTime?) As SupplierBuilder
         _supplierChanged = pSupplierChanged
         Return Me
     End Function
-    Public Function build() As Supplier
-        Return New Supplier(_supplierId, _
-                            _supplierName, _
-                            _supplierEmail, _
-                            _supplierPhone, _
-                            _supplierNotes, _
-                            _supplierCreated, _
-                            _supplierChanged, _
-                            _supplierAddress, _
+    Public Function Build() As Supplier
+        Return New Supplier(_supplierId,
+                            _supplierName,
+                            _supplierEmail,
+                            _supplierPhone,
+                            _supplierNotes,
+                            _supplierCreated,
+                            _supplierChanged,
+                            _supplierAddress,
                             _supplierDiscount)
     End Function
 End Class

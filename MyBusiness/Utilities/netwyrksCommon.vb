@@ -1,16 +1,11 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Imports System.Security.Cryptography
-Imports System.Text
 Imports System.IO
-Imports MyBusiness.netwyrksErrorCodes
-Imports Microsoft.Office.Interop
+Imports MyBusiness.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Globally available functions
@@ -58,7 +53,7 @@ Public Module netwyrksCommon
     ''' Set global flags to show current user's role(s)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub setUserRoles()
+    Public Sub SetUserRoles()
         isAdmin = My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator)
         isManager = My.User.IsInRole(ApplicationServices.BuiltInRole.PowerUser) Or isAdmin
         isExecutive = My.User.IsInRole(ApplicationServices.BuiltInRole.User) Or isManager
@@ -106,9 +101,7 @@ Public Module netwyrksCommon
             My.Settings.LogFolder = "<application path>" & Path.DirectorySeparatorChar & "Log"
         End If
         sLogFolder = My.Settings.LogFolder.Replace("<application path>", sApplicationPath)
-
     End Sub
-
 
     ''' <summary>
     ''' Set file paths for the current user to avoid conflicts under Citrix
@@ -223,14 +216,11 @@ Public Module netwyrksCommon
     End Sub
 #End Region
 #Region "Utilities"
-
     Public prtUtil As New PrintUtil
-
     Public Sub SetRowColours(ByRef oRow As DataGridViewRow, ByVal forecolor As Color, ByVal backcolor As Color)
         oRow.DefaultCellStyle.ForeColor = forecolor
         oRow.DefaultCellStyle.BackColor = backcolor
     End Sub
-
     Public Function setDateRange(ByVal indx As Integer) As DateRange
         Dim oRange As DateRange
         Dim d As Int16 = Today.DayOfWeek
@@ -289,7 +279,6 @@ Public Module netwyrksCommon
 
         Return oRange
     End Function
-
     Public Sub setDateControlRange(ByVal oRange As DateRange, ByRef dtpSelectFromDate As DateTimePicker, ByRef dtpSelectToDate As DateTimePicker)
         If oRange.fromDate >= dtpSelectFromDate.MinDate Then
             If oRange.fromDate <= dtpSelectFromDate.MaxDate Then
@@ -310,11 +299,10 @@ Public Module netwyrksCommon
             dtpSelectToDate.Value = dtpSelectToDate.MinDate
         End If
     End Sub
-
     Public Sub splashMessage(ByVal message As String, Optional ByVal lifeTime As Integer = 2000)
         Using _splash As New frmInfoSplash
             With _splash
-                .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2, _
+                .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2,
                                         (Screen.PrimaryScreen.WorkingArea.Height - .Height) / 2)
                 .LifeTime = lifeTime
                 .Message = message
@@ -322,15 +310,13 @@ Public Module netwyrksCommon
             End With
         End Using
     End Sub
-
     Private splash As frmInfoSplash
-
     Public Sub showSplash(ByVal sMessage As String, ByVal oParentSize As Size, ByVal oParentLocation As Point)
         splash = New frmInfoSplash
         With splash
             .Message = sMessage
             If oParentSize.IsEmpty Then
-                .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2, _
+                .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2,
                                             (Screen.PrimaryScreen.WorkingArea.Height - .Height) / 2)
             Else
                 .Location = New Point(oParentLocation.X + ((oParentSize.Width - .Width) / 2), oParentLocation.Y + ((oParentSize.Height - .Height) / 2))
@@ -339,20 +325,16 @@ Public Module netwyrksCommon
             .Refresh()
         End With
     End Sub
-
     Public Sub showSplash(ByVal sMessage As String)
         showSplash(sMessage, New Size(0, 0), New Point(0, 0))
     End Sub
-
     Public Sub closeSplash()
         splash.Close()
         splash.Dispose()
     End Sub
-
     Public Sub showStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
         oStatusLabel.Text = sText
         If isLogged Then LogUtil.Debug(sText, oFormName)
     End Sub
-
 #End Region
 End Module

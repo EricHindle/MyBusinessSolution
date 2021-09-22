@@ -1,4 +1,8 @@
-﻿
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
 
 Imports System.IO
 Imports System.Security.Principal
@@ -23,8 +27,8 @@ Public Class netwyrksIIdentity
     ''' <param name="password"></param>
     ''' <param name="appcode"></param>
     ''' <remarks></remarks>
-    Public Sub New(ByVal name As String, _
-                   ByVal password As String, _
+    Public Sub New(ByVal name As String,
+                   ByVal password As String,
                    ByVal appcode As String)
 
         ' Name and password must both be present
@@ -41,8 +45,8 @@ Public Class netwyrksIIdentity
         End If
     End Sub
 
-    Private Function IsValidNameAndPassword(ByVal username As String, _
-                ByVal password As String, _
+    Private Function IsValidNameAndPassword(ByVal username As String,
+                ByVal password As String,
                 ByVal appcode As String) _
                 As Boolean
         Dim rtnVal As Boolean = False
@@ -91,6 +95,7 @@ Public Class netwyrksIIdentity
 
         oTable.Dispose()
         oTa.Dispose()
+        '    roleValue = ApplicationServices.BuiltInRole.Administrator
 
         Return rtnVal
 

@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -20,8 +20,7 @@ Public Class Task
     Private _taskStartDue As DateTime?
     Private _taskTaxable As Boolean
     Private _taskTaxRate As Decimal?
-
-    Public Property taskTaxRate() As Decimal?
+    Public Property TaskTaxRate() As Decimal?
         Get
             Return _taskTaxRate
         End Get
@@ -29,8 +28,7 @@ Public Class Task
             _taskTaxRate = value
         End Set
     End Property
-
-    Public Property isTaskTaxable() As Boolean
+    Public Property IsTaskTaxable() As Boolean
         Get
             Return _taskTaxable
         End Get
@@ -38,8 +36,7 @@ Public Class Task
             _taskTaxable = value
         End Set
     End Property
-
-    Public Property taskStartDue() As DateTime?
+    Public Property TaskStartDue() As DateTime?
         Get
             Return _taskStartDue
         End Get
@@ -47,7 +44,7 @@ Public Class Task
             _taskStartDue = value
         End Set
     End Property
-    Public Property isTaskStarted() As Boolean
+    Public Property IsTaskStarted() As Boolean
         Get
             Return _taskStarted
         End Get
@@ -55,7 +52,7 @@ Public Class Task
             _taskStarted = value
         End Set
     End Property
-    Public Property taskHours() As Decimal
+    Public Property TaskHours() As Decimal
         Get
             Return _taskHours
         End Get
@@ -63,8 +60,7 @@ Public Class Task
             _taskHours = value
         End Set
     End Property
-
-    Public Property taskJobId() As Integer
+    Public Property TaskJobId() As Integer
         Get
             Return _taskJobId
         End Get
@@ -72,7 +68,7 @@ Public Class Task
             _taskJobId = value
         End Set
     End Property
-    Public Property taskChanged() As DateTime?
+    Public Property TaskChanged() As DateTime?
         Get
             Return _taskChanged
         End Get
@@ -80,7 +76,7 @@ Public Class Task
             _taskChanged = value
         End Set
     End Property
-    Public Property taskCreated() As DateTime
+    Public Property TaskCreated() As DateTime
         Get
             Return _taskCreated
         End Get
@@ -88,7 +84,7 @@ Public Class Task
             _taskCreated = value
         End Set
     End Property
-    Public Property istaskCompleted() As Boolean
+    Public Property IstaskCompleted() As Boolean
         Get
             Return _taskCompleted
         End Get
@@ -96,8 +92,7 @@ Public Class Task
             _taskCompleted = value
         End Set
     End Property
-
-    Public Property taskCost() As Decimal
+    Public Property TaskCost() As Decimal
         Get
             Return _taskCost
         End Get
@@ -105,7 +100,7 @@ Public Class Task
             _taskCost = value
         End Set
     End Property
-    Public Property taskDescription() As String
+    Public Property TaskDescription() As String
         Get
             Return _taskDescription
         End Get
@@ -113,7 +108,7 @@ Public Class Task
             _taskDescription = value
         End Set
     End Property
-    Public Property taskName() As String
+    Public Property TaskName() As String
         Get
             Return _taskName
         End Get
@@ -121,7 +116,7 @@ Public Class Task
             _taskName = value
         End Set
     End Property
-    Public Property taskId() As Integer
+    Public Property TaskId() As Integer
         Get
             Return _taskId
         End Get
@@ -129,19 +124,18 @@ Public Class Task
             _taskId = value
         End Set
     End Property
-
-    Public Sub New(ByVal pTaskId As Integer, _
-                    ByVal pTaskJob As Integer, _
-                    ByVal pTaskName As String, _
-                    ByVal pTaskDescription As String, _
-                    ByVal pTaskCost As Decimal, _
-                    ByVal pTaskHours As Decimal, _
-                    ByVal pTaskStartDue As DateTime?, _
-                    ByVal pTaskStarted As Boolean, _
-                    ByVal pTaskCompleted As Boolean, _
-                    ByVal pTaskCreated As DateTime, _
-                    ByVal pTaskChanged As DateTime?, _
-                    ByVal pTaskTaxable As Boolean, _
+    Public Sub New(ByVal pTaskId As Integer,
+                    ByVal pTaskJob As Integer,
+                    ByVal pTaskName As String,
+                    ByVal pTaskDescription As String,
+                    ByVal pTaskCost As Decimal,
+                    ByVal pTaskHours As Decimal,
+                    ByVal pTaskStartDue As DateTime?,
+                    ByVal pTaskStarted As Boolean,
+                    ByVal pTaskCompleted As Boolean,
+                    ByVal pTaskCreated As DateTime,
+                    ByVal pTaskChanged As DateTime?,
+                    ByVal pTaskTaxable As Boolean,
                     ByVal pTaskTaxRate As Decimal?)
         _taskId = pTaskId
         _taskJobId = pTaskJob
@@ -154,10 +148,9 @@ Public Class Task
         _taskCompleted = pTaskCompleted
         _taskCreated = pTaskCreated
         _taskChanged = pTaskChanged
-        _taskTaxable = pTasktaxable
+        _taskTaxable = pTaskTaxable
         _taskTaxRate = pTaskTaxRate
     End Sub
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
@@ -193,7 +186,6 @@ Public Class Task
     Public Function AuditString() As String
         Return Me.ToString
     End Function
-
 End Class
 
 

@@ -1,9 +1,8 @@
-﻿
-' Copyright (c) 2015, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Oct 2015
 
 Imports System.ComponentModel
 Imports System.Reflection

@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -20,17 +20,15 @@ Public Class Customer
     Private _dateCreated As DateTime
     Private _dateChanged As DateTime?
     Private _terms As Integer?
-
-
-    Public Sub New(ByVal pCustId As Integer, _
-                   ByVal pCustName As String, _
-                   ByVal pEmail As String, _
-                   ByVal pPhone As String, _
-                   ByVal pNotes As String, _
-                   ByVal pDateCreated As DateTime, _
-                   ByVal pDateChanged As DateTime?, _
-                   ByVal pAddress As Address, _
-                   ByVal pDiscount As Decimal?, _
+    Public Sub New(ByVal pCustId As Integer,
+                   ByVal pCustName As String,
+                   ByVal pEmail As String,
+                   ByVal pPhone As String,
+                   ByVal pNotes As String,
+                   ByVal pDateCreated As DateTime,
+                   ByVal pDateChanged As DateTime?,
+                   ByVal pAddress As Address,
+                   ByVal pDiscount As Decimal?,
                    ByVal pTerms As Integer)
 
         _custId = pCustId
@@ -44,7 +42,7 @@ Public Class Customer
         _dateChanged = pDateChanged
         _terms = pTerms
     End Sub
-    Public Property terms() As Integer?
+    Public Property Terms() As Integer?
         Get
             Return If(_terms Is Nothing, 0, _terms)
         End Get
@@ -52,7 +50,7 @@ Public Class Customer
             _terms = value
         End Set
     End Property
-    Public Property discount() As Decimal?
+    Public Property Discount() As Decimal?
         Get
             Return If(_discount Is Nothing, 0, _discount)
         End Get
@@ -60,7 +58,7 @@ Public Class Customer
             _discount = value
         End Set
     End Property
-    Public Property dateChanged() As DateTime?
+    Public Property DateChanged() As DateTime?
         Get
             Return _dateChanged
         End Get
@@ -68,7 +66,7 @@ Public Class Customer
             _dateChanged = value
         End Set
     End Property
-    Public Property dateCreated() As DateTime
+    Public Property DateCreated() As DateTime
         Get
             Return _dateCreated
         End Get
@@ -76,10 +74,9 @@ Public Class Customer
             _dateCreated = value
         End Set
     End Property
-
-    Public Property notes() As String
+    Public Property Notes() As String
         Get
-            Return If(_notes Is Nothing, "", _notes)
+            Return If(_notes, "")
         End Get
         Set(ByVal value As String)
             _notes = value
@@ -87,31 +84,29 @@ Public Class Customer
     End Property
     Public Property Phone() As String
         Get
-            Return If(_phone Is Nothing, "", _phone)
+            Return If(_phone, "")
         End Get
         Set(ByVal value As String)
             _phone = value
         End Set
     End Property
-    Public Property email() As String
+    Public Property Email() As String
         Get
-            Return If(_email Is Nothing, "", _email)
+            Return If(_email, "")
         End Get
         Set(ByVal value As String)
             _email = value
         End Set
     End Property
-
-    Public Property custName() As String
+    Public Property CustName() As String
         Get
-            Return If(_custName Is Nothing, "", _custName)
+            Return If(_custName, "")
         End Get
         Set(ByVal value As String)
             _custName = value
         End Set
     End Property
-
-    Public Property customerId() As Integer
+    Public Property CustomerId() As Integer
         Get
             Return _custId
         End Get
@@ -119,41 +114,39 @@ Public Class Customer
             _custId = value
         End Set
     End Property
-    Public Property address() As Address
+    Public Property Address() As Address
         Get
-            Return If(_custAddress Is Nothing, AddressBuilder.anAddress.startingWithNothing.build, _custAddress)
+            Return If(_custAddress, AddressBuilder.AnAddress.StartingWithNothing.Build)
         End Get
         Set(ByVal value As Address)
             _custAddress = value
         End Set
     End Property
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
         .Append("Customer=[") _
         .Append("customerId=[") _
-        .Append(customerId) _
+        .Append(CustomerId) _
         .Append("], Name=[") _
-        .Append(custName) _
+        .Append(CustName) _
         .Append("], email=[") _
-        .Append(email) _
+        .Append(Email) _
         .Append("], phone=[") _
         .Append(Phone) _
         .Append("], notes=[") _
-        .Append(notes) _
+        .Append(Notes) _
         .Append("], dateCreated=[") _
-        .Append(Format(dateCreated, "dd/MM/yyyy")) _
+        .Append(Format(DateCreated, "dd/MM/yyyy")) _
         .Append("], dateChanged=[") _
-        .Append(If(dateChanged Is Nothing, "", Format(dateChanged, "dd/MM/yyyy"))) _
+        .Append(If(DateChanged Is Nothing, "", Format(DateChanged, "dd/MM/yyyy"))) _
         .Append("], ") _
-        .Append(address.ToString) _
+        .Append(Address.ToString) _
         .Append(", discount=[") _
-        .Append(CStr(discount)) _
+        .Append(CStr(Discount)) _
         .Append("], terms=[") _
-        .Append(CStr(terms)) _
+        .Append(CStr(Terms)) _
         .Append("]]")
         Return sb.ToString
     End Function
-
 End Class

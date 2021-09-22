@@ -1,4 +1,10 @@
-﻿Public Class frmTask
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class frmTask
     Private _taskbuilder As TaskBuilder
     Private _taskId As Integer
     Private _task As Task

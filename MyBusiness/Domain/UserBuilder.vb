@@ -1,9 +1,8 @@
-﻿' Copyright (c) 2016, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' The moral right of the author has been asserted
-' Created Mar 2016
 
 ''' <summary>
 ''' User object builder (see https://en.wikipedia.org/wiki/Builder_pattern)
@@ -23,25 +22,22 @@ Public Class UserBuilder
     Private _mobile As String
     Private _jobTitle As String
     Private _note As String
-
-    Public Shared Function aUserBuilder() As UserBuilder
+    Public Shared Function AUserBuilder() As UserBuilder
         Return New UserBuilder
     End Function
-
-    Public Function startingWith(ByVal pUserId As Integer) As UserBuilder
+    Public Function StartingWith(ByVal pUserId As Integer) As UserBuilder
         Dim oUserTable As New netwyrksDataSet.userDataTable
         Dim oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
         If oUserTa.FillById(oUserTable, pUserId) > 0 Then
-            startingWith(oUserTable.Rows(0))
+            StartingWith(oUserTable.Rows(0))
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         oUserTable.Dispose()
         oUserTa.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByRef pUserRow As netwyrksDataSet.userRow) As UserBuilder
+    Public Function StartingWith(ByRef pUserRow As netwyrksDataSet.userRow) As UserBuilder
         If pUserRow IsNot Nothing Then
             With pUserRow
                 _userId = .user_id
@@ -59,12 +55,11 @@ Public Class UserBuilder
                 _note = .user_note
             End With
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         Return Me
     End Function
-
-    Public Function startingWithNothing() As UserBuilder
+    Public Function StartingWithNothing() As UserBuilder
         _userId = 0
         _userLogin = ""
         _userCode = ""
@@ -80,72 +75,70 @@ Public Class UserBuilder
         _note = ""
         Return Me
     End Function
-    Public Function withUserId(ByVal puserId As Integer) As UserBuilder
+    Public Function WithUserId(ByVal puserId As Integer) As UserBuilder
         _userId = puserId
         Return Me
     End Function
-    Public Function withUserLogin(ByVal pUserLogin As String) As UserBuilder
+    Public Function WithUserLogin(ByVal pUserLogin As String) As UserBuilder
         _userLogin = pUserLogin
         Return Me
     End Function
-    Public Function withUserCode(ByVal pUserCode As String) As UserBuilder
+    Public Function WithUserCode(ByVal pUserCode As String) As UserBuilder
         _userCode = pUserCode
         Return Me
     End Function
-    Public Function withPassword(ByVal pPassword As String) As UserBuilder
+    Public Function WithPassword(ByVal pPassword As String) As UserBuilder
         _password = pPassword
         Return Me
     End Function
-    Public Function withTempPassword(ByVal pTempPassword As String) As UserBuilder
+    Public Function WithTempPassword(ByVal pTempPassword As String) As UserBuilder
         _tempPassword = pTempPassword
         Return Me
     End Function
-    Public Function withForcePasswordChange(ByVal pForcePasswordChange As String) As UserBuilder
+    Public Function WithForcePasswordChange(ByVal pForcePasswordChange As String) As UserBuilder
         _forcePasswordChange = pForcePasswordChange
         Return Me
     End Function
-    Public Function withSalt(ByVal pSalt As String) As UserBuilder
+    Public Function WithSalt(ByVal pSalt As String) As UserBuilder
         _salt = pSalt
         Return Me
     End Function
-    Public Function withUserName(ByVal pUserName As String) As UserBuilder
+    Public Function WithUserName(ByVal pUserName As String) As UserBuilder
         _userName = pUserName
         Return Me
     End Function
-    Public Function withEmail(ByVal pEmail As String) As UserBuilder
+    Public Function WithEmail(ByVal pEmail As String) As UserBuilder
         _email = pEmail
         Return Me
     End Function
-    Public Function withContactNumber(ByVal pContactNumber As String) As UserBuilder
+    Public Function WithContactNumber(ByVal pContactNumber As String) As UserBuilder
         _contactNumber = pContactNumber
         Return Me
     End Function
-    Public Function withMobile(ByVal pMobile As String) As UserBuilder
+    Public Function WithMobile(ByVal pMobile As String) As UserBuilder
         _mobile = pMobile
         Return Me
     End Function
-    Public Function withJobTitle(ByVal pJobTitle As String) As UserBuilder
+    Public Function WithJobTitle(ByVal pJobTitle As String) As UserBuilder
         _jobTitle = pJobTitle
         Return Me
     End Function
-    Public Function withNote(ByVal pNote As String) As UserBuilder
+    Public Function WithNote(ByVal pNote As String) As UserBuilder
         _note = pNote
         Return Me
     End Function
-
-    Public Function build() As User
-        Return New User(_userId, _
-                        _userLogin, _
-                        _userCode, _
-                        _password, _
-                        _tempPassword, _
-                        _forcePasswordChange, _
-                        _salt, _
-                        _userName, _
-                        _contactNumber, _
-                        _mobile, _email, _
-                        _jobTitle, _
+    Public Function Build() As User
+        Return New User(_userId,
+                        _userLogin,
+                        _userCode,
+                        _password,
+                        _tempPassword,
+                        _forcePasswordChange,
+                        _salt,
+                        _userName,
+                        _contactNumber,
+                        _mobile, _email,
+                        _jobTitle,
                         _note)
     End Function
-
 End Class

@@ -1,12 +1,10 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Imports myBusiness.netwyrksErrorCodes
+Imports MyBusiness.NetwyrksErrorCodes
 ''' <summary>
 ''' Form to display and maintain the user diary
 ''' </summary>
@@ -15,31 +13,31 @@ Public Class frmDiary
 #Region "Constants"
     Private Const FORM_NAME As String = "diary"
 #End Region
-
 #Region "Private variable instances"
-    Private RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
-    Private oTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-    Private oTable As New netwyrksDataSet.diaryDataTable
-    Private oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private oUserTable As New netwyrksDataSet.userDataTable
-    Private oUserList As New Dictionary(Of Integer, String)
-    Private oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-    Private oJobtable As New netwyrksDataSet.jobDataTable
-    Private user As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
-    Private userId As Integer = user.userId
+    Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
+    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
+    Private ReadOnly oTable As New netwyrksDataSet.diaryDataTable
+    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
+    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
+    Private ReadOnly oUserList As New Dictionary(Of Integer, String)
+    Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
+    Private ReadOnly oJobtable As New netwyrksDataSet.jobDataTable
+    Private ReadOnly user As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
+    Private ReadOnly userId As Integer = user.userId
     Private userName As String = ""
     Private currentRemId As Integer = 0
     Private currentCustId As Integer = 0
     Private currentJobId As Integer = 0
-    Private dayOfWeek As Integer = Today.DayOfWeek
+    Private ReadOnly dayOfWeek As Integer = Today.DayOfWeek
     Private dateSectionHeads As String() = {"Overdue", "Today", "Tomorrow", "This Week", "Next Week", "Future"}
     Private dateSectionEnds As Date() = {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 8 - dayOfWeek, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 14 - dayOfWeek, Today)), Date.MaxValue}
     Private dateSection As Integer = 0
     Private isLoading As Boolean = True
     Private isShowAll As Boolean = False
+#End Region
+#Region "properties"
     Private _forCustomerId As Integer
-
-    Public Property forCustomerId() As Integer
+    Public Property ForCustomerId() As Integer
         Get
             Return _forCustomerId
         End Get
@@ -47,9 +45,7 @@ Public Class frmDiary
             _forCustomerId = value
         End Set
     End Property
-
 #End Region
-
 #Region "Form"
     ''' <summary>
     ''' Dispose of resources when form closes
@@ -57,7 +53,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oTa.Dispose()
         oTable.Dispose()
         oUserTa.Dispose()
@@ -72,7 +68,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Starting", FORM_NAME)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
@@ -100,7 +96,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
     ''' <summary>
@@ -109,7 +105,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnSetReminder_Click(sender As Object, e As EventArgs) Handles btnSetReminder.Click
+    Private Sub BtnSetReminder_Click(sender As Object, e As EventArgs) Handles btnSetReminder.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
@@ -124,7 +120,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnSetComplete_Click(sender As Object, e As EventArgs) Handles btnSetComplete.Click
+    Private Sub BtnSetComplete_Click(sender As Object, e As EventArgs) Handles btnSetComplete.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
@@ -133,7 +129,6 @@ Public Class frmDiary
             RebuildDiaryList()
         End If
     End Sub
-
     ''' <summary>
     ''' Refill the diary grid and position the selected row as before
     ''' </summary>
@@ -163,15 +158,13 @@ Public Class frmDiary
             dgvDiary.ClearSelection()
         End If
     End Sub
-
-
     ''' <summary>
     ''' 
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub dtpSelectDate_ValueChanged(sender As Object, e As EventArgs)
+    Private Sub DtpSelectDate_ValueChanged(sender As Object, e As EventArgs)
         fillDiaryTable()
     End Sub
     ''' <summary>
@@ -180,14 +173,14 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub chkOptions_CheckedChanged(sender As Object, e As EventArgs) Handles chkReminders.CheckedChanged, chkComplete.CheckedChanged
+    Private Sub ChkOptions_CheckedChanged(sender As Object, e As EventArgs) Handles chkReminders.CheckedChanged, chkComplete.CheckedChanged
         RebuildDiaryList()
     End Sub
     ''' <summary>
     ''' 
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub clearForm()
+    Private Sub ClearForm()
         currentRemId = 0
         btnNew.Visible = True
         btnUpdate.Visible = False
@@ -204,7 +197,7 @@ Public Class frmDiary
     ''' 
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub clearLinks()
+    Private Sub ClearLinks()
         btnCustLink.Enabled = False
         btnJobLink.Enabled = False
         currentCustId = 0
@@ -215,7 +208,7 @@ Public Class frmDiary
     ''' </summary>
     ''' <param name="_id"></param>
     ''' <remarks></remarks>
-    Private Sub fillForm(ByVal _id As Integer)
+    Private Sub FillForm(ByVal _id As Integer)
         Dim _table As New netwyrksDataSet.diaryDataTable
         Dim i As Integer = oTa.FillById(_table, _id)
         currentRemId = _id
@@ -247,15 +240,14 @@ Public Class frmDiary
         End If
         _table.Dispose()
     End Sub
-
     ''' <summary>
     ''' 
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub dgvDiary_SelectionChanged(sender As Object, e As EventArgs) Handles dgvDiary.SelectionChanged
-        clearForm()
+    Private Sub DgvDiary_SelectionChanged(sender As Object, e As EventArgs) Handles dgvDiary.SelectionChanged
+        ClearForm()
         If dgvDiary.SelectedRows.Count = 1 Then
             If dgvDiary.SelectedRows(0).Cells(Me.dremHeader.Name).Value = False Then
                 Dim orow As DataGridViewRow = dgvDiary.SelectedRows(0)
@@ -269,29 +261,28 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnCustLink_Click(sender As Object, e As EventArgs) Handles btnCustLink.Click
+    Private Sub BtnCustLink_Click(sender As Object, e As EventArgs) Handles btnCustLink.Click
 
-        Using _dialog As New frmCustomerMaint
+        Using _dialog As New FrmCustomerMaint
             _dialog.CustomerId = currentCustId
             _dialog.ShowDialog()
         End Using
 
     End Sub
-
     ''' <summary>
     ''' 
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnjobLink_Click(sender As Object, e As EventArgs) Handles btnJobLink.Click
+    Private Sub BtnjobLink_Click(sender As Object, e As EventArgs) Handles btnJobLink.Click
 
         If oJobTa.FillById(oJobtable, currentJobId) = 1 Then
             Dim jobRow As netwyrksDataSet.jobRow = oJobtable.Rows(0)
-            Dim ojob As jobBuilder = jobBuilder.aJobBuilder.startingWith(jobRow)
+            Dim ojob As JobBuilder = JobBuilder.AJobBuilder.StartingWith(jobRow)
 
-            Using _job As New frmjob
-                _job.thejob = ojob
+            Using _job As New frmJob
+                _job.theJob = ojob
                 _job.ShowDialog()
 
             End Using
@@ -304,7 +295,7 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Using _reminder As New frmReminder
             _reminder.theReminder = Nothing
             _reminder.ShowDialog()
@@ -326,16 +317,13 @@ Public Class frmDiary
             ShowAllUsers()
         End If
     End Sub
-
-    Private Sub lblF3_Click(sender As Object, e As EventArgs) Handles lblF3.Click
+    Private Sub LblF3_Click(sender As Object, e As EventArgs) Handles lblF3.Click
         RefreshList()
     End Sub
-
-    Private Sub lblF4_Click(sender As Object, e As EventArgs) Handles lblF4.Click
+    Private Sub LblF4_Click(sender As Object, e As EventArgs) Handles lblF4.Click
         ShowAllUsers()
     End Sub
 #End Region
-
 #Region "Create Update Delete"
     ''' <summary>
     ''' 
@@ -343,11 +331,11 @@ Public Class frmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Using _reminder As New frmReminder
-                _reminder.theReminder = ReminderBuilder.aReminder.startingWith(oRow.Cells(Me.dremId.Name).Value).build()
+                _reminder.theReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
                 _reminder.ShowDialog()
             End Using
         Else
@@ -356,7 +344,6 @@ Public Class frmDiary
         RebuildDiaryList()
     End Sub
 #End Region
-
 #Region "Subroutines"
     ''' <summary>
     ''' Display mesasage on the status bar and log it
@@ -365,7 +352,7 @@ Public Class frmDiary
     ''' <param name="islogged"></param>
     ''' <param name="level"></param>
     ''' <remarks></remarks>
-    Private Sub logStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
+    Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
         lblStatus.Text = sText
         If islogged Then LogUtil.addLog(sText, level, FORM_NAME)
     End Sub
@@ -373,7 +360,7 @@ Public Class frmDiary
     ''' Fill the diary grid with diary entries
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub fillDiaryTable()
+    Private Sub FillDiaryTable()
         If isLoading Then Exit Sub
         dgvDiary.Rows.Clear()
         Try
@@ -448,7 +435,7 @@ Public Class frmDiary
     ''' <param name="rRow"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function getNextSection(ByVal rowDate As Date, ByRef rRow As DataGridViewRow) As Integer
+    Private Function GetNextSection(ByVal rowDate As Date, ByRef rRow As DataGridViewRow) As Integer
         Dim sectionNo As Integer = dateSectionHeads.GetUpperBound(0)
         For x = 0 To dateSectionHeads.GetUpperBound(0)
             If rowDate < dateSectionEnds(x).Date Then
@@ -463,15 +450,6 @@ Public Class frmDiary
             oCell.Style.BackColor = Color.Silver
         Next
         Return sectionNo
-    End Function
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="oDate"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Function setDateSector(ByVal oDate As Date)
-        Return 1
     End Function
     ''' <summary>
     ''' Reload the list to show all users or the current user's diary
@@ -504,8 +482,5 @@ Public Class frmDiary
         isLoading = False
         RebuildDiaryList()
     End Sub
-
-
 #End Region
-
 End Class

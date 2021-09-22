@@ -1,4 +1,10 @@
-﻿Public Class TaskBuilder
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class TaskBuilder
     Private _taskId As Integer
     Private _taskName As String
     Private _taskDescription As String
@@ -12,43 +18,40 @@
     Private _taskStartDue As DateTime?
     Private _taskTaxable As Boolean
     Private _taskTaxRate As Decimal?
-
-    Public Shared Function aTaskBuilder() As TaskBuilder
+    Public Shared Function ATaskBuilder() As TaskBuilder
         Return New TaskBuilder
     End Function
-    Public Function startingWith(ByVal TaskId As Integer) As TaskBuilder
+    Public Function StartingWith(ByVal TaskId As Integer) As TaskBuilder
         Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
         Dim oTaskTable As New netwyrksDataSet.taskDataTable
-        Dim oTaskRow As netwyrksDataSet.taskRow = Nothing
         If oTaskTa.FillById(oTaskTable, TaskId) > 0 Then
-            startingWith(oTaskTable.Rows(0))
+            StartingWith(oTaskTable.Rows(0))
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         oTaskTa.Dispose()
         oTaskTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oTask As Task) As TaskBuilder
+    Public Function StartingWith(ByVal oTask As Task) As TaskBuilder
         With oTask
-            _taskId = .taskId
-            _taskJobId = .taskJobId
-            _taskName = .taskName
-            _taskDescription = .taskDescription
-            _taskCost = .taskCost
-            _taskHours = .taskHours
-            _taskStartDue = .taskStartDue
-            _taskStarted = .isTaskStarted
-            _taskCompleted = .istaskCompleted
-            _taskCreated = .taskCreated
-            _taskChanged = .taskChanged
-            _taskTaxable = .isTaskTaxable
-            _taskTaxRate = .taskTaxRate
+            _taskId = .TaskId
+            _taskJobId = .TaskJobId
+            _taskName = .TaskName
+            _taskDescription = .TaskDescription
+            _taskCost = .TaskCost
+            _taskHours = .TaskHours
+            _taskStartDue = .TaskStartDue
+            _taskStarted = .IsTaskStarted
+            _taskCompleted = .IstaskCompleted
+            _taskCreated = .TaskCreated
+            _taskChanged = .TaskChanged
+            _taskTaxable = .IsTaskTaxable
+            _taskTaxRate = .TaskTaxRate
         End With
         Return Me
     End Function
-    Public Function startingWith(ByVal oTask As netwyrksDataSet.taskRow) As TaskBuilder
+    Public Function StartingWith(ByVal oTask As netwyrksDataSet.taskRow) As TaskBuilder
 
         With oTask
             _taskId = .task_id
@@ -75,7 +78,7 @@
         End With
         Return Me
     End Function
-    Public Function startingWithNothing() As TaskBuilder
+    Public Function StartingWithNothing() As TaskBuilder
         _taskId = -1
         _taskJobId = -1
         _taskName = ""
@@ -91,72 +94,71 @@
         _taskTaxRate = Nothing
         Return Me
     End Function
-    Public Function withTaskId(ByVal pTaskId As Integer) As TaskBuilder
+    Public Function WithTaskId(ByVal pTaskId As Integer) As TaskBuilder
         _taskId = pTaskId
         Return Me
     End Function
-    Public Function withTaskJobId(ByVal pTaskJobId As Integer) As TaskBuilder
+    Public Function WithTaskJobId(ByVal pTaskJobId As Integer) As TaskBuilder
         _taskJobId = pTaskJobId
         Return Me
     End Function
-    Public Function withTaskName(ByVal pTaskName As String) As TaskBuilder
+    Public Function WithTaskName(ByVal pTaskName As String) As TaskBuilder
         _taskName = pTaskName
         Return Me
     End Function
-    Public Function withTaskDescription(ByVal pTaskDescription As String) As TaskBuilder
+    Public Function WithTaskDescription(ByVal pTaskDescription As String) As TaskBuilder
         _taskDescription = pTaskDescription
         Return Me
     End Function
-    Public Function withTaskCost(ByVal pTaskCost As Decimal) As TaskBuilder
+    Public Function WithTaskCost(ByVal pTaskCost As Decimal) As TaskBuilder
         _taskCost = pTaskCost
         Return Me
     End Function
-    Public Function withTaskTime(ByVal pTaskHours As Decimal) As TaskBuilder
+    Public Function WithTaskTime(ByVal pTaskHours As Decimal) As TaskBuilder
         _taskHours = pTaskHours
         Return Me
     End Function
-    Public Function withTaskStartDue(ByVal pTaskStartDue As DateTime?) As TaskBuilder
+    Public Function WithTaskStartDue(ByVal pTaskStartDue As DateTime?) As TaskBuilder
         _taskStartDue = pTaskStartDue
         Return Me
     End Function
-    Public Function withTaskStarted(ByVal pTaskStarted As Boolean) As TaskBuilder
+    Public Function WithTaskStarted(ByVal pTaskStarted As Boolean) As TaskBuilder
         _taskStarted = pTaskStarted
         Return Me
     End Function
-    Public Function withTaskCompleted(ByVal pTaskCompleted As Boolean) As TaskBuilder
+    Public Function WithTaskCompleted(ByVal pTaskCompleted As Boolean) As TaskBuilder
         _taskCompleted = pTaskCompleted
         Return Me
     End Function
-    Public Function withTaskCreated(ByVal pTaskCreated As DateTime) As TaskBuilder
+    Public Function WithTaskCreated(ByVal pTaskCreated As DateTime) As TaskBuilder
         _taskCreated = pTaskCreated
         Return Me
     End Function
-    Public Function withTaskChanged(ByVal pTaskChanged As DateTime?) As TaskBuilder
+    Public Function WithTaskChanged(ByVal pTaskChanged As DateTime?) As TaskBuilder
         _taskChanged = pTaskChanged
         Return Me
     End Function
-    Public Function withTaskTaxable(ByVal pTaskTaxable As Boolean) As TaskBuilder
+    Public Function WithTaskTaxable(ByVal pTaskTaxable As Boolean) As TaskBuilder
         _taskTaxable = pTaskTaxable
         Return Me
     End Function
-    Public Function withTaskTaxRate(ByVal pTaskTaxRate As Decimal?) As TaskBuilder
+    Public Function WithTaskTaxRate(ByVal pTaskTaxRate As Decimal?) As TaskBuilder
         _taskTaxRate = pTaskTaxRate
         Return Me
     End Function
-
-    Public Function build() As Task
-        Return New Task(_taskId, _
-                        _taskJobId, _
-                        _taskName, _
-                        _taskDescription, _
-                        _taskCost, _
-                        _taskHours, _
-                        _taskStartDue, _
-                        _taskStarted, _
-                        _taskCompleted, _
-                        _taskCreated, _
-                        _taskChanged, _
-                        _taskTaxable, _
+    Public Function Build() As Task
+        Return New Task(_taskId,
+                        _taskJobId,
+                        _taskName,
+                        _taskDescription,
+                        _taskCost,
+                        _taskHours,
+                        _taskStartDue,
+                        _taskStarted,
+                        _taskCompleted,
+                        _taskCreated,
+                        _taskChanged,
+                        _taskTaxable,
                         _taskTaxRate)
     End Function
 End Class

@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -15,7 +15,7 @@ Public Class AddressBuilder
     Private _address4 As String
     Private _postcode As String
 
-    Public Shared Function anAddress() As AddressBuilder
+    Public Shared Function AnAddress() As AddressBuilder
         Return New AddressBuilder
     End Function
 
@@ -25,13 +25,13 @@ Public Class AddressBuilder
     ''' <param name="oAddress"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function startingWith(ByVal oAddress As Address) As AddressBuilder
+    Public Function StartingWith(ByVal oAddress As Address) As AddressBuilder
         If oAddress IsNot Nothing Then
-            _address1 = oAddress.address1
-            _address2 = oAddress.address2
-            _address3 = oAddress.address3
-            _address4 = oAddress.address4
-            _postcode = oAddress.postcode
+            _address1 = oAddress.Address1
+            _address2 = oAddress.Address2
+            _address3 = oAddress.Address3
+            _address4 = oAddress.Address4
+            _postcode = oAddress.Postcode
         Else
             startingWithNothing()
         End If
@@ -43,7 +43,7 @@ Public Class AddressBuilder
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function startingWithNothing() As AddressBuilder
+    Public Function StartingWithNothing() As AddressBuilder
         _address1 = ""
         _address2 = ""
         _address3 = ""
@@ -58,7 +58,7 @@ Public Class AddressBuilder
     ''' <param name="oRow"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function startingWith(ByVal oRow As netwyrksDataSet.customerRow) As AddressBuilder
+    Public Function StartingWith(ByVal oRow As netwyrksDataSet.customerRow) As AddressBuilder
         _address1 = If(oRow.Iscustomer_address_1Null, "", oRow.customer_address_1)
         _address2 = If(oRow.Iscustomer_address_2Null, "", oRow.customer_address_2)
         _address3 = If(oRow.Iscustomer_address_3Null, "", oRow.customer_address_3)
@@ -66,7 +66,7 @@ Public Class AddressBuilder
         _postcode = If(oRow.Iscustomer_postcodeNull, "", oRow.customer_postcode)
         Return Me
     End Function
-    Public Function startingWith(ByVal oRow As netwyrksDataSet.supplierRow) As AddressBuilder
+    Public Function StartingWith(ByVal oRow As netwyrksDataSet.supplierRow) As AddressBuilder
         _address1 = If(oRow.Issupplier_address_1Null, "", oRow.supplier_address_1)
         _address2 = If(oRow.Issupplier_address_2Null, "", oRow.supplier_address_2)
         _address3 = If(oRow.Issupplier_address_3Null, "", oRow.supplier_address_3)
@@ -74,37 +74,31 @@ Public Class AddressBuilder
         _postcode = If(oRow.Issupplier_postcodeNull, "", oRow.supplier_postcode)
         Return Me
     End Function
-    Public Function withAddress1(ByVal Address1 As String) As AddressBuilder
+    Public Function WithAddress1(ByVal Address1 As String) As AddressBuilder
         _address1 = Address1
         Return Me
     End Function
-
-    Public Function withAddress2(ByVal Address2 As String) As AddressBuilder
+    Public Function WithAddress2(ByVal Address2 As String) As AddressBuilder
         _address2 = Address2
         Return Me
     End Function
-
-    Public Function withAddress3(ByVal Address3 As String) As AddressBuilder
+    Public Function WithAddress3(ByVal Address3 As String) As AddressBuilder
         _address3 = Address3
         Return Me
     End Function
-
-    Public Function withAddress4(ByVal Address4 As String) As AddressBuilder
+    Public Function WithAddress4(ByVal Address4 As String) As AddressBuilder
         _address4 = Address4
         Return Me
     End Function
-
-    Public Function withPostcode(ByVal Postcode As String) As AddressBuilder
+    Public Function WithPostcode(ByVal Postcode As String) As AddressBuilder
         _postcode = Postcode
         Return Me
     End Function
-
-
-    Public Function build() As Address
-        Return New Address(_address1, _
-                           _address2, _
-                           _address3, _
-                           _address4, _
+    Public Function Build() As Address
+        Return New Address(_address1,
+                           _address2,
+                           _address3,
+                           _address4,
                            _postcode)
     End Function
 End Class

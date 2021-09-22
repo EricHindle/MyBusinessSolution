@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -14,15 +14,14 @@ Public Class Supplier
     Private _supplierDiscount As Decimal?
     Private _supplierCreated As DateTime
     Private _supplierChanged As DateTime?
-
-    Public Sub New(ByVal pSupplierId As Integer, _
-                   ByVal pSupplierName As String, _
-                   ByVal pSupplierEmail As String, _
-                   ByVal pSupplierPhone As String, _
-                   ByVal pSupplierNotes As String, _
-                   ByVal pSupplierCreated As DateTime, _
-                   ByVal pSupplierChanged As DateTime?, _
-                   ByVal pSupplierAddress As Address, _
+    Public Sub New(ByVal pSupplierId As Integer,
+                   ByVal pSupplierName As String,
+                   ByVal pSupplierEmail As String,
+                   ByVal pSupplierPhone As String,
+                   ByVal pSupplierNotes As String,
+                   ByVal pSupplierCreated As DateTime,
+                   ByVal pSupplierChanged As DateTime?,
+                   ByVal pSupplierAddress As Address,
                    ByVal pSupplierDiscount As Decimal?)
 
         _supplierId = pSupplierId
@@ -36,7 +35,7 @@ Public Class Supplier
         _supplierChanged = pSupplierChanged
 
     End Sub
-    Public Property supplierDiscount() As Decimal?
+    Public Property SupplierDiscount() As Decimal?
         Get
             Return If(_supplierDiscount Is Nothing, 0, _supplierDiscount)
         End Get
@@ -44,7 +43,7 @@ Public Class Supplier
             _supplierDiscount = value
         End Set
     End Property
-    Public Property supplierChanged() As DateTime?
+    Public Property SupplierChanged() As DateTime?
         Get
             Return _supplierChanged
         End Get
@@ -52,7 +51,7 @@ Public Class Supplier
             _supplierChanged = value
         End Set
     End Property
-    Public Property supplierCreated() As DateTime
+    Public Property SupplierCreated() As DateTime
         Get
             Return _supplierCreated
         End Get
@@ -60,33 +59,31 @@ Public Class Supplier
             _supplierCreated = value
         End Set
     End Property
-
-    Public Property supplierNotes() As String
+    Public Property SupplierNotes() As String
         Get
-            Return If(_supplierNotes Is Nothing, "", _supplierNotes)
+            Return If(_supplierNotes, "")
         End Get
         Set(ByVal value As String)
             _supplierNotes = value
         End Set
     End Property
-    Public Property supplierPhone() As String
+    Public Property SupplierPhone() As String
         Get
-            Return If(_supplierPhone Is Nothing, "", _supplierPhone)
+            Return If(_supplierPhone, "")
         End Get
         Set(ByVal value As String)
             _supplierPhone = value
         End Set
     End Property
-    Public Property supplierEmail() As String
+    Public Property SupplierEmail() As String
         Get
-            Return If(_supplierEmail Is Nothing, "", _supplierEmail)
+            Return If(_supplierEmail, "")
         End Get
         Set(ByVal value As String)
             _supplierEmail = value
         End Set
     End Property
-
-    Public Property supplierName() As String
+    Public Property SupplierName() As String
         Get
             Return _supplierName
         End Get
@@ -94,8 +91,7 @@ Public Class Supplier
             _supplierName = value
         End Set
     End Property
-
-    Public Property supplierId() As Integer
+    Public Property SupplierId() As Integer
         Get
             Return _supplierId
         End Get
@@ -103,9 +99,9 @@ Public Class Supplier
             _supplierId = value
         End Set
     End Property
-    Public Property supplierAddress() As Address
+    Public Property SupplierAddress() As Address
         Get
-            Return If(_supplierAddress Is Nothing, AddressBuilder.anAddress.startingWithNothing.build, _supplierAddress)
+            Return If(_supplierAddress, AddressBuilder.AnAddress.StartingWithNothing.Build)
         End Get
         Set(ByVal value As Address)
             _supplierAddress = value

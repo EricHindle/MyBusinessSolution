@@ -1,9 +1,8 @@
-﻿' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Sep 2015
 
 Public Class ReminderBuilder
     Private _diaryId As Integer
@@ -16,32 +15,29 @@ Public Class ReminderBuilder
     Private _customerId As Integer?
     Private _jobId As Integer?
     Private _callback As Boolean
-
-    Public Shared Function aReminder() As ReminderBuilder
+    Public Shared Function AReminder() As ReminderBuilder
         Return New ReminderBuilder
     End Function
-
-    Public Function startingWith(ByVal oReminder As Reminder) As ReminderBuilder
+    Public Function StartingWith(ByVal oReminder As Reminder) As ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
-                _diaryId = .diary_id
-                _userId = .userId
-                _reminderDate = .reminderDate
-                _subject = .subject
-                _body = .body
-                _isReminder = .isReminder
-                _isClosed = .isClosed
-                _customerId = .customerId
-                _jobId = .jobId
-                _callback = .callBack
+                _diaryId = .Diary_id
+                _userId = .UserId
+                _reminderDate = .ReminderDate
+                _subject = .Subject
+                _body = .Body
+                _isReminder = .IsReminder
+                _isClosed = .IsClosed
+                _customerId = .CustomerId
+                _jobId = .JobId
+                _callback = .CallBack
             End With
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         Return Me
     End Function
-
-    Public Function startingWithNothing() As ReminderBuilder
+    Public Function StartingWithNothing() As ReminderBuilder
         _diaryId = 0
         _userId = 0
         _reminderDate = Today.Date
@@ -54,21 +50,19 @@ Public Class ReminderBuilder
         _callback = False
         Return Me
     End Function
-
-    Public Function startingWith(ByVal iReminderId As Integer) As ReminderBuilder
+    Public Function StartingWith(ByVal iReminderId As Integer) As ReminderBuilder
         Dim oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
         Dim oDiaryTable As New netwyrksDataSet.diaryDataTable
         If oDiaryTa.FillById(oDiaryTable, iReminderId) = 1 Then
-            startingWith(oDiaryTable.Rows(0))
+            StartingWith(oDiaryTable.Rows(0))
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         oDiaryTa.Dispose()
         oDiaryTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oReminder As netwyrksDataSet.diaryRow) As ReminderBuilder
+    Public Function StartingWith(ByVal oReminder As netwyrksDataSet.diaryRow) As ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
                 _diaryId = .diary_id
@@ -92,70 +86,60 @@ Public Class ReminderBuilder
                 _callback = .diary_callback
             End With
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         Return Me
     End Function
-
-    Public Function withDiaryId(ByVal pDiaryId As Integer) As ReminderBuilder
+    Public Function WithDiaryId(ByVal pDiaryId As Integer) As ReminderBuilder
         _diaryId = pDiaryId
         Return Me
     End Function
-
-    Public Function withUserId(ByVal userId As Integer) As ReminderBuilder
+    Public Function WithUserId(ByVal userId As Integer) As ReminderBuilder
         _userId = userId
         Return Me
     End Function
-
-    Public Function withReminderDate(ByVal reminderDate As DateTime) As ReminderBuilder
+    Public Function WithReminderDate(ByVal reminderDate As DateTime) As ReminderBuilder
         _reminderDate = reminderDate
         Return Me
     End Function
-
-    Public Function withSubject(ByVal subject As String) As ReminderBuilder
+    Public Function WithSubject(ByVal subject As String) As ReminderBuilder
         _subject = subject
         Return Me
     End Function
-
-    Public Function withBody(ByVal body As String) As ReminderBuilder
+    Public Function WithBody(ByVal body As String) As ReminderBuilder
         _body = body
         Return Me
     End Function
-    Public Function withReminder(ByVal pReminder As String) As ReminderBuilder
+    Public Function WithReminder(ByVal pReminder As String) As ReminderBuilder
         _isReminder = pReminder
         Return Me
     End Function
-
-    Public Function withClosed(ByVal pClosed As Boolean) As ReminderBuilder
+    Public Function WithClosed(ByVal pClosed As Boolean) As ReminderBuilder
         _isClosed = pClosed
         Return Me
     End Function
-
-    Public Function withCustomerId(ByVal pCustomerId As Integer?) As ReminderBuilder
+    Public Function WithCustomerId(ByVal pCustomerId As Integer?) As ReminderBuilder
         _customerId = pCustomerId
         Return Me
     End Function
-
-    Public Function withJobId(ByVal pIncidentId As Integer?) As ReminderBuilder
+    Public Function WithJobId(ByVal pIncidentId As Integer?) As ReminderBuilder
         _jobId = pIncidentId
         Return Me
     End Function
-
-    Public Function withCallBack(ByVal pCallBack As Boolean) As ReminderBuilder
+    Public Function WithCallBack(ByVal pCallBack As Boolean) As ReminderBuilder
         _callback = pCallBack
         Return Me
     End Function
-    Public Function build() As Reminder
-        Return New Reminder(_diaryId, _
-                            _userId, _
-                            _reminderDate, _
-                            _subject, _
-                            _body, _
-                            _isReminder, _
-                            _isClosed, _
-                            _customerId, _
-                            _jobId, _
+    Public Function Build() As Reminder
+        Return New Reminder(_diaryId,
+                            _userId,
+                            _reminderDate,
+                            _subject,
+                            _body,
+                            _isReminder,
+                            _isClosed,
+                            _customerId,
+                            _jobId,
                             _callback)
     End Function
-
 End Class

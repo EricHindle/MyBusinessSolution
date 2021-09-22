@@ -10,7 +10,7 @@ Imports Google.Api.Maps.Service.Geocoding
 Imports System.Text
 Imports System.Web
 Imports System.Xml
-Imports MyBusiness.netwyrksErrorCodes
+Imports MyBusiness.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Utilities to obtain Geographical Info from MapQuest

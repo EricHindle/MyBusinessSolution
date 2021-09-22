@@ -1,12 +1,12 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 
 Imports System.Text
 
-Public Class job
+Public Class Job
     Private _jobId As Integer
     Private _jobName As String
     Private _jobDescription As String
@@ -21,7 +21,7 @@ Public Class job
     Private _jobPaymentDue As DateTime?
     Private _jobUser As Integer
 
-    Public Property jobUser() As Integer
+    Public Property JobUser() As Integer
         Get
             Return _jobUser
         End Get
@@ -29,9 +29,7 @@ Public Class job
             _jobUser = value
         End Set
     End Property
-
-
-    Public Property jobPaymentDue() As DateTime?
+    Public Property JobPaymentDue() As DateTime?
         Get
             Return _jobPaymentDue
         End Get
@@ -39,8 +37,7 @@ Public Class job
             _jobPaymentDue = value
         End Set
     End Property
-
-    Public Property jobInvoiceDate() As DateTime?
+    Public Property JobInvoiceDate() As DateTime?
         Get
             Return _jobInvoiceDate
         End Get
@@ -48,34 +45,31 @@ Public Class job
             _jobInvoiceDate = value
         End Set
     End Property
-
-
-    Public Property jobReference() As String
+    Public Property JobReference() As String
         Get
-            Return If(_jobReference Is Nothing, "", _jobReference)
+            Return If(_jobReference, "")
         End Get
         Set(ByVal value As String)
             _jobReference = value
         End Set
     End Property
-
-    Public Property jobPoNumber() As String
+    Public Property JobPoNumber() As String
         Get
-            Return If(_jobPoNumber Is Nothing, "", _jobPoNumber)
+            Return If(_jobPoNumber, "")
         End Get
         Set(ByVal value As String)
             _jobPoNumber = value
         End Set
     End Property
-    Public Property jobInvoiceNumber() As String
+    Public Property JobInvoiceNumber() As String
         Get
-            Return If(_jobInvoiceNumber Is Nothing, "", _jobInvoiceNumber)
+            Return If(_jobInvoiceNumber, "")
         End Get
         Set(ByVal value As String)
             _jobInvoiceNumber = value
         End Set
     End Property
-    Public Property jobCustomerId() As Integer
+    Public Property JobCustomerId() As Integer
         Get
             Return _jobCustomerId
         End Get
@@ -83,7 +77,7 @@ Public Class job
             _jobCustomerId = value
         End Set
     End Property
-    Public Property jobChanged() As DateTime?
+    Public Property JobChanged() As DateTime?
         Get
             Return _jobChanged
         End Get
@@ -91,7 +85,7 @@ Public Class job
             _jobChanged = value
         End Set
     End Property
-    Public Property jobCreated() As DateTime
+    Public Property JobCreated() As DateTime
         Get
             Return _jobCreated
         End Get
@@ -99,7 +93,7 @@ Public Class job
             _jobCreated = value
         End Set
     End Property
-    Public Property isJobCompleted() As Boolean
+    Public Property IsJobCompleted() As Boolean
         Get
             Return _jobCompleted
         End Get
@@ -107,7 +101,7 @@ Public Class job
             _jobCompleted = value
         End Set
     End Property
-    Public Property jobDescription() As String
+    Public Property JobDescription() As String
         Get
             Return _jobDescription
         End Get
@@ -115,7 +109,7 @@ Public Class job
             _jobDescription = value
         End Set
     End Property
-    Public Property jobName() As String
+    Public Property JobName() As String
         Get
             Return _jobName
         End Get
@@ -123,7 +117,7 @@ Public Class job
             _jobName = value
         End Set
     End Property
-    Public Property jobId() As Integer
+    Public Property JobId() As Integer
         Get
             Return _jobId
         End Get
@@ -131,19 +125,18 @@ Public Class job
             _jobId = value
         End Set
     End Property
-
-    Public Sub New(ByVal pJobId As Integer, _
-                    ByVal pJobCustomer As Integer, _
-                    ByVal pJobName As String, _
-                    ByVal pJobDescription As String, _
-                    ByVal pJobCompleted As Boolean, _
-                    ByVal pJobCreated As DateTime, _
-                    ByVal pJobChanged As DateTime?, _
-                    ByVal pJobInvoiceNumber As String, _
-                    ByVal pJobPoNumber As String, _
-                    ByVal pJobReference As String, _
-                    ByVal pJobInvoiceDate As DateTime?, _
-                    ByVal pJobPaymentDue As DateTime?, _
+    Public Sub New(ByVal pJobId As Integer,
+                    ByVal pJobCustomer As Integer,
+                    ByVal pJobName As String,
+                    ByVal pJobDescription As String,
+                    ByVal pJobCompleted As Boolean,
+                    ByVal pJobCreated As DateTime,
+                    ByVal pJobChanged As DateTime?,
+                    ByVal pJobInvoiceNumber As String,
+                    ByVal pJobPoNumber As String,
+                    ByVal pJobReference As String,
+                    ByVal pJobInvoiceDate As DateTime?,
+                    ByVal pJobPaymentDue As DateTime?,
                     ByVal pJobUser As Integer)
         _jobId = pJobId
         _jobCustomerId = pJobCustomer
@@ -159,7 +152,6 @@ Public Class job
         _jobPaymentDue = pJobPaymentDue
         _jobUser = pJobUser
     End Sub
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
@@ -192,5 +184,4 @@ Public Class job
         .Append("]")
         Return sb.ToString
     End Function
-
 End Class

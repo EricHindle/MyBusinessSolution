@@ -1,4 +1,10 @@
-﻿Imports System.Text
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Imports System.Text
 
 Public Class ReportColumn
     Private _columnName As String
@@ -9,7 +15,6 @@ Public Class ReportColumn
     Private _parentTable As String
     Private _accessLevel As Integer
     Private _reportDefault As Boolean
-
     Public Sub New(pName As String, pType As String, pFormat As String, pEncrypted As Boolean, pHeading As String, pTable As String, pAccessLevel As Integer, pDefault As Boolean)
         _columnName = pName
         _columnType = pType
@@ -20,8 +25,7 @@ Public Class ReportColumn
         _accessLevel = pAccessLevel
         _reportDefault = pDefault
     End Sub
-
-    Public Property reportDefault() As Boolean
+    Public Property ReportDefault() As Boolean
         Get
             Return _reportDefault
         End Get
@@ -29,8 +33,7 @@ Public Class ReportColumn
             _reportDefault = value
         End Set
     End Property
-
-    Public Property accessLevel() As Integer
+    Public Property AccessLevel() As Integer
         Get
             Return _accessLevel
         End Get
@@ -38,8 +41,7 @@ Public Class ReportColumn
             _accessLevel = value
         End Set
     End Property
-
-    Public Property parentTable() As String
+    Public Property ParentTable() As String
         Get
             Return _parentTable
         End Get
@@ -47,8 +49,7 @@ Public Class ReportColumn
             _parentTable = value
         End Set
     End Property
-
-    Public Property columnHeading() As String
+    Public Property ColumnHeading() As String
         Get
             Return _columnHeading
         End Get
@@ -56,8 +57,7 @@ Public Class ReportColumn
             _columnHeading = value
         End Set
     End Property
-
-    Public Property columnEncrypted() As Boolean
+    Public Property ColumnEncrypted() As Boolean
         Get
             Return _columnEncrypted
         End Get
@@ -65,8 +65,7 @@ Public Class ReportColumn
             _columnEncrypted = value
         End Set
     End Property
-
-    Public Property columnFormat() As String
+    Public Property ColumnFormat() As String
         Get
             Return _columnFormat
         End Get
@@ -74,8 +73,7 @@ Public Class ReportColumn
             _columnFormat = value
         End Set
     End Property
-
-    Public Property columnType() As String
+    Public Property ColumnType() As String
         Get
             Return _columnType
         End Get
@@ -83,8 +81,7 @@ Public Class ReportColumn
             _columnType = value
         End Set
     End Property
-
-    Public Property columnName() As String
+    Public Property ColumnName() As String
         Get
             Return _columnName
         End Get
@@ -92,7 +89,6 @@ Public Class ReportColumn
             _columnName = value
         End Set
     End Property
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb.Append(_columnName).Append("~") _

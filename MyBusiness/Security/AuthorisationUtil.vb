@@ -1,4 +1,10 @@
-﻿''' <summary>
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+''' <summary>
 ''' Functions used in authorising users
 ''' i.e. deciding what access they have
 ''' </summary>

@@ -1,18 +1,13 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
 Imports System.Text
-Imports System.Windows.Forms
 Imports System.IO
-Imports Microsoft.Office.Interop.Excel
-Imports Microsoft.Office.Interop
-Imports MyBusiness.netwyrksErrorCodes
-Imports Microsoft.Office.Interop.Word
+
+Imports MyBusiness.NetwyrksErrorCodes
 
 Public Class ExportUtil
     Private Const NEWLINE As String = Chr(27) & " :"
@@ -156,13 +151,6 @@ Public Class ExportUtil
                 sw.WriteLine("E")
             End If
         End Using
-        If convertToXls Then
-            If ConvertUtil.convertSylkFileToExcel(sFullFilename, myPassword) Then
-                My.Computer.FileSystem.DeleteFile(sFullFilename)
-                myOutfile = Path.GetFileNameWithoutExtension(myOutfile) & FileUtil.fileSuffix(FileUtil.FileType.XLS)
-            End If
-
-        End If
     End Sub
     Private Function ConvertHeadsToCsv(ByVal oCols As DataGridViewColumnCollection, Optional ByVal sSep As String = ",", Optional ByVal includeInvisible As Boolean = True) As String
         Dim sb As New StringBuilder
@@ -279,55 +267,6 @@ Public Class ExportUtil
         End If
         Return newFilename
     End Function
-
-    Public Function saveImageAsPdf(ByRef sFileName As String) As String
-        Dim rtnMessage As String = ""
-        Dim pdfFile As String = ConvertUtil.ConvertImageToPdf(sFileName)
-        exportFileType = FileUtil.FileType.PDF
-        OutFolder = My.Computer.FileSystem.SpecialDirectories.Desktop
-        OutFile = Path.GetFileNameWithoutExtension(sFileName) & ".pdf"
-        Dim newFilename As String = saveAndRename(FileUtil.FileType.PDF, pdfFile)
-        If newFilename.Length > 0 Then
-            rtnMessage = "Image saved to " & newFilename
-        End If
-        Return rtnMessage
-    End Function
-
-    Public Function saveWordDocument(ByRef oDoc As Word.Document, Optional ByVal pfileType As FileUtil.FileType = FileUtil.FileType.DOC)
-        Dim IsSuccess As Boolean = False
-        Try
-            'If StartWord(False) Then
-            '    Dim newDoc As Word.Document = objWord.Documents.Add()
-            '    newDoc = oDoc
-            oDoc.SaveAs(myOutFullFilePath, getWordFormat(pfileType))
-            'ForceWordToQuit()
-            IsSuccess = True
-            'End If
-        Catch ex As Exception
-            LogUtil.Exception("Exception saving to word document", ex, "ExportUtil", getErrorCode(SystemModule.UTILITIES, ErrorType.APPLICATION, FailedAction.ERROR_SAVING_FILE))
-            IsSuccess = False
-        End Try
-        Return IsSuccess
-
-    End Function
-
-    Public Shared Function getWordFormat(ByVal fileType As FileUtil.FileType) As WdSaveFormat
-        Dim rtnType As WdSaveFormat
-        Select Case fileType
-            Case FileUtil.FileType.DOC
-                rtnType = WdSaveFormat.wdFormatDocumentDefault
-            Case FileUtil.FileType.PDF
-                rtnType = WdSaveFormat.wdFormatPDF
-            Case FileUtil.FileType.RTF
-                rtnType = WdSaveFormat.wdFormatRTF
-            Case FileUtil.FileType.TXT
-                rtnType = WdSaveFormat.wdFormatText
-            Case Else
-                rtnType = WdSaveFormat.wdFormatDocument
-        End Select
-        Return rtnType
-    End Function
-
 
     Public Function ExportGridToRtfFile(ByVal oReportDef As ReportDefinition, ByRef dgvReportTable As DataGridView) As String
         Dim response As New StringBuilder

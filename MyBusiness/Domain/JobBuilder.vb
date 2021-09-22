@@ -1,10 +1,10 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 
-Public Class jobBuilder
+Public Class JobBuilder
     Private _jobId As Integer
     Private _jobName As String
     Private _jobDescription As String
@@ -21,10 +21,10 @@ Public Class jobBuilder
     Private _jobPaymentDue As DateTime?
     Private _jobUser As Integer
 
-    Public Shared Function aJobBuilder() As jobBuilder
-        Return New jobBuilder
+    Public Shared Function AJobBuilder() As JobBuilder
+        Return New JobBuilder
     End Function
-    Public Function startingWith(ByVal jobId As Integer) As jobBuilder
+    Public Function StartingWith(ByVal jobId As Integer) As JobBuilder
         Dim oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
         Dim oJobTable As New netwyrksDataSet.jobDataTable
         If oJobTa.FillById(oJobTable, jobId) > 0 Then
@@ -36,28 +36,27 @@ Public Class jobBuilder
         oJobTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oJob As job) As jobBuilder
+    Public Function StartingWith(ByVal oJob As Job) As JobBuilder
         With oJob
-            _jobId = .jobId
-            _jobName = .jobName
-            _jobDescription = .jobDescription
+            _jobId = .JobId
+            _jobName = .JobName
+            _jobDescription = .JobDescription
             '_jobCost = .jobCost
             '_jobPrice = .jobPrice
-            _jobCompleted = .isJobCompleted
-            _jobCreated = .jobCreated
-            _jobChanged = .jobChanged
-            _jobCustomerId = .jobCustomerId
-            _jobInvoiceNumber = .jobInvoiceNumber
-            _jobPoNumber = .jobPoNumber
-            _jobReference = .jobReference
-            _jobInvoiceDate = .jobInvoiceDate
-            _jobPaymentDue = .jobPaymentDue
-            _jobUser = .jobUser
+            _jobCompleted = .IsJobCompleted
+            _jobCreated = .JobCreated
+            _jobChanged = .JobChanged
+            _jobCustomerId = .JobCustomerId
+            _jobInvoiceNumber = .JobInvoiceNumber
+            _jobPoNumber = .JobPoNumber
+            _jobReference = .JobReference
+            _jobInvoiceDate = .JobInvoiceDate
+            _jobPaymentDue = .JobPaymentDue
+            _jobUser = .JobUser
         End With
         Return Me
     End Function
-    Public Function startingWith(ByVal oJob As netwyrksDataSet.jobRow) As jobBuilder
+    Public Function StartingWith(ByVal oJob As netwyrksDataSet.jobRow) As JobBuilder
 
         With oJob
             .Isjob_changedNull()
@@ -91,7 +90,7 @@ Public Class jobBuilder
         End With
         Return Me
     End Function
-    Public Function startingWithNothing() As jobBuilder
+    Public Function StartingWithNothing() As JobBuilder
         _jobId = -1
         _jobName = ""
         _jobDescription = ""
@@ -109,19 +108,19 @@ Public Class jobBuilder
         _jobUser = -1
         Return Me
     End Function
-    Public Function withJobId(ByVal pJobId As Integer) As jobBuilder
+    Public Function WithJobId(ByVal pJobId As Integer) As JobBuilder
         _jobId = pJobId
         Return Me
     End Function
-    Public Function withJobCustomerId(ByVal pJobCustomerId As Integer) As jobBuilder
+    Public Function WithJobCustomerId(ByVal pJobCustomerId As Integer) As JobBuilder
         _jobCustomerId = pJobCustomerId
         Return Me
     End Function
-    Public Function withJobName(ByVal pJobName As String) As jobBuilder
+    Public Function WithJobName(ByVal pJobName As String) As JobBuilder
         _jobName = pJobName
         Return Me
     End Function
-    Public Function withJobDescription(ByVal pJobDescription As String) As jobBuilder
+    Public Function WithJobDescription(ByVal pJobDescription As String) As JobBuilder
         _jobDescription = pJobDescription
         Return Me
     End Function
@@ -133,55 +132,55 @@ Public Class jobBuilder
     '    _jobPrice = pJobPrice
     '    Return Me
     'End Function
-    Public Function withJobCompleted(ByVal pJobCompleted As Boolean) As jobBuilder
+    Public Function WithJobCompleted(ByVal pJobCompleted As Boolean) As JobBuilder
         _jobCompleted = pJobCompleted
         Return Me
     End Function
-    Public Function withJobCreated(ByVal pJobCreated As DateTime) As jobBuilder
+    Public Function WithJobCreated(ByVal pJobCreated As DateTime) As JobBuilder
         _jobCreated = pJobCreated
         Return Me
     End Function
-    Public Function withJobChanged(ByVal pJobChanged As DateTime?) As jobBuilder
+    Public Function WithJobChanged(ByVal pJobChanged As DateTime?) As JobBuilder
         _jobChanged = pJobChanged
         Return Me
     End Function
-    Public Function withJobInvoiceNumber(ByVal pJobInvoiceNumber As String) As jobBuilder
+    Public Function WithJobInvoiceNumber(ByVal pJobInvoiceNumber As String) As JobBuilder
         _jobInvoiceNumber = pJobInvoiceNumber
         Return Me
     End Function
-    Public Function withJobPoNumber(ByVal pJobPoNumber As String) As jobBuilder
+    Public Function WithJobPoNumber(ByVal pJobPoNumber As String) As JobBuilder
         _jobPoNumber = pJobPoNumber
         Return Me
     End Function
-    Public Function withJobReference(ByVal pJobReference As String) As jobBuilder
+    Public Function WithJobReference(ByVal pJobReference As String) As JobBuilder
         _jobReference = pJobReference
         Return Me
     End Function
-    Public Function withJobInvoiceDate(ByVal pJobInvoiceDate As DateTime?) As jobBuilder
+    Public Function WithJobInvoiceDate(ByVal pJobInvoiceDate As DateTime?) As JobBuilder
         _jobInvoiceDate = pJobInvoiceDate
         Return Me
     End Function
-    Public Function withJobPaymentDue(ByVal pJobPaymentDue As DateTime?) As jobBuilder
+    Public Function WithJobPaymentDue(ByVal pJobPaymentDue As DateTime?) As JobBuilder
         _jobPaymentDue = pJobPaymentDue
         Return Me
     End Function
-    Public Function withjobUser(ByVal pJobUser As Integer) As jobBuilder
+    Public Function WithJobUser(ByVal pJobUser As Integer) As JobBuilder
         _jobUser = pJobUser
         Return Me
     End Function
-    Public Function build() As job
-        Return New job(_jobId, _
-                       _jobCustomerId, _
-                       _jobName, _
-                       _jobDescription, _
-                       _jobCompleted, _
-                       _jobCreated, _
-                       _jobChanged, _
-                       _jobInvoiceNumber, _
-                       _jobPoNumber, _
-                       _jobReference, _
-                       _jobInvoiceDate, _
-                       _jobPaymentDue, _
+    Public Function Build() As Job
+        Return New Job(_jobId,
+                       _jobCustomerId,
+                       _jobName,
+                       _jobDescription,
+                       _jobCompleted,
+                       _jobCreated,
+                       _jobChanged,
+                       _jobInvoiceNumber,
+                       _jobPoNumber,
+                       _jobReference,
+                       _jobInvoiceDate,
+                       _jobPaymentDue,
                        _jobUser)
         '_jobCost, _
         '_jobPrice, _

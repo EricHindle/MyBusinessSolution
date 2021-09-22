@@ -1,16 +1,13 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
 Imports System.Collections
 Imports System.Text
 Imports System.IO
 Imports i00SpellCheck
-Imports Microsoft.Office.Interop
 
 ''' <summary>
 ''' Allows user to set personal preferences
@@ -293,7 +290,7 @@ Public Class frmOptions
     ''' <param name="sPath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function isValidFileName(ByVal sPath As String) As Boolean
+    Private Function IsValidFileName(ByVal sPath As String) As Boolean
         Return My.Computer.FileSystem.FileExists(sPath.Replace("<application path>", sApplicationPath))
     End Function
 
@@ -303,7 +300,7 @@ Public Class frmOptions
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnCreateFolders_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCreateFolders.Click
+    Private Sub BtnCreateFolders_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnCreateFolders.Click
         LogUtil.Info("Creating any missing folders")
         SaveFolderOptions()
         createMissingFolders()
@@ -373,7 +370,6 @@ Public Class frmOptions
     Private Sub LoadEmailOptions()
         rbText.Checked = My.Settings.emailFormat = 1
         rbHTML.Checked = My.Settings.EmailFormat <> 1
-        chkUseSMTP.Checked = My.Settings.useSMTP
         txtSmtpHost.Text = My.Settings.SMTPHost
 
     End Sub
@@ -383,7 +379,6 @@ Public Class frmOptions
     ''' <remarks></remarks>
     Private Sub SaveEmailOptions()
         My.Settings.EmailFormat = If(rbHTML.Checked, 2, 1)
-        My.Settings.useSMTP = chkUseSMTP.Checked
         My.Settings.SMTPHost = txtSmtpHost.Text
         My.Settings.SMTPPort = If(IsNumeric(txtSmtpPort.Text), CInt(txtSmtpPort.Text), 0)
         My.Settings.SMTPRequiresCredentials = chkSmtpCredentials.Checked

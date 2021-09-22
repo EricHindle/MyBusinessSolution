@@ -1,13 +1,10 @@
-﻿' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Sep 2015
 
-Imports System.Text
 Imports System.Globalization
-Imports System.IO
 
 ''' <summary>
 ''' Useful text functions
@@ -16,10 +13,7 @@ Imports System.IO
 Public Class TextUtil
 
     Private Const MATCHKEY_CHARS As String = "bcdfghjklmnpqrstvwxz"
-
     Private Shared tInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
-
-
 
     Public Shared Function getMatchkey(ByVal sText As String) As String
         Dim matchkey As String = ""
@@ -30,5 +24,4 @@ Public Class TextUtil
         Next
         Return matchkey
     End Function
-
 End Class

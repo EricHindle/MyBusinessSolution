@@ -1,5 +1,10 @@
-﻿Imports System.IO
-Imports Microsoft.Office.Interop
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Imports System.IO
 
 Public Class frmInstallationTest
 #Region "Contants"
@@ -28,42 +33,12 @@ Public Class frmInstallationTest
 
     Private Sub btnSMTP_Click(sender As Object, e As EventArgs) Handles btnSMTP.Click
         lblSMTPResult.Text = "Sending SMTP email..."
-        Dim usesmtp As Boolean = My.Settings.useSMTP
-        My.Settings.useSMTP = True
         Me.Refresh()
-        Dim recip As String() = EmailUtil.MakeEmailAddressList(txtTo.Text)
-        Dim mailResultOK As Boolean = EmailUtil.SendMail(recip, New String() {}, "SERS SMTP email test", "Test", "", _
-                                                         Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatHTML, _
-                                                         txtFrom.Text, Microsoft.Office.Interop.Outlook.OlImportance.olImportanceNormal, True)
-        My.Settings.useSMTP = usesmtp
+        Dim mailResultOK As Boolean = EmailUtil.SendMail(txtFrom.Text, txtTo.Text, New String() {}, "SERS SMTP email test", "Test")
         lblSMTPResult.Text = If(mailResultOK, "OK", "Failed")
     End Sub
 
-    Private Sub btnOutlook_Click(sender As Object, e As EventArgs) Handles btnOutlook.Click
-        lblOutlookResult.Text = "Sending Outlook email..."
-        Dim usesmtp As Boolean = My.Settings.useSMTP
-        My.Settings.useSMTP = False
-        Me.Refresh()
-        Dim recip As String() = EmailUtil.MakeEmailAddressList(txtTo.Text)
-        Dim mailResultOK As Boolean = EmailUtil.SendMail(recip, New String() {}, "SERS Outlook email test", "Test", "", _
-                                                         Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatHTML, _
-                                                         txtFrom.Text, Microsoft.Office.Interop.Outlook.OlImportance.olImportanceNormal, True, False, False)
-        My.Settings.useSMTP = usesmtp
-        lblOutlookResult.Text = If(mailResultOK, "OK", "Failed")
-    End Sub
 
-    Private Sub btnMapReq_Click(sender As Object, e As EventArgs) Handles btnMapReq.Click
-        lblMapResult.Text = "Requesting map..."
-        oMappingUtil = If(rbMapQuest.Checked, CType(New MapQuestMapUtil, MappingUtil), New GoogleMapUtil)
-        TreeView1.Nodes.Clear()
-        Dim sMapType As String = If(rbMapQuest.Checked, "map", "roadmap")
-        Dim uri As String = ""
-        Dim lboNodeCollection As Dictionary(Of Integer, TreeNode) = addOriginNode()
-        Me.Refresh()
-        ehImageHost.Child = oMappingUtil.createLboMap(sMapType, lboNodeCollection, uri, ehImageHost.Size.Width, ehImageHost.Size.Height, True)
-        TreeView1.ExpandAll()
-        lblMapResult.Text = "Done"
-    End Sub
 
     Private Sub btnGeoReq_Click(sender As Object, e As EventArgs) Handles btnGeoReq.Click
         lblGeoResult.Text = "Finding Geo information..."
@@ -99,10 +74,6 @@ Public Class frmInstallationTest
         exporter.exportGrid(dgv, True, , False, "Installation Test")
         lblExcelResult.Text = "Exported to " & Path.Combine(exporter.OutFolder, exporter.OutFile)
         exporter = Nothing
-    End Sub
-
-    Private Sub btnPdf_Click(sender As Object, e As EventArgs) Handles btnPdf.Click
-        lblPdfResult.Text = createPdf()
     End Sub
 
     Private Sub btnShowLog_Click(sender As Object, e As EventArgs) Handles btnShowLog.Click
@@ -211,38 +182,6 @@ Public Class frmInstallationTest
         Return geoResponse.results(0).formattedAddress & " *"
     End Function
 
-    Private Function createPdf() As String
-        addTrace("Creating pdf...")
-        Dim sResult As String = ""
-        Dim sNewFilename As String = Path.Combine(sTempFolder, txtFilename.Text & ".pdf")
-        Dim range As Word.Range
-        Dim newDoc As Word.Document = Nothing
-        addTrace("Starting Word")
-        '  If StartWord(False) Then
-        Try
-            ' newDoc = objWord.Documents.Add(, , Microsoft.Office.Interop.Word.WdNewDocumentType.wdNewBlankDocument)
-            newDoc = New Word.Document
-            addTrace("Converting grid to csv")
-            Dim sCsv As String = ConvertUtil.DataGridViewToTextTable(DataGridView1)
-            addTrace("Adding csv to document")
-            range = newDoc.Range(Start:=0, End:=0)
-            range.Text = sCsv
-            addTrace("Converting text to Word table")
-            Dim oWordTable As Word.Table = range.ConvertToTable(vbTab, DefaultTableBehavior:=Word.WdDefaultTableBehavior.wdWord8TableBehavior)
-            addTrace("Saving as .pdf")
-            newDoc.SaveAs(sNewFilename, ExportUtil.getWordFormat(FileUtil.FileType.PDF))
-            sResult = "Created pdf " & sNewFilename
-        Catch ex As Exception
-            sResult = "Exception " & ex.Message
-        Finally
-            If newDoc IsNot Nothing Then
-                addTrace("Closing Word")
-                newDoc.Close(Word.WdSaveOptions.wdDoNotSaveChanges)
-            End If
-        End Try
-        '      End If
-        Return sResult
-    End Function
 
     Private Sub addTrace(sText As String)
         LogUtil.Debug(sText, "InstallationTest")

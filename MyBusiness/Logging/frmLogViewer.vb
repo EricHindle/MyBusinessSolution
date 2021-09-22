@@ -1,10 +1,8 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
-' Author E Hindle
-' Created June 2015
+' Author Eric Hindle
 
 Imports System.Windows.Forms
 Imports System.IO
@@ -60,12 +58,12 @@ Public Class frmLogViewer
         rtbLog.Select(0, 0)
     End Sub
 
-    Private Sub SendToSupportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToSupportToolStripMenuItem.Click
-        If LogUtil.SendLogFileToSupport() Then
-            MsgBox("Log sent OK", , "Email")
-        Else
-            MsgBox("Log send FAILED", , "Email")
-        End If
+    'Private Sub SendToSupportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToSupportToolStripMenuItem.Click
+    '    If LogUtil.SendLogFileToSupport() Then
+    '        MsgBox("Log sent OK", , "Email")
+    '    Else
+    '        MsgBox("Log send FAILED", , "Email")
+    '    End If
 
-    End Sub
+    'End Sub
 End Class

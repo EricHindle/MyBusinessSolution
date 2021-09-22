@@ -1,45 +1,51 @@
-﻿Imports System.ComponentModel
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
 
-Public Class frmJobProducts
+Imports System.ComponentModel
+
+Public Class FrmJobProducts
 
     Private isLoading As Boolean = False
     Private _currentSupplierId As Integer = -1
-    Private oJobProdTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
-    Private oJobProdTable As New netwyrksDataSet.job_productDataTable
-    Private oProdTa As New netwyrksDataSetTableAdapters.productTableAdapter
-    Private oProdTable As New netwyrksDataSet.productDataTable
-    Private oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-    Private oSuppTable As New netwyrksDataSet.supplierDataTable
-    Private _job As jobBuilder
+    Private ReadOnly oJobProdTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
+    Private ReadOnly oJobProdTable As New netwyrksDataSet.job_productDataTable
+    Private ReadOnly oProdTa As New netwyrksDataSetTableAdapters.productTableAdapter
+    Private ReadOnly oProdTable As New netwyrksDataSet.productDataTable
+    Private ReadOnly oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
+    Private ReadOnly oSuppTable As New netwyrksDataSet.supplierDataTable
+    Private _job As JobBuilder
     Private _selJpId As Integer = -1
     Private _selProductId As String = -1
     Private _selIsTaxable As Boolean = False
     Private _selTaxRate As Decimal = 0.0
 
-    Public Property theJob() As jobBuilder
+    Public Property TheJob() As JobBuilder
         Get
             Return _job
         End Get
-        Set(ByVal value As jobBuilder)
+        Set(ByVal value As JobBuilder)
             _job = value
         End Set
     End Property
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
 
-    Private Sub frmJobProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmJobProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         isLoading = True
         _currentSupplierId = -1
         fillSupplierList()
         fillProductList()
         fillJobProductList(dgvJobProducts)
-        lblJobName.Text = _job.build.jobName
+        lblJobName.Text = _job.Build.JobName
         lblProductName.Text = ""
         isLoading = False
     End Sub
 
-    Private Sub fillSupplierList()
+    Private Sub FillSupplierList()
         dgvSupplier.Rows.Clear()
 
         Try
@@ -61,7 +67,7 @@ Public Class frmJobProducts
         dgvSupplier.ClearSelection()
     End Sub
 
-    Private Sub fillProductList()
+    Private Sub FillProductList()
         dgvProducts.Rows.Clear()
 
         If _currentSupplierId > 0 Then
@@ -81,10 +87,10 @@ Public Class frmJobProducts
         dgvProducts.ClearSelection()
     End Sub
 
-    Private Sub fillJobProductList(ByRef dgv As DataGridView)
+    Private Sub FillJobProductList(ByRef dgv As DataGridView)
 
         dgv.Rows.Clear()
-        oJobProdTa.FillByJob(oJobProdTable, _job.build.jobId)
+        oJobProdTa.FillByJob(oJobProdTable, _job.Build.JobId)
         For Each oRow As netwyrksDataSet.job_productRow In oJobProdTable.Rows
             Dim _jpId As Integer = oRow.job_product_id
             Dim _productId As Integer = oRow.jp_product_id
@@ -117,7 +123,7 @@ Public Class frmJobProducts
         dgvJobProducts.ClearSelection()
     End Sub
 
-    Private Sub frmJobProducts_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub FrmJobProducts_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         oJobProdTa.Dispose()
         oJobProdTable.Dispose()
         oProdTable.Dispose()
@@ -126,7 +132,7 @@ Public Class frmJobProducts
         oSuppTa.Dispose()
     End Sub
 
-    Private Sub dgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
+    Private Sub DgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
         If Not isLoading Then
             If dgvProducts.SelectedRows.Count = 1 Then
                 isLoading = True
@@ -146,7 +152,7 @@ Public Class frmJobProducts
         End If
     End Sub
 
-    Private Sub dgvSupplier_SelectionChanged(sender As Object, e As EventArgs) Handles dgvSupplier.SelectionChanged
+    Private Sub DgvSupplier_SelectionChanged(sender As Object, e As EventArgs) Handles dgvSupplier.SelectionChanged
         If Not isLoading Then
             If dgvSupplier.SelectedRows.Count = 1 Then
                 isLoading = True
@@ -158,13 +164,13 @@ Public Class frmJobProducts
                 _selTaxRate = 0.0
                 Dim sRow As DataGridViewRow = dgvSupplier.SelectedRows(0)
                 _currentSupplierId = sRow.Cells(Me.suppId.Name).Value
-                fillProductList()
+                FillProductList()
                 isLoading = False
             End If
         End If
     End Sub
 
-    Private Sub dgvJobProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvJobProducts.SelectionChanged
+    Private Sub DgvJobProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvJobProducts.SelectionChanged
         If Not isLoading Then
             If dgvJobProducts.SelectedRows.Count = 1 Then
                 isLoading = True
@@ -187,43 +193,41 @@ Public Class frmJobProducts
         End If
     End Sub
 
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If _selProductId > 0 And nudQuantity.Value > 0 Then
-            Dim _newJpId As Integer = oJobProdTa.InsertJobProduct(nudQuantity.Value, Now, _selProductId, _job.build.jobId, chkTaxable.Checked, nudTaxRate.Value)
+            Dim _newJpId As Integer = oJobProdTa.InsertJobProduct(nudQuantity.Value, Now, _selProductId, _job.Build.JobId, chkTaxable.Checked, nudTaxRate.Value)
             If _newJpId > 0 Then
-                AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _selProductId)
+                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _selProductId)
             End If
             isLoading = True
-            fillJobProductList(dgvJobProducts)
+            FillJobProductList(dgvJobProducts)
             isLoading = False
         End If
     End Sub
 
-    Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+    Private Sub BtnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         If _selJpId > 0 Then
             If oJobProdTa.DeleteJobProduct(_selJpId) = 1 Then
-                AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
+                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
             End If
             isLoading = True
             nudQuantity.Value = 0
             lblProductName.Text = ""
             _selProductId = -1
             _selJpId = -1
-            fillJobProductList(dgvJobProducts)
+            FillJobProductList(dgvJobProducts)
             isLoading = False
         End If
     End Sub
 
-    Private Sub btnAdjust_Click(sender As Object, e As EventArgs) Handles btnAdjust.Click
+    Private Sub BtnAdjust_Click(sender As Object, e As EventArgs) Handles btnAdjust.Click
         If _selJpId > 0 Then
-            If oJobProdTa.UpdateJobProduct(nudQuantity.Value, Now, _selProductId, _job.build.jobId, chkTaxable.Checked, nudTaxRate.Value, _selJpId) = 1 Then
-                AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
+            If oJobProdTa.UpdateJobProduct(nudQuantity.Value, Now, _selProductId, _job.Build.JobId, chkTaxable.Checked, nudTaxRate.Value, _selJpId) = 1 Then
+                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
             End If
             isLoading = True
-            fillJobProductList(dgvJobProducts)
+            FillJobProductList(dgvJobProducts)
             isLoading = False
-
         End If
-
     End Sub
 End Class

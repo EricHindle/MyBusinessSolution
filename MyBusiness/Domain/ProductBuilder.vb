@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -15,10 +15,10 @@ Public Class ProductBuilder
     Private _productId As Integer
     Private _productTaxable As Boolean
     Private _productTaxRate As Decimal?
-    Public Shared Function aProductBuilder() As ProductBuilder
+    Public Shared Function AProductBuilder() As ProductBuilder
         Return New ProductBuilder
     End Function
-    Public Function startingWith(ByVal ProductId As Integer) As ProductBuilder
+    Public Function StartingWith(ByVal ProductId As Integer) As ProductBuilder
         Dim oProductTa As New netwyrksDataSetTableAdapters.productTableAdapter
         Dim oProductTable As New netwyrksDataSet.productDataTable
         If oProductTa.FillById(oProductTable, ProductId) > 0 Then
@@ -30,24 +30,22 @@ Public Class ProductBuilder
         oProductTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oProduct As Product) As ProductBuilder
+    Public Function StartingWith(ByVal oProduct As Product) As ProductBuilder
         With oProduct
-            _productId = .productId
-            _productName = .productName
-            _productDescription = .productDescription
-            _productSupplierId = .productSupplierId
-            _productCost = .productCost
-            _productPrice = .productPrice
-            _productCreated = .productCreated
-            _productChanged = .productChanged
-            _productTaxable = .isProductTaxable
-            _productTaxRate = .productTaxRate
+            _productId = .ProductId
+            _productName = .ProductName
+            _productDescription = .ProductDescription
+            _productSupplierId = .ProductSupplierId
+            _productCost = .ProductCost
+            _productPrice = .ProductPrice
+            _productCreated = .ProductCreated
+            _productChanged = .ProductChanged
+            _productTaxable = .IsProductTaxable
+            _productTaxRate = .ProductTaxRate
         End With
         Return Me
     End Function
-    Public Function startingWith(ByVal oProduct As netwyrksDataSet.productRow) As ProductBuilder
-
+    Public Function StartingWith(ByVal oProduct As netwyrksDataSet.productRow) As ProductBuilder
         With oProduct
             _productId = .product_id
             _productName = .product_name
@@ -66,7 +64,7 @@ Public Class ProductBuilder
         End With
         Return Me
     End Function
-    Public Function startingWithNothing() As ProductBuilder
+    Public Function StartingWithNothing() As ProductBuilder
         _productId = -1
         _productName = ""
         _productDescription = ""
@@ -79,56 +77,56 @@ Public Class ProductBuilder
         _productTaxRate = 0.0
         Return Me
     End Function
-    Public Function withProductId(ByVal pProductId As Integer) As ProductBuilder
+    Public Function WithProductId(ByVal pProductId As Integer) As ProductBuilder
         _productId = pProductId
         Return Me
     End Function
-    Public Function withProductName(ByVal pProductName As String) As ProductBuilder
+    Public Function WithProductName(ByVal pProductName As String) As ProductBuilder
         _productName = pProductName
         Return Me
     End Function
-    Public Function withProductDescription(ByVal pProductDescription As String) As ProductBuilder
+    Public Function WithProductDescription(ByVal pProductDescription As String) As ProductBuilder
         _productDescription = pProductDescription
         Return Me
     End Function
-    Public Function withProductSupplierId(ByVal pProductSupplierId As Integer) As ProductBuilder
+    Public Function WithProductSupplierId(ByVal pProductSupplierId As Integer) As ProductBuilder
         _productSupplierId = pProductSupplierId
         Return Me
     End Function
-    Public Function withProductCost(ByVal pProductCost As Decimal) As ProductBuilder
+    Public Function WithProductCost(ByVal pProductCost As Decimal) As ProductBuilder
         _productCost = pProductCost
         Return Me
     End Function
-    Public Function withProductPrice(ByVal pProductPrice As Decimal) As ProductBuilder
+    Public Function WithProductPrice(ByVal pProductPrice As Decimal) As ProductBuilder
         _productPrice = pProductPrice
         Return Me
     End Function
-    Public Function withProductCreated(ByVal pProductCreated As DateTime) As ProductBuilder
+    Public Function WithProductCreated(ByVal pProductCreated As DateTime) As ProductBuilder
         _productCreated = pProductCreated
         Return Me
     End Function
-    Public Function withProductChanged(ByVal pProductChanged As DateTime?) As ProductBuilder
+    Public Function WithProductChanged(ByVal pProductChanged As DateTime?) As ProductBuilder
         _productChanged = pProductChanged
         Return Me
     End Function
-    Public Function withProductTaxable(ByVal pProductTaxable As Boolean) As ProductBuilder
+    Public Function WithProductTaxable(ByVal pProductTaxable As Boolean) As ProductBuilder
         _productTaxable = pProductTaxable
         Return Me
     End Function
-    Public Function withProductTaxRate(ByVal pProductTaxRate As Decimal?) As ProductBuilder
+    Public Function WithProductTaxRate(ByVal pProductTaxRate As Decimal?) As ProductBuilder
         _productTaxRate = pProductTaxRate
         Return Me
     End Function
-    Public Function build() As Product
-        Return New Product(_productId, _
-                           _productName, _
-                           _productDescription, _
-                           _productSupplierId, _
-                           _productCost, _
-                           _productPrice, _
-                           _productCreated, _
-                           _productChanged, _
-                           _productTaxable, _
+    Public Function Build() As Product
+        Return New Product(_productId,
+                           _productName,
+                           _productDescription,
+                           _productSupplierId,
+                           _productCost,
+                           _productPrice,
+                           _productCreated,
+                           _productChanged,
+                           _productTaxable,
                            _productTaxRate)
     End Function
 End Class

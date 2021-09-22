@@ -1,12 +1,10 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Public Class netwyrksErrorCodes
+Public Class NetwyrksErrorCodes
 #Region "Error Codes"
     Public Enum SystemModule
         UNKNOWN = 0
@@ -77,7 +75,6 @@ Public Class netwyrksErrorCodes
     Public Shared Function getErrorCode(ByVal errModule As SystemModule, ByVal errType As ErrorType, ByVal errCode As FailedAction) As String
         Return CInt(errModule).ToString("D2") & CInt(errType).ToString("D2") & CInt(errCode).ToString("D3")
     End Function
-
     Public Shared Function getErrorString(ByVal errorcode As String) As String
         Dim rtnval As String = ""
         Try
@@ -91,11 +88,8 @@ Public Class netwyrksErrorCodes
         Catch ex As Exception
             rtnval = "Invalid Error Code"
         End Try
-
         Return rtnval
     End Function
-
 #End Region
-
 End Class
 

@@ -1,4 +1,10 @@
-﻿Public Class frmProduct
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class frmProduct
     Private _productBuilder As ProductBuilder
     Private _productId As Integer
     Private _product As Product
@@ -111,9 +117,9 @@
         End With
         Dim newproductId As Integer = -1
         If _productId > 0 Then
-            amendproduct()
+            amendProduct()
         Else
-            insertproduct()
+            insertProduct()
         End If
     End Sub
 

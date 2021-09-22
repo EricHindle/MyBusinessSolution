@@ -1,13 +1,11 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
 Imports System.IO
-Imports MyBusiness.netwyrksErrorCodes
+Imports MyBusiness.NetwyrksErrorCodes
 Public Class FileTransformer
     Private Shared fsInput As System.IO.Stream
     Private Shared lngFileLength As Long = 0

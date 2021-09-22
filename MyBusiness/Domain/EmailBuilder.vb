@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -22,7 +22,7 @@ Public Class EmailBuilder
     Private _transport As String
     Private _importance As String
 
-    Public Shared Function anEmail() As EmailBuilder
+    Public Shared Function AnEmail() As EmailBuilder
         Return New EmailBuilder
     End Function
 
@@ -32,7 +32,7 @@ Public Class EmailBuilder
     ''' <param name="pEmail"></param>
     ''' <returns>Email builder</returns>
     ''' <remarks></remarks>
-    Public Function startingWith(ByVal pEmail As Email) As EmailBuilder
+    Public Function StartingWith(ByVal pEmail As Email) As EmailBuilder
         _toAddress = pEmail.ToAddress
         _ccAddress = pEmail.CcAddress
         _subject = pEmail.Subject
@@ -53,7 +53,7 @@ Public Class EmailBuilder
     ''' </summary>
     ''' <returns>Empty email builder</returns>
     ''' <remarks></remarks>
-    Public Function startingWithNothing() As EmailBuilder
+    Public Function StartingWithNothing() As EmailBuilder
         _toAddress = New List(Of String)
         _ccAddress = New List(Of String)
         _subject = ""
@@ -69,104 +69,87 @@ Public Class EmailBuilder
         Return Me
     End Function
 
-    Public Function withFromAddress(ByVal pFromAddress As String) As EmailBuilder
+    Public Function WithFromAddress(ByVal pFromAddress As String) As EmailBuilder
         _fromAddress = pFromAddress
         Return Me
     End Function
-
-    Public Function withTransport(ByVal pTransport As String) As EmailBuilder
+    Public Function WithTransport(ByVal pTransport As String) As EmailBuilder
         _transport = pTransport
         Return Me
     End Function
-
-    Public Function withImportance(ByVal pImportance As String) As EmailBuilder
+    Public Function WithImportance(ByVal pImportance As String) As EmailBuilder
         _importance = pImportance
         Return Me
     End Function
-
-    Public Function withSendDate(ByVal pSendDate As Date) As EmailBuilder
+    Public Function WithSendDate(ByVal pSendDate As Date) As EmailBuilder
         _sendDate = pSendDate
         Return Me
     End Function
-
-    Public Function withReadReceipt(ByVal pReadReceipt As Boolean) As EmailBuilder
+    Public Function WithReadReceipt(ByVal pReadReceipt As Boolean) As EmailBuilder
         _readReceipt = pReadReceipt
         Return Me
     End Function
-
-    Public Function withDeliveryReport(ByVal pDeliveryReport As Boolean)
+    Public Function WithDeliveryReport(ByVal pDeliveryReport As Boolean)
         _deliveryReport = pDeliveryReport
         Return Me
     End Function
-
-    Public Function withToAddress(ByVal pToAddress As List(Of String)) As EmailBuilder
+    Public Function WithToAddress(ByVal pToAddress As List(Of String)) As EmailBuilder
         _toAddress = pToAddress
         Return Me
     End Function
-
-    Public Function withCcAddress(ByVal pCcAddress As List(Of String)) As EmailBuilder
+    Public Function WithCcAddress(ByVal pCcAddress As List(Of String)) As EmailBuilder
         _ccAddress = pCcAddress
         Return Me
     End Function
-
-    Public Function withSubject(ByVal pSubject As String) As EmailBuilder
+    Public Function WithSubject(ByVal pSubject As String) As EmailBuilder
         _subject = pSubject
         Return Me
     End Function
-
-    Public Function withBody(ByVal pBody As List(Of String)) As EmailBuilder
+    Public Function WithBody(ByVal pBody As List(Of String)) As EmailBuilder
         _body = pBody
         Return Me
     End Function
-
-    Public Function withAttachment(ByVal pAttachment As String) As EmailBuilder
+    Public Function WithAttachment(ByVal pAttachment As String) As EmailBuilder
         _attachment = pAttachment
         Return Me
     End Function
-
-    Public Function withFormat(ByVal pFormat As String) As EmailBuilder
+    Public Function WithFormat(ByVal pFormat As String) As EmailBuilder
         _format = pFormat
         Return Me
     End Function
-
-    Public Function appendToBody(ByVal oText As String) As EmailBuilder
+    Public Function AppendToBody(ByVal oText As String) As EmailBuilder
         If _body Is Nothing Then
             _body = New List(Of String)
         End If
         _body.Add(oText)
         Return Me
     End Function
-
-    Public Function appendToRecipients(ByVal oText As String) As EmailBuilder
-
+    Public Function AppendToRecipients(ByVal oText As String) As EmailBuilder
         If _toAddress Is Nothing Then
             _toAddress = New List(Of String)
         End If
         _toAddress.Add(oText)
         Return Me
     End Function
-
-    Public Function appendToCopies(ByVal oText As String) As EmailBuilder
+    Public Function AppendToCopies(ByVal oText As String) As EmailBuilder
         If _ccAddress Is Nothing Then
             _ccAddress = New List(Of String)
         End If
         _ccAddress.Add(oText)
         Return Me
     End Function
-
-    Public Function build() As Email
-        Return New Email(_toAddress, _
-                         _ccAddress, _
-                         _subject, _
-                         _body, _
-                         _attachment, _
-                         _format, _
-                         _readReceipt, _
-                         _deliveryReport, _
-                         _fromAddress, _
-                         _sendDate, _
-                         _transport, _
+    Public Function Build() As Email
+        Return New Email(_toAddress,
+                         _ccAddress,
+                         _subject,
+                         _body,
+                         _attachment,
+                         _format,
+                         _readReceipt,
+                         _deliveryReport,
+                         _fromAddress,
+                         _sendDate,
+                         _transport,
                          _importance)
     End Function
-
 End Class

@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -15,11 +15,10 @@ Public Class Address
     Private _address3 As String
     Private _address4 As String
     Private _postcode As String
-
-    Public Sub New(ByVal pAddress1 As String, _
-                   ByVal pAddress2 As String, _
-                   ByVal pAddress3 As String, _
-                   ByVal pAddress4 As String, _
+    Public Sub New(ByVal pAddress1 As String,
+                   ByVal pAddress2 As String,
+                   ByVal pAddress3 As String,
+                   ByVal pAddress4 As String,
                    ByVal pPostcode As String)
         _address1 = pAddress1
         _address2 = pAddress2
@@ -28,51 +27,47 @@ Public Class Address
         _postcode = pPostcode
 
     End Sub
-    Public Property postcode() As String
+    Public Property Postcode() As String
         Get
-            Return If(_postcode Is Nothing, "", _postcode)
+            Return If(_postcode, "")
         End Get
         Set(ByVal value As String)
             _postcode = value
         End Set
     End Property
-    Public Property address1() As String
+    Public Property Address1() As String
         Get
-            Return If(_address1 Is Nothing, "", _address1)
+            Return If(_address1, "")
         End Get
         Set(ByVal value As String)
             _address1 = value
         End Set
     End Property
-
-    Public Property address2() As String
+    Public Property Address2() As String
         Get
-            Return If(_address2 Is Nothing, "", _address2)
+            Return If(_address2, "")
         End Get
         Set(ByVal value As String)
             _address2 = value
         End Set
     End Property
-
-    Public Property address3() As String
+    Public Property Address3() As String
         Get
-            Return If(_address3 Is Nothing, "", _address3)
+            Return If(_address3, "")
         End Get
         Set(ByVal value As String)
             _address3 = value
         End Set
     End Property
-
-    Public Property address4() As String
+    Public Property Address4() As String
         Get
-            Return If(_address4 Is Nothing, "", _address4)
+            Return If(_address4, "")
         End Get
         Set(ByVal value As String)
             _address4 = value
         End Set
     End Property
-
-    Public Function getFullAddress() As String
+    Public Function GetFullAddress() As String
         Dim sb As New StringBuilder
         If Not String.IsNullOrEmpty(_address1) Then
             sb.Append(_address1.Trim()).Append(", ")

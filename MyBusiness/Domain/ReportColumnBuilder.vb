@@ -1,4 +1,10 @@
-﻿Public Class ReportColumnBuilder
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class ReportColumnBuilder
     Private _columnName As String
     Private _columnType As String
     Private _columnFormat As String
@@ -7,24 +13,21 @@
     Private _parentTable As String
     Private _accessLevel As Integer
     Private _reportDefault As Boolean
-
-    Public Shared Function aReportColumn() As ReportColumnBuilder
+    Public Shared Function AReportColumn() As ReportColumnBuilder
         Return New ReportColumnBuilder
     End Function
-
-    Public Function startingWith(pReportColumn As ReportColumn) As ReportColumnBuilder
-        _columnName = pReportColumn.columnName
-        _columnType = pReportColumn.columnType
-        _columnFormat = pReportColumn.columnFormat
-        _columnEncrypted = pReportColumn.columnEncrypted
-        _columnHeading = pReportColumn.columnHeading
-        _parentTable = pReportColumn.parentTable
-        _accessLevel = pReportColumn.accessLevel
-        _reportDefault = pReportColumn.reportDefault
+    Public Function StartingWith(pReportColumn As ReportColumn) As ReportColumnBuilder
+        _columnName = pReportColumn.ColumnName
+        _columnType = pReportColumn.ColumnType
+        _columnFormat = pReportColumn.ColumnFormat
+        _columnEncrypted = pReportColumn.ColumnEncrypted
+        _columnHeading = pReportColumn.ColumnHeading
+        _parentTable = pReportColumn.ParentTable
+        _accessLevel = pReportColumn.AccessLevel
+        _reportDefault = pReportColumn.ReportDefault
         Return Me
     End Function
-
-    Public Function startingWithNothing() As ReportColumnBuilder
+    Public Function StartingWithNothing() As ReportColumnBuilder
         _columnName = ""
         _columnType = "System.String"
         _columnFormat = ""
@@ -35,48 +38,39 @@
         _reportDefault = False
         Return Me
     End Function
-
-    Public Function withName(pColName As String) As ReportColumnBuilder
+    Public Function WithName(pColName As String) As ReportColumnBuilder
         _columnName = pColName
         Return Me
     End Function
-
-    Public Function withType(pColType As String) As ReportColumnBuilder
+    Public Function WithType(pColType As String) As ReportColumnBuilder
         _columnType = pColType
         Return Me
     End Function
-
-    Public Function withFormat(pColFormat As String) As ReportColumnBuilder
+    Public Function WithFormat(pColFormat As String) As ReportColumnBuilder
         _columnFormat = pColFormat
         Return Me
     End Function
-
-    Public Function withEncrypted(pColEncrypted As Boolean) As ReportColumnBuilder
+    Public Function WithEncrypted(pColEncrypted As Boolean) As ReportColumnBuilder
         _columnEncrypted = pColEncrypted
         Return Me
     End Function
-
-    Public Function withHeading(pColHeading As String) As ReportColumnBuilder
+    Public Function WithHeading(pColHeading As String) As ReportColumnBuilder
         _columnHeading = pColHeading
         Return Me
     End Function
-
-    Public Function withTable(pTable As String) As ReportColumnBuilder
+    Public Function WithTable(pTable As String) As ReportColumnBuilder
         _parentTable = pTable
         Return Me
     End Function
-
-    Public Function withAccessLevel(pAccessLevel As Integer) As ReportColumnBuilder
+    Public Function WithAccessLevel(pAccessLevel As Integer) As ReportColumnBuilder
         _accessLevel = pAccessLevel
         Return Me
     End Function
-
-    Public Function withDefault(pDefault As Boolean) As ReportColumnBuilder
+    Public Function WithDefault(pDefault As Boolean) As ReportColumnBuilder
         _reportDefault = pDefault
         Return Me
     End Function
-
-    Public Function build() As ReportColumn
+    Public Function Build() As ReportColumn
         Return New ReportColumn(_columnName, _columnType, _columnFormat, _columnEncrypted, _columnHeading, _parentTable, _accessLevel, _reportDefault)
     End Function
 End Class

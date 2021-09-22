@@ -1,4 +1,10 @@
-﻿Public Class User
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class User
     Private _userId As Integer
     Private _user_login As String
     Private _user_code As String
@@ -12,19 +18,18 @@
     Private _jobtitle As String
     Private _note As String
     Private _userName As String
-
-    Public Sub New(ByVal pUserId As Integer, _
-                   ByVal pUserLogin As String, _
-                   ByVal pUserCode As String, _
-                   ByVal pPassword As String, _
-                   ByVal pTempPassword As String, _
-                   ByVal pForcePasswordChange As Boolean?, _
-                   ByVal pSalt As String, _
-                   ByVal pUserName As String, _
-                   ByVal pContactNumber As String, _
-                   ByVal pMobile As String, _
-                   ByVal pEmail As String, _
-                   ByVal pJobTitle As String, _
+    Public Sub New(ByVal pUserId As Integer,
+                   ByVal pUserLogin As String,
+                   ByVal pUserCode As String,
+                   ByVal pPassword As String,
+                   ByVal pTempPassword As String,
+                   ByVal pForcePasswordChange As Boolean?,
+                   ByVal pSalt As String,
+                   ByVal pUserName As String,
+                   ByVal pContactNumber As String,
+                   ByVal pMobile As String,
+                   ByVal pEmail As String,
+                   ByVal pJobTitle As String,
                    ByVal pNote As String)
         _userId = pUserId
         _user_login = pUserLogin
@@ -40,8 +45,7 @@
         _jobtitle = pJobTitle
         _note = pNote
     End Sub
-
-    Public Property user_login() As String
+    Public Property User_login() As String
         Get
             Return _user_login
         End Get
@@ -49,7 +53,7 @@
             _user_login = value
         End Set
     End Property
-    Public Property user_code() As String
+    Public Property User_code() As String
         Get
             Return _user_code
         End Get
@@ -57,7 +61,7 @@
             _user_code = value
         End Set
     End Property
-    Public Property password() As String
+    Public Property Password() As String
         Get
             Return _password
         End Get
@@ -65,7 +69,7 @@
             _password = value
         End Set
     End Property
-    Public Property tempPassword() As String
+    Public Property TempPassword() As String
         Get
             Return _tempPassword
         End Get
@@ -73,8 +77,7 @@
             _tempPassword = value
         End Set
     End Property
-
-    Public Property forcePasswordChange() As Boolean?
+    Public Property ForcePasswordChange() As Boolean?
         Get
             Return _forcePasswordChange
         End Get
@@ -82,7 +85,7 @@
             _forcePasswordChange = value
         End Set
     End Property
-    Public Property salt() As String
+    Public Property Salt() As String
         Get
             Return _salt
         End Get
@@ -90,7 +93,7 @@
             _salt = value
         End Set
     End Property
-    Public Property userName() As String
+    Public Property UserName() As String
         Get
             Return _userName
         End Get
@@ -98,50 +101,47 @@
             _userName = value
         End Set
     End Property
-    Public Property note() As String
+    Public Property Note() As String
         Get
-            Return If(_note Is Nothing, "", _note)
+            Return If(_note, "")
         End Get
         Set(ByVal value As String)
             _note = value
         End Set
     End Property
-
-    Public Property jobTitle() As String
+    Public Property JobTitle() As String
         Get
-            Return If(_jobtitle Is Nothing, "", _jobtitle)
+            Return If(_jobtitle, "")
         End Get
         Set(ByVal value As String)
             _jobtitle = value
         End Set
     End Property
-
-    Public Property contactNumber() As String
+    Public Property ContactNumber() As String
         Get
-            Return If(_contactNumber Is Nothing, "", _contactNumber)
+            Return If(_contactNumber, "")
         End Get
         Set(ByVal value As String)
             _contactNumber = value
         End Set
     End Property
-    Public Property mobile() As String
+    Public Property Mobile() As String
         Get
-            Return If(_mobile Is Nothing, "", _mobile)
+            Return If(_mobile, "")
         End Get
         Set(ByVal value As String)
             _mobile = value
         End Set
     End Property
-    Public Property email() As String
+    Public Property Email() As String
         Get
-            Return If(_email Is Nothing, "", _email)
+            Return If(_email, "")
         End Get
         Set(ByVal value As String)
             _email = value
         End Set
     End Property
-
-    Public Property userId() As Integer
+    Public Property UserId() As Integer
         Get
             Return _userId
         End Get
@@ -149,5 +149,4 @@
             _userId = value
         End Set
     End Property
-
 End Class

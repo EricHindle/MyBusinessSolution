@@ -1,14 +1,10 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Imports System.Drawing
 Imports System.Text
-Imports System.Windows.Forms
 
 ''' <summary>
 ''' Functions for the production of a rich text file
@@ -19,7 +15,7 @@ Public Class RtfManager
     ''' rtf representation of colours in the RtfColour enum
     ''' </summary>
     ''' <remarks></remarks>
-    Private Shared RtfColourTable As String = "{\colortbl ;" _
+    Private Shared ReadOnly RtfColourTable As String = "{\colortbl ;" _
                         & "\red255\green0\blue0;" _
                         & "\red128\green0\blue0;" _
                         & "\red255\green255\blue0;" _
@@ -40,12 +36,11 @@ Public Class RtfManager
                         & "\red79\green129\blue189;" _
                         & "\red189\green214\blue238" _
                         & "}"
-
     ''' <summary>
     ''' rtf representation of fonts in the RtfFontType enum
     ''' </summary>
     ''' <remarks></remarks>
-    Private Shared RtfFontTable As String = _
+    Private Shared ReadOnly RtfFontTable As String =
                             "{\fonttbl" _
                         & "{\f0\fnil\fcharset0 Arial;}" _
                         & "{\f1\fnil\fcharset0 Calibri;}" _
@@ -58,8 +53,7 @@ Public Class RtfManager
                         & "{\f8\fnil\fcharset0 Times New Roman;}" _
                         & "{\f9\fnil\fcharset0 Verdana;}" _
                         & "}"
-    Private Shared RtfAlignTable As String = "lrcj"
-
+    Private Shared ReadOnly RtfAlignTable As String = "lrcj"
     Public Enum RtfColour
         DefaultColour
         Red
@@ -82,7 +76,6 @@ Public Class RtfManager
         Hdr2Blue
         BkGrdBlue
     End Enum
-
     Public Enum RtfFontType
         Arial
         Calibri
@@ -95,14 +88,12 @@ Public Class RtfManager
         Times_New_Roman
         Verdana
     End Enum
-
     Public Enum RtfAlign
         left
         right
         centre
         justify
     End Enum
-
     Public Enum RtfUnits
         null = 0
         inches = 1440
@@ -110,7 +101,6 @@ Public Class RtfManager
         twips = 1
         points = 20
     End Enum
-
     ''' <summary>
     ''' Generate rtf codes to set a font in the document
     ''' </summary>
@@ -123,12 +113,12 @@ Public Class RtfManager
     ''' <param name="alignment">Text alignment</param>
     ''' <returns>String of rtf codes</returns>
     ''' <remarks></remarks>
-    Public Shared Function RtfFont(ByVal fontNo As RtfFontType, _
-                                   ByVal fontsize As Integer, _
-                                   Optional ByVal forecolor As RtfColour = 0, _
-                                   Optional ByVal backColor As RtfColour = 0, _
-                                   Optional ByVal isBold As Boolean = False, _
-                                   Optional ByVal isItalic As Boolean = False, _
+    Public Shared Function RtfFont(ByVal fontNo As RtfFontType,
+                                   ByVal fontsize As Integer,
+                                   Optional ByVal forecolor As RtfColour = 0,
+                                   Optional ByVal backColor As RtfColour = 0,
+                                   Optional ByVal isBold As Boolean = False,
+                                   Optional ByVal isItalic As Boolean = False,
                                    Optional ByVal alignment As RtfAlign = 0) As String
 
         Dim rtnString As New StringBuilder
@@ -154,7 +144,6 @@ Public Class RtfManager
         rtnString.Append("\q").Append(al)
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Generate rtf codes to set margins depending on selected unit of measurement
     ''' </summary>
@@ -178,7 +167,6 @@ Public Class RtfManager
         rtnString.Append(vbCrLf)
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Standard rtf codes to be inserted at the top of a document
     ''' </summary>
@@ -201,7 +189,6 @@ Public Class RtfManager
         End If
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Generates rtf code for a new paragraph
     ''' </summary>
@@ -212,7 +199,6 @@ Public Class RtfManager
         Return rtnString
 
     End Function
-
     ''' <summary>
     ''' Standard rtf codes to be inserted at the bottom of a document
     ''' </summary>
@@ -223,7 +209,6 @@ Public Class RtfManager
         Return rtnString
 
     End Function
-
     ''' <summary>
     ''' Adds rtf codes around a text string to create a paragraph
     ''' </summary>
@@ -241,7 +226,6 @@ Public Class RtfManager
         rtnString.Append(RtfNewPar)
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Adds rtf codes to start of a text string to set tabs
     ''' </summary>
@@ -266,7 +250,6 @@ Public Class RtfManager
         rtnString.Append(rtfTabs)
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Adds rtf codes to start of a text string to set font
     ''' </summary>
@@ -281,7 +264,6 @@ Public Class RtfManager
         rtnString.Append(text)
         Return rtnString.ToString
     End Function
-
     ''' <summary>
     ''' Convert a datagrid view table into an rtf string
     ''' </summary>
@@ -305,7 +287,6 @@ Public Class RtfManager
             End If
         Next
         rtnText.Append(RtfNewPar)
-
         For Each oRow As DataGridViewRow In dg.Rows
             If oRow.Visible = True Then
                 Dim aCells As New ArrayList
@@ -326,7 +307,6 @@ Public Class RtfManager
                             End If
                         End If
                         Dim aCellValues As New ArrayList
-
                         If oCell.ValueType Is GetType(Date) Then
                             rtnText.Append(RtfText(Format(oCell.Value, "dd/MM/yyyy"), RtfManager.RtfFont(fontType, txtSize, cellColor, , isBold))).Append(vbTab)
                         Else
@@ -370,7 +350,6 @@ Public Class RtfManager
         Next
         Return rtnText.ToString
     End Function
-
     ''' <summary>
     ''' Generate rtf tab stop codes for a data grid table 
     ''' </summary>
@@ -395,7 +374,6 @@ Public Class RtfManager
         Next
         Return rtnText.ToString
     End Function
-
     ''' <summary>
     ''' Converts pixels to twips (twentieth of a point)
     ''' </summary>
@@ -406,5 +384,4 @@ Public Class RtfManager
     Private Shared Function PixelsToTwips(ByVal intPixels As Integer, ByVal dpi As Integer) As Integer
         PixelsToTwips = intPixels * 1440 / dpi
     End Function
-
 End Class

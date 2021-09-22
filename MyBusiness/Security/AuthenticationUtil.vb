@@ -1,6 +1,10 @@
-﻿
-Imports MyBusiness.netwyrksErrorCodes
-Imports System.Text
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Imports MyBusiness.NetwyrksErrorCodes
 Imports System.Security.Cryptography
 Imports i00SpellCheck
 ''' <summary>
@@ -280,22 +284,18 @@ Public Class AuthenticationUtil
         Try
             Dim emailAddress As String = sEmail
             Dim validate As New ValidationUtil
-            Dim sentOnBehalfOf As String = If(My.Settings.useSMTP, "noreply@self-exclusion.co.uk", "")
+            Dim sentOnBehalfOf As String = "noreply@self-exclusion.co.uk"
             If validate.IsValidEmail(emailAddress) Then
                 If oUserTa.UpdateTempPassword(AuthenticationUtil.GetHashed(salt & newTempPassword), Now, userId, True) = 1 Then
                     AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
 
-                    Dim userEmailAddress As String() = EmailUtil.MakeEmailAddressList(emailAddress)
-                    If EmailUtil.SendMail(userEmailAddress, _
-                                     New String() {}, _
-                                        "Temporary SERS Password", _
-                                        PASSWORD_CHANGE_EMAIL.Replace("{}", _
-                                        newTempPassword), _
-                                        Nothing, _
-                                        Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatHTML, _
-                                        sentOnBehalfOf, _
-                                        Microsoft.Office.Interop.Outlook.OlImportance.olImportanceHigh, _
-                                        True) Then
+                    Dim userEmailAddress As String = emailAddress
+                    If EmailUtil.SendMail(sentOnBehalfOf,
+                            userEmailAddress,
+                            {},
+                            "Temporary SERS Password",
+                            PASSWORD_CHANGE_EMAIL.Replace("{}",
+                            newTempPassword)) Then
                         isCreatedOK = True
                         MsgBox("An email has been sent to your registered address.", , "Password Reset")
                     Else

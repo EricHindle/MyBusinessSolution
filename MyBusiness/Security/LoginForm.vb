@@ -1,4 +1,8 @@
-﻿
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
 
 Imports System.IO
 Imports System.Text
@@ -27,7 +31,6 @@ Public Class LoginForm
         Me.Refresh()
         If InitialiseApplication() Then
             LogUtil.Debug("Settings:")
-            LogUtil.Debug(" Email               : " & If(My.Settings.useSMTP, "SMTP", "Outlook"))
             LogUtil.Debug(" Auto Tidy           : " & My.Settings.AutoTidy)
             LogUtil.Debug(" Retention period    : " & My.Settings.RetentionPeriod)
             LogUtil.Debug(" Map provider        : " & My.Settings.MapProvider)

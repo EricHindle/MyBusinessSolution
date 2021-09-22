@@ -1,4 +1,10 @@
-﻿Public Class frmInfoSplash
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class frmInfoSplash
 #Region "private variables"
     Private _message As String
     Private _lifeTime As Integer

@@ -1,12 +1,10 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Imports myBusiness.netwyrksErrorCodes
+Imports MyBusiness.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Form to maintain Global Settings values

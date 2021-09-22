@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -22,16 +22,15 @@ Public Class Reminder
     Private _jobId As Integer?
     Private _diaryId As Integer
     Private _callBack As Boolean
-
-    Public Sub New(ByVal pDiaryId As Integer, _
-                    ByVal pUserId As Integer, _
-                    ByVal pReminderDate As Date?, _
-                    ByVal pSubject As String, _
-                    ByVal pBody As String, _
-                    ByVal pReminder As Boolean, _
-                    ByVal pClosed As Boolean, _
-                    ByVal pCustomerId As Integer?, _
-                    ByVal pJobId As Integer?, _
+    Public Sub New(ByVal pDiaryId As Integer,
+                    ByVal pUserId As Integer,
+                    ByVal pReminderDate As Date?,
+                    ByVal pSubject As String,
+                    ByVal pBody As String,
+                    ByVal pReminder As Boolean,
+                    ByVal pClosed As Boolean,
+                    ByVal pCustomerId As Integer?,
+                    ByVal pJobId As Integer?,
                     ByVal pCallBack As Boolean)
         _diaryId = pDiaryId
         _userId = pUserId
@@ -44,8 +43,7 @@ Public Class Reminder
         _jobId = pJobId
         _callBack = pCallBack
     End Sub
-
-    Public Property callBack() As Boolean
+    Public Property CallBack() As Boolean
         Get
             Return _callBack
         End Get
@@ -53,8 +51,7 @@ Public Class Reminder
             _callBack = value
         End Set
     End Property
-
-    Public Property diary_id() As Integer
+    Public Property Diary_id() As Integer
         Get
             Return _diaryId
         End Get
@@ -62,8 +59,7 @@ Public Class Reminder
             _diaryId = value
         End Set
     End Property
-
-    Public Property jobId() As Integer?
+    Public Property JobId() As Integer?
         Get
             Return _jobId
         End Get
@@ -71,8 +67,7 @@ Public Class Reminder
             _jobId = value
         End Set
     End Property
-
-    Public Property customerId() As Integer?
+    Public Property CustomerId() As Integer?
         Get
             Return _customerId
         End Get
@@ -80,8 +75,7 @@ Public Class Reminder
             _customerId = value
         End Set
     End Property
-
-    Public Property isClosed() As Boolean
+    Public Property IsClosed() As Boolean
         Get
             Return _isClosed
         End Get
@@ -89,8 +83,7 @@ Public Class Reminder
             _isClosed = value
         End Set
     End Property
-
-    Public Property isReminder() As Boolean
+    Public Property IsReminder() As Boolean
         Get
             Return _isReminder
         End Get
@@ -98,8 +91,7 @@ Public Class Reminder
             _isReminder = value
         End Set
     End Property
-
-    Public Property body() As String
+    Public Property Body() As String
         Get
             Return _body
         End Get
@@ -107,8 +99,7 @@ Public Class Reminder
             _body = value
         End Set
     End Property
-
-    Public Property subject() As String
+    Public Property Subject() As String
         Get
             Return _subject
         End Get
@@ -116,8 +107,7 @@ Public Class Reminder
             _subject = value
         End Set
     End Property
-
-    Public Property reminderDate() As DateTime
+    Public Property ReminderDate() As DateTime
         Get
             Return _reminderDate
         End Get
@@ -125,8 +115,7 @@ Public Class Reminder
             _reminderDate = value
         End Set
     End Property
-
-    Public Property userId() As Integer
+    Public Property UserId() As Integer
         Get
             Return _userId
         End Get
@@ -134,7 +123,6 @@ Public Class Reminder
             _userId = value
         End Set
     End Property
-
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
@@ -159,5 +147,4 @@ Public Class Reminder
             .Append("]]")
         Return sb.ToString
     End Function
-
 End Class

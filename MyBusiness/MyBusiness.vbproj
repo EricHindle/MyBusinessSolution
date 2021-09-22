@@ -12,7 +12,8 @@
     <AssemblyName>MyBusiness</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <Deterministic>false</Deterministic>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
@@ -46,6 +47,12 @@
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MyBusiness5.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Api.Maps.Service, Version=0.9.2.18986, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,15 +65,6 @@
     <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\InstallationFiles\itextsharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
@@ -112,28 +110,28 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\frmCustomerMaint.designer.vb">
-      <DependentUpon>frmCustomerMaint.vb</DependentUpon>
+    <Compile Include="Customer\FrmCustomerMaint.designer.vb">
+      <DependentUpon>FrmCustomerMaint.vb</DependentUpon>
     </Compile>
-    <Compile Include="Customer\frmCustomerMaint.vb">
+    <Compile Include="Customer\FrmCustomerMaint.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer\frmViewCust.Designer.vb">
-      <DependentUpon>frmViewCust.vb</DependentUpon>
+    <Compile Include="Customer\FrmViewCust.Designer.vb">
+      <DependentUpon>FrmViewCust.vb</DependentUpon>
     </Compile>
-    <Compile Include="Customer\frmViewCust.vb">
+    <Compile Include="Customer\FrmViewCust.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Diary\frmDiary.designer.vb">
-      <DependentUpon>frmDiary.vb</DependentUpon>
+    <Compile Include="Diary\FrmDiary.designer.vb">
+      <DependentUpon>FrmDiary.vb</DependentUpon>
     </Compile>
-    <Compile Include="Diary\frmDiary.vb">
+    <Compile Include="Diary\FrmDiary.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Diary\frmReminder.designer.vb">
-      <DependentUpon>frmReminder.vb</DependentUpon>
+    <Compile Include="Diary\FrmReminder.designer.vb">
+      <DependentUpon>FrmReminder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Diary\frmReminder.vb">
+    <Compile Include="Diary\FrmReminder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Domain\Address.vb" />
@@ -158,57 +156,57 @@
     <Compile Include="Domain\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
     <Compile Include="Imaging\ImageUtil.vb" />
-    <Compile Include="Invoice\clsRtfConstants.vb" />
-    <Compile Include="Invoice\dlgViewInvoice.Designer.vb">
-      <DependentUpon>dlgViewInvoice.vb</DependentUpon>
+    <Compile Include="Invoice\ClsRtfConstants.vb" />
+    <Compile Include="Invoice\DlgViewInvoice.Designer.vb">
+      <DependentUpon>DlgViewInvoice.vb</DependentUpon>
     </Compile>
-    <Compile Include="Invoice\dlgViewInvoice.vb">
+    <Compile Include="Invoice\DlgViewInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Invoice\InvoicePrinter.vb" />
-    <Compile Include="Job\frmJob.designer.vb">
-      <DependentUpon>frmJob.vb</DependentUpon>
+    <Compile Include="Job\FrmJob.designer.vb">
+      <DependentUpon>FrmJob.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\frmJob.vb">
+    <Compile Include="Job\FrmJob.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\frmJobProducts.designer.vb">
-      <DependentUpon>frmJobProducts.vb</DependentUpon>
+    <Compile Include="Job\FrmJobProducts.designer.vb">
+      <DependentUpon>FrmJobProducts.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\frmJobProducts.vb">
+    <Compile Include="Job\FrmJobProducts.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\frmTask.designer.vb">
-      <DependentUpon>frmTask.vb</DependentUpon>
+    <Compile Include="Job\FrmTask.designer.vb">
+      <DependentUpon>FrmTask.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\frmTask.vb">
+    <Compile Include="Job\FrmTask.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\modJobCommon.vb" />
+    <Compile Include="Job\ModJobCommon.vb" />
     <Compile Include="Logging\AuditUtil.vb" />
-    <Compile Include="Logging\frmAuditItem.designer.vb">
-      <DependentUpon>frmAuditItem.vb</DependentUpon>
+    <Compile Include="Logging\FrmAuditItem.designer.vb">
+      <DependentUpon>FrmAuditItem.vb</DependentUpon>
     </Compile>
-    <Compile Include="Logging\frmAuditItem.vb">
+    <Compile Include="Logging\FrmAuditItem.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logging\frmDisplayAudit.designer.vb">
-      <DependentUpon>frmDisplayAudit.vb</DependentUpon>
+    <Compile Include="Logging\FrmDisplayAudit.designer.vb">
+      <DependentUpon>FrmDisplayAudit.vb</DependentUpon>
     </Compile>
-    <Compile Include="Logging\frmDisplayAudit.vb">
+    <Compile Include="Logging\FrmDisplayAudit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logging\frmLogViewer.designer.vb">
-      <DependentUpon>frmLogViewer.vb</DependentUpon>
+    <Compile Include="Logging\FrmLogViewer.designer.vb">
+      <DependentUpon>FrmLogViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Logging\frmLogViewer.vb">
+    <Compile Include="Logging\FrmLogViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging\LogUtil.vb" />
-    <Compile Include="Mapping\frmMapViewer.designer.vb">
-      <DependentUpon>frmMapViewer.vb</DependentUpon>
+    <Compile Include="Mapping\FrmMapViewer.designer.vb">
+      <DependentUpon>FrmMapViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\frmMapViewer.vb">
+    <Compile Include="Mapping\FrmMapViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mapping\GeoInfo.vb" />
@@ -226,18 +224,18 @@
     <Compile Include="Mapping\MapQuestGeoInfo.vb" />
     <Compile Include="Mapping\MapQuestMapUtil.vb" />
     <Compile Include="Mapping\MapQuestResponse.vb" />
-    <Compile Include="Mapping\modInteractiveMap.vb" />
-    <Compile Include="Menus\frmMain.designer.vb">
-      <DependentUpon>frmMain.vb</DependentUpon>
+    <Compile Include="Mapping\ModInteractiveMap.vb" />
+    <Compile Include="Menus\FrmMain.designer.vb">
+      <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="Menus\frmMain.vb">
+    <Compile Include="Menus\FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MSOffice\OfficeUtil.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -261,28 +259,28 @@
     <Compile Include="Security\AuthenticationUtil.vb" />
     <Compile Include="Security\AuthorisationUtil.vb" />
     <Compile Include="Security\EncryptionUtil.vb" />
-    <Compile Include="Security\frmChangePassword.designer.vb">
-      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    <Compile Include="Security\FrmChangePassword.designer.vb">
+      <DependentUpon>FrmChangePassword.vb</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmChangePassword.vb">
+    <Compile Include="Security\FrmChangePassword.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\frmPasswordRequest.designer.vb">
-      <DependentUpon>frmPasswordRequest.vb</DependentUpon>
+    <Compile Include="Security\FrmPasswordRequest.designer.vb">
+      <DependentUpon>FrmPasswordRequest.vb</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmPasswordRequest.vb">
+    <Compile Include="Security\FrmPasswordRequest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\frmResetUserPassword.designer.vb">
-      <DependentUpon>frmResetUserPassword.vb</DependentUpon>
+    <Compile Include="Security\FrmResetUserPassword.designer.vb">
+      <DependentUpon>FrmResetUserPassword.vb</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmResetUserPassword.vb">
+    <Compile Include="Security\FrmResetUserPassword.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\frmUserControl.designer.vb">
-      <DependentUpon>frmUserControl.vb</DependentUpon>
+    <Compile Include="Security\FrmUserControl.designer.vb">
+      <DependentUpon>FrmUserControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmUserControl.vb">
+    <Compile Include="Security\FrmUserControl.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Security\LoginForm.designer.vb">
@@ -291,66 +289,66 @@
     <Compile Include="Security\LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\netwyrksIIdentity.vb" />
-    <Compile Include="Security\netwyrksIPrincipal.vb" />
-    <Compile Include="Supplier\frmProduct.designer.vb">
-      <DependentUpon>frmProduct.vb</DependentUpon>
+    <Compile Include="Security\NetwyrksIIdentity.vb" />
+    <Compile Include="Security\NetwyrksIPrincipal.vb" />
+    <Compile Include="Supplier\FrmProduct.designer.vb">
+      <DependentUpon>FrmProduct.vb</DependentUpon>
     </Compile>
-    <Compile Include="Supplier\frmProduct.vb">
+    <Compile Include="Supplier\FrmProduct.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Supplier\frmSupplier.designer.vb">
-      <DependentUpon>frmSupplier.vb</DependentUpon>
+    <Compile Include="Supplier\FrmSupplier.designer.vb">
+      <DependentUpon>FrmSupplier.vb</DependentUpon>
     </Compile>
-    <Compile Include="Supplier\frmSupplier.vb">
+    <Compile Include="Supplier\FrmSupplier.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\ConvertUtil.vb" />
     <Compile Include="Utilities\ExportUtil.vb" />
     <Compile Include="Utilities\FileTransformer.vb" />
     <Compile Include="Utilities\FileUtil.vb" />
-    <Compile Include="Utilities\frmAbout.designer.vb">
-      <DependentUpon>frmAbout.vb</DependentUpon>
+    <Compile Include="Utilities\FrmAbout.designer.vb">
+      <DependentUpon>FrmAbout.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmAbout.vb">
+    <Compile Include="Utilities\FrmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\frmDateRange.designer.vb">
-      <DependentUpon>frmDateRange.vb</DependentUpon>
+    <Compile Include="Utilities\FrmDateRange.designer.vb">
+      <DependentUpon>FrmDateRange.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmDateRange.vb">
+    <Compile Include="Utilities\FrmDateRange.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\frmGlobalSettings.designer.vb">
-      <DependentUpon>frmGlobalSettings.vb</DependentUpon>
+    <Compile Include="Utilities\FrmGlobalSettings.designer.vb">
+      <DependentUpon>FrmGlobalSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmGlobalSettings.vb">
+    <Compile Include="Utilities\FrmGlobalSettings.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\frmInfoSplash.Designer.vb">
-      <DependentUpon>frmInfoSplash.vb</DependentUpon>
+    <Compile Include="Utilities\FrmInfoSplash.Designer.vb">
+      <DependentUpon>FrmInfoSplash.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmInfoSplash.vb">
+    <Compile Include="Utilities\FrmInfoSplash.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\frmInstallationTest.designer.vb">
-      <DependentUpon>frmInstallationTest.vb</DependentUpon>
+    <Compile Include="Utilities\FrmInstallationTest.designer.vb">
+      <DependentUpon>FrmInstallationTest.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmInstallationTest.vb">
+    <Compile Include="Utilities\FrmInstallationTest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\frmOptions.Designer.vb">
-      <DependentUpon>frmOptions.vb</DependentUpon>
+    <Compile Include="Utilities\FrmOptions.Designer.vb">
+      <DependentUpon>FrmOptions.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\frmOptions.vb">
+    <Compile Include="Utilities\FrmOptions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\GlobalSettings.vb" />
-    <Compile Include="Utilities\iTextManager.vb" />
+    <Compile Include="Utilities\ITextManager.vb" />
     <Compile Include="Utilities\ModuleCodes.vb" />
     <Compile Include="Utilities\netwyrksCommon.vb" />
     <Compile Include="Utilities\netwyrksConstants.vb" />
-    <Compile Include="Utilities\netwyrksErrorCodes.vb" />
+    <Compile Include="Utilities\NetwyrksErrorCodes.vb" />
     <Compile Include="Utilities\PrintUtil.vb" />
     <Compile Include="Utilities\ReportDefinition.vb" />
     <Compile Include="Utilities\RichTextBoxEx.vb">
@@ -362,56 +360,56 @@
     <Compile Include="Utilities\ValidationUtil.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Customer\frmCustomerMaint.resx">
-      <DependentUpon>frmCustomerMaint.vb</DependentUpon>
+    <EmbeddedResource Include="Customer\FrmCustomerMaint.resx">
+      <DependentUpon>FrmCustomerMaint.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\frmViewCust.resx">
-      <DependentUpon>frmViewCust.vb</DependentUpon>
+    <EmbeddedResource Include="Customer\FrmViewCust.resx">
+      <DependentUpon>FrmViewCust.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Diary\frmDiary.resx">
-      <DependentUpon>frmDiary.vb</DependentUpon>
+    <EmbeddedResource Include="Diary\FrmDiary.resx">
+      <DependentUpon>FrmDiary.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Diary\frmReminder.resx">
-      <DependentUpon>frmReminder.vb</DependentUpon>
+    <EmbeddedResource Include="Diary\FrmReminder.resx">
+      <DependentUpon>FrmReminder.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Invoice\dlgViewInvoice.resx">
-      <DependentUpon>dlgViewInvoice.vb</DependentUpon>
+    <EmbeddedResource Include="Invoice\DlgViewInvoice.resx">
+      <DependentUpon>DlgViewInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\frmJob.resx">
-      <DependentUpon>frmJob.vb</DependentUpon>
+    <EmbeddedResource Include="Job\FrmJob.resx">
+      <DependentUpon>FrmJob.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\frmJobProducts.resx">
-      <DependentUpon>frmJobProducts.vb</DependentUpon>
+    <EmbeddedResource Include="Job\FrmJobProducts.resx">
+      <DependentUpon>FrmJobProducts.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\frmTask.resx">
-      <DependentUpon>frmTask.vb</DependentUpon>
+    <EmbeddedResource Include="Job\FrmTask.resx">
+      <DependentUpon>FrmTask.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logging\frmAuditItem.resx">
-      <DependentUpon>frmAuditItem.vb</DependentUpon>
+    <EmbeddedResource Include="Logging\FrmAuditItem.resx">
+      <DependentUpon>FrmAuditItem.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logging\frmDisplayAudit.resx">
-      <DependentUpon>frmDisplayAudit.vb</DependentUpon>
+    <EmbeddedResource Include="Logging\FrmDisplayAudit.resx">
+      <DependentUpon>FrmDisplayAudit.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logging\frmLogViewer.resx">
-      <DependentUpon>frmLogViewer.vb</DependentUpon>
+    <EmbeddedResource Include="Logging\FrmLogViewer.resx">
+      <DependentUpon>FrmLogViewer.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\frmMapViewer.resx">
-      <DependentUpon>frmMapViewer.vb</DependentUpon>
+    <EmbeddedResource Include="Mapping\FrmMapViewer.resx">
+      <DependentUpon>FrmMapViewer.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menus\frmMain.resx">
-      <DependentUpon>frmMain.vb</DependentUpon>
+    <EmbeddedResource Include="Menus\FrmMain.resx">
+      <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -420,61 +418,62 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmChangePassword.resx">
-      <DependentUpon>frmChangePassword.vb</DependentUpon>
+    <EmbeddedResource Include="Security\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmPasswordRequest.resx">
-      <DependentUpon>frmPasswordRequest.vb</DependentUpon>
+    <EmbeddedResource Include="Security\FrmPasswordRequest.resx">
+      <DependentUpon>FrmPasswordRequest.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmResetUserPassword.resx">
-      <DependentUpon>frmResetUserPassword.vb</DependentUpon>
+    <EmbeddedResource Include="Security\FrmResetUserPassword.resx">
+      <DependentUpon>FrmResetUserPassword.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmUserControl.resx">
-      <DependentUpon>frmUserControl.vb</DependentUpon>
+    <EmbeddedResource Include="Security\FrmUserControl.resx">
+      <DependentUpon>FrmUserControl.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Supplier\frmProduct.resx">
-      <DependentUpon>frmProduct.vb</DependentUpon>
+    <EmbeddedResource Include="Supplier\FrmProduct.resx">
+      <DependentUpon>FrmProduct.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Supplier\frmSupplier.resx">
-      <DependentUpon>frmSupplier.vb</DependentUpon>
+    <EmbeddedResource Include="Supplier\FrmSupplier.resx">
+      <DependentUpon>FrmSupplier.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmAbout.resx">
-      <DependentUpon>frmAbout.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmAbout.resx">
+      <DependentUpon>FrmAbout.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmDateRange.resx">
-      <DependentUpon>frmDateRange.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmDateRange.resx">
+      <DependentUpon>FrmDateRange.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmGlobalSettings.resx">
-      <DependentUpon>frmGlobalSettings.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmGlobalSettings.resx">
+      <DependentUpon>FrmGlobalSettings.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmInfoSplash.resx">
-      <DependentUpon>frmInfoSplash.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmInfoSplash.resx">
+      <DependentUpon>FrmInfoSplash.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmInstallationTest.resx">
-      <DependentUpon>frmInstallationTest.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmInstallationTest.resx">
+      <DependentUpon>FrmInstallationTest.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\frmOptions.resx">
-      <DependentUpon>frmOptions.vb</DependentUpon>
+    <EmbeddedResource Include="Utilities\FrmOptions.resx">
+      <DependentUpon>FrmOptions.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -512,6 +511,7 @@
     <Content Include="Images\exitbutton.png" />
     <Content Include="Images\export button.png" />
     <Content Include="Images\gauge42.png" />
+    <Content Include="MyBusiness5.ico" />
     <None Include="Resources\MyBusiness.png" />
     <None Include="Images\glossy-button.png" />
     <Content Include="Images\image.png" />
@@ -524,6 +524,9 @@
     <Content Include="Images\printbutton.png" />
     <Content Include="Images\statusstrip.jpg" />
     <Content Include="Images\wordbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MSOffice\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

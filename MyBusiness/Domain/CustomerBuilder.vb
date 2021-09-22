@@ -1,5 +1,5 @@
-﻿'
-' Copyright (c) 2017, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -20,54 +20,49 @@ Public Class CustomerBuilder
     Private _dateCreated As DateTime
     Private _dateChanged As DateTime?
     Private _terms As Integer?
-
-    Public Shared Function aCustomer() As CustomerBuilder
+    Public Shared Function ACustomer() As CustomerBuilder
         Return New CustomerBuilder
     End Function
-
-    Public Function refresh() As CustomerBuilder
-        startingWith(_custId)
+    Public Function Refresh() As CustomerBuilder
+        StartingWith(_custId)
         Return Me
     End Function
-
-    Public Function startingWith(ByVal custId As Integer) As CustomerBuilder
+    Public Function StartingWith(ByVal custId As Integer) As CustomerBuilder
         Dim oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
         Dim oCustTable As New netwyrksDataSet.customerDataTable
         If oCustTa.FillById(oCustTable, custId) > 0 Then
-            startingWith(oCustTable.Rows(0))
+            StartingWith(oCustTable.Rows(0))
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
         oCustTa.Dispose()
         oCustTable.Dispose()
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oCustomer As Customer) As CustomerBuilder
+    Public Function StartingWith(ByVal oCustomer As Customer) As CustomerBuilder
         With oCustomer
-            _custId = .customerId
-            _custAddress = .address
-            _custName = .custName
+            _custId = .CustomerId
+            _custAddress = .Address
+            _custName = .CustName
             _phone = .Phone
-            _email = .email
-            _notes = .notes
-            _discount = .discount
-            _dateChanged = .dateChanged
-            _dateCreated = .dateCreated
-            _terms = .terms
+            _email = .Email
+            _notes = .Notes
+            _discount = .Discount
+            _dateChanged = .DateChanged
+            _dateCreated = .DateCreated
+            _terms = .Terms
         End With
 
         Return Me
     End Function
-
-    Public Function startingWith(ByVal oRow As netwyrksDataSet.customerRow) As CustomerBuilder
+    Public Function StartingWith(ByVal oRow As netwyrksDataSet.customerRow) As CustomerBuilder
         If oRow Is Nothing Then
-            startingWithNothing()
+            StartingWithNothing()
         Else
             With oRow
                 _custId = .customer_id
                 _custName = .customer_name
-                _custAddress = AddressBuilder.anAddress.startingWith(oRow).build
+                _custAddress = AddressBuilder.AnAddress.StartingWith(oRow).Build
                 _phone = If(.Iscustomer_telephoneNull, "", .customer_telephone)
                 _email = If(.Iscustomer_emailNull, "", .customer_email)
                 _discount = If(.Iscustomer_discount_percentNull, 0.0, .customer_discount_percent)
@@ -83,11 +78,10 @@ Public Class CustomerBuilder
         End If
         Return Me
     End Function
-
-    Public Function startingWithNothing() As CustomerBuilder
+    Public Function StartingWithNothing() As CustomerBuilder
         _custId = 0
         _custName = ""
-        _custAddress = AddressBuilder.anAddress.startingWithNothing().build
+        _custAddress = AddressBuilder.AnAddress.StartingWithNothing().Build
         _phone = ""
         _email = ""
         _discount = 0.0
@@ -97,62 +91,56 @@ Public Class CustomerBuilder
         _terms = 0
         Return Me
     End Function
-
-
-    Public Function withCustId(ByVal pCustId As Integer) As CustomerBuilder
+    Public Function WithCustId(ByVal pCustId As Integer) As CustomerBuilder
         _custId = pCustId
         Return Me
     End Function
-    Public Function withCustName(ByVal pCustName As String) As CustomerBuilder
+    Public Function WithCustName(ByVal pCustName As String) As CustomerBuilder
         _custName = pCustName
         Return Me
     End Function
-    Public Function withPhone(ByVal pPhone As String) As CustomerBuilder
+    Public Function WithPhone(ByVal pPhone As String) As CustomerBuilder
         _phone = pPhone
         Return Me
     End Function
-    Public Function withEmail(ByVal pEmail As String) As CustomerBuilder
+    Public Function WithEmail(ByVal pEmail As String) As CustomerBuilder
         _email = pEmail
         Return Me
     End Function
-    Public Function withDiscount(ByVal pDiscount As Decimal?) As CustomerBuilder
+    Public Function WithDiscount(ByVal pDiscount As Decimal?) As CustomerBuilder
         _discount = pDiscount
         Return Me
     End Function
-    Public Function withNotes(ByVal pNotes As String) As CustomerBuilder
+    Public Function WithNotes(ByVal pNotes As String) As CustomerBuilder
         _notes = pNotes
         Return Me
     End Function
-    Public Function withAddress(ByVal pAddress As Address) As CustomerBuilder
+    Public Function WithAddress(ByVal pAddress As Address) As CustomerBuilder
         _custAddress = pAddress
         Return Me
     End Function
-
-    Public Function withDateCreated(ByVal pDateCreated As DateTime) As CustomerBuilder
+    Public Function WithDateCreated(ByVal pDateCreated As DateTime) As CustomerBuilder
         _dateCreated = pDateCreated
         Return Me
     End Function
-
-    Public Function withDateChanged(ByVal pDateChanged As DateTime?) As CustomerBuilder
+    Public Function WithDateChanged(ByVal pDateChanged As DateTime?) As CustomerBuilder
         _dateChanged = pDateChanged
         Return Me
     End Function
-    Public Function withTerms(ByVal pTerms As Integer?) As CustomerBuilder
+    Public Function WithTerms(ByVal pTerms As Integer?) As CustomerBuilder
         _terms = pTerms
         Return Me
     End Function
-
-    Public Function build() As Customer
-        Return New Customer(_custId, _
-                            _custName, _
-                            _email, _
-                            _phone, _
-                            _notes, _
-                            _dateCreated, _
-                            _dateChanged, _
-                            _custAddress, _
-                            _discount, _
+    Public Function Build() As Customer
+        Return New Customer(_custId,
+                            _custName,
+                            _email,
+                            _phone,
+                            _notes,
+                            _dateCreated,
+                            _dateChanged,
+                            _custAddress,
+                            _discount,
                             _terms)
     End Function
-
 End Class

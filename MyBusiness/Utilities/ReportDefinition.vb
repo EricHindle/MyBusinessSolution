@@ -1,13 +1,9 @@
-﻿'
-' Copyright (c) 2015, William Hill plc
-' St. John’s Centre, 31 Merrion Street, Leeds, LS2 8LQ
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-' Created Aug 2015
 
-Imports System.Data.Common
-Imports System.Drawing
 Imports Microsoft.Win32.SafeHandles
 Imports System.Runtime.InteropServices
 
@@ -373,13 +369,11 @@ Public Class ReportDefinition : Implements IDisposable
             myFont = value
         End Set
     End Property
-
     Public Sub Dispose() _
          Implements IDisposable.Dispose
         Dispose(True)
         GC.SuppressFinalize(Me)
     End Sub
-
     Protected Overridable Sub Dispose(disposing As Boolean)
         If disposed Then Return
         If disposing Then

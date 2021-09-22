@@ -1,4 +1,8 @@
-﻿
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
 
 Public Class netwyrksIPrincipal
     Implements System.Security.Principal.IPrincipal
