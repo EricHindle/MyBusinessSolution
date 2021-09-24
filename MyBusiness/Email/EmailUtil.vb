@@ -14,6 +14,7 @@ Imports System.Drawing
 ''' </summary>
 ''' <remarks></remarks>
 Public NotInheritable Class EmailUtil
+    #Region "constants"
     Public Const className As String = "EmailUtil"
     Public Const USE_SMTP As String = "UseSMTP"
     Public Const SMTP_USERNAME As String = "SMTPUsername"
@@ -24,13 +25,17 @@ Public NotInheritable Class EmailUtil
     Public Const SMTP_PORT As String = "SMTPPort"
     Public Const SMTP_SSL As String = "SMTPEnableSSL"
     Public Const SEND_VIA As String = "SendMailViaSMTP"
+#End Region
+#Region "variables"
     Public Shared sOutlookSender As String = ""
-
+#End Region
+#Region "enum"
     Public Enum EmailBodyType
         Html = 0
         Plain = 1
     End Enum
-
+#End Region
+#Region "functions"
     ''' <summary>
     ''' Send an email
     ''' </summary>
@@ -213,6 +218,5 @@ Public NotInheritable Class EmailUtil
     Public Shared Function MakeEmailAddressList(ByVal sAddresses As String) As String()
         Return Split(sAddresses.Replace(" ", "").Replace(",", ";"), ";")
     End Function
-
-
+#End Region
 End Class

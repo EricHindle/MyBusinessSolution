@@ -32,15 +32,6 @@ Partial Class frmOptions
         Me.chkShowSupplier = New System.Windows.Forms.CheckBox()
         Me.chkShowCustomer = New System.Windows.Forms.CheckBox()
         Me.chkShowDiaryBody = New System.Windows.Forms.CheckBox()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.nudRange = New System.Windows.Forms.NumericUpDown()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.nudZoom = New System.Windows.Forms.NumericUpDown()
-        Me.chkMqDeclutter = New System.Windows.Forms.CheckBox()
-        Me.rbMapQuest = New System.Windows.Forms.RadioButton()
-        Me.rbGoogle = New System.Windows.Forms.RadioButton()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.chkAutoTidy = New System.Windows.Forms.CheckBox()
@@ -102,19 +93,16 @@ Partial Class frmOptions
         Me.btnSave = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtnTest = New System.Windows.Forms.Button()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.BtnTest = New System.Windows.Forms.Button()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.grpDiary.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
-        CType(Me.nudRange, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudZoom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         CType(Me.nudRetention, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
@@ -176,7 +164,6 @@ Partial Class frmOptions
         '
         Me.TabPage1.BackColor = System.Drawing.Color.Transparent
         Me.TabPage1.Controls.Add(Me.grpDiary)
-        Me.TabPage1.Controls.Add(Me.GroupBox9)
         Me.TabPage1.Controls.Add(Me.GroupBox10)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
@@ -194,7 +181,7 @@ Partial Class frmOptions
         Me.grpDiary.Controls.Add(Me.chkShowCustomer)
         Me.grpDiary.Controls.Add(Me.chkShowDiaryBody)
         Me.grpDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpDiary.Location = New System.Drawing.Point(8, 236)
+        Me.grpDiary.Location = New System.Drawing.Point(13, 163)
         Me.grpDiary.Name = "grpDiary"
         Me.grpDiary.Size = New System.Drawing.Size(142, 148)
         Me.grpDiary.TabIndex = 8
@@ -244,123 +231,6 @@ Partial Class frmOptions
         Me.chkShowDiaryBody.TabIndex = 0
         Me.chkShowDiaryBody.Text = "Diary text"
         Me.chkShowDiaryBody.UseVisualStyleBackColor = True
-        '
-        'GroupBox9
-        '
-        Me.GroupBox9.Controls.Add(Me.Label3)
-        Me.GroupBox9.Controls.Add(Me.Label2)
-        Me.GroupBox9.Controls.Add(Me.nudRange)
-        Me.GroupBox9.Controls.Add(Me.Label1)
-        Me.GroupBox9.Controls.Add(Me.nudZoom)
-        Me.GroupBox9.Controls.Add(Me.chkMqDeclutter)
-        Me.GroupBox9.Controls.Add(Me.rbMapQuest)
-        Me.GroupBox9.Controls.Add(Me.rbGoogle)
-        Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox9.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox9.Location = New System.Drawing.Point(8, 151)
-        Me.GroupBox9.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox9.Size = New System.Drawing.Size(468, 79)
-        Me.GroupBox9.TabIndex = 7
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Map Provider"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(243, 29)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(88, 16)
-        Me.Label3.TabIndex = 28
-        Me.Label3.Text = "Default Range"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(416, 30)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 16)
-        Me.Label2.TabIndex = 27
-        Me.Label2.Text = "miles"
-        '
-        'nudRange
-        '
-        Me.nudRange.DecimalPlaces = 2
-        Me.nudRange.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nudRange.Increment = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.nudRange.Location = New System.Drawing.Point(331, 27)
-        Me.nudRange.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.nudRange.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
-        Me.nudRange.Minimum = New Decimal(New Integer() {25, 0, 0, 131072})
-        Me.nudRange.Name = "nudRange"
-        Me.nudRange.Size = New System.Drawing.Size(79, 23)
-        Me.nudRange.TabIndex = 25
-        Me.nudRange.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(243, 55)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(75, 16)
-        Me.Label1.TabIndex = 26
-        Me.Label1.Text = "Initial Zoom"
-        '
-        'nudZoom
-        '
-        Me.nudZoom.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nudZoom.Location = New System.Drawing.Point(331, 52)
-        Me.nudZoom.Maximum = New Decimal(New Integer() {17, 0, 0, 0})
-        Me.nudZoom.Minimum = New Decimal(New Integer() {11, 0, 0, 0})
-        Me.nudZoom.Name = "nudZoom"
-        Me.nudZoom.Size = New System.Drawing.Size(45, 23)
-        Me.nudZoom.TabIndex = 24
-        Me.nudZoom.Value = New Decimal(New Integer() {13, 0, 0, 0})
-        '
-        'chkMqDeclutter
-        '
-        Me.chkMqDeclutter.AutoSize = True
-        Me.chkMqDeclutter.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkMqDeclutter.ForeColor = System.Drawing.Color.Black
-        Me.chkMqDeclutter.Location = New System.Drawing.Point(114, 28)
-        Me.chkMqDeclutter.Name = "chkMqDeclutter"
-        Me.chkMqDeclutter.Size = New System.Drawing.Size(78, 20)
-        Me.chkMqDeclutter.TabIndex = 4
-        Me.chkMqDeclutter.Text = "Declutter"
-        Me.chkMqDeclutter.UseVisualStyleBackColor = True
-        '
-        'rbMapQuest
-        '
-        Me.rbMapQuest.AutoSize = True
-        Me.rbMapQuest.Checked = True
-        Me.rbMapQuest.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbMapQuest.ForeColor = System.Drawing.Color.Black
-        Me.rbMapQuest.Location = New System.Drawing.Point(5, 29)
-        Me.rbMapQuest.Name = "rbMapQuest"
-        Me.rbMapQuest.Size = New System.Drawing.Size(80, 18)
-        Me.rbMapQuest.TabIndex = 0
-        Me.rbMapQuest.TabStop = True
-        Me.rbMapQuest.Text = "MapQuest"
-        Me.rbMapQuest.UseVisualStyleBackColor = True
-        '
-        'rbGoogle
-        '
-        Me.rbGoogle.AutoSize = True
-        Me.rbGoogle.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbGoogle.ForeColor = System.Drawing.Color.Black
-        Me.rbGoogle.Location = New System.Drawing.Point(5, 53)
-        Me.rbGoogle.Name = "rbGoogle"
-        Me.rbGoogle.Size = New System.Drawing.Size(65, 20)
-        Me.rbGoogle.TabIndex = 1
-        Me.rbGoogle.Text = "Google"
-        Me.rbGoogle.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -1107,6 +977,21 @@ Partial Class frmOptions
         Me.ToolTip1.SetToolTip(Me.btnSave, "Save changes to options")
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'BtnTest
+        '
+        Me.BtnTest.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnTest.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnTest.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTest.ForeColor = System.Drawing.Color.Black
+        Me.BtnTest.Location = New System.Drawing.Point(28, 532)
+        Me.BtnTest.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnTest.Name = "BtnTest"
+        Me.BtnTest.Size = New System.Drawing.Size(86, 38)
+        Me.BtnTest.TabIndex = 23
+        Me.BtnTest.Text = "Test"
+        Me.ToolTip1.SetToolTip(Me.BtnTest, "Save changes to options")
+        Me.BtnTest.UseVisualStyleBackColor = True
+        '
         'lblFormName
         '
         Me.lblFormName.AutoSize = True
@@ -1151,21 +1036,6 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'BtnTest
-        '
-        Me.BtnTest.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnTest.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnTest.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnTest.ForeColor = System.Drawing.Color.Black
-        Me.BtnTest.Location = New System.Drawing.Point(28, 532)
-        Me.BtnTest.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.BtnTest.Name = "BtnTest"
-        Me.BtnTest.Size = New System.Drawing.Size(86, 38)
-        Me.BtnTest.TabIndex = 23
-        Me.BtnTest.Text = "Test"
-        Me.ToolTip1.SetToolTip(Me.BtnTest, "Save changes to options")
-        Me.BtnTest.UseVisualStyleBackColor = True
-        '
         'frmOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1194,10 +1064,6 @@ Partial Class frmOptions
         Me.TabPage1.ResumeLayout(False)
         Me.grpDiary.ResumeLayout(False)
         Me.grpDiary.PerformLayout()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
-        CType(Me.nudRange, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudZoom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.nudRetention, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1266,15 +1132,6 @@ Partial Class frmOptions
     Friend WithEvents lblFormName As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents BtnCreateFolders As System.Windows.Forms.Button
-    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
-    Friend WithEvents rbMapQuest As System.Windows.Forms.RadioButton
-    Friend WithEvents rbGoogle As System.Windows.Forms.RadioButton
-    Friend WithEvents chkMqDeclutter As System.Windows.Forms.CheckBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents nudRange As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents nudZoom As System.Windows.Forms.NumericUpDown
     Friend WithEvents txtSpellTest As System.Windows.Forms.TextBox
     Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
     Friend WithEvents Label16 As System.Windows.Forms.Label

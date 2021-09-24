@@ -23,18 +23,6 @@
     <Setting Name="AutoTidy" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="MapProvider" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M</Value>
-    </Setting>
-    <Setting Name="MapQuestDeclutter" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="DefaultMapRange" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1.0</Value>
-    </Setting>
-    <Setting Name="InitialMapZoom" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">13</Value>
-    </Setting>
     <Setting Name="TempFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

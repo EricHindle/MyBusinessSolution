@@ -7,7 +7,7 @@
 Imports System.IO
 Imports System.Windows.Forms
 
-Public Class dlgViewInvoice
+Public Class DlgViewInvoice
 #Region "variables"
 
 #End Region

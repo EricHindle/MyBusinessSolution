@@ -35,35 +35,39 @@ Public Class ITextManager
             LogUtil.Info("No logo file defined", "createImageCell")
         End If
 
-        Dim cell As PdfPCell = New PdfPCell(img, True)
+        Dim cell As New PdfPCell(img, True)
         Return cell
     End Function
     Public Function BuildTableHeaderCell(ByVal pCellValue As String) As PdfPCell
         Dim _hdrCellValue As New Paragraph(pCellValue, bodyFont)
-        Dim _tableHdrCell As New iTextSharp.text.pdf.PdfPCell(_hdrCellValue)
-        _tableHdrCell.BackgroundColor = New BaseColor(194, 217, 255)
-        _tableHdrCell.HorizontalAlignment = Element.ALIGN_RIGHT
-        _tableHdrCell.Border = iTextSharp.text.Rectangle.NO_BORDER
+        Dim _tableHdrCell As New iTextSharp.text.pdf.PdfPCell(_hdrCellValue) With {
+            .BackgroundColor = New BaseColor(194, 217, 255),
+            .HorizontalAlignment = Element.ALIGN_RIGHT,
+            .Border = iTextSharp.text.Rectangle.NO_BORDER
+        }
         Return _tableHdrCell
     End Function
     Public Function BuildTableCell(ByVal pCellValue As String, Optional ByVal pAlignment As Integer = Element.ALIGN_RIGHT) As PdfPCell
         Dim _cellValue As New Paragraph(pCellValue, bodyFont)
-        Dim _tableCell As New iTextSharp.text.pdf.PdfPCell(_cellValue)
-        _tableCell.HorizontalAlignment = pAlignment
-        _tableCell.Border = iTextSharp.text.Rectangle.NO_BORDER
+        Dim _tableCell As New iTextSharp.text.pdf.PdfPCell(_cellValue) With {
+            .HorizontalAlignment = pAlignment,
+            .Border = iTextSharp.text.Rectangle.NO_BORDER
+        }
         Return _tableCell
     End Function
     Public Function BuildTable(ByVal columnWidths As Single()) As PdfPTable
-        Dim _table As New iTextSharp.text.pdf.PdfPTable(columnWidths.Length)
-        _table.WidthPercentage = 100.0F
+        Dim _table As New iTextSharp.text.pdf.PdfPTable(columnWidths.Length) With {
+            .WidthPercentage = 100.0F
+        }
         _table.SetWidths(columnWidths)
         _table.HorizontalAlignment = iTextSharp.text.Element.ALIGN_RIGHT
         _table.SpacingAfter = 10.0F
         Return _table
     End Function
     Public Function EmptyCell() As PdfPCell
-        Dim _emptyCell As New iTextSharp.text.pdf.PdfPCell(New Paragraph(" "))
-        _emptyCell.Border = iTextSharp.text.Rectangle.NO_BORDER
+        Dim _emptyCell As New iTextSharp.text.pdf.PdfPCell(New Paragraph(" ")) With {
+            .Border = iTextSharp.text.Rectangle.NO_BORDER
+        }
         Return _emptyCell
     End Function
 End Class

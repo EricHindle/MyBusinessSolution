@@ -34,7 +34,7 @@ Public Class AuthenticationUtil
     ''' <param name="userId"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getUserSalt(ByVal userId As Integer) As String
+    Public Shared Function GetUserSalt(ByVal userId As Integer) As String
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
         Dim i As Integer = oTa.FillById(oTable, userId)
@@ -54,7 +54,7 @@ Public Class AuthenticationUtil
     ''' <param name="username"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getNewSalt(ByVal username As String)
+    Public Shared Function GetNewSalt(ByVal username As String)
         Dim salt As String = CStr(Now.Millisecond) + username + Format(Now, "MMmmyyyyHHssdd") + "gadget"
         Return GetHashed(salt)
     End Function
@@ -79,7 +79,7 @@ Public Class AuthenticationUtil
     ''' <param name="username"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function hashedUsername(ByVal username As String) As String
+    Public Shared Function HashedUsername(ByVal username As String) As String
         Return AuthenticationUtil.GetHashed(APPLICATION_CODE & username.Trim().ToLower())
     End Function
 #End Region
@@ -93,12 +93,12 @@ Public Class AuthenticationUtil
     ''' <returns></returns>
     ''' <remarks>The user has a single current password and may have a temporary password if a password reset has been requested.
     ''' Either password will grant access</remarks>
-    Public Shared Function isPasswordOK(ByVal string1 As String, ByVal myIdentity As NetwyrksIIdentity) As Boolean
+    Public Shared Function IsPasswordOK(ByVal string1 As String, ByVal myIdentity As NetwyrksIIdentity) As Boolean
         Dim rtnval As Boolean = False
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
         Dim userId As Integer = myIdentity.UserId
-        Dim salt As String = ""
+        Dim salt As String
         If oTa.FillById(oTable, userId) = 1 Then
             Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
             salt = oRow.salt
@@ -120,9 +120,9 @@ Public Class AuthenticationUtil
     ''' <param name="string1"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function isPasswordOK(ByVal string1 As String) As Boolean
+    Public Shared Function IsPasswordOK(ByVal string1 As String) As Boolean
         Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
-        Return isPasswordOK(string1, myIdentity)
+        Return IsPasswordOK(string1, myIdentity)
     End Function
 
     ''' <summary>
@@ -130,7 +130,7 @@ Public Class AuthenticationUtil
     ''' </summary>
     ''' <returns>true if the user has changed their password or doesn't need to</returns>
     ''' <remarks></remarks>
-    Public Shared Function isPasswordChangeOK() As Boolean
+    Public Shared Function IsPasswordChangeOK() As Boolean
         Dim rtnval As Boolean = False
         Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
         Dim userId As Integer = myIdentity.UserId
@@ -139,8 +139,8 @@ Public Class AuthenticationUtil
         If oTa.FillById(oTable, userId) = 1 Then
             Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
             If Not oRow.Isforce_password_changeNull AndAlso oRow.force_password_change Then
-                Using _pwdChange As New frmChangePassword
-                    _pwdChange.forceChange = True
+                Using _pwdChange As New FrmChangePassword
+                    _pwdChange.ForceChange = True
                     If _pwdChange.ShowDialog = DialogResult.OK Then
                         rtnval = True
                     End If
@@ -162,7 +162,7 @@ Public Class AuthenticationUtil
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function RemoveUser(ByVal userId As Integer) As String
-        Dim returnValue As String = ""
+        Dim returnValue As String
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         If userId = 0 Then
             Throw New ApplicationException("No username entered")
@@ -213,7 +213,7 @@ Public Class AuthenticationUtil
         Return returnValue
     End Function
 
-    Public Shared Function getUserLogin(ByVal userid As Integer) As String
+    Public Shared Function GetUserLogin(ByVal userid As Integer) As String
         Dim usrLogin As String = ""
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -226,7 +226,7 @@ Public Class AuthenticationUtil
         Return usrLogin
     End Function
 
-    Public Shared Function getUserCode(ByVal userid As Integer) As String
+    Public Shared Function GetUserCode(ByVal userid As Integer) As String
         Dim userCode As String = ""
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -239,7 +239,7 @@ Public Class AuthenticationUtil
         Return userCode
     End Function
 
-    Public Shared Function getUserEmail(ByVal userid As Integer) As String
+    Public Shared Function GetUserEmail(ByVal userid As Integer) As String
         Dim userEmail As String = ""
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -251,7 +251,7 @@ Public Class AuthenticationUtil
         oTable.Dispose()
         Return userEmail
     End Function
-    Public Shared Function getUserName(ByVal userid As Integer) As String
+    Public Shared Function GetUserName(ByVal userid As Integer) As String
         Dim userName As String = ""
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -274,7 +274,7 @@ Public Class AuthenticationUtil
     ''' <param name="sEmail"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function createUserTemporaryPassword(ByVal userId As Integer, ByVal salt As String, ByVal sEmail As String) As Boolean
+    Public Shared Function CreateUserTemporaryPassword(ByVal userId As Integer, ByVal salt As String, ByVal sEmail As String) As Boolean
         Dim isCreatedOK As Boolean = False
         Dim oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
 
@@ -285,7 +285,7 @@ Public Class AuthenticationUtil
             Dim sentOnBehalfOf As String = "noreply@self-exclusion.co.uk"
             If validate.IsValidEmail(emailAddress) Then
                 If oUserTa.UpdateTempPassword(AuthenticationUtil.GetHashed(salt & newTempPassword), Now, userId, True) = 1 Then
-                    AuditUtil.addAudit(currentUser.userId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
+                    AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
 
                     Dim userEmailAddress As String = emailAddress
                     If EmailUtil.SendMail(sentOnBehalfOf,
@@ -313,7 +313,7 @@ Public Class AuthenticationUtil
         Return isCreatedOK
     End Function
 
-    Public Shared Function generateWordyPassword(Optional ByVal includeSpecialChar As Boolean = True) As String
+    Public Shared Function GenerateWordyPassword(Optional ByVal includeSpecialChar As Boolean = True) As String
         Dim AllWords As List(Of String)
         Dim rng As Random = GetRandomNumberGenerator()
         Dim charIndex As Integer = rng.Next(0, PASSWORD_CHARS_SPECIAL.Length - 1)
@@ -337,13 +337,13 @@ Public Class AuthenticationUtil
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function generatePassword() As String
+    Public Shared Function GeneratePassword() As String
         Dim charGroups As Char()() = New Char()() _
-           { _
-               PASSWORD_CHARS_LCASE.ToCharArray(), _
-               PASSWORD_CHARS_UCASE.ToCharArray(), _
-               PASSWORD_CHARS_NUMERIC.ToCharArray(), _
-               PASSWORD_CHARS_SPECIAL.ToCharArray() _
+           {
+               PASSWORD_CHARS_LCASE.ToCharArray(),
+               PASSWORD_CHARS_UCASE.ToCharArray(),
+               PASSWORD_CHARS_NUMERIC.ToCharArray(),
+               PASSWORD_CHARS_SPECIAL.ToCharArray()
            }
 
         ' Use this array to track the number of unused characters in each
@@ -367,7 +367,7 @@ Public Class AuthenticationUtil
         Dim random As Random = GetRandomNumberGenerator()
 
         ' This array will hold password characters.
-        Dim password As Char() = Nothing
+        Dim password As Char()
 
         ' Allocate appropriate memory for the password.
         password = New Char(minPwdLen - 1) {}
@@ -421,7 +421,7 @@ Public Class AuthenticationUtil
 
             ' If we processed the last character in this group, start over.
             If (lastCharIdx = 0) Then
-                charsLeftInGroup(nextGroupIdx) = _
+                charsLeftInGroup(nextGroupIdx) =
                                 charGroups(nextGroupIdx).Length
                 ' There are more unprocessed characters left.
             Else
@@ -430,14 +430,14 @@ Public Class AuthenticationUtil
                 ' this group.
                 If (lastCharIdx <> nextCharIdx) Then
                     Dim temp As Char = charGroups(nextGroupIdx)(lastCharIdx)
-                    charGroups(nextGroupIdx)(lastCharIdx) = _
+                    charGroups(nextGroupIdx)(lastCharIdx) =
                                 charGroups(nextGroupIdx)(nextCharIdx)
                     charGroups(nextGroupIdx)(nextCharIdx) = temp
                 End If
 
                 ' Decrement the number of unprocessed characters in
                 ' this group.
-                charsLeftInGroup(nextGroupIdx) = _
+                charsLeftInGroup(nextGroupIdx) =
                            charsLeftInGroup(nextGroupIdx) - 1
             End If
 
@@ -449,15 +449,15 @@ Public Class AuthenticationUtil
                 ' Swap processed group with the last unprocessed group
                 ' so that we don't pick it until we process all groups.
                 If (lastLeftGroupsOrderIdx <> nextLeftGroupsOrderIdx) Then
-                    Dim temp As Integer = _
+                    Dim temp As Integer =
                                 leftGroupsOrder(lastLeftGroupsOrderIdx)
-                    leftGroupsOrder(lastLeftGroupsOrderIdx) = _
+                    leftGroupsOrder(lastLeftGroupsOrderIdx) =
                                 leftGroupsOrder(nextLeftGroupsOrderIdx)
                     leftGroupsOrder(nextLeftGroupsOrderIdx) = temp
                 End If
 
                 ' Decrement the number of unprocessed groups.
-                lastLeftGroupsOrderIdx = lastLeftGroupsOrderIdx - 1
+                lastLeftGroupsOrderIdx -= 1
             End If
         Next
 
@@ -470,7 +470,7 @@ Public Class AuthenticationUtil
         ' to an integer value.
         Dim randomBytes As Byte() = New Byte(3) {}
         ' Generate 4 random bytes.
-        Dim rng As RNGCryptoServiceProvider = New RNGCryptoServiceProvider()
+        Dim rng As New RNGCryptoServiceProvider()
         rng.GetBytes(randomBytes)
         ' Convert 4 bytes into a 32-bit integer value.
         Dim seed As Integer = BitConverter.ToInt32(randomBytes, 0)

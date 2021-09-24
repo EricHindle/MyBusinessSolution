@@ -33,7 +33,7 @@ Partial Class FrmMain
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.spCustomer = New System.Windows.Forms.SplitContainer()
@@ -75,6 +75,7 @@ Partial Class FrmMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuLogView = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JobToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAddANewJob = New System.Windows.Forms.ToolStripMenuItem()
@@ -89,7 +90,6 @@ Partial Class FrmMain
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuLogView = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -603,10 +603,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.TidyFilesToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -626,8 +626,14 @@ Partial Class FrmMain
         'UserControlToolStripMenuItem
         '
         Me.UserControlToolStripMenuItem.Name = "UserControlToolStripMenuItem"
-        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.UserControlToolStripMenuItem.Text = "User Control"
+        '
+        'MnuLogView
+        '
+        Me.MnuLogView.Name = "MnuLogView"
+        Me.MnuLogView.Size = New System.Drawing.Size(140, 22)
+        Me.MnuLogView.Text = "Log Viewer"
         '
         'NewCustomerToolStripMenuItem
         '
@@ -691,7 +697,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem1.Text = " "
         '
         'TidyFilesToolStripMenuItem
@@ -740,7 +746,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem2.Text = " "
         '
         'CloseToolStripMenuItem
@@ -754,13 +760,7 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
-        'MnuLogView
-        '
-        Me.MnuLogView.Name = "MnuLogView"
-        Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
-        Me.MnuLogView.Text = "Log Viewer"
-        '
-        'frmMain
+        'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -771,7 +771,7 @@ Partial Class FrmMain
         Me.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "frmMain"
+        Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)

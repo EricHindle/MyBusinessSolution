@@ -79,7 +79,7 @@ Public Module netwyrksCommon
     ''' Set standard folder names from personal settings
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub setFolderNames()
+    Public Sub SetFolderNames()
         sApplicationPath = My.Application.Info.DirectoryPath
 
         If String.IsNullOrEmpty(My.Settings.CacheFolder) Then
@@ -145,7 +145,7 @@ Public Module netwyrksCommon
     ''' Create any missing standard folders
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub createMissingFolders()
+    Public Sub CreateMissingFolders()
         My.Computer.FileSystem.CreateDirectory(sLogFolder)
         My.Computer.FileSystem.CreateDirectory(sTempFolder)
         My.Computer.FileSystem.CreateDirectory(sReportFolder)
@@ -221,7 +221,7 @@ Public Module netwyrksCommon
         oRow.DefaultCellStyle.ForeColor = forecolor
         oRow.DefaultCellStyle.BackColor = backcolor
     End Sub
-    Public Function setDateRange(ByVal indx As Integer) As DateRange
+    Public Function SetDateRange(ByVal indx As Integer) As DateRange
         Dim oRange As DateRange
         Dim d As Int16 = Today.DayOfWeek
         Dim d1 As Int16 = Today.Day
@@ -279,7 +279,7 @@ Public Module netwyrksCommon
 
         Return oRange
     End Function
-    Public Sub setDateControlRange(ByVal oRange As DateRange, ByRef dtpSelectFromDate As DateTimePicker, ByRef dtpSelectToDate As DateTimePicker)
+    Public Sub SetDateControlRange(ByVal oRange As DateRange, ByRef dtpSelectFromDate As DateTimePicker, ByRef dtpSelectToDate As DateTimePicker)
         If oRange.fromDate >= dtpSelectFromDate.MinDate Then
             If oRange.fromDate <= dtpSelectFromDate.MaxDate Then
                 dtpSelectFromDate.Value = oRange.fromDate
@@ -299,7 +299,7 @@ Public Module netwyrksCommon
             dtpSelectToDate.Value = dtpSelectToDate.MinDate
         End If
     End Sub
-    Public Sub splashMessage(ByVal message As String, Optional ByVal lifeTime As Integer = 2000)
+    Public Sub SplashMessage(ByVal message As String, Optional ByVal lifeTime As Integer = 2000)
         Using _splash As New frmInfoSplash
             With _splash
                 .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2,
@@ -311,7 +311,7 @@ Public Module netwyrksCommon
         End Using
     End Sub
     Private splash As frmInfoSplash
-    Public Sub showSplash(ByVal sMessage As String, ByVal oParentSize As Size, ByVal oParentLocation As Point)
+    Public Sub ShowSplash(ByVal sMessage As String, ByVal oParentSize As Size, ByVal oParentLocation As Point)
         splash = New frmInfoSplash
         With splash
             .Message = sMessage
@@ -325,14 +325,14 @@ Public Module netwyrksCommon
             .Refresh()
         End With
     End Sub
-    Public Sub showSplash(ByVal sMessage As String)
-        showSplash(sMessage, New Size(0, 0), New Point(0, 0))
+    Public Sub ShowSplash(ByVal sMessage As String)
+        ShowSplash(sMessage, New Size(0, 0), New Point(0, 0))
     End Sub
-    Public Sub closeSplash()
+    Public Sub CloseSplash()
         splash.Close()
         splash.Dispose()
     End Sub
-    Public Sub showStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
+    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
         oStatusLabel.Text = sText
         If isLogged Then LogUtil.Debug(sText, oFormName)
     End Sub

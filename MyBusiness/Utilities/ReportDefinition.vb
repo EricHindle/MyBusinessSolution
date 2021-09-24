@@ -24,8 +24,8 @@ Public Class ReportDefinition : Implements IDisposable
     Private myTimeOut As Integer
     Private myShowCount As Boolean
 
-    Dim disposed As Boolean = False
-    Dim handle As SafeHandle = New SafeFileHandle(IntPtr.Zero, True)
+    Private disposed As Boolean = False
+    Private ReadOnly handle As SafeHandle = New SafeFileHandle(IntPtr.Zero, True)
 
     ''' <summary>
     ''' Initializes a new instance of the ReportDefinition class
@@ -125,12 +125,12 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <param name="index">Index of the required column</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getColumnName(ByVal index As Int16) As String
+    Public Function GetColumnName(ByVal index As Int16) As String
         Dim rtnval As String = ""
         If index < myColumns.Count Then
             Dim s As ReportColumn = myColumns(index)
             If s IsNot Nothing Then
-                rtnval = s.columnName
+                rtnval = s.ColumnName
             End If
         End If
         Return rtnval
@@ -142,12 +142,12 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <param name="index">Index of the required column</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getColumnHeading(ByVal index As Int16) As String
+    Public Function GetColumnHeading(ByVal index As Int16) As String
         Dim rtnval As String = ""
         If index < myColumns.Count Then
             Dim s As ReportColumn = myColumns(index)
             If s IsNot Nothing Then
-                rtnval = s.columnHeading
+                rtnval = s.ColumnHeading
             End If
         End If
         Return rtnval
@@ -160,12 +160,12 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <param name="index">Index of the required column</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getColumnFormat(ByVal index As Int16) As String
+    Public Function GetColumnFormat(ByVal index As Int16) As String
         Dim rtnval As String = Nothing
         If index < myColumns.Count Then
             Dim s As ReportColumn = myColumns(index)
             If s IsNot Nothing Then
-                rtnval = s.columnFormat
+                rtnval = s.ColumnFormat
             End If
         End If
         Return rtnval
@@ -178,12 +178,12 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <param name="index">Index of the required column</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function idColumnEncrypted(ByVal index As Int16) As Boolean
+    Public Function IdColumnEncrypted(ByVal index As Int16) As Boolean
         Dim rtnval As Boolean = False
         If index < myColumns.Count Then
             Dim s As ReportColumn = myColumns(index)
             If s IsNot Nothing Then
-                rtnval = s.columnEncrypted
+                rtnval = s.ColumnEncrypted
             End If
         End If
         Return rtnval
@@ -195,11 +195,11 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <param name="index">Index of the required column</param>
     ''' <returns>System.Type of the column contents</returns>
     ''' <remarks></remarks>
-    Public Function getColumnType(ByVal index As Int16) As System.Type
+    Public Function GetColumnType(ByVal index As Int16) As System.Type
         Dim rtnval As System.Type = GetType(String)
         If index < myColumns.Count Then
             Dim s As ReportColumn = myColumns(index)
-            rtnval = Type.GetType(s.columnType)
+            rtnval = Type.GetType(s.ColumnType)
         End If
         Return rtnval
     End Function
@@ -307,7 +307,7 @@ Public Class ReportDefinition : Implements IDisposable
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function StringParameter(ByVal index) As String
-        Dim stringVal As String = Nothing
+        Dim stringVal As String
         stringVal = TryCast(myParameterValues(index), String)
         Return stringVal
     End Function

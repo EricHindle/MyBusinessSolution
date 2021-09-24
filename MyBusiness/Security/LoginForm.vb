@@ -33,7 +33,6 @@ Public Class LoginForm
             LogUtil.Debug("Settings:")
             LogUtil.Debug(" Auto Tidy           : " & My.Settings.AutoTidy)
             LogUtil.Debug(" Retention period    : " & My.Settings.RetentionPeriod)
-            LogUtil.Debug(" Map provider        : " & My.Settings.MapProvider)
             LogUtil.Debug(" Spell Check enabled : " & My.Settings.splchkEnabled)
         Else
             Me.Close()

@@ -230,9 +230,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Domain\netwyrksDataSet.vb">
-      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Security\AuthenticationException.vb" />
     <Compile Include="Security\AuthenticationUtil.vb" />
     <Compile Include="Security\AuthorisationUtil.vb" />

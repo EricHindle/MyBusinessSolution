@@ -72,11 +72,11 @@ Public Class NetwyrksErrorCodes
         ARCHIVING_EXCEPTION = 30
         CREATION_FAILED = 31
     End Enum
-    Public Shared Function getErrorCode(ByVal errModule As SystemModule, ByVal errType As ErrorType, ByVal errCode As FailedAction) As String
+    Public Shared Function GetErrorCode(ByVal errModule As SystemModule, ByVal errType As ErrorType, ByVal errCode As FailedAction) As String
         Return CInt(errModule).ToString("D2") & CInt(errType).ToString("D2") & CInt(errCode).ToString("D3")
     End Function
-    Public Shared Function getErrorString(ByVal errorcode As String) As String
-        Dim rtnval As String = ""
+    Public Shared Function GetErrorString(ByVal errorcode As String) As String
+        Dim rtnval As String
         Try
             Dim iModule As Integer = CInt(errorcode.Substring(0, 2))
             Dim iType As Integer = CInt(errorcode.Substring(2, 2))

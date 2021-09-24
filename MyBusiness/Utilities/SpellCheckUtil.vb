@@ -17,16 +17,17 @@ Public Class SpellCheckUtil
     ''' <returns>Spell check settings</returns>
     ''' <remarks></remarks>
     Public Shared Function SetSpellCheckOptions() As i00SpellCheck.SpellCheckSettings
-        Dim SpellCheckSettings As New i00SpellCheck.SpellCheckSettings
-        SpellCheckSettings.AllowAdditions = My.Settings.splchkAdd                      'Specifies if you want to allow the user to add words to the dictionary
-        SpellCheckSettings.AllowIgnore = My.Settings.splchkIgnore                      'Specifies if you want to allow the user to ignore words
-        SpellCheckSettings.AllowRemovals = My.Settings.splchkRemove                    'Specifies if you want to allow users to delete words from the dictionary
-        SpellCheckSettings.AllowInMenuDefs = False                                     'Specifies if the in menu definitions should be shown for correctly spelled words
-        SpellCheckSettings.AllowChangeTo = False                                       'Specifies if "Change to..." (to change to a synonym) should be shown in the menu for correctly spelled words
-        SpellCheckSettings.IgnoreWordsInUpperCase = My.Settings.splchkUpper
-        SpellCheckSettings.IgnoreWordsWithNumbers = My.Settings.splchkNumber
-        SpellCheckSettings.AllowF7 = False
-        SpellCheckSettings.ShowMistakes = My.Settings.splchkShowMistakes
+        Dim SpellCheckSettings As New i00SpellCheck.SpellCheckSettings With {
+            .AllowAdditions = My.Settings.splchkAdd,                      'Specifies if you want to allow the user to add words to the dictionary
+            .AllowIgnore = My.Settings.splchkIgnore,                      'Specifies if you want to allow the user to ignore words
+            .AllowRemovals = My.Settings.splchkRemove,                    'Specifies if you want to allow users to delete words from the dictionary
+            .AllowInMenuDefs = False,                                     'Specifies if the in menu definitions should be shown for correctly spelled words
+            .AllowChangeTo = False,                                       'Specifies if "Change to..." (to change to a synonym) should be shown in the menu for correctly spelled words
+            .IgnoreWordsInUpperCase = My.Settings.splchkUpper,
+            .IgnoreWordsWithNumbers = My.Settings.splchkNumber,
+            .AllowF7 = False,
+            .ShowMistakes = My.Settings.splchkShowMistakes
+        }
         If My.Settings.splchkShowIgnore Then
             SpellCheckSettings.ShowIgnored = i00SpellCheck.SpellCheckSettings.ShowIgnoreState.AlwaysShow
         Else

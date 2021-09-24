@@ -140,54 +140,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("M")>  _
-        Public Property MapProvider() As String
-            Get
-                Return CType(Me("MapProvider"),String)
-            End Get
-            Set
-                Me("MapProvider") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property MapQuestDeclutter() As Boolean
-            Get
-                Return CType(Me("MapQuestDeclutter"),Boolean)
-            End Get
-            Set
-                Me("MapQuestDeclutter") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1.0")>  _
-        Public Property DefaultMapRange() As Decimal
-            Get
-                Return CType(Me("DefaultMapRange"),Decimal)
-            End Get
-            Set
-                Me("DefaultMapRange") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("13")>  _
-        Public Property InitialMapZoom() As Integer
-            Get
-                Return CType(Me("InitialMapZoom"),Integer)
-            End Get
-            Set
-                Me("InitialMapZoom") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property TempFolder() As String
             Get

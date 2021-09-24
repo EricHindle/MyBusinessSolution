@@ -11,9 +11,7 @@ Public Class FrmInstallationTest
     Private Const FORM_NAME As String = "installation Test"
 #End Region
 #Region "Private variable instances"
-    Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Customer
     Private myReportDef As ReportDefinition = Nothing
-    Private ReadOnly oExporter As ExportUtil = Nothing
 #End Region
 #Region "Form"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click

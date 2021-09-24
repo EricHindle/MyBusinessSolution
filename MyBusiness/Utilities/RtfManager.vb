@@ -219,7 +219,7 @@ Public Class RtfManager
     ''' <param name="keepWithNext">True if keep with next paragraph (defaults to false)</param>
     ''' <returns>Text with added rtf codes</returns>
     ''' <remarks></remarks>
-    Public Shared Function RtfParagraph(ByVal text As String, Optional ByVal rtfFont As String = "", Optional ByVal resetDefault As Boolean = True, Optional ByVal keepIntact As Boolean = True, Optional ByVal keepWithNext As Boolean = False, Optional ByVal pAlign As RtfAlign = RtfAlign.left) As String
+    Public Shared Function RtfParagraph(ByVal text As String, Optional ByVal rtfFont As String = "", Optional ByVal resetDefault As Boolean = True, Optional ByVal keepIntact As Boolean = True, Optional ByVal keepWithNext As Boolean = False) As String
         Dim rtnString As New StringBuilder
         rtnString.Append(RtfStartLine("", resetDefault, keepIntact, keepWithNext))
         rtnString.Append(RtfText(text, rtfFont))
@@ -278,7 +278,7 @@ Public Class RtfManager
     ''' <remarks></remarks>
     Public Shared Function GridToRtf(ByRef dg As DataGridView, Optional ByVal fontType As RtfManager.RtfFontType = RtfManager.RtfFontType.Calibri, Optional ByVal txtSize As Integer = 20, Optional ByVal isBold As Boolean = True, Optional ByVal autoSize As Boolean = True, Optional ByVal maxColWidth As Integer = -1, Optional ByVal singleLine As Boolean = True) As String
         Dim rtnText As New StringBuilder
-        Dim tabstops As String = SetGridTabs(dg, txtSize, autoSize)
+        Dim tabstops As String = SetGridTabs(dg, autoSize)
         ' Print headings
         rtnText.Append(RtfStartLine(tabstops))
         For Each oCol As DataGridViewColumn In dg.Columns
@@ -291,7 +291,6 @@ Public Class RtfManager
             If oRow.Visible = True Then
                 Dim aCells As New ArrayList
                 Dim aMaxLines As Integer = 0
-                Dim oExtraRow As DataGridViewRow = Nothing
                 For Each oCell As DataGridViewCell In oRow.Cells
                     If oCell.Visible Then
                         Dim cellColor As RtfColour = RtfColour.Black
@@ -333,7 +332,7 @@ Public Class RtfManager
                 ' Now print rows for wrapped text
                 If Not singleLine And maxColWidth > 0 And aMaxLines > 1 Then
                     For x = 1 To aMaxLines - 1
-                        Dim cellVal As String = ""
+                        Dim cellVal As String
                         For Each a As ArrayList In aCells
                             If a.Count > x Then
                                 cellVal = a(x)
@@ -354,12 +353,11 @@ Public Class RtfManager
     ''' Generate rtf tab stop codes for a data grid table 
     ''' </summary>
     ''' <param name="dg">Data grid </param>
-    ''' <param name="size">not used</param>
     ''' <param name="autoSize">True if tab stop determined by table contents </param>
     ''' <param name="dpi">Pixel density - dots per inch (defaults to 96)</param>
     ''' <returns>String of rtf tab stop codes</returns>
     ''' <remarks></remarks>
-    Private Shared Function SetGridTabs(ByRef dg As DataGridView, ByVal size As Integer, Optional ByRef autoSize As Boolean = True, Optional ByVal dpi As Integer = 96) As String
+    Private Shared Function SetGridTabs(ByRef dg As DataGridView, Optional ByRef autoSize As Boolean = True, Optional ByVal dpi As Integer = 96) As String
         Dim rtnText As New StringBuilder
         Dim lasttab As Integer = 0
         For Each oCol As DataGridViewColumn In dg.Columns

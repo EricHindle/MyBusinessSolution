@@ -9,7 +9,7 @@ Imports MyBusiness.NetwyrksErrorCodes
 ''' Form to display and maintain the user diary
 ''' </summary>
 ''' <remarks></remarks>
-Public Class frmDiary
+Public Class FrmDiary
 #Region "Constants"
     Private Const FORM_NAME As String = "diary"
 #End Region
@@ -85,9 +85,9 @@ Public Class frmDiary
         lblFormName.Text = FORM_NAME
         userName = AuthenticationUtil.getUserName(userId)
         lblName.Text = userName
-        clearForm()
+        ClearForm()
         isLoading = False
-        fillDiaryTable()
+        FillDiaryTable()
         SpellCheckUtil.EnableSpellChecking(New RichTextBox() {rtbBody})
     End Sub
     ''' <summary>
@@ -142,7 +142,7 @@ Public Class frmDiary
         End If
         Dim iTopRow As Integer = dgvDiary.FirstDisplayedScrollingRowIndex
         Dim iTopRowDiff As Integer = Math.Max(iSelectedRow - iTopRow, 0)
-        fillDiaryTable()
+        FillDiaryTable()
         iSelectedRow = Math.Min(iSelectedRow, dgvDiary.Rows.Count - 1)
         For Each oRow As DataGridViewRow In dgvDiary.Rows
             If oRow.Cells(Me.dremHeader.Name).Value = False AndAlso oRow.Cells(Me.dremId.Name).Value = iSelectedId Then
@@ -153,7 +153,7 @@ Public Class frmDiary
         If dgvDiary.Rows.Count > 0 Then
             dgvDiary.Rows(iSelectedRow).Selected = True
             dgvDiary.FirstDisplayedScrollingRowIndex = iTopRow
-            fillForm(dgvDiary.Rows(iSelectedRow).Cells(dremId.Name).Value)
+            FillForm(dgvDiary.Rows(iSelectedRow).Cells(dremId.Name).Value)
         Else
             dgvDiary.ClearSelection()
         End If
@@ -165,7 +165,7 @@ Public Class frmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub DtpSelectDate_ValueChanged(sender As Object, e As EventArgs)
-        fillDiaryTable()
+        FillDiaryTable()
     End Sub
     ''' <summary>
     ''' 
@@ -191,7 +191,7 @@ Public Class frmDiary
         lblComplete.Visible = False
         txtSubject.Text = ""
         rtbBody.Text = ""
-        clearLinks()
+        ClearLinks()
     End Sub
     ''' <summary>
     ''' 
@@ -212,7 +212,7 @@ Public Class frmDiary
         Dim _table As New netwyrksDataSet.diaryDataTable
         Dim i As Integer = oTa.FillById(_table, _id)
         currentRemId = _id
-        clearLinks()
+        ClearLinks()
         If i = 1 Then
             Dim oRow As netwyrksDataSet.diaryRow = _table.Rows(0)
             txtSubject.Text = oRow.diary_subject
@@ -251,7 +251,7 @@ Public Class frmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             If dgvDiary.SelectedRows(0).Cells(Me.dremHeader.Name).Value = False Then
                 Dim orow As DataGridViewRow = dgvDiary.SelectedRows(0)
-                fillForm(orow.Cells(dremId.Name).Value)
+                FillForm(orow.Cells(dremId.Name).Value)
             End If
         End If
     End Sub
@@ -281,8 +281,8 @@ Public Class frmDiary
             Dim jobRow As netwyrksDataSet.jobRow = oJobtable.Rows(0)
             Dim ojob As JobBuilder = JobBuilder.AJobBuilder.StartingWith(jobRow)
 
-            Using _job As New frmJob
-                _job.theJob = ojob
+            Using _job As New FrmJob
+                _job.TheJob = ojob
                 _job.ShowDialog()
 
             End Using
@@ -296,8 +296,8 @@ Public Class frmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        Using _reminder As New frmReminder
-            _reminder.theReminder = Nothing
+        Using _reminder As New FrmReminder
+            _reminder.TheReminder = Nothing
             _reminder.ShowDialog()
         End Using
         RebuildDiaryList()
@@ -334,8 +334,8 @@ Public Class frmDiary
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-            Using _reminder As New frmReminder
-                _reminder.theReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
+            Using _reminder As New FrmReminder
+                _reminder.TheReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
                 _reminder.ShowDialog()
             End Using
         Else
@@ -354,7 +354,7 @@ Public Class frmDiary
     ''' <remarks></remarks>
     Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
         lblStatus.Text = sText
-        If islogged Then LogUtil.addLog(sText, level, FORM_NAME)
+        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME)
     End Sub
     ''' <summary>
     ''' Fill the diary grid with diary entries
@@ -387,14 +387,14 @@ Public Class frmDiary
                                 Dim firstRowdate As Date = oFirstRow.diary_date.Date
                                 r = dgvDiary.Rows.Add()
                                 rRow = dgvDiary.Rows(r)
-                                dateSection = getNextSection(firstRowdate, rRow)
+                                dateSection = GetNextSection(firstRowdate, rRow)
                                 isFirstRow = False
                             End If
                             Dim remId As Integer = oRow.diary_id
                             r = dgvDiary.Rows.Add()
                             rRow = dgvDiary.Rows(r)
                             If oRow.diary_date.Date >= dateSectionEnds(dateSection).Date Then
-                                dateSection = getNextSection(oRow.diary_date.Date, rRow)
+                                dateSection = GetNextSection(oRow.diary_date.Date, rRow)
                                 dgvDiary.Rows.Add()
                                 rRow = dgvDiary.Rows(r + 1)
                             End If
@@ -424,7 +424,7 @@ Public Class frmDiary
                 Next
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error loading reminders", ex, "loadReminders", getErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS))
+            LogUtil.Exception("Error loading reminders", ex, "loadReminders", GetErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS))
         End Try
         dgvDiary.ClearSelection()
     End Sub
@@ -458,7 +458,7 @@ Public Class frmDiary
     Private Sub ShowAllUsers()
         isShowAll = Not isShowAll
         isLoading = True
-        clearForm()
+        ClearForm()
         If isShowAll Then
             lblF4.Text = "F4=Show " & userName
             lblName.Text = "All Users"
@@ -478,7 +478,7 @@ Public Class frmDiary
     ''' <remarks></remarks>
     Private Sub RefreshList()
         isLoading = True
-        clearForm()
+        ClearForm()
         isLoading = False
         RebuildDiaryList()
     End Sub

@@ -13,9 +13,7 @@ Imports System.Globalization
 Public Class TextUtil
 
     Private Const MATCHKEY_CHARS As String = "bcdfghjklmnpqrstvwxz"
-    Private Shared tInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
-
-    Public Shared Function getMatchkey(ByVal sText As String) As String
+    Public Shared Function GetMatchkey(ByVal sText As String) As String
         Dim matchkey As String = ""
         For Each sChar In sText.ToLower
             If MATCHKEY_CHARS.IndexOf(sChar) >= 0 Then

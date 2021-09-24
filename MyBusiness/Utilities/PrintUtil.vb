@@ -129,7 +129,7 @@ Public Class PrintUtil : Implements IDisposable
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getImagePrintDocument() As PrintDocument
+    Public Function GetImagePrintDocument() As PrintDocument
         Return imagePrintDocument
     End Function
 
@@ -145,7 +145,7 @@ Public Class PrintUtil : Implements IDisposable
     ''' 3 = print into half the available space
     ''' 4 = print actual size
     ''' </remarks>
-    Public Sub printSelectedImage(pImageFile As String, printOption As Integer)
+    Public Sub PrintSelectedImage(pImageFile As String, printOption As Integer)
         sImageFile = pImageFile
         oImage = Nothing
         iPrintOption = printOption
@@ -165,7 +165,7 @@ Public Class PrintUtil : Implements IDisposable
     ''' 4 = print actual size
     ''' </remarks>
     ''' 
-    Public Sub printSelectedImage(pImage As Image, printOption As Integer)
+    Public Sub PrintSelectedImage(pImage As Image, printOption As Integer)
         sImageFile = Nothing
         oImage = pImage
         iPrintOption = printOption
@@ -234,7 +234,7 @@ Public Class PrintUtil : Implements IDisposable
     ''' </summary>
     ''' <param name="isRtf"></param>
     ''' <remarks></remarks>
-    Private Sub setRtf(ByVal isRtf As Boolean)
+    Private Sub SetRtf(ByVal isRtf As Boolean)
         If isRtf Then
             RemoveHandler myPrintDoc.PrintPage, AddressOf txt_PrintPage
             AddHandler PrintDoc.BeginPrint, AddressOf rtf_BeginPrint
@@ -248,7 +248,7 @@ Public Class PrintUtil : Implements IDisposable
         End If
     End Sub
 
-    Private Function formatGridForPrinting(ByRef dgv As DataGridView) As DataGridView
+    Private Function FormatGridForPrinting(ByRef dgv As DataGridView) As DataGridView
         Dim formattedDgv As New DataGridView
         For Each oCol As DataGridViewColumn In dgv.Columns
             formattedDgv.Columns.Add(oCol.Clone)
@@ -280,7 +280,7 @@ Public Class PrintUtil : Implements IDisposable
         Return formattedDgv
     End Function
 
-    Private Sub txt_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs)
+    Private Sub Txt_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs)
         '
         ' Print the image if the file exists
         '
@@ -290,12 +290,12 @@ Public Class PrintUtil : Implements IDisposable
 
         ' Sets the value of charactersOnPage to the number of characters 
         ' of stringToPrint that will fit within the bounds of the page.
-        e.Graphics.MeasureString(myStringToPrint, printFont, e.MarginBounds.Size, _
+        e.Graphics.MeasureString(myStringToPrint, printFont, e.MarginBounds.Size,
             myStringFormat, charactersOnPage, linesPerPage)
 
         Dim myStringOnThisPage As String = myStringToPrint.Substring(0, charactersOnPage)
         ' Draws the string within the bounds of the page
-        e.Graphics.DrawString(myStringOnThisPage, printFont, Brushes.Black, _
+        e.Graphics.DrawString(myStringOnThisPage, printFont, Brushes.Black,
             e.MarginBounds, myStringFormat)
 
         ' Remove the portion of the string that has been printed.
@@ -306,20 +306,20 @@ Public Class PrintUtil : Implements IDisposable
 
     End Sub
 
-    Private Sub rtf_BeginPrint(ByVal sender As Object, _
+    Private Sub Rtf_BeginPrint(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintEventArgs)
         ' Start at the beginning of the text
         m_nFirstCharOnPage = 0
     End Sub
 
-    Private Sub rtf_PrintPage(ByVal sender As Object, _
+    Private Sub Rtf_PrintPage(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintPageEventArgs)
         ' make the RichTextBoxEx calculate and render as much text as will
         ' fit on the page and remember the last character printed for the
         ' beginning of the next page
-        m_nFirstCharOnPage = myRichTextBoxEx.FormatRange(False, _
-                                                e, _
-                                                m_nFirstCharOnPage, _
+        m_nFirstCharOnPage = myRichTextBoxEx.FormatRange(False,
+                                                e,
+                                                m_nFirstCharOnPage,
                                                 myRichTextBoxEx.TextLength)
 
         ' check if there are more pages to print
@@ -330,7 +330,7 @@ Public Class PrintUtil : Implements IDisposable
         End If
     End Sub
 
-    Private Sub rtf_EndPrint(ByVal sender As Object, _
+    Private Sub Rtf_EndPrint(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintEventArgs)
         ' Clean up cached information
         myRichTextBoxEx.FormatRangeDone()
@@ -346,7 +346,7 @@ Public Class PrintUtil : Implements IDisposable
     ''' <param name="MaxLineLen">maximum line length</param>
     ''' <returns>array list of strings</returns>
     ''' <remarks></remarks>
-    Public Shared Function wrapString(ByVal StringToFormat As String, ByVal MaxLineLen As Integer) As ArrayList
+    Public Shared Function WrapString(ByVal StringToFormat As String, ByVal MaxLineLen As Integer) As ArrayList
         Dim TempString As String
         Dim Pos As Long
         Dim stringArray As New ArrayList
@@ -386,8 +386,8 @@ Public Class PrintUtil : Implements IDisposable
     ''' <param name="oReportDef">Report definition to be used to determine the print format</param>
     ''' <param name="asRtf">True if report should be put into an extended rich text box before printing to take advantage of tabs</param>
     ''' <remarks></remarks>
-    Public Sub printGrid(ByRef dg As DataGridView, ByRef oReportDef As ReportDefinition, Optional ByVal asRtf As Boolean = True, Optional ByVal printInvisibleRows As Boolean = True)
-        setRtf(asRtf)
+    Public Sub PrintGrid(ByRef dg As DataGridView, ByRef oReportDef As ReportDefinition, Optional ByVal asRtf As Boolean = True, Optional ByVal printInvisibleRows As Boolean = True)
+        SetRtf(asRtf)
         myFont = oReportDef.Font
         If oReportDef.TabStops Is Nothing Then
             oReportDef.TabStops = SetTabStopsFromColumns(dg)
@@ -489,8 +489,8 @@ Public Class PrintUtil : Implements IDisposable
     ''' <param name="sText">text to be printed</param>
     ''' <param name="oReportDef">Report definition to determine the format</param>
     ''' <remarks></remarks>
-    Public Sub printText(ByRef sText As String, ByRef oReportDef As ReportDefinition)
-        setRtf(False)
+    Public Sub PrintText(ByRef sText As String, ByRef oReportDef As ReportDefinition)
+        SetRtf(False)
         myFont = oReportDef.Font
         myStringFormat.SetTabStops(0.0F, oReportDef.TabStops)
         myPrintDoc.DocumentName() = oReportDef.ReportHead
@@ -504,8 +504,8 @@ Public Class PrintUtil : Implements IDisposable
     ''' </summary>
     ''' <param name="sFilename">Filename of file to be printed</param>
     ''' <remarks></remarks>
-    Public Sub printRtfFile(ByVal sFilename As String)
-        setRtf(True)
+    Public Sub PrintRtfFile(ByVal sFilename As String)
+        SetRtf(True)
         If File.Exists(sFilename) Then
             myRichTextBoxEx = New RichTextBoxEx
             myRichTextBoxEx.LoadFile(sFilename)
@@ -518,8 +518,8 @@ Public Class PrintUtil : Implements IDisposable
     ''' </summary>
     ''' <param name="rtb">Rich text box to be printed</param>
     ''' <remarks></remarks>
-    Public Sub printRichTextBox(ByVal rtb As RichTextBoxEx)
-        setRtf(True)
+    Public Sub PrintRichTextBox(ByVal rtb As RichTextBoxEx)
+        SetRtf(True)
         myRichTextBoxEx = rtb
         If myRichTextBoxEx IsNot Nothing Then
             myPrintDoc.Print()
@@ -537,22 +537,22 @@ Public Class PrintUtil : Implements IDisposable
     Protected Overridable Sub Dispose(disposing As Boolean)
         If Not disposed Then
             If disposing Then
-                If (Not (myFont) Is Nothing) Then
+                If myFont IsNot Nothing Then
                     myFont.Dispose()
                 End If
-                If (Not (myRichTextBoxEx) Is Nothing) Then
+                If myRichTextBoxEx IsNot Nothing Then
                     myRichTextBoxEx.Dispose()
                 End If
-                If (Not (myStringFormat) Is Nothing) Then
+                If myStringFormat IsNot Nothing Then
                     myStringFormat.Dispose()
                 End If
-                If (Not (myPrintDoc) Is Nothing) Then
+                If myPrintDoc IsNot Nothing Then
                     myPrintDoc.Dispose()
                 End If
-                If (Not (myPageSetUp) Is Nothing) Then
+                If myPageSetUp IsNot Nothing Then
                     myPageSetUp.Dispose()
                 End If
-                If (Not (imagePrintDocument) Is Nothing) Then
+                If imagePrintDocument IsNot Nothing Then
                     imagePrintDocument.Dispose()
                 End If
             End If

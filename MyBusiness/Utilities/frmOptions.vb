@@ -14,8 +14,8 @@ Imports i00SpellCheck
 ''' </summary>
 ''' <remarks></remarks>
 Public Class frmOptions
-    Private encryptedPwd As String = ""
-    Private fieldmarkers(,) As String
+    Private ReadOnly encryptedPwd As String = ""
+    Private ReadOnly fieldmarkers(,) As String
     Private isLoading As Boolean = True
     Private Const FORM_NAME As String = "preferences"
 
@@ -26,17 +26,16 @@ Public Class frmOptions
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
-
     ''' <summary>
     ''' Load current settings into the forms
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub ceOptions_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub CeOptions_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         isLoading = True
         lblFormName.Text = FORM_NAME
         LoadGeneralOptions()
@@ -47,14 +46,13 @@ Public Class frmOptions
         setTooltips()
         isLoading = False
     End Sub
-
     ''' <summary>
     ''' Validate and save settings
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         Dim bValid As Boolean = True
         bValid = ValidateFolders(bValid)
         bValid = ValidateGeneralOptions(bValid)
@@ -65,21 +63,18 @@ Public Class frmOptions
             SaveSpellcheckOptions()
             My.Settings.Save()
             Me.Close()
-
         Else
             MsgBox("Some values are invalid", MsgBoxStyle.Exclamation, "Option errors")
         End If
     End Sub
-
     ''' <summary>
     ''' Add tooltips to folder path fields
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub setTooltips()
+    Private Sub SetTooltips()
         ToolTip1.SetToolTip(txtTempFolder, txtTempFolder.Text.Replace("<application path>", sApplicationPath))
         ToolTip1.SetToolTip(txtLogPath, txtLogPath.Text.Replace("<application path>", sApplicationPath))
     End Sub
-
     ''' <summary>
     ''' Display standard colour dialog to select colours for various colour settings
     ''' </summary>
@@ -87,7 +82,7 @@ Public Class frmOptions
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Color_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-                Handles lblCaseErrorColor.Click, lblMistakeColor.Click, _
+                Handles lblCaseErrorColor.Click, lblMistakeColor.Click,
         lblIgnoreColor.Click
         Dim lbl As Label = CType(sender, Label)
         Using _colorDialog As New ColorDialog
@@ -99,14 +94,13 @@ Public Class frmOptions
             End If
         End Using
     End Sub
-
     ''' <summary>
     ''' Insert text when popup menu is clicked
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub mInsert_Click(ByVal sender As System.Object, ByVal e As ToolStripItemClickedEventArgs) Handles mFieldSelect.ItemClicked
+    Private Sub MInsert_Click(ByVal sender As System.Object, ByVal e As ToolStripItemClickedEventArgs) Handles mFieldSelect.ItemClicked
         If e.ClickedItem.Name.Length > 0 Then
             Try
                 Dim oSender As ContextMenuStrip = CType(sender, ContextMenuStrip)
@@ -121,8 +115,12 @@ Public Class frmOptions
             End Try
         End If
     End Sub
+    Private Sub BtnTest_Click(sender As Object, e As EventArgs) Handles BtnTest.Click
+        Using _test As New FrmInstallationTest
+            _test.ShowDialog()
+        End Using
+    End Sub
 #End Region
-
 #Region "General"
 
     ''' <summary>
@@ -137,11 +135,6 @@ Public Class frmOptions
         cbDebug.Checked = My.Settings.DebugOn
         nudRetention.Value = My.Settings.RetentionPeriod
         chkAutoTidy.Checked = My.Settings.AutoTidy
-        rbGoogle.Checked = My.Settings.MapProvider = "G"
-        rbMapQuest.Checked = My.Settings.MapProvider = "M"
-        chkMqDeclutter.Checked = My.Settings.MapQuestDeclutter
-        nudRange.Value = My.Settings.DefaultMapRange
-        nudZoom.Value = My.Settings.InitialMapZoom
     End Sub
 
     ''' <summary>
@@ -156,10 +149,6 @@ Public Class frmOptions
         My.Settings.RetentionPeriod = nudRetention.Value
         My.Settings.AutoTidy = chkAutoTidy.Checked
         My.Settings.DebugOn = cbDebug.Checked
-        My.Settings.MapProvider = If(rbGoogle.Checked, "G", "M")
-        My.Settings.MapQuestDeclutter = chkMqDeclutter.Checked
-        My.Settings.DefaultMapRange = nudRange.Value
-        My.Settings.InitialMapZoom = nudZoom.Value
     End Sub
 
     ''' <summary>
@@ -178,7 +167,7 @@ Public Class frmOptions
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnNotesFont_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub BtnNotesFont_Click(ByVal sender As Object, ByVal e As EventArgs)
         Using _fontDialog As New FontDialog
             With _fontDialog
                 .ShowApply = False
@@ -197,7 +186,27 @@ Public Class frmOptions
         txtInvCompNameSample.Font = My.Settings.InvCmpyNameFont
         txtInvCompAddrSample.Font = My.Settings.InvCmpyAddrFont
     End Sub
-
+    Private Sub BtnFont1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFont1.Click, btnFont2.Click, btnFont3.Click, btnFont4.Click, btnFont5.Click, btnFont6.Click
+        Dim _btn As Button = CType(sender, Button)
+        Dim _sample As New TextBox
+        Select Case _btn.Name
+            Case "btnFont1"
+                _sample = txtInvCompNameSample
+            Case "btnFont2"
+                _sample = txtInvCompAddrSample
+            Case "btnFont3"
+                _sample = txtInvHdrSample
+            Case "btnFont4"
+                _sample = txtInvBodyLargeSample
+            Case "btnFont5"
+                _sample = txtInvBodySample
+            Case "btnFont6"
+                _sample = txtInvFtrSample
+        End Select
+        FontDialog1.Font = _sample.Font
+        FontDialog1.ShowDialog()
+        _sample.Font = FontDialog1.Font
+    End Sub
     Private Sub SaveInvoiceOptions()
         My.Settings.InvHdrFont = txtInvHdrSample.Font
         My.Settings.InvBodyLargeFont = txtInvBodySample.Font
@@ -242,7 +251,6 @@ Public Class frmOptions
         lblTempFolder.ForeColor = Color.Black
         lblLogFolder.ForeColor = Color.Black
         lblReports.ForeColor = Color.Black
-
         If Not isValidPathName(txtReportFolder.Text) Then
             lblReports.ForeColor = Color.Red
             bValid = False
@@ -255,7 +263,6 @@ Public Class frmOptions
             lblLogFolder.ForeColor = Color.Red
             bValid = False
         End If
-
         Return bValid
     End Function
 
@@ -265,7 +272,7 @@ Public Class frmOptions
     ''' <param name="sPath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function isValidPathName(ByVal sPath As String) As Boolean
+    Private Function IsValidPathName(ByVal sPath As String) As Boolean
         Dim rtnval As Boolean = True
         Dim fullPath As String = sPath.Replace("<application path>", sApplicationPath)
         If String.IsNullOrEmpty(sPath) Then
@@ -305,7 +312,6 @@ Public Class frmOptions
         txtStatus.Text = "Missing folders created"
     End Sub
 #End Region
-
 #Region "SpellCheck"
 
     ''' <summary>
@@ -325,7 +331,6 @@ Public Class frmOptions
         lblMistakeColor.BackColor = My.Settings.splchkMistakeColor
         lblIgnoreColor.BackColor = My.Settings.splchkIgnoreColor
         lblCaseErrorColor.BackColor = My.Settings.splchkCaseErrorColor
-
     End Sub
 
     ''' <summary>
@@ -353,15 +358,13 @@ Public Class frmOptions
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cbSplchkEnabled_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbSplchkEnabled.CheckedChanged
+    Private Sub CbSplchkEnabled_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbSplchkEnabled.CheckedChanged
         My.Settings.splchkEnabled = cbSplchkEnabled.Checked
         SpellCheckUtil.EnableSpellChecking(New System.Windows.Forms.Control() {txtSpellTest})
     End Sub
 #End Region
-
 #Region "Email"
-
-    Private Function selectFont(ByVal currentFont As Font) As Font
+    Private Function SelectFont(ByVal currentFont As Font) As Font
         Dim newFont As Font = currentFont
         Using _fontDialog As New FontDialog
             With _fontDialog
@@ -376,35 +379,5 @@ Public Class frmOptions
         End Using
         Return newFont
     End Function
-
 #End Region
-
-    Private Sub btnFont1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFont1.Click, btnFont2.Click, btnFont3.Click, btnFont4.Click, btnFont5.Click, btnFont6.Click
-        Dim _btn As Button = CType(sender, Button)
-        Dim _sample As New TextBox
-        Select Case _btn.Name
-            Case "btnFont1"
-                _sample = txtInvCompNameSample
-            Case "btnFont2"
-                _sample = txtInvCompAddrSample
-            Case "btnFont3"
-                _sample = txtInvHdrSample
-            Case "btnFont4"
-                _sample = txtInvBodyLargeSample
-            Case "btnFont5"
-                _sample = txtInvBodySample
-            Case "btnFont6"
-                _sample = txtInvFtrSample
-        End Select
-        FontDialog1.Font = _sample.Font
-        FontDialog1.ShowDialog()
-        _sample.Font = FontDialog1.Font
-
-    End Sub
-
-    Private Sub BtnTest_Click(sender As Object, e As EventArgs) Handles BtnTest.Click
-        Using _test As New FrmInstallationTest
-            _test.ShowDialog()
-        End Using
-    End Sub
 End Class
