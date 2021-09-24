@@ -378,96 +378,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property SMTPUsername() As String
-            Get
-                Return CType(Me("SMTPUsername"),String)
-            End Get
-            Set
-                Me("SMTPUsername") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property SMTPPassword() As String
-            Get
-                Return CType(Me("SMTPPassword"),String)
-            End Get
-            Set
-                Me("SMTPPassword") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property SMTPHost() As String
-            Get
-                Return CType(Me("SMTPHost"),String)
-            End Get
-            Set
-                Me("SMTPHost") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property SMTPRequiresCredentials() As Boolean
-            Get
-                Return CType(Me("SMTPRequiresCredentials"),Boolean)
-            End Get
-            Set
-                Me("SMTPRequiresCredentials") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property SMTPPort() As Integer
-            Get
-                Return CType(Me("SMTPPort"),Integer)
-            End Get
-            Set
-                Me("SMTPPort") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property SMTPEnableSSL() As Boolean
-            Get
-                Return CType(Me("SMTPEnableSSL"),Boolean)
-            End Get
-            Set
-                Me("SMTPEnableSSL") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property DataFolder() As String
             Get
                 Return CType(Me("DataFolder"),String)
             End Get
             Set
                 Me("DataFolder") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property emailFormat() As String
-            Get
-                Return CType(Me("emailFormat"),String)
-            End Get
-            Set
-                Me("emailFormat") = value
             End Set
         End Property
         

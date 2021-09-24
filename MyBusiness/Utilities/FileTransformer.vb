@@ -7,10 +7,12 @@
 Imports System.IO
 Imports MyBusiness.NetwyrksErrorCodes
 Public Class FileTransformer
+#Region "variables"
     Private Shared fsInput As System.IO.Stream
     Private Shared lngFileLength As Long = 0
-
-    Public Shared Function transformFileToBytes(ByVal fromFile As String) As Byte()
+#End Region
+#Region "functions"
+    Public Shared Function TransformFileToBytes(ByVal fromFile As String) As Byte()
         Dim toBytes As Byte() = Nothing
         If Not File.Exists(fromFile) Then Return Nothing
         Try
@@ -26,14 +28,14 @@ Public Class FileTransformer
         Catch ex As Exception
             LogUtil.Exception("Error transforming file", ex, "transformFileToBytes", getErrorCode(SystemModule.IMAGES, ErrorType.CONVERSION, FailedAction.ENCRYPTION_ERROR))
         Finally
-            closeStreams()
+            CloseStreams()
         End Try
         Return toBytes
     End Function
-
-    Private Shared Sub closeStreams()
+    Private Shared Sub CloseStreams()
         If fsInput IsNot Nothing Then
             fsInput.Close()
         End If
     End Sub
+#End Region
 End Class

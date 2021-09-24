@@ -90,7 +90,7 @@ Public Class FrmMain
             Dim dRow As DataGridViewRow = dgvSupp.SelectedRows(0)
             Dim _suppId As Integer = dRow.Cells(Me.suppId.Name).Value
             Using _suppForm As New frmSupplier
-                _suppForm.supplierId = _suppId
+                _suppForm.SupplierId = _suppId
                 _suppForm.ShowDialog()
             End Using
             isLoading = True
@@ -171,7 +171,7 @@ Public Class FrmMain
         End Using
     End Sub
     Private Sub UserControlToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UserControlToolStripMenuItem.Click
-        Using _userControl As New frmUserControl
+        Using _userControl As New FrmUserControl
             _userControl.ShowDialog()
         End Using
     End Sub

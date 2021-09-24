@@ -10,32 +10,29 @@ Imports System.Security.Principal
 ''' Identity used to validate username and password and give the user a role
 ''' </summary>
 ''' <remarks></remarks>
-Public Class netwyrksIIdentity
+Public Class NetwyrksIIdentity
     Implements IIdentity
 
-    Private _nameValue As String
-    Private authenticatedValue As Boolean
+    Private ReadOnly _nameValue As String
+    Private ReadOnly authenticatedValue As Boolean
     Private roleValue As ApplicationServices.BuiltInRole
     Private _userId As Integer
     Private _usercode As String
-    Private userName As String
 
     ''' <summary>
     ''' Creating an identity, checking username and password
     ''' </summary>
     ''' <param name="name"></param>
     ''' <param name="password"></param>
-    ''' <param name="appcode"></param>
     ''' <remarks></remarks>
     Public Sub New(ByVal name As String,
-                   ByVal password As String,
-                   ByVal appcode As String)
+                   ByVal password As String)
 
         ' Name and password must both be present
         ' The name is not case sensitive, but the password is.
 
         _nameValue = name
-        If name IsNot Nothing AndAlso password IsNot Nothing AndAlso IsValidNameAndPassword(name, password, appcode) Then
+        If name IsNot Nothing AndAlso password IsNot Nothing AndAlso IsValidNameAndPassword(name, password) Then
             authenticatedValue = True
         Else
             _nameValue = ""
@@ -46,8 +43,7 @@ Public Class netwyrksIIdentity
     End Sub
 
     Private Function IsValidNameAndPassword(ByVal username As String,
-                ByVal password As String,
-                ByVal appcode As String) _
+                ByVal password As String) _
                 As Boolean
         Dim rtnVal As Boolean = False
         ' Find user record
@@ -57,7 +53,6 @@ Public Class netwyrksIIdentity
         Dim storedHashedPW As String = ""
         Dim storedHashedTempPW As String = ""
         Dim salt As String = ""
-        Dim role As String = "Administrator"
 
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -131,13 +126,13 @@ Public Class netwyrksIIdentity
         End Get
     End Property
 
-    Public ReadOnly Property userId() As Integer
+    Public ReadOnly Property UserId() As Integer
         Get
             Return _userId
         End Get
     End Property
 
-    Public ReadOnly Property usercode() As String
+    Public ReadOnly Property Usercode() As String
         Get
             Return _usercode
         End Get

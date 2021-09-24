@@ -66,23 +66,6 @@ Partial Class frmOptions
         Me.txtInvFtrSample = New System.Windows.Forms.TextBox()
         Me.txtInvBodySample = New System.Windows.Forms.TextBox()
         Me.txtInvHdrSample = New System.Windows.Forms.TextBox()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.GroupBox14 = New System.Windows.Forms.GroupBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.txtSMTPPassword = New System.Windows.Forms.TextBox()
-        Me.txtSMTPUsername = New System.Windows.Forms.TextBox()
-        Me.chkSmtpSsl = New System.Windows.Forms.CheckBox()
-        Me.chkSmtpCredentials = New System.Windows.Forms.CheckBox()
-        Me.txtSmtpPort = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtSmtpHost = New System.Windows.Forms.TextBox()
-        Me.chkUseSMTP = New System.Windows.Forms.CheckBox()
-        Me.GroupBox13 = New System.Windows.Forms.GroupBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.rbText = New System.Windows.Forms.RadioButton()
-        Me.rbHTML = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -124,6 +107,7 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.BtnTest = New System.Windows.Forms.Button()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -135,9 +119,6 @@ Partial Class frmOptions
         CType(Me.nudRetention, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.GroupBox14.SuspendLayout()
-        Me.GroupBox13.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -181,7 +162,6 @@ Partial Class frmOptions
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(6, 60)
@@ -688,207 +668,6 @@ Partial Class frmOptions
         Me.txtInvHdrSample.TabIndex = 59
         Me.txtInvHdrSample.Text = "Sample text"
         '
-        'TabPage4
-        '
-        Me.TabPage4.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage4.Controls.Add(Me.GroupBox14)
-        Me.TabPage4.Controls.Add(Me.GroupBox13)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 23)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(480, 438)
-        Me.TabPage4.TabIndex = 5
-        Me.TabPage4.Text = "Email"
-        '
-        'GroupBox14
-        '
-        Me.GroupBox14.Controls.Add(Me.Label14)
-        Me.GroupBox14.Controls.Add(Me.Label11)
-        Me.GroupBox14.Controls.Add(Me.txtSMTPPassword)
-        Me.GroupBox14.Controls.Add(Me.txtSMTPUsername)
-        Me.GroupBox14.Controls.Add(Me.chkSmtpSsl)
-        Me.GroupBox14.Controls.Add(Me.chkSmtpCredentials)
-        Me.GroupBox14.Controls.Add(Me.txtSmtpPort)
-        Me.GroupBox14.Controls.Add(Me.Label13)
-        Me.GroupBox14.Controls.Add(Me.Label10)
-        Me.GroupBox14.Controls.Add(Me.txtSmtpHost)
-        Me.GroupBox14.Controls.Add(Me.chkUseSMTP)
-        Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox14.Location = New System.Drawing.Point(6, 114)
-        Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(469, 181)
-        Me.GroupBox14.TabIndex = 3
-        Me.GroupBox14.TabStop = False
-        Me.GroupBox14.Text = "SMTP Email"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(79, 152)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(58, 14)
-        Me.Label14.TabIndex = 10
-        Me.Label14.Text = "Password"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(76, 124)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(61, 14)
-        Me.Label11.TabIndex = 9
-        Me.Label11.Text = "Username"
-        '
-        'txtSMTPPassword
-        '
-        Me.txtSMTPPassword.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSMTPPassword.Location = New System.Drawing.Point(143, 149)
-        Me.txtSMTPPassword.Name = "txtSMTPPassword"
-        Me.txtSMTPPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtSMTPPassword.Size = New System.Drawing.Size(165, 22)
-        Me.txtSMTPPassword.TabIndex = 8
-        '
-        'txtSMTPUsername
-        '
-        Me.txtSMTPUsername.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSMTPUsername.Location = New System.Drawing.Point(143, 121)
-        Me.txtSMTPUsername.Name = "txtSMTPUsername"
-        Me.txtSMTPUsername.Size = New System.Drawing.Size(165, 22)
-        Me.txtSMTPUsername.TabIndex = 7
-        '
-        'chkSmtpSsl
-        '
-        Me.chkSmtpSsl.AutoSize = True
-        Me.chkSmtpSsl.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSmtpSsl.Location = New System.Drawing.Point(290, 92)
-        Me.chkSmtpSsl.Name = "chkSmtpSsl"
-        Me.chkSmtpSsl.Size = New System.Drawing.Size(86, 18)
-        Me.chkSmtpSsl.TabIndex = 6
-        Me.chkSmtpSsl.Text = "Enable SSL"
-        Me.chkSmtpSsl.UseVisualStyleBackColor = True
-        '
-        'chkSmtpCredentials
-        '
-        Me.chkSmtpCredentials.AutoSize = True
-        Me.chkSmtpCredentials.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSmtpCredentials.Location = New System.Drawing.Point(109, 92)
-        Me.chkSmtpCredentials.Name = "chkSmtpCredentials"
-        Me.chkSmtpCredentials.Size = New System.Drawing.Size(134, 18)
-        Me.chkSmtpCredentials.TabIndex = 5
-        Me.chkSmtpCredentials.Text = "Requires credentials"
-        Me.chkSmtpCredentials.UseVisualStyleBackColor = True
-        '
-        'txtSmtpPort
-        '
-        Me.txtSmtpPort.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSmtpPort.Location = New System.Drawing.Point(381, 55)
-        Me.txtSmtpPort.Name = "txtSmtpPort"
-        Me.txtSmtpPort.Size = New System.Drawing.Size(53, 22)
-        Me.txtSmtpPort.TabIndex = 4
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(345, 58)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(30, 14)
-        Me.Label13.TabIndex = 3
-        Me.Label13.Text = "Port"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(28, 58)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(66, 14)
-        Me.Label10.TabIndex = 2
-        Me.Label10.Text = "SMTP host"
-        '
-        'txtSmtpHost
-        '
-        Me.txtSmtpHost.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSmtpHost.Location = New System.Drawing.Point(109, 55)
-        Me.txtSmtpHost.Name = "txtSmtpHost"
-        Me.txtSmtpHost.Size = New System.Drawing.Size(230, 22)
-        Me.txtSmtpHost.TabIndex = 1
-        '
-        'chkUseSMTP
-        '
-        Me.chkUseSMTP.AutoSize = True
-        Me.chkUseSMTP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkUseSMTP.Location = New System.Drawing.Point(31, 31)
-        Me.chkUseSMTP.Name = "chkUseSMTP"
-        Me.chkUseSMTP.Size = New System.Drawing.Size(81, 18)
-        Me.chkUseSMTP.TabIndex = 0
-        Me.chkUseSMTP.Text = "Use SMTP"
-        Me.chkUseSMTP.UseVisualStyleBackColor = True
-        '
-        'GroupBox13
-        '
-        Me.GroupBox13.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox13.Controls.Add(Me.Label20)
-        Me.GroupBox13.Controls.Add(Me.rbText)
-        Me.GroupBox13.Controls.Add(Me.rbHTML)
-        Me.GroupBox13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.GroupBox13.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox13.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox13.Size = New System.Drawing.Size(469, 102)
-        Me.GroupBox13.TabIndex = 2
-        Me.GroupBox13.TabStop = False
-        Me.GroupBox13.Text = "Email Appearance"
-        '
-        'Label20
-        '
-        Me.Label20.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.Label20.Location = New System.Drawing.Point(19, 23)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(88, 14)
-        Me.Label20.TabIndex = 6
-        Me.Label20.Text = "Default Format"
-        '
-        'rbText
-        '
-        Me.rbText.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rbText.AutoSize = True
-        Me.rbText.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.rbText.Location = New System.Drawing.Point(23, 66)
-        Me.rbText.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.rbText.Name = "rbText"
-        Me.rbText.Size = New System.Drawing.Size(51, 20)
-        Me.rbText.TabIndex = 2
-        Me.rbText.TabStop = True
-        Me.rbText.Text = "Text"
-        Me.rbText.UseVisualStyleBackColor = True
-        '
-        'rbHTML
-        '
-        Me.rbHTML.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rbHTML.AutoSize = True
-        Me.rbHTML.Checked = True
-        Me.rbHTML.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbHTML.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.rbHTML.Location = New System.Drawing.Point(23, 40)
-        Me.rbHTML.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.rbHTML.Name = "rbHTML"
-        Me.rbHTML.Size = New System.Drawing.Size(58, 20)
-        Me.rbHTML.TabIndex = 1
-        Me.rbHTML.TabStop = True
-        Me.rbHTML.Text = "HTML"
-        Me.rbHTML.UseVisualStyleBackColor = True
-        '
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.Transparent
@@ -903,11 +682,11 @@ Partial Class frmOptions
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Folders"
         '
-        'btnCreateFolders
+        'BtnCreateFolders
         '
         Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnCreateFolders.Location = New System.Drawing.Point(121, 451)
-        Me.BtnCreateFolders.Name = "btnCreateFolders"
+        Me.BtnCreateFolders.Name = "BtnCreateFolders"
         Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
         Me.BtnCreateFolders.TabIndex = 2
         Me.BtnCreateFolders.Text = "Create missing folders"
@@ -1372,12 +1151,28 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
+        'BtnTest
+        '
+        Me.BtnTest.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnTest.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnTest.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTest.ForeColor = System.Drawing.Color.Black
+        Me.BtnTest.Location = New System.Drawing.Point(28, 532)
+        Me.BtnTest.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnTest.Name = "BtnTest"
+        Me.BtnTest.Size = New System.Drawing.Size(86, 38)
+        Me.BtnTest.TabIndex = 23
+        Me.BtnTest.Text = "Test"
+        Me.ToolTip1.SetToolTip(Me.BtnTest, "Save changes to options")
+        Me.BtnTest.UseVisualStyleBackColor = True
+        '
         'frmOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(505, 597)
+        Me.Controls.Add(Me.BtnTest)
         Me.Controls.Add(Me.lblFormName)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TabControl1)
@@ -1409,11 +1204,6 @@ Partial Class frmOptions
         Me.TabPage5.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.TabPage4.ResumeLayout(False)
-        Me.GroupBox14.ResumeLayout(False)
-        Me.GroupBox14.PerformLayout()
-        Me.GroupBox13.ResumeLayout(False)
-        Me.GroupBox13.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -1486,24 +1276,7 @@ Partial Class frmOptions
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents nudZoom As System.Windows.Forms.NumericUpDown
     Friend WithEvents txtSpellTest As System.Windows.Forms.TextBox
-    Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents GroupBox13 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents rbText As System.Windows.Forms.RadioButton
-    Friend WithEvents rbHTML As System.Windows.Forms.RadioButton
-    Friend WithEvents GroupBox14 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents txtSmtpHost As System.Windows.Forms.TextBox
-    Friend WithEvents chkUseSMTP As System.Windows.Forms.CheckBox
     Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
-    Friend WithEvents txtSmtpPort As System.Windows.Forms.TextBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents chkSmtpCredentials As System.Windows.Forms.CheckBox
-    Friend WithEvents chkSmtpSsl As System.Windows.Forms.CheckBox
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents txtSMTPPassword As System.Windows.Forms.TextBox
-    Friend WithEvents txtSMTPUsername As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents txtCacheFolder As System.Windows.Forms.TextBox
     Friend WithEvents grpDiary As GroupBox
@@ -1531,4 +1304,5 @@ Partial Class frmOptions
     Friend WithEvents txtInvCompAddrSample As System.Windows.Forms.TextBox
     Friend WithEvents txtInvCompNameSample As System.Windows.Forms.TextBox
     Friend WithEvents FontDialog1 As System.Windows.Forms.FontDialog
+    Friend WithEvents BtnTest As Button
 End Class

@@ -93,11 +93,11 @@ Public Class AuthenticationUtil
     ''' <returns></returns>
     ''' <remarks>The user has a single current password and may have a temporary password if a password reset has been requested.
     ''' Either password will grant access</remarks>
-    Public Shared Function isPasswordOK(ByVal string1 As String, ByVal myIdentity As netwyrksIIdentity) As Boolean
+    Public Shared Function isPasswordOK(ByVal string1 As String, ByVal myIdentity As NetwyrksIIdentity) As Boolean
         Dim rtnval As Boolean = False
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
-        Dim userId As Integer = myIdentity.userId
+        Dim userId As Integer = myIdentity.UserId
         Dim salt As String = ""
         If oTa.FillById(oTable, userId) = 1 Then
             Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
@@ -121,7 +121,7 @@ Public Class AuthenticationUtil
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function isPasswordOK(ByVal string1 As String) As Boolean
-        Dim myIdentity As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
+        Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
         Return isPasswordOK(string1, myIdentity)
     End Function
 
@@ -132,8 +132,8 @@ Public Class AuthenticationUtil
     ''' <remarks></remarks>
     Public Shared Function isPasswordChangeOK() As Boolean
         Dim rtnval As Boolean = False
-        Dim myIdentity As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
-        Dim userId As Integer = myIdentity.userId
+        Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
+        Dim userId As Integer = myIdentity.UserId
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
         If oTa.FillById(oTable, userId) = 1 Then

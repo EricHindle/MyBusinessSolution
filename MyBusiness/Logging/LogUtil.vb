@@ -67,8 +67,8 @@ Public Class LogUtil
         Dim thisThread As String = "{" & CStr(Thread.CurrentThread.ManagedThreadId) & "} "
         padCt += (6 - thisThread.Length)
         Dim sPad As String = "".PadRight(padCt)
-        Dim sIdentity As netwyrksIIdentity = TryCast(My.User.CurrentPrincipal.Identity, netwyrksIIdentity)
-        Dim usercode As String = If(sIdentity Is Nothing, My.User.CurrentPrincipal.Identity.Name, sIdentity.usercode)
+        Dim sIdentity As NetwyrksIIdentity = TryCast(My.User.CurrentPrincipal.Identity, NetwyrksIIdentity)
+        Dim usercode As String = If(sIdentity Is Nothing, My.User.CurrentPrincipal.Identity.Name, sIdentity.Usercode)
         Dim sPrefix As String = sPad & thisThread & My.Computer.Clock.LocalTime.ToString() & " - "
         If Not String.IsNullOrEmpty(usercode) Then
             sPrefix += "[user " & usercode & "] "

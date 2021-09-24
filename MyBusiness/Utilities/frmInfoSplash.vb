@@ -15,7 +15,6 @@ Public Class frmInfoSplash
             _lifeTime = value
         End Set
     End Property
-
     Public WriteOnly Property Message() As String
         Set(ByVal value As String)
             _message = value
@@ -33,7 +32,6 @@ Public Class frmInfoSplash
             Timer1.Start()
         End If
     End Sub
-
     Private Sub Timer1_Tick(ByVal sender As Object, ByVal e As EventArgs) Handles Timer1.Tick
         Me.Close()
     End Sub

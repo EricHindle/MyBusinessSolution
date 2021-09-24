@@ -22,8 +22,8 @@ Public Class frmDiary
     Private ReadOnly oUserList As New Dictionary(Of Integer, String)
     Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
     Private ReadOnly oJobtable As New netwyrksDataSet.jobDataTable
-    Private ReadOnly user As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
-    Private ReadOnly userId As Integer = user.userId
+    Private ReadOnly user As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
+    Private ReadOnly userId As Integer = user.UserId
     Private userName As String = ""
     Private currentRemId As Integer = 0
     Private currentCustId As Integer = 0

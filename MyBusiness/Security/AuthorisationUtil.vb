@@ -24,9 +24,9 @@ Public Class AuthorisationUtil
     End Function
 
     Public Shared Function GetCurrentUserid()
-        Dim myIdentity As netwyrksIIdentity
+        Dim myIdentity As NetwyrksIIdentity
         myIdentity = My.User.CurrentPrincipal.Identity
-        Return myIdentity.userId
+        Return myIdentity.UserId
     End Function
 
 End Class

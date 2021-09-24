@@ -241,7 +241,7 @@ Public Class ExportUtil
     End Function
 
     Public Function ChooseFolder() As String
-        Dim sFilename As String = FileUtil.getFileName(FileUtil.OpenOrSave.Save, myExportFileType, myOutFolder)
+        Dim sFilename As String = FileUtil.GetFileName(FileUtil.OpenOrSave.Save, myExportFileType, myOutFolder)
         If sFilename.Length > 0 Then
             myOutFolder = Path.GetDirectoryName(sFilename)
             myOutfile = Path.GetFileName(sFilename)

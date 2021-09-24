@@ -6,6 +6,7 @@
 
 Imports System.Drawing.Imaging
 Public Class FileUtil
+#Region "enum"
     ''' <summary>
     ''' File attachment type
     ''' </summary>
@@ -21,7 +22,6 @@ Public Class FileUtil
         TextDoc = 3
         WordDoc = 4
     End Enum
-
     ''' <summary>
     ''' File type
     ''' </summary>
@@ -37,7 +37,6 @@ Public Class FileUtil
         DOC
         ALL
     End Enum
-
     ''' <summary>
     ''' Open or Save for file dialog
     ''' </summary>
@@ -46,19 +45,22 @@ Public Class FileUtil
         Open
         Save
     End Enum
-    Public Shared fileFilter As String() = {"Encrypted files (*.an*)| *.an*", _
-                                            "PDF files (*.pdf)| *.pdf", _
-                                            "Excel files (*.xls)| *.xls", _
-                                            "Comma Separated Value files (*.csv)| *.csv", _
-                                            "SYLK files (*.slk)| *.slk", _
-                                            "Text files (*.txt)| *.txt", _
-                                            "Rich Test files (*.rtf)| *.rtf", _
-                                            "Word files (*.docx)| *.docx", _
+#End Region
+#Region "variables"
+    Public Shared fileFilter As String() = {"Encrypted files (*.an*)| *.an*",
+                                            "PDF files (*.pdf)| *.pdf",
+                                            "Excel files (*.xls)| *.xls",
+                                            "Comma Separated Value files (*.csv)| *.csv",
+                                            "SYLK files (*.slk)| *.slk",
+                                            "Text files (*.txt)| *.txt",
+                                            "Rich Test files (*.rtf)| *.rtf",
+                                            "Word files (*.docx)| *.docx",
                                             "All files|*.*"}
     Public Shared fileSuffix As String() = {".anj", ".pdf", ".xls", ".csv", ".slk", ".txt", ".rtf", ".docx", ""}
     Public Shared imageFileSuffix As String() = {".jpg", ".gif", ".bmp", ".tif", ".png", ".anj", ""}
-
-    Public Shared Function showFileDialog(ByVal fbd As FileDialog, Optional ByVal fileType As FileType = FileUtil.FileType.ENC, Optional ByVal initialFolder As String = "") As String
+#End Region
+#Region "functions"
+    Public Shared Function ShowFileDialog(ByVal fbd As FileDialog, Optional ByVal fileType As FileType = FileUtil.FileType.ENC, Optional ByVal initialFolder As String = "") As String
         Dim sFilename As String = ""
         fbd.Filter = fileFilter(fileType)
         fbd.FilterIndex = 0
@@ -70,28 +72,28 @@ Public Class FileUtil
         End If
         Return sFilename
     End Function
-    Public Shared Function getFileName(ByVal dialogType As OpenOrSave, Optional ByVal fileType As FileType = FileUtil.FileType.ENC, Optional ByVal initialFolder As String = "") As String
+    Public Shared Function GetFileName(ByVal dialogType As OpenOrSave, Optional ByVal fileType As FileType = FileUtil.FileType.ENC, Optional ByVal initialFolder As String = "") As String
         Dim sFilename As String = ""
         If dialogType = OpenOrSave.Open Then
             Using fbd As New OpenFileDialog
-                sFilename = showFileDialog(fbd, fileType, initialFolder)
+                sFilename = ShowFileDialog(fbd, fileType, initialFolder)
             End Using
         Else
             Using fbd As New SaveFileDialog
-                sFilename = showFileDialog(fbd, fileType, initialFolder)
+                sFilename = ShowFileDialog(fbd, fileType, initialFolder)
             End Using
         End If
         Return sFilename
     End Function
-
-    Public Shared Function getTempFileName(Optional ByVal sType As FileType = FileType.ALL) As String
+    Public Shared Function GetTempFileName(Optional ByVal sType As FileType = FileType.ALL) As String
         Dim suffix As String = fileSuffix(sType)
         Dim sFilename As String = AuthenticationUtil.generateWordyPassword(False) & "_" & Format(Now, "yyyyMMddHHmmss") & suffix
         Return sFilename
     End Function
-    Public Shared Function getTempFileName(ByVal sType As Integer) As String
+    Public Shared Function GetTempFileName(ByVal sType As Integer) As String
         Dim suffix As String = imageFileSuffix(sType)
         Dim sFilename As String = AuthenticationUtil.generateWordyPassword(False) & "_" & Format(Now, "yyyyMMddHHmmss") & suffix
         Return sFilename
     End Function
+#End Region
 End Class

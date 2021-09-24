@@ -42,7 +42,6 @@ Public Class frmOptions
         LoadGeneralOptions()
         LoadInvoiceOptions()
         LoadFolderOptions()
-        LoadEmailOptions()
         SpellCheckUtil.EnableSpellChecking(New System.Windows.Forms.Control() {txtSpellTest})
         LoadSpellcheckOptions()
         setTooltips()
@@ -64,7 +63,6 @@ Public Class frmOptions
             SaveInvoiceOptions()
             SaveFolderOptions()
             SaveSpellcheckOptions()
-            SaveEmailOptions()
             My.Settings.Save()
             Me.Close()
 
@@ -363,31 +361,6 @@ Public Class frmOptions
 
 #Region "Email"
 
-    ''' <summary>
-    ''' Load the values into the Email tab form
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub LoadEmailOptions()
-        rbText.Checked = My.Settings.emailFormat = 1
-        rbHTML.Checked = My.Settings.EmailFormat <> 1
-        txtSmtpHost.Text = My.Settings.SMTPHost
-
-    End Sub
-    ''' <summary>
-    ''' Save the values from the Email tab form
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub SaveEmailOptions()
-        My.Settings.EmailFormat = If(rbHTML.Checked, 2, 1)
-        My.Settings.SMTPHost = txtSmtpHost.Text
-        My.Settings.SMTPPort = If(IsNumeric(txtSmtpPort.Text), CInt(txtSmtpPort.Text), 0)
-        My.Settings.SMTPRequiresCredentials = chkSmtpCredentials.Checked
-        My.Settings.SMTPEnableSSL = chkSmtpSsl.Checked
-        My.Settings.SMTPUsername = txtSMTPUsername.Text
-        If txtSMTPPassword.Text.Trim.Length > 0 Then
-            My.Settings.SMTPPassword = EncryptionUtil.encryptText(txtSMTPPassword.Text.Trim)
-        End If
-    End Sub
     Private Function selectFont(ByVal currentFont As Font) As Font
         Dim newFont As Font = currentFont
         Using _fontDialog As New FontDialog
@@ -429,4 +402,9 @@ Public Class frmOptions
 
     End Sub
 
+    Private Sub BtnTest_Click(sender As Object, e As EventArgs) Handles BtnTest.Click
+        Using _test As New FrmInstallationTest
+            _test.ShowDialog()
+        End Using
+    End Sub
 End Class

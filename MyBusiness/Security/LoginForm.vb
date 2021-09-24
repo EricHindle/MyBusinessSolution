@@ -17,7 +17,7 @@ Public Class LoginForm
     ' such as the username, display name, etc.
 
 #Region "variables"
-    Dim wiName As String() = Security.Principal.WindowsIdentity.GetCurrent().Name.Split("\"c)
+    Private ReadOnly wiName As String() = Security.Principal.WindowsIdentity.GetCurrent().Name.Split("\"c)
 #End Region
 #Region "Form"
     Private Sub LoginForm_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -46,7 +46,7 @@ Public Class LoginForm
 
         ' Creating a new sersIPrincipal checks the username and password and sets the user's role
         Try
-            Dim customPrincipal As New netwyrksIPrincipal(Me.UsernameTextBox.Text, Me.PasswordTextBox.Text, AuthenticationUtil.APPLICATION_CODE)
+            Dim customPrincipal As New NetwyrksIPrincipal(Me.UsernameTextBox.Text, Me.PasswordTextBox.Text)
             If (Not customPrincipal.Identity.IsAuthenticated) Then
                 ' The user is still not validated.
                 LogUtil.Warn(NOT_AUTHENTICATED)
@@ -81,16 +81,16 @@ Public Class LoginForm
         LogUtil.Info("=".PadRight(40, "="))
         Me.Close()
     End Sub
-    Private Function isActiveUser() As Boolean
+    Private Function IsActiveUser() As Boolean
         Return My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.User) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.PowerUser) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.PrintOperator) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.Guest)
     End Function
-    Private Sub lblForgottenPassword_DoubleClick(sender As Object, e As EventArgs) Handles lblForgottenPassword.DoubleClick, lblForgottenPassword.Click
+    Private Sub LblForgottenPassword_DoubleClick(sender As Object, e As EventArgs) Handles lblForgottenPassword.DoubleClick, lblForgottenPassword.Click
         Me.TopMost = False
-        Using _forgot As New frmPasswordRequest
+        Using _forgot As New FrmPasswordRequest
             _forgot.ShowDialog()
             LogUtil.Info("Login abandoned - forgotten password")
             LogUtil.Info("=".PadRight(40, "="))

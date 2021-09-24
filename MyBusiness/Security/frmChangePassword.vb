@@ -15,7 +15,7 @@ Public Class FrmChangePassword
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.User
     Private userId As Integer = 0
     Private ReadOnly salt As String = ""
-    Private myIdentity As netwyrksIIdentity = Nothing
+    Private myIdentity As NetwyrksIIdentity = Nothing
     Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
     Private ReadOnly oTable As New netwyrksDataSet.userDataTable
 #End Region
@@ -44,7 +44,7 @@ Public Class FrmChangePassword
         LogUtil.Debug("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
         myIdentity = My.User.CurrentPrincipal.Identity
-        userId = myIdentity.userId
+        userId = myIdentity.UserId
         lblForceChange.Visible = ForceChange
         SetTextboxToDefault(txtCurrent, CURRENT_TEXT)
         SetTextboxToDefault(txtNew, NEW_TEXT)

@@ -14,16 +14,22 @@ Imports System.Drawing
 ''' </summary>
 ''' <remarks></remarks>
 Public NotInheritable Class EmailUtil
-    Private Const className As String = "EmailUtil"
-    Private Const USE_SMTP As String = "UseSMTP"
-    Private Const SMTP_USERNAME As String = "SMTPUsername"
-    Private Const SMTP_PASSWORD As String = "SMTPPassword"
-    Private Const SMTP_HOST As String = "SMTPHost"
-    Private Const SMTP_REQ_CRED As String = "SMTPRequiresCredentials"
-    Private Const SMTP_PORT As String = "SMTPPort"
-    Private Const SMTP_SSL As String = "SMTPEnableSSL"
-    Private Const SEND_VIA As String = "SendMailViaSMTP"
+    Public Const className As String = "EmailUtil"
+    Public Const USE_SMTP As String = "UseSMTP"
+    Public Const SMTP_USERNAME As String = "SMTPUsername"
+    Public Const SMTP_FROMNAME As String = "SendEmailName"
+    Public Const SMTP_PASSWORD As String = "SMTPPassword"
+    Public Const SMTP_HOST As String = "SMTPHost"
+    Public Const SMTP_REQ_CRED As String = "SMTPRequiresCredentials"
+    Public Const SMTP_PORT As String = "SMTPPort"
+    Public Const SMTP_SSL As String = "SMTPEnableSSL"
+    Public Const SEND_VIA As String = "SendMailViaSMTP"
     Public Shared sOutlookSender As String = ""
+
+    Public Enum EmailBodyType
+        Html = 0
+        Plain = 1
+    End Enum
 
     ''' <summary>
     ''' Send an email
@@ -45,7 +51,7 @@ Public NotInheritable Class EmailUtil
                                       ByVal strBody As String,
                                       Optional ByVal strFromName As String = Nothing,
                                       Optional ByVal strFilenames As String() = Nothing,
-                                      Optional ByVal bodyType As Integer = 1,
+                                      Optional ByVal bodyType As EmailBodyType = EmailBodyType.Plain,
                                       Optional ByVal oFont As System.Drawing.Font = Nothing,
                                       Optional ByVal deleteAfterSubmit As Boolean = False,
                                       Optional ByVal readReceiptRequired As Boolean = False,
@@ -73,7 +79,7 @@ Public NotInheritable Class EmailUtil
                                           ByVal strBody As String,
                                           Optional ByVal strFromName As String = Nothing,
                                           Optional ByVal strFilenames As String() = Nothing,
-                                          Optional ByVal bodyType As Integer = 1,
+                                          Optional ByVal bodyType As EmailBodyType = EmailBodyType.Plain,
                                           Optional ByVal oFont As System.Drawing.Font = Nothing,
                                           Optional ByVal deleteAfterSubmit As Boolean = False,
                                           Optional ByVal readReceiptRequired As Boolean = False,
@@ -93,8 +99,8 @@ Public NotInheritable Class EmailUtil
             End If
             Dim smtpUserName As String = GlobalSettings.getSetting(SMTP_USERNAME)
             Dim smtpPassword As String = GlobalSettings.getSetting(SMTP_PASSWORD)
-            Dim bodyformat As Integer = bodyType
-            If bodyformat = 0 Then
+            Dim bodyformat As EmailBodyType = bodyType
+            If bodyformat = EmailBodyType.Html Then
                 ConvertBodyToHtml(strBody, oFont, objMessage)
                 objMessage.IsBodyHtml = True
             End If

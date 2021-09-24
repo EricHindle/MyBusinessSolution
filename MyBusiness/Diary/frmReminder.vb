@@ -20,8 +20,8 @@ Public Class FrmReminder
     Private ReadOnly oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
     Private ReadOnly oDiaryTable As New netwyrksDataSet.diaryDataTable
     Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly user As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
-    Private ReadOnly userId As Integer = user.userId
+    Private ReadOnly user As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
+    Private ReadOnly userId As Integer = user.UserId
     Private reminderId As Integer = 0
 #End Region
 #Region "properties"

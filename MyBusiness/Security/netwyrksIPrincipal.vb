@@ -4,17 +4,15 @@
 '
 ' Author Eric Hindle
 
-Public Class netwyrksIPrincipal
+Public Class NetwyrksIPrincipal
     Implements System.Security.Principal.IPrincipal
-    Private identityValue As netwyrksIIdentity
+    Private ReadOnly identityValue As NetwyrksIIdentity
 
-    Dim disposed As Boolean = False
-
-    Public Sub New(ByVal name As String, ByVal password As String, ByVal appCode As String)
+    Public Sub New(ByVal name As String, ByVal password As String)
         '
         ' Validate the username and password and create a new identity
         '
-        identityValue = New netwyrksIIdentity(name, password, appCode)
+        identityValue = New NetwyrksIIdentity(name, password)
     End Sub
 
     Public ReadOnly Property Identity() As System.Security.Principal.IIdentity Implements System.Security.Principal.IPrincipal.Identity

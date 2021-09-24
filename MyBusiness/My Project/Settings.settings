@@ -83,29 +83,8 @@
     <Setting Name="splchkCaseErrorColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SMTPUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="SMTPPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="SMTPHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="SMTPRequiresCredentials" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="SMTPPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="SMTPEnableSSL" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="DataFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="emailFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="netwyrksConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;

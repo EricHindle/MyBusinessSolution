@@ -203,28 +203,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging\LogUtil.vb" />
-    <Compile Include="Mapping\FrmMapViewer.designer.vb">
-      <DependentUpon>FrmMapViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\FrmMapViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mapping\GeoInfo.vb" />
-    <Compile Include="Mapping\GeoPos.vb" />
-    <Compile Include="Mapping\GeoPosBuilder.vb" />
-    <Compile Include="Mapping\GeoResponse.vb" />
-    <Compile Include="Mapping\GeoResponseBuilder.vb" />
-    <Compile Include="Mapping\GeoResponseTransformer.vb" />
-    <Compile Include="Mapping\GeoResult.vb" />
-    <Compile Include="Mapping\GeoResultBuilder.vb" />
-    <Compile Include="Mapping\GoogleGeoInfo.vb" />
-    <Compile Include="Mapping\GoogleMapUtil.vb" />
-    <Compile Include="Mapping\GoogleStaticMap.vb" />
-    <Compile Include="Mapping\MappingUtil.vb" />
-    <Compile Include="Mapping\MapQuestGeoInfo.vb" />
-    <Compile Include="Mapping\MapQuestMapUtil.vb" />
-    <Compile Include="Mapping\MapQuestResponse.vb" />
-    <Compile Include="Mapping\ModInteractiveMap.vb" />
     <Compile Include="Menus\FrmMain.designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
@@ -404,10 +382,6 @@
       <DependentUpon>FrmLogViewer.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\FrmMapViewer.resx">
-      <DependentUpon>FrmMapViewer.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menus\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -525,9 +499,7 @@
     <Content Include="Images\statusstrip.jpg" />
     <Content Include="Images\wordbutton.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MSOffice\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

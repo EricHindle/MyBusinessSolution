@@ -40,9 +40,9 @@ Public Class AuditUtil
     Public Shared Sub AddAudit(ByVal record_type As RecordType, ByVal record_id As String, ByVal auditAction As AuditableAction, Optional ByVal beforeValue As String = Nothing, Optional ByVal afterValue As String = Nothing)
         Dim oTa As New netwyrksDataSetTableAdapters.auditTableAdapter
         Dim userId As Integer = -1
-        If TypeOf My.User.CurrentPrincipal.Identity Is netwyrksIIdentity Then
-            Dim myIdentity As netwyrksIIdentity = My.User.CurrentPrincipal.Identity
-            userId = myIdentity.userId
+        If TypeOf My.User.CurrentPrincipal.Identity Is NetwyrksIIdentity Then
+            Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
+            userId = myIdentity.UserId
         End If
         Dim dateChanged As Date = Now
         oTa.InsertAudit(userId, record_type, record_id, Now, auditAction, beforeValue, afterValue, My.Computer.Name)

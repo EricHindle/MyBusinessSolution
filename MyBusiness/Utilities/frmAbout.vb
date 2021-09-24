@@ -10,8 +10,7 @@ Imports System.Drawing.Imaging
 ''' This form is displayed when the about menu option is selected
 ''' </summary>
 ''' <remarks>This form provides some useful version and run environment information</remarks>
-Public NotInheritable Class frmAbout
-
+Public NotInheritable Class FrmAbout
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Set the title of the form.
         Dim ApplicationTitle As String
@@ -39,24 +38,19 @@ Public NotInheritable Class frmAbout
                 End Select
             End If
         Next
-        Me.TextBoxDescription.Text = _
-                vbCrLf & "Multi-operator Self Exclusion" & vbCrLf & _
-                vbCrLf & "Computer name : " & My.Computer.Name & _
-                vbCrLf & "Data connection: " & _
-                vbCrLf & "   server=" & serverName & _
-                vbCrLf & "   database=" & dbName & _
-                vbCrLf & "Application path is " & My.Application.Info.DirectoryPath & _
+        Me.TextBoxDescription.Text =
+                vbCrLf & "Multi-operator Self Exclusion" & vbCrLf &
+                vbCrLf & "Computer name : " & My.Computer.Name &
+                vbCrLf & "Data connection: " &
+                vbCrLf & "   server=" & serverName &
+                vbCrLf & "   database=" & dbName &
+                vbCrLf & "Application path is " & My.Application.Info.DirectoryPath &
                 vbCrLf & "Cache path is " & sCacheFolder
-
     End Sub
-
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Close()
     End Sub
-
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
-
     End Sub
-
 End Class
