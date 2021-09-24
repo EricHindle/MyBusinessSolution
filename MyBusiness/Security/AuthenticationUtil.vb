@@ -294,7 +294,7 @@ Public Class AuthenticationUtil
                             {},
                             "Temporary SERS Password",
                             PASSWORD_CHANGE_EMAIL.Replace("{}",
-                            newTempPassword)) Then
+                            newTempPassword), GlobalSettings.GetSetting(EmailUtil.SMTP_FROMNAME)) Then
                         isCreatedOK = True
                         MsgBox("An email has been sent to your registered address.", , "Password Reset")
                     Else
