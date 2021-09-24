@@ -190,7 +190,7 @@ Public Class AuthenticationUtil
     ''' <param name="string1"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function SavePassword(ByVal userId As Integer, ByVal string1 As String) As Boolean
+    Public Shared Function SavePassword(ByVal userId As Integer, ByVal string1 As String, ByVal force As Boolean) As Boolean
         Dim returnValue As Boolean = False
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
@@ -198,13 +198,14 @@ Public Class AuthenticationUtil
             Throw New ApplicationException("No userid supplied")
         Else
             Try
-                Dim salt As String = getUserSalt(userId)
+                Dim salt As String = GetUserSalt(userId)
                 Dim hashedPW As String = AuthenticationUtil.GetHashed(salt & string1)
-                If oTa.UpdatePassword(hashedPW, Now, userId) = 1 Then
+                Dim forceChange As Integer = If(force, 1, 0)
+                If oTa.UpdatePassword(hashedPW, Now, force, userId) = 1 Then
                     returnValue = True
                 End If
             Catch ex As Exception
-                LogUtil.Exception("Exception saving password : " & ex.Message, ex, , getErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
+                LogUtil.Exception("Exception saving password : " & ex.Message, ex, , GetErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
                 Throw New ApplicationException("Exception saving password : " & ex.Message)
             End Try
         End If
@@ -284,7 +285,7 @@ Public Class AuthenticationUtil
             Dim validate As New ValidationUtil
             Dim sentOnBehalfOf As String = "noreply@self-exclusion.co.uk"
             If validate.IsValidEmail(emailAddress) Then
-                If oUserTa.UpdateTempPassword(AuthenticationUtil.GetHashed(salt & newTempPassword), Now, userId, True) = 1 Then
+                If oUserTa.UpdateTempPassword(AuthenticationUtil.GetHashed(salt & newTempPassword), Now, True, userId) = 1 Then
                     AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
 
                     Dim userEmailAddress As String = emailAddress

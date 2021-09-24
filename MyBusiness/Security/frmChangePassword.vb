@@ -154,7 +154,7 @@ Public Class FrmChangePassword
     Private Function StoreNewPassword() As Boolean
         Dim rtnval As Boolean = False
         Try
-            If AuthenticationUtil.SavePassword(userId, Trim(txtNew.Text)) Then
+            If AuthenticationUtil.SavePassword(userId, Trim(txtNew.Text), False) Then
                 AuditUtil.AddAudit(AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update,, "Password changed")
                 rtnval = True
             End If

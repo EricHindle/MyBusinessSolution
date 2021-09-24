@@ -23,7 +23,7 @@ Partial Class FrmPasswordRequest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPasswordRequest))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPasswordRequest))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -43,9 +43,9 @@ Partial Class FrmPasswordRequest
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 266)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 262)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(539, 24)
+        Me.StatusStrip1.Size = New System.Drawing.Size(535, 24)
         Me.StatusStrip1.SizingGrip = False
         Me.StatusStrip1.TabIndex = 0
         Me.StatusStrip1.Text = "StatusStrip1"
@@ -88,7 +88,7 @@ Partial Class FrmPasswordRequest
         Me.btnChange.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnChange.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnChange.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.btnChange.Location = New System.Drawing.Point(77, 230)
+        Me.btnChange.Location = New System.Drawing.Point(65, 214)
         Me.btnChange.Name = "btnChange"
         Me.btnChange.Size = New System.Drawing.Size(147, 34)
         Me.btnChange.TabIndex = 23
@@ -130,19 +130,19 @@ Partial Class FrmPasswordRequest
         Me.btnClose.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnClose.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.btnClose.Location = New System.Drawing.Point(327, 230)
+        Me.btnClose.Location = New System.Drawing.Point(325, 214)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(147, 34)
         Me.btnClose.TabIndex = 28
         Me.btnClose.Text = "Never Mind"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'frmPasswordRequest
+        'FrmPasswordRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(539, 290)
+        Me.ClientSize = New System.Drawing.Size(535, 286)
         Me.ControlBox = False
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnChange)
@@ -157,7 +157,7 @@ Partial Class FrmPasswordRequest
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmPasswordRequest"
+        Me.Name = "FrmPasswordRequest"
         Me.ShowIcon = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
