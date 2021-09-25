@@ -41,9 +41,9 @@ Partial Public Class netwyrksDataSet
     
     Private tabletask As taskDataTable
     
-    Private tableuser As userDataTable
-    
     Private tablediary As diaryDataTable
+    
+    Private tableuser As userDataTable
     
     Private relationfk_job_customer1 As Global.System.Data.DataRelation
     
@@ -55,9 +55,9 @@ Partial Public Class netwyrksDataSet
     
     Private relationfk_task_job1 As Global.System.Data.DataRelation
     
-    Private relationfk_diary_user1 As Global.System.Data.DataRelation
-    
     Private relationfk_job_user1 As Global.System.Data.DataRelation
+    
+    Private relationfk_diary_user1 As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -112,11 +112,11 @@ Partial Public Class netwyrksDataSet
             If (Not (ds.Tables("task")) Is Nothing) Then
                 MyBase.Tables.Add(New taskDataTable(ds.Tables("task")))
             End If
-            If (Not (ds.Tables("user")) Is Nothing) Then
-                MyBase.Tables.Add(New userDataTable(ds.Tables("user")))
-            End If
             If (Not (ds.Tables("diary")) Is Nothing) Then
                 MyBase.Tables.Add(New diaryDataTable(ds.Tables("diary")))
+            End If
+            If (Not (ds.Tables("user")) Is Nothing) Then
+                MyBase.Tables.Add(New userDataTable(ds.Tables("user")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -219,9 +219,9 @@ Partial Public Class netwyrksDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property user() As userDataTable
+    Public ReadOnly Property diary() As diaryDataTable
         Get
-            Return Me.tableuser
+            Return Me.tablediary
         End Get
     End Property
     
@@ -229,9 +229,9 @@ Partial Public Class netwyrksDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property diary() As diaryDataTable
+    Public ReadOnly Property user() As userDataTable
         Get
-            Return Me.tablediary
+            Return Me.tableuser
         End Get
     End Property
     
@@ -326,11 +326,11 @@ Partial Public Class netwyrksDataSet
             If (Not (ds.Tables("task")) Is Nothing) Then
                 MyBase.Tables.Add(New taskDataTable(ds.Tables("task")))
             End If
-            If (Not (ds.Tables("user")) Is Nothing) Then
-                MyBase.Tables.Add(New userDataTable(ds.Tables("user")))
-            End If
             If (Not (ds.Tables("diary")) Is Nothing) Then
                 MyBase.Tables.Add(New diaryDataTable(ds.Tables("diary")))
+            End If
+            If (Not (ds.Tables("user")) Is Nothing) Then
+                MyBase.Tables.Add(New userDataTable(ds.Tables("user")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -412,16 +412,16 @@ Partial Public Class netwyrksDataSet
                 Me.tabletask.InitVars
             End If
         End If
-        Me.tableuser = CType(MyBase.Tables("user"),userDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableuser) Is Nothing) Then
-                Me.tableuser.InitVars
-            End If
-        End If
         Me.tablediary = CType(MyBase.Tables("diary"),diaryDataTable)
         If (initTable = true) Then
             If (Not (Me.tablediary) Is Nothing) Then
                 Me.tablediary.InitVars
+            End If
+        End If
+        Me.tableuser = CType(MyBase.Tables("user"),userDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableuser) Is Nothing) Then
+                Me.tableuser.InitVars
             End If
         End If
         Me.relationfk_job_customer1 = Me.Relations("fk_job_customer1")
@@ -429,8 +429,8 @@ Partial Public Class netwyrksDataSet
         Me.relationfk_job_product_product1 = Me.Relations("fk_job_product_product1")
         Me.relationfk_product_supplier1 = Me.Relations("fk_product_supplier1")
         Me.relationfk_task_job1 = Me.Relations("fk_task_job1")
-        Me.relationfk_diary_user1 = Me.Relations("fk_diary_user1")
         Me.relationfk_job_user1 = Me.Relations("fk_job_user1")
+        Me.relationfk_diary_user1 = Me.Relations("fk_diary_user1")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -457,10 +457,10 @@ Partial Public Class netwyrksDataSet
         MyBase.Tables.Add(Me.tablesupplier)
         Me.tabletask = New taskDataTable()
         MyBase.Tables.Add(Me.tabletask)
-        Me.tableuser = New userDataTable()
-        MyBase.Tables.Add(Me.tableuser)
         Me.tablediary = New diaryDataTable()
         MyBase.Tables.Add(Me.tablediary)
+        Me.tableuser = New userDataTable()
+        MyBase.Tables.Add(Me.tableuser)
         Me.relationfk_job_customer1 = New Global.System.Data.DataRelation("fk_job_customer1", New Global.System.Data.DataColumn() {Me.tablecustomer.customer_idColumn}, New Global.System.Data.DataColumn() {Me.tablejob.job_customer_idColumn}, false)
         Me.Relations.Add(Me.relationfk_job_customer1)
         Me.relationfk_job_product_job1 = New Global.System.Data.DataRelation("fk_job_product_job1", New Global.System.Data.DataColumn() {Me.tablejob.job_idColumn}, New Global.System.Data.DataColumn() {Me.tablejob_product.jp_job_idColumn}, false)
@@ -471,10 +471,10 @@ Partial Public Class netwyrksDataSet
         Me.Relations.Add(Me.relationfk_product_supplier1)
         Me.relationfk_task_job1 = New Global.System.Data.DataRelation("fk_task_job1", New Global.System.Data.DataColumn() {Me.tablejob.job_idColumn}, New Global.System.Data.DataColumn() {Me.tabletask.task_job_idColumn}, false)
         Me.Relations.Add(Me.relationfk_task_job1)
-        Me.relationfk_diary_user1 = New Global.System.Data.DataRelation("fk_diary_user1", New Global.System.Data.DataColumn() {Me.tableuser.user_idColumn}, New Global.System.Data.DataColumn() {Me.tablediary.diary_user_idColumn}, false)
-        Me.Relations.Add(Me.relationfk_diary_user1)
         Me.relationfk_job_user1 = New Global.System.Data.DataRelation("fk_job_user1", New Global.System.Data.DataColumn() {Me.tableuser.user_idColumn}, New Global.System.Data.DataColumn() {Me.tablejob.job_user_idColumn}, false)
         Me.Relations.Add(Me.relationfk_job_user1)
+        Me.relationfk_diary_user1 = New Global.System.Data.DataRelation("fk_diary_user1", New Global.System.Data.DataColumn() {Me.tableuser.user_idColumn}, New Global.System.Data.DataColumn() {Me.tablediary.diary_user_idColumn}, false)
+        Me.Relations.Add(Me.relationfk_diary_user1)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -527,13 +527,13 @@ Partial Public Class netwyrksDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Private Function ShouldSerializeuser() As Boolean
+    Private Function ShouldSerializediary() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Private Function ShouldSerializediary() As Boolean
+    Private Function ShouldSerializeuser() As Boolean
         Return false
     End Function
     
@@ -620,10 +620,10 @@ Partial Public Class netwyrksDataSet
     Public Delegate Sub taskRowChangeEventHandler(ByVal sender As Object, ByVal e As taskRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Delegate Sub userRowChangeEventHandler(ByVal sender As Object, ByVal e As userRowChangeEvent)
+    Public Delegate Sub diaryRowChangeEventHandler(ByVal sender As Object, ByVal e As diaryRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Delegate Sub diaryRowChangeEventHandler(ByVal sender As Object, ByVal e As diaryRowChangeEvent)
+    Public Delegate Sub userRowChangeEventHandler(ByVal sender As Object, ByVal e As userRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -3813,469 +3813,6 @@ Partial Public Class netwyrksDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class userDataTable
-        Inherits Global.System.Data.TypedTableBase(Of userRow)
-        
-        Private columnuser_id As Global.System.Data.DataColumn
-        
-        Private columnuser_login As Global.System.Data.DataColumn
-        
-        Private columnuser_code As Global.System.Data.DataColumn
-        
-        Private columnuser_password As Global.System.Data.DataColumn
-        
-        Private columntemp_password As Global.System.Data.DataColumn
-        
-        Private columnforce_password_change As Global.System.Data.DataColumn
-        
-        Private columnsalt As Global.System.Data.DataColumn
-        
-        Private columnuser_name As Global.System.Data.DataColumn
-        
-        Private columnuser_contact_number As Global.System.Data.DataColumn
-        
-        Private columnuser_mobile As Global.System.Data.DataColumn
-        
-        Private columnuser_email As Global.System.Data.DataColumn
-        
-        Private columnuser_jobtitle As Global.System.Data.DataColumn
-        
-        Private columnuser_note As Global.System.Data.DataColumn
-        
-        Private columnuser_created As Global.System.Data.DataColumn
-        
-        Private columnuser_changed As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "user"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_idColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_id
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_loginColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_login
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_codeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_code
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_passwordColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_password
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property temp_passwordColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntemp_password
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property force_password_changeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnforce_password_change
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property saltColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnsalt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_nameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_name
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_contact_numberColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_contact_number
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_mobileColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_mobile
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_emailColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_email
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_jobtitleColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_jobtitle
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_noteColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_note
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_createdColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_created
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property user_changedColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnuser_changed
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As userRow
-            Get
-                Return CType(Me.Rows(index),userRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event userRowChanging As userRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event userRowChanged As userRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event userRowDeleting As userRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event userRowDeleted As userRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Sub AdduserRow(ByVal row As userRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AdduserRow(ByVal user_login As String, ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Boolean, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_created As Date, ByVal user_changed As Date) As userRow
-            Dim rowuserRow As userRow = CType(Me.NewRow,userRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, user_login, user_code, user_password, temp_password, force_password_change, salt, user_name, user_contact_number, user_mobile, user_email, user_jobtitle, user_note, user_created, user_changed}
-            rowuserRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowuserRow)
-            Return rowuserRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function FindByuser_id(ByVal user_id As Integer) As userRow
-            Return CType(Me.Rows.Find(New Object() {user_id}),userRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As userDataTable = CType(MyBase.Clone,userDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New userDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnuser_id = MyBase.Columns("user_id")
-            Me.columnuser_login = MyBase.Columns("user_login")
-            Me.columnuser_code = MyBase.Columns("user_code")
-            Me.columnuser_password = MyBase.Columns("user_password")
-            Me.columntemp_password = MyBase.Columns("temp_password")
-            Me.columnforce_password_change = MyBase.Columns("force_password_change")
-            Me.columnsalt = MyBase.Columns("salt")
-            Me.columnuser_name = MyBase.Columns("user_name")
-            Me.columnuser_contact_number = MyBase.Columns("user_contact_number")
-            Me.columnuser_mobile = MyBase.Columns("user_mobile")
-            Me.columnuser_email = MyBase.Columns("user_email")
-            Me.columnuser_jobtitle = MyBase.Columns("user_jobtitle")
-            Me.columnuser_note = MyBase.Columns("user_note")
-            Me.columnuser_created = MyBase.Columns("user_created")
-            Me.columnuser_changed = MyBase.Columns("user_changed")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnuser_id = New Global.System.Data.DataColumn("user_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_id)
-            Me.columnuser_login = New Global.System.Data.DataColumn("user_login", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_login)
-            Me.columnuser_code = New Global.System.Data.DataColumn("user_code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_code)
-            Me.columnuser_password = New Global.System.Data.DataColumn("user_password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_password)
-            Me.columntemp_password = New Global.System.Data.DataColumn("temp_password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntemp_password)
-            Me.columnforce_password_change = New Global.System.Data.DataColumn("force_password_change", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnforce_password_change)
-            Me.columnsalt = New Global.System.Data.DataColumn("salt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnsalt)
-            Me.columnuser_name = New Global.System.Data.DataColumn("user_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_name)
-            Me.columnuser_contact_number = New Global.System.Data.DataColumn("user_contact_number", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_contact_number)
-            Me.columnuser_mobile = New Global.System.Data.DataColumn("user_mobile", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_mobile)
-            Me.columnuser_email = New Global.System.Data.DataColumn("user_email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_email)
-            Me.columnuser_jobtitle = New Global.System.Data.DataColumn("user_jobtitle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_jobtitle)
-            Me.columnuser_note = New Global.System.Data.DataColumn("user_note", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_note)
-            Me.columnuser_created = New Global.System.Data.DataColumn("user_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_created)
-            Me.columnuser_changed = New Global.System.Data.DataColumn("user_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnuser_changed)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnuser_id}, true))
-            Me.columnuser_id.AutoIncrement = true
-            Me.columnuser_id.AutoIncrementSeed = -1
-            Me.columnuser_id.AutoIncrementStep = -1
-            Me.columnuser_id.AllowDBNull = false
-            Me.columnuser_id.Unique = true
-            Me.columnuser_login.AllowDBNull = false
-            Me.columnuser_login.MaxLength = 45
-            Me.columnuser_code.AllowDBNull = false
-            Me.columnuser_code.MaxLength = 45
-            Me.columnuser_password.AllowDBNull = false
-            Me.columnuser_password.MaxLength = 45
-            Me.columntemp_password.MaxLength = 45
-            Me.columnsalt.AllowDBNull = false
-            Me.columnsalt.MaxLength = 45
-            Me.columnuser_name.AllowDBNull = false
-            Me.columnuser_name.MaxLength = 45
-            Me.columnuser_contact_number.MaxLength = 20
-            Me.columnuser_mobile.MaxLength = 20
-            Me.columnuser_email.MaxLength = 100
-            Me.columnuser_jobtitle.MaxLength = 100
-            Me.columnuser_note.MaxLength = 21845
-            Me.columnuser_created.AllowDBNull = false
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function NewuserRow() As userRow
-            Return CType(Me.NewRow,userRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New userRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(userRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.userRowChangedEvent) Is Nothing) Then
-                RaiseEvent userRowChanged(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.userRowChangingEvent) Is Nothing) Then
-                RaiseEvent userRowChanging(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.userRowDeletedEvent) Is Nothing) Then
-                RaiseEvent userRowDeleted(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.userRowDeletingEvent) Is Nothing) Then
-                RaiseEvent userRowDeleting(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub RemoveuserRow(ByVal row As userRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As netwyrksDataSet = New netwyrksDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "userDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class diaryDataTable
         Inherits Global.System.Data.TypedTableBase(Of diaryRow)
         
@@ -4621,6 +4158,484 @@ Partial Public Class netwyrksDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "diaryDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class userDataTable
+        Inherits Global.System.Data.TypedTableBase(Of userRow)
+        
+        Private columnuser_id As Global.System.Data.DataColumn
+        
+        Private columnuser_login As Global.System.Data.DataColumn
+        
+        Private columnuser_code As Global.System.Data.DataColumn
+        
+        Private columnuser_password As Global.System.Data.DataColumn
+        
+        Private columntemp_password As Global.System.Data.DataColumn
+        
+        Private columnforce_password_change As Global.System.Data.DataColumn
+        
+        Private columnsalt As Global.System.Data.DataColumn
+        
+        Private columnuser_name As Global.System.Data.DataColumn
+        
+        Private columnuser_contact_number As Global.System.Data.DataColumn
+        
+        Private columnuser_mobile As Global.System.Data.DataColumn
+        
+        Private columnuser_email As Global.System.Data.DataColumn
+        
+        Private columnuser_jobtitle As Global.System.Data.DataColumn
+        
+        Private columnuser_note As Global.System.Data.DataColumn
+        
+        Private columnuser_created As Global.System.Data.DataColumn
+        
+        Private columnuser_changed As Global.System.Data.DataColumn
+        
+        Private columnuser_role As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "user"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_loginColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_login
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_codeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_passwordColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_password
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property temp_passwordColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemp_password
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property force_password_changeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnforce_password_change
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property saltColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsalt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_contact_numberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_contact_number
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_mobileColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_mobile
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_email
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_jobtitleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_jobtitle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_noteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_note
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property user_roleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnuser_role
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As userRow
+            Get
+                Return CType(Me.Rows(index),userRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event userRowChanging As userRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event userRowChanged As userRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event userRowDeleting As userRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event userRowDeleted As userRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub AdduserRow(ByVal row As userRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function AdduserRow(ByVal user_login As String, ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Boolean, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_created As Date, ByVal user_changed As Date, ByVal user_role As String) As userRow
+            Dim rowuserRow As userRow = CType(Me.NewRow,userRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, user_login, user_code, user_password, temp_password, force_password_change, salt, user_name, user_contact_number, user_mobile, user_email, user_jobtitle, user_note, user_created, user_changed, user_role}
+            rowuserRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowuserRow)
+            Return rowuserRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByuser_id(ByVal user_id As Integer) As userRow
+            Return CType(Me.Rows.Find(New Object() {user_id}),userRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As userDataTable = CType(MyBase.Clone,userDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New userDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnuser_id = MyBase.Columns("user_id")
+            Me.columnuser_login = MyBase.Columns("user_login")
+            Me.columnuser_code = MyBase.Columns("user_code")
+            Me.columnuser_password = MyBase.Columns("user_password")
+            Me.columntemp_password = MyBase.Columns("temp_password")
+            Me.columnforce_password_change = MyBase.Columns("force_password_change")
+            Me.columnsalt = MyBase.Columns("salt")
+            Me.columnuser_name = MyBase.Columns("user_name")
+            Me.columnuser_contact_number = MyBase.Columns("user_contact_number")
+            Me.columnuser_mobile = MyBase.Columns("user_mobile")
+            Me.columnuser_email = MyBase.Columns("user_email")
+            Me.columnuser_jobtitle = MyBase.Columns("user_jobtitle")
+            Me.columnuser_note = MyBase.Columns("user_note")
+            Me.columnuser_created = MyBase.Columns("user_created")
+            Me.columnuser_changed = MyBase.Columns("user_changed")
+            Me.columnuser_role = MyBase.Columns("user_role")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnuser_id = New Global.System.Data.DataColumn("user_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_id)
+            Me.columnuser_login = New Global.System.Data.DataColumn("user_login", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_login)
+            Me.columnuser_code = New Global.System.Data.DataColumn("user_code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_code)
+            Me.columnuser_password = New Global.System.Data.DataColumn("user_password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_password)
+            Me.columntemp_password = New Global.System.Data.DataColumn("temp_password", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemp_password)
+            Me.columnforce_password_change = New Global.System.Data.DataColumn("force_password_change", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnforce_password_change)
+            Me.columnsalt = New Global.System.Data.DataColumn("salt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsalt)
+            Me.columnuser_name = New Global.System.Data.DataColumn("user_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_name)
+            Me.columnuser_contact_number = New Global.System.Data.DataColumn("user_contact_number", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_contact_number)
+            Me.columnuser_mobile = New Global.System.Data.DataColumn("user_mobile", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_mobile)
+            Me.columnuser_email = New Global.System.Data.DataColumn("user_email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_email)
+            Me.columnuser_jobtitle = New Global.System.Data.DataColumn("user_jobtitle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_jobtitle)
+            Me.columnuser_note = New Global.System.Data.DataColumn("user_note", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_note)
+            Me.columnuser_created = New Global.System.Data.DataColumn("user_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_created)
+            Me.columnuser_changed = New Global.System.Data.DataColumn("user_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_changed)
+            Me.columnuser_role = New Global.System.Data.DataColumn("user_role", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnuser_role)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnuser_id}, true))
+            Me.columnuser_id.AutoIncrement = true
+            Me.columnuser_id.AutoIncrementSeed = -1
+            Me.columnuser_id.AutoIncrementStep = -1
+            Me.columnuser_id.AllowDBNull = false
+            Me.columnuser_id.Unique = true
+            Me.columnuser_login.AllowDBNull = false
+            Me.columnuser_login.MaxLength = 45
+            Me.columnuser_code.AllowDBNull = false
+            Me.columnuser_code.MaxLength = 45
+            Me.columnuser_password.AllowDBNull = false
+            Me.columnuser_password.MaxLength = 45
+            Me.columntemp_password.MaxLength = 45
+            Me.columnsalt.AllowDBNull = false
+            Me.columnsalt.MaxLength = 45
+            Me.columnuser_name.AllowDBNull = false
+            Me.columnuser_name.MaxLength = 45
+            Me.columnuser_contact_number.MaxLength = 20
+            Me.columnuser_mobile.MaxLength = 20
+            Me.columnuser_email.MaxLength = 100
+            Me.columnuser_jobtitle.MaxLength = 100
+            Me.columnuser_note.MaxLength = 65535
+            Me.columnuser_created.AllowDBNull = false
+            Me.columnuser_role.AllowDBNull = false
+            Me.columnuser_role.MaxLength = 45
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function NewuserRow() As userRow
+            Return CType(Me.NewRow,userRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New userRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(userRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.userRowChangedEvent) Is Nothing) Then
+                RaiseEvent userRowChanged(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.userRowChangingEvent) Is Nothing) Then
+                RaiseEvent userRowChanging(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.userRowDeletedEvent) Is Nothing) Then
+                RaiseEvent userRowDeleted(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.userRowDeletingEvent) Is Nothing) Then
+                RaiseEvent userRowDeleting(Me, New userRowChangeEvent(CType(e.Row,userRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub RemoveuserRow(ByVal row As userRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As netwyrksDataSet = New netwyrksDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "userDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -6539,6 +6554,175 @@ Partial Public Class netwyrksDataSet
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
+    Partial Public Class diaryRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablediary As diaryDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablediary = CType(Me.Table,diaryDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_id() As Integer
+            Get
+                Return CType(Me(Me.tablediary.diary_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablediary.diary_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_date() As Date
+            Get
+                Return CType(Me(Me.tablediary.diary_dateColumn),Date)
+            End Get
+            Set
+                Me(Me.tablediary.diary_dateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_user_id() As Integer
+            Get
+                Return CType(Me(Me.tablediary.diary_user_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablediary.diary_user_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_job() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablediary.diary_jobColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'diary_job' in table 'diary' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablediary.diary_jobColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_cust_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablediary.diary_cust_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'diary_cust_id' in table 'diary' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablediary.diary_cust_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_body() As String
+            Get
+                Return CType(Me(Me.tablediary.diary_bodyColumn),String)
+            End Get
+            Set
+                Me(Me.tablediary.diary_bodyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_subject() As String
+            Get
+                Return CType(Me(Me.tablediary.diary_subjectColumn),String)
+            End Get
+            Set
+                Me(Me.tablediary.diary_subjectColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_reminder() As Boolean
+            Get
+                Return CType(Me(Me.tablediary.diary_reminderColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablediary.diary_reminderColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_closed() As Boolean
+            Get
+                Return CType(Me(Me.tablediary.diary_closedColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablediary.diary_closedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property diary_callback() As Boolean
+            Get
+                Return CType(Me(Me.tablediary.diary_callbackColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablediary.diary_callbackColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property userRow() As userRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("fk_diary_user1")),userRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("fk_diary_user1"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isdiary_jobNull() As Boolean
+            Return Me.IsNull(Me.tablediary.diary_jobColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setdiary_jobNull()
+            Me(Me.tablediary.diary_jobColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isdiary_cust_idNull() As Boolean
+            Return Me.IsNull(Me.tablediary.diary_cust_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setdiary_cust_idNull()
+            Me(Me.tablediary.diary_cust_idColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
     Partial Public Class userRow
         Inherits Global.System.Data.DataRow
         
@@ -6750,6 +6934,17 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property user_role() As String
+            Get
+                Return CType(Me(Me.tableuser.user_roleColumn),String)
+            End Get
+            Set
+                Me(Me.tableuser.user_roleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function Istemp_passwordNull() As Boolean
             Return Me.IsNull(Me.tableuser.temp_passwordColumn)
         End Function
@@ -6846,16 +7041,6 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function GetdiaryRows() As diaryRow()
-            If (Me.Table.ChildRelations("fk_diary_user1") Is Nothing) Then
-                Return New diaryRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("fk_diary_user1")),diaryRow())
-            End If
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function GetjobRows() As jobRow()
             If (Me.Table.ChildRelations("fk_job_user1") Is Nothing) Then
                 Return New jobRow(-1) {}
@@ -6863,175 +7048,16 @@ Partial Public Class netwyrksDataSet
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("fk_job_user1")),jobRow())
             End If
         End Function
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class diaryRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tablediary As diaryDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tablediary = CType(Me.Table,diaryDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_id() As Integer
-            Get
-                Return CType(Me(Me.tablediary.diary_idColumn),Integer)
-            End Get
-            Set
-                Me(Me.tablediary.diary_idColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_date() As Date
-            Get
-                Return CType(Me(Me.tablediary.diary_dateColumn),Date)
-            End Get
-            Set
-                Me(Me.tablediary.diary_dateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_user_id() As Integer
-            Get
-                Return CType(Me(Me.tablediary.diary_user_idColumn),Integer)
-            End Get
-            Set
-                Me(Me.tablediary.diary_user_idColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_job() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tablediary.diary_jobColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'diary_job' in table 'diary' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablediary.diary_jobColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_cust_id() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tablediary.diary_cust_idColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'diary_cust_id' in table 'diary' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablediary.diary_cust_idColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_body() As String
-            Get
-                Return CType(Me(Me.tablediary.diary_bodyColumn),String)
-            End Get
-            Set
-                Me(Me.tablediary.diary_bodyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_subject() As String
-            Get
-                Return CType(Me(Me.tablediary.diary_subjectColumn),String)
-            End Get
-            Set
-                Me(Me.tablediary.diary_subjectColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_reminder() As Boolean
-            Get
-                Return CType(Me(Me.tablediary.diary_reminderColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tablediary.diary_reminderColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_closed() As Boolean
-            Get
-                Return CType(Me(Me.tablediary.diary_closedColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tablediary.diary_closedColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property diary_callback() As Boolean
-            Get
-                Return CType(Me(Me.tablediary.diary_callbackColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tablediary.diary_callbackColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property userRow() As userRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("fk_diary_user1")),userRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("fk_diary_user1"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isdiary_jobNull() As Boolean
-            Return Me.IsNull(Me.tablediary.diary_jobColumn)
+        Public Function GetdiaryRows() As diaryRow()
+            If (Me.Table.ChildRelations("fk_diary_user1") Is Nothing) Then
+                Return New diaryRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("fk_diary_user1")),diaryRow())
+            End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setdiary_jobNull()
-            Me(Me.tablediary.diary_jobColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isdiary_cust_idNull() As Boolean
-            Return Me.IsNull(Me.tablediary.diary_cust_idColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setdiary_cust_idNull()
-            Me(Me.tablediary.diary_cust_idColumn) = Global.System.Convert.DBNull
-        End Sub
     End Class
     
     '''<summary>
@@ -7326,42 +7352,6 @@ Partial Public Class netwyrksDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Class userRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As userRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New(ByVal row As userRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Row() As userRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Class diaryRowChangeEvent
         Inherits Global.System.EventArgs
         
@@ -7380,6 +7370,42 @@ Partial Public Class netwyrksDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As diaryRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class userRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As userRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As userRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As userRow
             Get
                 Return Me.eventRow
             End Get
@@ -17393,1887 +17419,6 @@ Namespace netwyrksDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class userTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
-        
-        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
-        
-        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
-        
-        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "user"
-            tableMapping.ColumnMappings.Add("user_id", "user_id")
-            tableMapping.ColumnMappings.Add("user_login", "user_login")
-            tableMapping.ColumnMappings.Add("user_code", "user_code")
-            tableMapping.ColumnMappings.Add("user_password", "user_password")
-            tableMapping.ColumnMappings.Add("temp_password", "temp_password")
-            tableMapping.ColumnMappings.Add("force_password_change", "force_password_change")
-            tableMapping.ColumnMappings.Add("salt", "salt")
-            tableMapping.ColumnMappings.Add("user_name", "user_name")
-            tableMapping.ColumnMappings.Add("user_contact_number", "user_contact_number")
-            tableMapping.ColumnMappings.Add("user_mobile", "user_mobile")
-            tableMapping.ColumnMappings.Add("user_email", "user_email")
-            tableMapping.ColumnMappings.Add("user_jobtitle", "user_jobtitle")
-            tableMapping.ColumnMappings.Add("user_note", "user_note")
-            tableMapping.ColumnMappings.Add("user_created", "user_created")
-            tableMapping.ColumnMappings.Add("user_changed", "user_changed")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `user` WHERE ((`user_id` = @Original_user_id) AND (`user_login` = @Or"& _ 
-                "iginal_user_login) AND (`user_code` = @Original_user_code) AND (`user_password` "& _ 
-                "= @Original_user_password) AND ((@IsNull_temp_password = 1 AND `temp_password` I"& _ 
-                "S NULL) OR (`temp_password` = @Original_temp_password)) AND ((@IsNull_force_pass"& _ 
-                "word_change = 1 AND `force_password_change` IS NULL) OR (`force_password_change`"& _ 
-                " = @Original_force_password_change)) AND (`salt` = @Original_salt) AND (`user_na"& _ 
-                "me` = @Original_user_name) AND ((@IsNull_user_contact_number = 1 AND `user_conta"& _ 
-                "ct_number` IS NULL) OR (`user_contact_number` = @Original_user_contact_number)) "& _ 
-                "AND ((@IsNull_user_mobile = 1 AND `user_mobile` IS NULL) OR (`user_mobile` = @Or"& _ 
-                "iginal_user_mobile)) AND ((@IsNull_user_email = 1 AND `user_email` IS NULL) OR ("& _ 
-                "`user_email` = @Original_user_email)) AND ((@IsNull_user_jobtitle = 1 AND `user_"& _ 
-                "jobtitle` IS NULL) OR (`user_jobtitle` = @Original_user_jobtitle)) AND (`user_cr"& _ 
-                "eated` = @Original_user_created) AND ((@IsNull_user_changed = 1 AND `user_change"& _ 
-                "d` IS NULL) OR (`user_changed` = @Original_user_changed)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_temp_password"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_force_password_change"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_force_password_change"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_contact_number"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_mobile"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_email"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_jobtitle"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_created"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_created"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_changed"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_changed"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `user` (`user_login`, `user_code`, `user_password`, `temp_password`, "& _ 
-                "`force_password_change`, `salt`, `user_name`, `user_contact_number`, `user_mobil"& _ 
-                "e`, `user_email`, `user_jobtitle`, `user_note`, `user_created`, `user_changed`) "& _ 
-                "VALUES (@user_login, @user_code, @user_password, @temp_password, @force_password"& _ 
-                "_change, @salt, @user_name, @user_contact_number, @user_mobile, @user_email, @us"& _ 
-                "er_jobtitle, @user_note, @user_created, @user_changed)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force_password_change"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_note"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "user_note"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_created"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_created"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_changed"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `user` SET `user_login` = @user_login, `user_code` = @user_code, `user_pas"& _ 
-                "sword` = @user_password, `temp_password` = @temp_password, `force_password_chang"& _ 
-                "e` = @force_password_change, `salt` = @salt, `user_name` = @user_name, `user_con"& _ 
-                "tact_number` = @user_contact_number, `user_mobile` = @user_mobile, `user_email` "& _ 
-                "= @user_email, `user_jobtitle` = @user_jobtitle, `user_note` = @user_note, `user"& _ 
-                "_created` = @user_created, `user_changed` = @user_changed WHERE ((`user_id` = @O"& _ 
-                "riginal_user_id) AND (`user_login` = @Original_user_login) AND (`user_code` = @O"& _ 
-                "riginal_user_code) AND (`user_password` = @Original_user_password) AND ((@IsNull"& _ 
-                "_temp_password = 1 AND `temp_password` IS NULL) OR (`temp_password` = @Original_"& _ 
-                "temp_password)) AND ((@IsNull_force_password_change = 1 AND `force_password_chan"& _ 
-                "ge` IS NULL) OR (`force_password_change` = @Original_force_password_change)) AND"& _ 
-                " (`salt` = @Original_salt) AND (`user_name` = @Original_user_name) AND ((@IsNull"& _ 
-                "_user_contact_number = 1 AND `user_contact_number` IS NULL) OR (`user_contact_nu"& _ 
-                "mber` = @Original_user_contact_number)) AND ((@IsNull_user_mobile = 1 AND `user_"& _ 
-                "mobile` IS NULL) OR (`user_mobile` = @Original_user_mobile)) AND ((@IsNull_user_"& _ 
-                "email = 1 AND `user_email` IS NULL) OR (`user_email` = @Original_user_email)) AN"& _ 
-                "D ((@IsNull_user_jobtitle = 1 AND `user_jobtitle` IS NULL) OR (`user_jobtitle` ="& _ 
-                " @Original_user_jobtitle)) AND (`user_created` = @Original_user_created) AND ((@"& _ 
-                "IsNull_user_changed = 1 AND `user_changed` IS NULL) OR (`user_changed` = @Origin"& _ 
-                "al_user_changed)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force_password_change"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_note"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "user_note"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_created"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_created"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_changed"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_temp_password"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_force_password_change"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_force_password_change"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_contact_number"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_mobile"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_email"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_jobtitle"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_created"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_created"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_user_changed"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_user_changed"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
-            Me._connection.ConnectionString = Global.MyBusiness.My.MySettings.Default.netwyrksConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
-            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `user_id`, `user_login`, `user_code`, `user_password`, `temp_password`, `f"& _ 
-                "orce_password_change`, `salt`, `user_name`, `user_contact_number`, `user_mobile`"& _ 
-                ", `user_email`, `user_jobtitle`, `user_note`, `user_created`, `user_changed` FRO"& _ 
-                "M `user`"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "DELETE FROM `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @id)"
-            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        user_id, user_login, user_code, user_password, temp_password, force"& _ 
-                "_password_change, salt, user_name, user_contact_number, user_mobile, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                user_email, user_jobtitle, user_note, user_created, user_changed"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @Id)"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(2).Parameters.Add(param)
-            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        user_id, user_login, user_code, user_password, temp_password, force"& _ 
-                "_password_change, salt, user_name, user_contact_number, user_mobile, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                user_email, user_jobtitle, user_note, user_created, user_changed"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_login = @login)"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(3).Parameters.Add(param)
-            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "INSERT INTO `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (user_login, user_code, user_passwor"& _ 
-                "d, temp_password, force_password_change, salt, user_name, user_contact_number, u"& _ 
-                "ser_mobile, user_email, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         user_jobtitle, user_note, use"& _ 
-                "r_created)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@user_login, @user_code, @user_password, @temp_passwo"& _ 
-                "rd, @force_password_change, @salt, @user_name, @user_contact_number, @user_mobil"& _ 
-                "e, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @user_email, @user_jobtitle, @user_note, @user_cre"& _ 
-                "ated)"
-            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_login"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_login"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force_password_change"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 20
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 20
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 100
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 100
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_note"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.Size = 2147483647
-            param.IsNullable = true
-            param.SourceColumn = "user_note"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_created"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_created"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "UPDATE       netwyrks.`user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                user_password = @user_password, "& _ 
-                "user_changed = @date, force_password_change = @force"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @i"& _ 
-                "d)"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@date"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(5).Parameters.Add(param)
-            Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "UPDATE       netwyrks.`user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                temp_password = @temp_password, "& _ 
-                "user_changed = @date, force_password_change = @force"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @i"& _ 
-                "d)"
-            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@date"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(6).Parameters.Add(param)
-            Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "UPDATE       `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                user_code = @user_code, user_password = @"& _ 
-                "user_password, temp_password = @temp_password, force_password_change = @force_pa"& _ 
-                "ssword_change, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         salt = @salt, user_name = @user_name, "& _ 
-                "user_contact_number = @user_contact_number, user_mobile = @user_mobile, user_ema"& _ 
-                "il = @user_email, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         user_jobtitle = @user_jobtitle, use"& _ 
-                "r_note = @user_note, user_changed = @user_changed"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @id)"
-            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_code"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_code"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@temp_password"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "temp_password"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@force_password_change"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "force_password_change"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@salt"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "salt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
-            param.IsNullable = true
-            param.SourceColumn = "user_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_contact_number"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 20
-            param.IsNullable = true
-            param.SourceColumn = "user_contact_number"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_mobile"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 20
-            param.IsNullable = true
-            param.SourceColumn = "user_mobile"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 100
-            param.IsNullable = true
-            param.SourceColumn = "user_email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_jobtitle"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 100
-            param.IsNullable = true
-            param.SourceColumn = "user_jobtitle"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_note"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.Size = 2147483647
-            param.IsNullable = true
-            param.SourceColumn = "user_note"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@user_changed"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "user_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@id"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "user_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(7).Parameters.Add(param)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As netwyrksDataSet.userDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As netwyrksDataSet.userDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As netwyrksDataSet.userDataTable = New netwyrksDataSet.userDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillById(ByVal dataTable As netwyrksDataSet.userDataTable, ByVal Id As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(Id,Integer)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByLogin(ByVal dataTable As netwyrksDataSet.userDataTable, ByVal login As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
-            If (login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("login")
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(login,String)
-            End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As netwyrksDataSet.userDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As netwyrksDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "user")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_user_id As Integer, ByVal Original_user_login As String, ByVal Original_user_code As String, ByVal Original_user_password As String, ByVal Original_temp_password As String, ByVal Original_force_password_change As Global.System.Nullable(Of Byte), ByVal Original_salt As String, ByVal Original_user_name As String, ByVal Original_user_contact_number As String, ByVal Original_user_mobile As String, ByVal Original_user_email As String, ByVal Original_user_jobtitle As String, ByVal Original_user_created As Date, ByVal Original_user_changed As Global.System.Nullable(Of Date)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_user_id,Integer)
-            If (Original_user_login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_login")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_user_login,String)
-            End If
-            If (Original_user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_code")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_user_code,String)
-            End If
-            If (Original_user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_password")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_user_password,String)
-            End If
-            If (Original_temp_password Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_temp_password,String)
-            End If
-            If (Original_force_password_change.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_force_password_change.Value,Byte)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Original_salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_salt")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_salt,String)
-            End If
-            If (Original_user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_name")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_user_name,String)
-            End If
-            If (Original_user_contact_number Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_user_contact_number,String)
-            End If
-            If (Original_user_mobile Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_user_mobile,String)
-            End If
-            If (Original_user_email Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_user_email,String)
-            End If
-            If (Original_user_jobtitle Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_user_jobtitle,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_user_created,Date)
-            If (Original_user_changed.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_user_changed.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal user_login As String, ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Global.System.Nullable(Of Byte), ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_created As Date, ByVal user_changed As Global.System.Nullable(Of Date)) As Integer
-            If (user_login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_login")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(user_login,String)
-            End If
-            If (user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_code")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(user_code,String)
-            End If
-            If (user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_password")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(user_password,String)
-            End If
-            If (temp_password Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(temp_password,String)
-            End If
-            If (force_password_change.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(force_password_change.Value,Byte)
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("salt")
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(salt,String)
-            End If
-            If (user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_name")
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(user_name,String)
-            End If
-            If (user_contact_number Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(user_contact_number,String)
-            End If
-            If (user_mobile Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(user_mobile,String)
-            End If
-            If (user_email Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(user_email,String)
-            End If
-            If (user_jobtitle Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(user_jobtitle,String)
-            End If
-            If (user_note Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(user_note,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(12).Value = CType(user_created,Date)
-            If (user_changed.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(user_changed.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal user_login As String,  _
-                    ByVal user_code As String,  _
-                    ByVal user_password As String,  _
-                    ByVal temp_password As String,  _
-                    ByVal force_password_change As Global.System.Nullable(Of Byte),  _
-                    ByVal salt As String,  _
-                    ByVal user_name As String,  _
-                    ByVal user_contact_number As String,  _
-                    ByVal user_mobile As String,  _
-                    ByVal user_email As String,  _
-                    ByVal user_jobtitle As String,  _
-                    ByVal user_note As String,  _
-                    ByVal user_created As Date,  _
-                    ByVal user_changed As Global.System.Nullable(Of Date),  _
-                    ByVal Original_user_id As Integer,  _
-                    ByVal Original_user_login As String,  _
-                    ByVal Original_user_code As String,  _
-                    ByVal Original_user_password As String,  _
-                    ByVal Original_temp_password As String,  _
-                    ByVal Original_force_password_change As Global.System.Nullable(Of Byte),  _
-                    ByVal Original_salt As String,  _
-                    ByVal Original_user_name As String,  _
-                    ByVal Original_user_contact_number As String,  _
-                    ByVal Original_user_mobile As String,  _
-                    ByVal Original_user_email As String,  _
-                    ByVal Original_user_jobtitle As String,  _
-                    ByVal Original_user_created As Date,  _
-                    ByVal Original_user_changed As Global.System.Nullable(Of Date)) As Integer
-            If (user_login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_login")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(user_login,String)
-            End If
-            If (user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_code")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(user_code,String)
-            End If
-            If (user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_password")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(user_password,String)
-            End If
-            If (temp_password Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(temp_password,String)
-            End If
-            If (force_password_change.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(force_password_change.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("salt")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(salt,String)
-            End If
-            If (user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_name")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(user_name,String)
-            End If
-            If (user_contact_number Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(user_contact_number,String)
-            End If
-            If (user_mobile Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(user_mobile,String)
-            End If
-            If (user_email Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(user_email,String)
-            End If
-            If (user_jobtitle Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(user_jobtitle,String)
-            End If
-            If (user_note Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(user_note,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(user_created,Date)
-            If (user_changed.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(user_changed.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_user_id,Integer)
-            If (Original_user_login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_login")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_user_login,String)
-            End If
-            If (Original_user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_code")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_user_code,String)
-            End If
-            If (Original_user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_password")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_user_password,String)
-            End If
-            If (Original_temp_password Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_temp_password,String)
-            End If
-            If (Original_force_password_change.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_force_password_change.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_salt")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_salt,String)
-            End If
-            If (Original_user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_user_name")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_user_name,String)
-            End If
-            If (Original_user_contact_number Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_user_contact_number,String)
-            End If
-            If (Original_user_mobile Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_user_mobile,String)
-            End If
-            If (Original_user_email Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_user_email,String)
-            End If
-            If (Original_user_jobtitle Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_user_jobtitle,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_user_created,Date)
-            If (Original_user_changed.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_user_changed.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeleteUser(ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
-            command.Parameters(0).Value = CType(id,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertUser(ByVal user_login As String, ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Object, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_created As Date) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
-            If (user_login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_login")
-            Else
-                command.Parameters(0).Value = CType(user_login,String)
-            End If
-            If (user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_code")
-            Else
-                command.Parameters(1).Value = CType(user_code,String)
-            End If
-            If (user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_password")
-            Else
-                command.Parameters(2).Value = CType(user_password,String)
-            End If
-            If (temp_password Is Nothing) Then
-                command.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(3).Value = CType(temp_password,String)
-            End If
-            If (force_password_change Is Nothing) Then
-                command.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(4).Value = CType(force_password_change,Object)
-            End If
-            If (salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("salt")
-            Else
-                command.Parameters(5).Value = CType(salt,String)
-            End If
-            If (user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_name")
-            Else
-                command.Parameters(6).Value = CType(user_name,String)
-            End If
-            If (user_contact_number Is Nothing) Then
-                command.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(7).Value = CType(user_contact_number,String)
-            End If
-            If (user_mobile Is Nothing) Then
-                command.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(8).Value = CType(user_mobile,String)
-            End If
-            If (user_email Is Nothing) Then
-                command.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(9).Value = CType(user_email,String)
-            End If
-            If (user_jobtitle Is Nothing) Then
-                command.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(10).Value = CType(user_jobtitle,String)
-            End If
-            If (user_note Is Nothing) Then
-                command.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(11).Value = CType(user_note,String)
-            End If
-            command.Parameters(12).Value = CType(user_created,Date)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdatePassword(ByVal user_password As String, ByVal _date As Global.System.Nullable(Of Date), ByVal force As Object, ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
-            If (user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_password")
-            Else
-                command.Parameters(0).Value = CType(user_password,String)
-            End If
-            If (_date.HasValue = true) Then
-                command.Parameters(1).Value = CType(_date.Value,Date)
-            Else
-                command.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (force Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(2).Value = CType(force,Object)
-            End If
-            command.Parameters(3).Value = CType(id,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateTempPassword(ByVal temp_password As String, ByVal _date As Global.System.Nullable(Of Date), ByVal force As Object, ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
-            If (temp_password Is Nothing) Then
-                command.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(0).Value = CType(temp_password,String)
-            End If
-            If (_date.HasValue = true) Then
-                command.Parameters(1).Value = CType(_date.Value,Date)
-            Else
-                command.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (force Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(2).Value = CType(force,Object)
-            End If
-            command.Parameters(3).Value = CType(id,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateUser(ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Object, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_changed As Global.System.Nullable(Of Date), ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
-            If (user_code Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_code")
-            Else
-                command.Parameters(0).Value = CType(user_code,String)
-            End If
-            If (user_password Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_password")
-            Else
-                command.Parameters(1).Value = CType(user_password,String)
-            End If
-            If (temp_password Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(2).Value = CType(temp_password,String)
-            End If
-            If (force_password_change Is Nothing) Then
-                command.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(3).Value = CType(force_password_change,Object)
-            End If
-            If (salt Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("salt")
-            Else
-                command.Parameters(4).Value = CType(salt,String)
-            End If
-            If (user_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("user_name")
-            Else
-                command.Parameters(5).Value = CType(user_name,String)
-            End If
-            If (user_contact_number Is Nothing) Then
-                command.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(6).Value = CType(user_contact_number,String)
-            End If
-            If (user_mobile Is Nothing) Then
-                command.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(7).Value = CType(user_mobile,String)
-            End If
-            If (user_email Is Nothing) Then
-                command.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(8).Value = CType(user_email,String)
-            End If
-            If (user_jobtitle Is Nothing) Then
-                command.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(9).Value = CType(user_jobtitle,String)
-            End If
-            If (user_note Is Nothing) Then
-                command.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(10).Value = CType(user_note,String)
-            End If
-            If (user_changed.HasValue = true) Then
-                command.Parameters(11).Value = CType(user_changed.Value,Date)
-            Else
-                command.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            command.Parameters(12).Value = CType(id,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
     Partial Public Class diaryTableAdapter
         Inherits Global.System.ComponentModel.Component
         
@@ -20272,6 +18417,1965 @@ Namespace netwyrksDataSetTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class userTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+        
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
+        
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
+        
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "user"
+            tableMapping.ColumnMappings.Add("user_id", "user_id")
+            tableMapping.ColumnMappings.Add("user_login", "user_login")
+            tableMapping.ColumnMappings.Add("user_code", "user_code")
+            tableMapping.ColumnMappings.Add("user_password", "user_password")
+            tableMapping.ColumnMappings.Add("temp_password", "temp_password")
+            tableMapping.ColumnMappings.Add("force_password_change", "force_password_change")
+            tableMapping.ColumnMappings.Add("salt", "salt")
+            tableMapping.ColumnMappings.Add("user_name", "user_name")
+            tableMapping.ColumnMappings.Add("user_contact_number", "user_contact_number")
+            tableMapping.ColumnMappings.Add("user_mobile", "user_mobile")
+            tableMapping.ColumnMappings.Add("user_email", "user_email")
+            tableMapping.ColumnMappings.Add("user_jobtitle", "user_jobtitle")
+            tableMapping.ColumnMappings.Add("user_note", "user_note")
+            tableMapping.ColumnMappings.Add("user_created", "user_created")
+            tableMapping.ColumnMappings.Add("user_changed", "user_changed")
+            tableMapping.ColumnMappings.Add("user_role", "user_role")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `user` WHERE ((`user_id` = @p1) AND (`user_login` = @p2) AND (`user_c"& _ 
+                "ode` = @p3) AND (`user_password` = @p4) AND ((@p5 = 1 AND `temp_password` IS NUL"& _ 
+                "L) OR (`temp_password` = @p6)) AND ((@p7 = 1 AND `force_password_change` IS NULL"& _ 
+                ") OR (`force_password_change` = @p8)) AND (`salt` = @p9) AND (`user_name` = @p10"& _ 
+                ") AND ((@p11 = 1 AND `user_contact_number` IS NULL) OR (`user_contact_number` = "& _ 
+                "@p12)) AND ((@p13 = 1 AND `user_mobile` IS NULL) OR (`user_mobile` = @p14)) AND "& _ 
+                "((@p15 = 1 AND `user_email` IS NULL) OR (`user_email` = @p16)) AND ((@p17 = 1 AN"& _ 
+                "D `user_jobtitle` IS NULL) OR (`user_jobtitle` = @p18)) AND (`user_created` = @p"& _ 
+                "19) AND ((@p20 = 1 AND `user_changed` IS NULL) OR (`user_changed` = @p21)) AND ("& _ 
+                "`user_role` = @p22))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p1"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p4"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p5"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p7"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p11"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p12"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p14"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p15"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p16"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p17"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p18"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p19"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p20"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p21"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p22"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `user` (`user_login`, `user_code`, `user_password`, `temp_password`, "& _ 
+                "`force_password_change`, `salt`, `user_name`, `user_contact_number`, `user_mobil"& _ 
+                "e`, `user_email`, `user_jobtitle`, `user_note`, `user_created`, `user_changed`, "& _ 
+                "`user_role`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p"& _ 
+                "12, @p13, @p14, @p15)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p1"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p4"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p5"
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p7"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p11"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p12"
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.IsNullable = true
+            param.SourceColumn = "user_note"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p14"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p15"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `user` SET `user_login` = @p1, `user_code` = @p2, `user_password` = @p3, `"& _ 
+                "temp_password` = @p4, `force_password_change` = @p5, `salt` = @p6, `user_name` ="& _ 
+                " @p7, `user_contact_number` = @p8, `user_mobile` = @p9, `user_email` = @p10, `us"& _ 
+                "er_jobtitle` = @p11, `user_note` = @p12, `user_created` = @p13, `user_changed` ="& _ 
+                " @p14, `user_role` = @p15 WHERE ((`user_id` = @p16) AND (`user_login` = @p17) AN"& _ 
+                "D (`user_code` = @p18) AND (`user_password` = @p19) AND ((@p20 = 1 AND `temp_pas"& _ 
+                "sword` IS NULL) OR (`temp_password` = @p21)) AND ((@p22 = 1 AND `force_password_"& _ 
+                "change` IS NULL) OR (`force_password_change` = @p23)) AND (`salt` = @p24) AND (`"& _ 
+                "user_name` = @p25) AND ((@p26 = 1 AND `user_contact_number` IS NULL) OR (`user_c"& _ 
+                "ontact_number` = @p27)) AND ((@p28 = 1 AND `user_mobile` IS NULL) OR (`user_mobi"& _ 
+                "le` = @p29)) AND ((@p30 = 1 AND `user_email` IS NULL) OR (`user_email` = @p31)) "& _ 
+                "AND ((@p32 = 1 AND `user_jobtitle` IS NULL) OR (`user_jobtitle` = @p33)) AND (`u"& _ 
+                "ser_created` = @p34) AND ((@p35 = 1 AND `user_changed` IS NULL) OR (`user_change"& _ 
+                "d` = @p36)) AND (`user_role` = @p37))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p1"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p4"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p5"
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p7"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p11"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p12"
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.IsNullable = true
+            param.SourceColumn = "user_note"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p14"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p15"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p16"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p17"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p18"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p19"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p20"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p21"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p22"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p23"
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p24"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p25"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p26"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p27"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p28"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p29"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p30"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p31"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p32"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p33"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p34"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p35"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p36"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p37"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.MyBusiness.My.MySettings.Default.netwyrksConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT `user_id`, `user_login`, `user_code`, `user_password`, `temp_password`, `f"& _ 
+                "orce_password_change`, `salt`, `user_name`, `user_contact_number`, `user_mobile`"& _ 
+                ", `user_email`, `user_jobtitle`, `user_note`, `user_created`, `user_changed`, `u"& _ 
+                "ser_role` FROM `user`"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "DELETE FROM `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @id)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        user_id, user_login, user_code, user_password, temp_password, force"& _ 
+                "_password_change, salt, user_name, user_contact_number, user_mobile, user_email,"& _ 
+                " user_jobtitle, user_note, user_created, user_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  user_role"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @id)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT        user_id, user_login, user_code, user_password, temp_password, force"& _ 
+                "_password_change, salt, user_name, user_contact_number, user_mobile, user_email,"& _ 
+                " user_jobtitle, user_note, user_created, user_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  user_role"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_login = @login)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@login"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "INSERT INTO `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (user_login, user_code, user_passwor"& _ 
+                "d, temp_password, force_password_change, salt, user_name, user_contact_number, u"& _ 
+                "ser_mobile, user_email, user_jobtitle, user_note, user_created, user_role)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALU"& _ 
+                "ES        (@user_login, @user_code, @user_password, @temp_password, @force_passw"& _ 
+                "ord_change, @salt, @user_name, @user_contact_number, @user_mobile, @user_email, "& _ 
+                "@user_jobtitle, @user_note, @user_created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @user_role"& _ 
+                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT        LAST_INSERT_ID()"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_login"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_login"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@temp_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@force_password_change"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@salt"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_contact_number"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 20
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_mobile"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 20
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_email"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 100
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_jobtitle"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 100
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_note"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.Size = 2147483647
+            param.IsNullable = true
+            param.SourceColumn = "user_note"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_created"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_role"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "UPDATE       netwyrks.`user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                user_password = @user_password, "& _ 
+                "user_changed = @date, force_password_change = @force"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @i"& _ 
+                "d)"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(5).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@date"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(5).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@force"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(5).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(6).Connection = Me.Connection
+            Me._commandCollection(6).CommandText = "UPDATE       netwyrks.`user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                temp_password = @temp_password, "& _ 
+                "user_changed = @date, force_password_change = @force"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (user_id = @i"& _ 
+                "d)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@temp_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(6).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@date"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(6).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@force"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(6).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(7).Connection = Me.Connection
+            Me._commandCollection(7).CommandText = "UPDATE       `user`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                user_code = @user_code, user_password = @"& _ 
+                "user_password, temp_password = @temp_password, force_password_change = @force_pa"& _ 
+                "ssword_change, salt = @salt, user_name = @user_name, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
+                "user_contact_number = @user_contact_number, user_mobile = @user_mobile, user_ema"& _ 
+                "il = @user_email, user_jobtitle = @user_jobtitle, user_note = @user_note, user_c"& _ 
+                "hanged = @user_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         user_role = @user_role"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE"& _ 
+                "        (user_id = @id)"
+            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@temp_password"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "temp_password"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@force_password_change"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "force_password_change"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@salt"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "salt"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_contact_number"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 20
+            param.IsNullable = true
+            param.SourceColumn = "user_contact_number"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_mobile"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 20
+            param.IsNullable = true
+            param.SourceColumn = "user_mobile"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_email"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 100
+            param.IsNullable = true
+            param.SourceColumn = "user_email"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_jobtitle"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 100
+            param.IsNullable = true
+            param.SourceColumn = "user_jobtitle"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_note"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.Size = 2147483647
+            param.IsNullable = true
+            param.SourceColumn = "user_note"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_changed"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "user_changed"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@user_role"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "user_role"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(7).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "user_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(7).Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As netwyrksDataSet.userDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As netwyrksDataSet.userDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As netwyrksDataSet.userDataTable = New netwyrksDataSet.userDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillById(ByVal dataTable As netwyrksDataSet.userDataTable, ByVal id As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(id,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByLogin(ByVal dataTable As netwyrksDataSet.userDataTable, ByVal login As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            If (login Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("login")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(login,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As netwyrksDataSet.userDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As netwyrksDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "user")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p2 As String, ByVal p3 As String, ByVal p4 As String, ByVal p6 As String, ByVal p8 As Global.System.Nullable(Of Byte), ByVal p9 As String, ByVal p10 As String, ByVal p12 As String, ByVal p14 As String, ByVal p16 As String, ByVal p18 As String, ByVal p19 As Date, ByVal p21 As Global.System.Nullable(Of Date), ByVal p22 As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Integer)
+            If (p2 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p2")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2,String)
+            End If
+            If (p3 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p3")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(p3,String)
+            End If
+            If (p4 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p4")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(p4,String)
+            End If
+            If (p6 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p8.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(p8.Value,Byte)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            If (p9 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p9")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p10")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            If (p14 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(p14,String)
+            End If
+            If (p16 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(p16,String)
+            End If
+            If (p18 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(p18,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(p19,Date)
+            If (p21.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(p21.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
+            End If
+            If (p22 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p22")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(p22,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As String, ByVal p4 As String, ByVal p5 As Global.System.Nullable(Of Byte), ByVal p6 As String, ByVal p7 As String, ByVal p8 As String, ByVal p9 As String, ByVal p10 As String, ByVal p11 As String, ByVal p12 As String, ByVal p13 As Date, ByVal p14 As Global.System.Nullable(Of Date), ByVal p15 As String) As Integer
+            If (p1 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p1")
+            Else
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
+            End If
+            If (p2 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p2")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
+            End If
+            If (p3 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p3")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,String)
+            End If
+            If (p4 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,String)
+            End If
+            If (p5.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5.Value,Byte)
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (p6 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p6")
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p7")
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(12).Value = CType(p13,Date)
+            If (p14.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(p14.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (p15 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p15")
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(p15,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal p1 As String,  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As String,  _
+                    ByVal p4 As String,  _
+                    ByVal p5 As Global.System.Nullable(Of Byte),  _
+                    ByVal p6 As String,  _
+                    ByVal p7 As String,  _
+                    ByVal p8 As String,  _
+                    ByVal p9 As String,  _
+                    ByVal p10 As String,  _
+                    ByVal p11 As String,  _
+                    ByVal p12 As String,  _
+                    ByVal p13 As Date,  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p15 As String,  _
+                    ByVal p16 As Integer,  _
+                    ByVal p17 As String,  _
+                    ByVal p18 As String,  _
+                    ByVal p19 As String,  _
+                    ByVal p21 As String,  _
+                    ByVal p23 As Global.System.Nullable(Of Byte),  _
+                    ByVal p24 As String,  _
+                    ByVal p25 As String,  _
+                    ByVal p27 As String,  _
+                    ByVal p29 As String,  _
+                    ByVal p31 As String,  _
+                    ByVal p33 As String,  _
+                    ByVal p34 As Date,  _
+                    ByVal p36 As Global.System.Nullable(Of Date),  _
+                    ByVal p37 As String) As Integer
+            If (p1 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p1")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
+            End If
+            If (p2 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p2")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
+            End If
+            If (p3 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p3")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,String)
+            End If
+            If (p4 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,String)
+            End If
+            If (p5.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5.Value,Byte)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (p6 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p6")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,String)
+            End If
+            If (p7 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p7")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,String)
+            End If
+            If (p8 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,String)
+            End If
+            If (p9 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,String)
+            End If
+            If (p10 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,String)
+            End If
+            If (p11 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,String)
+            End If
+            If (p12 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,Date)
+            If (p14.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (p15 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p15")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,Integer)
+            If (p17 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p17")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17,String)
+            End If
+            If (p18 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p18")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18,String)
+            End If
+            If (p19 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p19")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19,String)
+            End If
+            If (p21 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21,String)
+            End If
+            If (p23.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(p23.Value,Byte)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (p24 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p24")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24,String)
+            End If
+            If (p25 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p25")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(p25,String)
+            End If
+            If (p27 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(p27,String)
+            End If
+            If (p29 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(p29,String)
+            End If
+            If (p31 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(p31,String)
+            End If
+            If (p33 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(p33,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(p34,Date)
+            If (p36.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(p36.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+            End If
+            If (p37 Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("p37")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(p37,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteUser(ByVal id As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
+            command.Parameters(0).Value = CType(id,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
+        Public Overloads Overridable Function InsertUser(ByVal user_login As String, ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Object, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_created As Date, ByVal user_role As String) As Object
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
+            If (user_login Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_login")
+            Else
+                command.Parameters(0).Value = CType(user_login,String)
+            End If
+            If (user_code Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_code")
+            Else
+                command.Parameters(1).Value = CType(user_code,String)
+            End If
+            If (user_password Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_password")
+            Else
+                command.Parameters(2).Value = CType(user_password,String)
+            End If
+            If (temp_password Is Nothing) Then
+                command.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(3).Value = CType(temp_password,String)
+            End If
+            If (force_password_change Is Nothing) Then
+                command.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(4).Value = CType(force_password_change,Object)
+            End If
+            If (salt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("salt")
+            Else
+                command.Parameters(5).Value = CType(salt,String)
+            End If
+            If (user_name Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_name")
+            Else
+                command.Parameters(6).Value = CType(user_name,String)
+            End If
+            If (user_contact_number Is Nothing) Then
+                command.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(7).Value = CType(user_contact_number,String)
+            End If
+            If (user_mobile Is Nothing) Then
+                command.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(8).Value = CType(user_mobile,String)
+            End If
+            If (user_email Is Nothing) Then
+                command.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(9).Value = CType(user_email,String)
+            End If
+            If (user_jobtitle Is Nothing) Then
+                command.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(10).Value = CType(user_jobtitle,String)
+            End If
+            If (user_note Is Nothing) Then
+                command.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(11).Value = CType(user_note,String)
+            End If
+            command.Parameters(12).Value = CType(user_created,Date)
+            If (user_role Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_role")
+            Else
+                command.Parameters(13).Value = CType(user_role,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdatePassword(ByVal user_password As String, ByVal _date As Global.System.Nullable(Of Date), ByVal force As Object, ByVal id As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
+            If (user_password Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_password")
+            Else
+                command.Parameters(0).Value = CType(user_password,String)
+            End If
+            If (_date.HasValue = true) Then
+                command.Parameters(1).Value = CType(_date.Value,Date)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            If (force Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(force,Object)
+            End If
+            command.Parameters(3).Value = CType(id,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateTempPassword(ByVal temp_password As String, ByVal _date As Global.System.Nullable(Of Date), ByVal force As Object, ByVal id As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
+            If (temp_password Is Nothing) Then
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(temp_password,String)
+            End If
+            If (_date.HasValue = true) Then
+                command.Parameters(1).Value = CType(_date.Value,Date)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            If (force Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(force,Object)
+            End If
+            command.Parameters(3).Value = CType(id,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateUser(ByVal user_code As String, ByVal user_password As String, ByVal temp_password As String, ByVal force_password_change As Object, ByVal salt As String, ByVal user_name As String, ByVal user_contact_number As String, ByVal user_mobile As String, ByVal user_email As String, ByVal user_jobtitle As String, ByVal user_note As String, ByVal user_changed As Global.System.Nullable(Of Date), ByVal user_role As String, ByVal id As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
+            If (user_code Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_code")
+            Else
+                command.Parameters(0).Value = CType(user_code,String)
+            End If
+            If (user_password Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_password")
+            Else
+                command.Parameters(1).Value = CType(user_password,String)
+            End If
+            If (temp_password Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(temp_password,String)
+            End If
+            If (force_password_change Is Nothing) Then
+                command.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(3).Value = CType(force_password_change,Object)
+            End If
+            If (salt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("salt")
+            Else
+                command.Parameters(4).Value = CType(salt,String)
+            End If
+            If (user_name Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_name")
+            Else
+                command.Parameters(5).Value = CType(user_name,String)
+            End If
+            If (user_contact_number Is Nothing) Then
+                command.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(6).Value = CType(user_contact_number,String)
+            End If
+            If (user_mobile Is Nothing) Then
+                command.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(7).Value = CType(user_mobile,String)
+            End If
+            If (user_email Is Nothing) Then
+                command.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(8).Value = CType(user_email,String)
+            End If
+            If (user_jobtitle Is Nothing) Then
+                command.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(9).Value = CType(user_jobtitle,String)
+            End If
+            If (user_note Is Nothing) Then
+                command.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(10).Value = CType(user_note,String)
+            End If
+            If (user_changed.HasValue = true) Then
+                command.Parameters(11).Value = CType(user_changed.Value,Date)
+            Else
+                command.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (user_role Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("user_role")
+            Else
+                command.Parameters(12).Value = CType(user_role,String)
+            End If
+            command.Parameters(13).Value = CType(id,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -20300,9 +20404,9 @@ Namespace netwyrksDataSetTableAdapters
         
         Private _taskTableAdapter As taskTableAdapter
         
-        Private _userTableAdapter As userTableAdapter
-        
         Private _diaryTableAdapter As diaryTableAdapter
+        
+        Private _userTableAdapter As userTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -20436,12 +20540,12 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property userTableAdapter() As userTableAdapter
+        Public Property diaryTableAdapter() As diaryTableAdapter
             Get
-                Return Me._userTableAdapter
+                Return Me._diaryTableAdapter
             End Get
             Set
-                Me._userTableAdapter = value
+                Me._diaryTableAdapter = value
             End Set
         End Property
         
@@ -20450,12 +20554,12 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property diaryTableAdapter() As diaryTableAdapter
+        Public Property userTableAdapter() As userTableAdapter
             Get
-                Return Me._diaryTableAdapter
+                Return Me._userTableAdapter
             End Get
             Set
-                Me._diaryTableAdapter = value
+                Me._userTableAdapter = value
             End Set
         End Property
         
@@ -20510,13 +20614,13 @@ Namespace netwyrksDataSetTableAdapters
                             AndAlso (Not (Me._taskTableAdapter.Connection) Is Nothing)) Then
                     Return Me._taskTableAdapter.Connection
                 End If
-                If ((Not (Me._userTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._userTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._userTableAdapter.Connection
-                End If
                 If ((Not (Me._diaryTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._diaryTableAdapter.Connection) Is Nothing)) Then
                     Return Me._diaryTableAdapter.Connection
+                End If
+                If ((Not (Me._userTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._userTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._userTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -20555,10 +20659,10 @@ Namespace netwyrksDataSetTableAdapters
                 If (Not (Me._taskTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._userTableAdapter) Is Nothing) Then
+                If (Not (Me._diaryTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._diaryTableAdapter) Is Nothing) Then
+                If (Not (Me._userTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -20923,13 +21027,13 @@ Namespace netwyrksDataSetTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._userTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._userTableAdapter.Connection) = false)) Then
+            If ((Not (Me._diaryTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._diaryTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._diaryTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._diaryTableAdapter.Connection) = false)) Then
+            If ((Not (Me._userTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._userTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -21037,15 +21141,6 @@ Namespace netwyrksDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._taskTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._userTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._userTableAdapter, Me._userTableAdapter.Connection)
-                    Me._userTableAdapter.Connection = CType(workConnection,Global.MySql.Data.MySqlClient.MySqlConnection)
-                    Me._userTableAdapter.Transaction = CType(workTransaction,Global.MySql.Data.MySqlClient.MySqlTransaction)
-                    If Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._userTableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._diaryTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._diaryTableAdapter, Me._diaryTableAdapter.Connection)
                     Me._diaryTableAdapter.Connection = CType(workConnection,Global.MySql.Data.MySqlClient.MySqlConnection)
@@ -21053,6 +21148,15 @@ Namespace netwyrksDataSetTableAdapters
                     If Me._diaryTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._diaryTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._diaryTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._userTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._userTableAdapter, Me._userTableAdapter.Connection)
+                    Me._userTableAdapter.Connection = CType(workConnection,Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._userTableAdapter.Transaction = CType(workTransaction,Global.MySql.Data.MySqlClient.MySqlTransaction)
+                    If Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._userTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._userTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -21147,13 +21251,13 @@ Namespace netwyrksDataSetTableAdapters
                     Me._taskTableAdapter.Connection = CType(revertConnections(Me._taskTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
                     Me._taskTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._userTableAdapter) Is Nothing) Then
-                    Me._userTableAdapter.Connection = CType(revertConnections(Me._userTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
-                    Me._userTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._diaryTableAdapter) Is Nothing) Then
                     Me._diaryTableAdapter.Connection = CType(revertConnections(Me._diaryTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
                     Me._diaryTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._userTableAdapter) Is Nothing) Then
+                    Me._userTableAdapter.Connection = CType(revertConnections(Me._userTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._userTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

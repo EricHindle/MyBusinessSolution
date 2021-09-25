@@ -28,54 +28,63 @@ Public Class FrmUserControl
 
     Private Sub BtnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Const MSGBOX_TITLE As String = "Update Error"
-        Dim userCt As Integer = 0
         Dim hashedUser As String
-        Dim storedHashedPW As String
+        Dim storedHashedPW As String = ""
         Dim salt As String
         If txtUserName.Text.Trim = "" Then
             MsgBox("Name is required", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
             Exit Sub
         End If
 
+        Dim oRow As netwyrksDataSet.userRow = Nothing
         If currentUserId > 0 Then
-            userCt = oTa.FillById(oTable, currentUserId)
+            oRow = GetUserById(currentUserId)
         ElseIf txtUserLogin.TextLength > 0 Then
-            userCt = oTa.FillByLogin(oTable, AuthenticationUtil.hashedUsername(txtUserLogin.Text))
+            oRow = GetUserByLogin(AuthenticationUtil.HashedUsername(txtUserLogin.Text))
         End If
-        If userCt = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
+        If oRow IsNot Nothing Then
             Dim userId As Integer = oRow.user_id
             oUser = UserBuilder.AUserBuilder.StartingWith(oRow).Build
             salt = oRow.salt
-            'update existing
             If txtPasswd1.Text.Trim.Length = 0 Then
-                ' not changing password   
                 storedHashedPW = oRow.user_password
-                Dim changePassword As Integer = If(chkForceChange.Checked, 1, 0)
-                ' update user
-                Dim updCt As Integer = oTa.UpdateUser(txtUsercode.Text.Trim, storedHashedPW, "", chkForceChange.Checked, salt, txtUserName.Text.Trim, txtContactNumber.Text.Trim, txtMobile.Text.Trim, txtEmail.Text.Trim, txtJobTitle.Text.Trim, txtNote.Text.Trim, Now, userId)
-
-                If updCt = 1 Then
-                    AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update, "", txtUserLogin.Text & " - no new password")
-                    LogStatus("User " & txtUserLogin.Text & " details updated", True, TraceEventType.Information)
-                Else
-                    MsgBox("User not updated", MsgBoxStyle.Exclamation, "Error")
-                End If
             Else
                 ' changing password
                 If txtPasswd1.Text = txtPasswd2.Text Then
-                    If txtPasswd1.Text.Trim.Length >= GlobalSettings.getSetting("MinPwdLen") Then
+                    If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSetting("MinPwdLen") Then
                         ' update user
                         storedHashedPW = AuthenticationUtil.GetHashed(salt & txtPasswd1.Text.Trim)
-                        oTa.UpdateUser(txtUsercode.Text.Trim, storedHashedPW, "", chkForceChange.Checked, salt, txtUserName.Text.Trim, txtContactNumber.Text.Trim, txtMobile.Text.Trim, txtEmail.Text.Trim, txtJobTitle.Text.Trim, txtNote.Text.Trim, Now, userId)
-                        AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update, "", txtUserLogin.Text & " - new password")
-                        LogStatus("User " & txtUserLogin.Text & " details updated", True, TraceEventType.Information)
                     Else
-                        MsgBox("Password must be at least " & GlobalSettings.getSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
+                        MsgBox("Password must be at least " & GlobalSettings.GetSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
+
                     End If
                 Else
                     MsgBox("Mis-matched passwords", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
                 End If
+            End If
+
+            'update existing
+
+            Dim _user As User = UserBuilder.AUserBuilder.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
+                    .WithPassword(storedHashedPW) _
+                    .WithForcePasswordChange(chkForceChange.Checked) _
+                    .WithSalt(salt) _
+                    .WithUserName(txtUserName.Text.Trim) _
+                    .WithContactNumber(txtContactNumber.Text.Trim) _
+                    .WithMobile(txtMobile.Text.Trim) _
+                    .WithEmail(txtEmail.Text.Trim) _
+                    .WithJobTitle(txtJobTitle.Text.Trim) _
+                    .WithNote(txtNote.Text.Trim) _
+                    .WithTempPassword("") _
+                    .WithUserId(userId) _
+                    .WithRole(GetAccessType(salt)) _
+                    .Build
+            Dim updCt As Integer = UpdateUser(_user)
+            If updCt = 1 Then
+                AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update, "", txtUserLogin.Text & " - no new password")
+                LogStatus("User " & txtUserLogin.Text & " details updated", True, TraceEventType.Information)
+            Else
+                MsgBox("User not updated", MsgBoxStyle.Exclamation, "Error")
             End If
         Else
             'insert new user
@@ -85,11 +94,24 @@ Public Class FrmUserControl
                         If txtPasswd1.Text.Trim.Length >= GlobalSettings.getSetting("MinPwdLen") Then
                             ' insert user
                             hashedUser = AuthenticationUtil.hashedUsername(txtUserLogin.Text)
-                            salt = AuthenticationUtil.getNewSalt(txtUserLogin.Text)
-                            Dim newUserId As Integer = oTa.InsertUser(hashedUser, txtUsercode.Text.Trim,
-                                                   AuthenticationUtil.GetHashed(salt & txtPasswd1.Text.Trim), "", True,
-                                                   salt,
-                                                   txtUserName.Text.Trim, txtContactNumber.Text.Trim, txtMobile.Text.Trim, txtEmail.Text.Trim, txtJobTitle.Text.Trim, txtNote.Text.Trim, Now)
+                            salt = AuthenticationUtil.GetNewSalt(txtUserLogin.Text)
+                            Dim _user As User = UserBuilder.AUserBuilder.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
+                                                        .WithUserLogin(hashedUser) _
+                                                        .WithPassword(storedHashedPW) _
+                                                        .WithForcePasswordChange(True) _
+                                                        .WithSalt(salt) _
+                                                        .WithUserName(txtUserName.Text.Trim) _
+                                                        .WithContactNumber(txtContactNumber.Text.Trim) _
+                                                        .WithMobile(txtMobile.Text.Trim) _
+                                                        .WithEmail(txtEmail.Text.Trim) _
+                                                        .WithJobTitle(txtJobTitle.Text.Trim) _
+                                                        .WithNote(txtNote.Text.Trim) _
+                                                        .WithRole(GetAccessType(salt)) _
+                                                        .WithTempPassword("") _
+                                                        .WithUserId(-1) _
+                                                        .Build
+                            Dim newUserId As Integer = InsertUser(_user, txtPasswd1.Text.Trim)
+
                             LogStatus("User " & txtUserLogin.Text & " details inserted", True, TraceEventType.Information)
                             AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.create, "", txtUserLogin.Text)
                             txtStatus.Text = "User " & txtUserLogin.Text.Trim() & " added"
@@ -170,8 +192,7 @@ Public Class FrmUserControl
     End Sub
 
     Private Sub UserControl_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        oUserTa.Fill(oUserTable)
-        cbSelect.DataSource = oUserTable
+        cbSelect.DataSource = GetAllUsers()
         cbSelect.DisplayMember = "user_name"
         cbSelect.ValueMember = "user_id"
         isAdmin = True
@@ -198,11 +219,11 @@ Public Class FrmUserControl
             '
             Dim hashedUser As String = AuthenticationUtil.hashedUsername(txtUserLogin.Text)
             Try
-                If oTa.FillByLogin(oTable, hashedUser) > 0 Then
+                Dim oRow As netwyrksDataSet.userRow = GetUserByLogin(hashedUser)
+                If oRow IsNot Nothing Then
                     '
                     ' User already exists
                     '
-                    Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
                     FillForm(oRow)
                     oUser = UserBuilder.AUserBuilder.StartingWith(oRow).Build
                 Else
@@ -233,12 +254,9 @@ Public Class FrmUserControl
         btnUpdate.Enabled = True
 
         ClearValues()
-        Dim storedHashedPW As String
-        Dim salt As String
-        Dim role As String = ""
-
-        storedHashedPW = oRow.user_password
-        salt = oRow.salt
+        Dim storedHashedPW As String = oRow.user_password
+        Dim salt As String = oRow.salt
+        Dim role As String = oRow.user_role
 
         lblExists.Text = "User Exists"
         Select Case role
@@ -281,8 +299,8 @@ Public Class FrmUserControl
     Private Sub CbSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSelect.SelectedIndexChanged
         If cbSelect.SelectedIndex > -1 Then
             Try
-                If oTa.FillById(oTable, cbSelect.SelectedValue) = 1 Then
-                    Dim orow As netwyrksDataSet.userRow = oTable.Rows(0)
+                Dim orow As netwyrksDataSet.userRow = GetUserById(cbSelect.SelectedValue)
+                If orow IsNot Nothing Then
                     FillForm(orow)
                     oUser = UserBuilder.AUserBuilder.StartingWith(orow).Build
                 Else

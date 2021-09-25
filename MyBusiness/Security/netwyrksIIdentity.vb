@@ -53,7 +53,7 @@ Public Class NetwyrksIIdentity
         Dim storedHashedPW As String = ""
         Dim storedHashedTempPW As String = ""
         Dim salt As String = ""
-
+        Dim role As String = "Guest"
         Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         Dim oTable As New netwyrksDataSet.userDataTable
         Try
@@ -71,6 +71,7 @@ Public Class NetwyrksIIdentity
                 storedHashedPW = oRow.user_password
                 storedHashedTempPW = If(oRow.Istemp_passwordNull, Nothing, oRow.temp_password)
                 salt = oRow.salt
+                role = oRow.user_role
                 _userId = oRow.user_id
                 _usercode = oRow.user_code
             End If
@@ -81,7 +82,21 @@ Public Class NetwyrksIIdentity
                 '
                 ' set the user's role
                 '
-                roleValue = ApplicationServices.BuiltInRole.Administrator
+                Select Case Role
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Administrator))
+                        roleValue = ApplicationServices.BuiltInRole.Administrator
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Manager))
+                        roleValue = ApplicationServices.BuiltInRole.PowerUser
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Executive))
+                        roleValue = ApplicationServices.BuiltInRole.User
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Operatr))
+                        roleValue = ApplicationServices.BuiltInRole.AccountOperator
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Guest))
+                        roleValue = ApplicationServices.BuiltInRole.Guest
+                    Case Else
+                        roleValue = Nothing
+                End Select
+
                 rtnVal = True
             End If
         Catch ex As Exception

@@ -22,6 +22,7 @@ Public Class UserBuilder
     Private _mobile As String
     Private _jobTitle As String
     Private _note As String
+    Private _role As String
     Public Shared Function AUserBuilder() As UserBuilder
         Return New UserBuilder
     End Function
@@ -44,15 +45,16 @@ Public Class UserBuilder
                 _userLogin = .user_login
                 _userCode = .user_code
                 _password = .user_password
-                _tempPassword = .temp_password
+                _tempPassword = If(.Istemp_passwordNull, "", .temp_password)
                 _forcePasswordChange = .force_password_change
                 _salt = .salt
                 _userName = .user_name
-                _contactNumber = .user_contact_number
-                _mobile = .user_mobile
-                _email = .user_email
-                _jobTitle = .user_jobtitle
-                _note = .user_note
+                _contactNumber = If(.Isuser_contact_numberNull, "", .user_contact_number)
+                _mobile = If(.Isuser_mobileNull, "", .user_mobile)
+                _email = If(.Isuser_emailNull, "", .user_email)
+                _jobTitle = If(.Isuser_jobtitleNull, "", .user_jobtitle)
+                _note = If(.Isuser_noteNull, "", .user_note)
+                _role = .user_role
             End With
         Else
             StartingWithNothing()
@@ -73,6 +75,7 @@ Public Class UserBuilder
         _email = ""
         _jobTitle = ""
         _note = ""
+        _role = ""
         Return Me
     End Function
     Public Function WithUserId(ByVal puserId As Integer) As UserBuilder
@@ -127,6 +130,10 @@ Public Class UserBuilder
         _note = pNote
         Return Me
     End Function
+    Public Function WithRole(ByVal pRole As String) As UserBuilder
+        _role = pRole
+        Return Me
+    End Function
     Public Function Build() As User
         Return New User(_userId,
                         _userLogin,
@@ -139,6 +146,6 @@ Public Class UserBuilder
                         _contactNumber,
                         _mobile, _email,
                         _jobTitle,
-                        _note)
+                        _note, _role)
     End Function
 End Class

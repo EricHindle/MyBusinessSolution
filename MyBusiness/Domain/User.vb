@@ -18,6 +18,8 @@ Public Class User
     Private _jobtitle As String
     Private _note As String
     Private _userName As String
+    Private _role As String
+
     Public Sub New(ByVal pUserId As Integer,
                    ByVal pUserLogin As String,
                    ByVal pUserCode As String,
@@ -30,7 +32,8 @@ Public Class User
                    ByVal pMobile As String,
                    ByVal pEmail As String,
                    ByVal pJobTitle As String,
-                   ByVal pNote As String)
+                   ByVal pNote As String,
+                   ByVal pRole As String)
         _userId = pUserId
         _user_login = pUserLogin
         _user_code = pUserCode
@@ -44,6 +47,7 @@ Public Class User
         _mobile = pMobile
         _jobtitle = pJobTitle
         _note = pNote
+        _role = pRole
     End Sub
     Public Property User_login() As String
         Get
@@ -147,6 +151,14 @@ Public Class User
         End Get
         Set(ByVal value As Integer)
             _userId = value
+        End Set
+    End Property
+    Public Property UserRole() As String
+        Get
+            Return _role
+        End Get
+        Set(ByVal value As String)
+            _role = value
         End Set
     End Property
 End Class

@@ -84,7 +84,7 @@ Public Class LoginForm
         Return My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.User) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.PowerUser) _
-                    Or My.User.IsInRole(ApplicationServices.BuiltInRole.PrintOperator) _
+                    Or My.User.IsInRole(ApplicationServices.BuiltInRole.AccountOperator) _
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.Guest)
     End Function
     Private Sub LblForgottenPassword_DoubleClick(sender As Object, e As EventArgs) Handles lblForgottenPassword.DoubleClick, lblForgottenPassword.Click

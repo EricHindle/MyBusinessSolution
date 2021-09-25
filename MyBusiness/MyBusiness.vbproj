@@ -142,6 +142,10 @@
     <Compile Include="Domain\EmailBuilder.vb" />
     <Compile Include="Domain\Job.vb" />
     <Compile Include="Domain\JobBuilder.vb" />
+    <Compile Include="Domain\ModDatabase.vb" />
+    <Compile Include="Domain\netwyrksDataSet.vb">
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Product.vb" />
     <Compile Include="Domain\ProductBuilder.vb" />
     <Compile Include="Domain\Reminder.vb" />
