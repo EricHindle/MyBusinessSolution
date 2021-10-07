@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmOptions
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmOptions
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
@@ -152,12 +152,12 @@ Partial Class frmOptions
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(6, 60)
+        Me.TabControl1.Location = New System.Drawing.Point(6, 66)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(488, 465)
+        Me.TabControl1.Size = New System.Drawing.Size(488, 459)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -170,7 +170,7 @@ Partial Class frmOptions
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.TabPage1.Size = New System.Drawing.Size(480, 438)
+        Me.TabPage1.Size = New System.Drawing.Size(480, 432)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General 1"
         '
@@ -305,7 +305,7 @@ Partial Class frmOptions
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.TabPage5.Size = New System.Drawing.Size(480, 438)
+        Me.TabPage5.Size = New System.Drawing.Size(480, 432)
         Me.TabPage5.TabIndex = 6
         Me.TabPage5.Text = "Invoice"
         '
@@ -548,7 +548,7 @@ Partial Class frmOptions
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.TabPage2.Size = New System.Drawing.Size(480, 438)
+        Me.TabPage2.Size = New System.Drawing.Size(480, 432)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Folders"
         '
@@ -703,15 +703,16 @@ Partial Class frmOptions
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(480, 438)
+        Me.TabPage3.Size = New System.Drawing.Size(480, 432)
         Me.TabPage3.TabIndex = 4
         Me.TabPage3.Text = "SpellCheck"
         '
         'txtSpellTest
         '
         Me.txtSpellTest.Location = New System.Drawing.Point(192, 16)
+        Me.txtSpellTest.Multiline = True
         Me.txtSpellTest.Name = "txtSpellTest"
-        Me.txtSpellTest.Size = New System.Drawing.Size(270, 22)
+        Me.txtSpellTest.Size = New System.Drawing.Size(270, 50)
         Me.txtSpellTest.TabIndex = 6
         Me.txtSpellTest.Text = "testt the spel chekker"
         '
@@ -719,7 +720,7 @@ Partial Class frmOptions
         '
         Me.Label22.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(12, 409)
+        Me.Label22.Location = New System.Drawing.Point(12, 403)
         Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(450, 14)
@@ -757,11 +758,11 @@ Partial Class frmOptions
         Me.grpSplChk.Controls.Add(Me.cbSplchkAdd)
         Me.grpSplChk.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSplChk.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.grpSplChk.Location = New System.Drawing.Point(1, 46)
+        Me.grpSplChk.Location = New System.Drawing.Point(1, 72)
         Me.grpSplChk.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.grpSplChk.Name = "grpSplChk"
         Me.grpSplChk.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.grpSplChk.Size = New System.Drawing.Size(470, 347)
+        Me.grpSplChk.Size = New System.Drawing.Size(470, 321)
         Me.grpSplChk.TabIndex = 3
         Me.grpSplChk.TabStop = False
         '

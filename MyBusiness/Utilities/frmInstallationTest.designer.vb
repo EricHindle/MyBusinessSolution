@@ -90,7 +90,7 @@ Partial Class FrmInstallationTest
         Me.PictureBox1.Image = Global.MyBusiness.My.Resources.Resources.MyBusinessLogo
         Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(42, 42)
+        Me.PictureBox1.Size = New System.Drawing.Size(48, 48)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 21
         Me.PictureBox1.TabStop = False

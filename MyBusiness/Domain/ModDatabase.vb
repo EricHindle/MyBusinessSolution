@@ -35,8 +35,9 @@
                            _user.JobTitle, _user.Note, Now, _user.UserRole, _user.UserId)
     End Function
     Public Function GetAllUsers() As netwyrksDataSet.userDataTable
-        oUserTa.Fill(oUserTable)
-        Return oUserTable
+        Dim oNewTable As New netwyrksDataSet.userDataTable
+        oUserTa.Fill(oNewTable)
+        Return oNewTable
     End Function
 #End Region
 End Module

@@ -295,7 +295,8 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Red")>  _
         Public Property splchkMistakeColor() As Global.System.Drawing.Color
             Get
                 Return CType(Me("splchkMistakeColor"),Global.System.Drawing.Color)
@@ -306,7 +307,8 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Blue")>  _
         Public Property splchkIgnoreColor() As Global.System.Drawing.Color
             Get
                 Return CType(Me("splchkIgnoreColor"),Global.System.Drawing.Color)
@@ -317,7 +319,8 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Green")>  _
         Public Property splchkCaseErrorColor() As Global.System.Drawing.Color
             Get
                 Return CType(Me("splchkCaseErrorColor"),Global.System.Drawing.Color)

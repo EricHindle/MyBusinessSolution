@@ -48,9 +48,9 @@ Partial Class frmInfoSplash
         Me.lblMessage.BackColor = System.Drawing.Color.Transparent
         Me.lblMessage.Font = New System.Drawing.Font("Papyrus", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMessage.ForeColor = System.Drawing.Color.Black
-        Me.lblMessage.Location = New System.Drawing.Point(31, 2)
+        Me.lblMessage.Location = New System.Drawing.Point(66, 7)
         Me.lblMessage.Name = "lblMessage"
-        Me.lblMessage.Size = New System.Drawing.Size(424, 57)
+        Me.lblMessage.Size = New System.Drawing.Size(365, 48)
         Me.lblMessage.TabIndex = 1
         Me.lblMessage.Text = "Message"
         Me.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -63,7 +63,7 @@ Partial Class frmInfoSplash
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(439, 53)
+        Me.ClientSize = New System.Drawing.Size(435, 59)
         Me.ControlBox = False
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblMessage)

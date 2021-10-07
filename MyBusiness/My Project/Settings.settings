@@ -63,13 +63,13 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="splchkMistakeColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Red</Value>
     </Setting>
     <Setting Name="splchkIgnoreColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Blue</Value>
     </Setting>
     <Setting Name="splchkCaseErrorColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Green</Value>
     </Setting>
     <Setting Name="DataFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

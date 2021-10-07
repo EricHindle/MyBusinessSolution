@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 
-Public Class frmSupplier
+Public Class FrmSupplier
 #Region "variables"
 
     Private ReadOnly oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter

@@ -69,7 +69,7 @@ Partial Class frmProduct
         Me.PictureBox1.Location = New System.Drawing.Point(14, 15)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(48, 51)
+        Me.PictureBox1.Size = New System.Drawing.Size(42, 42)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 69
         Me.PictureBox1.TabStop = False

@@ -12,7 +12,7 @@ Imports MyBusiness.NetwyrksErrorCodes
 ''' <remarks>Global Settings are settings which must be the same for all system users.
 ''' The Keys for the settings are hardcoded so the records must not be deleted from the table.
 ''' New setting records are not needed unless the code changes, so they cannot be created here.</remarks>
-Public Class frmGlobalSettings
+Public Class FrmGlobalSettings
 #Region "Constants"
     Private Const FORM_NAME As String = "Global Settings"
 #End Region
@@ -69,7 +69,7 @@ Public Class frmGlobalSettings
         If cbSelect.SelectedIndex > -1 Then
             Dim recordId As String = cbSelect.SelectedValue
 
-            If GlobalSettings.setSetting(recordId, cbType.SelectedItem, txtValue.Text) Then
+            If GlobalSettings.SetSetting(recordId, cbType.SelectedItem, txtValue.Text) Then
                 LogStatus(RECORD_TYPE.ToString() & " " & recordId & " updated", True)
             Else
                 LogStatus(RECORD_TYPE.ToString() & " " & recordId & " NOT updated", True, TraceEventType.Warning)

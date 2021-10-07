@@ -482,7 +482,7 @@ Partial Class FrmUserControl
         Me.txtStatus.Size = New System.Drawing.Size(20, 19)
         Me.txtStatus.Text = "   "
         '
-        'frmUserControl
+        'FrmUserControl
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -509,7 +509,7 @@ Partial Class FrmUserControl
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmUserControl"
+        Me.Name = "FrmUserControl"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
