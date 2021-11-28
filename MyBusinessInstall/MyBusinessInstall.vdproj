@@ -87,12 +87,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_122D6CE04B3740E7BAAB5CAB950DD346"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_15340CCE05CA69B042D294369D914F8D"
         "OwnerKey" = "8:_2030D1783B1F487BA506888E33CCBD7B"
         "MsmSig" = "8:_UNDEFINED"
@@ -233,12 +227,6 @@
         {
         "MsmKey" = "8:_39E007DCBEAF71FC1EC03E5A46E85765"
         "OwnerKey" = "8:_2030D1783B1F487BA506888E33CCBD7B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3B4C0FB5A2A443368854D6E609909037"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -389,6 +377,12 @@
         {
         "MsmKey" = "8:_67B30CFBA6C197E9247291DA768B6E36"
         "OwnerKey" = "8:_A1E73529841A9D5E6D8ED4602D5EC148"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6865999A079643D6B0C03D9E04CE44A1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -849,12 +843,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DE3BA0EAAFD84417B1FA79649A425C2D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DF83E1DF9871B2F6684BA30621724C5E"
         "OwnerKey" = "8:_2030D1783B1F487BA506888E33CCBD7B"
         "MsmSig" = "8:_UNDEFINED"
@@ -958,6 +946,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B9C86CFE26FFE5F3CB07FDBCB5385516"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_069A4517A1DFE0E334EBC80C8A4CF228"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -965,12 +959,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_514DE5D1B10852391F1AD79F6AA271D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B9C86CFE26FFE5F3CB07FDBCB5385516"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1909,7 +1897,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:i00SpellCheck, Version=1.0.0.1763, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:i00SpellCheck, Version=1.0.0.35754, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_069A4517A1DFE0E334EBC80C8A4CF228"
@@ -2151,26 +2139,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_122D6CE04B3740E7BAAB5CAB950DD346"
-            {
-            "SourcePath" = "8:..\\..\\i00SpellCheck\\syn.syn"
-            "TargetName" = "8:syn.syn"
-            "Tag" = "8:"
-            "Folder" = "8:_94C8AF4FEAB74C7D95897153720B347A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_15340CCE05CA69B042D294369D914F8D"
@@ -2844,26 +2812,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B4C0FB5A2A443368854D6E609909037"
-            {
-            "SourcePath" = "8:..\\..\\i00SpellCheck\\dic.dic"
-            "TargetName" = "8:dic.dic"
-            "Tag" = "8:"
-            "Folder" = "8:_94C8AF4FEAB74C7D95897153720B347A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3BDC4D82041FADB16295D6CB134936BD"
             {
             "AssemblyRegister" = "3:1"
@@ -3513,6 +3461,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6865999A079643D6B0C03D9E04CE44A1"
+            {
+            "SourcePath" = "8:..\\..\\i00SpellCheck\\dic.dic"
+            "TargetName" = "8:dic.dic"
+            "Tag" = "8:"
+            "Folder" = "8:_94C8AF4FEAB74C7D95897153720B347A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6BB56DB2D62528EBB950E85E79FB9D2F"
@@ -5435,26 +5403,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE3BA0EAAFD84417B1FA79649A425C2D"
-            {
-            "SourcePath" = "8:..\\..\\i00SpellCheck\\def.def"
-            "TargetName" = "8:def.def"
-            "Tag" = "8:"
-            "Folder" = "8:_94C8AF4FEAB74C7D95897153720B347A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DF83E1DF9871B2F6684BA30621724C5E"

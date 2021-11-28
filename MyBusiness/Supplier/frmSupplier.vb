@@ -44,6 +44,7 @@ Public Class FrmSupplier
             _currentSupplier = SupplierBuilder.ASupplierBuilder.StartingWith(_supplierId)
             FillSupplierDetails()
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbSuppNotes})
     End Sub
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         oSuppTa.Dispose()

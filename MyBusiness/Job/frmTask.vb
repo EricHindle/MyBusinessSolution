@@ -69,6 +69,7 @@ Public Class FrmTask
             NewTask()
             _taskId = -1
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbDescription})
         isLoading = False
     End Sub
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click

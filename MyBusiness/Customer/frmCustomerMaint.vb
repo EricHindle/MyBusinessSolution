@@ -44,6 +44,7 @@ Public Class FrmCustomerMaint
             _currentCustomer = CustomerBuilder.ACustomer.StartingWith(_customerId)
             FillCustomerDetails()
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbCustNotes})
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

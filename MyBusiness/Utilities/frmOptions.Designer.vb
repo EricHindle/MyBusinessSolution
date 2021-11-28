@@ -712,7 +712,7 @@ Partial Class frmOptions
         Me.txtSpellTest.Location = New System.Drawing.Point(192, 16)
         Me.txtSpellTest.Multiline = True
         Me.txtSpellTest.Name = "txtSpellTest"
-        Me.txtSpellTest.Size = New System.Drawing.Size(270, 50)
+        Me.txtSpellTest.Size = New System.Drawing.Size(270, 22)
         Me.txtSpellTest.TabIndex = 6
         Me.txtSpellTest.Text = "testt the spel chekker"
         '
@@ -758,7 +758,7 @@ Partial Class frmOptions
         Me.grpSplChk.Controls.Add(Me.cbSplchkAdd)
         Me.grpSplChk.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSplChk.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.grpSplChk.Location = New System.Drawing.Point(1, 72)
+        Me.grpSplChk.Location = New System.Drawing.Point(2, 56)
         Me.grpSplChk.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.grpSplChk.Name = "grpSplChk"
         Me.grpSplChk.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)

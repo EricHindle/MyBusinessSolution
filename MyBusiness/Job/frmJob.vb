@@ -65,6 +65,7 @@ Public Class FrmJob
             NewJob()
             _currentJobId = -1
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click

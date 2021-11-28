@@ -88,7 +88,7 @@ Public Class FrmDiary
         ClearForm()
         isLoading = False
         FillDiaryTable()
-        SpellCheckUtil.EnableSpellChecking(New RichTextBox() {rtbBody})
+        SpellCheckUtil.EnableSpellChecking({rtbBody, txtSubject})
     End Sub
     ''' <summary>
     ''' 

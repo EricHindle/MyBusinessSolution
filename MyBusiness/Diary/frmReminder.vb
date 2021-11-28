@@ -67,8 +67,7 @@ Public Class FrmReminder
         'lblName.Text = AuthenticationUtil.getUserName(userId)
         lblName.Text = currentUser.UserName
         ClearForm()
-        txtSubject.EnableSpellCheck
-        rtbBody.EnableSpellCheck
+        SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
         If _reminder IsNot Nothing Then
             BuildReferences()
         End If
