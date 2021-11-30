@@ -7,6 +7,7 @@
 Imports MyBusiness.NetwyrksErrorCodes
 Imports System.Security.Cryptography
 Imports i00SpellCheck
+Imports System.Linq
 ''' <summary>
 ''' Functions used in authenticating users
 ''' i.e. deciding whether they are who they say they are
@@ -315,7 +316,7 @@ Public Class AuthenticationUtil
     End Function
 
     Public Shared Function GenerateWordyPassword(Optional ByVal includeSpecialChar As Boolean = True) As String
-        Dim AllWords As List(Of String)
+        Dim AllWords As New List(Of String)
         Dim rng As Random = GetRandomNumberGenerator()
         Dim charIndex As Integer = rng.Next(0, PASSWORD_CHARS_SPECIAL.Length - 1)
         Dim specChar As String = If(includeSpecialChar, PASSWORD_CHARS_SPECIAL(charIndex), "")
