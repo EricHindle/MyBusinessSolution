@@ -315,6 +315,8 @@ Partial Class FrmCustomerMaint
         'ChkCompleted
         '
         Me.ChkCompleted.AutoSize = True
+        Me.ChkCompleted.Checked = True
+        Me.ChkCompleted.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ChkCompleted.Location = New System.Drawing.Point(6, 483)
         Me.ChkCompleted.Name = "ChkCompleted"
         Me.ChkCompleted.Size = New System.Drawing.Size(145, 18)
@@ -345,6 +347,7 @@ Partial Class FrmCustomerMaint
         '
         Me.DgvJobs.AllowUserToAddRows = False
         Me.DgvJobs.AllowUserToDeleteRows = False
+        Me.DgvJobs.AllowUserToResizeRows = False
         Me.DgvJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)

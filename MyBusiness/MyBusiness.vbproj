@@ -157,10 +157,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Invoice\InvoicePrinter.vb" />
-    <Compile Include="Job\FrmJob.designer.vb">
-      <DependentUpon>FrmJob.vb</DependentUpon>
+    <Compile Include="Job\FrmJobMaint.Designer.vb">
+      <DependentUpon>FrmJobMaint.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\FrmJob.vb">
+    <Compile Include="Job\FrmJobMaint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Job\FrmJobProducts.designer.vb">
@@ -348,9 +348,8 @@
       <DependentUpon>DlgViewInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmJob.resx">
-      <DependentUpon>FrmJob.vb</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Job\FrmJobMaint.resx">
+      <DependentUpon>FrmJobMaint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmJobProducts.resx">
       <DependentUpon>FrmJobProducts.vb</DependentUpon>

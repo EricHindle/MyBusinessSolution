@@ -22,7 +22,7 @@ Partial Class FrmJobProducts
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmJobProducts))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmJobProducts))
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblJobName = New System.Windows.Forms.Label()
@@ -131,6 +131,7 @@ Partial Class FrmJobProducts
         '
         Me.dgvJobProducts.AllowUserToAddRows = False
         Me.dgvJobProducts.AllowUserToDeleteRows = False
+        Me.dgvJobProducts.AllowUserToResizeRows = False
         Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.Gainsboro
         Me.dgvJobProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvJobProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.jpProdId, Me.jpSupp, Me.jpProduct, Me.jpQty, Me.jpTaxable, Me.jpRate})
@@ -201,6 +202,7 @@ Partial Class FrmJobProducts
         '
         Me.dgvSupplier.AllowUserToAddRows = False
         Me.dgvSupplier.AllowUserToDeleteRows = False
+        Me.dgvSupplier.AllowUserToResizeRows = False
         Me.dgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSupplier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName})
         Me.dgvSupplier.Location = New System.Drawing.Point(14, 402)
@@ -230,6 +232,7 @@ Partial Class FrmJobProducts
         '
         Me.dgvProducts.AllowUserToAddRows = False
         Me.dgvProducts.AllowUserToDeleteRows = False
+        Me.dgvProducts.AllowUserToResizeRows = False
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate})
         Me.dgvProducts.Location = New System.Drawing.Point(273, 402)
@@ -342,7 +345,7 @@ Partial Class FrmJobProducts
         Me.Label2.TabIndex = 85
         Me.Label2.Text = "Rate %"
         '
-        'frmJobProducts
+        'FrmJobProducts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -368,7 +371,7 @@ Partial Class FrmJobProducts
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmJobProducts"
+        Me.Name = "FrmJobProducts"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).EndInit()

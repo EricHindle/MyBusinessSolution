@@ -104,7 +104,7 @@ Public Class FrmMain
         If dgvJobs.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvJobs.SelectedRows(0)
             Dim _jobId As Integer = dRow.Cells(Me.jobId.Name).Value
-            Using _jobForm As New FrmJob
+            Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = JobBuilder.AJobBuilder.StartingWith(_jobId)
                 _jobForm.CustomerId = _jobForm.TheJob.Build.JobCustomerId
                 _jobForm.ShowDialog()
@@ -181,7 +181,7 @@ Public Class FrmMain
 
     End Sub
     Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
-        Using _jobForm As New FrmJob
+        Using _jobForm As New FrmJobMaint
             _jobForm.CustomerId = -1
             _jobForm.ShowDialog()
         End Using

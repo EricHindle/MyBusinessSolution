@@ -188,6 +188,7 @@ Partial Class FrmMain
         '
         Me.dgvCust.AllowUserToAddRows = False
         Me.dgvCust.AllowUserToDeleteRows = False
+        Me.dgvCust.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -283,6 +284,7 @@ Partial Class FrmMain
         '
         Me.dgvSupp.AllowUserToAddRows = False
         Me.dgvSupp.AllowUserToDeleteRows = False
+        Me.dgvSupp.AllowUserToResizeRows = False
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -379,6 +381,7 @@ Partial Class FrmMain
         '
         Me.dgvJobs.AllowUserToAddRows = False
         Me.dgvJobs.AllowUserToDeleteRows = False
+        Me.dgvJobs.AllowUserToResizeRows = False
         Me.dgvJobs.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvJobs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -603,10 +606,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.TidyFilesToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -697,7 +700,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem1.Text = " "
         '
         'TidyFilesToolStripMenuItem
@@ -746,7 +749,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem2.Text = " "
         '
         'CloseToolStripMenuItem

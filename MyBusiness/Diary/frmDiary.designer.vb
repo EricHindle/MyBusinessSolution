@@ -193,6 +193,7 @@ Partial Class FrmDiary
         '
         Me.dgvDiary.AllowUserToAddRows = False
         Me.dgvDiary.AllowUserToDeleteRows = False
+        Me.dgvDiary.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -453,7 +454,7 @@ Partial Class FrmDiary
         Me.lblDate.TabIndex = 37
         Me.lblDate.Text = "dd MM yyyy"
         '
-        'frmDiary
+        'FrmDiary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -483,7 +484,7 @@ Partial Class FrmDiary
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MinimumSize = New System.Drawing.Size(730, 500)
-        Me.Name = "frmDiary"
+        Me.Name = "FrmDiary"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.StatusStrip1.ResumeLayout(False)
