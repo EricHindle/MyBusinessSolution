@@ -59,8 +59,8 @@
       <HintPath>..\..\InstallationFiles\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.0.24.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.24\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -78,7 +78,9 @@
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
@@ -94,7 +96,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\Ubiety.Dns.Core.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.24\lib\net48\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -102,8 +104,8 @@
     <Reference Include="WindowsFormsIntegration">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\ZstdNet.dll</HintPath>
+    <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.24\lib\net48\Zstandard.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +150,24 @@
     <Compile Include="Domain\Builders\CustomerBuilder.vb" />
     <Compile Include="Domain\Email.vb" />
     <Compile Include="Domain\Builders\EmailBuilder.vb" />
+    <Compile Include="Domain\FrmBackup.designer.vb">
+      <DependentUpon>FrmBackup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FrmBackup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Domain\FrmRestore.designer.vb">
+      <DependentUpon>FrmRestore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FrmRestore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Domain\Job.vb" />
     <Compile Include="Domain\Builders\JobBuilder.vb" />
     <Compile Include="Domain\ModDatabase.vb" />
+    <Compile Include="Domain\netwyrksDataSet.vb">
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Product.vb" />
     <Compile Include="Domain\Builders\ProductBuilder.vb" />
     <Compile Include="Domain\Reminder.vb" />
@@ -359,6 +376,12 @@
     <EmbeddedResource Include="Diary\FrmReminder.resx">
       <DependentUpon>FrmReminder.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\FrmBackup.resx">
+      <DependentUpon>FrmBackup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\FrmRestore.resx">
+      <DependentUpon>FrmRestore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\DlgViewInvoice.resx">
       <DependentUpon>DlgViewInvoice.vb</DependentUpon>

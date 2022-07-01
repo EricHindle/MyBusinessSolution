@@ -133,6 +133,14 @@ VALUES        (@audit_user_id, @audit_record_type, @audit_record_id, @audit_date
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateAudit" Modifier="Public" Name="TruncateAudit" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TruncateAudit">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE audit;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="configurationTableAdapter" GeneratorDataComponentClassName="configurationTableAdapter" Name="configuration" UserDataComponentName="configurationTableAdapter">
@@ -212,6 +220,14 @@ VALUES        (@configuration_id, @configuration_type, @configuration_value)</Co
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateConfiguration" Modifier="Public" Name="TruncateConfiguration" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TruncateConfiguration">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE configuration;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateSetting" Modifier="Public" Name="UpdateSetting" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateSetting">
                 <UpdateCommand>
@@ -397,6 +413,14 @@ VALUES        (@customer_name, @customer_address_1, @customer_address_2, @custom
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateCustomers" Modifier="Public" Name="TruncateCustomers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TruncateCustomers">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE customer;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateCustomer" Modifier="Public" Name="UpdateCustomer" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateCustomer">
                 <UpdateCommand>
@@ -598,6 +622,14 @@ VALUES        (@job_name, @job_description, @job_completed, @job_created, @job_c
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateJobs" Modifier="Public" Name="TruncateJobs" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="TruncateJobs">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE job;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateJob" Modifier="Public" Name="UpdateJob" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateJob">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -763,6 +795,14 @@ VALUES        (@jp_quantity, @jp_created, @jp_product_id, @jp_job_id, @jp_taxabl
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateJobProduct" Modifier="Public" Name="TruncateJobProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="TruncateJobProduct">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE job_product;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateJobProduct" Modifier="Public" Name="UpdateJobProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateJobProduct">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -924,6 +964,14 @@ VALUES        (@product_name, @product_description, @product_cost, @product_pric
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateProducts" Modifier="Public" Name="TruncateProducts" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="TruncateProducts">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE product;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateProduct" Modifier="Public" Name="UpdateProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateProduct">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -950,100 +998,13 @@ WHERE        (product_id = @id)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="supplierTableAdapter" GeneratorDataComponentClassName="supplierTableAdapter" Name="supplier" UserDataComponentName="supplierTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.supplier" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <DeleteCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM `supplier` WHERE ((`supplier_id` = @Original_supplier_id) AND (`supplier_name` = @Original_supplier_name) AND ((@IsNull_supplier_address_1 = 1 AND `supplier_address_1` IS NULL) OR (`supplier_address_1` = @Original_supplier_address_1)) AND ((@IsNull_supplier_address_2 = 1 AND `supplier_address_2` IS NULL) OR (`supplier_address_2` = @Original_supplier_address_2)) AND ((@IsNull_supplier_address_3 = 1 AND `supplier_address_3` IS NULL) OR (`supplier_address_3` = @Original_supplier_address_3)) AND ((@IsNull_supplier_address_4 = 1 AND `supplier_address_4` IS NULL) OR (`supplier_address_4` = @Original_supplier_address_4)) AND ((@IsNull_supplier_postcode = 1 AND `supplier_postcode` IS NULL) OR (`supplier_postcode` = @Original_supplier_postcode)) AND ((@IsNull_supplier_telephone = 1 AND `supplier_telephone` IS NULL) OR (`supplier_telephone` = @Original_supplier_telephone)) AND ((@IsNull_supplier_email = 1 AND `supplier_email` IS NULL) OR (`supplier_email` = @Original_supplier_email)) AND ((@IsNull_supplier_discount_percent = 1 AND `supplier_discount_percent` IS NULL) OR (`supplier_discount_percent` = @Original_supplier_discount_percent)) AND (`supplier_created` = @Original_supplier_created) AND ((@IsNull_supplier_changed = 1 AND `supplier_changed` IS NULL) OR (`supplier_changed` = @Original_supplier_changed)))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_supplier_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_name" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_name" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_postcode" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_postcode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_telephone" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_telephone" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_email" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_email" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_discount_percent" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_supplier_discount_percent" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_supplier_created" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_created" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_changed" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_supplier_changed" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </DeleteCommand>
-                <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO `supplier` (`supplier_name`, `supplier_address_1`, `supplier_address_2`, `supplier_address_3`, `supplier_address_4`, `supplier_postcode`, `supplier_telephone`, `supplier_email`, `supplier_discount_percent`, `supplier_notes`, `supplier_created`, `supplier_changed`) VALUES (@supplier_name, @supplier_address_1, @supplier_address_2, @supplier_address_3, @supplier_address_4, @supplier_postcode, @supplier_telephone, @supplier_email, @supplier_discount_percent, @supplier_notes, @supplier_created, @supplier_changed)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_name" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_name" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_postcode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_telephone" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_email" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@supplier_discount_percent" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@supplier_notes" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="supplier_notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@supplier_created" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_created" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@supplier_changed" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="false" SourceVersion="Current" />
-                    </Parameters>
-                  </DbCommand>
-                </InsertCommand>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.supplier" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT `supplier_id`, `supplier_name`, `supplier_address_1`, `supplier_address_2`, `supplier_address_3`, `supplier_address_4`, `supplier_postcode`, `supplier_telephone`, `supplier_email`, `supplier_discount_percent`, `supplier_notes`, `supplier_created`, `supplier_changed` FROM `supplier`</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE `supplier` SET `supplier_name` = @supplier_name, `supplier_address_1` = @supplier_address_1, `supplier_address_2` = @supplier_address_2, `supplier_address_3` = @supplier_address_3, `supplier_address_4` = @supplier_address_4, `supplier_postcode` = @supplier_postcode, `supplier_telephone` = @supplier_telephone, `supplier_email` = @supplier_email, `supplier_discount_percent` = @supplier_discount_percent, `supplier_notes` = @supplier_notes, `supplier_created` = @supplier_created, `supplier_changed` = @supplier_changed WHERE ((`supplier_id` = @Original_supplier_id) AND (`supplier_name` = @Original_supplier_name) AND ((@IsNull_supplier_address_1 = 1 AND `supplier_address_1` IS NULL) OR (`supplier_address_1` = @Original_supplier_address_1)) AND ((@IsNull_supplier_address_2 = 1 AND `supplier_address_2` IS NULL) OR (`supplier_address_2` = @Original_supplier_address_2)) AND ((@IsNull_supplier_address_3 = 1 AND `supplier_address_3` IS NULL) OR (`supplier_address_3` = @Original_supplier_address_3)) AND ((@IsNull_supplier_address_4 = 1 AND `supplier_address_4` IS NULL) OR (`supplier_address_4` = @Original_supplier_address_4)) AND ((@IsNull_supplier_postcode = 1 AND `supplier_postcode` IS NULL) OR (`supplier_postcode` = @Original_supplier_postcode)) AND ((@IsNull_supplier_telephone = 1 AND `supplier_telephone` IS NULL) OR (`supplier_telephone` = @Original_supplier_telephone)) AND ((@IsNull_supplier_email = 1 AND `supplier_email` IS NULL) OR (`supplier_email` = @Original_supplier_email)) AND ((@IsNull_supplier_discount_percent = 1 AND `supplier_discount_percent` IS NULL) OR (`supplier_discount_percent` = @Original_supplier_discount_percent)) AND (`supplier_created` = @Original_supplier_created) AND ((@IsNull_supplier_changed = 1 AND `supplier_changed` IS NULL) OR (`supplier_changed` = @Original_supplier_changed)))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_name" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_name" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_address_4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_postcode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_telephone" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@supplier_email" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@supplier_discount_percent" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@supplier_notes" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="supplier_notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@supplier_created" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_created" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@supplier_changed" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_supplier_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_name" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_name" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_1" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_2" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_3" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_address_4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_address_4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_address_4" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_postcode" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_postcode" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_postcode" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_telephone" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_telephone" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_telephone" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_email" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_supplier_email" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="supplier_email" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_discount_percent" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_supplier_discount_percent" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="supplier_discount_percent" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_supplier_created" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_created" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_supplier_changed" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_supplier_changed" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="supplier_changed" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </UpdateCommand>
               </DbSource>
             </MainSource>
             <Mappings>
@@ -1110,6 +1071,14 @@ VALUES        (@supplier_name, @supplier_address_1, @supplier_address_2, @suppli
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateSuppliers" Modifier="Public" Name="TruncateSuppliers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TruncateSuppliers">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE supplier</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateSupplier" Modifier="Public" Name="UpdateSupplier" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateSupplier">
                 <UpdateCommand>
@@ -1300,6 +1269,14 @@ VALUES        (@task_name, @task_description, @task_cost, @task_time, @task_star
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTasks" Modifier="Public" Name="TruncateTasks" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="TruncateTasks">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE task;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateTask" Modifier="Public" Name="UpdateTask" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateTask">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -1329,74 +1306,13 @@ WHERE        (task_id = @id)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="diaryTableAdapter" GeneratorDataComponentClassName="diaryTableAdapter" Name="diary" UserDataComponentName="diaryTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.diary" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <DeleteCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM `diary` WHERE ((`diary_id` = @Original_diary_id) AND (`diary_date` = @Original_diary_date) AND (`diary_user_id` = @Original_diary_user_id) AND ((@IsNull_diary_job = 1 AND `diary_job` IS NULL) OR (`diary_job` = @Original_diary_job)) AND ((@IsNull_diary_cust_id = 1 AND `diary_cust_id` IS NULL) OR (`diary_cust_id` = @Original_diary_cust_id)) AND (`diary_callback` = @Original_diary_callback) AND (`diary_closed` = @Original_diary_closed) AND (`diary_reminder` = @Original_diary_reminder) AND (`diary_subject` = @Original_diary_subject))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_diary_date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="diary_date" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_user_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_user_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_callback" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_callback" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_closed" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_closed" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_reminder" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_reminder" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_diary_subject" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="diary_subject" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </DeleteCommand>
-                <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO `diary` (`diary_date`, `diary_user_id`, `diary_job`, `diary_cust_id`, `diary_body`, `diary_callback`, `diary_closed`, `diary_reminder`, `diary_subject`) VALUES (@diary_date, @diary_user_id, @diary_job, @diary_cust_id, @diary_body, @diary_callback, @diary_closed, @diary_reminder, @diary_subject)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@diary_date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="diary_date" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_user_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_user_id" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@diary_body" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="diary_body" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_callback" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_callback" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_closed" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_closed" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_reminder" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_reminder" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@diary_subject" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="diary_subject" SourceColumnNullMapping="false" SourceVersion="Current" />
-                    </Parameters>
-                  </DbCommand>
-                </InsertCommand>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.diary" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT diary_id, diary_date, diary_user_id, diary_job, diary_cust_id, diary_body, diary_callback, diary_closed, diary_reminder, diary_subject FROM diary ORDER BY diary_date</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE `diary` SET `diary_date` = @diary_date, `diary_user_id` = @diary_user_id, `diary_job` = @diary_job, `diary_cust_id` = @diary_cust_id, `diary_body` = @diary_body, `diary_callback` = @diary_callback, `diary_closed` = @diary_closed, `diary_reminder` = @diary_reminder, `diary_subject` = @diary_subject WHERE ((`diary_id` = @Original_diary_id) AND (`diary_date` = @Original_diary_date) AND (`diary_user_id` = @Original_diary_user_id) AND ((@IsNull_diary_job = 1 AND `diary_job` IS NULL) OR (`diary_job` = @Original_diary_job)) AND ((@IsNull_diary_cust_id = 1 AND `diary_cust_id` IS NULL) OR (`diary_cust_id` = @Original_diary_cust_id)) AND (`diary_callback` = @Original_diary_callback) AND (`diary_closed` = @Original_diary_closed) AND (`diary_reminder` = @Original_diary_reminder) AND (`diary_subject` = @Original_diary_subject))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@diary_date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="diary_date" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_user_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_user_id" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@diary_body" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="diary_body" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_callback" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_callback" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_closed" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_closed" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@diary_reminder" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_reminder" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@diary_subject" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="diary_subject" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_diary_date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="diary_date" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_user_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_user_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_job" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_job" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_diary_cust_id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="diary_cust_id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_callback" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_callback" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_closed" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_closed" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@Original_diary_reminder" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="diary_reminder" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_diary_subject" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="diary_subject" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </UpdateCommand>
               </DbSource>
             </MainSource>
             <Mappings>
@@ -1452,6 +1368,14 @@ VALUES        (@diary_date, @diary_subject, @diary_body, @diary_reminder, @diary
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateDiary" Modifier="Public" Name="TruncateDiary" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="TruncateDiary">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE diary;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateClosed" Modifier="Public" Name="UpdateClosed" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateClosed">
                 <UpdateCommand>
@@ -1628,7 +1552,7 @@ WHERE        (diary_id = @id)</CommandText>
               <Mapping SourceColumn="user_role" DataSetColumn="user_role" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUser" Modifier="Public" Name="DeleteUser" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteUser">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUser" Modifier="Public" Name="DeleteUser" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteUser">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM `user`
@@ -1639,7 +1563,7 @@ WHERE        (user_id = @id)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillById">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        user_id, user_login, user_code, user_password, temp_password, force_password_change, salt, user_name, user_contact_number, user_mobile, user_email, user_jobtitle, user_note, user_created, user_changed, 
@@ -1652,7 +1576,7 @@ WHERE        (user_id = @id)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByLogin" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByLogin" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillByLogin">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByLogin" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByLogin" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillByLogin">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        user_id, user_login, user_code, user_password, temp_password, force_password_change, salt, user_name, user_contact_number, user_mobile, user_email, user_jobtitle, user_note, user_created, user_changed, 
@@ -1691,6 +1615,14 @@ VALUES        (@user_login, @user_code, @user_password, @temp_password, @force_p
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateUsers" Modifier="Public" Name="TruncateUsers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="TruncateUsers">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE user;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdatePassword" Modifier="Public" Name="UpdatePassword" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdatePassword">
                 <UpdateCommand>
@@ -2136,7 +2068,7 @@ WHERE        (user_id = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="user" msprop:Generator_TableClassName="userDataTable" msprop:Generator_TableVarName="tableuser" msprop:Generator_TablePropName="user" msprop:Generator_RowDeletingName="userRowDeleting" msprop:Generator_RowChangingName="userRowChanging" msprop:Generator_RowEvHandlerName="userRowChangeEventHandler" msprop:Generator_RowDeletedName="userRowDeleted" msprop:Generator_UserTableName="user" msprop:Generator_RowChangedName="userRowChanged" msprop:Generator_RowEvArgName="userRowChangeEvent" msprop:Generator_RowClassName="userRow">
+        <xs:element name="user" msprop:Generator_TableClassName="userDataTable" msprop:Generator_TableVarName="tableuser" msprop:Generator_RowChangedName="userRowChanged" msprop:Generator_TablePropName="user" msprop:Generator_RowDeletingName="userRowDeleting" msprop:Generator_RowChangingName="userRowChanging" msprop:Generator_RowEvHandlerName="userRowChangeEventHandler" msprop:Generator_RowDeletedName="userRowDeleted" msprop:Generator_RowClassName="userRow" msprop:Generator_UserTableName="user" msprop:Generator_RowEvArgName="userRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="user_id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnuser_id" msprop:Generator_ColumnPropNameInRow="user_id" msprop:Generator_ColumnPropNameInTable="user_idColumn" msprop:Generator_UserColumnName="user_id" type="xs:int" />
@@ -2275,13 +2207,13 @@ WHERE        (user_id = @id)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="fk_job_customer1" msdata:parent="customer" msdata:child="job" msdata:parentkey="customer_id" msdata:childkey="job_customer_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_customer1" msprop:Generator_RelationVarName="relationfk_job_customer1" msprop:Generator_UserParentTable="customer" msprop:Generator_ParentPropName="customerRow" />
-      <msdata:Relationship name="fk_job_product_job1" msdata:parent="job" msdata:child="job_product" msdata:parentkey="job_id" msdata:childkey="jp_job_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_job1" msprop:Generator_RelationVarName="relationfk_job_product_job1" msprop:Generator_UserParentTable="job" msprop:Generator_ParentPropName="jobRow" />
-      <msdata:Relationship name="fk_job_product_product1" msdata:parent="product" msdata:child="job_product" msdata:parentkey="product_id" msdata:childkey="jp_product_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_product1" msprop:Generator_RelationVarName="relationfk_job_product_product1" msprop:Generator_UserParentTable="product" msprop:Generator_ParentPropName="productRow" />
-      <msdata:Relationship name="fk_product_supplier1" msdata:parent="supplier" msdata:child="product" msdata:parentkey="supplier_id" msdata:childkey="product_supplier_id" msprop:Generator_UserChildTable="product" msprop:Generator_ChildPropName="GetproductRows" msprop:Generator_UserRelationName="fk_product_supplier1" msprop:Generator_RelationVarName="relationfk_product_supplier1" msprop:Generator_UserParentTable="supplier" msprop:Generator_ParentPropName="supplierRow" />
-      <msdata:Relationship name="fk_task_job1" msdata:parent="job" msdata:child="task" msdata:parentkey="job_id" msdata:childkey="task_job_id" msprop:Generator_UserChildTable="task" msprop:Generator_ChildPropName="GettaskRows" msprop:Generator_UserRelationName="fk_task_job1" msprop:Generator_RelationVarName="relationfk_task_job1" msprop:Generator_UserParentTable="job" msprop:Generator_ParentPropName="jobRow" />
-      <msdata:Relationship name="fk_job_user1" msdata:parent="user" msdata:child="job" msdata:parentkey="user_id" msdata:childkey="job_user_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_user1" msprop:Generator_RelationVarName="relationfk_job_user1" msprop:Generator_UserParentTable="user" msprop:Generator_ParentPropName="userRow" />
-      <msdata:Relationship name="fk_diary_user1" msdata:parent="user" msdata:child="diary" msdata:parentkey="user_id" msdata:childkey="diary_user_id" msprop:Generator_UserChildTable="diary" msprop:Generator_ChildPropName="GetdiaryRows" msprop:Generator_UserRelationName="fk_diary_user1" msprop:Generator_RelationVarName="relationfk_diary_user1" msprop:Generator_UserParentTable="user" msprop:Generator_ParentPropName="userRow" />
+      <msdata:Relationship name="fk_job_customer1" msdata:parent="customer" msdata:child="job" msdata:parentkey="customer_id" msdata:childkey="job_customer_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_customer1" msprop:Generator_ParentPropName="customerRow" msprop:Generator_RelationVarName="relationfk_job_customer1" msprop:Generator_UserParentTable="customer" />
+      <msdata:Relationship name="fk_job_product_job1" msdata:parent="job" msdata:child="job_product" msdata:parentkey="job_id" msdata:childkey="jp_job_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_job1" msprop:Generator_ParentPropName="jobRow" msprop:Generator_RelationVarName="relationfk_job_product_job1" msprop:Generator_UserParentTable="job" />
+      <msdata:Relationship name="fk_job_product_product1" msdata:parent="product" msdata:child="job_product" msdata:parentkey="product_id" msdata:childkey="jp_product_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_product1" msprop:Generator_ParentPropName="productRow" msprop:Generator_RelationVarName="relationfk_job_product_product1" msprop:Generator_UserParentTable="product" />
+      <msdata:Relationship name="fk_product_supplier1" msdata:parent="supplier" msdata:child="product" msdata:parentkey="supplier_id" msdata:childkey="product_supplier_id" msprop:Generator_UserChildTable="product" msprop:Generator_ChildPropName="GetproductRows" msprop:Generator_UserRelationName="fk_product_supplier1" msprop:Generator_ParentPropName="supplierRow" msprop:Generator_RelationVarName="relationfk_product_supplier1" msprop:Generator_UserParentTable="supplier" />
+      <msdata:Relationship name="fk_task_job1" msdata:parent="job" msdata:child="task" msdata:parentkey="job_id" msdata:childkey="task_job_id" msprop:Generator_UserChildTable="task" msprop:Generator_ChildPropName="GettaskRows" msprop:Generator_UserRelationName="fk_task_job1" msprop:Generator_ParentPropName="jobRow" msprop:Generator_RelationVarName="relationfk_task_job1" msprop:Generator_UserParentTable="job" />
+      <msdata:Relationship name="fk_job_user1" msdata:parent="user" msdata:child="job" msdata:parentkey="user_id" msdata:childkey="job_user_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_user1" msprop:Generator_ParentPropName="userRow" msprop:Generator_RelationVarName="relationfk_job_user1" msprop:Generator_UserParentTable="user" />
+      <msdata:Relationship name="fk_diary_user1" msdata:parent="user" msdata:child="diary" msdata:parentkey="user_id" msdata:childkey="diary_user_id" msprop:Generator_UserChildTable="diary" msprop:Generator_ChildPropName="GetdiaryRows" msprop:Generator_UserRelationName="fk_diary_user1" msprop:Generator_ParentPropName="userRow" msprop:Generator_RelationVarName="relationfk_diary_user1" msprop:Generator_UserParentTable="user" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

@@ -109,5 +109,14 @@
     <Setting Name="InvBodyFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Cambria, 12pt</Value>
     </Setting>
+    <Setting Name="BackupFormPos" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BackupPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RestoreFormPos" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

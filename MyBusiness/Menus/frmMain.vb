@@ -371,5 +371,17 @@ Public Class FrmMain
         Return sb.ToString
     End Function
 
+    Private Sub MnuBackup_Click(sender As Object, e As EventArgs) Handles MnuBackup.Click
+        Using _backup As New FrmBackup
+            _backup.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub MnuRestore_Click(sender As Object, e As EventArgs) Handles MnuRestore.Click
+        Using _restore As New FrmRestore
+            _restore.ShowDialog()
+        End Using
+    End Sub
+
 #End Region
 End Class
