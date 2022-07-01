@@ -4,12 +4,14 @@
 '
 ' Author Eric Hindle
 
+Imports System.IO
 Imports i00SpellCheck
 ''' <summary>
 ''' Functions for use in conjunction with the i00SpellCheck utility
 ''' </summary>
 ''' <remarks></remarks>
 Public Class SpellCheckUtil
+    Private Const MODULE_NAME As String = "SpellCheckUtil"
 
     ''' <summary>
     ''' Set spell check options from personal option settings

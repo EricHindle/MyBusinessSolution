@@ -88,7 +88,7 @@ Public Class FrmDiary
         ClearForm()
         isLoading = False
         FillDiaryTable()
-        SpellCheckUtil.EnableSpellChecking(New RichTextBox() {rtbBody})
+        SpellCheckUtil.EnableSpellChecking({rtbBody, txtSubject})
     End Sub
     ''' <summary>
     ''' 
@@ -281,7 +281,7 @@ Public Class FrmDiary
             Dim jobRow As netwyrksDataSet.jobRow = oJobtable.Rows(0)
             Dim ojob As JobBuilder = JobBuilder.AJobBuilder.StartingWith(jobRow)
 
-            Using _job As New FrmJob
+            Using _job As New FrmJobMaint
                 _job.TheJob = ojob
                 _job.ShowDialog()
 

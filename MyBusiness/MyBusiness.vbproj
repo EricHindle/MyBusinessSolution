@@ -33,7 +33,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>MyBusiness.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -54,14 +54,6 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.Api.Maps.Service, Version=0.9.2.18986, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\InstallationFiles\GoogleMaps\Google.Api.Maps.Service.dll</HintPath>
-    </Reference>
-    <Reference Include="i00SpellCheck, Version=1.0.0.30038, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\InstallationFiles\i00SpellCheck.exe</HintPath>
-    </Reference>
     <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\InstallationFiles\itextsharp.dll</HintPath>
@@ -123,7 +115,6 @@
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Windows.Forms" />
-    <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
@@ -152,29 +143,26 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Domain\Address.vb" />
-    <Compile Include="Domain\AddressBuilder.vb" />
+    <Compile Include="Domain\Builders\AddressBuilder.vb" />
     <Compile Include="Domain\Customer.vb" />
-    <Compile Include="Domain\CustomerBuilder.vb" />
+    <Compile Include="Domain\Builders\CustomerBuilder.vb" />
     <Compile Include="Domain\Email.vb" />
-    <Compile Include="Domain\EmailBuilder.vb" />
+    <Compile Include="Domain\Builders\EmailBuilder.vb" />
     <Compile Include="Domain\Job.vb" />
-    <Compile Include="Domain\JobBuilder.vb" />
+    <Compile Include="Domain\Builders\JobBuilder.vb" />
     <Compile Include="Domain\ModDatabase.vb" />
-    <Compile Include="Domain\netwyrksDataSet.vb">
-      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Domain\Product.vb" />
-    <Compile Include="Domain\ProductBuilder.vb" />
+    <Compile Include="Domain\Builders\ProductBuilder.vb" />
     <Compile Include="Domain\Reminder.vb" />
-    <Compile Include="Domain\ReminderBuilder.vb" />
+    <Compile Include="Domain\Builders\ReminderBuilder.vb" />
     <Compile Include="Domain\ReportColumn.vb" />
-    <Compile Include="Domain\ReportColumnBuilder.vb" />
+    <Compile Include="Domain\Builders\ReportColumnBuilder.vb" />
     <Compile Include="Domain\Supplier.vb" />
-    <Compile Include="Domain\SupplierBuilder.vb" />
+    <Compile Include="Domain\Builders\SupplierBuilder.vb" />
     <Compile Include="Domain\Task.vb" />
-    <Compile Include="Domain\TaskBuilder.vb" />
+    <Compile Include="Domain\Builders\TaskBuilder.vb" />
     <Compile Include="Domain\User.vb" />
-    <Compile Include="Domain\UserBuilder.vb" />
+    <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
     <Compile Include="Imaging\ImageUtil.vb" />
     <Compile Include="Invoice\ClsRtfConstants.vb" />
@@ -185,10 +173,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Invoice\InvoicePrinter.vb" />
-    <Compile Include="Job\FrmJob.designer.vb">
-      <DependentUpon>FrmJob.vb</DependentUpon>
+    <Compile Include="Job\FrmJobMaint.Designer.vb">
+      <DependentUpon>FrmJobMaint.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\FrmJob.vb">
+    <Compile Include="Job\FrmJobMaint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Job\FrmJobProducts.designer.vb">
@@ -376,9 +364,8 @@
       <DependentUpon>DlgViewInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmJob.resx">
-      <DependentUpon>FrmJob.vb</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Job\FrmJobMaint.resx">
+      <DependentUpon>FrmJobMaint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmJobProducts.resx">
       <DependentUpon>FrmJobProducts.vb</DependentUpon>
@@ -518,7 +505,16 @@
     <Content Include="Images\statusstrip.jpg" />
     <Content Include="Images\wordbutton.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\i00BindingList\i00BindingList.vbproj">
+      <Project>{1a3066d9-b48c-4ec1-ac93-4b0bbe5aa812}</Project>
+      <Name>i00BindingList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\i00SpellCheck\i00SpellCheck.vbproj">
+      <Project>{27d0d9b3-719c-46b7-9f03-3f91e82e7436}</Project>
+      <Name>i00SpellCheck</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

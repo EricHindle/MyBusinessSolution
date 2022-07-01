@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 
+Imports i00SpellCheck
 Imports MyBusiness.NetwyrksErrorCodes
 Imports System.Text
 
@@ -21,12 +22,13 @@ Public Class FrmMain
 #Region "form handlers"
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         MenuStrip1.CanOverflow = True
-        Me.Text = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_NAME)
+        Me.Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
         isLoading = True
         FillCustomerTable()
         FillSupplierTable()
         FillJobTable(-1, mnuShowAllJobs.Checked)
         FillDiaryTable()
+        Me.EnableControlExtensions()
         isLoading = False
     End Sub
     Private Sub DgvCust_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dgvCust.SelectionChanged
@@ -36,9 +38,9 @@ Public Class FrmMain
                 Dim cRow As DataGridViewRow = dgvCust.SelectedRows(0)
                 Dim _selCustId As Integer = cRow.Cells(Me.custId.Name).Value
                 If _selCustId > 0 Then
-                    Dim _selectedCust As Customer = CustomerBuilder.aCustomer.startingWith(_selCustId).build
-                    FillJobTable(_selectedCust.customerId, mnuShowAllJobs.Checked)
-                    txtCustAddress.Text = _selectedCust.custName & vbCrLf & MultilineAddressString(_selectedCust.address)
+                    Dim _selectedCust As Customer = CustomerBuilder.ACustomer.StartingWith(_selCustId).Build
+                    FillJobTable(_selectedCust.CustomerId, mnuShowAllJobs.Checked)
+                    txtCustAddress.Text = _selectedCust.CustName & vbCrLf & MultilineAddressString(_selectedCust.Address)
                     If My.Settings.ShowCustomer Then spCustomer.Panel2Collapsed = False
                     FillJobTable(_selCustId, mnuShowAllJobs.Checked)
                 Else
@@ -52,8 +54,8 @@ Public Class FrmMain
             If dgvDiary.SelectedRows.Count = 1 Then
                 Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
                 Dim _diaryId As Integer = dRow.Cells(Me.dremId.Name).Value
-                Dim _reminder As Reminder = ReminderBuilder.aReminder.startingWith(_diaryId).build
-                rtbDiaryBody.Text = _reminder.body
+                Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
+                rtbDiaryBody.Text = _reminder.Body
             End If
         End If
     End Sub
@@ -61,10 +63,10 @@ Public Class FrmMain
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim _diaryId As Integer = dRow.Cells(Me.dremId.Name).Value
-            Dim _reminder As Reminder = ReminderBuilder.aReminder.startingWith(_diaryId).build
-            Using _diary As New frmReminder
-                _diary.theReminder = _reminder
-                _diary.isReminder = _reminder.isReminder
+            Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
+            Using _diary As New FrmReminder
+                _diary.TheReminder = _reminder
+                _diary.IsReminder = _reminder.IsReminder
                 _diary.ShowDialog()
             End Using
             isLoading = True
@@ -77,7 +79,7 @@ Public Class FrmMain
             Dim dRow As DataGridViewRow = dgvCust.SelectedRows(0)
             Dim _custId As Integer = dRow.Cells(Me.custId.Name).Value
             Using _custForm As New FrmCustomerMaint
-                _custForm.customerId = _custId
+                _custForm.CustomerId = _custId
                 _custForm.ShowDialog()
             End Using
             isLoading = True
@@ -89,7 +91,7 @@ Public Class FrmMain
         If dgvSupp.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvSupp.SelectedRows(0)
             Dim _suppId As Integer = dRow.Cells(Me.suppId.Name).Value
-            Using _suppForm As New frmSupplier
+            Using _suppForm As New FrmSupplier
                 _suppForm.SupplierId = _suppId
                 _suppForm.ShowDialog()
             End Using
@@ -102,9 +104,9 @@ Public Class FrmMain
         If dgvJobs.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvJobs.SelectedRows(0)
             Dim _jobId As Integer = dRow.Cells(Me.jobId.Name).Value
-            Using _jobForm As New frmJob
-                _jobForm.theJob = jobBuilder.aJobBuilder.startingWith(_jobId)
-                _jobForm.customerId = _jobForm.theJob.build.jobCustomerId
+            Using _jobForm As New FrmJobMaint
+                _jobForm.TheJob = JobBuilder.AJobBuilder.StartingWith(_jobId)
+                _jobForm.CustomerId = _jobForm.TheJob.Build.JobCustomerId
                 _jobForm.ShowDialog()
             End Using
             isLoading = True
@@ -120,8 +122,8 @@ Public Class FrmMain
                 Dim sRow As DataGridViewRow = dgvSupp.SelectedRows(0)
                 Dim _selSuppId As Integer = sRow.Cells(Me.suppId.Name).Value
                 If _selSuppId > 0 Then
-                    Dim _selectedSupp As Supplier = SupplierBuilder.aSupplierBuilder.startingWith(_selSuppId).build
-                    txtSuppAddress.Text = _selectedSupp.supplierName & vbCrLf & MultilineAddressString(_selectedSupp.supplierAddress)
+                    Dim _selectedSupp As Supplier = SupplierBuilder.ASupplierBuilder.StartingWith(_selSuppId).Build
+                    txtSuppAddress.Text = _selectedSupp.SupplierName & vbCrLf & MultilineAddressString(_selectedSupp.SupplierAddress)
                     If My.Settings.ShowSupplier Then spSupplier.Panel2Collapsed = False
                 End If
             End If
@@ -136,7 +138,7 @@ Public Class FrmMain
         isLoading = False
     End Sub
     Private Sub NewSupplierToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewSupplierToolStripMenuItem.Click
-        Using _suppForm As New frmSupplier
+        Using _suppForm As New FrmSupplier
             _suppForm.ShowDialog()
         End Using
         isLoading = True
@@ -144,9 +146,9 @@ Public Class FrmMain
         isLoading = False
     End Sub
     Private Sub NewDiaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewDiaryToolStripMenuItem.Click
-        Using _diary As New frmReminder
+        Using _diary As New FrmReminder
             _diary.ShowDialog()
-            _diary.isReminder = False
+            _diary.IsReminder = False
         End Using
         isLoading = True
         FillDiaryTable()
@@ -166,7 +168,7 @@ Public Class FrmMain
         End If
     End Sub
     Private Sub GlobalSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GlobalSettingsToolStripMenuItem.Click
-        Using _global As New frmGlobalSettings
+        Using _global As New FrmGlobalSettings
             _global.ShowDialog()
         End Using
     End Sub
@@ -179,8 +181,8 @@ Public Class FrmMain
 
     End Sub
     Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
-        Using _jobForm As New frmJob
-            _jobForm.customerId = -1
+        Using _jobForm As New FrmJobMaint
+            _jobForm.CustomerId = -1
             _jobForm.ShowDialog()
         End Using
         isLoading = True
@@ -195,7 +197,7 @@ Public Class FrmMain
         FillJobTable(_selCustId, mnuShowAllJobs.Checked)
     End Sub
     Private Sub MnuLogView_Click(sender As Object, e As EventArgs) Handles MnuLogView.Click
-        Using _log As New frmLogViewer
+        Using _log As New FrmLogViewer
             _log.ShowDialog()
         End Using
     End Sub
@@ -250,12 +252,12 @@ Public Class FrmMain
         End If
         For Each oRow As netwyrksDataSet.jobRow In oJobsTable.Rows
             Dim tRow As DataGridViewRow = dgvJobs.Rows(dgvJobs.Rows.Add)
-            tRow.Visible = showAllJobs Or (oRow.job_user_id = currentUser.userId)
+            tRow.Visible = showAllJobs Or (oRow.job_user_id = currentUser.UserId)
             tRow.Cells(Me.jobId.Name).Value = oRow.job_id
             tRow.Cells(Me.jobName.Name).Value = oRow.job_name
             tRow.Cells(Me.jobDesc.Name).Value = oRow.job_description.Replace(Chr(10), " ")
             tRow.Cells(Me.jobUser.Name).Value = oRow.job_user_id
-            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.aUserBuilder.startingWith(oRow.job_user_id).build.user_code
+            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUserBuilder.StartingWith(oRow.job_user_id).Build.User_code
             If oRow.job_completed Then
                 tRow.Cells(Me.jobCompleted.Name).Value = "Yes"
             End If
@@ -280,7 +282,7 @@ Public Class FrmMain
             If isShowAll Then
                 remCt = oDiaryTa.Fill(oDiaryTable)
             Else
-                remCt = oDiaryTa.FillByUserId(oDiaryTable, currentUser.userId)
+                remCt = oDiaryTa.FillByUserId(oDiaryTable, currentUser.UserId)
             End If
             If remCt > 0 Then
                 Dim isFirstRow As Boolean = True
@@ -292,14 +294,14 @@ Public Class FrmMain
                         Dim firstRowdate As Date = oFirstRow.diary_date.Date
                         r = dgvDiary.Rows.Add()
                         rRow = dgvDiary.Rows(r)
-                        dateSection = getNextSection(firstRowdate, rRow)
+                        dateSection = GetNextSection(firstRowdate, rRow)
                         isFirstRow = False
                     End If
                     Dim remId As Integer = oRow.diary_id
                     r = dgvDiary.Rows.Add()
                     rRow = dgvDiary.Rows(r)
                     If oRow.diary_date.Date >= dateSectionEnds(dateSection).Date Then
-                        dateSection = getNextSection(oRow.diary_date.Date, rRow)
+                        dateSection = GetNextSection(oRow.diary_date.Date, rRow)
                         dgvDiary.Rows.Add()
                         rRow = dgvDiary.Rows(r + 1)
                     End If
@@ -325,7 +327,7 @@ Public Class FrmMain
                 Next
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error loading reminders", ex, "loadReminders", getErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS))
+            LogUtil.Exception("Error loading reminders", ex, "loadReminders", GetErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS))
         End Try
         dgvDiary.ClearSelection()
     End Sub
@@ -350,23 +352,24 @@ Public Class FrmMain
     Private Function MultilineAddressString(ByVal anAddress As Address) As String
         Dim sb As New StringBuilder
         With anAddress
-            If .address1 IsNot Nothing AndAlso .address1.Trim.Length > 0 Then
-                sb.Append(.address1.Trim).Append(vbCrLf)
+            If .Address1 IsNot Nothing AndAlso .Address1.Trim.Length > 0 Then
+                sb.Append(.Address1.Trim).Append(vbCrLf)
             End If
-            If .address2 IsNot Nothing AndAlso .address2.Trim.Length > 0 Then
-                sb.Append(.address2.Trim).Append(vbCrLf)
+            If .Address2 IsNot Nothing AndAlso .Address2.Trim.Length > 0 Then
+                sb.Append(.Address2.Trim).Append(vbCrLf)
             End If
-            If .address3 IsNot Nothing AndAlso .address3.Trim.Length > 0 Then
-                sb.Append(.address3.Trim).Append(vbCrLf)
+            If .Address3 IsNot Nothing AndAlso .Address3.Trim.Length > 0 Then
+                sb.Append(.Address3.Trim).Append(vbCrLf)
             End If
-            If .address4 IsNot Nothing AndAlso .address4.Trim.Length > 0 Then
-                sb.Append(.address4.Trim).Append(vbCrLf)
+            If .Address4 IsNot Nothing AndAlso .Address4.Trim.Length > 0 Then
+                sb.Append(.Address4.Trim).Append(vbCrLf)
             End If
-            If .postcode IsNot Nothing AndAlso .postcode.Trim.Length > 0 Then
-                sb.Append(.postcode.Trim).Append(vbCrLf)
+            If .Postcode IsNot Nothing AndAlso .Postcode.Trim.Length > 0 Then
+                sb.Append(.Postcode.Trim).Append(vbCrLf)
             End If
         End With
         Return sb.ToString
     End Function
+
 #End Region
 End Class

@@ -438,8 +438,8 @@ Public Class PrintUtil : Implements IDisposable
             myRichTextBoxEx = New RichTextBoxEx
 
             myRichTextBoxEx.SelectAll()
-            Dim tabstops(oReportDef.TabStops.Count - 1) As Int32
-            For t = 0 To oReportDef.TabStops.Count - 1
+            Dim tabstops(oReportDef.TabStops.Length - 1) As Int32
+            For t = 0 To oReportDef.TabStops.Length - 1
                 tabstops(t) = CInt(oReportDef.TabStops(t)) + If(t = 0, 0, tabstops(t - 1))
             Next
             myRichTextBoxEx.SelectionTabs = tabstops

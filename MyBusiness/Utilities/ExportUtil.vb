@@ -11,7 +11,7 @@ Imports MyBusiness.NetwyrksErrorCodes
 
 Public Class ExportUtil
     Private Const NEWLINE As String = Chr(27) & " :"
-    Private fbd As OpenFileDialog
+    Private ReadOnly fbd As OpenFileDialog
     Private aColFormat As String() = New String() {}
     Private mySep As String
     Private myOutfile As String
@@ -20,7 +20,7 @@ Public Class ExportUtil
     Private myExportFileType As FileUtil.FileType
     Private myPassword As String = Nothing
 
-    Public Property usePassword() As String
+    Public Property UsePassword() As String
         Get
             Return myPassword
         End Get
@@ -29,7 +29,7 @@ Public Class ExportUtil
         End Set
     End Property
 
-    Public Property exportFileType() As FileUtil.FileType
+    Public Property ExportFileType() As FileUtil.FileType
         Get
             Return myExportFileType
         End Get
@@ -83,29 +83,27 @@ Public Class ExportUtil
         myPassword = Nothing
     End Sub
 
-    Public Function myOutFullFilePath() As String
+    Public Function MyOutFullFilePath() As String
         Return Path.Combine(myOutFolder, myOutfile)
     End Function
 
-    Public Sub exportString(ByVal sText As String)
+    Public Sub ExportString(ByVal sText As String)
         Dim lines As String() = sText.Split("\n")
-        exportStrings(lines)
+        ExportStrings(lines)
     End Sub
 
-    Public Sub exportStrings(ByVal sText As String())
-        LogUtil.Debug("Writing lines to file " & myOutFullFilePath())
-        Using sw As New StreamWriter(myOutFullFilePath)
+    Public Sub ExportStrings(ByVal sText As String())
+        LogUtil.Debug("Writing lines to file " & MyOutFullFilePath())
+        Using sw As New StreamWriter(MyOutFullFilePath)
             For Each sLine As String In sText
                 sw.WriteLine(sLine)
             Next
         End Using
     End Sub
 
-    Public Sub exportGrid(ByRef dg As DataGridView, Optional ByVal bHeads As Boolean = True, Optional ByVal pColQuotes As String = "", Optional ByVal includeInvisible As Boolean = True, Optional ByVal heading As String = Nothing)
-        Dim convertToXls As Boolean = False
+    Public Sub ExportGrid(ByRef dg As DataGridView, Optional ByVal bHeads As Boolean = True, Optional ByVal pColQuotes As String = "", Optional ByVal includeInvisible As Boolean = True, Optional ByVal heading As String = Nothing)
         Dim pformat As FileUtil.FileType = myExportFileType
         If myExportFileType = FileUtil.FileType.XLS Then
-            convertToXls = True
             pformat = FileUtil.FileType.SLK
             myOutfile = Path.GetFileNameWithoutExtension(myOutfile) & FileUtil.fileSuffix(pformat)
         End If
@@ -141,7 +139,7 @@ Public Class ExportUtil
             For Each oRow As DataGridViewRow In dg.Rows
                 Select Case pformat
                     Case FileUtil.FileType.CSV
-                        sw.WriteLine(ConvertRowToCsv(oRow, , includeInvisible), mySep)
+                        sw.WriteLine(ConvertRowToCsv(oRow, includeInvisible), mySep)
                     Case FileUtil.FileType.SLK
                         sw.WriteLine(ConvertRowToSylk(oRow, rowCt, includeInvisible))
                 End Select
@@ -216,7 +214,7 @@ Public Class ExportUtil
         Next
         Return sb.ToString
     End Function
-    Private Function ConvertRowToCsv(ByVal oRow As DataGridViewRow, Optional ByVal sSep As String = ",", Optional ByVal includeInvisible As Boolean = True) As String
+    Private Function ConvertRowToCsv(ByVal oRow As DataGridViewRow, Optional ByVal includeInvisible As Boolean = True) As String
         Dim sb As New StringBuilder
         myDocumentText = New StringBuilder
         For Each oCell As DataGridViewCell In oRow.Cells
@@ -252,10 +250,10 @@ Public Class ExportUtil
         Return sFilename
     End Function
 
-    Public Function saveAndRename(ByVal pExt As FileUtil.FileType, ByVal sFilename As String) As String
+    Public Function SaveAndRename(ByVal pExt As FileUtil.FileType, ByVal sFilename As String) As String
         myExportFileType = pExt
         ChooseFolder()
-        Dim newFilename As String = myOutFullFilePath()
+        Dim newFilename As String = MyOutFullFilePath()
         If newFilename.Length > 0 Then
             If newFilename <> sFilename Then
                 If My.Computer.FileSystem.FileExists(newFilename) Then
@@ -303,7 +301,7 @@ Public Class ExportUtil
 
     End Function
 
-    Public Function ExportTextToRtfFile(ByVal oReportDef As ReportDefinition, ByVal _text As String, ByVal Optional isLandscape As Boolean = False) As String
+    Public Function ExportTextToRtfFile(ByVal _text As String, ByVal Optional isLandscape As Boolean = False) As String
         Dim sFilename As String = Path.Combine(myOutFolder, myOutfile)
         Dim _contents As New StringBuilder
         _contents.Append(RtfManager.RtfTop(isLandscape))
@@ -317,18 +315,18 @@ Public Class ExportUtil
 
     End Function
 
-    Public Sub saveTableSelection(ByVal dgv As DataGridView)
+    Public Sub SaveTableSelection(ByVal dgv As DataGridView)
         If dgv.SelectedCells.Count > 0 Then
             Clipboard.SetDataObject(dgv.GetClipboardContent())
             myExportFileType = FileUtil.FileType.TXT
             ChooseFolder()
-            exportString(Clipboard.GetText)
+            ExportString(Clipboard.GetText)
         Else
             MsgBox("Nothing selected", MsgBoxStyle.Exclamation, "Error")
         End If
     End Sub
 
-    Public Sub saveTreeList(ByVal sTitle As String, ByRef lboTree As TreeView)
+    Public Sub SaveTreeList(ByVal sTitle As String, ByRef lboTree As TreeView)
         '   Dim sFilename As String = FileUtil.getFileName(FileUtil.OpenOrSave.Save, FileUtil.FileType.TXT, sReportFolder)
         Dim sFileName As String = Path.Combine(sReportFolder, sTitle & "_LBOList_" & Format(Now, "yyyyMMddHHmmss") & ".txt")
         Dim bOK As Boolean = False

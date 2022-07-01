@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 
 Imports MyBusiness.NetwyrksErrorCodes
+Imports i00SpellCheck
 ''' <summary>
 ''' Form to create and amend user diary entries
 ''' </summary>
@@ -66,6 +67,7 @@ Public Class FrmReminder
         'lblName.Text = AuthenticationUtil.getUserName(userId)
         lblName.Text = currentUser.UserName
         ClearForm()
+        SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
         If _reminder IsNot Nothing Then
             BuildReferences()
         End If

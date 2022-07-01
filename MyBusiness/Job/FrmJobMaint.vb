@@ -4,7 +4,9 @@
 '
 ' Author Eric Hindle
 
-Public Class FrmJob
+
+Public Class FrmJobMaint
+
 #Region "variables"
 
     Private isLoading As Boolean = False
@@ -13,6 +15,8 @@ Public Class FrmJob
     Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
     Private ReadOnly oJobListTable As New netwyrksDataSet.jobDataTable
     Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
+    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
+    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
     Private _jobBuilder As JobBuilder
     Private _job As Job
     Private _currentJobId As Integer = -1
@@ -48,8 +52,11 @@ Public Class FrmJob
         oJobListTable.Dispose()
     End Sub
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        Me.UserTableAdapter.Fill(Me.NetwyrksDataSet.user)
         LogUtil.Debug("Started", Me.Name)
+        oUserTa.Fill(oUserTable)
+        cbUser.DataSource = oUserTable
+        cbUser.DisplayMember = "user_code"
+        cbUser.ValueMember = "user_id"
         INSERT_WIDTH = Me.Width - pnlTask.Width
         UPDATE_WIDTH = Me.Width
         isLoading = True
@@ -65,6 +72,7 @@ Public Class FrmJob
             NewJob()
             _currentJobId = -1
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
@@ -77,16 +85,16 @@ Public Class FrmJob
     End Sub
     Private Sub BtnAddTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddTask.Click
         LogUtil.Debug("Add task to job", Me.Name)
-        Using _taskForm As New frmTask
-            _taskForm.theJob = _jobBuilder.Build
+        Using _taskForm As New FrmTask
+            _taskForm.TheJob = _jobBuilder.Build
             _taskForm.ShowDialog()
         End Using
         FillTaskList(_currentJobId)
     End Sub
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
         LogUtil.Debug("Maintain products on job", Me.Name)
-        Using _jobProductForm As New frmJobProducts
-            _jobProductForm.theJob = _jobBuilder
+        Using _jobProductForm As New FrmJobProducts
+            _jobProductForm.TheJob = _jobBuilder
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -117,9 +125,9 @@ Public Class FrmJob
             Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
             If MsgBox("Do you want to remove this task?" & vbCrLf & QUOTES & taskName & QUOTES, MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
                 If oTaskTa.DeleteTask(_taskId) = 1 Then
-                    showStatus(lblStatus, "Task removed OK", Me.Name, True)
+                    ShowStatus(LblStatus, "Task removed OK", Me.Name, True)
                 Else
-                    showStatus(lblStatus, "Task NOT removed", Me.Name, True)
+                    ShowStatus(LblStatus, "Task NOT removed", Me.Name, True)
                 End If
                 FillTaskList(_currentJobId)
             End If
@@ -130,10 +138,10 @@ Public Class FrmJob
             LogUtil.Debug("Updating task", Me.Name)
             Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
             Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
-            Using _taskForm As New frmTask
+            Using _taskForm As New FrmTask
 
-                _taskForm.theJob = _jobBuilder.Build
-                _taskForm.taskId = _taskId
+                _taskForm.TheJob = _jobBuilder.Build
+                _taskForm.TaskId = _taskId
                 _taskForm.ShowDialog()
             End Using
             ClearJobdetails()
@@ -142,8 +150,8 @@ Public Class FrmJob
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Me.Name)
-        Using _jobProductForm As New frmJobProducts
-            _jobProductForm.theJob = _jobBuilder
+        Using _jobProductForm As New FrmJobProducts
+            _jobProductForm.TheJob = _jobBuilder
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -269,12 +277,12 @@ Public Class FrmJob
         LogUtil.Debug("Updating job " & CStr(_currentJobId), Me.Name)
         With _newJob
             If oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUser, _currentJobId) = 1 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _jobBuilder.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _jobBuilder.ToString, .ToString)
                 isAmendOk = True
-                showStatus(lblStatus, "Job updated OK", Me.Name, True)
+                ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
             Else
                 isAmendOk = False
-                showStatus(lblStatus, "Job NOT updated", Me.Name, True)
+                ShowStatus(LblStatus, "Job NOT updated", Me.Name, True)
             End If
         End With
         Return isAmendOk
@@ -285,15 +293,23 @@ Public Class FrmJob
         With _newJob
             _currentJobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUser)
             If _currentJobId > 0 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, "", .ToString)
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
-                showStatus(lblStatus, "Job " & CStr(_currentJobId) & " Created OK", Me.Name, True)
+                ShowStatus(LblStatus, "Job " & CStr(_currentJobId) & " Created OK", Me.Name, True)
             Else
                 isInsertOk = False
-                showStatus(lblStatus, "Job NOT created", Me.Name, True)
+                ShowStatus(LblStatus, "Job NOT created", Me.Name, True)
             End If
         End With
         Return isInsertOk
     End Function
 #End Region
+
+
+
+
+
+
+
+
 End Class

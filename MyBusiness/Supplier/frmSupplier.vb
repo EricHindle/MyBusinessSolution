@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 
-Public Class frmSupplier
+Public Class FrmSupplier
 #Region "variables"
 
     Private ReadOnly oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
@@ -44,6 +44,7 @@ Public Class frmSupplier
             _currentSupplier = SupplierBuilder.ASupplierBuilder.StartingWith(_supplierId)
             FillSupplierDetails()
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbSuppNotes})
     End Sub
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         oSuppTa.Dispose()

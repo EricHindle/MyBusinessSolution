@@ -44,6 +44,7 @@ Public Class FrmCustomerMaint
             _currentCustomer = CustomerBuilder.ACustomer.StartingWith(_customerId)
             FillCustomerDetails()
         End If
+        SpellCheckUtil.EnableSpellChecking({rtbCustNotes})
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -69,18 +70,18 @@ Public Class FrmCustomerMaint
             Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _JobId As Integer = oRow.Cells(Me.jobId.Name).Value
             LogUtil.Debug("Updating job " & CStr(_JobId), Me.Name)
-            Using _jobForm As New frmJob
-                _jobForm.theJob = JobBuilder.AJobBuilder.StartingWith(_JobId)
-                _jobForm.customerId = _customerId
+            Using _jobForm As New FrmJobMaint
+                _jobForm.TheJob = JobBuilder.AJobBuilder.StartingWith(_JobId)
+                _jobForm.CustomerId = _customerId
                 _jobForm.ShowDialog()
             End Using
         End If
     End Sub
     Private Sub BtnAddJob_Click(sender As Object, e As EventArgs) Handles BtnAddJob.Click
         LogUtil.Debug("Adding job", Me.Name)
-        Using _jobForm As New frmJob
-            _jobForm.theJob = Nothing
-            _jobForm.customerId = _customerId
+        Using _jobForm As New FrmJobMaint
+            _jobForm.TheJob = Nothing
+            _jobForm.CustomerId = _customerId
             _jobForm.ShowDialog()
         End Using
     End Sub

@@ -188,6 +188,7 @@ Partial Class FrmMain
         '
         Me.dgvCust.AllowUserToAddRows = False
         Me.dgvCust.AllowUserToDeleteRows = False
+        Me.dgvCust.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -283,6 +284,7 @@ Partial Class FrmMain
         '
         Me.dgvSupp.AllowUserToAddRows = False
         Me.dgvSupp.AllowUserToDeleteRows = False
+        Me.dgvSupp.AllowUserToResizeRows = False
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -379,6 +381,7 @@ Partial Class FrmMain
         '
         Me.dgvJobs.AllowUserToAddRows = False
         Me.dgvJobs.AllowUserToDeleteRows = False
+        Me.dgvJobs.AllowUserToResizeRows = False
         Me.dgvJobs.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvJobs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize

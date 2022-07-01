@@ -50,7 +50,7 @@ Public Class FrmInstallationTest
         }
         Dim dgv As DataGridView = DataGridView1
         exporter.OutFile = fileTitle & Format(Now, "yyyyMMddHHmmss") & FileUtil.fileSuffix(FileUtil.FileType.XLS)
-        exporter.exportGrid(dgv, True, , False, "Installation Test")
+        exporter.ExportGrid(dgv, True, , False, "Installation Test")
         lblExcelResult.Text = "Exported to " & Path.Combine(exporter.OutFolder, exporter.OutFile)
     End Sub
     Private Sub BtnShowLog_Click(sender As Object, e As EventArgs) Handles btnShowLog.Click
