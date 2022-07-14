@@ -179,7 +179,10 @@ Public Class FrmMain
         End Using
     End Sub
     Private Sub TidyFilesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TidyFilesToolStripMenuItem.Click
-
+        Dim logFolder As String = sLogFolder
+        Dim retentionPeriod As Integer = My.Settings.RetentionPeriod
+        TidyFiles(logFolder, "*.*", retentionPeriod)
+        MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
     End Sub
     Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
         Using _jobForm As New FrmJobMaint
