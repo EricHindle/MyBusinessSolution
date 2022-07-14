@@ -22,7 +22,6 @@ Partial Class FrmJobMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -51,6 +50,7 @@ Partial Class FrmJobMaint
         Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
+        Me.cbUser = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnViewCust = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -62,7 +62,6 @@ Partial Class FrmJobMaint
         Me.cbCust = New System.Windows.Forms.ComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.cbUser = New System.Windows.Forms.ComboBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTask.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -361,6 +360,14 @@ Partial Class FrmJobMaint
         Me.pnlJob.Size = New System.Drawing.Size(541, 440)
         Me.pnlJob.TabIndex = 69
         '
+        'cbUser
+        '
+        Me.cbUser.FormattingEnabled = True
+        Me.cbUser.Location = New System.Drawing.Point(441, 83)
+        Me.cbUser.Name = "cbUser"
+        Me.cbUser.Size = New System.Drawing.Size(83, 21)
+        Me.cbUser.TabIndex = 13
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -467,14 +474,6 @@ Partial Class FrmJobMaint
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.LblStatus.Size = New System.Drawing.Size(9, 17)
         '
-        'cbUser
-        '
-        Me.cbUser.FormattingEnabled = True
-        Me.cbUser.Location = New System.Drawing.Point(441, 83)
-        Me.cbUser.Name = "cbUser"
-        Me.cbUser.Size = New System.Drawing.Size(83, 21)
-        Me.cbUser.TabIndex = 13
-        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -489,7 +488,7 @@ Partial Class FrmJobMaint
         Me.Controls.Add(Me.pnlTask)
         Me.Controls.Add(Me.pnlJob)
         Me.Name = "FrmJobMaint"
-        Me.Text = "FrmJobMaint"
+        Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlTask.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
