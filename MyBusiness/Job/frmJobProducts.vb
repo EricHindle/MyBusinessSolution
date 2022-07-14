@@ -58,7 +58,7 @@ Public Class FrmJobProducts
         If Not isLoading Then
             If dgvProducts.SelectedRows.Count = 1 Then
                 isLoading = True
-                nudQuantity.Value = 0
+                nudQuantity.Value = 1
                 Dim pRow As DataGridViewRow = dgvProducts.SelectedRows(0)
                 lblProductName.Text = pRow.Cells(Me.prodName.Name).Value
                 _selJpId = -1
