@@ -73,7 +73,7 @@ Public Class LogUtil
         If Not String.IsNullOrEmpty(usercode) Then
             sPrefix += "[user " & usercode & "] "
         End If
-        If Not String.IsNullOrEmpty(sSub) > 0 Then
+        If Not String.IsNullOrEmpty(sSub) Then
             sPrefix += "(" & sSub & ") "
         End If
         If Not String.IsNullOrEmpty(errorCode) Then

@@ -170,7 +170,7 @@ Public Class FrmCustomerMaint
         DgvJobs.Rows.Clear()
         Dim oJobsTa As New netwyrksDataSetTableAdapters.jobTableAdapter
         Dim oJobsTable As New netwyrksDataSet.jobDataTable
-        LogUtil.Debug("Finding jobs", Me.Name)
+        LogUtil.Debug("Finding jobs", MyBase.Name)
         oJobsTa.FillByCust(oJobsTable, custId)
         For Each oRow As netwyrksDataSet.jobRow In oJobsTable.Rows
             Dim tRow As DataGridViewRow = DgvJobs.Rows(DgvJobs.Rows.Add)
