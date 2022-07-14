@@ -83,6 +83,7 @@ Public Class FrmCustomerMaint
             _jobForm.TheJob = Nothing
             _jobForm.CustomerId = _customerId
             _jobForm.ShowDialog()
+            FillJobsList(_customerId)
         End Using
     End Sub
     Private Sub ChkCompleted_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkCompleted.CheckedChanged
