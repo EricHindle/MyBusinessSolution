@@ -62,11 +62,6 @@ Partial Class FrmJobMaint
         Me.cbCust = New System.Windows.Forms.ComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.NetwyrksDataSet = New MyBusiness.netwyrksDataSet()
-        Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.UserTableAdapter = New MyBusiness.netwyrksDataSetTableAdapters.userTableAdapter()
-        Me.UserBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.NetwyrksDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cbUser = New System.Windows.Forms.ComboBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTask.SuspendLayout()
@@ -77,10 +72,6 @@ Partial Class FrmJobMaint
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJob.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.NetwyrksDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.UserBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NetwyrksDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -476,30 +467,6 @@ Partial Class FrmJobMaint
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.LblStatus.Size = New System.Drawing.Size(9, 17)
         '
-        'NetwyrksDataSet
-        '
-        Me.NetwyrksDataSet.DataSetName = "netwyrksDataSet"
-        Me.NetwyrksDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'UserBindingSource
-        '
-        Me.UserBindingSource.DataMember = "user"
-        Me.UserBindingSource.DataSource = Me.NetwyrksDataSet
-        '
-        'UserTableAdapter
-        '
-        Me.UserTableAdapter.ClearBeforeFill = True
-        '
-        'UserBindingSource1
-        '
-        Me.UserBindingSource1.DataMember = "user"
-        Me.UserBindingSource1.DataSource = Me.NetwyrksDataSet
-        '
-        'NetwyrksDataSetBindingSource
-        '
-        Me.NetwyrksDataSetBindingSource.DataSource = Me.NetwyrksDataSet
-        Me.NetwyrksDataSetBindingSource.Position = 0
-        '
         'cbUser
         '
         Me.cbUser.FormattingEnabled = True
@@ -534,10 +501,6 @@ Partial Class FrmJobMaint
         Me.pnlJob.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.NetwyrksDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.UserBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NetwyrksDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -582,10 +545,5 @@ Partial Class FrmJobMaint
     Friend WithEvents cbCust As ComboBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents LblStatus As ToolStripStatusLabel
-    Friend WithEvents NetwyrksDataSet As netwyrksDataSet
-    Friend WithEvents UserBindingSource As BindingSource
-    Friend WithEvents UserTableAdapter As netwyrksDataSetTableAdapters.userTableAdapter
-    Friend WithEvents UserBindingSource1 As BindingSource
-    Friend WithEvents NetwyrksDataSetBindingSource As BindingSource
     Friend WithEvents cbUser As ComboBox
 End Class
