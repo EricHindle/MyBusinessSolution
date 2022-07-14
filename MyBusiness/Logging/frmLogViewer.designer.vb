@@ -23,7 +23,7 @@ Partial Class FrmLogViewer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogViewer))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmLogViewer))
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.rtbLog = New System.Windows.Forms.RichTextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -140,9 +140,9 @@ Partial Class FrmLogViewer
         Me.lblFormName.Location = New System.Drawing.Point(58, 11)
         Me.lblFormName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFormName.Name = "lblFormName"
-        Me.lblFormName.Size = New System.Drawing.Size(147, 25)
+        Me.lblFormName.Size = New System.Drawing.Size(150, 25)
         Me.lblFormName.TabIndex = 4
-        Me.lblFormName.Text = "Form Name"
+        Me.lblFormName.Text = "Log Viewer"
         '
         'PictureBox1
         '
@@ -252,7 +252,7 @@ Partial Class FrmLogViewer
         Me.btnNoZoom.UseVisualStyleBackColor = True
         Me.btnNoZoom.Visible = False
         '
-        'frmLogViewer
+        'FrmLogViewer
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -275,7 +275,7 @@ Partial Class FrmLogViewer
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmLogViewer"
+        Me.Name = "FrmLogViewer"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
