@@ -24,6 +24,7 @@ Public Class FrmMain
         MenuStrip1.CanOverflow = True
         Me.Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
         isLoading = True
+        InitialiseData()
         FillCustomerTable()
         FillSupplierTable()
         FillJobTable(-1, mnuShowAllJobs.Checked)
@@ -382,6 +383,7 @@ Public Class FrmMain
             _restore.ShowDialog()
         End Using
     End Sub
+
 
 #End Region
 End Class

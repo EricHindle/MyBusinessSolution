@@ -23,7 +23,7 @@ Partial Class FrmReminder
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReminder))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmReminder))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -115,7 +115,7 @@ Partial Class FrmReminder
         Me.btnSetComplete.Name = "btnSetComplete"
         Me.btnSetComplete.Size = New System.Drawing.Size(89, 54)
         Me.btnSetComplete.TabIndex = 3
-        Me.btnSetComplete.Text = "Set Complete"
+        Me.btnSetComplete.Text = "Mark as Complete"
         Me.btnSetComplete.UseVisualStyleBackColor = True
         '
         'lblFormName
@@ -289,7 +289,7 @@ Partial Class FrmReminder
         Me.chkCallBack.Text = "Call back required"
         Me.chkCallBack.UseVisualStyleBackColor = True
         '
-        'frmReminder
+        'FrmReminder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -318,7 +318,7 @@ Partial Class FrmReminder
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MinimumSize = New System.Drawing.Size(470, 300)
-        Me.Name = "frmReminder"
+        Me.Name = "FrmReminder"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.StatusStrip1.ResumeLayout(False)

@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2021,2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -232,7 +232,7 @@ Public Class FrmReminder
         lblComplete.Visible = isComplete
         lblOverdue.Visible = isComplete = False And _reminder.ReminderDate < Today.Date
         btnSetComplete.Enabled = True
-        btnSetComplete.Text = If(isComplete, "Unset", "Set") & " Complete"
+        btnSetComplete.Text = If(isComplete, "Unset", "Mark as") & " Complete"
         btnAdd.Visible = False
         btnUpdate.Visible = True
         chkReminder.Checked = _reminder.IsReminder
