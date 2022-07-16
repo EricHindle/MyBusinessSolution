@@ -45,10 +45,6 @@ Partial Class FrmMain
         Me.txtCustAddress = New System.Windows.Forms.TextBox()
         Me.spSupplier = New System.Windows.Forms.SplitContainer()
         Me.dgvSupp = New System.Windows.Forms.DataGridView()
-        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtSuppAddress = New System.Windows.Forms.TextBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.dgvJobs = New System.Windows.Forms.DataGridView()
@@ -94,6 +90,11 @@ Partial Class FrmMain
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -295,7 +296,7 @@ Partial Class FrmMain
         Me.dgvSupp.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvSupp.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvSupp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail})
+        Me.dgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail, Me.suppAmazon})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -315,34 +316,6 @@ Partial Class FrmMain
         Me.dgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSupp.Size = New System.Drawing.Size(358, 276)
         Me.dgvSupp.TabIndex = 0
-        '
-        'suppId
-        '
-        Me.suppId.HeaderText = "Id"
-        Me.suppId.Name = "suppId"
-        Me.suppId.ReadOnly = True
-        Me.suppId.Visible = False
-        '
-        'suppName
-        '
-        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.suppName.HeaderText = "Supplier"
-        Me.suppName.Name = "suppName"
-        Me.suppName.ReadOnly = True
-        '
-        'suppPhone
-        '
-        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppPhone.HeaderText = "Phone"
-        Me.suppPhone.Name = "suppPhone"
-        Me.suppPhone.ReadOnly = True
-        '
-        'suppEmail
-        '
-        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppEmail.HeaderText = "Email"
-        Me.suppEmail.Name = "suppEmail"
-        Me.suppEmail.ReadOnly = True
         '
         'txtSuppAddress
         '
@@ -610,10 +583,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.TidyFilesToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -726,7 +699,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem1.Text = " "
         '
         'TidyFilesToolStripMenuItem
@@ -775,7 +748,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(108, 19)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(78, 19)
         Me.ToolStripMenuItem2.Text = " "
         '
         'CloseToolStripMenuItem
@@ -788,6 +761,44 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
         Me.CloseToolStripMenuItem.Text = "Close"
+        '
+        'suppId
+        '
+        Me.suppId.HeaderText = "Id"
+        Me.suppId.Name = "suppId"
+        Me.suppId.ReadOnly = True
+        Me.suppId.Visible = False
+        '
+        'suppName
+        '
+        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.suppName.HeaderText = "Supplier"
+        Me.suppName.Name = "suppName"
+        Me.suppName.ReadOnly = True
+        '
+        'suppPhone
+        '
+        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppPhone.HeaderText = "Phone"
+        Me.suppPhone.Name = "suppPhone"
+        Me.suppPhone.ReadOnly = True
+        '
+        'suppEmail
+        '
+        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppEmail.HeaderText = "Email"
+        Me.suppEmail.Name = "suppEmail"
+        Me.suppEmail.ReadOnly = True
+        '
+        'supplierAmazon
+        '
+        Me.suppAmazon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppAmazon.HeaderText = "Amzn"
+        Me.suppAmazon.Name = "supplierAmazon"
+        Me.suppAmazon.ReadOnly = True
+        Me.suppAmazon.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.suppAmazon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.suppAmazon.Width = 60
         '
         'FrmMain
         '
@@ -844,10 +855,6 @@ Partial Class FrmMain
     Friend WithEvents dgvSupp As DataGridView
     Friend WithEvents SplitContainer3 As SplitContainer
     Friend WithEvents dgvJobs As DataGridView
-    Friend WithEvents suppId As DataGridViewTextBoxColumn
-    Friend WithEvents suppName As DataGridViewTextBoxColumn
-    Friend WithEvents suppPhone As DataGridViewTextBoxColumn
-    Friend WithEvents suppEmail As DataGridViewTextBoxColumn
     Friend WithEvents dgvDiary As DataGridView
     Friend WithEvents dremId As DataGridViewTextBoxColumn
     Friend WithEvents dremCustId As DataGridViewTextBoxColumn
@@ -899,4 +906,9 @@ Partial Class FrmMain
     Friend WithEvents MnuBackup As ToolStripMenuItem
     Friend WithEvents MnuRestore As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents suppId As DataGridViewTextBoxColumn
+    Friend WithEvents suppName As DataGridViewTextBoxColumn
+    Friend WithEvents suppPhone As DataGridViewTextBoxColumn
+    Friend WithEvents suppEmail As DataGridViewTextBoxColumn
+    Friend WithEvents suppAmazon As DataGridViewCheckBoxColumn
 End Class

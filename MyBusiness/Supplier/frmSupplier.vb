@@ -53,7 +53,17 @@ Public Class FrmSupplier
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.Trim).Build
         With _currentSupplier.Build
-            _newSupplier = SupplierBuilder.ASupplierBuilder.WithSupplierAddress(_suppAdd).WithSupplierName(txtSuppName.Text.Trim()).WithSupplierChanged(.SupplierChanged).WithSupplierCreated(.SupplierCreated).WithSupplierEmail(txtSuppEmail.Text.Trim).WithSupplierNotes(rtbSuppNotes.Text).WithSupplierPhone(txtSuppPhone.Text.Trim).WithSupplierDiscount(nudSuppDiscount.Value)
+            _newSupplier = SupplierBuilder.ASupplierBuilder _
+                                .WithSupplierAddress(_suppAdd) _
+                                .WithSupplierName(txtSuppName.Text.Trim()) _
+                                .WithSupplierChanged(.SupplierChanged) _
+                                .WithSupplierCreated(.SupplierCreated) _
+                                .WithSupplierEmail(txtSuppEmail.Text.Trim) _
+                                .WithSupplierNotes(rtbSuppNotes.Text) _
+                                .WithSupplierPhone(txtSuppPhone.Text.Trim) _
+                                .WithSupplierDiscount(nudSuppDiscount.Value) _
+                                .WithIsAmazon(ChkAmazon.Checked) _
+                                .WithSupplierUrl(TxtWeb.Text)
         End With
 
         If _supplierId > 0 Then
@@ -119,6 +129,8 @@ Public Class FrmSupplier
             txtSuppEmail.Text = .SupplierEmail
             nudSuppDiscount.Value = .SupplierDiscount
             rtbSuppNotes.Text = .SupplierNotes
+            ChkAmazon.Checked = .IsSupplierAmazon
+            TxtWeb.Text = .SupplierUrl
         End With
         pnlProducts.Visible = True
         FillProductsList(_supplierId)
@@ -141,7 +153,7 @@ Public Class FrmSupplier
     Private Function AmendSupplier() As Boolean
         Dim isAmendOK As Boolean = False
         With _newSupplier.Build
-            If oSuppTa.UpdateSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .IsSupplierAmazon, .SupplierUrl, _supplierId) = 1 Then
+            If oSuppTa.UpdateSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .SupplierAmazon, .SupplierUrl, _supplierId) = 1 Then
                 isAmendOK = True
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.Build.ToString, .ToString)
             Else
@@ -170,7 +182,8 @@ Public Class FrmSupplier
         txtSuppEmail.Text = ""
         nudSuppDiscount.Value = 0
         rtbSuppNotes.Text = ""
-
+        ChkAmazon.Checked = False
+        TxtWeb.Text = ""
     End Sub
     Private Sub FillProductsList(ByVal suppId As Integer)
         isLoadingProducts = True
@@ -189,6 +202,18 @@ Public Class FrmSupplier
         oProductTa.Dispose()
         oProductTable.Dispose()
         isLoadingProducts = False
+    End Sub
+
+    Private Sub ChkAmazon_CheckedChanged(sender As Object, e As EventArgs) Handles ChkAmazon.CheckedChanged
+        With ChkAmazon
+            If .Checked Then
+                .BackColor = Color.DarkRed
+                .ForeColor = Color.White
+            Else
+                .BackColor = Color.WhiteSmoke
+                .ForeColor = Color.Black
+            End If
+        End With
     End Sub
 #End Region
 End Class

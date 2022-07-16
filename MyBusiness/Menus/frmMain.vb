@@ -210,16 +210,16 @@ Public Class FrmMain
     Private Sub FillCustomerTable()
         dgvCust.Rows.Clear()
         Dim row1 As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
-        row1.Cells(Me.custId.Name).Value = -1
+        row1.Cells(custId.Name).Value = -1
         Dim oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
         Dim oCustTable As New netwyrksDataSet.customerDataTable
         oCustTa.Fill(oCustTable)
         For Each oRow As netwyrksDataSet.customerRow In oCustTable.Rows
             Dim tRow As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
-            tRow.Cells(Me.custId.Name).Value = oRow.customer_id
-            tRow.Cells(Me.custName.Name).Value = oRow.customer_name
-            tRow.Cells(Me.custPhone.Name).Value = oRow.customer_telephone
-            tRow.Cells(Me.custemail.Name).Value = oRow.customer_email
+            tRow.Cells(custId.Name).Value = oRow.customer_id
+            tRow.Cells(custName.Name).Value = oRow.customer_name
+            tRow.Cells(custPhone.Name).Value = oRow.customer_telephone
+            tRow.Cells(custemail.Name).Value = oRow.customer_email
         Next
         oCustTa.Dispose()
         oCustTable.Dispose()
@@ -229,16 +229,17 @@ Public Class FrmMain
     Private Sub FillSupplierTable()
         dgvSupp.Rows.Clear()
         Dim row1 As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
-        row1.Cells(Me.suppId.Name).Value = -1
+        row1.Cells(suppId.Name).Value = -1
         Dim osuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
         Dim osuppTable As New netwyrksDataSet.supplierDataTable
         osuppTa.Fill(osuppTable)
         For Each oRow As netwyrksDataSet.supplierRow In osuppTable.Rows
             Dim tRow As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
-            tRow.Cells(Me.suppId.Name).Value = oRow.supplier_id
-            tRow.Cells(Me.suppName.Name).Value = oRow.supplier_name
-            tRow.Cells(Me.suppPhone.Name).Value = oRow.supplier_telephone
-            tRow.Cells(Me.suppEmail.Name).Value = oRow.supplier_email
+            tRow.Cells(suppId.Name).Value = oRow.supplier_id
+            tRow.Cells(suppName.Name).Value = oRow.supplier_name
+            tRow.Cells(suppPhone.Name).Value = oRow.supplier_telephone
+            tRow.Cells(suppEmail.Name).Value = oRow.supplier_email
+            tRow.Cells(suppAmazon.Name).Value = oRow.supplier_amazon = 1
         Next
         osuppTa.Dispose()
         osuppTable.Dispose()

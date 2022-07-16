@@ -61,6 +61,9 @@ Partial Class FrmSupplier
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtProductDesc = New System.Windows.Forms.TextBox()
         Me.btnAddProduct = New System.Windows.Forms.Button()
+        Me.ChkAmazon = New System.Windows.Forms.CheckBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TxtWeb = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlSupplier.SuspendLayout()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +109,7 @@ Partial Class FrmSupplier
         Me.btnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(114, 50)
-        Me.btnClose.TabIndex = 74
+        Me.btnClose.TabIndex = 3
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
@@ -117,7 +120,7 @@ Partial Class FrmSupplier
         Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(114, 50)
-        Me.btnUpdate.TabIndex = 73
+        Me.btnUpdate.TabIndex = 2
         Me.btnUpdate.Text = "Update"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
@@ -136,6 +139,9 @@ Partial Class FrmSupplier
         '
         Me.pnlSupplier.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.pnlSupplier.Controls.Add(Me.Label8)
+        Me.pnlSupplier.Controls.Add(Me.TxtWeb)
+        Me.pnlSupplier.Controls.Add(Me.ChkAmazon)
         Me.pnlSupplier.Controls.Add(Me.Label7)
         Me.pnlSupplier.Controls.Add(Me.rtbSuppNotes)
         Me.pnlSupplier.Controls.Add(Me.Label6)
@@ -156,15 +162,15 @@ Partial Class FrmSupplier
         Me.pnlSupplier.Location = New System.Drawing.Point(14, 73)
         Me.pnlSupplier.Name = "pnlSupplier"
         Me.pnlSupplier.Size = New System.Drawing.Size(478, 506)
-        Me.pnlSupplier.TabIndex = 75
+        Me.pnlSupplier.TabIndex = 0
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(14, 339)
+        Me.Label7.Location = New System.Drawing.Point(14, 376)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(43, 17)
-        Me.Label7.TabIndex = 16
+        Me.Label7.TabIndex = 1
         Me.Label7.Text = "Notes"
         '
         'rtbSuppNotes
@@ -172,28 +178,28 @@ Partial Class FrmSupplier
         Me.rtbSuppNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbSuppNotes.Location = New System.Drawing.Point(112, 336)
+        Me.rtbSuppNotes.Location = New System.Drawing.Point(112, 376)
         Me.rtbSuppNotes.Name = "rtbSuppNotes"
-        Me.rtbSuppNotes.Size = New System.Drawing.Size(363, 167)
-        Me.rtbSuppNotes.TabIndex = 9
+        Me.rtbSuppNotes.Size = New System.Drawing.Size(363, 127)
+        Me.rtbSuppNotes.TabIndex = 11
         Me.rtbSuppNotes.Text = ""
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(14, 302)
+        Me.Label6.Location = New System.Drawing.Point(14, 338)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(80, 17)
-        Me.Label6.TabIndex = 14
+        Me.Label6.TabIndex = 0
         Me.Label6.Text = "Discount %"
         '
         'nudSuppDiscount
         '
         Me.nudSuppDiscount.DecimalPlaces = 2
-        Me.nudSuppDiscount.Location = New System.Drawing.Point(112, 300)
+        Me.nudSuppDiscount.Location = New System.Drawing.Point(112, 336)
         Me.nudSuppDiscount.Name = "nudSuppDiscount"
         Me.nudSuppDiscount.Size = New System.Drawing.Size(120, 24)
-        Me.nudSuppDiscount.TabIndex = 8
+        Me.nudSuppDiscount.TabIndex = 9
         '
         'Label5
         '
@@ -201,14 +207,14 @@ Partial Class FrmSupplier
         Me.Label5.Location = New System.Drawing.Point(14, 251)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(36, 17)
-        Me.Label5.TabIndex = 12
+        Me.Label5.TabIndex = 17
         Me.Label5.Text = "eMail"
         '
         'txtSuppEmail
         '
         Me.txtSuppEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSuppEmail.Location = New System.Drawing.Point(112, 248)
+        Me.txtSuppEmail.Location = New System.Drawing.Point(112, 250)
         Me.txtSuppEmail.Name = "txtSuppEmail"
         Me.txtSuppEmail.Size = New System.Drawing.Size(262, 24)
         Me.txtSuppEmail.TabIndex = 7
@@ -219,7 +225,7 @@ Partial Class FrmSupplier
         Me.Label4.Location = New System.Drawing.Point(14, 222)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(47, 17)
-        Me.Label4.TabIndex = 10
+        Me.Label4.TabIndex = 16
         Me.Label4.Text = "Phone"
         '
         'txtSuppPhone
@@ -237,7 +243,7 @@ Partial Class FrmSupplier
         Me.Label3.Location = New System.Drawing.Point(14, 182)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(65, 17)
-        Me.Label3.TabIndex = 8
+        Me.Label3.TabIndex = 15
         Me.Label3.Text = "Postcode"
         '
         'Label2
@@ -246,7 +252,7 @@ Partial Class FrmSupplier
         Me.Label2.Location = New System.Drawing.Point(14, 60)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 17)
-        Me.Label2.TabIndex = 7
+        Me.Label2.TabIndex = 14
         Me.Label2.Text = "Address"
         '
         'txtSuppPostcode
@@ -298,7 +304,7 @@ Partial Class FrmSupplier
         Me.Label1.Location = New System.Drawing.Point(14, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 17)
-        Me.Label1.TabIndex = 1
+        Me.Label1.TabIndex = 13
         Me.Label1.Text = "Name"
         '
         'txtSuppName
@@ -321,7 +327,7 @@ Partial Class FrmSupplier
         Me.pnlProducts.Location = New System.Drawing.Point(498, 89)
         Me.pnlProducts.Name = "pnlProducts"
         Me.pnlProducts.Size = New System.Drawing.Size(361, 524)
-        Me.pnlProducts.TabIndex = 76
+        Me.pnlProducts.TabIndex = 1
         '
         'spProducts
         '
@@ -470,11 +476,40 @@ Partial Class FrmSupplier
         Me.btnAddProduct.Location = New System.Drawing.Point(284, 496)
         Me.btnAddProduct.Name = "btnAddProduct"
         Me.btnAddProduct.Size = New System.Drawing.Size(74, 25)
-        Me.btnAddProduct.TabIndex = 2
+        Me.btnAddProduct.TabIndex = 0
         Me.btnAddProduct.Text = "+Product"
         Me.btnAddProduct.UseVisualStyleBackColor = True
         '
-        'frmSupplier
+        'ChkAmazon
+        '
+        Me.ChkAmazon.AutoSize = True
+        Me.ChkAmazon.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ChkAmazon.Location = New System.Drawing.Point(298, 337)
+        Me.ChkAmazon.Name = "ChkAmazon"
+        Me.ChkAmazon.Size = New System.Drawing.Size(76, 21)
+        Me.ChkAmazon.TabIndex = 10
+        Me.ChkAmazon.Text = "Amazon"
+        Me.ChkAmazon.UseVisualStyleBackColor = False
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 281)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(37, 17)
+        Me.Label8.TabIndex = 19
+        Me.Label8.Text = "Web"
+        '
+        'TxtWeb
+        '
+        Me.TxtWeb.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtWeb.Location = New System.Drawing.Point(112, 281)
+        Me.TxtWeb.Name = "TxtWeb"
+        Me.TxtWeb.Size = New System.Drawing.Size(344, 24)
+        Me.TxtWeb.TabIndex = 8
+        '
+        'FrmSupplier
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -490,7 +525,7 @@ Partial Class FrmSupplier
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmSupplier"
+        Me.Name = "FrmSupplier"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -545,4 +580,7 @@ Partial Class FrmSupplier
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents prodId As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents prodName As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ChkAmazon As CheckBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TxtWeb As TextBox
 End Class
