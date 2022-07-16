@@ -165,11 +165,12 @@
     <Compile Include="Diary\FrmReminder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\Address.vb" />
+    <Compile Include="Domain\Builders\JobProductBuilder.vb" />
+    <Compile Include="Domain\Objects\Address.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
-    <Compile Include="Domain\Customer.vb" />
+    <Compile Include="Domain\Objects\Customer.vb" />
     <Compile Include="Domain\Builders\CustomerBuilder.vb" />
-    <Compile Include="Domain\Email.vb" />
+    <Compile Include="Domain\Objects\Email.vb" />
     <Compile Include="Domain\Builders\EmailBuilder.vb" />
     <Compile Include="Domain\FrmBackup.designer.vb">
       <DependentUpon>FrmBackup.vb</DependentUpon>
@@ -183,23 +184,24 @@
     <Compile Include="Domain\FrmRestore.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Domain\Job.vb" />
+    <Compile Include="Domain\Objects\Job.vb" />
     <Compile Include="Domain\Builders\JobBuilder.vb" />
     <Compile Include="Domain\ModDatabase.vb" />
     <Compile Include="Domain\netwyrksDataSet.vb">
       <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Product.vb" />
+    <Compile Include="Domain\Objects\JobProduct.vb" />
+    <Compile Include="Domain\Objects\Product.vb" />
     <Compile Include="Domain\Builders\ProductBuilder.vb" />
-    <Compile Include="Domain\Reminder.vb" />
+    <Compile Include="Domain\Objects\Reminder.vb" />
     <Compile Include="Domain\Builders\ReminderBuilder.vb" />
-    <Compile Include="Domain\ReportColumn.vb" />
+    <Compile Include="Domain\Objects\ReportColumn.vb" />
     <Compile Include="Domain\Builders\ReportColumnBuilder.vb" />
-    <Compile Include="Domain\Supplier.vb" />
+    <Compile Include="Domain\Objects\Supplier.vb" />
     <Compile Include="Domain\Builders\SupplierBuilder.vb" />
-    <Compile Include="Domain\Task.vb" />
+    <Compile Include="Domain\Objects\Task.vb" />
     <Compile Include="Domain\Builders\TaskBuilder.vb" />
-    <Compile Include="Domain\User.vb" />
+    <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
     <Compile Include="Imaging\ImageUtil.vb" />

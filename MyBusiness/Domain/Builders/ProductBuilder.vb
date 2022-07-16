@@ -19,15 +19,12 @@ Public Class ProductBuilder
         Return New ProductBuilder
     End Function
     Public Function StartingWith(ByVal ProductId As Integer) As ProductBuilder
-        Dim oProductTa As New netwyrksDataSetTableAdapters.productTableAdapter
-        Dim oProductTable As New netwyrksDataSet.productDataTable
-        If oProductTa.FillById(oProductTable, ProductId) > 0 Then
-            startingWith(oProductTable.Rows(0))
+        Dim oRow As netwyrksDataSet.productRow = GetProduct(ProductId)
+        If oRow IsNot Nothing Then
+            StartingWith(oRow)
         Else
-            startingWithNothing()
+            StartingWithNothing()
         End If
-        oProductTa.Dispose()
-        oProductTable.Dispose()
         Return Me
     End Function
     Public Function StartingWith(ByVal oProduct As Product) As ProductBuilder

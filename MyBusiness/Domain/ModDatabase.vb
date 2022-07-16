@@ -68,6 +68,26 @@ Module ModDatabase
 
 
 #End Region
+#Region "job"
+    Public Function GetJob(ByVal pId As Integer) As netwyrksDataSet.jobRow
+        Dim oRow As netwyrksDataSet.jobRow = Nothing
+        oJobTa.FillById(oJobTable, pId)
+        If oJobTable.Rows.Count > 0 Then
+            oRow = oJobTable.Rows(0)
+        End If
+        Return oRow
+    End Function
+#End Region
+#Region "product"
+    Public Function GetProduct(ByVal pId As Integer) As netwyrksDataSet.productRow
+        Dim oRow As netwyrksDataSet.productRow = Nothing
+        oProductTa.FillById(oProductTable, pId)
+        If oProductTable.Rows.Count > 0 Then
+            oRow = oProductTable.Rows(0)
+        End If
+        Return oRow
+    End Function
+#End Region
 #Region "common"
     Public Sub InitialiseData()
         LogUtil.Info("Initialising data", MODULE_NAME)

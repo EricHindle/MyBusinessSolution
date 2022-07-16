@@ -25,15 +25,12 @@ Public Class JobBuilder
         Return New JobBuilder
     End Function
     Public Function StartingWith(ByVal jobId As Integer) As JobBuilder
-        Dim oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-        Dim oJobTable As New netwyrksDataSet.jobDataTable
-        If oJobTa.FillById(oJobTable, jobId) > 0 Then
-            startingWith(oJobTable.Rows(0))
+        Dim oRow As netwyrksDataSet.jobRow = GetJob(jobId)
+        If oRow Is Nothing Then
+            StartingWithNothing()
         Else
-            startingWithNothing()
+            StartingWith(oRow)
         End If
-        oJobTa.Dispose()
-        oJobTable.Dispose()
         Return Me
     End Function
     Public Function StartingWith(ByVal oJob As Job) As JobBuilder
