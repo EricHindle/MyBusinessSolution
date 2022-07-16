@@ -37,7 +37,7 @@ Public Class FrmSupplier
         UPDATE_WIDTH = Me.Width
         pnlSupplier.Enabled = False
         pnlProducts.Visible = False
-        If _supplierId = 0 Then
+        If _supplierId <= 0 Then
             NewSupplier()
         Else
             pnlSupplier.Enabled = True
@@ -73,7 +73,8 @@ Public Class FrmSupplier
         Else
             If InsertSupplier() Then
                 pnlProducts.Visible = False
-            Else
+                LblStatus.Text = "Inserted New Supplier"
+                LblStatus.BackColor = Color.SeaGreen
                 Me.Close()
             End If
         End If
@@ -118,6 +119,9 @@ Public Class FrmSupplier
 #Region "subroutines"
     Private Sub FillSupplierDetails()
         Me.Width = UPDATE_WIDTH
+        LblStatus.Text = "Updating Supplier"
+        LblStatus.BackColor = Color.SlateGray
+        btnUpdate.Text = "Update"
         With _currentSupplier.Build
             txtSuppName.Text = .SupplierName
             txtSuppAddr1.Text = .SupplierAddress.Address1
@@ -165,6 +169,9 @@ Public Class FrmSupplier
         Return isAmendOK
     End Function
     Private Sub NewSupplier()
+        LblStatus.Text = "Adding New Supplier"
+        btnUpdate.Text = "Create"
+        LblStatus.BackColor = Color.SteelBlue
         _currentSupplier = SupplierBuilder.ASupplierBuilder.StartingWithNothing
         ClearSupplierDetails()
         pnlSupplier.Enabled = True
@@ -215,5 +222,7 @@ Public Class FrmSupplier
             End If
         End With
     End Sub
+
+
 #End Region
 End Class

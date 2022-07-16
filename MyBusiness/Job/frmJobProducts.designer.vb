@@ -29,6 +29,7 @@ Partial Class FrmJobProducts
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.LblF5 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.dgvJobProducts = New System.Windows.Forms.DataGridView()
         Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jpProdId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,12 +54,23 @@ Partial Class FrmJobProducts
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSupplier, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudQuantity, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -75,13 +87,13 @@ Partial Class FrmJobProducts
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.PictureBox1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.MyBusinessLogo
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PictureBox1.Image = Global.MyBusiness.My.Resources.Resources.MyBusinessLogo
-        Me.PictureBox1.Location = New System.Drawing.Point(14, 15)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PictureBox1.Location = New System.Drawing.Point(16, 15)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(48, 51)
+        Me.PictureBox1.Size = New System.Drawing.Size(48, 48)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 69
         Me.PictureBox1.TabStop = False
@@ -90,7 +102,7 @@ Partial Class FrmJobProducts
         '
         Me.lblJobName.AutoSize = True
         Me.lblJobName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblJobName.Location = New System.Drawing.Point(71, 75)
+        Me.lblJobName.Location = New System.Drawing.Point(71, 65)
         Me.lblJobName.Name = "lblJobName"
         Me.lblJobName.Size = New System.Drawing.Size(78, 19)
         Me.lblJobName.TabIndex = 70
@@ -100,7 +112,7 @@ Partial Class FrmJobProducts
         '
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(651, 632)
+        Me.btnClose.Location = New System.Drawing.Point(651, 579)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(98, 41)
         Me.btnClose.TabIndex = 74
@@ -110,7 +122,7 @@ Partial Class FrmJobProducts
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(12, 632)
+        Me.btnAdd.Location = New System.Drawing.Point(12, 579)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(98, 41)
         Me.btnAdd.TabIndex = 73
@@ -121,11 +133,24 @@ Partial Class FrmJobProducts
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 676)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblF5})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 631)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(761, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(764, 30)
         Me.StatusStrip1.TabIndex = 72
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'LblF5
+        '
+        Me.LblF5.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
+            Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
+            Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
+        Me.LblF5.BorderStyle = System.Windows.Forms.Border3DStyle.Raised
+        Me.LblF5.Margin = New System.Windows.Forms.Padding(3, 3, 5, 2)
+        Me.LblF5.Name = "LblF5"
+        Me.LblF5.Padding = New System.Windows.Forms.Padding(3)
+        Me.LblF5.Size = New System.Drawing.Size(105, 25)
+        Me.LblF5.Text = "F5=Add Supplier"
         '
         'dgvJobProducts
         '
@@ -135,13 +160,14 @@ Partial Class FrmJobProducts
         Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.Gainsboro
         Me.dgvJobProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvJobProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.jpProdId, Me.jpSupp, Me.jpProduct, Me.jpQty, Me.jpTaxable, Me.jpRate})
-        Me.dgvJobProducts.Location = New System.Drawing.Point(14, 106)
+        Me.dgvJobProducts.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvJobProducts.Location = New System.Drawing.Point(0, 0)
         Me.dgvJobProducts.MultiSelect = False
         Me.dgvJobProducts.Name = "dgvJobProducts"
         Me.dgvJobProducts.ReadOnly = True
         Me.dgvJobProducts.RowHeadersVisible = False
         Me.dgvJobProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvJobProducts.Size = New System.Drawing.Size(735, 279)
+        Me.dgvJobProducts.Size = New System.Drawing.Size(732, 209)
         Me.dgvJobProducts.TabIndex = 75
         '
         'jpId
@@ -205,13 +231,14 @@ Partial Class FrmJobProducts
         Me.dgvSupplier.AllowUserToResizeRows = False
         Me.dgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSupplier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName})
-        Me.dgvSupplier.Location = New System.Drawing.Point(14, 402)
+        Me.dgvSupplier.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvSupplier.Location = New System.Drawing.Point(0, 0)
         Me.dgvSupplier.MultiSelect = False
         Me.dgvSupplier.Name = "dgvSupplier"
         Me.dgvSupplier.ReadOnly = True
         Me.dgvSupplier.RowHeadersVisible = False
         Me.dgvSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSupplier.Size = New System.Drawing.Size(240, 150)
+        Me.dgvSupplier.Size = New System.Drawing.Size(240, 205)
         Me.dgvSupplier.TabIndex = 76
         '
         'suppId
@@ -235,13 +262,14 @@ Partial Class FrmJobProducts
         Me.dgvProducts.AllowUserToResizeRows = False
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate})
-        Me.dgvProducts.Location = New System.Drawing.Point(273, 402)
+        Me.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvProducts.Location = New System.Drawing.Point(0, 0)
         Me.dgvProducts.MultiSelect = False
         Me.dgvProducts.Name = "dgvProducts"
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(476, 150)
+        Me.dgvProducts.Size = New System.Drawing.Size(484, 205)
         Me.dgvProducts.TabIndex = 77
         '
         'prodId
@@ -274,8 +302,9 @@ Partial Class FrmJobProducts
         '
         'lblProductName
         '
+        Me.lblProductName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblProductName.AutoSize = True
-        Me.lblProductName.Location = New System.Drawing.Point(21, 588)
+        Me.lblProductName.Location = New System.Drawing.Point(25, 548)
         Me.lblProductName.Name = "lblProductName"
         Me.lblProductName.Size = New System.Drawing.Size(108, 17)
         Me.lblProductName.TabIndex = 78
@@ -283,7 +312,8 @@ Partial Class FrmJobProducts
         '
         'nudQuantity
         '
-        Me.nudQuantity.Location = New System.Drawing.Point(273, 586)
+        Me.nudQuantity.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.nudQuantity.Location = New System.Drawing.Point(277, 546)
         Me.nudQuantity.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudQuantity.Name = "nudQuantity"
         Me.nudQuantity.Size = New System.Drawing.Size(120, 24)
@@ -292,7 +322,7 @@ Partial Class FrmJobProducts
         'btnRemove
         '
         Me.btnRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnRemove.Location = New System.Drawing.Point(290, 632)
+        Me.btnRemove.Location = New System.Drawing.Point(290, 579)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(98, 41)
         Me.btnRemove.TabIndex = 80
@@ -302,7 +332,7 @@ Partial Class FrmJobProducts
         'btnAdjust
         '
         Me.btnAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdjust.Location = New System.Drawing.Point(151, 632)
+        Me.btnAdjust.Location = New System.Drawing.Point(151, 579)
         Me.btnAdjust.Name = "btnAdjust"
         Me.btnAdjust.Size = New System.Drawing.Size(98, 41)
         Me.btnAdjust.TabIndex = 81
@@ -311,8 +341,9 @@ Partial Class FrmJobProducts
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(270, 566)
+        Me.Label1.Location = New System.Drawing.Point(274, 526)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 17)
         Me.Label1.TabIndex = 82
@@ -320,8 +351,9 @@ Partial Class FrmJobProducts
         '
         'chkTaxable
         '
+        Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(420, 587)
+        Me.chkTaxable.Location = New System.Drawing.Point(424, 547)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(86, 21)
         Me.chkTaxable.TabIndex = 83
@@ -330,27 +362,69 @@ Partial Class FrmJobProducts
         '
         'nudTaxRate
         '
+        Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(586, 586)
+        Me.nudTaxRate.Location = New System.Drawing.Point(590, 546)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(80, 24)
         Me.nudTaxRate.TabIndex = 84
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(526, 588)
+        Me.Label2.Location = New System.Drawing.Point(530, 548)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 17)
         Me.Label2.TabIndex = 85
         Me.Label2.Text = "Rate %"
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.dgvSupplier)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgvProducts)
+        Me.SplitContainer1.Size = New System.Drawing.Size(736, 209)
+        Me.SplitContainer1.SplitterDistance = 244
+        Me.SplitContainer1.TabIndex = 86
+        '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SplitContainer2.Location = New System.Drawing.Point(16, 97)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.dgvJobProducts)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
+        Me.SplitContainer2.Size = New System.Drawing.Size(736, 426)
+        Me.SplitContainer2.SplitterDistance = 213
+        Me.SplitContainer2.TabIndex = 87
         '
         'FrmJobProducts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(761, 698)
+        Me.ClientSize = New System.Drawing.Size(764, 661)
+        Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.nudTaxRate)
         Me.Controls.Add(Me.chkTaxable)
@@ -359,9 +433,6 @@ Partial Class FrmJobProducts
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.nudQuantity)
         Me.Controls.Add(Me.lblProductName)
-        Me.Controls.Add(Me.dgvProducts)
-        Me.Controls.Add(Me.dgvSupplier)
-        Me.Controls.Add(Me.dgvJobProducts)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.StatusStrip1)
@@ -371,14 +442,25 @@ Partial Class FrmJobProducts
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.MinimumSize = New System.Drawing.Size(780, 700)
         Me.Name = "FrmJobProducts"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvSupplier, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudQuantity, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -414,4 +496,7 @@ Partial Class FrmJobProducts
     Friend WithEvents prodName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents prodTaxable As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents prodTaxRate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LblF5 As ToolStripStatusLabel
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents SplitContainer2 As SplitContainer
 End Class

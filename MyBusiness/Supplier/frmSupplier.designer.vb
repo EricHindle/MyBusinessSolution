@@ -32,6 +32,9 @@ Partial Class FrmSupplier
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.pnlSupplier = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TxtWeb = New System.Windows.Forms.TextBox()
+        Me.ChkAmazon = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.rtbSuppNotes = New System.Windows.Forms.RichTextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -61,9 +64,7 @@ Partial Class FrmSupplier
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtProductDesc = New System.Windows.Forms.TextBox()
         Me.btnAddProduct = New System.Windows.Forms.Button()
-        Me.ChkAmazon = New System.Windows.Forms.CheckBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TxtWeb = New System.Windows.Forms.TextBox()
+        Me.LblStatus = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlSupplier.SuspendLayout()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +164,35 @@ Partial Class FrmSupplier
         Me.pnlSupplier.Name = "pnlSupplier"
         Me.pnlSupplier.Size = New System.Drawing.Size(478, 506)
         Me.pnlSupplier.TabIndex = 0
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 281)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(37, 17)
+        Me.Label8.TabIndex = 19
+        Me.Label8.Text = "Web"
+        '
+        'TxtWeb
+        '
+        Me.TxtWeb.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtWeb.Location = New System.Drawing.Point(112, 281)
+        Me.TxtWeb.Name = "TxtWeb"
+        Me.TxtWeb.Size = New System.Drawing.Size(344, 24)
+        Me.TxtWeb.TabIndex = 8
+        '
+        'ChkAmazon
+        '
+        Me.ChkAmazon.AutoSize = True
+        Me.ChkAmazon.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ChkAmazon.Location = New System.Drawing.Point(298, 337)
+        Me.ChkAmazon.Name = "ChkAmazon"
+        Me.ChkAmazon.Size = New System.Drawing.Size(76, 21)
+        Me.ChkAmazon.TabIndex = 10
+        Me.ChkAmazon.Text = "Amazon"
+        Me.ChkAmazon.UseVisualStyleBackColor = False
         '
         'Label7
         '
@@ -326,14 +356,16 @@ Partial Class FrmSupplier
         Me.pnlProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlProducts.Location = New System.Drawing.Point(498, 89)
         Me.pnlProducts.Name = "pnlProducts"
-        Me.pnlProducts.Size = New System.Drawing.Size(361, 524)
+        Me.pnlProducts.Size = New System.Drawing.Size(361, 490)
         Me.pnlProducts.TabIndex = 1
         '
         'spProducts
         '
-        Me.spProducts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.spProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.spProducts.BackColor = System.Drawing.Color.Gainsboro
+        Me.spProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.spProducts.Location = New System.Drawing.Point(3, 3)
         Me.spProducts.Name = "spProducts"
         Me.spProducts.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -345,8 +377,8 @@ Partial Class FrmSupplier
         'spProducts.Panel2
         '
         Me.spProducts.Panel2.Controls.Add(Me.Panel1)
-        Me.spProducts.Size = New System.Drawing.Size(355, 487)
-        Me.spProducts.SplitterDistance = 410
+        Me.spProducts.Size = New System.Drawing.Size(355, 455)
+        Me.spProducts.SplitterDistance = 380
         Me.spProducts.TabIndex = 3
         '
         'dgvProducts
@@ -378,7 +410,7 @@ Partial Class FrmSupplier
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.dgvProducts.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(355, 410)
+        Me.dgvProducts.Size = New System.Drawing.Size(353, 378)
         Me.dgvProducts.TabIndex = 0
         '
         'prodId
@@ -408,7 +440,7 @@ Partial Class FrmSupplier
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(355, 73)
+        Me.Panel1.Size = New System.Drawing.Size(353, 69)
         Me.Panel1.TabIndex = 0
         '
         'txtPrice
@@ -417,7 +449,7 @@ Partial Class FrmSupplier
         Me.txtPrice.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPrice.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.txtPrice.Location = New System.Drawing.Point(240, 49)
+        Me.txtPrice.Location = New System.Drawing.Point(240, 87)
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(92, 15)
         Me.txtPrice.TabIndex = 4
@@ -428,7 +460,7 @@ Partial Class FrmSupplier
         Me.txtCost.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtCost.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtCost.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.txtCost.Location = New System.Drawing.Point(50, 49)
+        Me.txtCost.Location = New System.Drawing.Point(50, 87)
         Me.txtCost.Name = "txtCost"
         Me.txtCost.Size = New System.Drawing.Size(100, 15)
         Me.txtCost.TabIndex = 3
@@ -439,7 +471,7 @@ Partial Class FrmSupplier
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Label10.ForeColor = System.Drawing.Color.DarkGray
-        Me.Label10.Location = New System.Drawing.Point(201, 50)
+        Me.Label10.Location = New System.Drawing.Point(201, 88)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(33, 14)
         Me.Label10.TabIndex = 2
@@ -450,7 +482,7 @@ Partial Class FrmSupplier
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.ForeColor = System.Drawing.Color.DarkGray
-        Me.Label9.Location = New System.Drawing.Point(13, 50)
+        Me.Label9.Location = New System.Drawing.Point(13, 88)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(31, 14)
         Me.Label9.TabIndex = 1
@@ -458,56 +490,38 @@ Partial Class FrmSupplier
         '
         'txtProductDesc
         '
-        Me.txtProductDesc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtProductDesc.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtProductDesc.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtProductDesc.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtProductDesc.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.txtProductDesc.Location = New System.Drawing.Point(5, 7)
+        Me.txtProductDesc.Location = New System.Drawing.Point(0, 0)
         Me.txtProductDesc.Multiline = True
         Me.txtProductDesc.Name = "txtProductDesc"
-        Me.txtProductDesc.Size = New System.Drawing.Size(345, 36)
+        Me.txtProductDesc.Size = New System.Drawing.Size(353, 69)
         Me.txtProductDesc.TabIndex = 0
         '
         'btnAddProduct
         '
         Me.btnAddProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddProduct.Location = New System.Drawing.Point(284, 496)
+        Me.btnAddProduct.Location = New System.Drawing.Point(284, 462)
         Me.btnAddProduct.Name = "btnAddProduct"
         Me.btnAddProduct.Size = New System.Drawing.Size(74, 25)
         Me.btnAddProduct.TabIndex = 0
         Me.btnAddProduct.Text = "+Product"
         Me.btnAddProduct.UseVisualStyleBackColor = True
         '
-        'ChkAmazon
+        'LblStatus
         '
-        Me.ChkAmazon.AutoSize = True
-        Me.ChkAmazon.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ChkAmazon.Location = New System.Drawing.Point(298, 337)
-        Me.ChkAmazon.Name = "ChkAmazon"
-        Me.ChkAmazon.Size = New System.Drawing.Size(76, 21)
-        Me.ChkAmazon.TabIndex = 10
-        Me.ChkAmazon.Text = "Amazon"
-        Me.ChkAmazon.UseVisualStyleBackColor = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(14, 281)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(37, 17)
-        Me.Label8.TabIndex = 19
-        Me.Label8.Text = "Web"
-        '
-        'TxtWeb
-        '
-        Me.TxtWeb.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtWeb.Location = New System.Drawing.Point(112, 281)
-        Me.TxtWeb.Name = "TxtWeb"
-        Me.TxtWeb.Size = New System.Drawing.Size(344, 24)
-        Me.TxtWeb.TabIndex = 8
+        Me.LblStatus.AutoSize = True
+        Me.LblStatus.BackColor = System.Drawing.Color.SeaGreen
+        Me.LblStatus.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblStatus.ForeColor = System.Drawing.Color.White
+        Me.LblStatus.Location = New System.Drawing.Point(562, 37)
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3)
+        Me.LblStatus.Size = New System.Drawing.Size(188, 29)
+        Me.LblStatus.TabIndex = 73
+        Me.LblStatus.Text = "Adding new supplier"
         '
         'FrmSupplier
         '
@@ -515,6 +529,7 @@ Partial Class FrmSupplier
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(871, 673)
+        Me.Controls.Add(Me.LblStatus)
         Me.Controls.Add(Me.pnlProducts)
         Me.Controls.Add(Me.pnlSupplier)
         Me.Controls.Add(Me.btnClose)
@@ -583,4 +598,5 @@ Partial Class FrmSupplier
     Friend WithEvents ChkAmazon As CheckBox
     Friend WithEvents Label8 As Label
     Friend WithEvents TxtWeb As TextBox
+    Friend WithEvents LblStatus As Label
 End Class

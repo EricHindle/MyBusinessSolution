@@ -44,6 +44,7 @@ Public Class FrmJobProducts
         FillJobProductList(dgvJobProducts)
         lblJobName.Text = _job.Build.JobName
         lblProductName.Text = ""
+        Me.KeyPreview = True
         isLoading = False
     End Sub
     Private Sub FrmJobProducts_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -143,8 +144,20 @@ Public Class FrmJobProducts
             isLoading = False
         End If
     End Sub
+    Private Sub Form_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F5 Then
+            AddSupplier
+        End If
+    End Sub
 #End Region
 #Region "subroutines"
+    Private Sub AddSupplier()
+        Using _suppform As New FrmSupplier
+            _suppform.SupplierId = -1
+            _suppform.ShowDialog()
+        End Using
+        FillSupplierList()
+    End Sub
     Private Sub FillSupplierList()
         dgvSupplier.Rows.Clear()
         Try
@@ -212,5 +225,24 @@ Public Class FrmJobProducts
         Next
         dgvJobProducts.ClearSelection()
     End Sub
+
+    Private Sub LblF5_Click(sender As Object, e As EventArgs) Handles LblF5.Click
+        AddSupplier()
+    End Sub
+
+    Private Sub dgvSupplier_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSupplier.CellDoubleClick
+        If dgvSupplier.SelectedRows.Count = 1 Then
+            Dim dRow As DataGridViewRow = dgvSupplier.SelectedRows(0)
+            Dim _suppId As Integer = dRow.Cells(Me.suppId.Name).Value
+            Using _suppForm As New FrmSupplier
+                _suppForm.SupplierId = _suppId
+                _suppForm.ShowDialog()
+            End Using
+            isLoading = True
+            FillSupplierList()
+            isLoading = False
+        End If
+    End Sub
+
 #End Region
 End Class
