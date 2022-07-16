@@ -126,7 +126,7 @@ Public Class FrmSupplier
     Private Function InsertSupplier() As Boolean
         Dim isInsertOK As Boolean = False
         With _newSupplier.Build
-            _supplierId = oSuppTa.InsertSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now)
+            _supplierId = oSuppTa.InsertSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .SupplierAmazon, .SupplierUrl)
             If _supplierId > 0 Then
                 isInsertOK = True
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", .ToString)
@@ -141,7 +141,7 @@ Public Class FrmSupplier
     Private Function AmendSupplier() As Boolean
         Dim isAmendOK As Boolean = False
         With _newSupplier.Build
-            If oSuppTa.UpdateSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, _supplierId) = 1 Then
+            If oSuppTa.UpdateSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .IsSupplierAmazon, .SupplierUrl, _supplierId) = 1 Then
                 isAmendOK = True
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.Build.ToString, .ToString)
             Else

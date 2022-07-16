@@ -14,6 +14,8 @@ Public Class Supplier
     Private _supplierDiscount As Decimal?
     Private _supplierCreated As DateTime
     Private _supplierChanged As DateTime?
+    Private _isSupplierAmazon As Boolean
+    Private _supplierUrl As String
     Public Sub New(ByVal pSupplierId As Integer,
                    ByVal pSupplierName As String,
                    ByVal pSupplierEmail As String,
@@ -22,7 +24,9 @@ Public Class Supplier
                    ByVal pSupplierCreated As DateTime,
                    ByVal pSupplierChanged As DateTime?,
                    ByVal pSupplierAddress As Address,
-                   ByVal pSupplierDiscount As Decimal?)
+                   ByVal pSupplierDiscount As Decimal?,
+                   ByVal pIsSupplierAmazon As Boolean,
+                   ByVal pSupplierUrl As String)
 
         _supplierId = pSupplierId
         _supplierName = pSupplierName
@@ -33,7 +37,8 @@ Public Class Supplier
         _supplierDiscount = pSupplierDiscount
         _supplierCreated = pSupplierCreated
         _supplierChanged = pSupplierChanged
-
+        _isSupplierAmazon = pIsSupplierAmazon
+        _supplierUrl = pSupplierUrl
     End Sub
     Public Property SupplierDiscount() As Decimal?
         Get
@@ -106,5 +111,26 @@ Public Class Supplier
         Set(ByVal value As Address)
             _supplierAddress = value
         End Set
+    End Property
+    Public Property IsSupplierAmazon() As Boolean
+        Get
+            Return _isSupplierAmazon
+        End Get
+        Set(ByVal value As Boolean)
+            _isSupplierAmazon = value
+        End Set
+    End Property
+    Public Property SupplierUrl() As String
+        Get
+            Return _supplierUrl
+        End Get
+        Set(ByVal value As String)
+            _supplierUrl = value
+        End Set
+    End Property
+    Public ReadOnly Property SupplierAmazon As SByte
+        Get
+            Return If(_isSupplierAmazon, 1, 0)
+        End Get
     End Property
 End Class

@@ -14,6 +14,8 @@ Public Class SupplierBuilder
     Private _supplierDiscount As Decimal
     Private _supplierCreated As DateTime
     Private _supplierChanged As DateTime?
+    Private _isSupplierAmazon As Boolean
+    Private _supplierUrl As String
     Public Shared Function ASupplierBuilder() As SupplierBuilder
         Return New SupplierBuilder
     End Function
@@ -40,6 +42,8 @@ Public Class SupplierBuilder
             _supplierDiscount = .SupplierDiscount
             _supplierCreated = .SupplierCreated
             _supplierChanged = .SupplierChanged
+            _isSupplierAmazon = .IsSupplierAmazon
+            _supplierUrl = .SupplierUrl
         End With
         Return Me
     End Function
@@ -59,6 +63,8 @@ Public Class SupplierBuilder
             Else
                 _supplierChanged = .supplier_changed
             End If
+            _supplierUrl = If(.Issupplier_urlNull, "", .supplier_url)
+            _isSupplierAmazon = .supplier_amazon = 1
         End With
         Return Me
     End Function
@@ -72,6 +78,8 @@ Public Class SupplierBuilder
         _supplierDiscount = 0
         _supplierCreated = Now
         _supplierChanged = Nothing
+        _isSupplierAmazon = 0
+        _supplierUrl = ""
         Return Me
     End Function
     Public Function WithSupplierId(ByVal pSupplierId As Integer) As SupplierBuilder
@@ -110,6 +118,14 @@ Public Class SupplierBuilder
         _supplierChanged = pSupplierChanged
         Return Me
     End Function
+    Public Function WithIsAmazon(ByVal pIsAmazon As Boolean) As SupplierBuilder
+        _isSupplierAmazon = pIsAmazon
+        Return Me
+    End Function
+    Public Function WithSupplierUrl(ByVal pUrl As String) As SupplierBuilder
+        _supplierUrl = pUrl
+        Return Me
+    End Function
     Public Function Build() As Supplier
         Return New Supplier(_supplierId,
                             _supplierName,
@@ -119,6 +135,8 @@ Public Class SupplierBuilder
                             _supplierCreated,
                             _supplierChanged,
                             _supplierAddress,
-                            _supplierDiscount)
+                            _supplierDiscount,
+                            _isSupplierAmazon,
+                            _supplierUrl)
     End Function
 End Class
