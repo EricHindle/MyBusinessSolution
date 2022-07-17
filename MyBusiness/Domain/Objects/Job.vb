@@ -180,7 +180,7 @@ Public Class Job
         .Append("], paymentDue=[") _
         .Append(If(_jobPaymentDue Is Nothing, "", Format(_jobPaymentDue, "dd/MM/yyyy"))) _
         .Append("], user=[") _
-        .Append(UserBuilder.AUserBuilder.StartingWith(_jobUserId).Build.User_code) _
+        .Append(UserBuilder.AUser.StartingWith(_jobUserId).Build.User_code) _
         .Append("]")
         Return sb.ToString
     End Function

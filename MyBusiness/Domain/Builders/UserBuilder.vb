@@ -23,7 +23,7 @@ Public Class UserBuilder
     Private _jobTitle As String
     Private _note As String
     Private _role As String
-    Public Shared Function AUserBuilder() As UserBuilder
+    Public Shared Function AUser() As UserBuilder
         Return New UserBuilder
     End Function
     Public Function StartingWith(ByVal pUserId As Integer) As UserBuilder

@@ -16,7 +16,7 @@ Public Class SupplierBuilder
     Private _supplierChanged As DateTime?
     Private _isSupplierAmazon As Boolean
     Private _supplierUrl As String
-    Public Shared Function ASupplierBuilder() As SupplierBuilder
+    Public Shared Function ASupplier() As SupplierBuilder
         Return New SupplierBuilder
     End Function
     Public Function StartingWith(ByVal SupplierId As Integer) As SupplierBuilder

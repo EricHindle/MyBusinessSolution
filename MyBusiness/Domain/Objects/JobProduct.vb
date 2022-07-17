@@ -1,4 +1,10 @@
-﻿Public Class JobProduct
+﻿' Hindleware
+' Copyright (c) 2021, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Public Class JobProduct
     Private _job As Job
     Private _product As Product
     Private _quantity As Integer

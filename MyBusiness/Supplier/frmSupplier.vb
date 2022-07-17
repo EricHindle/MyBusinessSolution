@@ -41,7 +41,7 @@ Public Class FrmSupplier
             NewSupplier()
         Else
             pnlSupplier.Enabled = True
-            _currentSupplier = SupplierBuilder.ASupplierBuilder.StartingWith(_supplierId)
+            _currentSupplier = SupplierBuilder.ASupplier.StartingWith(_supplierId)
             FillSupplierDetails()
         End If
         SpellCheckUtil.EnableSpellChecking({rtbSuppNotes})
@@ -53,7 +53,7 @@ Public Class FrmSupplier
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.Trim).Build
         With _currentSupplier.Build
-            _newSupplier = SupplierBuilder.ASupplierBuilder _
+            _newSupplier = SupplierBuilder.ASupplier _
                                 .WithSupplierAddress(_suppAdd) _
                                 .WithSupplierName(txtSuppName.Text.Trim()) _
                                 .WithSupplierChanged(.SupplierChanged) _
@@ -106,7 +106,7 @@ Public Class FrmSupplier
                 Dim cRow As DataGridViewRow = dgvProducts.SelectedRows(0)
                 Dim _selProdId As Integer = cRow.Cells(Me.prodId.Name).Value
                 If _selProdId > 0 Then
-                    Dim _selectedProduct As Product = ProductBuilder.AProductBuilder.StartingWith(_selProdId).Build
+                    Dim _selectedProduct As Product = GetProductById(_selProdId)
                     txtProductDesc.Text = _selectedProduct.ProductDescription
                     txtCost.Text = "£" & CStr(_selectedProduct.ProductCost)
                     txtPrice.Text = "£" & CStr(_selectedProduct.ProductPrice)
@@ -172,7 +172,7 @@ Public Class FrmSupplier
         LblStatus.Text = "Adding New Supplier"
         btnUpdate.Text = "Create"
         LblStatus.BackColor = Color.SteelBlue
-        _currentSupplier = SupplierBuilder.ASupplierBuilder.StartingWithNothing
+        _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing
         ClearSupplierDetails()
         pnlSupplier.Enabled = True
         pnlProducts.Visible = False

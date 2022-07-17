@@ -91,7 +91,7 @@ Public Class FrmReminder
             _customer = CustomerBuilder.ACustomer.StartingWith(_reminder.CustomerId).Build
         End If
         If _reminder.JobId > 0 Then
-            _job = JobBuilder.AJobBuilder.StartingWith(_reminder.JobId).Build
+            _job = GetJobById(_reminder.JobId)
         End If
     End Sub
     ''' <summary>

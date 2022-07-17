@@ -36,18 +36,18 @@ Public Class FrmUserControl
             Exit Sub
         End If
 
-        Dim oRow As netwyrksDataSet.userRow = Nothing
+        '     Dim oRow As netwyrksDataSet.userRow = Nothing
+        oUser = UserBuilder.AUser.StartingWithNothing.Build
         If currentUserId > 0 Then
-            oRow = GetUserById(currentUserId)
+            oUser = GetUserById(currentUserId)
         ElseIf txtUserLogin.TextLength > 0 Then
-            oRow = GetUserByLogin(AuthenticationUtil.HashedUsername(txtUserLogin.Text))
+            oUser = GetUserByLogin(AuthenticationUtil.HashedUsername(txtUserLogin.Text))
         End If
-        If oRow IsNot Nothing Then
-            Dim userId As Integer = oRow.user_id
-            oUser = UserBuilder.AUserBuilder.StartingWith(oRow).Build
-            salt = oRow.salt
+        If oUser.UserId > 0 Then
+            Dim userId As Integer = oUser.UserId
+            salt = oUser.Salt
             If txtPasswd1.Text.Trim.Length = 0 Then
-                storedHashedPW = oRow.user_password
+                storedHashedPW = oUser.Password
             Else
                 ' changing password
                 If txtPasswd1.Text = txtPasswd2.Text Then
@@ -65,7 +65,7 @@ Public Class FrmUserControl
 
             'update existing
 
-            Dim _user As User = UserBuilder.AUserBuilder.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
+            Dim _user As User = UserBuilder.AUser.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
                     .WithPassword(storedHashedPW) _
                     .WithForcePasswordChange(chkForceChange.Checked) _
                     .WithSalt(salt) _
@@ -91,11 +91,11 @@ Public Class FrmUserControl
             If txtUserLogin.TextLength > 0 Then
                 If txtPasswd1.Text.Trim.Length > 0 Then
                     If txtPasswd1.Text = txtPasswd2.Text Then
-                        If txtPasswd1.Text.Trim.Length >= GlobalSettings.getSetting("MinPwdLen") Then
+                        If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSetting("MinPwdLen") Then
                             ' insert user
-                            hashedUser = AuthenticationUtil.hashedUsername(txtUserLogin.Text)
+                            hashedUser = AuthenticationUtil.HashedUsername(txtUserLogin.Text)
                             salt = AuthenticationUtil.GetNewSalt(txtUserLogin.Text)
-                            Dim _user As User = UserBuilder.AUserBuilder.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
+                            Dim _user As User = UserBuilder.AUser.StartingWithNothing.WithUserCode(txtUsercode.Text.Trim) _
                                                         .WithUserLogin(hashedUser) _
                                                         .WithPassword(storedHashedPW) _
                                                         .WithForcePasswordChange(True) _
@@ -117,7 +117,7 @@ Public Class FrmUserControl
                             txtStatus.Text = "User " & txtUserLogin.Text.Trim() & " added"
 
                         Else
-                            MsgBox("Password must be at least " & GlobalSettings.getSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
+                            MsgBox("Password must be at least " & GlobalSettings.GetSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
                         End If
                     Else
                         MsgBox("Mis-matched passwords", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
@@ -217,22 +217,21 @@ Public Class FrmUserControl
             '
             ' Get hash of trimmed lower username
             '
-            Dim hashedUser As String = AuthenticationUtil.hashedUsername(txtUserLogin.Text)
+            Dim hashedUser As String = AuthenticationUtil.HashedUsername(txtUserLogin.Text)
             Try
-                Dim oRow As netwyrksDataSet.userRow = GetUserByLogin(hashedUser)
-                If oRow IsNot Nothing Then
+                oUser = GetUserByLogin(hashedUser)
+                If oUser.UserId > 0 Then
                     '
                     ' User already exists
                     '
-                    FillForm(oRow)
-                    oUser = UserBuilder.AUserBuilder.StartingWith(oRow).Build
+                    FillForm(oUser)
                 Else
                     ClearValues()
                     Panel1.Enabled = True
                     btnUpdate.Enabled = True
                     lblExists.Text = "New User"
                     currentUserId = 0
-                    oUser = UserBuilder.AUserBuilder.StartingWithNothing.Build
+                    oUser = UserBuilder.AUser.StartingWithNothing.Build
                 End If
 
             Catch ex As Exception
@@ -247,16 +246,16 @@ Public Class FrmUserControl
 
     End Sub
 
-    Private Sub FillForm(ByVal oRow As netwyrksDataSet.userRow)
+    Private Sub FillForm(ByVal pUser As User)
 
         Panel1.Enabled = True
         btnRemove.Enabled = True
         btnUpdate.Enabled = True
 
         ClearValues()
-        Dim storedHashedPW As String = oRow.user_password
-        Dim salt As String = oRow.salt
-        Dim role As String = oRow.user_role
+        Dim storedHashedPW As String = pUser.Password
+        Dim salt As String = pUser.Salt
+        Dim role As String = pUser.UserRole
 
         lblExists.Text = "User Exists"
         Select Case role
@@ -272,18 +271,16 @@ Public Class FrmUserControl
                 rbSuspend.Checked = True
         End Select
 
-        txtUsercode.Text = oRow.user_code
+        txtUsercode.Text = pUser.User_code
         txtUsercode.Enabled = True
-        currentUserId = oRow.user_id
+        currentUserId = pUser.UserId
 
-        txtUserName.Text = oRow.user_name
-        txtContactNumber.Text = If(oRow.Isuser_contact_numberNull, "", oRow.user_contact_number)
-        txtJobTitle.Text = If(oRow.Isuser_jobtitleNull, "", oRow.user_jobtitle)
-        txtNote.Text = If(oRow.Isuser_noteNull, "", oRow.user_note)
-        txtEmail.Text = If(oRow.Isuser_emailNull, "", oRow.user_email)
-        txtMobile.Text = If(oRow.Isuser_mobileNull, "", oRow.user_mobile)
-
-
+        txtUserName.Text = pUser.UserName
+        txtContactNumber.Text = pUser.ContactNumber
+        txtJobTitle.Text = pUser.JobTitle
+        txtNote.Text = pUser.Note
+        txtEmail.Text = pUser.Email
+        txtMobile.Text = pUser.Mobile
     End Sub
 
     Private Sub TxtUserName_TextChanged(sender As Object, e As EventArgs) Handles txtUserLogin.TextChanged
@@ -291,21 +288,17 @@ Public Class FrmUserControl
     End Sub
 
     Private Sub CbSelect_Format(sender As Object, e As ListControlConvertEventArgs) Handles cbSelect.Format
-        Dim oRowView As DataRowView = CType(e.ListItem, DataRowView)
-        Dim oUserRow As netwyrksDataSet.userRow = TryCast(oRowView.Row, netwyrksDataSet.userRow)
-        e.Value = oUserRow.user_name
+        Dim oUser As User = CType(e.ListItem, User)
+        e.Value = oUser.UserName
     End Sub
 
     Private Sub CbSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSelect.SelectedIndexChanged
         If cbSelect.SelectedIndex > -1 Then
             Try
-                Dim orow As netwyrksDataSet.userRow = GetUserById(cbSelect.SelectedValue)
-                If orow IsNot Nothing Then
-                    FillForm(orow)
-                    oUser = UserBuilder.AUserBuilder.StartingWith(orow).Build
-                Else
-                    ' Error
-                    oUser = UserBuilder.AUserBuilder.StartingWithNothing.Build
+                ' oUser = GetUserById(cbSelect.SelectedValue)
+                oUser = cbSelect.SelectedValue
+                If oUser.UserId > 0 Then
+                    FillForm(oUser)
                 End If
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Exclamation, "error")

@@ -62,7 +62,7 @@ Public Class FrmTask
             showStatus(lblStatus, "No job selected", Me.Name, True)
         End If
         If _taskId > 0 Then
-            _taskbuilder = TaskBuilder.ATaskBuilder.StartingWith(_taskId)
+            _taskbuilder = TaskBuilder.ATask.StartingWith(_taskId)
             _task = _taskbuilder.Build
             FillTaskDetails()
         Else
@@ -74,7 +74,7 @@ Public Class FrmTask
     End Sub
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         With _taskbuilder.Build
-            _newTask = TaskBuilder.ATaskBuilder.WithTaskName(txtTaskName.Text.Trim) _
+            _newTask = TaskBuilder.ATask.WithTaskName(txtTaskName.Text.Trim) _
             .WithTaskDescription(rtbDescription.Text.Trim) _
             .WithTaskCost(nudCost.Value) _
             .WithTaskTime(nudTime.Value) _
@@ -124,7 +124,7 @@ Public Class FrmTask
     Private Sub NewTask()
         LogUtil.Debug("New task", Me.Name())
         ClearTaskDetails()
-        _taskbuilder = TaskBuilder.ATaskBuilder.StartingWithNothing
+        _taskbuilder = TaskBuilder.ATask.StartingWithNothing
     End Sub
     Private Function Amendtask() As Boolean
         Dim isAmendOk As Boolean = False

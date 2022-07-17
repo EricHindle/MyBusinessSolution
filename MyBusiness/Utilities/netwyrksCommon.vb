@@ -43,7 +43,7 @@ Public Module netwyrksCommon
 #End Region
 #Region "current user"
     Public _companyName As String = ""
-    Public currentUser As User = UserBuilder.aUserBuilder.startingWithNothing().build
+    Public currentUser As User = UserBuilder.AUser.startingWithNothing().build
     Public isAdmin As Boolean = False
     Public isManager As Boolean = False
     Public isExecutive As Boolean = False

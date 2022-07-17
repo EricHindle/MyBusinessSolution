@@ -165,9 +165,11 @@
     <Compile Include="Diary\FrmReminder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Domain\Builders\AuditEntryBuilder.vb" />
     <Compile Include="Domain\Builders\JobProductBuilder.vb" />
     <Compile Include="Domain\Objects\Address.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
+    <Compile Include="Domain\Objects\AuditEntry.vb" />
     <Compile Include="Domain\Objects\Customer.vb" />
     <Compile Include="Domain\Builders\CustomerBuilder.vb" />
     <Compile Include="Domain\Objects\Email.vb" />

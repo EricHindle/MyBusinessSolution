@@ -279,7 +279,7 @@ Public Class FrmDiary
 
         If oJobTa.FillById(oJobtable, currentJobId) = 1 Then
             Dim jobRow As netwyrksDataSet.jobRow = oJobtable.Rows(0)
-            Dim ojob As JobBuilder = JobBuilder.AJobBuilder.StartingWith(jobRow)
+            Dim ojob As Job = JobBuilder.AJob.StartingWith(jobRow).Build
 
             Using _job As New FrmJobMaint
                 _job.TheJob = ojob

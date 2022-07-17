@@ -15,17 +15,8 @@ Public Class ProductBuilder
     Private _productId As Integer
     Private _productTaxable As Boolean
     Private _productTaxRate As Decimal?
-    Public Shared Function AProductBuilder() As ProductBuilder
+    Public Shared Function AProduct() As ProductBuilder
         Return New ProductBuilder
-    End Function
-    Public Function StartingWith(ByVal ProductId As Integer) As ProductBuilder
-        Dim oRow As netwyrksDataSet.productRow = GetProduct(ProductId)
-        If oRow IsNot Nothing Then
-            StartingWith(oRow)
-        Else
-            StartingWithNothing()
-        End If
-        Return Me
     End Function
     Public Function StartingWith(ByVal oProduct As Product) As ProductBuilder
         With oProduct

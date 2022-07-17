@@ -17,7 +17,6 @@ Public Class FrmJobMaint
     Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
     Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
     Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
-    Private _jobBuilder As JobBuilder
     Private _job As Job
     Private _currentJobId As Integer = -1
     Private _customerId As Integer
@@ -34,12 +33,12 @@ Public Class FrmJobMaint
             _customerId = value
         End Set
     End Property
-    Public Property TheJob() As JobBuilder
+    Public Property TheJob() As Job
         Get
-            Return _jobBuilder
+            Return _job
         End Get
-        Set(ByVal value As JobBuilder)
-            _jobBuilder = value
+        Set(ByVal value As Job)
+            _job = value
         End Set
     End Property
 #End Region
@@ -63,8 +62,7 @@ Public Class FrmJobMaint
         pnlJob.Enabled = False
         pnlTask.Visible = False
         LoadCustomerList()
-        If _jobBuilder IsNot Nothing Then
-            _job = _jobBuilder.Build
+        If _job IsNot Nothing Then
             _currentJobId = _job.JobId
             pnlJob.Enabled = True
             FillJobDetails()
@@ -86,7 +84,7 @@ Public Class FrmJobMaint
     Private Sub BtnAddTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddTask.Click
         LogUtil.Debug("Add task to job", Me.Name)
         Using _taskForm As New FrmTask
-            _taskForm.TheJob = _jobBuilder.Build
+            _taskForm.TheJob = _job
             _taskForm.ShowDialog()
         End Using
         FillTaskList(_currentJobId)
@@ -94,7 +92,7 @@ Public Class FrmJobMaint
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
         LogUtil.Debug("Maintain products on job", Me.Name)
         Using _jobProductForm As New FrmJobProducts
-            _jobProductForm.TheJob = _jobBuilder
+            _jobProductForm.TheJob = _job
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -103,8 +101,8 @@ Public Class FrmJobMaint
         Me.Close()
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
-        With _jobBuilder.Build
-            _newJob = JobBuilder.AJobBuilder.WithJobName(txtJobName.Text.Trim).WithJobDescription(rtbJobNotes.Text.Trim).WithJobCustomerId(cbCust.SelectedValue).WithJobCompleted(chkCompleted.Checked).WithJobCreated(.JobCreated).WithJobChanged(.JobChanged).WithJobUser(cbUser.SelectedValue).Build
+        With _job
+            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim).WithJobDescription(rtbJobNotes.Text.Trim).WithJobCustomerId(cbCust.SelectedValue).WithJobCompleted(chkCompleted.Checked).WithJobCreated(.JobCreated).WithJobChanged(.JobChanged).WithJobUser(cbUser.SelectedValue).Build
         End With
         Dim newJobId As Integer = -1
         If _currentJobId > 0 Then
@@ -140,7 +138,7 @@ Public Class FrmJobMaint
             Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
             Using _taskForm As New FrmTask
 
-                _taskForm.TheJob = _jobBuilder.Build
+                _taskForm.TheJob = _job
                 _taskForm.TaskId = _taskId
                 _taskForm.ShowDialog()
             End Using
@@ -151,7 +149,7 @@ Public Class FrmJobMaint
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Me.Name)
         Using _jobProductForm As New FrmJobProducts
-            _jobProductForm.TheJob = _jobBuilder
+            _jobProductForm.TheJob = _job
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -269,7 +267,7 @@ Public Class FrmJobMaint
         End If
         pnlJob.Enabled = True
         pnlTask.Visible = False
-        _jobBuilder = JobBuilder.AJobBuilder.StartingWithNothing
+        _job = JobBuilder.AJob.StartingWithNothing.Build
         cbUser.SelectedValue = currentUser.UserId
     End Sub
     Private Function Amendjob() As Boolean
@@ -277,7 +275,7 @@ Public Class FrmJobMaint
         LogUtil.Debug("Updating job " & CStr(_currentJobId), Me.Name)
         With _newJob
             If oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUserId, _currentJobId) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _jobBuilder.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _job.ToString, .ToString)
                 isAmendOk = True
                 ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
             Else

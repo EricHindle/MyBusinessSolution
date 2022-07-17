@@ -104,8 +104,8 @@ Public Class FrmMain
             Dim dRow As DataGridViewRow = dgvJobs.SelectedRows(0)
             Dim _jobId As Integer = dRow.Cells(Me.jobId.Name).Value
             Using _jobForm As New FrmJobMaint
-                _jobForm.TheJob = JobBuilder.AJobBuilder.StartingWith(_jobId)
-                _jobForm.CustomerId = _jobForm.TheJob.Build.JobCustomerId
+                _jobForm.TheJob = GetJobById(_jobId)
+                _jobForm.CustomerId = _jobForm.TheJob.JobCustomerId
                 _jobForm.ShowDialog()
             End Using
             isLoading = True
@@ -121,7 +121,7 @@ Public Class FrmMain
                 Dim sRow As DataGridViewRow = dgvSupp.SelectedRows(0)
                 Dim _selSuppId As Integer = sRow.Cells(Me.suppId.Name).Value
                 If _selSuppId > 0 Then
-                    Dim _selectedSupp As Supplier = SupplierBuilder.ASupplierBuilder.StartingWith(_selSuppId).Build
+                    Dim _selectedSupp As Supplier = SupplierBuilder.ASupplier.StartingWith(_selSuppId).Build
                     txtSuppAddress.Text = _selectedSupp.SupplierName & vbCrLf & MultilineAddressString(_selectedSupp.SupplierAddress)
                     If My.Settings.ShowSupplier Then spSupplier.Panel2Collapsed = False
                 End If
@@ -249,7 +249,7 @@ Public Class FrmMain
             tRow.Cells(Me.jobName.Name).Value = ojob.JobName
             tRow.Cells(Me.jobDesc.Name).Value = ojob.JobDescription.Replace(Chr(10), " ")
             tRow.Cells(Me.jobUser.Name).Value = ojob.JobUserId
-            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUserBuilder.StartingWith(ojob.JobUserId).Build.User_code
+            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUser.StartingWith(ojob.JobUserId).Build.User_code
             If ojob.IsJobCompleted Then
                 tRow.Cells(Me.jobCompleted.Name).Value = "Yes"
             End If

@@ -21,17 +21,8 @@ Public Class JobBuilder
     Private _jobPaymentDue As DateTime?
     Private _jobUser As Integer
 
-    Public Shared Function AJobBuilder() As JobBuilder
+    Public Shared Function AJob() As JobBuilder
         Return New JobBuilder
-    End Function
-    Public Function StartingWith(ByVal jobId As Integer) As JobBuilder
-        Dim oRow As netwyrksDataSet.jobRow = GetJob(jobId)
-        If oRow Is Nothing Then
-            StartingWithNothing()
-        Else
-            StartingWith(oRow)
-        End If
-        Return Me
     End Function
     Public Function StartingWith(ByVal oJob As Job) As JobBuilder
         With oJob
@@ -54,7 +45,6 @@ Public Class JobBuilder
         Return Me
     End Function
     Public Function StartingWith(ByVal oJob As netwyrksDataSet.jobRow) As JobBuilder
-
         With oJob
             .Isjob_changedNull()
             _jobId = .job_id

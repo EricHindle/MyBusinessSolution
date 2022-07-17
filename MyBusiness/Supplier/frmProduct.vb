@@ -62,8 +62,7 @@ Public Class frmProduct
             showStatus(lblStatus, "No supplier selected", Me.Name, True)
         End If
         If _productId > 0 Then
-            _productBuilder = ProductBuilder.AProductBuilder.StartingWith(_productId)
-            _product = _productBuilder.Build
+            _product = GetProductById(_productId)
             FillproductDetails()
         Else
             Newproduct()
@@ -74,7 +73,7 @@ Public Class frmProduct
     End Sub
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         With _productBuilder.Build
-            _newproduct = ProductBuilder.AProductBuilder.WithProductName(txtProductName.Text.Trim) _
+            _newproduct = ProductBuilder.AProduct.WithProductName(txtProductName.Text.Trim) _
             .WithProductDescription(rtbDescription.Text.Trim) _
             .WithProductCost(nudCost.Value) _
             .WithProductPrice(nudPrice.Value) _
@@ -117,7 +116,7 @@ Public Class frmProduct
     Private Sub Newproduct()
         LogUtil.Debug("New product", Me.Name())
         ClearproductDetails()
-        _productBuilder = ProductBuilder.AProductBuilder.StartingWithNothing
+        _productBuilder = ProductBuilder.AProduct.StartingWithNothing
     End Sub
     Private Function AmendProduct() As Boolean
         Dim isAmendOk As Boolean = False

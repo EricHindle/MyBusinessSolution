@@ -71,7 +71,7 @@ Public Class FrmCustomerMaint
             Dim _JobId As Integer = oRow.Cells(Me.jobId.Name).Value
             LogUtil.Debug("Updating job " & CStr(_JobId), Me.Name)
             Using _jobForm As New FrmJobMaint
-                _jobForm.TheJob = JobBuilder.AJobBuilder.StartingWith(_JobId)
+                _jobForm.TheJob = GetJobById(_JobId)
                 _jobForm.CustomerId = _customerId
                 _jobForm.ShowDialog()
             End Using

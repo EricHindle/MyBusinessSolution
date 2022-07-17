@@ -18,7 +18,7 @@ Public Class TaskBuilder
     Private _taskStartDue As DateTime?
     Private _taskTaxable As Boolean
     Private _taskTaxRate As Decimal?
-    Public Shared Function ATaskBuilder() As TaskBuilder
+    Public Shared Function ATask() As TaskBuilder
         Return New TaskBuilder
     End Function
     Public Function StartingWith(ByVal TaskId As Integer) As TaskBuilder

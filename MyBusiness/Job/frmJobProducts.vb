@@ -16,7 +16,7 @@ Public Class FrmJobProducts
     Private ReadOnly oProdTable As New netwyrksDataSet.productDataTable
     Private ReadOnly oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
     Private ReadOnly oSuppTable As New netwyrksDataSet.supplierDataTable
-    Private _job As JobBuilder
+    Private _job As Job
     Private _selJpId As Integer = -1
     Private _selProductId As String = -1
     Private _selIsTaxable As Boolean = False
@@ -24,11 +24,11 @@ Public Class FrmJobProducts
     Private _selPrice As Decimal = 0.0
 #End Region
 #Region "properties"
-    Public Property TheJob() As JobBuilder
+    Public Property TheJob() As Job
         Get
             Return _job
         End Get
-        Set(ByVal value As JobBuilder)
+        Set(ByVal value As Job)
             _job = value
         End Set
     End Property
@@ -43,7 +43,7 @@ Public Class FrmJobProducts
         FillSupplierList()
         FillProductList()
         FillJobProductList(dgvJobProducts)
-        lblJobName.Text = _job.Build.JobName
+        lblJobName.Text = _job.JobName
         lblProductName.Text = ""
         Me.KeyPreview = True
         isLoading = False
@@ -119,7 +119,7 @@ Public Class FrmJobProducts
     End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If _selProductId > 0 And nudQuantity.Value > 0 Then
-            Dim _newJpId As Integer = oJobProdTa.InsertJobProduct(nudQuantity.Value, Now, _selProductId, _job.Build.JobId, chkTaxable.Checked, nudTaxRate.Value, nudPrice.Value)
+            Dim _newJpId As Integer = oJobProdTa.InsertJobProduct(nudQuantity.Value, Now, _selProductId, _job.JobId, chkTaxable.Checked, nudTaxRate.Value, nudPrice.Value)
             If _newJpId > 0 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _selProductId)
             End If
@@ -144,7 +144,7 @@ Public Class FrmJobProducts
     End Sub
     Private Sub BtnAdjust_Click(sender As Object, e As EventArgs) Handles btnAdjust.Click
         If _selJpId > 0 Then
-            If oJobProdTa.UpdateJobProduct(nudQuantity.Value, Now, _selProductId, _job.Build.JobId, chkTaxable.Checked, nudTaxRate.Value, nudPrice.Value, _selJpId) = 1 Then
+            If oJobProdTa.UpdateJobProduct(nudQuantity.Value, Now, _selProductId, _job.JobId, chkTaxable.Checked, nudTaxRate.Value, nudPrice.Value, _selJpId) = 1 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
             End If
             isLoading = True
@@ -201,7 +201,7 @@ Public Class FrmJobProducts
     End Sub
     Private Sub FillJobProductList(ByRef dgv As DataGridView)
         dgv.Rows.Clear()
-        oJobProdTa.FillByJob(oJobProdTable, _job.Build.JobId)
+        oJobProdTa.FillByJob(oJobProdTable, _job.JobId)
         For Each oRow As netwyrksDataSet.job_productRow In oJobProdTable.Rows
             Dim _jpId As Integer = oRow.job_product_id
             Dim _productId As Integer = oRow.jp_product_id

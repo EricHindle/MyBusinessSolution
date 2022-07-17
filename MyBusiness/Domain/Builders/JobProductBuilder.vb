@@ -8,7 +8,7 @@
     Private _taxable As Boolean
     Private _tax_rate As Decimal
     Private _price As Decimal
-    Public Shared Function AJobProductBuilder() As JobProductBuilder
+    Public Shared Function AJobProduct() As JobProductBuilder
         Return New JobProductBuilder
     End Function
     Public Function StartingWith(ByVal jobProductId As Integer) As JobProductBuilder
@@ -40,8 +40,8 @@
     Public Function StartingWith(ByVal oRow As netwyrksDataSet.job_productRow) As JobProductBuilder
         With oRow
             _jobProductId = .job_product_id
-            _job = JobBuilder.AJobBuilder.StartingWith(.jp_job_id).Build
-            _product = ProductBuilder.AProductBuilder.StartingWith(.jp_product_id).Build
+            _job = GetJobById(.jp_job_id)
+            _product = GetProductById(.jp_product_id)
             _quantity = .jp_quantity
             _jobProductCreated = .jp_created
             _jobProductChanged = .jp_changed
@@ -53,8 +53,8 @@
     End Function
     Public Function StartingWithNothing() As JobProductBuilder
         _jobProductId = -1
-        _job = JobBuilder.AJobBuilder.StartingWithNothing.Build
-        _product = ProductBuilder.AProductBuilder.StartingWithNothing.Build
+        _job = JobBuilder.AJob.StartingWithNothing.Build
+        _product = ProductBuilder.AProduct.StartingWithNothing.Build
         _quantity = 0
         _jobProductCreated = Nothing
         _jobProductChanged = Nothing

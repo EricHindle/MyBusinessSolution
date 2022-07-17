@@ -30,21 +30,21 @@ Module ModDatabase
     Public tableList As New List(Of String)
 #End Region
 #Region "users"
-    Public Function GetUserById(_id As Integer) As netwyrksDataSet.userRow
+    Public Function GetUserById(_id As Integer) As User
+        Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
         oUserTa.FillById(oUserTable, _id)
-        Dim oRow As netwyrksDataSet.userRow = Nothing
         If oUserTable.Rows.Count > 0 Then
-            oRow = oUserTable.Rows(0)
+            _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
         End If
-        Return oRow
+        Return _user
     End Function
-    Public Function GetUserByLogin(_login As String) As netwyrksDataSet.userRow
+    Public Function GetUserByLogin(_login As String) As User
+        Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
         oUserTa.FillByLogin(oUserTable, _login)
-        Dim oRow As netwyrksDataSet.userRow = Nothing
         If oUserTable.Rows.Count > 0 Then
-            oRow = oUserTable.Rows(0)
+            _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
         End If
-        Return oRow
+        Return _user
     End Function
     Public Function InsertUser(_user As User, _password As String) As Integer
         Dim newUserId As Integer = oUserTa.InsertUser(_user.User_login, _user.User_code,
@@ -60,28 +60,31 @@ Module ModDatabase
                            _user.ContactNumber, _user.Mobile, _user.Email,
                            _user.JobTitle, _user.Note, Now, _user.UserRole, _user.UserId)
     End Function
-    Public Function GetAllUsers() As netwyrksDataSet.userDataTable
-        Dim oNewTable As New netwyrksDataSet.userDataTable
-        oUserTa.Fill(oNewTable)
-        Return oNewTable
+    Public Function GetAllUsers() As List(Of User)
+        Dim _userList As New List(Of User)
+        oUserTa.Fill(oUserTable)
+        For Each oRow As netwyrksDataSet.userRow In oUserTable.Rows
+            _userList.Add(UserBuilder.AUser.StartingWith(oRow).Build)
+        Next
+        Return _userList
     End Function
 
 
 #End Region
 #Region "job"
-    Public Function GetJob(ByVal pId As Integer) As netwyrksDataSet.jobRow
-        Dim oRow As netwyrksDataSet.jobRow = Nothing
+    Public Function GetJobById(ByVal pId As Integer) As Job
+        Dim _job As Job = JobBuilder.AJob.StartingWithNothing.Build
         oJobTa.FillById(oJobTable, pId)
         If oJobTable.Rows.Count > 0 Then
-            oRow = oJobTable.Rows(0)
+            _job = JobBuilder.AJob.StartingWith(oJobTable.Rows(0)).Build
         End If
-        Return oRow
+        Return _job
     End Function
     Public Function GetAllJobs() As List(Of Job)
         Dim _jobList As New List(Of Job)
         oJobTa.Fill(oJobTable)
         For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
-            _jobList.Add(JobBuilder.AJobBuilder.StartingWith(oRow).Build)
+            _jobList.Add(JobBuilder.AJob.StartingWith(oRow).Build)
         Next
         Return _jobList
     End Function
@@ -89,19 +92,19 @@ Module ModDatabase
         Dim _jobList As New List(Of Job)
         oJobTa.FillByCust(oJobTable, pCustomerId)
         For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
-            _jobList.Add(JobBuilder.AJobBuilder.StartingWith(oRow).Build)
+            _jobList.Add(JobBuilder.AJob.StartingWith(oRow).Build)
         Next
         Return _jobList
     End Function
 #End Region
 #Region "product"
-    Public Function GetProduct(ByVal pId As Integer) As netwyrksDataSet.productRow
-        Dim oRow As netwyrksDataSet.productRow = Nothing
+    Public Function GetProductById(ByVal pId As Integer) As Product
+        Dim _product As Product = ProductBuilder.AProduct.StartingWithNothing.Build
         oProductTa.FillById(oProductTable, pId)
         If oProductTable.Rows.Count > 0 Then
-            oRow = oProductTable.Rows(0)
+            _product = ProductBuilder.AProduct.StartingWith(oProductTable.Rows(0)).Build
         End If
-        Return oRow
+        Return _product
     End Function
 #End Region
 #Region "customer"
@@ -111,7 +114,7 @@ Module ModDatabase
         For Each oRow As netwyrksDataSet.customerRow In oCustomerTable.Rows
             _customerList.Add(CustomerBuilder.ACustomer.StartingWith(oRow).Build)
         Next
-        Return _Customerlist
+        Return _customerList
     End Function
 #End Region
 #Region "supplier"
@@ -119,7 +122,7 @@ Module ModDatabase
         Dim _supplierList As New List(Of Supplier)
         oSupplierTa.Fill(oSupplierTable)
         For Each oRow As netwyrksDataSet.supplierRow In oSupplierTable.Rows
-            _supplierList.Add(SupplierBuilder.ASupplierBuilder.StartingWith(oRow).Build)
+            _supplierList.Add(SupplierBuilder.ASupplier.StartingWith(oRow).Build)
         Next
         Return _supplierList
     End Function

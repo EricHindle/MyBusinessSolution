@@ -104,7 +104,7 @@ Public Class InvoicePrinter
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
         For Each oTaskRow As netwyrksDataSet.taskRow In oTaskTable.Rows
-            Dim oTask As Task = TaskBuilder.ATaskBuilder.StartingWith(oTaskRow).Build
+            Dim oTask As Task = TaskBuilder.ATask.StartingWith(oTaskRow).Build
             Dim taxAmount As Decimal = CalcTax(oTask.TaskCost, oTask.TaskTaxRate)
             _taskTable.AddCell(_iTextManager.BuildTableCell(oTask.TaskDescription, Element.ALIGN_LEFT))
             _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oTask.TaskCost, AMOUNT_FORMAT)))
@@ -123,7 +123,7 @@ Public Class InvoicePrinter
         _productTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _productTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
         For Each oJobProduct As netwyrksDataSet.job_productRow In oJobProductTable.Rows
-            Dim oProduct As Product = ProductBuilder.AProductBuilder.StartingWith(oJobProduct.jp_product_id).Build
+            Dim oProduct As Product = GetProductById(oJobProduct.jp_product_id)
             Dim taxAmount As Decimal = CalcTax(oProduct.ProductPrice, oJobProduct.jp_tax_rate)
             _productTable.AddCell(_iTextManager.BuildTableCell(oProduct.ProductName))
             _productTable.AddCell(_iTextManager.BuildTableCell(CStr(oJobProduct.jp_quantity)))
