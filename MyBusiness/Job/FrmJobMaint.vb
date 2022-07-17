@@ -56,11 +56,11 @@ Public Class FrmJobMaint
         cbUser.DataSource = oUserTable
         cbUser.DisplayMember = "user_code"
         cbUser.ValueMember = "user_id"
-        INSERT_WIDTH = Me.Width - pnlTask.Width
+        INSERT_WIDTH = Me.Width - SplitContainer1.Width
         UPDATE_WIDTH = Me.Width
         isLoading = True
         pnlJob.Enabled = False
-        pnlTask.Visible = False
+        SplitContainer1.Visible = False
         LoadCustomerList()
         If _job IsNot Nothing Then
             _currentJobId = _job.JobId
@@ -172,7 +172,7 @@ Public Class FrmJobMaint
             cbUser.SelectedValue = .JobUserId
         End With
         LogUtil.Debug("Existing job " & CStr(_currentJobId), Me.Name)
-        pnlTask.Visible = True
+        SplitContainer1.Visible = True
         FillTaskList(_currentJobId)
         FillProductList(_currentJobId)
     End Sub
@@ -266,7 +266,7 @@ Public Class FrmJobMaint
             cbCust.SelectedValue = _customerId
         End If
         pnlJob.Enabled = True
-        pnlTask.Visible = False
+        SplitContainer1.Visible = False
         _job = JobBuilder.AJob.StartingWithNothing.Build
         cbUser.SelectedValue = currentUser.UserId
     End Sub

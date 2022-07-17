@@ -27,9 +27,6 @@ Partial Class FrmJobMaint
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.pnlTask = New System.Windows.Forms.Panel()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
         Me.btnAddTask = New System.Windows.Forms.Button()
         Me.dgvTasks = New System.Windows.Forms.DataGridView()
@@ -39,7 +36,6 @@ Partial Class FrmJobMaint
         Me.taskStarted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.btnMaintProducts = New System.Windows.Forms.Button()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
         Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,15 +58,18 @@ Partial Class FrmJobMaint
         Me.cbCust = New System.Windows.Forms.ComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlTask.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJob.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -128,63 +127,28 @@ Partial Class FrmJobMaint
         Me.btnUpdate.Text = "Save"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
-        'pnlTask
-        '
-        Me.pnlTask.Controls.Add(Me.TabControl1)
-        Me.pnlTask.Location = New System.Drawing.Point(559, 60)
-        Me.pnlTask.Name = "pnlTask"
-        Me.pnlTask.Size = New System.Drawing.Size(490, 452)
-        Me.pnlTask.TabIndex = 70
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(3, 3)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(484, 446)
-        Me.TabControl1.TabIndex = 0
-        '
-        'TabPage1
-        '
-        Me.TabPage1.BackColor = System.Drawing.Color.Gainsboro
-        Me.TabPage1.Controls.Add(Me.btnRemoveTask)
-        Me.TabPage1.Controls.Add(Me.btnAddTask)
-        Me.TabPage1.Controls.Add(Me.dgvTasks)
-        Me.TabPage1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(476, 420)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Tasks"
-        '
         'btnRemoveTask
         '
-        Me.btnRemoveTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnRemoveTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRemoveTask.Location = New System.Drawing.Point(39, 387)
+        Me.btnRemoveTask.Location = New System.Drawing.Point(409, 4)
         Me.btnRemoveTask.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnRemoveTask.Name = "btnRemoveTask"
         Me.btnRemoveTask.Size = New System.Drawing.Size(74, 26)
         Me.btnRemoveTask.TabIndex = 70
-        Me.btnRemoveTask.Text = "-Task"
+        Me.btnRemoveTask.Text = "Remove"
         Me.btnRemoveTask.UseVisualStyleBackColor = True
         '
         'btnAddTask
         '
-        Me.btnAddTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddTask.Location = New System.Drawing.Point(363, 387)
+        Me.btnAddTask.Location = New System.Drawing.Point(329, 4)
         Me.btnAddTask.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnAddTask.Name = "btnAddTask"
         Me.btnAddTask.Size = New System.Drawing.Size(74, 26)
         Me.btnAddTask.TabIndex = 69
-        Me.btnAddTask.Text = "+Task"
+        Me.btnAddTask.Text = "Add"
         Me.btnAddTask.UseVisualStyleBackColor = True
         '
         'dgvTasks
@@ -197,12 +161,12 @@ Partial Class FrmJobMaint
         Me.dgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours})
-        Me.dgvTasks.Location = New System.Drawing.Point(3, 6)
+        Me.dgvTasks.Location = New System.Drawing.Point(3, 37)
         Me.dgvTasks.Name = "dgvTasks"
         Me.dgvTasks.ReadOnly = True
         Me.dgvTasks.RowHeadersVisible = False
         Me.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvTasks.Size = New System.Drawing.Size(470, 377)
+        Me.dgvTasks.Size = New System.Drawing.Size(480, 176)
         Me.dgvTasks.TabIndex = 0
         '
         'taskId
@@ -250,28 +214,15 @@ Partial Class FrmJobMaint
         Me.taskHours.ReadOnly = True
         Me.taskHours.Width = 80
         '
-        'TabPage2
-        '
-        Me.TabPage2.BackColor = System.Drawing.Color.Gainsboro
-        Me.TabPage2.Controls.Add(Me.btnMaintProducts)
-        Me.TabPage2.Controls.Add(Me.dgvProducts)
-        Me.TabPage2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(476, 420)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Products"
-        '
         'btnMaintProducts
         '
         Me.btnMaintProducts.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnMaintProducts.Location = New System.Drawing.Point(372, 386)
+        Me.btnMaintProducts.Location = New System.Drawing.Point(409, 7)
         Me.btnMaintProducts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnMaintProducts.Name = "btnMaintProducts"
-        Me.btnMaintProducts.Size = New System.Drawing.Size(89, 26)
+        Me.btnMaintProducts.Size = New System.Drawing.Size(71, 26)
         Me.btnMaintProducts.TabIndex = 70
-        Me.btnMaintProducts.Text = "Products"
+        Me.btnMaintProducts.Text = "Update"
         Me.btnMaintProducts.UseVisualStyleBackColor = True
         '
         'dgvProducts
@@ -284,12 +235,12 @@ Partial Class FrmJobMaint
         Me.dgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice})
-        Me.dgvProducts.Location = New System.Drawing.Point(3, 3)
+        Me.dgvProducts.Location = New System.Drawing.Point(6, 37)
         Me.dgvProducts.Name = "dgvProducts"
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(467, 377)
+        Me.dgvProducts.Size = New System.Drawing.Size(477, 172)
         Me.dgvProducts.TabIndex = 0
         '
         'jpId
@@ -474,32 +425,77 @@ Partial Class FrmJobMaint
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.LblStatus.Size = New System.Drawing.Size(9, 17)
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SplitContainer1.Location = New System.Drawing.Point(562, 60)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnAddTask)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.dgvTasks)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnRemoveTask)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnMaintProducts)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgvProducts)
+        Me.SplitContainer1.Size = New System.Drawing.Size(487, 440)
+        Me.SplitContainer1.SplitterDistance = 220
+        Me.SplitContainer1.TabIndex = 77
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(13, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(49, 19)
+        Me.Label3.TabIndex = 71
+        Me.Label3.Text = "Tasks"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(13, 9)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(70, 19)
+        Me.Label4.TabIndex = 72
+        Me.Label4.Text = "Products"
+        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1059, 580)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnInvoice)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnUpdate)
-        Me.Controls.Add(Me.pnlTask)
         Me.Controls.Add(Me.pnlJob)
         Me.Name = "FrmJobMaint"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlTask.ResumeLayout(False)
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlJob.ResumeLayout(False)
         Me.pnlJob.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.PerformLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -510,9 +506,6 @@ Partial Class FrmJobMaint
     Friend WithEvents lblScreenName As Label
     Friend WithEvents btnClose As Button
     Friend WithEvents btnUpdate As Button
-    Friend WithEvents pnlTask As Panel
-    Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents btnAddTask As Button
     Friend WithEvents dgvTasks As DataGridView
@@ -522,7 +515,6 @@ Partial Class FrmJobMaint
     Friend WithEvents taskStarted As DataGridViewTextBoxColumn
     Friend WithEvents taskCompleted As DataGridViewTextBoxColumn
     Friend WithEvents taskHours As DataGridViewTextBoxColumn
-    Friend WithEvents TabPage2 As TabPage
     Friend WithEvents btnMaintProducts As Button
     Friend WithEvents dgvProducts As DataGridView
     Friend WithEvents jpId As DataGridViewTextBoxColumn
@@ -545,4 +537,7 @@ Partial Class FrmJobMaint
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents LblStatus As ToolStripStatusLabel
     Friend WithEvents cbUser As ComboBox
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
 End Class
