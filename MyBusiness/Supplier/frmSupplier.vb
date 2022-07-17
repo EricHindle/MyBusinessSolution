@@ -1,23 +1,19 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2021,2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 
 Public Class FrmSupplier
 #Region "variables"
-
-    Private ReadOnly oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-    Private ReadOnly oSuppTable As New netwyrksDataSet.supplierDataTable
     Private _currentSupplier As SupplierBuilder = Nothing
-    Private _newSupplier As SupplierBuilder = Nothing
+    Private _newSupplier As Supplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
     Private isLoadingProducts As Boolean = False
     Private _supplierId As Integer
     Private INSERT_WIDTH As Integer
     Private UPDATE_WIDTH As Integer
 #End Region
 #Region "properties"
-
     Public Property SupplierId() As Integer
         Get
             Return _supplierId
@@ -47,13 +43,12 @@ Public Class FrmSupplier
         SpellCheckUtil.EnableSpellChecking({rtbSuppNotes})
     End Sub
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
-        oSuppTa.Dispose()
-        oSuppTable.Dispose()
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.Trim).Build
         With _currentSupplier.Build
             _newSupplier = SupplierBuilder.ASupplier _
+                                .WithSupplierId(_supplierId) _
                                 .WithSupplierAddress(_suppAdd) _
                                 .WithSupplierName(txtSuppName.Text.Trim()) _
                                 .WithSupplierChanged(.SupplierChanged) _
@@ -63,7 +58,7 @@ Public Class FrmSupplier
                                 .WithSupplierPhone(txtSuppPhone.Text.Trim) _
                                 .WithSupplierDiscount(nudSuppDiscount.Value) _
                                 .WithIsAmazon(ChkAmazon.Checked) _
-                                .WithSupplierUrl(TxtWeb.Text)
+                                .WithSupplierUrl(TxtWeb.Text).Build
         End With
 
         If _supplierId > 0 Then
@@ -71,7 +66,7 @@ Public Class FrmSupplier
                 Me.Close()
             End If
         Else
-            If InsertSupplier() Then
+            If CreateSupplier() Then
                 pnlProducts.Visible = False
                 LblStatus.Text = "Inserted New Supplier"
                 LblStatus.BackColor = Color.SeaGreen
@@ -139,33 +134,29 @@ Public Class FrmSupplier
         pnlProducts.Visible = True
         FillProductsList(_supplierId)
     End Sub
-    Private Function InsertSupplier() As Boolean
-        Dim isInsertOK As Boolean = False
-        With _newSupplier.Build
-            _supplierId = oSuppTa.InsertSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .SupplierAmazon, .SupplierUrl)
-            If _supplierId > 0 Then
-                isInsertOK = True
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", .ToString)
-            Else
-                MsgBox("Supplier not saved", MsgBoxStyle.Exclamation, "Error")
-                LogUtil.Problem("Supplier " & .SupplierName & " not saved")
-                isInsertOK = False
+    Private Function CreateSupplier() As Boolean
+        Dim isInsertOK As Boolean
+        _supplierId = InsertSupplier(_newSupplier)
+        If _supplierId > 0 Then
+            isInsertOK = True
+            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", _newSupplier.ToString)
+        Else
+            MsgBox("Supplier not saved", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.Problem("Supplier " & _newSupplier.SupplierName & " not saved")
+            isInsertOK = False
             End If
-        End With
         Return isInsertOK
     End Function
     Private Function AmendSupplier() As Boolean
-        Dim isAmendOK As Boolean = False
-        With _newSupplier.Build
-            If oSuppTa.UpdateSupplier(.SupplierName, .SupplierAddress.Address1, .SupplierAddress.Address2, .SupplierAddress.Address3, .SupplierAddress.Address4, .SupplierAddress.Postcode, .SupplierPhone, .SupplierEmail, .SupplierDiscount, .SupplierNotes, Now, .SupplierAmazon, .SupplierUrl, _supplierId) = 1 Then
-                isAmendOK = True
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.Build.ToString, .ToString)
-            Else
-                isAmendOK = False
+        Dim isAmendOK As Boolean
+        If UpdateSupplier(_newSupplier) = 1 Then
+            isAmendOK = True
+            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.Build.ToString, _newSupplier.ToString)
+        Else
+            isAmendOK = False
                 MsgBox("Supplier not updated", MsgBoxStyle.Exclamation, "Error")
-                LogUtil.Problem("Supplier " & .SupplierName & " not updated")
-            End If
-        End With
+            LogUtil.Problem("Supplier " & _newSupplier.SupplierName & " not updated")
+        End If
         Return isAmendOK
     End Function
     Private Sub NewSupplier()
@@ -195,19 +186,18 @@ Public Class FrmSupplier
     Private Sub FillProductsList(ByVal suppId As Integer)
         isLoadingProducts = True
         dgvProducts.Rows.Clear()
-        'Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-        'pRow.Cells(Me.prodId.Name).Value = -1
-        Dim oProductTa As New netwyrksDataSetTableAdapters.productTableAdapter
-        Dim oProductTable As New netwyrksDataSet.productDataTable
-        oProductTa.FillBySupplier(oProductTable, suppId)
-        For Each oRow As netwyrksDataSet.productRow In oProductTable.Rows
+        Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
+        pRow.Cells(Me.prodId.Name).Value = -1
+
+        Dim _productList As List(Of Product) = GetProductsBySupplier(suppId)
+
+        For Each oProduct As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-            tRow.Cells(Me.prodId.Name).Value = oRow.product_id
-            tRow.Cells(Me.prodName.Name).Value = oRow.product_name
+            tRow.Cells(Me.prodId.Name).Value = oProduct.ProductId
+            tRow.Cells(Me.prodName.Name).Value = oProduct.ProductName
         Next
         dgvProducts.ClearSelection()
-        oProductTa.Dispose()
-        oProductTable.Dispose()
+
         isLoadingProducts = False
     End Sub
 

@@ -106,6 +106,22 @@ Module ModDatabase
         End If
         Return _product
     End Function
+    Public Function GetAllProducts() As List(Of Product)
+        Dim _productList As New List(Of Product)
+        oProductTa.Fill(oProductTable)
+        For Each oRow As netwyrksDataSet.productRow In oProductTable.Rows
+            _productList.Add(ProductBuilder.AProduct.StartingWith(oRow).Build)
+        Next
+        Return _productList
+    End Function
+    Public Function GetProductsBySupplier(ByVal _suppId) As List(Of Product)
+        Dim _productList As New List(Of Product)
+        oProductTa.FillBySupplier(oProductTable, _suppId)
+        For Each oRow As netwyrksDataSet.productRow In oProductTable.Rows
+            _productList.Add(ProductBuilder.AProduct.StartingWith(oRow).Build)
+        Next
+        Return _productList
+    End Function
 #End Region
 #Region "customer"
     Public Function GetCustomers() As List(Of Customer)
@@ -125,6 +141,54 @@ Module ModDatabase
             _supplierList.Add(SupplierBuilder.ASupplier.StartingWith(oRow).Build)
         Next
         Return _supplierList
+    End Function
+
+    Public Function InsertSupplier(ByRef pSupplier As Supplier) As Integer
+        Dim newId As Integer = -1
+        Try
+            With pSupplier
+                newId = oSupplierTa.InsertSupplier(.SupplierName,
+                                           .SupplierAddress.Address1,
+                                           .SupplierAddress.Address2,
+                                           .SupplierAddress.Address3,
+                                           .SupplierAddress.Address4,
+                                           .SupplierAddress.Postcode,
+                                           .SupplierPhone,
+                                           .SupplierEmail,
+                                           .SupplierDiscount,
+                                           .SupplierNotes,
+                                           .SupplierCreated,
+                                           .IsSupplierAmazon,
+                                           .SupplierUrl)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Supplier not added.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return newId
+    End Function
+    Public Function UpdateSupplier(ByRef pSupplier As Supplier) As Integer
+        Dim _ct As Integer = -1
+        Try
+            With pSupplier
+                _ct = oSupplierTa.UpdateSupplier(.SupplierName,
+                                           .SupplierAddress.Address1,
+                                           .SupplierAddress.Address2,
+                                           .SupplierAddress.Address3,
+                                           .SupplierAddress.Address4,
+                                           .SupplierAddress.Postcode,
+                                           .SupplierPhone,
+                                           .SupplierEmail,
+                                           .SupplierDiscount,
+                                           .SupplierNotes,
+                                           .SupplierCreated,
+                                           .IsSupplierAmazon,
+                                           .SupplierUrl,
+                                           .SupplierId)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Supplier not added.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
     End Function
 #End Region
 #Region "diary"
