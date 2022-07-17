@@ -49,7 +49,7 @@ Public Class JobBuilder
             _jobReference = .JobReference
             _jobInvoiceDate = .JobInvoiceDate
             _jobPaymentDue = .JobPaymentDue
-            _jobUser = .JobUser
+            _jobUser = .JobUserId
         End With
         Return Me
     End Function

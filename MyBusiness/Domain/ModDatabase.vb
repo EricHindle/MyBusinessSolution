@@ -77,6 +77,22 @@ Module ModDatabase
         End If
         Return oRow
     End Function
+    Public Function GetAllJobs() As List(Of Job)
+        Dim _jobList As New List(Of Job)
+        oJobTa.Fill(oJobTable)
+        For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
+            _jobList.Add(JobBuilder.AJobBuilder.StartingWith(oRow).Build)
+        Next
+        Return _jobList
+    End Function
+    Public Function GetJobsForCustomer(ByVal pCustomerId As Integer) As List(Of Job)
+        Dim _jobList As New List(Of Job)
+        oJobTa.FillByCust(oJobTable, pCustomerId)
+        For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
+            _jobList.Add(JobBuilder.AJobBuilder.StartingWith(oRow).Build)
+        Next
+        Return _jobList
+    End Function
 #End Region
 #Region "product"
     Public Function GetProduct(ByVal pId As Integer) As netwyrksDataSet.productRow
@@ -86,6 +102,44 @@ Module ModDatabase
             oRow = oProductTable.Rows(0)
         End If
         Return oRow
+    End Function
+#End Region
+#Region "customer"
+    Public Function GetCustomers() As List(Of Customer)
+        Dim _customerList As New List(Of Customer)
+        oCustomerTa.Fill(oCustomerTable)
+        For Each oRow As netwyrksDataSet.customerRow In oCustomerTable.Rows
+            _customerList.Add(CustomerBuilder.ACustomer.StartingWith(oRow).Build)
+        Next
+        Return _Customerlist
+    End Function
+#End Region
+#Region "supplier"
+    Public Function GetSuppliers() As List(Of Supplier)
+        Dim _supplierList As New List(Of Supplier)
+        oSupplierTa.Fill(oSupplierTable)
+        For Each oRow As netwyrksDataSet.supplierRow In oSupplierTable.Rows
+            _supplierList.Add(SupplierBuilder.ASupplierBuilder.StartingWith(oRow).Build)
+        Next
+        Return _supplierList
+    End Function
+#End Region
+#Region "diary"
+    Public Function GetAllReminders() As List(Of Reminder)
+        Dim _remList As New List(Of Reminder)
+        oDiaryTa.Fill(oDiaryTable)
+        For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+            _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+        Next
+        Return _remList
+    End Function
+    Public Function GetRemindersForUser(ByVal pUserId As Integer) As List(Of Reminder)
+        Dim _remList As New List(Of Reminder)
+        oDiaryTa.FillByUserId(oDiaryTable, pUserId)
+        For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+            _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+        Next
+        Return _remList
     End Function
 #End Region
 #Region "common"

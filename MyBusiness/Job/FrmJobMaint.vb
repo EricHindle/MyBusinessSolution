@@ -171,7 +171,7 @@ Public Class FrmJobMaint
             txtJobName.Text = .JobName
             chkCompleted.Checked = .IsJobCompleted
             rtbJobNotes.Text = .JobDescription
-            cbUser.SelectedValue = .JobUser
+            cbUser.SelectedValue = .JobUserId
         End With
         LogUtil.Debug("Existing job " & CStr(_currentJobId), Me.Name)
         pnlTask.Visible = True
@@ -276,7 +276,7 @@ Public Class FrmJobMaint
         Dim isAmendOk As Boolean = False
         LogUtil.Debug("Updating job " & CStr(_currentJobId), Me.Name)
         With _newJob
-            If oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUser, _currentJobId) = 1 Then
+            If oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUserId, _currentJobId) = 1 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _jobBuilder.ToString, .ToString)
                 isAmendOk = True
                 ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
@@ -291,7 +291,7 @@ Public Class FrmJobMaint
         Dim isInsertOk As Boolean
         LogUtil.Debug("Inserting job", Me.Name)
         With _newJob
-            _currentJobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUser)
+            _currentJobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUserId)
             If _currentJobId > 0 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True

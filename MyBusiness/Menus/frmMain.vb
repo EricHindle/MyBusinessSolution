@@ -15,8 +15,6 @@ Public Class FrmMain
     Private dateSectionHeads As String() = New String() {"Overdue", "Today", "Tomorrow", "This Week", "Next Week", "Future"}
     Private dateSectionEnds As Date() = New DateTime() {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 8 - dayOfWeek, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 14 - dayOfWeek, Today)), Date.MaxValue}
     Private dateSection As Integer = 0
-    Private ReadOnly oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-    Private ReadOnly oDiaryTable As New netwyrksDataSet.diaryDataTable
     Private ReadOnly isShowAll As Boolean = False
 #End Region
 #Region "form handlers"
@@ -211,18 +209,13 @@ Public Class FrmMain
         dgvCust.Rows.Clear()
         Dim row1 As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
         row1.Cells(custId.Name).Value = -1
-        Dim oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
-        Dim oCustTable As New netwyrksDataSet.customerDataTable
-        oCustTa.Fill(oCustTable)
-        For Each oRow As netwyrksDataSet.customerRow In oCustTable.Rows
+        For Each oCust As Customer In GetCustomers()
             Dim tRow As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
-            tRow.Cells(custId.Name).Value = oRow.customer_id
-            tRow.Cells(custName.Name).Value = oRow.customer_name
-            tRow.Cells(custPhone.Name).Value = oRow.customer_telephone
-            tRow.Cells(custemail.Name).Value = oRow.customer_email
+            tRow.Cells(custId.Name).Value = oCust.CustomerId
+            tRow.Cells(custName.Name).Value = oCust.CustName
+            tRow.Cells(custPhone.Name).Value = oCust.Phone
+            tRow.Cells(custemail.Name).Value = oCust.Email
         Next
-        oCustTa.Dispose()
-        oCustTable.Dispose()
         spCustomer.Panel2Collapsed = True
         dgvCust.ClearSelection()
     End Sub
@@ -230,48 +223,41 @@ Public Class FrmMain
         dgvSupp.Rows.Clear()
         Dim row1 As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
         row1.Cells(suppId.Name).Value = -1
-        Dim osuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-        Dim osuppTable As New netwyrksDataSet.supplierDataTable
-        osuppTa.Fill(osuppTable)
-        For Each oRow As netwyrksDataSet.supplierRow In osuppTable.Rows
+        For Each oSupp As Supplier In GetSuppliers()
             Dim tRow As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
-            tRow.Cells(suppId.Name).Value = oRow.supplier_id
-            tRow.Cells(suppName.Name).Value = oRow.supplier_name
-            tRow.Cells(suppPhone.Name).Value = oRow.supplier_telephone
-            tRow.Cells(suppEmail.Name).Value = oRow.supplier_email
-            tRow.Cells(suppAmazon.Name).Value = oRow.supplier_amazon = 1
+            tRow.Cells(suppId.Name).Value = oSupp.SupplierId
+            tRow.Cells(suppName.Name).Value = oSupp.SupplierName
+            tRow.Cells(suppPhone.Name).Value = oSupp.SupplierPhone
+            tRow.Cells(suppEmail.Name).Value = oSupp.SupplierEmail
+            tRow.Cells(suppAmazon.Name).Value = oSupp.IsSupplierAmazon
         Next
-        osuppTa.Dispose()
-        osuppTable.Dispose()
         spSupplier.Panel2Collapsed = True
         dgvSupp.ClearSelection()
     End Sub
     Private Sub FillJobTable(ByVal custId As Integer, ByVal showAllJobs As Boolean)
         dgvJobs.Rows.Clear()
-        Dim oJobsTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-        Dim oJobsTable As New netwyrksDataSet.jobDataTable
+        Dim ojobstable As List(Of Job)
         If custId > 0 Then
-            oJobsTa.FillByCust(oJobsTable, custId)
+            ojobstable = GetJobsForCustomer(custId)
         Else
-            oJobsTa.Fill(oJobsTable)
+            ojobstable = GetAllJobs()
         End If
-        For Each oRow As netwyrksDataSet.jobRow In oJobsTable.Rows
+        For Each ojob As Job In ojobstable
             Dim tRow As DataGridViewRow = dgvJobs.Rows(dgvJobs.Rows.Add)
-            tRow.Visible = showAllJobs Or (oRow.job_user_id = currentUser.UserId)
-            tRow.Cells(Me.jobId.Name).Value = oRow.job_id
-            tRow.Cells(Me.jobName.Name).Value = oRow.job_name
-            tRow.Cells(Me.jobDesc.Name).Value = oRow.job_description.Replace(Chr(10), " ")
-            tRow.Cells(Me.jobUser.Name).Value = oRow.job_user_id
-            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUserBuilder.StartingWith(oRow.job_user_id).Build.User_code
-            If oRow.job_completed Then
+            tRow.Visible = showAllJobs Or (ojob.JobUserId = currentUser.UserId)
+            tRow.Cells(Me.jobId.Name).Value = ojob.JobId
+            tRow.Cells(Me.jobName.Name).Value = ojob.JobName
+            tRow.Cells(Me.jobDesc.Name).Value = ojob.JobDescription.Replace(Chr(10), " ")
+            tRow.Cells(Me.jobUser.Name).Value = ojob.JobUserId
+            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUserBuilder.StartingWith(ojob.JobUserId).Build.User_code
+            If ojob.IsJobCompleted Then
                 tRow.Cells(Me.jobCompleted.Name).Value = "Yes"
             End If
         Next
-        oJobsTa.Dispose()
-        oJobsTable.Dispose()
         dgvJobs.ClearSelection()
     End Sub
     Private Sub FillDiaryTable()
+        Dim oReminderList As New List(Of Reminder)
         If dayOfWeek = 6 Then
             dateSectionHeads = New String() {"Overdue", "Today", "Tomorrow", "Next Week", "Future"}
             dateSectionEnds = New DateTime() {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 8, Today)), Date.MaxValue}
@@ -283,43 +269,42 @@ Public Class FrmMain
         End If
         dgvDiary.Rows.Clear()
         Try
-            Dim remCt As Integer = 0
             If isShowAll Then
-                remCt = oDiaryTa.Fill(oDiaryTable)
+                oReminderList = GetAllReminders()
             Else
-                remCt = oDiaryTa.FillByUserId(oDiaryTable, currentUser.UserId)
+                oReminderList = GetRemindersForUser(currentUser.UserId)
             End If
-            If remCt > 0 Then
+            If oReminderList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
-                For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+                For Each oReminder As Reminder In oReminderList
                     Dim r As Integer = 0
                     Dim rRow As DataGridViewRow = Nothing
                     If isFirstRow Then
-                        Dim oFirstRow As netwyrksDataSet.diaryRow = oDiaryTable.Rows(0)
-                        Dim firstRowdate As Date = oFirstRow.diary_date.Date
+                        Dim oFirstRow As Reminder = oReminderList(0)
+                        Dim firstRowdate As Date = oFirstRow.ReminderDate.Date
                         r = dgvDiary.Rows.Add()
                         rRow = dgvDiary.Rows(r)
                         dateSection = GetNextSection(firstRowdate, rRow)
                         isFirstRow = False
                     End If
-                    Dim remId As Integer = oRow.diary_id
+                    Dim remId As Integer = oReminder.Diary_id
                     r = dgvDiary.Rows.Add()
                     rRow = dgvDiary.Rows(r)
-                    If oRow.diary_date.Date >= dateSectionEnds(dateSection).Date Then
-                        dateSection = GetNextSection(oRow.diary_date.Date, rRow)
+                    If oReminder.ReminderDate.Date >= dateSectionEnds(dateSection).Date Then
+                        dateSection = GetNextSection(oReminder.ReminderDate.Date, rRow)
                         dgvDiary.Rows.Add()
                         rRow = dgvDiary.Rows(r + 1)
                     End If
-                    Dim isReminder As Boolean = oRow.diary_reminder
-                    Dim isComplete As Boolean = oRow.diary_closed
-                    Dim isCallBack As Boolean = oRow.diary_callback
+                    Dim isReminder As Boolean = oReminder.IsReminder
+                    Dim isComplete As Boolean = oReminder.IsClosed
+                    Dim isCallBack As Boolean = oReminder.CallBack
                     '   rRow.Cells(Me.dremUserCode.Name).Value = If(oUserList.ContainsKey(oRow.diary_user_id), oUserList(oRow.diary_user_id), "")
                     rRow.Cells(Me.dremHeader.Name).Value = False
-                    rRow.Cells(Me.dremId.Name).Value = oRow.diary_id
-                    rRow.Cells(Me.dremSubject.Name).Value = oRow.diary_subject
-                    rRow.Cells(Me.dremDate.Name).Value = Format(oRow.diary_date, "dd/MM/yyyy")
+                    rRow.Cells(Me.dremId.Name).Value = oReminder.Diary_id
+                    rRow.Cells(Me.dremSubject.Name).Value = oReminder.Subject
+                    rRow.Cells(Me.dremDate.Name).Value = Format(oReminder.ReminderDate, "dd/MM/yyyy")
                     rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Gray
-                    rRow.Cells(Me.dremCustId.Name).Value = If(oRow.Isdiary_cust_idNull, 0, oRow.diary_cust_id)
+                    rRow.Cells(Me.dremCustId.Name).Value = oReminder.CustomerId
                     Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
                     oRemCell.Style.Font = New Font("Wingdings", 11)
                     oRemCell.Value = If(isReminder, Chr(185), "")

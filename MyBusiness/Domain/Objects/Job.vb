@@ -19,14 +19,14 @@ Public Class Job
     Private _jobReference As String
     Private _jobInvoiceDate As DateTime?
     Private _jobPaymentDue As DateTime?
-    Private _jobUser As Integer
+    Private _jobUserId As Integer
 
-    Public Property JobUser() As Integer
+    Public Property JobUserId() As Integer
         Get
-            Return _jobUser
+            Return _jobUserId
         End Get
         Set(ByVal value As Integer)
-            _jobUser = value
+            _jobUserId = value
         End Set
     End Property
     Public Property JobPaymentDue() As DateTime?
@@ -150,7 +150,7 @@ Public Class Job
         _jobReference = pJobReference
         _jobInvoiceDate = pJobInvoiceDate
         _jobPaymentDue = pJobPaymentDue
-        _jobUser = pJobUser
+        _jobUserId = pJobUser
     End Sub
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
@@ -180,7 +180,7 @@ Public Class Job
         .Append("], paymentDue=[") _
         .Append(If(_jobPaymentDue Is Nothing, "", Format(_jobPaymentDue, "dd/MM/yyyy"))) _
         .Append("], user=[") _
-        .Append(UserBuilder.aUserBuilder.startingWith(_jobUser).build.user_code) _
+        .Append(UserBuilder.AUserBuilder.StartingWith(_jobUserId).Build.User_code) _
         .Append("]")
         Return sb.ToString
     End Function
