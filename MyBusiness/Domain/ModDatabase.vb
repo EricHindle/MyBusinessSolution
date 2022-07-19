@@ -175,6 +175,53 @@ Module ModDatabase
         End Try
         Return _cust
     End Function
+    Public Function InsertCustomer(pCust As Customer) As Integer
+        Dim _custId As Integer = -1
+        Try
+            With pCust
+                _custId = oCustomerTa.InsertCustomer(.CustName,
+                                           .Address.Address1,
+                                           .Address.Address2,
+                                           .Address.Address3,
+                                           .Address.Address4,
+                                           .Address.Postcode,
+                                           .Phone,
+                                           .Email,
+                                           .Discount,
+                                           .Notes,
+                                           .DateCreated,
+                                           .DateChanged,
+                                           .Terms)
+
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Customer not added.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _custId
+    End Function
+    Public Function UpdateCustomer(pCust As Customer) As Integer
+        Dim _ct As Integer = -1
+        Try
+            With pCust
+                _ct = oCustomerTa.UpdateCustomer(.CustName,
+                                           .Address.Address1,
+                                           .Address.Address2,
+                                           .Address.Address3,
+                                           .Address.Address4,
+                                           .Address.Postcode,
+                                           .Phone,
+                                           .Email,
+                                           .Discount,
+                                           .Notes,
+                                           .DateChanged,
+                                           .Terms,
+                                           .CustomerId)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Customer not updated", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
+    End Function
 #End Region
 #Region "supplier"
     Public Function GetSuppliers() As List(Of Supplier)
@@ -229,7 +276,7 @@ Module ModDatabase
                                            .SupplierId)
             End With
         Catch ex As Exception
-            MsgBox("Error:Supplier not added.", MsgBoxStyle.Exclamation, "Error")
+            MsgBox("Error:Supplier not updated.", MsgBoxStyle.Exclamation, "Error")
         End Try
         Return _ct
     End Function

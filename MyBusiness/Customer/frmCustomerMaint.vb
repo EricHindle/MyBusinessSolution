@@ -9,8 +9,8 @@ Public Class FrmCustomerMaint
     Private ReadOnly oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
     Private ReadOnly oCustListTable As New netwyrksDataSet.customerDataTable
     Private ReadOnly oCustTable As New netwyrksDataSet.customerDataTable
-    Private _currentCustomer As CustomerBuilder = Nothing
-    Private _newCustomer As CustomerBuilder = Nothing
+    Private _currentCustomer As Customer = Nothing
+    Private _newCustomer As Customer = Nothing
     Private isLoading As Boolean = False
     Private INSERT_WIDTH As Integer
     Private UPDATE_WIDTH As Integer
@@ -27,7 +27,7 @@ Public Class FrmCustomerMaint
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Me.Close()
     End Sub
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -41,7 +41,7 @@ Public Class FrmCustomerMaint
             NewCustomer()
         Else
             pnlCustomer.Enabled = True
-            _currentCustomer = CustomerBuilder.ACustomer.StartingWith(_customerId)
+            _currentCustomer = CustomerBuilder.ACustomer.StartingWith(_customerId).Build
             FillCustomerDetails()
         End If
         SpellCheckUtil.EnableSpellChecking({rtbCustNotes})
@@ -56,20 +56,28 @@ Public Class FrmCustomerMaint
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         logutil.info("Updating", Me.Name)
         Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
-        With _currentCustomer.Build
-            _newCustomer = CustomerBuilder.ACustomer.WithAddress(_custAdd).WithCustName(txtCustName.Text.Trim()).WithDateChanged(.DateChanged).WithDateCreated(.DateCreated).WithEmail(txtCustEmail.Text.Trim).WithNotes(rtbCustNotes.Text).WithPhone(txtCustPhone.Text.Trim).WithDiscount(nudCustDiscount.Value).WithTerms(nudDays.Value)
+        With _currentCustomer
+            _newCustomer = CustomerBuilder.ACustomer.WithAddress(_custAdd) _
+                .WithCustName(txtCustName.Text.Trim()) _
+                .WithDateChanged(.DateChanged) _
+                .WithDateCreated(.DateCreated) _
+                .WithEmail(txtCustEmail.Text.Trim) _
+                .WithNotes(rtbCustNotes.Text) _
+                .WithPhone(txtCustPhone.Text.Trim) _
+                .WithDiscount(nudCustDiscount.Value) _
+                .WithTerms(nudDays.Value).Build
         End With
         If _customerId > 0 Then
             AmendCustomer()
         Else
-            InsertCustomer()
+            CreateCustomer()
         End If
     End Sub
     Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvJobs.CellDoubleClick
         If DgvJobs.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _JobId As Integer = oRow.Cells(Me.jobId.Name).Value
-            logutil.info("Updating job " & CStr(_JobId), Me.Name)
+            LogUtil.Info("Updating job " & CStr(_JobId), Me.Name)
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_JobId)
                 _jobForm.CustomerId = _customerId
@@ -78,7 +86,7 @@ Public Class FrmCustomerMaint
         End If
     End Sub
     Private Sub BtnAddJob_Click(sender As Object, e As EventArgs) Handles BtnAddJob.Click
-        logutil.info("Adding job", Me.Name)
+        LogUtil.Info("Adding job", Me.Name)
         Using _jobForm As New FrmJobMaint
             _jobForm.TheJob = Nothing
             _jobForm.CustomerId = _customerId
@@ -96,7 +104,7 @@ Public Class FrmCustomerMaint
     Private Sub FillCustomerDetails()
         Me.Width = UPDATE_WIDTH
         Dim _custId As Integer = 0
-        With _currentCustomer.Build
+        With _currentCustomer
             txtCustName.Text = .CustName
             txtCustAddr1.Text = .Address.Address1
             txtCustAddr2.Text = .Address.Address2
@@ -110,43 +118,40 @@ Public Class FrmCustomerMaint
             rtbCustNotes.Text = .Notes
             _custId = .CustomerId
         End With
-        logutil.info("Existing customer " & CStr(_custId), Me.Name)
+        LogUtil.Info("Existing customer " & CStr(_custId), Me.Name)
         pnlJobs.Visible = True
         FillJobsList(_custId)
     End Sub
-    Private Function InsertCustomer() As Boolean
-        Dim isInsertOK As Boolean = False
-        With _newCustomer.Build
-            _customerId = oCustTa.InsertCustomer(.CustName, .Address.Address1, .Address.Address2, .Address.Address3, .Address.Address4, .Address.Postcode, .Phone, .Email, .Discount, .Notes, Now, Nothing, .Terms)
-            If _customerId > 0 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", .ToString)
-                isInsertOK = True
-                showStatus(lblStatus, "Customer " & CStr(_customerId) & " created OK", Me.Name, True)
-            Else
-                isInsertOK = False
-                showStatus(lblStatus, "Customer NOT created", Me.Name, True)
-            End If
-            Return isInsertOK
-        End With
-
+    Private Function CreateCustomer() As Boolean
+        Dim isInsertOK As Boolean
+        _customerId = InsertCustomer(_newCustomer)
+        If _customerId > 0 Then
+            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", _newCustomer.ToString)
+            isInsertOK = True
+            ShowStatus(lblStatus, "Customer " & CStr(_customerId) & " created OK", Me.Name, True)
+        Else
+            isInsertOK = False
+            ShowStatus(lblStatus, "Customer NOT created", Me.Name, True)
+        End If
+        Return isInsertOK
     End Function
     Private Function AmendCustomer() As Boolean
         Dim isAmendOK As Boolean = False
-        With _newCustomer.Build
+        With _newCustomer
             If oCustTa.UpdateCustomer(.CustName, .Address.Address1, .Address.Address2, .Address.Address3, .Address.Address4, .Address.Postcode, .Phone, .Email, .Discount, .Notes, Now, .Terms, _customerId) = 1 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.Build.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
-                showStatus(lblStatus, "Customer updated OK", Me.Name, True)
+                ShowStatus(lblStatus, "Customer updated OK", Me.Name, True)
             Else
                 isAmendOK = False
-                showStatus(lblStatus, "Customer NOT updated", Me.Name, True)
+                ShowStatus(lblStatus, "Customer NOT updated", Me.Name, True)
             End If
         End With
         Return isAmendOK
     End Function
     Private Sub NewCustomer()
         logutil.info("New customer", Me.Name)
-        _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing
+        _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
         pnlCustomer.Enabled = True
         pnlJobs.Visible = False
