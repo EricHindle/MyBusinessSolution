@@ -58,6 +58,7 @@ Partial Class FrmCustomerMaint
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.pnlCustomer.SuspendLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,12 +66,14 @@ Partial Class FrmCustomerMaint
         CType(Me.DgvJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlCustomer
         '
-        Me.pnlCustomer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlCustomer.Controls.Add(Me.Label10)
         Me.pnlCustomer.Controls.Add(Me.Label9)
         Me.pnlCustomer.Controls.Add(Me.nudDays)
@@ -91,9 +94,10 @@ Partial Class FrmCustomerMaint
         Me.pnlCustomer.Controls.Add(Me.txtCustAddr1)
         Me.pnlCustomer.Controls.Add(Me.Label1)
         Me.pnlCustomer.Controls.Add(Me.txtCustName)
-        Me.pnlCustomer.Location = New System.Drawing.Point(12, 60)
+        Me.pnlCustomer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlCustomer.Location = New System.Drawing.Point(0, 0)
         Me.pnlCustomer.Name = "pnlCustomer"
-        Me.pnlCustomer.Size = New System.Drawing.Size(516, 505)
+        Me.pnlCustomer.Size = New System.Drawing.Size(501, 410)
         Me.pnlCustomer.TabIndex = 0
         '
         'Label10
@@ -137,7 +141,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbCustNotes.Location = New System.Drawing.Point(112, 336)
         Me.rtbCustNotes.Name = "rtbCustNotes"
-        Me.rtbCustNotes.Size = New System.Drawing.Size(401, 160)
+        Me.rtbCustNotes.Size = New System.Drawing.Size(386, 65)
         Me.rtbCustNotes.TabIndex = 10
         Me.rtbCustNotes.Text = ""
         '
@@ -173,7 +177,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustEmail.Location = New System.Drawing.Point(112, 248)
         Me.txtCustEmail.Name = "txtCustEmail"
-        Me.txtCustEmail.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustEmail.Size = New System.Drawing.Size(285, 24)
         Me.txtCustEmail.TabIndex = 7
         '
         'Label4
@@ -191,7 +195,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustPhone.Location = New System.Drawing.Point(112, 219)
         Me.txtCustPhone.Name = "txtCustPhone"
-        Me.txtCustPhone.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustPhone.Size = New System.Drawing.Size(285, 24)
         Me.txtCustPhone.TabIndex = 6
         '
         'Label3
@@ -225,7 +229,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustAddr4.Location = New System.Drawing.Point(112, 145)
         Me.txtCustAddr4.Name = "txtCustAddr4"
-        Me.txtCustAddr4.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustAddr4.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr4.TabIndex = 4
         '
         'txtCustAddr3
@@ -234,7 +238,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustAddr3.Location = New System.Drawing.Point(112, 115)
         Me.txtCustAddr3.Name = "txtCustAddr3"
-        Me.txtCustAddr3.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustAddr3.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr3.TabIndex = 3
         '
         'txtCustAddr2
@@ -243,7 +247,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustAddr2.Location = New System.Drawing.Point(112, 86)
         Me.txtCustAddr2.Name = "txtCustAddr2"
-        Me.txtCustAddr2.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustAddr2.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr2.TabIndex = 2
         '
         'txtCustAddr1
@@ -252,7 +256,7 @@ Partial Class FrmCustomerMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustAddr1.Location = New System.Drawing.Point(112, 57)
         Me.txtCustAddr1.Name = "txtCustAddr1"
-        Me.txtCustAddr1.Size = New System.Drawing.Size(300, 24)
+        Me.txtCustAddr1.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr1.TabIndex = 1
         '
         'Label1
@@ -271,13 +275,13 @@ Partial Class FrmCustomerMaint
         Me.txtCustName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCustName.Location = New System.Drawing.Point(112, 16)
         Me.txtCustName.Name = "txtCustName"
-        Me.txtCustName.Size = New System.Drawing.Size(401, 27)
+        Me.txtCustName.Size = New System.Drawing.Size(386, 27)
         Me.txtCustName.TabIndex = 0
         '
         'BtnUpdate
         '
         Me.BtnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnUpdate.Location = New System.Drawing.Point(13, 572)
+        Me.BtnUpdate.Location = New System.Drawing.Point(13, 486)
         Me.BtnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(117, 43)
@@ -288,7 +292,7 @@ Partial Class FrmCustomerMaint
         'BtnClose
         '
         Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnClose.Location = New System.Drawing.Point(408, 572)
+        Me.BtnClose.Location = New System.Drawing.Point(408, 486)
         Me.BtnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(117, 43)
@@ -298,18 +302,16 @@ Partial Class FrmCustomerMaint
         '
         'pnlJobs
         '
-        Me.pnlJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlJobs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlJobs.Controls.Add(Me.ChkCompleted)
         Me.pnlJobs.Controls.Add(Me.BtnAddJob)
         Me.pnlJobs.Controls.Add(Me.Label8)
         Me.pnlJobs.Controls.Add(Me.DgvJobs)
+        Me.pnlJobs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlJobs.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlJobs.Location = New System.Drawing.Point(534, 49)
+        Me.pnlJobs.Location = New System.Drawing.Point(0, 0)
         Me.pnlJobs.Name = "pnlJobs"
-        Me.pnlJobs.Size = New System.Drawing.Size(405, 516)
+        Me.pnlJobs.Size = New System.Drawing.Size(404, 410)
         Me.pnlJobs.TabIndex = 1
         '
         'ChkCompleted
@@ -317,7 +319,7 @@ Partial Class FrmCustomerMaint
         Me.ChkCompleted.AutoSize = True
         Me.ChkCompleted.Checked = True
         Me.ChkCompleted.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkCompleted.Location = New System.Drawing.Point(6, 483)
+        Me.ChkCompleted.Location = New System.Drawing.Point(6, 466)
         Me.ChkCompleted.Name = "ChkCompleted"
         Me.ChkCompleted.Size = New System.Drawing.Size(145, 18)
         Me.ChkCompleted.TabIndex = 3
@@ -327,7 +329,7 @@ Partial Class FrmCustomerMaint
         'BtnAddJob
         '
         Me.BtnAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnAddJob.Location = New System.Drawing.Point(296, 476)
+        Me.BtnAddJob.Location = New System.Drawing.Point(295, 370)
         Me.BtnAddJob.Name = "BtnAddJob"
         Me.BtnAddJob.Size = New System.Drawing.Size(95, 31)
         Me.BtnAddJob.TabIndex = 0
@@ -355,12 +357,12 @@ Partial Class FrmCustomerMaint
         Me.DgvJobs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobCompleted})
-        Me.DgvJobs.Location = New System.Drawing.Point(6, 27)
+        Me.DgvJobs.Location = New System.Drawing.Point(3, 25)
         Me.DgvJobs.Name = "DgvJobs"
         Me.DgvJobs.ReadOnly = True
         Me.DgvJobs.RowHeadersVisible = False
         Me.DgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvJobs.Size = New System.Drawing.Size(394, 436)
+        Me.DgvJobs.Size = New System.Drawing.Size(387, 330)
         Me.DgvJobs.TabIndex = 2
         '
         'jobId
@@ -415,9 +417,9 @@ Partial Class FrmCustomerMaint
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 627)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 541)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(951, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(941, 22)
         Me.StatusStrip1.TabIndex = 4
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -431,27 +433,46 @@ Partial Class FrmCustomerMaint
         Me.lblStatus.Padding = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.lblStatus.Size = New System.Drawing.Size(7, 17)
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SplitContainer1.Location = New System.Drawing.Point(12, 60)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.pnlCustomer)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlJobs)
+        Me.SplitContainer1.Size = New System.Drawing.Size(917, 414)
+        Me.SplitContainer1.SplitterDistance = 505
+        Me.SplitContainer1.TabIndex = 68
+        '
         'FrmCustomerMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(951, 649)
+        Me.ClientSize = New System.Drawing.Size(941, 563)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.pnlJobs)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnUpdate)
-        Me.Controls.Add(Me.pnlCustomer)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmCustomerMaint"
         Me.ShowIcon = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.pnlCustomer.ResumeLayout(False)
         Me.pnlCustomer.PerformLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).EndInit()
@@ -462,6 +483,10 @@ Partial Class FrmCustomerMaint
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -501,4 +526,5 @@ Partial Class FrmCustomerMaint
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents nudDays As NumericUpDown
+    Friend WithEvents SplitContainer1 As SplitContainer
 End Class

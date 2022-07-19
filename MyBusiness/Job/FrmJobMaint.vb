@@ -18,8 +18,6 @@ Public Class FrmJobMaint
     Private _customerId As Integer
     Private _currentCust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
     Private _newJob As Job
-    Private INSERT_WIDTH As Integer
-    Private UPDATE_WIDTH As Integer
 #End Region
 #Region "properties"
     Public Property CustomerId() As Integer
@@ -66,6 +64,13 @@ Public Class FrmJobMaint
             NewJob()
             _currentJobId = -1
         End If
+
+        If _currentCust.Terms = 0 Then
+            LblTerms.Text = "Immediate"
+        Else
+            LblTerms.Text = CStr(_currentCust.Terms) & " days"
+        End If
+
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub

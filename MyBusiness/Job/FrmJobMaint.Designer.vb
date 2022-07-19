@@ -73,6 +73,8 @@ Partial Class FrmJobMaint
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LblTerms = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,12 +95,12 @@ Partial Class FrmJobMaint
         '
         Me.btnInvoice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnInvoice.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnInvoice.Location = New System.Drawing.Point(211, 532)
+        Me.btnInvoice.Location = New System.Drawing.Point(10, 67)
         Me.btnInvoice.Margin = New System.Windows.Forms.Padding(4)
         Me.btnInvoice.Name = "btnInvoice"
-        Me.btnInvoice.Size = New System.Drawing.Size(136, 46)
+        Me.btnInvoice.Size = New System.Drawing.Size(136, 30)
         Me.btnInvoice.TabIndex = 75
-        Me.btnInvoice.Text = "Invoice"
+        Me.btnInvoice.Text = "Produce Invoice"
         Me.btnInvoice.UseVisualStyleBackColor = True
         '
         'PictureBox1
@@ -349,17 +351,20 @@ Partial Class FrmJobMaint
         '
         Me.GrpInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GrpInvoice.Controls.Add(Me.LblTerms)
+        Me.GrpInvoice.Controls.Add(Me.Label8)
         Me.GrpInvoice.Controls.Add(Me.Label12)
         Me.GrpInvoice.Controls.Add(Me.Label11)
+        Me.GrpInvoice.Controls.Add(Me.btnInvoice)
         Me.GrpInvoice.Controls.Add(Me.Label9)
         Me.GrpInvoice.Controls.Add(Me.DtpPaymentDue)
         Me.GrpInvoice.Controls.Add(Me.DtpInvoiceDate)
         Me.GrpInvoice.Controls.Add(Me.TxtInvoiceNumber)
-        Me.GrpInvoice.Location = New System.Drawing.Point(24, 381)
+        Me.GrpInvoice.Location = New System.Drawing.Point(24, 349)
         Me.GrpInvoice.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.GrpInvoice.Name = "GrpInvoice"
         Me.GrpInvoice.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.GrpInvoice.Size = New System.Drawing.Size(531, 70)
+        Me.GrpInvoice.Size = New System.Drawing.Size(531, 102)
         Me.GrpInvoice.TabIndex = 14
         Me.GrpInvoice.TabStop = False
         '
@@ -368,7 +373,7 @@ Partial Class FrmJobMaint
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(171, 17)
+        Me.Label12.Location = New System.Drawing.Point(255, 39)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(76, 14)
@@ -391,7 +396,7 @@ Partial Class FrmJobMaint
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(355, 17)
+        Me.Label9.Location = New System.Drawing.Point(255, 73)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(81, 14)
@@ -401,7 +406,7 @@ Partial Class FrmJobMaint
         'DtpPaymentDue
         '
         Me.DtpPaymentDue.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DtpPaymentDue.Location = New System.Drawing.Point(355, 36)
+        Me.DtpPaymentDue.Location = New System.Drawing.Point(344, 67)
         Me.DtpPaymentDue.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.DtpPaymentDue.Name = "DtpPaymentDue"
         Me.DtpPaymentDue.Size = New System.Drawing.Size(165, 22)
@@ -411,7 +416,7 @@ Partial Class FrmJobMaint
         'DtpInvoiceDate
         '
         Me.DtpInvoiceDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DtpInvoiceDate.Location = New System.Drawing.Point(171, 36)
+        Me.DtpInvoiceDate.Location = New System.Drawing.Point(344, 33)
         Me.DtpInvoiceDate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.DtpInvoiceDate.Name = "DtpInvoiceDate"
         Me.DtpInvoiceDate.Size = New System.Drawing.Size(165, 22)
@@ -421,7 +426,7 @@ Partial Class FrmJobMaint
         '
         Me.TxtInvoiceNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtInvoiceNumber.Location = New System.Drawing.Point(10, 36)
+        Me.TxtInvoiceNumber.Location = New System.Drawing.Point(10, 39)
         Me.TxtInvoiceNumber.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TxtInvoiceNumber.Name = "TxtInvoiceNumber"
         Me.TxtInvoiceNumber.Size = New System.Drawing.Size(142, 22)
@@ -515,7 +520,7 @@ Partial Class FrmJobMaint
         Me.rtbJobNotes.Location = New System.Drawing.Point(24, 179)
         Me.rtbJobNotes.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.rtbJobNotes.Name = "rtbJobNotes"
-        Me.rtbJobNotes.Size = New System.Drawing.Size(530, 192)
+        Me.rtbJobNotes.Size = New System.Drawing.Size(530, 164)
         Me.rtbJobNotes.TabIndex = 6
         Me.rtbJobNotes.Text = ""
         '
@@ -673,6 +678,25 @@ Partial Class FrmJobMaint
         Me.SplitContainer2.SplitterDistance = 579
         Me.SplitContainer2.TabIndex = 78
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(181, 47)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 14)
+        Me.Label8.TabIndex = 76
+        Me.Label8.Text = "Terms"
+        '
+        'LblTerms
+        '
+        Me.LblTerms.AutoSize = True
+        Me.LblTerms.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTerms.Location = New System.Drawing.Point(172, 67)
+        Me.LblTerms.Name = "LblTerms"
+        Me.LblTerms.Size = New System.Drawing.Size(72, 14)
+        Me.LblTerms.TabIndex = 77
+        Me.LblTerms.Text = "Immediate"
+        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -680,7 +704,6 @@ Partial Class FrmJobMaint
         Me.ClientSize = New System.Drawing.Size(1076, 611)
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.btnInvoice)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
         Me.Controls.Add(Me.btnClose)
@@ -764,4 +787,6 @@ Partial Class FrmJobMaint
     Friend WithEvents TxtJobReference As TextBox
     Friend WithEvents TxtPurchaseOrder As TextBox
     Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents LblTerms As Label
+    Friend WithEvents Label8 As Label
 End Class

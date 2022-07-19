@@ -55,7 +55,7 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         logutil.info("Updating", Me.Name)
-        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim).Build
+        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
         With _currentCustomer.Build
             _newCustomer = CustomerBuilder.ACustomer.WithAddress(_custAdd).WithCustName(txtCustName.Text.Trim()).WithDateChanged(.DateChanged).WithDateCreated(.DateCreated).WithEmail(txtCustEmail.Text.Trim).WithNotes(rtbCustNotes.Text).WithPhone(txtCustPhone.Text.Trim).WithDiscount(nudCustDiscount.Value).WithTerms(nudDays.Value)
         End With
