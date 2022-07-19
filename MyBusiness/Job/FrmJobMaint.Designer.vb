@@ -46,7 +46,7 @@ Partial Class FrmJobMaint
         Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GrpInvoice = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -77,7 +77,7 @@ Partial Class FrmJobMaint
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJob.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.GrpInvoice.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -323,7 +323,7 @@ Partial Class FrmJobMaint
         '
         'pnlJob
         '
-        Me.pnlJob.Controls.Add(Me.GroupBox1)
+        Me.pnlJob.Controls.Add(Me.GrpInvoice)
         Me.pnlJob.Controls.Add(Me.cbUser)
         Me.pnlJob.Controls.Add(Me.Label10)
         Me.pnlJob.Controls.Add(Me.Label6)
@@ -345,23 +345,23 @@ Partial Class FrmJobMaint
         Me.pnlJob.Size = New System.Drawing.Size(575, 457)
         Me.pnlJob.TabIndex = 69
         '
-        'GroupBox1
+        'GrpInvoice
         '
-        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GrpInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.Label12)
-        Me.GroupBox1.Controls.Add(Me.Label11)
-        Me.GroupBox1.Controls.Add(Me.Label9)
-        Me.GroupBox1.Controls.Add(Me.DtpPaymentDue)
-        Me.GroupBox1.Controls.Add(Me.DtpInvoiceDate)
-        Me.GroupBox1.Controls.Add(Me.TxtInvoiceNumber)
-        Me.GroupBox1.Location = New System.Drawing.Point(24, 381)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.GroupBox1.Size = New System.Drawing.Size(531, 70)
-        Me.GroupBox1.TabIndex = 14
-        Me.GroupBox1.TabStop = False
+        Me.GrpInvoice.Controls.Add(Me.Label12)
+        Me.GrpInvoice.Controls.Add(Me.Label11)
+        Me.GrpInvoice.Controls.Add(Me.Label9)
+        Me.GrpInvoice.Controls.Add(Me.DtpPaymentDue)
+        Me.GrpInvoice.Controls.Add(Me.DtpInvoiceDate)
+        Me.GrpInvoice.Controls.Add(Me.TxtInvoiceNumber)
+        Me.GrpInvoice.Location = New System.Drawing.Point(24, 381)
+        Me.GrpInvoice.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.GrpInvoice.Name = "GrpInvoice"
+        Me.GrpInvoice.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.GrpInvoice.Size = New System.Drawing.Size(531, 70)
+        Me.GrpInvoice.TabIndex = 14
+        Me.GrpInvoice.TabStop = False
         '
         'Label12
         '
@@ -406,7 +406,7 @@ Partial Class FrmJobMaint
         Me.DtpPaymentDue.Name = "DtpPaymentDue"
         Me.DtpPaymentDue.Size = New System.Drawing.Size(165, 22)
         Me.DtpPaymentDue.TabIndex = 5
-        Me.DtpPaymentDue.Value = New Date(2022, 9, 29, 0, 0, 0, 0)
+        Me.DtpPaymentDue.Value = New Date(2022, 7, 19, 0, 0, 0, 0)
         '
         'DtpInvoiceDate
         '
@@ -519,14 +519,14 @@ Partial Class FrmJobMaint
         Me.rtbJobNotes.TabIndex = 6
         Me.rtbJobNotes.Text = ""
         '
-        'TxtJobTReference
+        'TxtJobReference
         '
         Me.TxtJobReference.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtJobReference.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtJobReference.Location = New System.Drawing.Point(134, 89)
         Me.TxtJobReference.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.TxtJobReference.Name = "TxtJobTReference"
+        Me.TxtJobReference.Name = "TxtJobReference"
         Me.TxtJobReference.Size = New System.Drawing.Size(256, 22)
         Me.TxtJobReference.TabIndex = 2
         '
@@ -694,8 +694,8 @@ Partial Class FrmJobMaint
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlJob.ResumeLayout(False)
         Me.pnlJob.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GrpInvoice.ResumeLayout(False)
+        Me.GrpInvoice.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
@@ -752,7 +752,7 @@ Partial Class FrmJobMaint
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GrpInvoice As GroupBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label9 As Label

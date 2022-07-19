@@ -4,7 +4,6 @@
 '
 ' Author Eric Hindle
 
-
 Public Class FrmJobMaint
 
 #Region "variables"
@@ -119,6 +118,7 @@ Public Class FrmJobMaint
         Else
             CreateJob()
             SplitContainer2.Panel2Collapsed = False
+            GrpInvoice.Enabled = True
         End If
         Me.Close()
     End Sub
@@ -187,12 +187,19 @@ Public Class FrmJobMaint
 #Region "functions"
     Private Sub FillJobDetails()
         SplitContainer2.Panel2Collapsed = False
+        GrpInvoice.Enabled = True
         With _job
             cbCust.SelectedValue = .JobCustomerId
             GetCurrentCustomer()
             txtJobName.Text = .JobName
             chkCompleted.Checked = .IsJobCompleted
             rtbJobNotes.Text = .JobDescription
+            cbUser.SelectedValue = .JobUserId
+            TxtInvoiceNumber.Text = .JobInvoiceNumber
+            TxtJobReference.Text = .JobReference
+            TxtPurchaseOrder.Text = .JobPoNumber
+            DtpInvoiceDate.Value = If(.JobInvoiceDate, New Date(Now.Year, 1, 1))
+            DtpPaymentDue.Value = If(.JobPaymentDue, New Date(Now.Year, 1, 1))
             cbUser.SelectedValue = .JobUserId
         End With
         LogUtil.Debug("Existing job " & CStr(_currentJobId), Me.Name)
@@ -289,6 +296,7 @@ Public Class FrmJobMaint
     Private Sub NewJob()
         LogUtil.Debug("New job", Me.Name())
         SplitContainer2.Panel2Collapsed = True
+        GrpInvoice.Enabled = False
         ClearJobdetails()
         If _customerId > 0 Then
             cbCust.SelectedValue = _customerId

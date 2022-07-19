@@ -45,6 +45,11 @@ Partial Class FrmMain
         Me.txtCustAddress = New System.Windows.Forms.TextBox()
         Me.spSupplier = New System.Windows.Forms.SplitContainer()
         Me.dgvSupp = New System.Windows.Forms.DataGridView()
+        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.txtSuppAddress = New System.Windows.Forms.TextBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.dgvJobs = New System.Windows.Forms.DataGridView()
@@ -90,11 +95,6 @@ Partial Class FrmMain
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -316,6 +316,44 @@ Partial Class FrmMain
         Me.dgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSupp.Size = New System.Drawing.Size(358, 276)
         Me.dgvSupp.TabIndex = 0
+        '
+        'suppId
+        '
+        Me.suppId.HeaderText = "Id"
+        Me.suppId.Name = "suppId"
+        Me.suppId.ReadOnly = True
+        Me.suppId.Visible = False
+        '
+        'suppName
+        '
+        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.suppName.HeaderText = "Supplier"
+        Me.suppName.Name = "suppName"
+        Me.suppName.ReadOnly = True
+        '
+        'suppPhone
+        '
+        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppPhone.HeaderText = "Phone"
+        Me.suppPhone.Name = "suppPhone"
+        Me.suppPhone.ReadOnly = True
+        '
+        'suppEmail
+        '
+        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppEmail.HeaderText = "Email"
+        Me.suppEmail.Name = "suppEmail"
+        Me.suppEmail.ReadOnly = True
+        '
+        'supplierAmazon
+        '
+        Me.suppAmazon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppAmazon.HeaderText = "Amzn"
+        Me.suppAmazon.Name = "supplierAmazon"
+        Me.suppAmazon.ReadOnly = True
+        Me.suppAmazon.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.suppAmazon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.suppAmazon.Width = 60
         '
         'txtSuppAddress
         '
@@ -761,44 +799,6 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
         Me.CloseToolStripMenuItem.Text = "Close"
-        '
-        'suppId
-        '
-        Me.suppId.HeaderText = "Id"
-        Me.suppId.Name = "suppId"
-        Me.suppId.ReadOnly = True
-        Me.suppId.Visible = False
-        '
-        'suppName
-        '
-        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.suppName.HeaderText = "Supplier"
-        Me.suppName.Name = "suppName"
-        Me.suppName.ReadOnly = True
-        '
-        'suppPhone
-        '
-        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppPhone.HeaderText = "Phone"
-        Me.suppPhone.Name = "suppPhone"
-        Me.suppPhone.ReadOnly = True
-        '
-        'suppEmail
-        '
-        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppEmail.HeaderText = "Email"
-        Me.suppEmail.Name = "suppEmail"
-        Me.suppEmail.ReadOnly = True
-        '
-        'supplierAmazon
-        '
-        Me.suppAmazon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppAmazon.HeaderText = "Amzn"
-        Me.suppAmazon.Name = "supplierAmazon"
-        Me.suppAmazon.ReadOnly = True
-        Me.suppAmazon.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.suppAmazon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.suppAmazon.Width = 60
         '
         'FrmMain
         '

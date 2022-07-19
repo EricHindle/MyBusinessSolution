@@ -46,24 +46,20 @@ Public Class JobBuilder
     End Function
     Public Function StartingWith(ByVal oJob As netwyrksDataSet.jobRow) As JobBuilder
         With oJob
-            .Isjob_changedNull()
             _jobId = .job_id
             _jobName = .job_name
             _jobDescription = .job_description
-            '_jobCost = .job_cost
-            '_jobPrice = .job_price
             _jobCompleted = .job_completed
             _jobCreated = .job_created
-            If .Isjob_changedNull() Then
-                _jobChanged = Nothing
-            Else
-                _jobChanged = .job_changed
-            End If
+            _jobChanged = If(.Isjob_changedNull(), Nothing, .job_changed)
             _jobCustomerId = .job_customer_id
             _jobInvoiceNumber = If(.Isjob_invoice_numberNull, "", .job_invoice_number)
             _jobPoNumber = If(.Isjob_po_numberNull, "", .job_po_number)
             _jobReference = If(.Isjob_referenceNull, "", .job_reference)
-            If .Isjob_invoice_dateNull() Then
+            '
+            ' use this form of IF so that NULL value is set correctly
+            '
+            If .Isjob_invoice_dateNull Then
                 _jobInvoiceDate = Nothing
             Else
                 _jobInvoiceDate = .job_invoice_date
@@ -111,14 +107,6 @@ Public Class JobBuilder
         _jobDescription = pJobDescription
         Return Me
     End Function
-    'Public Function withJobCost(ByVal pJobCost As Decimal) As jobBuilder
-    '    _jobCost = pJobCost
-    '    Return Me
-    'End Function
-    'Public Function withJobPrice(ByVal pJobPrice As Decimal) As jobBuilder
-    '    _jobPrice = pJobPrice
-    '    Return Me
-    'End Function
     Public Function WithJobCompleted(ByVal pJobCompleted As Boolean) As JobBuilder
         _jobCompleted = pJobCompleted
         Return Me

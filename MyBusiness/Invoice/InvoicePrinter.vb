@@ -54,10 +54,15 @@ Public Class InvoicePrinter
         Dim _document As New Document(PageSize.A4, LEFT_MARGIN, RIGHT_MARGIN, TOP_MARGIN, BOTTOM_MARGIN)
         Dim _writer As PdfWriter = PdfWriter.GetInstance(_document, New FileStream(sFilename, FileMode.Create, FileAccess.Write))
         _document.Open()
-        Dim _companyNamePara As New Paragraph(_companyName, ITextManager.companyNameFont)
-        _document.Add(_companyNamePara)
+        Dim _companyNameTable As iTextSharp.text.pdf.PdfPTable = _iTextManager.BuildTable(New Single() {100})
+        Dim _companyNameCell As New iTextSharp.text.pdf.PdfPCell(New Paragraph(_companyName, ITextManager.companyNameFont)) With {
+                .HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT,
+                .Border = iTextSharp.text.Rectangle.NO_BORDER
+            }
+        _companyNameTable.AddCell(_companyNameCell)
+        _document.Add(_companyNameTable)
         Dim _companyTable As iTextSharp.text.pdf.PdfPTable = _iTextManager.BuildTable(New Single() {15, 85})
-        Dim _logoCell As New iTextSharp.text.pdf.PdfPCell(_iTextManager.CreateImageCell(GlobalSettings.getStringSetting(GlobalSettings.COMPANY_LOGOFILE))) With {
+        Dim _logoCell As New iTextSharp.text.pdf.PdfPCell(_iTextManager.CreateImageCell(GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_LOGOFILE))) With {
             .Rowspan = 6,
             .HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT,
             .VerticalAlignment = iTextSharp.text.Element.ALIGN_MIDDLE,

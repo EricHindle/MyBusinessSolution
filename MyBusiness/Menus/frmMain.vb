@@ -373,6 +373,10 @@ Public Class FrmMain
         End Using
     End Sub
 
+    Private Sub dgvJobs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvJobs.CellContentClick
+
+    End Sub
+
 
 #End Region
 End Class
