@@ -47,12 +47,12 @@ Public Class frmProduct
         Me.Close()
     End Sub
     Private Sub FrmProduct_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closing", Me.Name)
+        logutil.info("Closing", Me.Name)
         oproductTa.Dispose()
         oproductTable.Dispose()
     End Sub
     Private Sub FrmProduct_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        LogUtil.Debug("Starting", Me.Name)
+        logutil.info("Starting", Me.Name)
         isLoading = True
         If _supplier IsNot Nothing Then
             _supplierId = _supplier.SupplierId
@@ -102,7 +102,7 @@ Public Class frmProduct
             chkTaxable.Checked = .IsProductTaxable
             nudTaxRate.Value = .ProductTaxRate
         End With
-        LogUtil.Debug("Existing product " & CStr(_productId), Me.Name)
+        logutil.info("Existing product " & CStr(_productId), Me.Name)
 
     End Sub
     Private Sub ClearproductDetails()
@@ -114,13 +114,13 @@ Public Class frmProduct
         nudTaxRate.Value = 0.0
     End Sub
     Private Sub Newproduct()
-        LogUtil.Debug("New product", Me.Name())
+        logutil.info("New product", Me.Name())
         ClearproductDetails()
         _productBuilder = ProductBuilder.AProduct.StartingWithNothing
     End Sub
     Private Function AmendProduct() As Boolean
         Dim isAmendOk As Boolean = False
-        LogUtil.Debug("Updating product " & CStr(_productId), Me.Name)
+        logutil.info("Updating product " & CStr(_productId), Me.Name)
         With _newproduct
             If oproductTa.UpdateProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, _productId) = 1 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, _productBuilder.ToString, .ToString)
@@ -136,7 +136,7 @@ Public Class frmProduct
     End Function
     Private Function InsertProduct() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Debug("Inserting product", Me.Name)
+        logutil.info("Inserting product", Me.Name)
         With _newproduct
             _productId = oproductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate)
             If _productId > 0 Then

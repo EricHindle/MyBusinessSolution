@@ -60,11 +60,11 @@ Public Module netwyrksCommon
         isOperator = My.User.IsInRole(ApplicationServices.BuiltInRole.PrintOperator) Or isExecutive
         isGuest = My.User.IsInRole(ApplicationServices.BuiltInRole.Guest) Or isOperator
 
-        If isAdmin Then LogUtil.Debug("Is Admin")
-        If isManager Then LogUtil.Debug("Is Manager")
-        If isExecutive Then LogUtil.Debug("Is Executive")
-        If isOperator Then LogUtil.Debug("Is Operator")
-        If isGuest Then LogUtil.Debug("Is Guest")
+        If isAdmin Then logutil.info("Is Admin")
+        If isManager Then logutil.info("Is Manager")
+        If isExecutive Then logutil.info("Is Executive")
+        If isOperator Then logutil.info("Is Operator")
+        If isGuest Then logutil.info("Is Guest")
 
     End Sub
 #End Region
@@ -334,7 +334,7 @@ Public Module netwyrksCommon
     End Sub
     Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
         oStatusLabel.Text = sText
-        If isLogged Then LogUtil.Debug(sText, oFormName)
+        If isLogged Then logutil.info(sText, oFormName)
     End Sub
     Public Function GetFormPos(ByRef oForm As Form, ByVal sPos As String) As Boolean
         LogUtil.Info("Getting form position for " & oForm.Name, "GetFormPos")
@@ -365,7 +365,7 @@ Public Module netwyrksCommon
         Else
             sPos = oForm.Top & "~" & oForm.Left & "~" & oForm.Height & "~" & oForm.Width
         End If
-        LogUtil.Debug("Generated form position: " & sPos, "SetFormPos")
+        logutil.info("Generated form position: " & sPos, "SetFormPos")
         Return sPos
     End Function
 #End Region

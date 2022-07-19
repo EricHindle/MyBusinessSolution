@@ -23,10 +23,10 @@ Public Class FrmGlobalSettings
 #End Region
 #Region "Form"
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        logutil.info("Starting", FORM_NAME)
         oTa.Fill(oTable)
         cbSelect.DataSource = oTable
         cbSelect.DisplayMember = "configuration_id"

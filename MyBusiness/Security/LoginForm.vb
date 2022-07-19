@@ -30,10 +30,10 @@ Public Class LoginForm
         Me.Show()
         Me.Refresh()
         If InitialiseApplication() Then
-            LogUtil.Debug("Settings:")
-            LogUtil.Debug(" Auto Tidy           : " & My.Settings.AutoTidy)
-            LogUtil.Debug(" Retention period    : " & My.Settings.RetentionPeriod)
-            LogUtil.Debug(" Spell Check enabled : " & My.Settings.splchkEnabled)
+            logutil.info("Settings:")
+            logutil.info(" Auto Tidy           : " & My.Settings.AutoTidy)
+            logutil.info(" Retention period    : " & My.Settings.RetentionPeriod)
+            logutil.info(" Spell Check enabled : " & My.Settings.splchkEnabled)
         Else
             Me.Close()
         End If

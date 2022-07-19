@@ -33,11 +33,11 @@ Public Class FrmAuditItem
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oAuditTa.Dispose()
         oAuditTable.Dispose()
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
 
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        logutil.info("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
 
         If oAuditTa.FillById(oAuditTable, _auditItemId) = 1 Then

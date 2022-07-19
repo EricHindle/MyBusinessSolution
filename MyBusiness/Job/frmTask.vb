@@ -47,12 +47,12 @@ Public Class FrmTask
         Me.Close()
     End Sub
     Private Sub FrmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closing", Me.Name)
+        logutil.info("Closing", Me.Name)
         oTaskTa.Dispose()
         oTaskTable.Dispose()
     End Sub
     Private Sub FrmTask_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        LogUtil.Debug("Starting", Me.Name)
+        logutil.info("Starting", Me.Name)
         isLoading = True
         If _job IsNot Nothing Then
             _jobId = _job.JobId
@@ -109,7 +109,7 @@ Public Class FrmTask
             chkTaxable.Checked = .IsTaskTaxable
             nudTaxRate.Value = .TaskTaxRate
         End With
-        LogUtil.Debug("Existing task " & CStr(_taskId), Me.Name)
+        logutil.info("Existing task " & CStr(_taskId), Me.Name)
 
     End Sub
     Private Sub ClearTaskDetails()
@@ -122,13 +122,13 @@ Public Class FrmTask
         chkCompleted.Checked = False
     End Sub
     Private Sub NewTask()
-        LogUtil.Debug("New task", Me.Name())
+        logutil.info("New task", Me.Name())
         ClearTaskDetails()
         _taskbuilder = TaskBuilder.ATask.StartingWithNothing
     End Sub
     Private Function Amendtask() As Boolean
         Dim isAmendOk As Boolean = False
-        LogUtil.Debug("Updating task " & CStr(_taskId), Me.Name)
+        logutil.info("Updating task " & CStr(_taskId), Me.Name)
         With _newTask
             If oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, _taskId) = 1 Then
                 AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
@@ -144,7 +144,7 @@ Public Class FrmTask
     End Function
     Private Function Inserttask() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Debug("Inserting task", Me.Name)
+        logutil.info("Inserting task", Me.Name)
         With _newTask
             _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
             If _taskId > 0 Then

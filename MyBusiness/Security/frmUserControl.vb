@@ -188,7 +188,7 @@ Public Class FrmUserControl
     Private Sub FrmUserControl_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oTable.Dispose()
         oTa.Dispose()
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
 
     Private Sub UserControl_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

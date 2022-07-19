@@ -96,6 +96,37 @@ Module ModDatabase
         Next
         Return _jobList
     End Function
+    Public Function InsertJob(pJob As Job) As Integer
+        Dim _jobId As Integer = -1
+        With pJob
+            _jobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId)
+            If _jobId > 0 Then
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _jobId, AuditUtil.AuditableAction.create, "", .ToString)
+            End If
+        End With
+        Return _jobId
+    End Function
+    Public Function UpdateJob(pJob As Job) As Integer
+        Dim _ct As Integer = 0
+        With pJob
+            _ct = oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId, .JobId)
+            If _ct > 0 Then
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, .JobId, AuditUtil.AuditableAction.create, pJob.ToString, .ToString)
+            End If
+        End With
+        Return _ct
+    End Function
+#End Region
+#Region "task"
+    Public Function DeleteTask(pTaskId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oTaskTa.DeleteTask(pTaskId)
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
 #End Region
 #Region "product"
     Public Function GetProductById(ByVal pId As Integer) As Product
@@ -131,6 +162,18 @@ Module ModDatabase
             _customerList.Add(CustomerBuilder.ACustomer.StartingWith(oRow).Build)
         Next
         Return _customerList
+    End Function
+    Public Function GetCustomer(pCustId As Integer) As Customer
+        Dim _cust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
+        Try
+            oCustomerTa.FillById(oCustomerTable, pCustId)
+            If oCustomerTable.Rows.Count > 0 Then
+                _cust = CustomerBuilder.ACustomer.StartingWith(oCustomerTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return _cust
     End Function
 #End Region
 #Region "supplier"

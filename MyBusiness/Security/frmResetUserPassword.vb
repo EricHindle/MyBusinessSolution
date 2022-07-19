@@ -20,10 +20,10 @@ Public Class FrmResetUserPassword
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oUserTa.Dispose()
         oUserTable.Dispose()
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        logutil.info("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
         oUserTa.Fill(oUserTable)
         For Each oUserRow As netwyrksDataSet.userRow In oUserTable.Rows

@@ -81,13 +81,13 @@ Public Class FrmBackup
     Private Sub FillDocumentTree()
         TvDocuments.Nodes.Clear()
         TvDocuments.Nodes.Add("Document files")
-        'TvDocuments.Nodes(0).Nodes.Add("Chapter files")
-        'Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(GetChapterFilePath(CurrentBook))
-        'Dim topNode As TreeNode = TvDocuments.Nodes(0).Nodes(0)
-        'For Each _filename As String In fileList
-        '    Dim _fname As String = Path.GetFileName(_filename)
-        '    topNode.Nodes.Add(_filename, _fname)
-        'Next
+        TvDocuments.Nodes(0).Nodes.Add("Invoice files")
+        Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sReportFolder)
+        Dim topNode As TreeNode = TvDocuments.Nodes(0).Nodes(0)
+        For Each _filename As String In fileList
+            Dim _fname As String = Path.GetFileName(_filename)
+            topNode.Nodes.Add(_filename, _fname)
+        Next
         'TvDocuments.Nodes(0).Nodes.Add("Text files")
         'fileList = My.Computer.FileSystem.GetFiles(GetTextFilePath(CurrentBook))
         'topNode = TvDocuments.Nodes(0).Nodes(1)

@@ -60,7 +60,7 @@ Public Class FrmDiary
         oUserTable.Dispose()
         oJobTa.Dispose()
         oJobtable.Dispose()
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
     ''' <summary>
     ''' Initialse the loading form
@@ -69,7 +69,7 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        logutil.info("Starting", FORM_NAME)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
         oUserTa.Fill(oUserTable)

@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022, Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -12,14 +12,12 @@ Public Class FrmJobMaint
     Private isLoading As Boolean = False
     Private ReadOnly oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
     Private ReadOnly oCustListTable As New netwyrksDataSet.customerDataTable
-    Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-    Private ReadOnly oJobListTable As New netwyrksDataSet.jobDataTable
-    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
     Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
     Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
     Private _job As Job
     Private _currentJobId As Integer = -1
     Private _customerId As Integer
+    Private _currentCust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
     Private _newJob As Job
     Private INSERT_WIDTH As Integer
     Private UPDATE_WIDTH As Integer
@@ -47,24 +45,23 @@ Public Class FrmJobMaint
         LogUtil.Debug("Closing", Me.Name)
         oCustTa.Dispose()
         oCustListTable.Dispose()
-        oJobTa.Dispose()
-        oJobListTable.Dispose()
+        oUserTa.Dispose()
+        oUserTable.Dispose()
     End Sub
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Started", Me.Name)
-        oUserTa.Fill(oUserTable)
-        cbUser.DataSource = oUserTable
-        cbUser.DisplayMember = "user_code"
-        cbUser.ValueMember = "user_id"
-        INSERT_WIDTH = Me.Width - SplitContainer1.Width
-        UPDATE_WIDTH = Me.Width
         isLoading = True
-        pnlJob.Enabled = False
-        SplitContainer1.Visible = False
+        Try
+            oUserTa.Fill(oUserTable)
+            cbUser.DataSource = oUserTable
+            cbUser.DisplayMember = "user_code"
+            cbUser.ValueMember = "user_id"
+        Catch ex As Exception
+
+        End Try
         LoadCustomerList()
         If _job IsNot Nothing Then
             _currentJobId = _job.JobId
-            pnlJob.Enabled = True
             FillJobDetails()
         Else
             NewJob()
@@ -76,8 +73,7 @@ Public Class FrmJobMaint
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
         LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Me.Name)
         Using _custForm As New FrmViewCust
-            Dim oCustRow As netwyrksDataSet.customerRow = DirectCast(cbCust.SelectedItem, DataRowView).Row
-            _custForm.TheCustomer = CustomerBuilder.ACustomer.StartingWith(oCustRow).Build
+            _custForm.TheCustomer = _currentCust
             _custForm.ShowDialog()
         End Using
     End Sub
@@ -102,18 +98,45 @@ Public Class FrmJobMaint
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         With _job
-            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim).WithJobDescription(rtbJobNotes.Text.Trim).WithJobCustomerId(cbCust.SelectedValue).WithJobCompleted(chkCompleted.Checked).WithJobCreated(.JobCreated).WithJobChanged(.JobChanged).WithJobUser(cbUser.SelectedValue).Build
+            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim) _
+            .WithJobDescription(rtbJobNotes.Text.Trim) _
+            .WithJobCustomerId(cbCust.SelectedValue) _
+            .WithJobCompleted(chkCompleted.Checked) _
+            .WithJobReference(TxtJobReference.Text) _
+            .WithJobInvoiceNumber(TxtInvoiceNumber.Text) _
+            .WithJobInvoiceDate(DtpInvoiceDate.Value) _
+            .WithJobPoNumber(TxtPurchaseOrder.Text) _
+            .WithJobCreated(.JobCreated) _
+            .WithJobChanged(.JobChanged) _
+            .WithJobUser(cbUser.SelectedValue) _
+            .WithJobPaymentDue(DtpPaymentDue.Value) _
+            .WithJobId(_currentJobId) _
+            .Build
         End With
         Dim newJobId As Integer = -1
         If _currentJobId > 0 Then
             Amendjob()
         Else
-            InsertJob()
+            CreateJob()
+            SplitContainer2.Panel2Collapsed = False
         End If
         Me.Close()
     End Sub
     Private Sub CbCust_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbCust.SelectedIndexChanged
-        btnViewCust.Enabled = cbCust.SelectedIndex > 0
+        If Not isLoading Then
+            GetCurrentCustomer()
+        Else
+            btnViewCust.Enabled = False
+        End If
+    End Sub
+    Private Sub GetCurrentCustomer()
+        If cbCust.SelectedIndex > -1 Then
+            btnViewCust.Enabled = True
+            _currentCust = GetCustomer(cbCust.SelectedValue)
+        Else
+            btnViewCust.Enabled = False
+            _currentCust = CustomerBuilder.ACustomer.StartingWithNothing.Build
+        End If
     End Sub
     Private Sub BtnRemoveTask_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveTask.Click
         If dgvTasks.SelectedRows.Count = 1 Then
@@ -122,7 +145,7 @@ Public Class FrmJobMaint
             Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
             Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
             If MsgBox("Do you want to remove this task?" & vbCrLf & QUOTES & taskName & QUOTES, MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
-                If oTaskTa.DeleteTask(_taskId) = 1 Then
+                If DeleteTask(_taskId) = 1 Then
                     ShowStatus(LblStatus, "Task removed OK", Me.Name, True)
                 Else
                     ShowStatus(LblStatus, "Task NOT removed", Me.Name, True)
@@ -163,9 +186,10 @@ Public Class FrmJobMaint
 #End Region
 #Region "functions"
     Private Sub FillJobDetails()
-        Me.Width = UPDATE_WIDTH
+        SplitContainer2.Panel2Collapsed = False
         With _job
             cbCust.SelectedValue = .JobCustomerId
+            GetCurrentCustomer()
             txtJobName.Text = .JobName
             chkCompleted.Checked = .IsJobCompleted
             rtbJobNotes.Text = .JobDescription
@@ -184,11 +208,15 @@ Public Class FrmJobMaint
     End Sub
     Private Sub LoadCustomerList()
         LogUtil.Debug("Finding customers", Me.Name)
-        oCustTa.Fill(oCustListTable)
-        cbCust.DataSource = oCustListTable
-        cbCust.ValueMember = oCustListTable.customer_idColumn.ColumnName
-        cbCust.DisplayMember = oCustListTable.customer_nameColumn.ColumnName
-        cbCust.SelectedIndex = -1
+        Try
+            oCustTa.Fill(oCustListTable)
+            cbCust.DataSource = oCustListTable
+            cbCust.ValueMember = oCustListTable.customer_idColumn.ColumnName
+            cbCust.DisplayMember = oCustListTable.customer_nameColumn.ColumnName
+            cbCust.SelectedIndex = -1
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub FillTaskList(ByVal pJobId As Integer)
         dgvTasks.Rows.Clear()
@@ -260,54 +288,40 @@ Public Class FrmJobMaint
     End Sub
     Private Sub NewJob()
         LogUtil.Debug("New job", Me.Name())
-        Me.Width = INSERT_WIDTH
+        SplitContainer2.Panel2Collapsed = True
         ClearJobdetails()
         If _customerId > 0 Then
             cbCust.SelectedValue = _customerId
         End If
-        pnlJob.Enabled = True
-        SplitContainer1.Visible = False
         _job = JobBuilder.AJob.StartingWithNothing.Build
         cbUser.SelectedValue = currentUser.UserId
     End Sub
     Private Function Amendjob() As Boolean
-        Dim isAmendOk As Boolean = False
+        Dim isAmendOk As Boolean
         LogUtil.Debug("Updating job " & CStr(_currentJobId), Me.Name)
-        With _newJob
-            If oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUserId, _currentJobId) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, _job.ToString, .ToString)
-                isAmendOk = True
-                ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
-            Else
-                isAmendOk = False
-                ShowStatus(LblStatus, "Job NOT updated", Me.Name, True)
-            End If
-        End With
+        dim _ct as integer = updatejob(_newJob)
+        If _ct > 0 Then
+            isAmendOk = True
+            ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
+        Else
+            isAmendOk = False
+            ShowStatus(LblStatus, "Job NOT updated", Me.Name, True)
+        End If
         Return isAmendOk
     End Function
-    Private Function InsertJob() As Boolean
+    Private Function CreateJob() As Boolean
         Dim isInsertOk As Boolean
         LogUtil.Debug("Inserting job", Me.Name)
-        With _newJob
-            _currentJobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, "", "", "", Nothing, Nothing, .JobUserId)
-            If _currentJobId > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _currentJobId, AuditUtil.AuditableAction.create, "", .ToString)
-                isInsertOk = True
-                ShowStatus(LblStatus, "Job " & CStr(_currentJobId) & " Created OK", Me.Name, True)
-            Else
-                isInsertOk = False
-                ShowStatus(LblStatus, "Job NOT created", Me.Name, True)
-            End If
-        End With
+        _currentJobId = InsertJob(_newJob)
+        If _currentJobId > 0 Then
+            isInsertOk = True
+            ShowStatus(LblStatus, "Job " & CStr(_currentJobId) & " Created OK", Me.Name, True)
+        Else
+            isInsertOk = False
+            ShowStatus(LblStatus, "Job NOT created", Me.Name, True)
+        End If
         Return isInsertOk
     End Function
+
 #End Region
-
-
-
-
-
-
-
-
 End Class

@@ -23,7 +23,7 @@ Public Class FrmViewCust
         Me.Close()
     End Sub
     Private Sub FrmViewCust_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closing", Me.Name)
+        logutil.info("Closing", Me.Name)
     End Sub
     Private Sub FrmViewCust_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtCustAddr1.Text = _customer.Address.Address1

@@ -58,10 +58,10 @@ Public Class FrmReminder
         oDiaryTa.Dispose()
         oDiaryTable.Dispose()
         oUserTa.Dispose()
-        LogUtil.Debug("Closed", FORM_NAME)
+        logutil.info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        logutil.info("Starting", FORM_NAME)
         dtpSelectDate.Value = Today
         lblFormName.Text = FORM_NAME
         'lblName.Text = AuthenticationUtil.getUserName(userId)

@@ -31,7 +31,7 @@ Public Class FrmCustomerMaint
         Me.Close()
     End Sub
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Started", Me.Name)
+        logutil.info("Started", Me.Name)
         INSERT_WIDTH = Me.Width - pnlJobs.Width
         UPDATE_WIDTH = Me.Width
         isLoading = True
@@ -48,13 +48,13 @@ Public Class FrmCustomerMaint
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closing", Me.Name)
+        logutil.info("Closing", Me.Name)
         oCustListTable.Dispose()
         oCustTa.Dispose()
         oCustTable.Dispose()
     End Sub
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        LogUtil.Debug("Updating", Me.Name)
+        logutil.info("Updating", Me.Name)
         Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim).Build
         With _currentCustomer.Build
             _newCustomer = CustomerBuilder.ACustomer.WithAddress(_custAdd).WithCustName(txtCustName.Text.Trim()).WithDateChanged(.DateChanged).WithDateCreated(.DateCreated).WithEmail(txtCustEmail.Text.Trim).WithNotes(rtbCustNotes.Text).WithPhone(txtCustPhone.Text.Trim).WithDiscount(nudCustDiscount.Value).WithTerms(nudDays.Value)
@@ -69,7 +69,7 @@ Public Class FrmCustomerMaint
         If DgvJobs.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _JobId As Integer = oRow.Cells(Me.jobId.Name).Value
-            LogUtil.Debug("Updating job " & CStr(_JobId), Me.Name)
+            logutil.info("Updating job " & CStr(_JobId), Me.Name)
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_JobId)
                 _jobForm.CustomerId = _customerId
@@ -78,7 +78,7 @@ Public Class FrmCustomerMaint
         End If
     End Sub
     Private Sub BtnAddJob_Click(sender As Object, e As EventArgs) Handles BtnAddJob.Click
-        LogUtil.Debug("Adding job", Me.Name)
+        logutil.info("Adding job", Me.Name)
         Using _jobForm As New FrmJobMaint
             _jobForm.TheJob = Nothing
             _jobForm.CustomerId = _customerId
@@ -110,7 +110,7 @@ Public Class FrmCustomerMaint
             rtbCustNotes.Text = .Notes
             _custId = .CustomerId
         End With
-        LogUtil.Debug("Existing customer " & CStr(_custId), Me.Name)
+        logutil.info("Existing customer " & CStr(_custId), Me.Name)
         pnlJobs.Visible = True
         FillJobsList(_custId)
     End Sub
@@ -145,7 +145,7 @@ Public Class FrmCustomerMaint
         Return isAmendOK
     End Function
     Private Sub NewCustomer()
-        LogUtil.Debug("New customer", Me.Name)
+        logutil.info("New customer", Me.Name)
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing
         ClearCustomerDetails()
         pnlCustomer.Enabled = True
@@ -170,7 +170,7 @@ Public Class FrmCustomerMaint
         DgvJobs.Rows.Clear()
         Dim oJobsTa As New netwyrksDataSetTableAdapters.jobTableAdapter
         Dim oJobsTable As New netwyrksDataSet.jobDataTable
-        LogUtil.Debug("Finding jobs", MyBase.Name)
+        logutil.info("Finding jobs", MyBase.Name)
         oJobsTa.FillByCust(oJobsTable, custId)
         For Each oRow As netwyrksDataSet.jobRow In oJobsTable.Rows
             Dim tRow As DataGridViewRow = DgvJobs.Rows(DgvJobs.Rows.Add)

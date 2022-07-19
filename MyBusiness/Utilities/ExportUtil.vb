@@ -93,7 +93,7 @@ Public Class ExportUtil
     End Sub
 
     Public Sub ExportStrings(ByVal sText As String())
-        LogUtil.Debug("Writing lines to file " & MyOutFullFilePath())
+        logutil.info("Writing lines to file " & MyOutFullFilePath())
         Using sw As New StreamWriter(MyOutFullFilePath)
             For Each sLine As String In sText
                 sw.WriteLine(sLine)
@@ -108,7 +108,7 @@ Public Class ExportUtil
             myOutfile = Path.GetFileNameWithoutExtension(myOutfile) & FileUtil.fileSuffix(pformat)
         End If
         Dim sFullFilename As String = Path.Combine(myOutFolder, myOutfile)
-        LogUtil.Debug("Writing grid to file " & sFullFilename)
+        logutil.info("Writing grid to file " & sFullFilename)
         If pformat = FileUtil.FileType.SLK Then
             aColFormat = Split(pColQuotes, ",")
         End If
@@ -292,7 +292,7 @@ Public Class ExportUtil
         End If
         Dim sFilename As String = Path.Combine(myOutFolder, myOutfile)
         response.Append(RtfManager.RtfBottom)
-        LogUtil.Debug("Writing " & sFilename, Me.GetType.Name)
+        logutil.info("Writing " & sFilename, Me.GetType.Name)
         Using rtfFile As New StreamWriter(sFilename)
             rtfFile.Write(response.ToString)
         End Using
@@ -307,7 +307,7 @@ Public Class ExportUtil
         _contents.Append(RtfManager.RtfTop(isLandscape))
         _contents.Append(_text)
         _contents.Append(RtfManager.RtfBottom)
-        LogUtil.Debug("Writing " & sFilename, Me.GetType.Name)
+        logutil.info("Writing " & sFilename, Me.GetType.Name)
         Using rtfFile As New StreamWriter(sFilename)
             rtfFile.Write(_contents.ToString)
         End Using

@@ -26,7 +26,7 @@ Public Class ConvertUtil
     ''' <returns>String representation of the table</returns>
     ''' <remarks></remarks>
     Public Shared Function DataGridViewToTextTable(ByRef dgv As DataGridView, Optional ByVal sFmt As String = Nothing, Optional ByVal sSep As String = vbTab) As String
-        LogUtil.Debug("Converting data grid to text", "DataGridViewToTextTable")
+        logutil.info("Converting data grid to text", "DataGridViewToTextTable")
         Dim sText As New StringBuilder()
         Dim isFirst As Boolean = True
         If dgv.ColumnHeadersVisible Then

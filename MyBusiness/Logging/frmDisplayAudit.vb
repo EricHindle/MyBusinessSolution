@@ -14,10 +14,10 @@ Public Class FrmDisplayAudit
 #End Region
 #Region "form handlers"
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Starting", FORM_NAME)
+        LogUtil.Info("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
         cbRecordType.DataSource = [Enum].GetValues(GetType(AuditUtil.RecordType))
         ClearForm()
@@ -31,10 +31,10 @@ Public Class FrmDisplayAudit
         Dim recordtype As String = If(chkRecordType.Checked, selectedRecordType.ToString, "")
         Dim fromDate As Date = If(chkDate.Checked, dtpDate.Value.Date, Date.MinValue)
         Dim todate As Date = If(chkDate.Checked, DateAdd(DateInterval.Day, 1, fromDate), Date.MaxValue)
-        LogUtil.Debug("Searching for " & usercode & "/" & recordtype & "/" & Format(fromDate, "dd/MM/yyyy"), FORM_NAME)
+        LogUtil.Info("Searching for " & usercode & "/" & recordtype & "/" & Format(fromDate, "dd/MM/yyyy"), FORM_NAME)
         Try
             Dim i As Integer = oTa.FillByUserDateType(oTable, usercode, recordtype, fromDate, todate)
-            LogUtil.Debug("Found " & CInt(i) & " records", FORM_NAME)
+            LogUtil.Info("Found " & CInt(i) & " records", FORM_NAME)
             dgvAudit.Rows.Clear()
             For Each oRow As netwyrksDataSet.auditRow In oTable.Rows
                 AddTableRow(oRow)

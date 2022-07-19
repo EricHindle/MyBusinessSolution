@@ -78,7 +78,7 @@ Public Class SpellCheckUtil
             Next
         Else
             For Each oControl As Control In oControls
-                LogUtil.Debug("Disable spellcheck on " & oControl.Name)
+                logutil.info("Disable spellcheck on " & oControl.Name)
                 oControl.DisableSpellCheck()
             Next
         End If
