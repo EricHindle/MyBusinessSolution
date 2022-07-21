@@ -46,6 +46,8 @@ Partial Class FrmReminder
         Me.lblCust = New System.Windows.Forms.Label()
         Me.chkReminder = New System.Windows.Forms.CheckBox()
         Me.chkCallBack = New System.Windows.Forms.CheckBox()
+        Me.LblCustName = New System.Windows.Forms.Label()
+        Me.LblJobName = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -55,7 +57,7 @@ Partial Class FrmReminder
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 363)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 464)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(556, 24)
         Me.StatusStrip1.TabIndex = 7
@@ -75,7 +77,7 @@ Partial Class FrmReminder
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnClose.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(356, 317)
+        Me.btnClose.Location = New System.Drawing.Point(356, 418)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(88, 34)
         Me.btnClose.TabIndex = 6
@@ -87,7 +89,7 @@ Partial Class FrmReminder
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAdd.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.Location = New System.Drawing.Point(12, 317)
+        Me.btnAdd.Location = New System.Drawing.Point(12, 418)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 34)
         Me.btnAdd.TabIndex = 4
@@ -99,7 +101,7 @@ Partial Class FrmReminder
         Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnUpdate.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(93, 317)
+        Me.btnUpdate.Location = New System.Drawing.Point(93, 418)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 34)
         Me.btnUpdate.TabIndex = 5
@@ -148,9 +150,9 @@ Partial Class FrmReminder
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbBody.BackColor = System.Drawing.Color.Gainsboro
-        Me.rtbBody.Location = New System.Drawing.Point(11, 144)
+        Me.rtbBody.Location = New System.Drawing.Point(11, 227)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(433, 167)
+        Me.rtbBody.Size = New System.Drawing.Size(433, 185)
         Me.rtbBody.TabIndex = 2
         Me.rtbBody.Text = ""
         '
@@ -158,7 +160,7 @@ Partial Class FrmReminder
         '
         Me.txtSubject.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSubject.Location = New System.Drawing.Point(12, 114)
+        Me.txtSubject.Location = New System.Drawing.Point(11, 180)
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(433, 24)
         Me.txtSubject.TabIndex = 1
@@ -206,7 +208,7 @@ Partial Class FrmReminder
         '
         Me.dtpSelectDate.CalendarFont = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpSelectDate.CustomFormat = ""
-        Me.dtpSelectDate.Location = New System.Drawing.Point(114, 61)
+        Me.dtpSelectDate.Location = New System.Drawing.Point(113, 127)
         Me.dtpSelectDate.Name = "dtpSelectDate"
         Me.dtpSelectDate.Size = New System.Drawing.Size(198, 24)
         Me.dtpSelectDate.TabIndex = 0
@@ -228,7 +230,7 @@ Partial Class FrmReminder
         'lblRemDate
         '
         Me.lblRemDate.AutoSize = True
-        Me.lblRemDate.Location = New System.Drawing.Point(8, 65)
+        Me.lblRemDate.Location = New System.Drawing.Point(7, 131)
         Me.lblRemDate.Name = "lblRemDate"
         Me.lblRemDate.Size = New System.Drawing.Size(87, 17)
         Me.lblRemDate.TabIndex = 10
@@ -236,13 +238,15 @@ Partial Class FrmReminder
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.LblJobName)
+        Me.GroupBox1.Controls.Add(Me.LblCustName)
         Me.GroupBox1.Controls.Add(Me.lblJob)
         Me.GroupBox1.Controls.Add(Me.lblCust)
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GroupBox1.Location = New System.Drawing.Point(469, 48)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 60)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(65, 58)
+        Me.GroupBox1.Size = New System.Drawing.Size(433, 58)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         '
@@ -269,9 +273,7 @@ Partial Class FrmReminder
         'chkReminder
         '
         Me.chkReminder.AutoSize = True
-        Me.chkReminder.Checked = True
-        Me.chkReminder.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkReminder.Location = New System.Drawing.Point(335, 61)
+        Me.chkReminder.Location = New System.Drawing.Point(334, 127)
         Me.chkReminder.Name = "chkReminder"
         Me.chkReminder.Size = New System.Drawing.Size(109, 21)
         Me.chkReminder.TabIndex = 11
@@ -282,19 +284,37 @@ Partial Class FrmReminder
         '
         Me.chkCallBack.AutoSize = True
         Me.chkCallBack.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkCallBack.Location = New System.Drawing.Point(335, 88)
+        Me.chkCallBack.Location = New System.Drawing.Point(334, 154)
         Me.chkCallBack.Name = "chkCallBack"
         Me.chkCallBack.Size = New System.Drawing.Size(121, 18)
         Me.chkCallBack.TabIndex = 12
         Me.chkCallBack.Text = "Call back required"
         Me.chkCallBack.UseVisualStyleBackColor = True
         '
+        'LblCustName
+        '
+        Me.LblCustName.AutoSize = True
+        Me.LblCustName.Location = New System.Drawing.Point(65, 13)
+        Me.LblCustName.Name = "LblCustName"
+        Me.LblCustName.Size = New System.Drawing.Size(32, 13)
+        Me.LblCustName.TabIndex = 3
+        Me.LblCustName.Text = "None"
+        '
+        'LblJobName
+        '
+        Me.LblJobName.AutoSize = True
+        Me.LblJobName.Location = New System.Drawing.Point(65, 35)
+        Me.LblJobName.Name = "LblJobName"
+        Me.LblJobName.Size = New System.Drawing.Size(32, 13)
+        Me.LblJobName.TabIndex = 4
+        Me.LblJobName.Text = "None"
+        '
         'FrmReminder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(556, 387)
+        Me.ClientSize = New System.Drawing.Size(556, 488)
         Me.Controls.Add(Me.chkCallBack)
         Me.Controls.Add(Me.chkReminder)
         Me.Controls.Add(Me.GroupBox1)
@@ -352,4 +372,6 @@ Partial Class FrmReminder
     Friend WithEvents lblCust As System.Windows.Forms.Label
     Friend WithEvents chkReminder As System.Windows.Forms.CheckBox
     Friend WithEvents chkCallBack As System.Windows.Forms.CheckBox
+    Friend WithEvents LblJobName As Label
+    Friend WithEvents LblCustName As Label
 End Class

@@ -64,8 +64,7 @@ Public Class FrmMain
             Dim _diaryId As Integer = dRow.Cells(Me.dremId.Name).Value
             Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
             Using _diary As New FrmReminder
-                _diary.TheReminder = _reminder
-                _diary.IsReminder = _reminder.IsReminder
+                _diary.CurrentReminder = _reminder
                 _diary.ShowDialog()
             End Using
             isLoading = True
@@ -147,7 +146,6 @@ Public Class FrmMain
     Private Sub NewDiaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewDiaryToolStripMenuItem.Click
         Using _diary As New FrmReminder
             _diary.ShowDialog()
-            _diary.IsReminder = False
         End Using
         isLoading = True
         FillDiaryTable()

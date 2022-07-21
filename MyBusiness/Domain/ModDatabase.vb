@@ -298,6 +298,76 @@ Module ModDatabase
         Next
         Return _remList
     End Function
+    Public Function GetReminderById(ByVal pId As Integer) As Reminder
+        Dim _rem As Reminder = ReminderBuilder.AReminder.StartingWithNothing.Build
+        Try
+            oDiaryTa.FillById(oDiaryTable, pId)
+            If oDiaryTable.Rows.Count > 0 Then
+                _rem = ReminderBuilder.AReminder.StartingWith(oDiaryTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return _rem
+    End Function
+    Public Function UpdateReminderClosed(pValue As SByte, pRemId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oDiaryTa.UpdateClosed(pValue, pRemId)
+        Catch ex As Exception
+            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
+    End Function
+    Public Function UpdateIsReminder(pValue As SByte, pRemId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oDiaryTa.UpdateReminder(pValue, pRemId)
+        Catch ex As Exception
+            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
+    End Function
+    Public Function UpdateDiary(pReminder As Reminder) As Integer
+        Dim _ct As Integer
+        Try
+            With pReminder
+                _ct = oDiaryTa.UpdateDiary(.ReminderDate,
+                                           .UserId,
+                                           .JobId,
+                                           .CustomerId,
+                                           .Body,
+                                           .Subject,
+                                           .IsReminder,
+                                           .IsClosed,
+                                           .CallBack,
+                                           .Diary_id)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Diary not updated.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
+    End Function
+    Public Function CreateDiary(pReminder As Reminder) As Integer
+        Dim _id As Integer
+        Try
+            With pReminder
+                _id = oDiaryTa.InsertDiary(.ReminderDate,
+                                           .UserId,
+                                           .JobId,
+                                           .CustomerId,
+                                           .Body,
+                                           .Subject,
+                                           .IsReminder,
+                                           .IsClosed,
+                                           .CallBack)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Diary not updated.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _id
+    End Function
+
 #End Region
 #Region "common"
     Public Sub InitialiseData()

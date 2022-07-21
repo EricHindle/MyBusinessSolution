@@ -12,8 +12,8 @@ Public Class ReminderBuilder
     Private _body As String
     Private _isReminder As Boolean
     Private _isClosed As Boolean
-    Private _customerId As Integer?
-    Private _jobId As Integer?
+    Private _customerId As Integer
+    Private _jobId As Integer
     Private _callback As Boolean
     Public Shared Function AReminder() As ReminderBuilder
         Return New ReminderBuilder
@@ -39,14 +39,14 @@ Public Class ReminderBuilder
     End Function
     Public Function StartingWithNothing() As ReminderBuilder
         _diaryId = 0
-        _userId = 0
+        _userId = -1
         _reminderDate = Today.Date
         _subject = ""
         _body = ""
         _isReminder = False
         _isClosed = False
-        _customerId = Nothing
-        _jobId = Nothing
+        _customerId = -1
+        _jobId = -1
         _callback = False
         Return Me
     End Function
@@ -73,12 +73,12 @@ Public Class ReminderBuilder
                 _isReminder = .diary_reminder
                 _isClosed = .diary_closed
                 If .Isdiary_jobNull Then
-                    _jobId = Nothing
+                    _jobId = -1
                 Else
                     _jobId = .diary_job
                 End If
                 If .Isdiary_cust_idNull Then
-                    _customerId = Nothing
+                    _customerId = -1
                 Else
                     _customerId = .diary_cust_id
                 End If
@@ -110,7 +110,7 @@ Public Class ReminderBuilder
         _body = body
         Return Me
     End Function
-    Public Function WithReminder(ByVal pReminder As String) As ReminderBuilder
+    Public Function WithIsReminder(ByVal pReminder As Boolean) As ReminderBuilder
         _isReminder = pReminder
         Return Me
     End Function
@@ -122,14 +122,15 @@ Public Class ReminderBuilder
         _customerId = pCustomerId
         Return Me
     End Function
-    Public Function WithJobId(ByVal pIncidentId As Integer?) As ReminderBuilder
-        _jobId = pIncidentId
+    Public Function WithJobId(ByVal pJobId As Integer?) As ReminderBuilder
+        _jobId = pJobId
         Return Me
     End Function
     Public Function WithCallBack(ByVal pCallBack As Boolean) As ReminderBuilder
         _callback = pCallBack
         Return Me
     End Function
+
     Public Function Build() As Reminder
         Return New Reminder(_diaryId,
                             _userId,

@@ -12,8 +12,6 @@ Public Class FrmCustomerMaint
     Private _currentCustomer As Customer = Nothing
     Private _newCustomer As Customer = Nothing
     Private isLoading As Boolean = False
-    Private INSERT_WIDTH As Integer
-    Private UPDATE_WIDTH As Integer
 #End Region
 #Region "properties"
     Private _customerId As Integer
@@ -32,11 +30,10 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logutil.info("Started", Me.Name)
-        INSERT_WIDTH = Me.Width - pnlJobs.Width
-        UPDATE_WIDTH = Me.Width
         isLoading = True
         pnlCustomer.Enabled = False
-        pnlJobs.Visible = False
+        SplitContainer1.Panel2Collapsed = True
+        Me.KeyPreview = True
         If _customerId = 0 Then
             NewCustomer()
         Else
@@ -52,6 +49,11 @@ Public Class FrmCustomerMaint
         oCustListTable.Dispose()
         oCustTa.Dispose()
         oCustTable.Dispose()
+    End Sub
+    Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F3 Then
+            ShowDiary()
+        End If
     End Sub
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         logutil.info("Updating", Me.Name)
@@ -102,7 +104,6 @@ Public Class FrmCustomerMaint
 #End Region
 #Region "functions"
     Private Sub FillCustomerDetails()
-        Me.Width = UPDATE_WIDTH
         Dim _custId As Integer = 0
         With _currentCustomer
             txtCustName.Text = .CustName
@@ -118,8 +119,8 @@ Public Class FrmCustomerMaint
             rtbCustNotes.Text = .Notes
             _custId = .CustomerId
         End With
+        SplitContainer1.Panel2Collapsed = False
         LogUtil.Info("Existing customer " & CStr(_custId), Me.Name)
-        pnlJobs.Visible = True
         FillJobsList(_custId)
     End Sub
     Private Function CreateCustomer() As Boolean
@@ -154,9 +155,8 @@ Public Class FrmCustomerMaint
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
         pnlCustomer.Enabled = True
-        pnlJobs.Visible = False
+        SplitContainer1.Panel2Collapsed = True
         DgvJobs.Rows.Clear()
-        Me.Width = INSERT_WIDTH
     End Sub
     Private Sub ClearCustomerDetails()
         txtCustName.Text = ""
@@ -188,6 +188,20 @@ Public Class FrmCustomerMaint
         Next
         oJobsTa.Dispose()
         oJobsTable.Dispose()
+    End Sub
+    Private Sub ShowDiary()
+        Using _diary As New FrmDiary
+            _diary.ForCustomerId = _customerId
+            _diary.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub LblF3_Click(sender As Object, e As EventArgs)
+        ShowDiary()
+    End Sub
+
+    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles picDiary.Click
+        ShowDiary()
     End Sub
 #End Region
 End Class

@@ -18,10 +18,37 @@ Public Class Reminder
     Private _body As String
     Private _isReminder As Boolean
     Private _isClosed As Boolean
-    Private _customerId As Integer?
-    Private _jobId As Integer?
+    Private _customerId As Integer
+    Private _jobId As Integer
     Private _diaryId As Integer
     Private _callBack As Boolean
+    Private _customer As Customer
+    Private _user As User
+    Private _job As Job
+    Public Property DiaryJob() As Job
+        Get
+            Return _job
+        End Get
+        Set(ByVal value As Job)
+            _job = value
+        End Set
+    End Property
+    Public Property DiaryUser() As User
+        Get
+            Return _user
+        End Get
+        Set(ByVal value As User)
+            _user = value
+        End Set
+    End Property
+    Public Property DiaryCustomer() As Customer
+        Get
+            Return _customer
+        End Get
+        Set(ByVal value As Customer)
+            _customer = value
+        End Set
+    End Property
     Public Sub New(ByVal pDiaryId As Integer,
                     ByVal pUserId As Integer,
                     ByVal pReminderDate As Date?,
@@ -29,8 +56,8 @@ Public Class Reminder
                     ByVal pBody As String,
                     ByVal pReminder As Boolean,
                     ByVal pClosed As Boolean,
-                    ByVal pCustomerId As Integer?,
-                    ByVal pJobId As Integer?,
+                    ByVal pCustomerId As Integer,
+                    ByVal pJobId As Integer,
                     ByVal pCallBack As Boolean)
         _diaryId = pDiaryId
         _userId = pUserId
@@ -42,6 +69,9 @@ Public Class Reminder
         _customerId = pCustomerId
         _jobId = pJobId
         _callBack = pCallBack
+        _user = GetUserById(pUserId)
+        _customer = GetCustomer(pCustomerId)
+        _job = GetJobById(pJobId)
     End Sub
     Public Property CallBack() As Boolean
         Get
@@ -138,10 +168,10 @@ Public Class Reminder
             .Append(_isReminder) _
             .Append("], isClosed=[") _
             .Append(_isClosed) _
-            .Append("], customerId=[") _
-            .Append(_customerId) _
-            .Append("], jobId=[") _
-            .Append(_jobId) _
+            .Append("], customer=[") _
+            .Append(_customer.ToString) _
+            .Append("], job=[") _
+            .Append(_job.ToString) _
             .Append("], diaryId=[") _
             .Append(_diaryId) _
             .Append("]]")

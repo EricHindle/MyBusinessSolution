@@ -15,11 +15,10 @@ Public Class FrmDiary
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
-    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-    Private ReadOnly oTable As New netwyrksDataSet.diaryDataTable
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
-    Private ReadOnly oUserList As New Dictionary(Of Integer, String)
+
+    'Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
+    'Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
+    'Private ReadOnly oUserList As New Dictionary(Of Integer, String)
     Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
     Private ReadOnly oJobtable As New netwyrksDataSet.jobDataTable
     Private ReadOnly user As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
@@ -54,10 +53,8 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        oTa.Dispose()
-        oTable.Dispose()
-        oUserTa.Dispose()
-        oUserTable.Dispose()
+        'oUserTa.Dispose()
+        'oUserTable.Dispose()
         oJobTa.Dispose()
         oJobtable.Dispose()
         logutil.info("Closed", FORM_NAME)
@@ -72,10 +69,10 @@ Public Class FrmDiary
         logutil.info("Starting", FORM_NAME)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
-        oUserTa.Fill(oUserTable)
-        For Each oUser As netwyrksDataSet.userRow In oUserTable.Rows
-            oUserList.Add(oUser.user_id, oUser.user_code)
-        Next
+        'oUserTa.Fill(oUserTable)
+        'For Each oUser As netwyrksDataSet.userRow In oUserTable.Rows
+        '    oUserList.Add(oUser.user_id, oUser.user_code)
+        'Next
         Me.KeyPreview = True
         If dayOfWeek = 6 Then
             dateSectionHeads = New String() {"Overdue", "Today", "Tomorrow", "Next Week", "Future"}
@@ -110,7 +107,7 @@ Public Class FrmDiary
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
             Dim newValue As Integer = If(oRow.Cells(Me.dremRem.Name).Value = "", 1, 0)
-            oTa.UpdateReminder(newValue, remId)
+            UpdateIsReminder(newValue, remId)
             RebuildDiaryList()
         End If
     End Sub
@@ -125,7 +122,7 @@ Public Class FrmDiary
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
             Dim newValue As Integer = If(oRow.Cells(Me.dremClosed.Name).Value = "", 1, 0)
-            oTa.UpdateClosed(newValue, remId)
+            UpdateReminderClosed(newValue, remId)
             RebuildDiaryList()
         End If
     End Sub
@@ -209,36 +206,30 @@ Public Class FrmDiary
     ''' <param name="_id"></param>
     ''' <remarks></remarks>
     Private Sub FillForm(ByVal _id As Integer)
-        Dim _table As New netwyrksDataSet.diaryDataTable
-        Dim i As Integer = oTa.FillById(_table, _id)
+        Dim _reminder As Reminder = GetReminderById(_id)
         currentRemId = _id
         ClearLinks()
-        If i = 1 Then
-            Dim oRow As netwyrksDataSet.diaryRow = _table.Rows(0)
-            txtSubject.Text = oRow.diary_subject
-            rtbBody.Text = oRow.diary_body
-            If oRow.diary_cust_id > 0 Then
-                btnCustLink.Enabled = True
-                currentCustId = oRow.diary_cust_id
-            End If
-            If Not oRow.Isdiary_jobNull AndAlso oRow.diary_job > 0 Then
-                btnJobLink.Enabled = True
-                currentJobId = oRow.diary_job
-            End If
-            Dim isReminder As Boolean = oRow.diary_reminder
-            Dim isComplete As Boolean = oRow.diary_closed
-            lblReminder.Visible = isReminder
-            lblComplete.Visible = isComplete
-            lblOverdue.Visible = oRow.diary_reminder And oRow.diary_date < Today.Date And Not isComplete
-            btnSetReminder.Enabled = True
-            btnSetComplete.Enabled = True
-            btnSetReminder.Text = If(isReminder, "Cancel", "Set") & " Reminder"
-            btnSetComplete.Text = If(isComplete, "Re-open", "Close") & " Reminder"
-            btnUpdate.Visible = True
-        Else
-            If i > 1 Then lblStatus.Text = "Cannot identify a single record"
+
+        txtSubject.Text = _reminder.Subject
+        rtbBody.Text = _reminder.Body
+        If _reminder.CustomerId > 0 Then
+            btnCustLink.Enabled = True
+            currentCustId = _reminder.CustomerId
         End If
-        _table.Dispose()
+        If _reminder.JobId > 0 Then
+            btnJobLink.Enabled = True
+            currentJobId = _reminder.JobId
+        End If
+        Dim isReminder As Boolean = _reminder.IsReminder
+        Dim isComplete As Boolean = _reminder.IsClosed
+        lblReminder.Visible = isReminder
+        lblComplete.Visible = isComplete
+        lblOverdue.Visible = _reminder.IsReminder And _reminder.ReminderDate < Today.Date And Not isComplete
+        btnSetReminder.Enabled = True
+        btnSetComplete.Enabled = True
+        btnSetReminder.Text = If(isReminder, "Cancel", "Set") & " Reminder"
+        btnSetComplete.Text = If(isComplete, "Re-open", "Close") & " Reminder"
+        btnUpdate.Visible = True
     End Sub
     ''' <summary>
     ''' 
@@ -297,7 +288,7 @@ Public Class FrmDiary
     ''' <remarks></remarks>
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Using _reminder As New FrmReminder
-            _reminder.TheReminder = Nothing
+            _reminder.CurrentReminder = Nothing
             _reminder.ShowDialog()
         End Using
         RebuildDiaryList()
@@ -335,7 +326,7 @@ Public Class FrmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Using _reminder As New FrmReminder
-                _reminder.TheReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
+                _reminder.CurrentReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
                 _reminder.ShowDialog()
             End Using
         Else
@@ -361,55 +352,56 @@ Public Class FrmDiary
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub FillDiaryTable()
+        Dim _RemList As New List(Of Reminder)
         If isLoading Then Exit Sub
         dgvDiary.Rows.Clear()
         Try
             Dim remCt As Integer = 0
             If isShowAll Then
-                remCt = oTa.Fill(oTable)
+                _RemList = GetAllReminders()
             Else
-                remCt = oTa.FillByUserId(oTable, userId)
+                _RemList = GetRemindersForUser(userId)
             End If
-            If remCt > 0 Then
+            If _RemList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
-                For Each oRow As netwyrksDataSet.diaryRow In oTable.Rows
+                For Each _reminder As Reminder In _RemList
                     If _forCustomerId > 0 Then
-                        If (oRow.diary_cust_id <> _forCustomerId) Then
+                        If (_reminder.CustomerId <> _forCustomerId) Then
                             Continue For
                         End If
                     End If
-                    If chkComplete.Checked Or oRow.diary_closed = 0 Then
-                        If oRow.diary_reminder = 1 Or Not chkReminders.Checked Then
+                    If chkComplete.Checked Or Not _reminder.IsClosed Then
+                        If _reminder.IsReminder Or Not chkReminders.Checked Then
                             Dim r As Integer = 0
                             Dim rRow As DataGridViewRow = Nothing
                             If isFirstRow Then
-                                Dim oFirstRow As netwyrksDataSet.diaryRow = oTable.Rows(0)
-                                Dim firstRowdate As Date = oFirstRow.diary_date.Date
+                                Dim oFirstRow As Reminder = _RemList(0)
+                                Dim firstRowdate As Date = oFirstRow.ReminderDate.Date
                                 r = dgvDiary.Rows.Add()
                                 rRow = dgvDiary.Rows(r)
                                 dateSection = GetNextSection(firstRowdate, rRow)
                                 isFirstRow = False
                             End If
-                            Dim remId As Integer = oRow.diary_id
+                            Dim remId As Integer = _reminder.Diary_id
                             r = dgvDiary.Rows.Add()
                             rRow = dgvDiary.Rows(r)
-                            If oRow.diary_date.Date >= dateSectionEnds(dateSection).Date Then
-                                dateSection = GetNextSection(oRow.diary_date.Date, rRow)
+                            If _reminder.ReminderDate.Date >= dateSectionEnds(dateSection).Date Then
+                                dateSection = GetNextSection(_reminder.ReminderDate.Date, rRow)
                                 dgvDiary.Rows.Add()
                                 rRow = dgvDiary.Rows(r + 1)
                             End If
-                            Dim isReminder As Boolean = oRow.diary_reminder
-                            Dim isComplete As Boolean = oRow.diary_closed
-                            Dim isCallBack As Boolean = oRow.diary_callback
+                            Dim isReminder As Boolean = _reminder.IsReminder
+                            Dim isComplete As Boolean = _reminder.IsClosed
+                            Dim isCallBack As Boolean = _reminder.CallBack
 
-                            rRow.Cells(Me.dremUserCode.Name).Value = If(oUserList.ContainsKey(oRow.diary_user_id), oUserList(oRow.diary_user_id), "")
+                            rRow.Cells(Me.dremUserCode.Name).Value = _reminder.DiaryUser.User_code
                             rRow.Cells(Me.dremHeader.Name).Value = False
-                            rRow.Cells(Me.dremId.Name).Value = oRow.diary_id
-                            rRow.Cells(Me.dremSubject.Name).Value = oRow.diary_subject
-                            rRow.Cells(Me.dremDate.Name).Value = Format(oRow.diary_date, "dd/MM/yyyy")
+                            rRow.Cells(Me.dremId.Name).Value = _reminder.Diary_id
+                            rRow.Cells(Me.dremSubject.Name).Value = _reminder.Subject
+                            rRow.Cells(Me.dremDate.Name).Value = Format(_reminder.ReminderDate, "dd/MM/yyyy")
                             rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Gray
-                            rRow.Cells(Me.dremCustId.Name).Value = If(oRow.Isdiary_cust_idNull, 0, oRow.diary_cust_id)
-                            rRow.Cells(Me.dremJobId.Name).Value = If(oRow.Isdiary_jobNull, 0, oRow.diary_job)
+                            rRow.Cells(Me.dremCustId.Name).Value = _reminder.CustomerId
+                            rRow.Cells(Me.dremJobId.Name).Value = _reminder.JobId
                             Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
                             oRemCell.Style.Font = New Font("Wingdings", 11)
                             oRemCell.Value = If(isReminder, Chr(185), "")

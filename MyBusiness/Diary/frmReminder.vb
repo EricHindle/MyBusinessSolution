@@ -18,27 +18,28 @@ Public Class FrmReminder
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
     Private FORM_NAME As String = REMINDER_TEXT
-    Private ReadOnly oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-    Private ReadOnly oDiaryTable As New netwyrksDataSet.diaryDataTable
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly user As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
-    Private ReadOnly userId As Integer = user.UserId
-    Private reminderId As Integer = 0
 #End Region
 #Region "properties"
-    Private _customer As Customer
     Private _reminder As Reminder
+    Private _customer As Customer
     Private _job As Job
-    Private _isReminder As Boolean
-    Public Property IsReminder() As Boolean
+    Public Property CurrentJob() As Job
         Get
-            Return _isReminder
+            Return _job
         End Get
-        Set(ByVal value As Boolean)
-            _isReminder = value
+        Set(ByVal value As Job)
+            _job = value
         End Set
     End Property
-    Public Property TheReminder() As Reminder
+    Public Property CurrentCustomer() As Customer
+        Get
+            Return _customer
+        End Get
+        Set(ByVal value As Customer)
+            _customer = value
+        End Set
+    End Property
+    Public Property CurrentReminder() As Reminder
         Get
             Return _reminder
         End Get
@@ -55,43 +56,31 @@ Public Class FrmReminder
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        oDiaryTa.Dispose()
-        oDiaryTable.Dispose()
-        oUserTa.Dispose()
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logutil.info("Starting", FORM_NAME)
         dtpSelectDate.Value = Today
         lblFormName.Text = FORM_NAME
-        'lblName.Text = AuthenticationUtil.getUserName(userId)
         lblName.Text = currentUser.UserName
         ClearForm()
         SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
+        btnAdd.Visible = True
         If _reminder IsNot Nothing Then
-            BuildReferences()
-        End If
-        If _reminder IsNot Nothing AndAlso _reminder.Diary_id > 0 Then
-            FillForm()
-            btnAdd.Visible = False
-            btnUpdate.Visible = True
-        Else
-            If _customer IsNot Nothing Then
-                txtSubject.Text = "Customer " & CStr(_customer.CustomerId) & " : " & _customer.CustName
+            If _reminder.Diary_id > 0 Then
+                FillForm()
+                _customer = _reminder.DiaryCustomer
+                _job = _reminder.DiaryJob
             End If
-            btnAdd.Visible = True
-            btnUpdate.Visible = False
         End If
-        If _customer IsNot Nothing Then lblCust.ForeColor = Color.Black
-        If _job IsNot Nothing Then lblJob.ForeColor = Color.Black
-        chkReminder.Checked = IsReminder
-    End Sub
-    Private Sub BuildReferences()
-        If _reminder.CustomerId > 0 Then
-            _customer = CustomerBuilder.ACustomer.StartingWith(_reminder.CustomerId).Build
+
+        If _customer IsNot Nothing Then
+            lblCust.ForeColor = Color.Black
+            LblCustName.Text = _customer.CustName
         End If
-        If _reminder.JobId > 0 Then
-            _job = GetJobById(_reminder.JobId)
+        If _job IsNot Nothing Then
+            lblJob.ForeColor = Color.Black
+            LblJobName.Text = _job.JobName
         End If
     End Sub
     ''' <summary>
@@ -110,10 +99,9 @@ Public Class FrmReminder
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnSetComplete_Click(sender As Object, e As EventArgs) Handles btnSetComplete.Click
-        Dim isComplete As Boolean = _reminder.IsClosed
-        Dim newValue As Integer = If(isComplete, 0, 1)
-        oDiaryTa.UpdateClosed(newValue, _reminder.Diary_id)
-        getReminder(_reminder.Diary_id)
+        Dim newValue As SByte = If(_reminder.IsClosed, 0, 1)
+        UpdateReminderClosed(newValue, _reminder.Diary_id)
+        _reminder.IsClosed = newValue
         FillForm()
     End Sub
     ''' <summary>
@@ -131,6 +119,8 @@ Public Class FrmReminder
         If chkCallBack.Checked Then
             dtpSelectDate.Format = DateTimePickerFormat.Custom
             dtpSelectDate.CustomFormat = "dd MMMM yyyy  HH:mm"
+        Else
+            dtpSelectDate.CustomFormat = vbLongDate
         End If
     End Sub
     ''' <summary>
@@ -141,18 +131,11 @@ Public Class FrmReminder
     ''' <remarks></remarks>
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Dim _diaryId As Integer
-        Dim custId As Integer? = Nothing
-        Dim jobId As Integer? = Nothing
-        If _customer IsNot Nothing Then
-            custId = _customer.CustomerId
-        End If
-        If _job IsNot Nothing Then
-            jobId = _job.JobId
-        End If
         Dim remFlag As Integer = If(chkReminder.Checked, 1, 0)
         Try
-            reminderId = oDiaryTa.InsertDiary(dtpSelectDate.Value, txtSubject.Text, rtbBody.Text, remFlag, 0, chkCallBack.Checked, userId, jobId, custId)
-            _diaryId = getReminder(reminderId)
+            _reminder = MakeReminderFromForm()
+            _diaryId = CreateDiary(_reminder)
+
         Catch ex As Exception
             LogUtil.Exception(RECORD_TYPE & " creation exception", ex, FORM_NAME, getErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.CREATION_EXCEPTION))
             _diaryId = 0
@@ -163,7 +146,7 @@ Public Class FrmReminder
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT added", True, TraceEventType.Warning)
         End If
-        FillForm()
+        Me.Close()
     End Sub
     ''' <summary>
     ''' 
@@ -174,31 +157,35 @@ Public Class FrmReminder
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Dim ct As Integer
         Dim recordId As Integer = _reminder.Diary_id
-        Dim custId As Integer? = Nothing
-        Dim jobId As Integer? = Nothing
-        If _customer IsNot Nothing Then
-            custId = _customer.CustomerId
-        End If
-        If _job IsNot Nothing Then
-            jobId = _job.JobId
-        End If
-        Dim remFlag As Integer = If(chkReminder.Checked, 1, 0)
         Try
-            ct = oDiaryTa.UpdateDiary(dtpSelectDate.Value, txtSubject.Text, rtbBody.Text, remFlag, _reminder.IsClosed, chkCallBack.Checked, userId, jobId, custId, recordId)
+            ct = UpdateDiary(MakeReminderFromForm)
         Catch ex As Exception
             LogUtil.Exception(RECORD_TYPE & " update exception", ex, FORM_NAME, getErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
             ct = 0
         End Try
         Dim _oldReminder As Reminder = _reminder
-        getReminder(recordId)
+        _reminder = GetReminderById(recordId)
         If ct = 1 Then
             AuditUtil.addAudit(currentUser.UserId, RECORD_TYPE, recordId, AuditUtil.AuditableAction.update, _oldReminder.ToString, _reminder.ToString)
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " updated", True)
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT updated", True, TraceEventType.Warning)
         End If
-        FillForm()
+        Me.Close()
     End Sub
+
+    Private Function MakeReminderFromForm() As Reminder
+        Dim _rem As ReminderBuilder = ReminderBuilder.AReminder.StartingWith(_reminder)
+        _rem.WithReminderDate(dtpSelectDate.Value) _
+        .WithSubject(txtSubject.Text) _
+        .WithBody(rtbBody.Text) _
+        .WithIsReminder(chkReminder.Checked) _
+        .WithClosed(False) _
+        .WithCallBack(chkCallBack.Checked) _
+        .WithCustomerId(If(_customer Is Nothing, -1, _customer.CustomerId)) _
+        .WithJobId(If(_job Is Nothing, -1, _job.JobId))
+        Return _rem.Build
+    End Function
 #End Region
 #Region "Subroutines"
     ''' <summary>
@@ -208,6 +195,8 @@ Public Class FrmReminder
     Private Sub ClearForm()
         lblCust.ForeColor = Color.Silver
         lblJob.ForeColor = Color.Silver
+        LblCustName.Text = ""
+        LblJobName.Text = ""
         btnUpdate.Visible = False
         btnAdd.Visible = False
         btnSetComplete.Enabled = False
@@ -224,11 +213,10 @@ Public Class FrmReminder
     ''' <remarks></remarks>
     Private Sub FillForm()
         Dim isComplete As Boolean = _reminder.IsClosed
-        Dim isAreminder As Boolean = _reminder.IsReminder
         txtSubject.Text = _reminder.Subject
         rtbBody.Text = _reminder.Body
         dtpSelectDate.Value = _reminder.ReminderDate
-        lblReminder.Visible = isAreminder
+        lblReminder.Visible = _reminder.IsReminder
         lblComplete.Visible = isComplete
         lblOverdue.Visible = isComplete = False And _reminder.ReminderDate < Today.Date
         btnSetComplete.Enabled = True
@@ -237,6 +225,7 @@ Public Class FrmReminder
         btnUpdate.Visible = True
         chkReminder.Checked = _reminder.IsReminder
         chkCallBack.Checked = _reminder.CallBack
+
     End Sub
     ''' <summary>
     ''' Display a message in the status bar and optionally log it
@@ -249,15 +238,6 @@ Public Class FrmReminder
         lblStatus.Text = sText
         If islogged Then LogUtil.addLog(sText, level, FORM_NAME)
     End Sub
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="reminderId"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Function GetReminder(ByVal reminderId As Integer)
-        _reminder = ReminderBuilder.AReminder.StartingWith(reminderId).Build
-        Return _reminder.Diary_id
-    End Function
+
 #End Region
 End Class

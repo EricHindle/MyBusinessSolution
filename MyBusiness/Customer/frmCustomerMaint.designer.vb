@@ -59,6 +59,7 @@ Partial Class FrmCustomerMaint
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.picDiary = New System.Windows.Forms.PictureBox()
         Me.pnlCustomer.SuspendLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +71,7 @@ Partial Class FrmCustomerMaint
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.picDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlCustomer
@@ -453,6 +455,17 @@ Partial Class FrmCustomerMaint
         Me.SplitContainer1.SplitterDistance = 505
         Me.SplitContainer1.TabIndex = 68
         '
+        'picDiary
+        '
+        Me.picDiary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picDiary.Image = Global.MyBusiness.My.Resources.Resources.diary
+        Me.picDiary.InitialImage = Nothing
+        Me.picDiary.Location = New System.Drawing.Point(885, 487)
+        Me.picDiary.Name = "picDiary"
+        Me.picDiary.Size = New System.Drawing.Size(42, 42)
+        Me.picDiary.TabIndex = 89
+        Me.picDiary.TabStop = False
+        '
         'FrmCustomerMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -460,6 +473,7 @@ Partial Class FrmCustomerMaint
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(941, 563)
+        Me.Controls.Add(Me.picDiary)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
@@ -487,6 +501,7 @@ Partial Class FrmCustomerMaint
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.picDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -527,4 +542,5 @@ Partial Class FrmCustomerMaint
     Friend WithEvents Label9 As Label
     Friend WithEvents nudDays As NumericUpDown
     Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents picDiary As PictureBox
 End Class
