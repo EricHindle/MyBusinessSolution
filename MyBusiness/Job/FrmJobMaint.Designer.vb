@@ -47,6 +47,8 @@ Partial Class FrmJobMaint
         Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
         Me.GrpInvoice = New System.Windows.Forms.GroupBox()
+        Me.LblTerms = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -73,8 +75,7 @@ Partial Class FrmJobMaint
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.LblTerms = New System.Windows.Forms.Label()
+        Me.PicDiary = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +90,7 @@ Partial Class FrmJobMaint
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
+        CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -367,6 +369,25 @@ Partial Class FrmJobMaint
         Me.GrpInvoice.Size = New System.Drawing.Size(531, 102)
         Me.GrpInvoice.TabIndex = 14
         Me.GrpInvoice.TabStop = False
+        '
+        'LblTerms
+        '
+        Me.LblTerms.AutoSize = True
+        Me.LblTerms.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTerms.Location = New System.Drawing.Point(172, 67)
+        Me.LblTerms.Name = "LblTerms"
+        Me.LblTerms.Size = New System.Drawing.Size(72, 14)
+        Me.LblTerms.TabIndex = 77
+        Me.LblTerms.Text = "Immediate"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(181, 47)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 14)
+        Me.Label8.TabIndex = 76
+        Me.Label8.Text = "Terms"
         '
         'Label12
         '
@@ -678,30 +699,23 @@ Partial Class FrmJobMaint
         Me.SplitContainer2.SplitterDistance = 579
         Me.SplitContainer2.TabIndex = 78
         '
-        'Label8
+        'PicDiary
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(181, 47)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 14)
-        Me.Label8.TabIndex = 76
-        Me.Label8.Text = "Terms"
-        '
-        'LblTerms
-        '
-        Me.LblTerms.AutoSize = True
-        Me.LblTerms.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblTerms.Location = New System.Drawing.Point(172, 67)
-        Me.LblTerms.Name = "LblTerms"
-        Me.LblTerms.Size = New System.Drawing.Size(72, 14)
-        Me.LblTerms.TabIndex = 77
-        Me.LblTerms.Text = "Immediate"
+        Me.PicDiary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicDiary.Image = Global.MyBusiness.My.Resources.Resources.diary
+        Me.PicDiary.InitialImage = Nothing
+        Me.PicDiary.Location = New System.Drawing.Point(1020, 536)
+        Me.PicDiary.Name = "PicDiary"
+        Me.PicDiary.Size = New System.Drawing.Size(42, 42)
+        Me.PicDiary.TabIndex = 90
+        Me.PicDiary.TabStop = False
         '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 611)
+        Me.Controls.Add(Me.PicDiary)
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
@@ -731,6 +745,7 @@ Partial Class FrmJobMaint
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
+        CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -789,4 +804,5 @@ Partial Class FrmJobMaint
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents LblTerms As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents PicDiary As PictureBox
 End Class

@@ -336,5 +336,14 @@ Public Class FrmJobMaint
         Return isInsertOk
     End Function
 
+    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles picDiary.Click
+        ShowDiary()
+    End Sub
+    Private Sub ShowDiary()
+        Using _diary As New FrmDiary
+            _diary.ForJobId = _currentJobId
+            _diary.ShowDialog()
+        End Using
+    End Sub
 #End Region
 End Class

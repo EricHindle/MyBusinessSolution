@@ -176,6 +176,14 @@ Public Class LoginForm
             ClearCache(My.Settings.RetentionPeriod, CacheType.All)
         End If
         Me.Hide()
+        If My.Settings.ShowRemindersAtLogin Then
+            Using _remind As New frmReminderList
+                Dim i As Integer = _remind.loadReminders
+                If i > 0 Then
+                    _remind.ShowDialog()
+                End If
+            End Using
+        End If
         Using _menu As New frmMain
             _menu.ShowDialog()
         End Using

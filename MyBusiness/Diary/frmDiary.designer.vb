@@ -62,10 +62,16 @@ Partial Class FrmDiary
         Me.lblOverdue = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.lblDate = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.LblJobName = New System.Windows.Forms.Label()
+        Me.LblCustName = New System.Windows.Forms.Label()
+        Me.lblJob = New System.Windows.Forms.Label()
+        Me.lblCust = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip1
@@ -215,7 +221,7 @@ Partial Class FrmDiary
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvDiary.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvDiary.Location = New System.Drawing.Point(406, 40)
+        Me.dgvDiary.Location = New System.Drawing.Point(406, 144)
         Me.dgvDiary.MultiSelect = False
         Me.dgvDiary.Name = "dgvDiary"
         Me.dgvDiary.ReadOnly = True
@@ -226,7 +232,7 @@ Partial Class FrmDiary
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         Me.dgvDiary.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvDiary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDiary.Size = New System.Drawing.Size(508, 350)
+        Me.dgvDiary.Size = New System.Drawing.Size(508, 269)
         Me.dgvDiary.TabIndex = 23
         '
         'dremId
@@ -378,7 +384,7 @@ Partial Class FrmDiary
         Me.chkReminders.ForeColor = System.Drawing.Color.Black
         Me.chkReminders.Location = New System.Drawing.Point(19, 106)
         Me.chkReminders.Name = "chkReminders"
-        Me.chkReminders.Size = New System.Drawing.Size(115, 20)
+        Me.chkReminders.Size = New System.Drawing.Size(114, 20)
         Me.chkReminders.TabIndex = 28
         Me.chkReminders.Text = "Reminders only"
         Me.chkReminders.UseVisualStyleBackColor = True
@@ -389,7 +395,7 @@ Partial Class FrmDiary
         Me.chkComplete.ForeColor = System.Drawing.Color.Black
         Me.chkComplete.Location = New System.Drawing.Point(19, 80)
         Me.chkComplete.Name = "chkComplete"
-        Me.chkComplete.Size = New System.Drawing.Size(167, 20)
+        Me.chkComplete.Size = New System.Drawing.Size(166, 20)
         Me.chkComplete.TabIndex = 29
         Me.chkComplete.Text = "Show Completed Entries"
         Me.chkComplete.UseVisualStyleBackColor = True
@@ -454,12 +460,65 @@ Partial Class FrmDiary
         Me.lblDate.TabIndex = 37
         Me.lblDate.Text = "dd MM yyyy"
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.LblJobName)
+        Me.GroupBox2.Controls.Add(Me.LblCustName)
+        Me.GroupBox2.Controls.Add(Me.lblJob)
+        Me.GroupBox2.Controls.Add(Me.lblCust)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.GroupBox2.Location = New System.Drawing.Point(406, 80)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(433, 58)
+        Me.GroupBox2.TabIndex = 38
+        Me.GroupBox2.TabStop = False
+        '
+        'LblJobName
+        '
+        Me.LblJobName.AutoSize = True
+        Me.LblJobName.Location = New System.Drawing.Point(65, 35)
+        Me.LblJobName.Name = "LblJobName"
+        Me.LblJobName.Size = New System.Drawing.Size(26, 13)
+        Me.LblJobName.TabIndex = 4
+        Me.LblJobName.Text = "Any"
+        '
+        'LblCustName
+        '
+        Me.LblCustName.AutoSize = True
+        Me.LblCustName.Location = New System.Drawing.Point(65, 13)
+        Me.LblCustName.Name = "LblCustName"
+        Me.LblCustName.Size = New System.Drawing.Size(10, 13)
+        Me.LblCustName.TabIndex = 3
+        Me.LblCustName.Text = " "
+        '
+        'lblJob
+        '
+        Me.lblJob.AutoSize = True
+        Me.lblJob.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.lblJob.Location = New System.Drawing.Point(6, 35)
+        Me.lblJob.Name = "lblJob"
+        Me.lblJob.Size = New System.Drawing.Size(24, 13)
+        Me.lblJob.TabIndex = 2
+        Me.lblJob.Text = "Job"
+        '
+        'lblCust
+        '
+        Me.lblCust.AutoSize = True
+        Me.lblCust.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.lblCust.Location = New System.Drawing.Point(6, 13)
+        Me.lblCust.Name = "lblCust"
+        Me.lblCust.Size = New System.Drawing.Size(53, 13)
+        Me.lblCust.TabIndex = 0
+        Me.lblCust.Text = "Customer"
+        '
         'FrmDiary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(926, 464)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.lblDate)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.lblOverdue)
@@ -492,6 +551,8 @@ Partial Class FrmDiary
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -531,4 +592,9 @@ Partial Class FrmDiary
     Friend WithEvents dremCallback As DataGridViewTextBoxColumn
     Friend WithEvents dremClosed As DataGridViewTextBoxColumn
     Friend WithEvents dremHeader As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents LblJobName As Label
+    Friend WithEvents LblCustName As Label
+    Friend WithEvents lblJob As Label
+    Friend WithEvents lblCust As Label
 End Class

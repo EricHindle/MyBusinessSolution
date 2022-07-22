@@ -15,15 +15,8 @@ Public Class FrmDiary
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
-
-    'Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    'Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
-    'Private ReadOnly oUserList As New Dictionary(Of Integer, String)
-    Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-    Private ReadOnly oJobtable As New netwyrksDataSet.jobDataTable
-    Private ReadOnly user As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
-    Private ReadOnly userId As Integer = user.UserId
-    Private userName As String = ""
+    Private ReadOnly userId As Integer = currentUser.UserId
+    Private userName As String = currentUser.UserName
     Private currentRemId As Integer = 0
     Private currentCustId As Integer = 0
     Private currentJobId As Integer = 0
@@ -33,9 +26,19 @@ Public Class FrmDiary
     Private dateSection As Integer = 0
     Private isLoading As Boolean = True
     Private isShowAll As Boolean = False
+    Private currentDiary As Reminder
 #End Region
 #Region "properties"
     Private _forCustomerId As Integer
+    Private _forJobId As Integer
+    Public Property ForJobId() As Integer
+        Get
+            Return _forJobId
+        End Get
+        Set(ByVal value As Integer)
+            _forJobId = value
+        End Set
+    End Property
     Public Property ForCustomerId() As Integer
         Get
             Return _forCustomerId
@@ -53,11 +56,7 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        'oUserTa.Dispose()
-        'oUserTable.Dispose()
-        oJobTa.Dispose()
-        oJobtable.Dispose()
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     ''' <summary>
     ''' Initialse the loading form
@@ -69,10 +68,6 @@ Public Class FrmDiary
         logutil.info("Starting", FORM_NAME)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
-        'oUserTa.Fill(oUserTable)
-        'For Each oUser As netwyrksDataSet.userRow In oUserTable.Rows
-        '    oUserList.Add(oUser.user_id, oUser.user_code)
-        'Next
         Me.KeyPreview = True
         If dayOfWeek = 6 Then
             dateSectionHeads = New String() {"Overdue", "Today", "Tomorrow", "Next Week", "Future"}
@@ -80,10 +75,15 @@ Public Class FrmDiary
         End If
         isLoading = True
         lblFormName.Text = FORM_NAME
-        userName = AuthenticationUtil.getUserName(userId)
         lblName.Text = userName
         ClearForm()
         isLoading = False
+        If _forCustomerId > 0 Then
+            LblCustName.Text = GetCustomer(_forCustomerId).CustName
+        End If
+        If _forJobId > 0 Then
+            LblJobName.Text = GetJobById(_forJobId).JobName
+        End If
         FillDiaryTable()
         SpellCheckUtil.EnableSpellChecking({rtbBody, txtSubject})
     End Sub
@@ -178,7 +178,7 @@ Public Class FrmDiary
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ClearForm()
-        currentRemId = 0
+        currentDiary = Nothing
         btnNew.Visible = True
         btnUpdate.Visible = False
         btnSetComplete.Enabled = False
@@ -206,25 +206,24 @@ Public Class FrmDiary
     ''' <param name="_id"></param>
     ''' <remarks></remarks>
     Private Sub FillForm(ByVal _id As Integer)
-        Dim _reminder As Reminder = GetReminderById(_id)
-        currentRemId = _id
+        currentDiary = GetReminderById(_id)
         ClearLinks()
 
-        txtSubject.Text = _reminder.Subject
-        rtbBody.Text = _reminder.Body
-        If _reminder.CustomerId > 0 Then
+        txtSubject.Text = currentDiary.Subject
+        rtbBody.Text = currentDiary.Body
+        If currentDiary.CustomerId > 0 Then
             btnCustLink.Enabled = True
-            currentCustId = _reminder.CustomerId
+            currentCustId = currentDiary.CustomerId
         End If
-        If _reminder.JobId > 0 Then
+        If currentDiary.JobId > 0 Then
             btnJobLink.Enabled = True
-            currentJobId = _reminder.JobId
+            currentJobId = currentDiary.JobId
         End If
-        Dim isReminder As Boolean = _reminder.IsReminder
-        Dim isComplete As Boolean = _reminder.IsClosed
+        Dim isReminder As Boolean = currentDiary.IsReminder
+        Dim isComplete As Boolean = currentDiary.IsClosed
         lblReminder.Visible = isReminder
         lblComplete.Visible = isComplete
-        lblOverdue.Visible = _reminder.IsReminder And _reminder.ReminderDate < Today.Date And Not isComplete
+        lblOverdue.Visible = currentDiary.IsReminder And currentDiary.ReminderDate < Today.Date And Not isComplete
         btnSetReminder.Enabled = True
         btnSetComplete.Enabled = True
         btnSetReminder.Text = If(isReminder, "Cancel", "Set") & " Reminder"
@@ -268,9 +267,10 @@ Public Class FrmDiary
     ''' <remarks></remarks>
     Private Sub BtnjobLink_Click(sender As Object, e As EventArgs) Handles btnJobLink.Click
 
-        If oJobTa.FillById(oJobtable, currentJobId) = 1 Then
-            Dim jobRow As netwyrksDataSet.jobRow = oJobtable.Rows(0)
-            Dim ojob As Job = JobBuilder.AJob.StartingWith(jobRow).Build
+
+        If currentDiary IsNot Nothing Then
+
+            Dim ojob As Job = currentDiary.DiaryJob
 
             Using _job As New FrmJobMaint
                 _job.TheJob = ojob
@@ -352,7 +352,7 @@ Public Class FrmDiary
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub FillDiaryTable()
-        Dim _RemList As New List(Of Reminder)
+        Dim _RemList As List(Of Reminder)
         If isLoading Then Exit Sub
         dgvDiary.Rows.Clear()
         Try
@@ -365,30 +365,24 @@ Public Class FrmDiary
             If _RemList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
                 For Each _reminder As Reminder In _RemList
-                    If _forCustomerId > 0 Then
-                        If (_reminder.CustomerId <> _forCustomerId) Then
-                            Continue For
-                        End If
+                    If Not IsRequiredCustomer(_reminder) OrElse Not IsRequiredJob(_reminder) Then
+                        Continue For
                     End If
                     If chkComplete.Checked Or Not _reminder.IsClosed Then
                         If _reminder.IsReminder Or Not chkReminders.Checked Then
-                            Dim r As Integer = 0
                             Dim rRow As DataGridViewRow = Nothing
                             If isFirstRow Then
                                 Dim oFirstRow As Reminder = _RemList(0)
                                 Dim firstRowdate As Date = oFirstRow.ReminderDate.Date
-                                r = dgvDiary.Rows.Add()
-                                rRow = dgvDiary.Rows(r)
+                                rRow = dgvDiary.Rows(dgvDiary.Rows.Add())
                                 dateSection = GetNextSection(firstRowdate, rRow)
                                 isFirstRow = False
                             End If
                             Dim remId As Integer = _reminder.Diary_id
-                            r = dgvDiary.Rows.Add()
-                            rRow = dgvDiary.Rows(r)
+                            rRow = dgvDiary.Rows(dgvDiary.Rows.Add())
                             If _reminder.ReminderDate.Date >= dateSectionEnds(dateSection).Date Then
                                 dateSection = GetNextSection(_reminder.ReminderDate.Date, rRow)
-                                dgvDiary.Rows.Add()
-                                rRow = dgvDiary.Rows(r + 1)
+                                rRow = dgvDiary.Rows(dgvDiary.Rows.Add() + 1)
                             End If
                             Dim isReminder As Boolean = _reminder.IsReminder
                             Dim isComplete As Boolean = _reminder.IsClosed
@@ -420,6 +414,16 @@ Public Class FrmDiary
         End Try
         dgvDiary.ClearSelection()
     End Sub
+    Private Function IsRequiredCustomer(ByRef _reminder As Reminder) As Boolean
+        Dim isRequired As Boolean = False
+        isRequired = _forCustomerId <= 0 Or _reminder.DiaryCustomer.CustomerId = _forCustomerId
+        Return isRequired
+    End Function
+    Private Function IsRequiredJob(ByRef _reminder As Reminder) As Boolean
+        Dim isRequired As Boolean = False
+        isRequired = _forJobId <= 0 Or _reminder.DiaryJob.JobId = _forJobId
+        Return isRequired
+    End Function
     ''' <summary>
     ''' Find the next date section 
     ''' </summary>
