@@ -375,6 +375,13 @@ Public Class FrmMain
 
     End Sub
 
+    Private Sub MnuChangePassword_Click(sender As Object, e As EventArgs) Handles MnuChangePassword.Click
+        Using _pwdChange As New FrmChangePassword
+            _pwdChange.ForceChange = False
+            _pwdChange.ShowDialog()
+        End Using
+    End Sub
+
 
 #End Region
 End Class

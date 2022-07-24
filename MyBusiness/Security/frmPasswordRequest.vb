@@ -11,8 +11,6 @@ Public Class FrmPasswordRequest
     Private Const FORM_NAME As String = "forgotten password"
     Private Const USERNAME_TEXT As String = "User name"
     Private Const EMAIL_TEXT As String = "Registered email address"
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.User
@@ -20,23 +18,23 @@ Public Class FrmPasswordRequest
 #Region "Form"
     Private Sub BtnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
 
-        Dim hashedUser As String = AuthenticationUtil.hashedUsername(txtUsername.Text.Trim)
-        Dim i As Integer = oUserTa.FillByLogin(oUserTable, hashedUser)
-        If i = 1 Then
-            Dim uRow As netwyrksDataSet.userRow = oUserTable.Rows(0)
-            Dim userId As Integer = uRow.user_id
-            Dim salt As String = uRow.salt
-            Dim usercode As String = uRow.user_code
+        Dim hashedUser As String = AuthenticationUtil.HashedUsername(txtUsername.Text.Trim)
+        Dim _user As User = GetUserByLogin(hashedUser)
+        If _user.UserId > 0 Then
 
-            If Not uRow.Isuser_emailNull Then
-                Dim sEmail As String = uRow.user_email
+            Dim userId As Integer = _user.UserId
+            Dim salt As String = _user.Salt
+            Dim usercode As String = _user.User_code
+
+            If Not String.IsNullOrEmpty(_user.Email) Then
+                Dim sEmail As String = _user.Email
                 If sEmail.Trim.ToLower = txtEmail.Text.Trim.ToLower Then
-                    If AuthenticationUtil.createUserTemporaryPassword(userId, salt, uRow.user_email) Then
+                    If AuthenticationUtil.CreateUserTemporaryPassword(userId, salt, _user.Email) Then
                         LogStatus("Password reset OK", True)
                         AuditUtil.AddAudit(AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, , "Temporary password created")
                     Else
                         MsgBox("Temporary password could not be created", MsgBoxStyle.Critical, "Error")
-                        LogStatus("Temporary password could not be created", True, TraceEventType.Error, getErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.UPDATE_FAILED))
+                        LogStatus("Temporary password could not be created", True, TraceEventType.Error, GetErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.UPDATE_FAILED))
                     End If
                 Else
                     LogStatus("Username/email not recognised", True, TraceEventType.Information)
@@ -44,7 +42,7 @@ Public Class FrmPasswordRequest
                 End If
             Else
                 MsgBox("User record incomplete", MsgBoxStyle.Critical, "Error")
-                LogStatus("User record incomplete - no email address", True, TraceEventType.Error, getErrorCode(SystemModule.SECURITY, ErrorType.MISSING_DATA, FailedAction.SINGLE_RECORD_LOAD_EXCEPTION))
+                LogStatus("User record incomplete - no email address", True, TraceEventType.Error, GetErrorCode(SystemModule.SECURITY, ErrorType.MISSING_DATA, FailedAction.SINGLE_RECORD_LOAD_EXCEPTION))
             End If
 
             Me.Close()
@@ -85,9 +83,7 @@ Public Class FrmPasswordRequest
         End If
     End Sub
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        oUserTa.Dispose()
-        oUserTable.Dispose()
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logutil.info("Starting", FORM_NAME)
@@ -95,7 +91,7 @@ Public Class FrmPasswordRequest
         SetTextboxToDefault(txtUsername, USERNAME_TEXT)
         SetTextboxToDefault(txtEmail, EMAIL_TEXT)
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
 #End Region

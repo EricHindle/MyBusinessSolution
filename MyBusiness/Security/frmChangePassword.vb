@@ -104,6 +104,7 @@ Public Class FrmChangePassword
                 If StoreNewPassword() Then
                     ' Successful login with password change
                     LogStatus("User password changed OK", True, TraceEventType.Information)
+                    RemoveTempPassword(userId)
                     Me.DialogResult = DialogResult.OK
                     Me.Close()
                 Else

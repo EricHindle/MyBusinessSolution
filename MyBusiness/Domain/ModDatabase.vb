@@ -103,6 +103,16 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
+    Public Function RemoveTempPassword(pUserId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oUserTa.UpdateTempPassword(Nothing, Now, False, pUserId)
+        Catch ex As Exception
+            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            Throw New ApplicationException("Exception saving password : " & ex.Message)
+        End Try
+        Return _ct
+    End Function
     Public Function DeleteUser(pUserId As Integer) As Integer
         Dim _ct As Integer = 0
         Try

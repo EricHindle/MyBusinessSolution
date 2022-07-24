@@ -6,8 +6,8 @@
 
 Imports System.IO
 Imports System.Net
+Imports System.Net.Mail
 Imports System.Net.Mime
-Imports System.Drawing
 
 ''' <summary>
 ''' Utility for sending emails
@@ -92,15 +92,15 @@ Public NotInheritable Class EmailUtil
         LogUtil.Info("Sending email by SMTP", SEND_VIA)
         Dim isSentOK As Boolean
         Try
-            Dim objMessage As Mail.MailMessage
-            Dim objEmailClient As New Mail.SmtpClient
+            Dim objMessage As MailMessage
+            Dim objEmailClient As New SmtpClient
             If String.IsNullOrEmpty(strToAddress) Then
                 LogUtil.Problem("No 'To' email address specified", SEND_VIA)
                 Throw New ApplicationException("Error: No To address")
             End If
-            objMessage = New Mail.MailMessage(strFromAddress, strToAddress, strSubject, strBody)
+            objMessage = New MailMessage(strFromAddress, strToAddress, strSubject, strBody)
             If Not String.IsNullOrEmpty(strFromName) Then
-                objMessage.From = New Mail.MailAddress(strFromAddress, strFromName)
+                objMessage.From = New MailAddress(strFromAddress, strFromName)
             End If
             Dim smtpUserName As String = GlobalSettings.getSetting(SMTP_USERNAME)
             Dim smtpPassword As String = GlobalSettings.getSetting(SMTP_PASSWORD)

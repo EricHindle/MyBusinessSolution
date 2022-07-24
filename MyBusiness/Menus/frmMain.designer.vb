@@ -45,11 +45,6 @@ Partial Class FrmMain
         Me.txtCustAddress = New System.Windows.Forms.TextBox()
         Me.spSupplier = New System.Windows.Forms.SplitContainer()
         Me.dgvSupp = New System.Windows.Forms.DataGridView()
-        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.txtSuppAddress = New System.Windows.Forms.TextBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.dgvJobs = New System.Windows.Forms.DataGridView()
@@ -95,6 +90,12 @@ Partial Class FrmMain
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuChangePassword = New System.Windows.Forms.ToolStripMenuItem()
+        Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -316,44 +317,6 @@ Partial Class FrmMain
         Me.dgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSupp.Size = New System.Drawing.Size(358, 276)
         Me.dgvSupp.TabIndex = 0
-        '
-        'suppId
-        '
-        Me.suppId.HeaderText = "Id"
-        Me.suppId.Name = "suppId"
-        Me.suppId.ReadOnly = True
-        Me.suppId.Visible = False
-        '
-        'suppName
-        '
-        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.suppName.HeaderText = "Supplier"
-        Me.suppName.Name = "suppName"
-        Me.suppName.ReadOnly = True
-        '
-        'suppPhone
-        '
-        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppPhone.HeaderText = "Phone"
-        Me.suppPhone.Name = "suppPhone"
-        Me.suppPhone.ReadOnly = True
-        '
-        'suppEmail
-        '
-        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppEmail.HeaderText = "Email"
-        Me.suppEmail.Name = "suppEmail"
-        Me.suppEmail.ReadOnly = True
-        '
-        'supplierAmazon
-        '
-        Me.suppAmazon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.suppAmazon.HeaderText = "Amzn"
-        Me.suppAmazon.Name = "supplierAmazon"
-        Me.suppAmazon.ReadOnly = True
-        Me.suppAmazon.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.suppAmazon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.suppAmazon.Width = 60
         '
         'txtSuppAddress
         '
@@ -634,7 +597,7 @@ Partial Class FrmMain
         Me.AdminToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.AdminToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.AdminToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.ToolStripSeparator2, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView})
+        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator2, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView})
         Me.AdminToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
@@ -644,35 +607,35 @@ Partial Class FrmMain
         'UserControlToolStripMenuItem
         '
         Me.UserControlToolStripMenuItem.Name = "UserControlToolStripMenuItem"
-        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UserControlToolStripMenuItem.Text = "User Control"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(137, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
         '
         'MnuBackup
         '
         Me.MnuBackup.Name = "MnuBackup"
-        Me.MnuBackup.Size = New System.Drawing.Size(140, 22)
+        Me.MnuBackup.Size = New System.Drawing.Size(180, 22)
         Me.MnuBackup.Text = "Backup"
         '
         'MnuRestore
         '
         Me.MnuRestore.Name = "MnuRestore"
-        Me.MnuRestore.Size = New System.Drawing.Size(140, 22)
+        Me.MnuRestore.Size = New System.Drawing.Size(180, 22)
         Me.MnuRestore.Text = "Restore"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(137, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
         '
         'MnuLogView
         '
         Me.MnuLogView.Name = "MnuLogView"
-        Me.MnuLogView.Size = New System.Drawing.Size(140, 22)
+        Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
         Me.MnuLogView.Text = "Log Viewer"
         '
         'NewCustomerToolStripMenuItem
@@ -800,6 +763,50 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
+        'MnuChangePassword
+        '
+        Me.MnuChangePassword.Name = "MnuChangePassword"
+        Me.MnuChangePassword.Size = New System.Drawing.Size(180, 22)
+        Me.MnuChangePassword.Text = "Change password"
+        '
+        'suppId
+        '
+        Me.suppId.HeaderText = "Id"
+        Me.suppId.Name = "suppId"
+        Me.suppId.ReadOnly = True
+        Me.suppId.Visible = False
+        '
+        'suppName
+        '
+        Me.suppName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.suppName.HeaderText = "Supplier"
+        Me.suppName.Name = "suppName"
+        Me.suppName.ReadOnly = True
+        '
+        'suppPhone
+        '
+        Me.suppPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppPhone.HeaderText = "Phone"
+        Me.suppPhone.Name = "suppPhone"
+        Me.suppPhone.ReadOnly = True
+        '
+        'suppEmail
+        '
+        Me.suppEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppEmail.HeaderText = "Email"
+        Me.suppEmail.Name = "suppEmail"
+        Me.suppEmail.ReadOnly = True
+        '
+        'supplierAmazon
+        '
+        Me.suppAmazon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.suppAmazon.HeaderText = "Amzn"
+        Me.suppAmazon.Name = "supplierAmazon"
+        Me.suppAmazon.ReadOnly = True
+        Me.suppAmazon.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.suppAmazon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.suppAmazon.Width = 60
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -906,6 +913,7 @@ Partial Class FrmMain
     Friend WithEvents MnuBackup As ToolStripMenuItem
     Friend WithEvents MnuRestore As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents MnuChangePassword As ToolStripMenuItem
     Friend WithEvents suppId As DataGridViewTextBoxColumn
     Friend WithEvents suppName As DataGridViewTextBoxColumn
     Friend WithEvents suppPhone As DataGridViewTextBoxColumn
