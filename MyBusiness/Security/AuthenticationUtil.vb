@@ -21,7 +21,6 @@ Public Class AuthenticationUtil
     Private Const PASSWORD_CHARS_UCASE As String = "ABCDEFGHJKLMNPQRSTWXYZ"
     Private Const PASSWORD_CHARS_NUMERIC As String = "23456789"
     Private Const PASSWORD_CHARS_SPECIAL As String = "*$-+?&=!%{}"
-
 #End Region
 #Region "Variables"
     Private Shared ReadOnly sha1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
@@ -32,23 +31,25 @@ Public Class AuthenticationUtil
     ''' <summary>
     ''' Find the user's encryption salt from the user id
     ''' </summary>
-    ''' <param name="userId"></param>
+    ''' <param name="pUserId"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function GetUserSalt(ByVal userId As Integer) As String
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        Dim i As Integer = oTa.FillById(oTable, userId)
-        Dim oSalt As String = ""
-        If i = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            oSalt = oRow.salt
-        End If
-        oTa.Dispose()
-        oTable.Dispose()
+    Public Shared Function GetUserSalt(ByVal pUserId As Integer) As String
+        Dim _user As User = GetUserById(pUserId)
+        Dim oSalt As String = _user.Salt
+
+        'Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
+        'Dim oTable As New netwyrksDataSet.userDataTable
+        'Dim i As Integer = oTa.FillById(oTable, pUserId)
+        'Dim oSalt As String = ""
+        'If i = 1 Then
+        '    Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
+        '    oSalt = oRow.salt
+        'End If
+        'oTa.Dispose()
+        'oTable.Dispose()
         Return oSalt
     End Function
-
     ''' <summary>
     ''' Create a new salt 
     ''' </summary>
@@ -61,7 +62,6 @@ Public Class AuthenticationUtil
     End Function
 #End Region
 #Region "Hashing"
-
     ''' <summary>
     ''' Get the hashed value of a string
     ''' </summary>
@@ -73,7 +73,6 @@ Public Class AuthenticationUtil
         Dim hashedBytes() As Byte = sha1.ComputeHash(unHashedBytes)
         Return Convert.ToBase64String(hashedBytes)
     End Function
-
     ''' <summary>
     ''' Get the hashed value of a username
     ''' </summary>
@@ -85,7 +84,6 @@ Public Class AuthenticationUtil
     End Function
 #End Region
 #Region "authenticate"
-
     ''' <summary>
     ''' Test if a password is correct for the user identity passed in
     ''' </summary>
@@ -100,21 +98,30 @@ Public Class AuthenticationUtil
         Dim oTable As New netwyrksDataSet.userDataTable
         Dim userId As Integer = myIdentity.UserId
         Dim salt As String
-        If oTa.FillById(oTable, userId) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            salt = oRow.salt
-            Dim hashedCurrentPW As String = AuthenticationUtil.GetHashed(salt & string1)
-            Dim hashedExistingPw As String = oRow.user_password
-            Dim hashedTempPW As String = If(oRow.Istemp_passwordNull, Nothing, oRow.temp_password)
-            If hashedCurrentPW = hashedExistingPw Or hashedCurrentPW = hashedTempPW Then
-                rtnval = True
-            End If
+
+        Dim _user As User = GetUserById(myIdentity.UserId)
+        salt = _user.Salt
+        Dim hashedCurrentPW As String = AuthenticationUtil.GetHashed(salt & string1)
+        Dim hashedExistingPw As String = _user.Password
+        Dim hashedTempPW As String = If(String.IsNullOrEmpty(_user.TempPassword), Nothing, _user.TempPassword)
+        If hashedCurrentPW = hashedExistingPw Or hashedCurrentPW = hashedTempPW Then
+            rtnval = True
         End If
-        oTa.Dispose()
-        oTable.Dispose()
+
+        'If oTa.FillById(oTable, userId) = 1 Then
+        '    Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
+        '    salt = oRow.salt
+        '    Dim hashedCurrentPW As String = AuthenticationUtil.GetHashed(salt & string1)
+        '    Dim hashedExistingPw As String = oRow.user_password
+        '    Dim hashedTempPW As String = If(oRow.Istemp_passwordNull, Nothing, oRow.temp_password)
+        '    If hashedCurrentPW = hashedExistingPw Or hashedCurrentPW = hashedTempPW Then
+        '        rtnval = True
+        '    End If
+        'End If
+        'oTa.Dispose()
+        'oTable.Dispose()
         Return rtnval
     End Function
-
     ''' <summary>
     ''' Test if a password is correct for the current user's user identity
     ''' </summary>
@@ -125,7 +132,6 @@ Public Class AuthenticationUtil
         Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
         Return IsPasswordOK(string1, myIdentity)
     End Function
-
     ''' <summary>
     ''' Check if the current user must chnage their password and if yes ask the current user for a new password
     ''' </summary>
@@ -164,26 +170,17 @@ Public Class AuthenticationUtil
     ''' <remarks></remarks>
     Public Shared Function RemoveUser(ByVal userId As Integer) As String
         Dim returnValue As String
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
         If userId = 0 Then
             Throw New ApplicationException("No username entered")
         Else
-            Try
-
-                If oTa.DeleteUser(userId) = 1 Then
-                    returnValue = "User removed"
-                Else
-                    returnValue = "User  not found"
-                End If
-            Catch ex As Exception
-                LogUtil.Exception("Exception removing user : " & ex.Message, ex, getErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.DELETION_EXCEPTION))
-                Throw New ApplicationException("Exception removing user : " & ex.Message)
-            End Try
+            If DeleteUser(userId) = 1 Then
+                returnValue = "User removed"
+            Else
+                returnValue = "User  not found"
+            End If
         End If
-        oTa.Dispose()
         Return returnValue
     End Function
-
     ''' <summary>
     ''' Update a user password
     ''' </summary>
@@ -193,81 +190,38 @@ Public Class AuthenticationUtil
     ''' <remarks></remarks>
     Public Shared Function SavePassword(ByVal userId As Integer, ByVal string1 As String, ByVal force As Boolean) As Boolean
         Dim returnValue As Boolean = False
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
         If userId = 0 Then
             Throw New ApplicationException("No userid supplied")
         Else
-            Try
-                Dim salt As String = GetUserSalt(userId)
-                Dim hashedPW As String = AuthenticationUtil.GetHashed(salt & string1)
-                Dim forceChange As Integer = If(force, 1, 0)
-                If oTa.UpdatePassword(hashedPW, Now, force, userId) = 1 Then
-                    returnValue = True
-                End If
-            Catch ex As Exception
-                LogUtil.Exception("Exception saving password : " & ex.Message, ex, , GetErrorCode(SystemModule.SECURITY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
-                Throw New ApplicationException("Exception saving password : " & ex.Message)
-            End Try
+            Dim salt As String = GetUserSalt(userId)
+            If UpdatePassword(userId, string1, force, salt) = 1 Then
+                returnValue = True
+            End If
         End If
-        oTa.Dispose()
-        oTable.Dispose()
         Return returnValue
     End Function
-
-    Public Shared Function GetUserLogin(ByVal userid As Integer) As String
-        Dim usrLogin As String = ""
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        If oTa.FillById(oTable, userid) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            usrLogin = oRow.user_login
-        End If
-        oTa.Dispose()
-        oTable.Dispose()
-        Return usrLogin
-    End Function
-
-    Public Shared Function GetUserCode(ByVal userid As Integer) As String
-        Dim userCode As String = ""
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        If oTa.FillById(oTable, userid) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            userCode = oRow.user_code
-        End If
-        oTa.Dispose()
-        oTable.Dispose()
-        Return userCode
-    End Function
-
-    Public Shared Function GetUserEmail(ByVal userid As Integer) As String
-        Dim userEmail As String = ""
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        If oTa.FillById(oTable, userid) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            userEmail = If(oRow.Isuser_emailNull, "", oRow.user_email)
-        End If
-        oTa.Dispose()
-        oTable.Dispose()
-        Return userEmail
-    End Function
-    Public Shared Function GetUserName(ByVal userid As Integer) As String
-        Dim userName As String = ""
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        If oTa.FillById(oTable, userid) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            userName = oRow.user_name
-        End If
-        oTa.Dispose()
-        oTable.Dispose()
-        Return userName
-    End Function
+    'Public Shared Function GetUserLogin(ByVal userid As Integer) As String
+    '    Dim _user As User = GetUserById(userid)
+    '    Dim usrLogin As String = _user.User_login
+    '    Return usrLogin
+    'End Function
+    'Public Shared Function GetUserCode(ByVal userid As Integer) As String
+    '    Dim _user As User = GetUserById(userid)
+    '    Dim userCode As String = _user.User_code
+    '    Return userCode
+    'End Function
+    'Public Shared Function GetUserEmail(ByVal userid As Integer) As String
+    '    Dim _user As User = GetUserById(userid)
+    '    Dim userEmail As String = _user.Email
+    '    Return userEmail
+    'End Function
+    'Public Shared Function GetUserName(ByVal userid As Integer) As String
+    '    Dim _user As User = GetUserById(userid)
+    '    Dim userName As String = _user.UserName
+    '    Return userName
+    'End Function
 #End Region
 #Region "password"
-
     ''' <summary>
     ''' Create a temporary password for a user and inform them via email to the registered email address
     ''' </summary>
@@ -278,22 +232,19 @@ Public Class AuthenticationUtil
     ''' <remarks></remarks>
     Public Shared Function CreateUserTemporaryPassword(ByVal userId As Integer, ByVal salt As String, ByVal sEmail As String) As Boolean
         Dim isCreatedOK As Boolean = False
-        Dim oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-
-        Dim newTempPassword As String = AuthenticationUtil.generatePassword()
+        Dim newTempPassword As String = AuthenticationUtil.GeneratePassword()
         Try
             Dim emailAddress As String = sEmail
             Dim validate As New ValidationUtil
-            Dim sentOnBehalfOf As String = "noreply@self-exclusion.co.uk"
+            Dim sentOnBehalfOf As String = "noreply@dummy.com"
             If validate.IsValidEmail(emailAddress) Then
-                If oUserTa.UpdateTempPassword(AuthenticationUtil.GetHashed(salt & newTempPassword), Now, True, userId) = 1 Then
+                If UpdateTempPassword(userId, newTempPassword, True, salt) = 1 Then
                     AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
-
                     Dim userEmailAddress As String = emailAddress
                     If EmailUtil.SendMail(sentOnBehalfOf,
                             userEmailAddress,
                             {},
-                            "Temporary SERS Password",
+                            "Temporary Password",
                             PASSWORD_CHANGE_EMAIL.Replace("{}",
                             newTempPassword), GlobalSettings.GetSetting(EmailUtil.SMTP_FROMNAME)) Then
                         isCreatedOK = True
@@ -309,12 +260,9 @@ Public Class AuthenticationUtil
             End If
         Catch ex As Exception
             isCreatedOK = False
-        Finally
-            oUserTa.Dispose()
         End Try
         Return isCreatedOK
     End Function
-
     Public Shared Function GenerateWordyPassword(Optional ByVal includeSpecialChar As Boolean = True) As String
         Dim AllWords As New List(Of String)
         Dim rng As Random = GetRandomNumberGenerator()
@@ -333,7 +281,6 @@ Public Class AuthenticationUtil
         Dim word4 As String = word2.Replace("i", "1").Replace("o", "0")
         Return word3 & specChar & word4
     End Function
-
     ''' <summary>
     ''' Generate a random strong password
     ''' </summary>
@@ -466,7 +413,6 @@ Public Class AuthenticationUtil
         ' Convert password characters into a string and return the result.
         Return New String(password)
     End Function
-
     Private Shared Function GetRandomNumberGenerator() As Random
         ' Use a 4-byte array to fill it with random bytes and convert it then
         ' to an integer value.

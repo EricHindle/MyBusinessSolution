@@ -57,6 +57,14 @@ Module ModDatabase
         End If
         Return _user
     End Function
+    Public Function GetAllUsers() As List(Of User)
+        Dim _userList As New List(Of User)
+        oUserTa.Fill(oUserTable)
+        For Each oRow As netwyrksDataSet.userRow In oUserTable.Rows
+            _userList.Add(UserBuilder.AUser.StartingWith(oRow).Build)
+        Next
+        Return _userList
+    End Function
     Public Function InsertUser(_user As User, _password As String) As Integer
         Dim newUserId As Integer = oUserTa.InsertUser(_user.User_login, _user.User_code,
                                                    AuthenticationUtil.GetHashed(_user.Salt & _password), _user.TempPassword, True,
@@ -71,16 +79,39 @@ Module ModDatabase
                            _user.ContactNumber, _user.Mobile, _user.Email,
                            _user.JobTitle, _user.Note, Now, _user.UserRole, _user.UserId)
     End Function
-    Public Function GetAllUsers() As List(Of User)
-        Dim _userList As New List(Of User)
-        oUserTa.Fill(oUserTable)
-        For Each oRow As netwyrksDataSet.userRow In oUserTable.Rows
-            _userList.Add(UserBuilder.AUser.StartingWith(oRow).Build)
-        Next
-        Return _userList
+    Public Function UpdatePassword(_userId As Integer, ByVal string1 As String, ByVal force As Boolean, ByVal salt As String) As Integer
+        Dim _ct As Integer
+        Try
+            Dim hashedPW As String = AuthenticationUtil.GetHashed(salt & string1)
+            Dim forceChange As Integer = If(force, 1, 0)
+            _ct = oUserTa.UpdatePassword(hashedPW, Now, force, _userId)
+        Catch ex As Exception
+            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            Throw New ApplicationException("Exception saving password : " & ex.Message)
+        End Try
+        Return _ct
     End Function
+    Public Function UpdateTempPassword(_userId As Integer, ByVal string1 As String, ByVal force As Boolean, ByVal salt As String) As Integer
+        Dim _ct As Integer
+        Try
+            Dim hashedPW As String = AuthenticationUtil.GetHashed(salt & string1)
+            Dim forceChange As Integer = If(force, 1, 0)
+            _ct = oUserTa.UpdateTempPassword(hashedPW, Now, force, _userId)
+        Catch ex As Exception
+            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            Throw New ApplicationException("Exception saving password : " & ex.Message)
+        End Try
+        Return _ct
+    End Function
+    Public Function DeleteUser(pUserId As Integer) As Integer
+        Dim _ct As Integer = 0
+        Try
+            _ct = oUserTa.DeleteUser(pUserId)
+        Catch ex As Exception
 
-
+        End Try
+        Return _ct
+    End Function
 #End Region
 #Region "job"
     Public Function GetJobById(ByVal pId As Integer) As Job
