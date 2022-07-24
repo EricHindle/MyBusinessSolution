@@ -18,7 +18,7 @@ Public Class FileTransformer
         Try
             fsInput = New System.IO.FileStream(fromFile, FileMode.Open, FileAccess.Read)
             lngFileLength = fsInput.Length
-            If EncryptionUtil.isValidHeaderinStream(fsInput) Then
+            If EncryptionUtil.IsValidHeaderinStream(fsInput) Then
                 fsInput.Seek(0, SeekOrigin.Begin)
                 toBytes = New Byte(lngFileLength - 1) {}
                 fsInput.Read(toBytes, 0, lngFileLength)

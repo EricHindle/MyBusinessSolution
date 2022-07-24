@@ -16,8 +16,8 @@ Public Class FrmDiary
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
     Private ReadOnly userId As Integer = currentUser.UserId
-    Private userName As String = currentUser.UserName
-    Private currentRemId As Integer = 0
+    Private ReadOnly userName As String = currentUser.UserName
+    Private ReadOnly currentRemId As Integer = 0
     Private currentCustId As Integer = 0
     Private currentJobId As Integer = 0
     Private ReadOnly dayOfWeek As Integer = Today.DayOfWeek
@@ -415,12 +415,12 @@ Public Class FrmDiary
         dgvDiary.ClearSelection()
     End Sub
     Private Function IsRequiredCustomer(ByRef _reminder As Reminder) As Boolean
-        Dim isRequired As Boolean = False
+        Dim isRequired As Boolean
         isRequired = _forCustomerId <= 0 Or _reminder.LinkedCustomer.CustomerId = _forCustomerId
         Return isRequired
     End Function
     Private Function IsRequiredJob(ByRef _reminder As Reminder) As Boolean
-        Dim isRequired As Boolean = False
+        Dim isRequired As Boolean
         isRequired = _forJobId <= 0 Or _reminder.LinkedJob.JobId = _forJobId
         Return isRequired
     End Function

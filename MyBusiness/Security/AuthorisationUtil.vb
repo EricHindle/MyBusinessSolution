@@ -22,11 +22,9 @@ Public Class AuthorisationUtil
     Public Shared Function GetRoleName(ByVal roleValue As AccessRole) As String
         Return [Enum].GetName(GetType(AccessRole), roleValue)
     End Function
-
     Public Shared Function GetCurrentUserid()
         Dim myIdentity As NetwyrksIIdentity
         myIdentity = My.User.CurrentPrincipal.Identity
         Return myIdentity.UserId
     End Function
-
 End Class

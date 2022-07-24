@@ -16,8 +16,8 @@ Public Class FrmChangePassword
     Private userId As Integer = 0
     Private ReadOnly salt As String = ""
     Private myIdentity As NetwyrksIIdentity = Nothing
-    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oTable As New netwyrksDataSet.userDataTable
+    '  Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
+    '  Private ReadOnly oTable As New netwyrksDataSet.userDataTable
 #End Region
 #Region "properties"
     Private _forceChange As Boolean
@@ -36,9 +36,7 @@ Public Class FrmChangePassword
         Me.Close()
     End Sub
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        oTable.Dispose()
-        oTa.Dispose()
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logutil.info("Starting", FORM_NAME)

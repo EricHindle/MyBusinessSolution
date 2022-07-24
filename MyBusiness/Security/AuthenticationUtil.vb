@@ -37,17 +37,6 @@ Public Class AuthenticationUtil
     Public Shared Function GetUserSalt(ByVal pUserId As Integer) As String
         Dim _user As User = GetUserById(pUserId)
         Dim oSalt As String = _user.Salt
-
-        'Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        'Dim oTable As New netwyrksDataSet.userDataTable
-        'Dim i As Integer = oTa.FillById(oTable, pUserId)
-        'Dim oSalt As String = ""
-        'If i = 1 Then
-        '    Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-        '    oSalt = oRow.salt
-        'End If
-        'oTa.Dispose()
-        'oTable.Dispose()
         Return oSalt
     End Function
     ''' <summary>
@@ -107,19 +96,6 @@ Public Class AuthenticationUtil
         If hashedCurrentPW = hashedExistingPw Or hashedCurrentPW = hashedTempPW Then
             rtnval = True
         End If
-
-        'If oTa.FillById(oTable, userId) = 1 Then
-        '    Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-        '    salt = oRow.salt
-        '    Dim hashedCurrentPW As String = AuthenticationUtil.GetHashed(salt & string1)
-        '    Dim hashedExistingPw As String = oRow.user_password
-        '    Dim hashedTempPW As String = If(oRow.Istemp_passwordNull, Nothing, oRow.temp_password)
-        '    If hashedCurrentPW = hashedExistingPw Or hashedCurrentPW = hashedTempPW Then
-        '        rtnval = True
-        '    End If
-        'End If
-        'oTa.Dispose()
-        'oTable.Dispose()
         Return rtnval
     End Function
     ''' <summary>
@@ -141,23 +117,17 @@ Public Class AuthenticationUtil
         Dim rtnval As Boolean = False
         Dim myIdentity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
         Dim userId As Integer = myIdentity.UserId
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
-        If oTa.FillById(oTable, userId) = 1 Then
-            Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
-            If Not oRow.Isforce_password_changeNull AndAlso oRow.force_password_change Then
-                Using _pwdChange As New FrmChangePassword
-                    _pwdChange.ForceChange = True
-                    If _pwdChange.ShowDialog = DialogResult.OK Then
-                        rtnval = True
-                    End If
-                End Using
-            Else
-                rtnval = True
-            End If
+        Dim _user As User = GetUserById(userId)
+        If _user.ForcePasswordChange Then
+            Using _pwdChange As New FrmChangePassword
+                _pwdChange.ForceChange = True
+                If _pwdChange.ShowDialog = DialogResult.OK Then
+                    rtnval = True
+                End If
+            End Using
+        Else
+            rtnval = True
         End If
-        oTa.Dispose()
-        oTable.Dispose()
         Return rtnval
     End Function
 #End Region

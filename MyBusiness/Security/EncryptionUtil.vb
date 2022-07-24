@@ -64,12 +64,13 @@ Public Class EncryptionUtil
         Dim rtnVal As String = ""
         Try
             If Not String.IsNullOrEmpty(sText) Then
-                Dim toEncryptArray As Byte() = UTF8Encoding.UTF8.GetBytes(If(sText Is Nothing, "", sText))
+                Dim toEncryptArray As Byte() = UTF8Encoding.UTF8.GetBytes(If(sText, ""))
                 Dim keyArray As Byte() = UTF8Encoding.UTF8.GetBytes(key)
-                Dim tdes As TripleDESCryptoServiceProvider = New TripleDESCryptoServiceProvider()
-                tdes.Key = keyArray
-                tdes.Mode = CipherMode.ECB
-                tdes.Padding = PaddingMode.PKCS7
+                Dim tdes As New TripleDESCryptoServiceProvider With {
+                    .Key = keyArray,
+                    .Mode = CipherMode.ECB,
+                    .Padding = PaddingMode.PKCS7
+                }
                 Dim cTransform As ICryptoTransform = tdes.CreateEncryptor()
                 'transform the specified region of bytes array to resultArray
                 Dim resultArray As Byte() =
@@ -108,13 +109,14 @@ Public Class EncryptionUtil
             If Not String.IsNullOrEmpty(sText) Then
                 Dim toEncryptArray As Byte() = Convert.FromBase64String(sText)
                 Dim keyArray As Byte() = UTF8Encoding.UTF8.GetBytes(key)
-                Dim tdes As TripleDESCryptoServiceProvider = New TripleDESCryptoServiceProvider()
                 'set the secret key for the tripleDES algorithm
-                tdes.Key = keyArray
                 'mode of operation is ECB(Electronic code Book)
-                tdes.Mode = CipherMode.ECB
                 'padding mode(if any extra byte added)
-                tdes.Padding = PaddingMode.PKCS7
+                Dim tdes As New TripleDESCryptoServiceProvider With {
+                    .Key = keyArray,
+                    .Mode = CipherMode.ECB,
+                    .Padding = PaddingMode.PKCS7
+                }
 
                 Dim cTransform As ICryptoTransform = tdes.CreateDecryptor()
                 Dim resultArray As Byte() = cTransform.TransformFinalBlock(
@@ -137,7 +139,7 @@ Public Class EncryptionUtil
     ''' <remarks>A header is added to the bytes to be encrypted</remarks>
     Public Shared Function EncryptBytesToFile(ByRef fromBytes As Byte(), ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
-        If Not isInitialised() Then Return False
+        If Not IsInitialised() Then Return False
         If fromBytes Is Nothing Then Return False
         msInput = New MemoryStream(fromBytes)
         lngBytesProcessed = 0
@@ -153,13 +155,13 @@ Public Class EncryptionUtil
                 lngBytesProcessed += CLng(intBytesInCurrentBlock)
             End While
         Catch ex As Exception
-            LogUtil.Exception("Error transforming bytes", ex, "EncryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming bytes", ex, "EncryptBytesToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
-            closeStreams()
+            CloseStreams()
         End Try
         If Not isTransformOK Then
             File.Delete(toFile)
@@ -175,7 +177,7 @@ Public Class EncryptionUtil
     ''' <remarks>A header is added to the bytes to be encrypted</remarks>
     Public Shared Function EncryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
-        If Not isInitialised() Then Return False
+        If Not IsInitialised() Then Return False
         If Not File.Exists(fromFile) Then Return False
         Try
             fsInput = New System.IO.FileStream(fromFile, FileMode.Open, FileAccess.Read)
@@ -190,13 +192,13 @@ Public Class EncryptionUtil
                 lngBytesProcessed += CLng(intBytesInCurrentBlock)
             End While
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "EncryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "EncryptFileToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
-            closeStreams()
+            CloseStreams()
         End Try
         If Not isTransformOK Then
             File.Delete(toFile)
@@ -212,7 +214,7 @@ Public Class EncryptionUtil
     ''' Used for storing an attachment</remarks>
     Public Shared Function EncryptFileToBytes(ByVal fromFile As String) As Byte()
         Dim toBytes As Byte() = Nothing
-        If Not isInitialised() Then Return Nothing
+        If Not IsInitialised() Then Return Nothing
         If Not File.Exists(fromFile) Then Return Nothing
         Try
             fsInput = New System.IO.FileStream(fromFile, FileMode.Open, FileAccess.Read)
@@ -229,9 +231,9 @@ Public Class EncryptionUtil
             csCryptoStream.Close()
             toBytes = msOutput.ToArray()
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "EncryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "EncryptFileToBytes", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
         Finally
-            closeStreams()
+            CloseStreams()
         End Try
         Return toBytes
     End Function
@@ -245,14 +247,14 @@ Public Class EncryptionUtil
     ''' Used for retrieving a stored attachment</remarks>
     Public Shared Function DecryptBytesToFile(ByVal fromBytes As Byte(), ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
-        If Not isInitialised() Then Return Nothing
+        If Not IsInitialised() Then Return Nothing
         Try
             msInput = New MemoryStream(fromBytes)
             fsOutput = New System.IO.FileStream(toFile, FileMode.OpenOrCreate, FileAccess.Write)
             fsOutput.SetLength(0)
             lngFileLength = msInput.Length
             csCryptoStream = New CryptoStream(msInput, cspRijndael.CreateDecryptor(bKey, bIV), CryptoStreamMode.Read)
-            If isValidHeader() Then
+            If IsValidHeader() Then
                 Do
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
@@ -264,10 +266,10 @@ Public Class EncryptionUtil
                 isTransformOK = False
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming bytes", ex, "DecryptBytesToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming bytes", ex, "DecryptBytesToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
             isTransformOK = False
         Finally
-            closeStreams()
+            CloseStreams()
         End Try
         Return isTransformOK
     End Function
@@ -280,7 +282,7 @@ Public Class EncryptionUtil
     ''' <remarks>File must contain the valid header string</remarks>
     Public Shared Function DecryptFileToFile(ByVal fromFile As String, ByVal toFile As String) As Boolean
         Dim isTransformOK As Boolean = True
-        If Not isInitialised() Then Return False
+        If Not IsInitialised() Then Return False
         If Not File.Exists(fromFile) Then Return False
         Dim ms As New MemoryStream
         Try
@@ -290,7 +292,7 @@ Public Class EncryptionUtil
             lngFileLength = fsInput.Length
             csCryptoStream = New CryptoStream(fsInput, cspRijndael.CreateDecryptor(bKey, bIV), CryptoStreamMode.Read)
 
-            If isValidHeader() Then
+            If IsValidHeader() Then
                 Do
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
@@ -301,13 +303,13 @@ Public Class EncryptionUtil
                 LogUtil.Problem("Invalid file header in " & fromFile)
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "DecryptFileToFile", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptFileToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
             isTransformOK = False
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
-            closeStreams()
+            CloseStreams()
         End Try
         If Not isTransformOK Then
             File.Delete(toFile)
@@ -316,14 +318,14 @@ Public Class EncryptionUtil
     End Function
     Public Shared Function DecryptFileToBytes(ByVal fromFile As String) As MemoryStream
         '   Dim toBytes As Byte() = Nothing
-        If Not isInitialised() Then Return Nothing
+        If Not IsInitialised() Then Return Nothing
         If Not File.Exists(fromFile) Then Return Nothing
         Try
             fsInput = New System.IO.FileStream(fromFile, FileMode.Open, FileAccess.Read)
             msOutput = New System.IO.MemoryStream()
             lngFileLength = fsInput.Length
             csCryptoStream = New CryptoStream(fsInput, cspRijndael.CreateDecryptor(bKey, bIV), CryptoStreamMode.Read)
-            If isValidHeader() Then
+            If IsValidHeader() Then
                 Do
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
@@ -335,24 +337,24 @@ Public Class EncryptionUtil
                 LogUtil.Problem("Invalid file header in " & fromFile)
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "DecryptFileToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptFileToBytes", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
-            closeStreams()
+            CloseStreams()
         End Try
         Return msOutput
     End Function
     Public Shared Function DecryptBytesToBytes(ByVal fromBytes As Byte()) As MemoryStream
         '  Dim toBytes As Byte() = Nothing
-        If Not isInitialised() Then Return Nothing
+        If Not IsInitialised() Then Return Nothing
         Try
             msInput = New MemoryStream(fromBytes)
             msOutput = New System.IO.MemoryStream()
             lngFileLength = msInput.Length
             csCryptoStream = New CryptoStream(msInput, cspRijndael.CreateDecryptor(bKey, bIV), CryptoStreamMode.Read)
-            If isValidHeader() Then
+            If IsValidHeader() Then
                 Do
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
@@ -365,22 +367,22 @@ Public Class EncryptionUtil
 
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error transforming file", ex, "DecryptBytesToBytes", getErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error transforming file", ex, "DecryptBytesToBytes", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
         Finally
             If csCryptoStream IsNot Nothing Then
                 csCryptoStream.Close()
             End If
-            closeStreams()
+            CloseStreams()
         End Try
         Return msOutput
     End Function
-    Private Shared Function isInitialised() As Boolean
-        isInitialised = False
+    Private Shared Function IsInitialised() As Boolean
+        IsInitialised = False
         _password = AuthenticationUtil.TRANSFORM_INITIALISER
         _passwordBytes = ConvertStringToBytes(_password)
         Dim SHA512 As New System.Security.Cryptography.SHA512Managed
         Dim _hashedPassword As Byte() = SHA512.ComputeHash(_passwordBytes)
-        Dim pdb As Rfc2898DeriveBytes = New Rfc2898DeriveBytes(_password, _hashedPassword)
+        Dim pdb As New Rfc2898DeriveBytes(_password, _hashedPassword)
         'extract the key and IV
         bKey = pdb.GetBytes(KEY_SIZE_BYTES)
         bIV = pdb.GetBytes(IV_SIZE_BYTES)
@@ -391,7 +393,7 @@ Public Class EncryptionUtil
             .BlockSize = BLOCK_SIZE
             .Padding = PaddingMode.PKCS7
         End With
-        isInitialised = True
+        IsInitialised = True
     End Function
     Public Shared Function ConvertStringToBytes(ByVal sString As String) As Byte()
         Return New UnicodeEncoding().GetBytes(sString)
@@ -399,7 +401,7 @@ Public Class EncryptionUtil
     Public Shared Function ConvertBytesToString(ByVal bytes() As Byte) As String
         Return New UnicodeEncoding().GetString(bytes)
     End Function
-    Private Shared Sub closeStreams()
+    Private Shared Sub CloseStreams()
         If fsOutput IsNot Nothing Then
             fsOutput.Close()
         End If
@@ -416,8 +418,8 @@ Public Class EncryptionUtil
     ''' </summary>
     ''' <returns>True if header string is found</returns>
     ''' <remarks></remarks>
-    Private Shared Function isValidHeader() As Boolean
-        isValidHeader = True
+    Private Shared Function IsValidHeader() As Boolean
+        IsValidHeader = True
         Dim test(headerBytes.Length - 1) As Byte
         csCryptoStream.Read(test, 0, headerBytes.Length)
         Dim testString As String = ConvertBytesToString(test)
@@ -425,7 +427,7 @@ Public Class EncryptionUtil
             LogUtil.Problem("Mismatched image header: " & ConvertBytesToString(test) & " " & headerString, "isValidHeader")
             csCryptoStream.Clear()
             csCryptoStream = Nothing
-            isValidHeader = False
+            IsValidHeader = False
         End If
         lngBytesProcessed = headerBytes.Length
     End Function
@@ -434,14 +436,14 @@ Public Class EncryptionUtil
     ''' </summary>
     ''' <returns>True if header string is found</returns>
     ''' <remarks></remarks>
-    Public Shared Function isValidHeaderinStream(ByVal streamInput As FileStream) As Boolean
+    Public Shared Function IsValidHeaderinStream(ByVal streamInput As FileStream) As Boolean
         Dim isValid As Boolean = False
         Try
-            If Not isInitialised() Then Return False
+            If Not IsInitialised() Then Return False
             csCryptoStream = New CryptoStream(streamInput, cspRijndael.CreateDecryptor(bKey, bIV), CryptoStreamMode.Read)
-            isValid = isValidHeader()
+            isValid = IsValidHeader()
         Catch ex As Exception
-            LogUtil.Exception("Error when checking header", ex, "isValidHeaderinStream", getErrorCode(SystemModule.CUSTOMER, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
+            LogUtil.Exception("Error when checking header", ex, "isValidHeaderinStream", GetErrorCode(SystemModule.CUSTOMER, ErrorType.ENCRYPTION, FailedAction.DECRYPTION_ERROR))
         Finally
 
         End Try
