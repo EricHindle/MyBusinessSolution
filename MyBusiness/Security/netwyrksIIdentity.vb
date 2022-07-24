@@ -76,36 +76,32 @@ Public Class NetwyrksIIdentity
                 _usercode = oRow.user_code
             End If
 
-
-
-
             Dim hpw As String = AuthenticationUtil.GetHashed(salt & Trim(password))
-            Debug.Print(AuthenticationUtil.GetHashed(salt & Trim(password)))
-            'If AuthenticationUtil.GetHashed(salt & Trim(password)) = storedHashedPW Or (storedHashedTempPW IsNot Nothing AndAlso AuthenticationUtil.GetHashed(salt & Trim(password)) = storedHashedTempPW) Then
-            '    '
-            '    ' set the user's role
-            '    '
-            '    Select Case Role
-            '        Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Administrator))
-            '            roleValue = ApplicationServices.BuiltInRole.Administrator
-            '        Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Manager))
-            '            roleValue = ApplicationServices.BuiltInRole.PowerUser
-            '        Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Executive))
-            '            roleValue = ApplicationServices.BuiltInRole.User
-            '        Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Operatr))
-            '            roleValue = ApplicationServices.BuiltInRole.AccountOperator
-            '        Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Guest))
-            '            roleValue = ApplicationServices.BuiltInRole.Guest
-            '        Case Else
-            '            roleValue = Nothing
-            '    End Select
+            If AuthenticationUtil.GetHashed(salt & Trim(password)) = storedHashedPW Or (storedHashedTempPW IsNot Nothing AndAlso AuthenticationUtil.GetHashed(salt & Trim(password)) = storedHashedTempPW) Then
+                '
+                ' set the user's role
+                '
+                Select Case role
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Administrator))
+                        roleValue = ApplicationServices.BuiltInRole.Administrator
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Manager))
+                        roleValue = ApplicationServices.BuiltInRole.PowerUser
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Executive))
+                        roleValue = ApplicationServices.BuiltInRole.User
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Operatr))
+                        roleValue = ApplicationServices.BuiltInRole.AccountOperator
+                    Case AuthenticationUtil.GetHashed(salt & AuthorisationUtil.GetRoleName(AuthorisationUtil.AccessRole.Guest))
+                        roleValue = ApplicationServices.BuiltInRole.Guest
+                    Case Else
+                        roleValue = Nothing
+                End Select
 
-            _userId = 1
-            _usercode = "EH"
+                '_userId = 1
+                '_usercode = "EH"
 
-            roleValue = ApplicationServices.BuiltInRole.Administrator
-            rtnVal = True
-            'End If
+                '    roleValue = ApplicationServices.BuiltInRole.Administrator
+                rtnVal = True
+            End If
         Catch ex As Exception
             MsgBox("Exception occurred during authentication:" & vbCrLf & ex.Message, MsgBoxStyle.Exclamation, "Access Error")
         End Try
