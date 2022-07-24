@@ -91,6 +91,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Overdue/Today/Tomorrow/Next Week/Future.
+        '''</summary>
+        Friend ReadOnly Property Day6SectionHeads() As String
+            Get
+                Return ResourceManager.GetString("Day6SectionHeads", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property diary() As System.Drawing.Bitmap
@@ -157,6 +166,15 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("phone", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Overdue/Today/Tomorrow/This Week/Next Week/Future.
+        '''</summary>
+        Friend ReadOnly Property SectionHeads() As String
+            Get
+                Return ResourceManager.GetString("SectionHeads", resourceCulture)
             End Get
         End Property
         

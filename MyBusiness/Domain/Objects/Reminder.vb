@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2021,2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -7,31 +7,35 @@
 Imports System.Text
 
 ''' <summary>
-''' Diary entry
+''' Diary entry or Reminder
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Reminder
-
-    Private _userId As Integer
+#Region "properties"
     Private _reminderDate As DateTime
     Private _subject As String
     Private _body As String
     Private _isReminder As Boolean
     Private _isClosed As Boolean
-    Private _customerId As Integer
-    Private _jobId As Integer
     Private _diaryId As Integer
     Private _callBack As Boolean
     Private _customer As Customer
     Private _user As User
     Private _job As Job
-    Public Property DiaryJob() As Job
+    Public ReadOnly Property HasCustomer() As Boolean
         Get
-            Return _job
+            Return _customer IsNot Nothing AndAlso _customer.CustomerId > 0
         End Get
-        Set(ByVal value As Job)
-            _job = value
-        End Set
+    End Property
+    Public ReadOnly Property HasJob() As Boolean
+        Get
+            Return _job IsNot Nothing AndAlso _job.JobId > 0
+        End Get
+    End Property
+    Public ReadOnly Property HasUser() As Boolean
+        Get
+            Return _user IsNot Nothing AndAlso _user.UserId > 0
+        End Get
     End Property
     Public Property DiaryUser() As User
         Get
@@ -41,7 +45,15 @@ Public Class Reminder
             _user = value
         End Set
     End Property
-    Public Property DiaryCustomer() As Customer
+    Public Property LinkedJob() As Job
+        Get
+            Return _job
+        End Get
+        Set(ByVal value As Job)
+            _job = value
+        End Set
+    End Property
+    Public Property LinkedCustomer() As Customer
         Get
             Return _customer
         End Get
@@ -49,30 +61,6 @@ Public Class Reminder
             _customer = value
         End Set
     End Property
-    Public Sub New(ByVal pDiaryId As Integer,
-                    ByVal pUserId As Integer,
-                    ByVal pReminderDate As Date?,
-                    ByVal pSubject As String,
-                    ByVal pBody As String,
-                    ByVal pReminder As Boolean,
-                    ByVal pClosed As Boolean,
-                    ByVal pCustomerId As Integer,
-                    ByVal pJobId As Integer,
-                    ByVal pCallBack As Boolean)
-        _diaryId = pDiaryId
-        _userId = pUserId
-        _reminderDate = pReminderDate
-        _subject = pSubject
-        _body = pBody
-        _isReminder = pReminder
-        _isClosed = pClosed
-        _customerId = pCustomerId
-        _jobId = pJobId
-        _callBack = pCallBack
-        _user = GetUserById(pUserId)
-        _customer = GetCustomer(pCustomerId)
-        _job = GetJobById(pJobId)
-    End Sub
     Public Property CallBack() As Boolean
         Get
             Return _callBack
@@ -89,21 +77,15 @@ Public Class Reminder
             _diaryId = value
         End Set
     End Property
-    Public Property JobId() As Integer?
+    Public ReadOnly Property JobId() As Integer
         Get
-            Return _jobId
+            Return If(HasJob, _job.JobId, -1)
         End Get
-        Set(ByVal value As Integer?)
-            _jobId = value
-        End Set
     End Property
-    Public Property CustomerId() As Integer?
+    Public ReadOnly Property CustomerId() As Integer
         Get
-            Return _customerId
+            Return If(HasCustomer, _customer.CustomerId, -1)
         End Get
-        Set(ByVal value As Integer?)
-            _customerId = value
-        End Set
     End Property
     Public Property IsClosed() As Boolean
         Get
@@ -145,36 +127,60 @@ Public Class Reminder
             _reminderDate = value
         End Set
     End Property
-    Public Property UserId() As Integer
+    Public ReadOnly Property UserId() As Integer
         Get
-            Return _userId
+            Return If(HasUser, _user.UserId, -1)
         End Get
-        Set(ByVal value As Integer)
-            _userId = value
-        End Set
     End Property
+#End Region
+#Region "constructors"
+    Public Sub New(ByVal pDiaryId As Integer,
+                    ByVal pUserId As Integer,
+                    ByVal pReminderDate As DateTime,
+                    ByVal pSubject As String,
+                    ByVal pBody As String,
+                    ByVal pReminder As Boolean,
+                    ByVal pClosed As Boolean,
+                    ByVal pCustomerId As Integer,
+                    ByVal pJobId As Integer,
+                    ByVal pCallBack As Boolean)
+        _diaryId = pDiaryId
+        _reminderDate = pReminderDate
+        _subject = pSubject
+        _body = pBody
+        _isReminder = pReminder
+        _isClosed = pClosed
+        _callBack = pCallBack
+        _user = GetUserById(pUserId)
+        _customer = GetCustomer(pCustomerId)
+        _job = GetJobById(pJobId)
+    End Sub
+#End Region
+#Region "methods"
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
-            .Append("Reminder=[userId=[") _
-            .Append(_userId) _
-            .Append("], reminderDate=[") _
-            .Append(Format(_reminderDate, "dd/MM/yyyy")) _
-            .Append("], subject=[") _
+            .Append("Reminder=[") _
+            .Append("Diary Id=[") _
+            .Append(_diaryId) _
+            .Append("], User Id=[") _
+            .Append(CStr(UserId)) _
+            .Append("], Reminder Date=[") _
+            .Append(Format(_reminderDate, "dd/MM/yyyy HH:mm")) _
+            .Append("], Subject=[") _
             .Append(_subject) _
-            .Append("], body=[") _
+            .Append("], Body=[") _
             .Append(_body) _
             .Append("], isReminder=[") _
-            .Append(_isReminder) _
+            .Append(CStr(_isReminder)) _
             .Append("], isClosed=[") _
-            .Append(_isClosed) _
+            .Append(CStr(_isClosed)) _
             .Append("], customer=[") _
-            .Append(_customer.ToString) _
+            .Append(CStr(CustomerId)) _
             .Append("], job=[") _
-            .Append(_job.ToString) _
-            .Append("], diaryId=[") _
-            .Append(_diaryId) _
+            .Append(CStr(JobId)) _
             .Append("]]")
         Return sb.ToString
     End Function
+#End Region
 End Class

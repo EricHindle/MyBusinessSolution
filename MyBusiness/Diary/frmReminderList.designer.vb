@@ -32,7 +32,6 @@ Partial Class frmReminderList
         Me.remId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.remCustId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.remJobId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.remIncId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.remDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.remSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.remHeader = New System.Windows.Forms.DataGridViewButtonColumn()
@@ -46,13 +45,20 @@ Partial Class frmReminderList
         Me.BtnSetReminder = New System.Windows.Forms.Button()
         Me.BtnCloseRem = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.rtbBody = New System.Windows.Forms.RichTextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.LblJobName = New System.Windows.Forms.Label()
+        Me.LblCustName = New System.Windows.Forms.Label()
+        Me.lblJob = New System.Windows.Forms.Label()
+        Me.lblCust = New System.Windows.Forms.Label()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.DgvReminders, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnClose
@@ -85,7 +91,7 @@ Partial Class frmReminderList
         Me.DgvReminders.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.DgvReminders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvReminders.ColumnHeadersVisible = False
-        Me.DgvReminders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.remId, Me.remCustId, Me.remJobId, Me.remIncId, Me.remDate, Me.remSubject, Me.remHeader})
+        Me.DgvReminders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.remId, Me.remCustId, Me.remJobId, Me.remDate, Me.remSubject, Me.remHeader})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -106,7 +112,7 @@ Partial Class frmReminderList
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
         Me.DgvReminders.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DgvReminders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvReminders.Size = New System.Drawing.Size(445, 272)
+        Me.DgvReminders.Size = New System.Drawing.Size(367, 360)
         Me.DgvReminders.TabIndex = 0
         '
         'remId
@@ -119,26 +125,18 @@ Partial Class frmReminderList
         'remCustId
         '
         Me.remCustId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.remCustId.HeaderText = "CustId"
+        Me.remCustId.HeaderText = "Cust Id"
         Me.remCustId.Name = "remCustId"
         Me.remCustId.ReadOnly = True
         Me.remCustId.Visible = False
         '
-        'remSeId
+        'remJobId
         '
         Me.remJobId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.remJobId.HeaderText = "SeId"
-        Me.remJobId.Name = "remSeId"
+        Me.remJobId.HeaderText = "Job Id"
+        Me.remJobId.Name = "remJobId"
         Me.remJobId.ReadOnly = True
         Me.remJobId.Visible = False
-        '
-        'remIncId
-        '
-        Me.remIncId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.remIncId.HeaderText = "IncId"
-        Me.remIncId.Name = "remIncId"
-        Me.remIncId.ReadOnly = True
-        Me.remIncId.Visible = False
         '
         'remDate
         '
@@ -172,7 +170,7 @@ Partial Class frmReminderList
         Me.ChkShowAtLogin.AutoSize = True
         Me.ChkShowAtLogin.BackColor = System.Drawing.SystemColors.Control
         Me.ChkShowAtLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ChkShowAtLogin.Location = New System.Drawing.Point(752, 11)
+        Me.ChkShowAtLogin.Location = New System.Drawing.Point(674, 11)
         Me.ChkShowAtLogin.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ChkShowAtLogin.Name = "ChkShowAtLogin"
         Me.ChkShowAtLogin.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -187,7 +185,7 @@ Partial Class frmReminderList
         Me.ChkShowAll.AutoSize = True
         Me.ChkShowAll.BackColor = System.Drawing.SystemColors.Control
         Me.ChkShowAll.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ChkShowAll.Location = New System.Drawing.Point(677, 11)
+        Me.ChkShowAll.Location = New System.Drawing.Point(599, 11)
         Me.ChkShowAll.Name = "ChkShowAll"
         Me.ChkShowAll.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkShowAll.Size = New System.Drawing.Size(69, 18)
@@ -245,7 +243,7 @@ Partial Class frmReminderList
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(12, 94)
+        Me.txtSubject.Location = New System.Drawing.Point(15, 158)
         Me.txtSubject.Multiline = True
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(301, 48)
@@ -260,7 +258,7 @@ Partial Class frmReminderList
         Me.BtnSetReminder.Name = "BtnSetReminder"
         Me.BtnSetReminder.Size = New System.Drawing.Size(74, 41)
         Me.BtnSetReminder.TabIndex = 5
-        Me.BtnSetReminder.Text = "Cancel Reminder"
+        Me.BtnSetReminder.Text = "Set Reminder"
         Me.BtnSetReminder.UseVisualStyleBackColor = False
         '
         'BtnCloseRem
@@ -277,19 +275,12 @@ Partial Class frmReminderList
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 343)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 431)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(868, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
         Me.StatusStrip1.TabIndex = 11
         Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'lblStatus
-        '
-        Me.lblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.lblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(20, 19)
-        Me.lblStatus.Text = "   "
         '
         'GroupBox1
         '
@@ -307,9 +298,11 @@ Partial Class frmReminderList
         '
         'rtbBody
         '
-        Me.rtbBody.Location = New System.Drawing.Point(12, 148)
+        Me.rtbBody.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.rtbBody.Location = New System.Drawing.Point(16, 212)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(301, 187)
+        Me.rtbBody.Size = New System.Drawing.Size(301, 211)
         Me.rtbBody.TabIndex = 36
         Me.rtbBody.Text = ""
         '
@@ -326,12 +319,75 @@ Partial Class frmReminderList
         Me.PictureBox1.TabIndex = 75
         Me.PictureBox1.TabStop = False
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.LblJobName)
+        Me.GroupBox2.Controls.Add(Me.LblCustName)
+        Me.GroupBox2.Controls.Add(Me.lblJob)
+        Me.GroupBox2.Controls.Add(Me.lblCust)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.GroupBox2.Location = New System.Drawing.Point(16, 94)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(300, 58)
+        Me.GroupBox2.TabIndex = 76
+        Me.GroupBox2.TabStop = False
+        '
+        'LblJobName
+        '
+        Me.LblJobName.AutoSize = True
+        Me.LblJobName.Location = New System.Drawing.Point(65, 35)
+        Me.LblJobName.Name = "LblJobName"
+        Me.LblJobName.Size = New System.Drawing.Size(32, 13)
+        Me.LblJobName.TabIndex = 4
+        Me.LblJobName.Text = "None"
+        '
+        'LblCustName
+        '
+        Me.LblCustName.AutoSize = True
+        Me.LblCustName.Location = New System.Drawing.Point(65, 13)
+        Me.LblCustName.Name = "LblCustName"
+        Me.LblCustName.Size = New System.Drawing.Size(32, 13)
+        Me.LblCustName.TabIndex = 3
+        Me.LblCustName.Text = "None"
+        '
+        'lblJob
+        '
+        Me.lblJob.AutoSize = True
+        Me.lblJob.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.lblJob.Location = New System.Drawing.Point(6, 35)
+        Me.lblJob.Name = "lblJob"
+        Me.lblJob.Size = New System.Drawing.Size(24, 13)
+        Me.lblJob.TabIndex = 2
+        Me.lblJob.Text = "Job"
+        '
+        'lblCust
+        '
+        Me.lblCust.AutoSize = True
+        Me.lblCust.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.lblCust.Location = New System.Drawing.Point(6, 13)
+        Me.lblCust.Name = "lblCust"
+        Me.lblCust.Size = New System.Drawing.Size(53, 13)
+        Me.lblCust.TabIndex = 0
+        Me.lblCust.Text = "Customer"
+        '
+        'LblStatus
+        '
+        Me.LblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.LblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
+        Me.LblStatus.Margin = New System.Windows.Forms.Padding(0)
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(5, 0, 2, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(11, 22)
+        '
         'frmReminderList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(868, 365)
+        Me.ClientSize = New System.Drawing.Size(790, 453)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.rtbBody)
         Me.Controls.Add(Me.GroupBox1)
@@ -352,8 +408,12 @@ Partial Class frmReminderList
         Me.Name = "frmReminderList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.DgvReminders, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -370,15 +430,19 @@ Partial Class frmReminderList
     Friend WithEvents BtnSetReminder As System.Windows.Forms.Button
     Friend WithEvents BtnCloseRem As System.Windows.Forms.Button
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
-    Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents remId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remCustId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remJobId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remIncId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remSubject As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents remHeader As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents rtbBody As System.Windows.Forms.RichTextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents remId As DataGridViewTextBoxColumn
+    Friend WithEvents remCustId As DataGridViewTextBoxColumn
+    Friend WithEvents remJobId As DataGridViewTextBoxColumn
+    Friend WithEvents remDate As DataGridViewTextBoxColumn
+    Friend WithEvents remSubject As DataGridViewTextBoxColumn
+    Friend WithEvents remHeader As DataGridViewButtonColumn
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents LblJobName As Label
+    Friend WithEvents LblCustName As Label
+    Friend WithEvents lblJob As Label
+    Friend WithEvents lblCust As Label
+    Friend WithEvents LblStatus As ToolStripStatusLabel
 End Class

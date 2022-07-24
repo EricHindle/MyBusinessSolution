@@ -1,4 +1,11 @@
-﻿Imports System.IO
+﻿' Hindleware
+' Copyright (c) 2022, Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+
+Imports System.Data.Common
+Imports System.IO
 
 Module ModDatabase
 #Region "constants"
@@ -32,10 +39,14 @@ Module ModDatabase
 #Region "users"
     Public Function GetUserById(_id As Integer) As User
         Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
-        oUserTa.FillById(oUserTable, _id)
-        If oUserTable.Rows.Count > 0 Then
-            _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
-        End If
+        Try
+            oUserTa.FillById(oUserTable, _id)
+            If oUserTable.Rows.Count > 0 Then
+                _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
+            End If
+        Catch ex As dbException
+
+        End Try
         Return _user
     End Function
     Public Function GetUserByLogin(_login As String) As User
@@ -74,10 +85,15 @@ Module ModDatabase
 #Region "job"
     Public Function GetJobById(ByVal pId As Integer) As Job
         Dim _job As Job = JobBuilder.AJob.StartingWithNothing.Build
-        oJobTa.FillById(oJobTable, pId)
-        If oJobTable.Rows.Count > 0 Then
-            _job = JobBuilder.AJob.StartingWith(oJobTable.Rows(0)).Build
-        End If
+        Try
+            oJobTa.FillById(oJobTable, pId)
+            If oJobTable.Rows.Count > 0 Then
+                _job = JobBuilder.AJob.StartingWith(oJobTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+
+        End Try
+
         Return _job
     End Function
     Public Function GetAllJobs() As List(Of Job)
@@ -170,7 +186,7 @@ Module ModDatabase
             If oCustomerTable.Rows.Count > 0 Then
                 _cust = CustomerBuilder.ACustomer.StartingWith(oCustomerTable.Rows(0)).Build
             End If
-        Catch ex As Exception
+        Catch ex As dbException
 
         End Try
         Return _cust

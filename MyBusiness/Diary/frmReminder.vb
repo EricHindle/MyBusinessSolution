@@ -69,8 +69,8 @@ Public Class FrmReminder
         If _reminder IsNot Nothing Then
             If _reminder.Diary_id > 0 Then
                 FillForm()
-                _customer = _reminder.DiaryCustomer
-                _job = _reminder.DiaryJob
+                _customer = _reminder.LinkedCustomer
+                _job = _reminder.LinkedJob
             End If
         End If
 

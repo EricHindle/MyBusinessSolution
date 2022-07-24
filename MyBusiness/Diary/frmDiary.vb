@@ -270,7 +270,7 @@ Public Class FrmDiary
 
         If currentDiary IsNot Nothing Then
 
-            Dim ojob As Job = currentDiary.DiaryJob
+            Dim ojob As Job = currentDiary.LinkedJob
 
             Using _job As New FrmJobMaint
                 _job.TheJob = ojob
@@ -416,12 +416,12 @@ Public Class FrmDiary
     End Sub
     Private Function IsRequiredCustomer(ByRef _reminder As Reminder) As Boolean
         Dim isRequired As Boolean = False
-        isRequired = _forCustomerId <= 0 Or _reminder.DiaryCustomer.CustomerId = _forCustomerId
+        isRequired = _forCustomerId <= 0 Or _reminder.LinkedCustomer.CustomerId = _forCustomerId
         Return isRequired
     End Function
     Private Function IsRequiredJob(ByRef _reminder As Reminder) As Boolean
         Dim isRequired As Boolean = False
-        isRequired = _forJobId <= 0 Or _reminder.DiaryJob.JobId = _forJobId
+        isRequired = _forJobId <= 0 Or _reminder.LinkedJob.JobId = _forJobId
         Return isRequired
     End Function
     ''' <summary>

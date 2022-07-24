@@ -410,6 +410,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Diary\frmReminderList.resx">
       <DependentUpon>frmReminderList.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\FrmBackup.resx">
       <DependentUpon>FrmBackup.vb</DependentUpon>
