@@ -24,14 +24,12 @@ Public Class PrintUtil : Implements IDisposable
     ' variable to trace text to print for pagination
     Private m_nFirstCharOnPage As Integer
     Private myRichTextBoxEx As New RichTextBoxEx
-
     Private imagePrintDocument As PrintDocument
     Private iPrintOption As Integer
     Private sImageFile As String = ""
     Private oImage As Image = Nothing
     Private myMaxColumnWidth As Integer
 #End Region
-
 #Region "properties"
     Public Property MaxColumnWidth() As Integer
         Get
@@ -41,7 +39,6 @@ Public Class PrintUtil : Implements IDisposable
             myMaxColumnWidth = value
         End Set
     End Property
-
     Public Property PrintDoc() As PrintDocument
         Get
             Return myPrintDoc
@@ -50,7 +47,6 @@ Public Class PrintUtil : Implements IDisposable
             myPrintDoc = value
         End Set
     End Property
-
     Public Property PrintFont() As Font
         Get
             Return myFont
@@ -59,7 +55,6 @@ Public Class PrintUtil : Implements IDisposable
             myFont = value
         End Set
     End Property
-
     Public Property StringToPrint() As String
         Get
             Return myStringToPrint
@@ -68,14 +63,12 @@ Public Class PrintUtil : Implements IDisposable
             myStringToPrint = value
         End Set
     End Property
-
     Public ReadOnly Property PageSetup() As PageSetupDialog
         Get
             Return myPageSetUp
         End Get
     End Property
 #End Region
-
 #Region "new"
     ''' <summary>
     ''' Initializes a new instance of the Print Utility
@@ -98,7 +91,6 @@ Public Class PrintUtil : Implements IDisposable
         myPageSetUp.EnableMetric = True
     End Sub
 #End Region
-
 #Region "Image Print"
     ''' <summary>
     ''' Prepare print document - size, margins, etc.
@@ -123,7 +115,6 @@ Public Class PrintUtil : Implements IDisposable
         imagePrintDocument.DefaultPageSettings.Margins.Top = 50
         imagePrintDocument.DefaultPageSettings.Margins.Bottom = 50
     End Sub
-
     ''' <summary>
     ''' Returns image print docuemnt to aid testing
     ''' </summary>
@@ -132,7 +123,6 @@ Public Class PrintUtil : Implements IDisposable
     Public Function GetImagePrintDocument() As PrintDocument
         Return imagePrintDocument
     End Function
-
     ''' <summary>
     ''' Print an image from a file
     ''' </summary>
@@ -152,7 +142,6 @@ Public Class PrintUtil : Implements IDisposable
         imagePrintDocument.Print()
 
     End Sub
-
     ''' <summary>
     ''' Print an image from an image object
     ''' </summary>
@@ -172,7 +161,6 @@ Public Class PrintUtil : Implements IDisposable
         imagePrintDocument.Print()
 
     End Sub
-
     Private Sub OnPrintImage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs)
 
         'print options
@@ -227,7 +215,6 @@ Public Class PrintUtil : Implements IDisposable
         e.Graphics.DrawImage(imageFrm, leftMargin, topMargin, iOutWidth, iOutHeight)
     End Sub
 #End Region
-
 #Region "Private Subroutines"
     ''' <summary>
     ''' Set appropriate handlers depending on document type
@@ -247,7 +234,6 @@ Public Class PrintUtil : Implements IDisposable
             AddHandler myPrintDoc.PrintPage, AddressOf txt_PrintPage
         End If
     End Sub
-
     Private Function FormatGridForPrinting(ByRef dgv As DataGridView) As DataGridView
         Dim formattedDgv As New DataGridView
         For Each oCol As DataGridViewColumn In dgv.Columns
@@ -279,7 +265,6 @@ Public Class PrintUtil : Implements IDisposable
 
         Return formattedDgv
     End Function
-
     Private Sub Txt_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs)
         '
         ' Print the image if the file exists
@@ -305,13 +290,11 @@ Public Class PrintUtil : Implements IDisposable
         e.HasMorePages = myStringToPrint.Length > 0
 
     End Sub
-
     Private Sub Rtf_BeginPrint(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintEventArgs)
         ' Start at the beginning of the text
         m_nFirstCharOnPage = 0
     End Sub
-
     Private Sub Rtf_PrintPage(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintPageEventArgs)
         ' make the RichTextBoxEx calculate and render as much text as will
@@ -329,14 +312,12 @@ Public Class PrintUtil : Implements IDisposable
             e.HasMorePages = False
         End If
     End Sub
-
     Private Sub Rtf_EndPrint(ByVal sender As Object,
         ByVal e As System.Drawing.Printing.PrintEventArgs)
         ' Clean up cached information
         myRichTextBoxEx.FormatRangeDone()
     End Sub
 #End Region
-
 #Region "Public Subroutines"
     ''' <summary>
     ''' Split a line of text into an array list of strings with a maximum length
@@ -363,7 +344,6 @@ Public Class PrintUtil : Implements IDisposable
         End While
         Return stringArray
     End Function
-
     ''' <summary>
     ''' Generate an array of numeric values to be used as tab stops from the contents of a data grid view table
     ''' </summary>
@@ -378,7 +358,6 @@ Public Class PrintUtil : Implements IDisposable
         Next
         Return tabStops
     End Function
-
     ''' <summary>
     ''' Print a datagrid view table
     ''' </summary>
@@ -454,7 +433,6 @@ Public Class PrintUtil : Implements IDisposable
         End If
 
     End Sub
-
     ''' <summary>
     ''' Convert a data grid view table into text
     ''' </summary>
@@ -482,7 +460,6 @@ Public Class PrintUtil : Implements IDisposable
         Next
         Return rtnText.ToString
     End Function
-
     ''' <summary>
     ''' Print a string using the report definition to determine the format
     ''' </summary>
@@ -498,7 +475,6 @@ Public Class PrintUtil : Implements IDisposable
         myPrintDoc.Print()
 
     End Sub
-
     ''' <summary>
     ''' Load rtf file into an extended rich text box then print it
     ''' </summary>
@@ -512,7 +488,6 @@ Public Class PrintUtil : Implements IDisposable
             myPrintDoc.Print()
         End If
     End Sub
-
     ''' <summary>
     ''' Print the contents of a rich text box by loading it into an extended rich text box
     ''' </summary>
@@ -526,7 +501,6 @@ Public Class PrintUtil : Implements IDisposable
         End If
     End Sub
 #End Region
-
 #Region "Dispose"
     Dim disposed As Boolean = False
     Public Sub Dispose() _

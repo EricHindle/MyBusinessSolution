@@ -141,6 +141,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Callback\FormAnimator.vb" />
     <Compile Include="Customer\FrmCustomerMaint.designer.vb">
       <DependentUpon>FrmCustomerMaint.vb</DependentUpon>
     </Compile>
@@ -260,6 +261,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging\LogUtil.vb" />
+    <Compile Include="Callback\CallBackReminder.vb" />
+    <Compile Include="Callback\FrmAlert.designer.vb">
+      <DependentUpon>FrmAlert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Callback\FrmAlert.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Menus\FrmMain.designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
@@ -377,7 +385,6 @@
     </Compile>
     <Compile Include="Utilities\GlobalSettings.vb" />
     <Compile Include="Utilities\ITextManager.vb" />
-    <Compile Include="Utilities\ModuleCodes.vb" />
     <Compile Include="Utilities\netwyrksCommon.vb" />
     <Compile Include="Utilities\netwyrksConstants.vb" />
     <Compile Include="Utilities\NetwyrksErrorCodes.vb" />
@@ -444,6 +451,9 @@
     <EmbeddedResource Include="Logging\FrmLogViewer.resx">
       <DependentUpon>FrmLogViewer.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Callback\FrmAlert.resx">
+      <DependentUpon>FrmAlert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>

@@ -57,9 +57,9 @@ Public Class LoginForm
             Else
                 ' Successful login
                 My.User.CurrentPrincipal = customPrincipal
-                If My.User.IsAuthenticated And isActiveUser() Then
+                If My.User.IsAuthenticated And IsActiveUser() Then
                     Me.TopMost = False
-                    If AuthenticationUtil.isPasswordChangeOK Then
+                    If AuthenticationUtil.IsPasswordChangeOK Then
                         EnterApplication()
                     Else
                         MsgBox("Required password change not complete", MsgBoxStyle.Exclamation, "Access Error")

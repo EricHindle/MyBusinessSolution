@@ -210,6 +210,26 @@ Module ModDatabase
         Next
         Return _productList
     End Function
+    Public Function InsertProduct(pProduct As Product) As Integer
+        Dim _productId As Integer
+        With pProduct
+            _productId = oProductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate)
+            If _productId > 0 Then
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", .ToString)
+            End If
+        End With
+        Return _productId
+    End Function
+    Public Function UpdateProduct(pProduct As Product) As Integer
+        Dim _ct As Integer
+        With pProduct
+            _ct = oProductTa.UpdateProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, pProduct.ProductId)
+            If _ct = 1 Then
+                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, pProduct.ProductId, AuditUtil.AuditableAction.create, "", .ToString)
+            End If
+        End With
+        Return _ct
+    End Function
 #End Region
 #Region "customer"
     Public Function GetCustomers() As List(Of Customer)
@@ -424,6 +444,22 @@ Module ModDatabase
         End Try
         Return _id
     End Function
+
+
+    Public Function GetCallBackAlerts(ByVal userId As Integer) As List(Of Reminder)
+        Dim _alertList As New List(Of Reminder)
+        Try
+            oDiaryTa.FillByCallbackAlert(oDiaryTable, Now, DateAdd(DateInterval.Minute, (My.Settings.alertNotice * 1.5), Now), userId)
+            For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+                Dim _alert As Reminder = ReminderBuilder.AReminder.StartingWith(oRow).Build
+                _alertList.Add(_alert)
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return _alertList
+    End Function
+
 
 #End Region
 #Region "common"

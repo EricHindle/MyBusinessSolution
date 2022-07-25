@@ -27,6 +27,14 @@ Partial Class frmOptions
         Me.cbDebug = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.NudAlertDuration = New System.Windows.Forms.NumericUpDown()
+        Me.NudAlertNotice = New System.Windows.Forms.NumericUpDown()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ChkCheckCallbacks = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.grpDiary = New System.Windows.Forms.GroupBox()
         Me.chkShowJob = New System.Windows.Forms.CheckBox()
         Me.chkShowSupplier = New System.Windows.Forms.CheckBox()
@@ -102,6 +110,9 @@ Partial Class frmOptions
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        CType(Me.NudAlertDuration, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudAlertNotice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDiary.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.nudRetention, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +174,7 @@ Partial Class frmOptions
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.Transparent
+        Me.TabPage1.Controls.Add(Me.GroupBox5)
         Me.TabPage1.Controls.Add(Me.grpDiary)
         Me.TabPage1.Controls.Add(Me.GroupBox10)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
@@ -173,6 +185,90 @@ Partial Class frmOptions
         Me.TabPage1.Size = New System.Drawing.Size(480, 432)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General 1"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Label10)
+        Me.GroupBox5.Controls.Add(Me.Label3)
+        Me.GroupBox5.Controls.Add(Me.NudAlertDuration)
+        Me.GroupBox5.Controls.Add(Me.NudAlertNotice)
+        Me.GroupBox5.Controls.Add(Me.Label2)
+        Me.GroupBox5.Controls.Add(Me.ChkCheckCallbacks)
+        Me.GroupBox5.Controls.Add(Me.Label1)
+        Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(171, 163)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(237, 105)
+        Me.GroupBox5.TabIndex = 9
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Callback"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(178, 74)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(51, 14)
+        Me.Label10.TabIndex = 6
+        Me.Label10.Text = "seconds"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(178, 44)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(50, 14)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "minutes"
+        '
+        'NudAlertDuration
+        '
+        Me.NudAlertDuration.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NudAlertDuration.Location = New System.Drawing.Point(102, 66)
+        Me.NudAlertDuration.Name = "NudAlertDuration"
+        Me.NudAlertDuration.Size = New System.Drawing.Size(63, 22)
+        Me.NudAlertDuration.TabIndex = 4
+        '
+        'NudAlertNotice
+        '
+        Me.NudAlertNotice.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NudAlertNotice.Location = New System.Drawing.Point(102, 40)
+        Me.NudAlertNotice.Name = "NudAlertNotice"
+        Me.NudAlertNotice.Size = New System.Drawing.Size(63, 22)
+        Me.NudAlertNotice.TabIndex = 3
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(13, 68)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(83, 14)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Alert Duration"
+        '
+        'ChkCheckCallbacks
+        '
+        Me.ChkCheckCallbacks.AutoSize = True
+        Me.ChkCheckCallbacks.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkCheckCallbacks.Location = New System.Drawing.Point(55, 21)
+        Me.ChkCheckCallbacks.Name = "ChkCheckCallbacks"
+        Me.ChkCheckCallbacks.Size = New System.Drawing.Size(110, 18)
+        Me.ChkCheckCallbacks.TabIndex = 1
+        Me.ChkCheckCallbacks.Text = "Check Callbacks"
+        Me.ChkCheckCallbacks.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(13, 42)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(72, 14)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Alert Notice"
         '
         'grpDiary
         '
@@ -1063,6 +1159,10 @@ Partial Class frmOptions
         Me.GroupBox10.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        CType(Me.NudAlertDuration, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudAlertNotice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDiary.ResumeLayout(False)
         Me.grpDiary.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -1163,4 +1263,12 @@ Partial Class frmOptions
     Friend WithEvents txtInvCompNameSample As System.Windows.Forms.TextBox
     Friend WithEvents FontDialog1 As System.Windows.Forms.FontDialog
     Friend WithEvents BtnTest As Button
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents ChkCheckCallbacks As CheckBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents NudAlertDuration As NumericUpDown
+    Friend WithEvents NudAlertNotice As NumericUpDown
+    Friend WithEvents Label2 As Label
 End Class

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,94 +117,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="custId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="custName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="custPhone.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="custemail.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="suppId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="suppName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="suppPhone.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="suppEmail.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobDesc.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobAssigned.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobCompleted.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="jobUser.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremCustId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremSeId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremIncId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremUserCode.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremSubject.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremRem.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremCallback.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremClosed.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dremHeader.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="timerCallBackReminders.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>132, 17</value>
-  </metadata>
-  <metadata name="CallbackReminderBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>315, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAATwAAAAUCAMAAAAnU3HbAAAABGdBTUEAALGPC/xhBQAAAfVQTFRFlJSU
+        k5OTkpKSkZGRkJCQj4+PlZWVl5eXmJiYmpqamZmZm5ubnJycnZ2dn5+foKCgnp6elpaWoqKio6OjpKSk
+        pqamqKioqampq6urra2trq6ur6+vsLCwrKysqqqqpaWljo6OoaGhp6enjY2NjIyMi4uLiYmJioqKiIiI
+        gICACQkJQUFBPj4+Dw8PAAAABQUFKSkpXFxcDg4OFBQUUVFRERERBgYGPDw8DAwMCwsLExMTCAgIYGBg
+        EhISNzc3BAQESEhILi4uAQEBOzs7fHx8AgICEBAQCgoKhYWFBwcHVVVVhISEgoKCh4eHfX19DQ0NRERE
+        f39/MTExFxcXS0tLdnZ2cXFxgYGBHBwcXl5eMjIycnJyWVlZZWVlODg4fn5+VFRUhoaGGBgYRkZGUlJS
+        aGhoFRUVFhYWg4ODWlpaYmJiXV1dV1dXY2NjQEBAcHBwU1NTOjo6AwMDeXl5ZGRkW1tbHh4eT09PNDQ0
+        bW1tenp6UFBQb29vNjY2ZmZmdXV1TU1NbGxsNTU1e3t7QkJCQ0NDIiIiampqa2trGRkZMDAweHh4Z2dn
+        VlZWJCQkPT09ISEhSkpKTk5OMzMzTExMR0dHJycnc3NzWFhYd3d3X19fSUlJJiYmGxsbLCwsOTk5Ly8v
+        sbGxs7OztbW1tra2tLS0srKyZXxo0AAAAAlwSFlzAAAOvwAADr8BOAVTJAAACoRJREFUWEfVWIl7G8UV
+        X62OlbS7Wu3qWK2clbQ67TSMcUKcuAmYGJMo2AoQCIEUcJ1AETlpKDQHbegBhBJaoLQJlB7h6N/Z33sz
+        kuUctP36Bb7+Pmnu2Zn3mzdv3oymxfR4IgkkZEiJ/xLUT0IVECYzqlYC+biux1JGOpPNpgnZjGlZds7J
+        W5lsOuvGtFTKTWmIjAzKLTvveF6hWCqX/UolqFanprZs2TI1VQWmZMRAMTIoCMJaue7l05qWyua9kl8J
+        wyCoBncD9R2n8OeULOZ8FV/l6rBSqdUqNXwO3wOqU5oU73+CYkWB8g2iCGFcJwrS2WwmY9p528xkrcgx
+        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
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>45</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

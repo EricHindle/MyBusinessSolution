@@ -135,6 +135,9 @@ Public Class frmOptions
         cbDebug.Checked = My.Settings.DebugOn
         nudRetention.Value = My.Settings.RetentionPeriod
         chkAutoTidy.Checked = My.Settings.AutoTidy
+        ChkCheckCallbacks.Checked = My.Settings.checkCallBack
+        NudAlertDuration.Value = My.Settings.alertDuration
+        NudAlertNotice.Value = My.Settings.alertNotice
     End Sub
 
     ''' <summary>
@@ -149,6 +152,9 @@ Public Class frmOptions
         My.Settings.RetentionPeriod = nudRetention.Value
         My.Settings.AutoTidy = chkAutoTidy.Checked
         My.Settings.DebugOn = cbDebug.Checked
+        My.Settings.checkCallBack = ChkCheckCallbacks.Checked
+        My.Settings.alertNotice = NudAlertNotice.Value
+        My.Settings.alertDuration = NudAlertDuration.Value
     End Sub
 
     ''' <summary>
@@ -379,5 +385,7 @@ Public Class frmOptions
         End Using
         Return newFont
     End Function
+
+
 #End Region
 End Class

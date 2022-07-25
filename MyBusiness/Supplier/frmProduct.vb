@@ -6,15 +6,12 @@
 
 Public Class frmProduct
 #Region "variables"
-    Private _productBuilder As ProductBuilder
     Private _productId As Integer
     Private _product As Product
     Private _supplierId As Integer
     Private _supplier As Supplier
     Private _newproduct As Product
     Private isLoading As Boolean = False
-    Private ReadOnly oproductTa As New netwyrksDataSetTableAdapters.productTableAdapter
-    Private ReadOnly oproductTable As New netwyrksDataSet.productDataTable
 #End Region
 #Region "properties"
     Public Property TheSupplier() As Supplier
@@ -25,12 +22,12 @@ Public Class frmProduct
             _supplier = value
         End Set
     End Property
-    Public Property TheProduct() As ProductBuilder
+    Public Property TheProduct() As Product
         Get
-            Return _productBuilder
+            Return _product
         End Get
-        Set(ByVal value As ProductBuilder)
-            _productBuilder = value
+        Set(ByVal value As Product)
+            _product = value
         End Set
     End Property
     Public Property ProductId() As Integer
@@ -48,8 +45,6 @@ Public Class frmProduct
     End Sub
     Private Sub FrmProduct_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         logutil.info("Closing", Me.Name)
-        oproductTa.Dispose()
-        oproductTable.Dispose()
     End Sub
     Private Sub FrmProduct_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         logutil.info("Starting", Me.Name)
@@ -72,23 +67,22 @@ Public Class frmProduct
         isLoading = False
     End Sub
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        With _productBuilder.Build
-            _newproduct = ProductBuilder.AProduct.WithProductName(txtProductName.Text.Trim) _
-            .WithProductDescription(rtbDescription.Text.Trim) _
-            .WithProductCost(nudCost.Value) _
-            .WithProductPrice(nudPrice.Value) _
-            .WithProductCreated(.ProductCreated) _
-            .WithProductChanged(.ProductChanged) _
-            .WithProductSupplierId(_supplierId) _
-            .WithProductTaxable(chkTaxable.Checked) _
-            .WithProductTaxRate(nudTaxRate.Value) _
-            .Build
-        End With
-        Dim newproductId As Integer = -1
-        If _productId > 0 Then
-            AmendProduct()
+        If Not String.IsNullOrWhiteSpace(txtProductName.Text) Then
+            _newproduct = ProductBuilder.AProduct.StartingWith(_product).WithProductName(txtProductName.Text.Trim) _
+                                .WithProductDescription(rtbDescription.Text.Trim) _
+                                .WithProductCost(nudCost.Value) _
+                                .WithProductPrice(nudPrice.Value) _
+                                .WithProductSupplierId(_supplierId) _
+                                .WithProductTaxable(chkTaxable.Checked) _
+                                .WithProductTaxRate(nudTaxRate.Value) _
+                                .Build
+            If _productId > 0 Then
+                AmendProduct()
+            Else
+                CreateProduct()
+            End If
         Else
-            InsertProduct()
+            ShowStatus(lblStatus,"Product name missing",mybase.name,true)
         End If
     End Sub
 #End Region
@@ -102,7 +96,7 @@ Public Class frmProduct
             chkTaxable.Checked = .IsProductTaxable
             nudTaxRate.Value = .ProductTaxRate
         End With
-        logutil.info("Existing product " & CStr(_productId), Me.Name)
+        LogUtil.Info("Existing product " & CStr(_productId), Me.Name)
 
     End Sub
     Private Sub ClearproductDetails()
@@ -114,41 +108,35 @@ Public Class frmProduct
         nudTaxRate.Value = 0.0
     End Sub
     Private Sub Newproduct()
-        logutil.info("New product", Me.Name())
+        LogUtil.Info("New product", Me.Name())
         ClearproductDetails()
-        _productBuilder = ProductBuilder.AProduct.StartingWithNothing
+        _product = ProductBuilder.AProduct.StartingWithNothing.Build
     End Sub
     Private Function AmendProduct() As Boolean
-        Dim isAmendOk As Boolean = False
-        logutil.info("Updating product " & CStr(_productId), Me.Name)
-        With _newproduct
-            If oproductTa.UpdateProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, _productId) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, _productBuilder.ToString, .ToString)
-                isAmendOk = True
-                showStatus(lblStatus, "Product updated OK", Me.Name, True)
-            Else
-                isAmendOk = False
-                showStatus(lblStatus, "Product NOT updated", Me.Name, True)
-
-            End If
-        End With
+        Dim isAmendOk As Boolean
+        LogUtil.Info("Updating product " & CStr(_productId), Me.Name)
+        If UpdateProduct(_newproduct) = 1 Then
+            isAmendOk = True
+            ShowStatus(lblStatus, "Product updated OK", Me.Name, True)
+        Else
+            isAmendOk = False
+            ShowStatus(lblStatus, "Product NOT updated", Me.Name, True)
+        End If
         Return isAmendOk
     End Function
-    Private Function InsertProduct() As Boolean
+    Private Function CreateProduct() As Boolean
         Dim isInsertOk As Boolean
-        logutil.info("Inserting product", Me.Name)
-        With _newproduct
-            _productId = oproductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate)
-            If _productId > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", .ToString)
-                isInsertOk = True
-                showStatus(lblStatus, "Product " & CStr(_productId) & " Created OK", Me.Name, True)
-            Else
-                isInsertOk = False
-                showStatus(lblStatus, "Product NOT created", Me.Name, True)
-            End If
-        End With
+        LogUtil.Info("Inserting product", Me.Name)
+        _productId = InsertProduct(_newproduct)
+        If _productId > 0 Then
+            isInsertOk = True
+            ShowStatus(lblStatus, "Product " & CStr(_productId) & " Created OK", Me.Name, True)
+        Else
+            isInsertOk = False
+            ShowStatus(lblStatus, "Product NOT created", Me.Name, True)
+        End If
         Return isInsertOk
     End Function
+
 #End Region
 End Class

@@ -6,12 +6,10 @@
 
 Public Class FrmSupplier
 #Region "variables"
-    Private _currentSupplier As SupplierBuilder = Nothing
+    Private _currentSupplier As Supplier = Nothing
     Private _newSupplier As Supplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
     Private isLoadingProducts As Boolean = False
     Private _supplierId As Integer
-    Private INSERT_WIDTH As Integer
-    Private UPDATE_WIDTH As Integer
 #End Region
 #Region "properties"
     Public Property SupplierId() As Integer
@@ -29,47 +27,37 @@ Public Class FrmSupplier
     End Sub
     Private Sub FrmSupplier_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         spProducts.Panel2Collapsed = True
-        INSERT_WIDTH = Me.Width - pnlProducts.Width
-        UPDATE_WIDTH = Me.Width
-        pnlSupplier.Enabled = False
-        pnlProducts.Visible = False
+        pnlProducts.Enabled = False
         If _supplierId <= 0 Then
             NewSupplier()
         Else
-            pnlSupplier.Enabled = True
-            _currentSupplier = SupplierBuilder.ASupplier.StartingWith(_supplierId)
+            _currentSupplier = SupplierBuilder.ASupplier.StartingWith(_supplierId).Build
             FillSupplierDetails()
         End If
         SpellCheckUtil.EnableSpellChecking({rtbSuppNotes})
     End Sub
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
+        LogUtil.Info("Closing", MyBase.Name)
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
-        Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.Trim).Build
-        With _currentSupplier.Build
-            _newSupplier = SupplierBuilder.ASupplier _
-                                .WithSupplierId(_supplierId) _
-                                .WithSupplierAddress(_suppAdd) _
-                                .WithSupplierName(txtSuppName.Text.Trim()) _
-                                .WithSupplierChanged(.SupplierChanged) _
-                                .WithSupplierCreated(.SupplierCreated) _
-                                .WithSupplierEmail(txtSuppEmail.Text.Trim) _
-                                .WithSupplierNotes(rtbSuppNotes.Text) _
-                                .WithSupplierPhone(txtSuppPhone.Text.Trim) _
-                                .WithSupplierDiscount(nudSuppDiscount.Value) _
-                                .WithIsAmazon(ChkAmazon.Checked) _
-                                .WithSupplierUrl(TxtWeb.Text).Build
-        End With
-
+        Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.ToUpper.Trim).Build
+        _newSupplier = SupplierBuilder.ASupplier.StartingWith(_currentSupplier) _
+                            .WithSupplierId(_supplierId) _
+                            .WithSupplierAddress(_suppAdd) _
+                            .WithSupplierName(txtSuppName.Text.Trim()) _
+                            .WithSupplierEmail(txtSuppEmail.Text.Trim) _
+                            .WithSupplierNotes(rtbSuppNotes.Text) _
+                            .WithSupplierPhone(txtSuppPhone.Text.Trim) _
+                            .WithSupplierDiscount(nudSuppDiscount.Value) _
+                            .WithIsAmazon(ChkAmazon.Checked) _
+                            .WithSupplierUrl(TxtWeb.Text).Build
         If _supplierId > 0 Then
             If AmendSupplier() Then
                 Me.Close()
             End If
         Else
             If CreateSupplier() Then
-                pnlProducts.Visible = False
                 LblStatus.Text = "Inserted New Supplier"
-                LblStatus.BackColor = Color.SeaGreen
                 Me.Close()
             End If
         End If
@@ -80,7 +68,7 @@ Public Class FrmSupplier
             Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
             Dim oProductId As Integer = oRow.Cells(Me.prodId.Name).Value
             Using _ProductForm As New frmProduct
-                _ProductForm.TheSupplier = _currentSupplier.Build
+                _ProductForm.TheSupplier = _currentSupplier
                 _ProductForm.ProductId = oProductId
                 _ProductForm.ShowDialog()
             End Using
@@ -89,7 +77,7 @@ Public Class FrmSupplier
     End Sub
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
         Using _productForm As New frmProduct
-            _productForm.TheSupplier = _currentSupplier.Build
+            _productForm.TheSupplier = _currentSupplier
             _productForm.ShowDialog()
             FillProductsList(_supplierId)
         End Using
@@ -113,11 +101,9 @@ Public Class FrmSupplier
 #End Region
 #Region "subroutines"
     Private Sub FillSupplierDetails()
-        Me.Width = UPDATE_WIDTH
         LblStatus.Text = "Updating Supplier"
-        LblStatus.BackColor = Color.SlateGray
         btnUpdate.Text = "Update"
-        With _currentSupplier.Build
+        With _currentSupplier
             txtSuppName.Text = .SupplierName
             txtSuppAddr1.Text = .SupplierAddress.Address1
             txtSuppAddr2.Text = .SupplierAddress.Address2
@@ -131,7 +117,7 @@ Public Class FrmSupplier
             ChkAmazon.Checked = .IsSupplierAmazon
             TxtWeb.Text = .SupplierUrl
         End With
-        pnlProducts.Visible = True
+        pnlProducts.Enabled = True
         FillProductsList(_supplierId)
     End Sub
     Private Function CreateSupplier() As Boolean
@@ -151,7 +137,7 @@ Public Class FrmSupplier
         Dim isAmendOK As Boolean
         If UpdateSupplier(_newSupplier) = 1 Then
             isAmendOK = True
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.Build.ToString, _newSupplier.ToString)
+            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.ToString, _newSupplier.ToString)
         Else
             isAmendOK = False
                 MsgBox("Supplier not updated", MsgBoxStyle.Exclamation, "Error")
@@ -162,11 +148,9 @@ Public Class FrmSupplier
     Private Sub NewSupplier()
         LblStatus.Text = "Adding New Supplier"
         btnUpdate.Text = "Create"
-        LblStatus.BackColor = Color.SteelBlue
-        _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing
+        _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
         ClearSupplierDetails()
-        pnlSupplier.Enabled = True
-        pnlProducts.Visible = False
+        pnlProducts.Enabled = False
         dgvProducts.Rows.Clear()
     End Sub
     Private Sub ClearSupplierDetails()

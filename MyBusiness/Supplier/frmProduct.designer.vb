@@ -116,8 +116,8 @@ Partial Class frmProduct
         Me.lblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.lblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Padding = New System.Windows.Forms.Padding(0, 0, 3, 0)
-        Me.lblStatus.Size = New System.Drawing.Size(7, 17)
+        Me.lblStatus.Padding = New System.Windows.Forms.Padding(2, 0, 3, 0)
+        Me.lblStatus.Size = New System.Drawing.Size(9, 17)
         '
         'lblSuppName
         '
@@ -219,6 +219,7 @@ Partial Class frmProduct
         '
         'chkTaxable
         '
+        Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
         Me.chkTaxable.Location = New System.Drawing.Point(52, 411)
         Me.chkTaxable.Name = "chkTaxable"

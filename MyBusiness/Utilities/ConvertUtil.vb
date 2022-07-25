@@ -4,19 +4,13 @@
 '
 ' Author Eric Hindle
 
-Imports System.Windows.Forms
 Imports System.Text
-Imports System.IO
-Imports MyBusiness.NetwyrksErrorCodes
-
 
 ''' <summary>
 ''' The ConvertUtil module contains the procedures used to perform various conversion operations.
 ''' </summary>
 ''' <remarks></remarks>
 Public Class ConvertUtil
-
-
     ''' <summary>
     ''' 
     ''' </summary>
@@ -43,7 +37,6 @@ Public Class ConvertUtil
             Next
             sText.Append(vbCrLf)
         End If
-
         For Each oRow As DataGridViewRow In dgv.Rows
             isFirst = True
             For Each oCell As DataGridViewCell In oRow.Cells
@@ -53,10 +46,8 @@ Public Class ConvertUtil
                     Else
                         sText.Append(sSep)
                     End If
-
                     If oCell.Value IsNot Nothing AndAlso oCell.Value IsNot DBNull.Value Then
                         Dim sVal As String = CStr(oCell.Value)
-
                         If sFmt IsNot Nothing Then
                             If oCell.Value.GetType Is GetType(System.DateTime) Then
                                 sVal = Format(oCell.Value, sFmt)
@@ -71,15 +62,10 @@ Public Class ConvertUtil
                     Else
                         sText.Append("")
                     End If
-
                 End If
             Next
             sText.Append(vbCrLf)
         Next
         Return sText.ToString
     End Function
-
-
-
-
 End Class

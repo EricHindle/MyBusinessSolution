@@ -520,6 +520,42 @@ Namespace My
                 Me("ShowAllReminders") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property checkCallBack() As Boolean
+            Get
+                Return CType(Me("checkCallBack"),Boolean)
+            End Get
+            Set
+                Me("checkCallBack") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("15")>  _
+        Public Property alertNotice() As Integer
+            Get
+                Return CType(Me("alertNotice"),Integer)
+            End Get
+            Set
+                Me("alertNotice") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public Property alertDuration() As Integer
+            Get
+                Return CType(Me("alertDuration"),Integer)
+            End Get
+            Set
+                Me("alertDuration") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
