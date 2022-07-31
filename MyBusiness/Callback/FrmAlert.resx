@@ -129,7 +129,7 @@
         aGhoFRUVFhYWg4ODWlpaYmJiXV1dV1dXY2NjQEBAcHBwU1NTOjo6AwMDeXl5ZGRkW1tbHh4eT09PNDQ0
         bW1tenp6UFBQb29vNjY2ZmZmdXV1TU1NbGxsNTU1e3t7QkJCQ0NDIiIiampqa2trGRkZMDAweHh4Z2dn
         VlZWJCQkPT09ISEhSkpKTk5OMzMzTExMR0dHJycnc3NzWFhYd3d3X19fSUlJJiYmGxsbLCwsOTk5Ly8v
-        sbGxs7OztbW1tra2tLS0srKyZXxo0AAAAAlwSFlzAAAOvwAADr8BOAVTJAAACoRJREFUWEfVWIl7G8UV
+        sbGxs7OztbW1tra2tLS0srKyZXxo0AAAAAlwSFlzAAAOvQAADr0BR/uQrQAACoRJREFUWEfVWIl7G8UV
         X62OlbS7Wu3qWK2clbQ67TSMcUKcuAmYGJMo2AoQCIEUcJ1AETlpKDQHbegBhBJaoLQJlB7h6N/Z33sz
         kuUctP36Bb7+Pmnu2Zn3mzdv3oymxfR4IgkkZEiJ/xLUT0IVECYzqlYC+biux1JGOpPNpgnZjGlZds7J
         W5lsOuvGtFTKTWmIjAzKLTvveF6hWCqX/UolqFanprZs2TI1VQWmZMRAMTIoCMJaue7l05qWyua9kl8J
@@ -177,6 +177,9 @@
         NjS9KP2HoDWIpYysaUPFYC0wEA98x3mrOd5TqKEkVImKJsHZIPgXpW0C8i6yLqoAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="Timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>45</value>
   </metadata>

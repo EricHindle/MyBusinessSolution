@@ -17,13 +17,13 @@ Public Class CallBackReminder
     Public Sub CheckCallBackReminders(ByVal worker As BackgroundWorker, ByVal e As DoWorkEventArgs)
         My.User.CurrentPrincipal = Principal
         Dim state As New CurrentProgress
-        LogUtil.Debug("Checking call back reminders", "checkCallBackReminders")
+        Const Psub As String = "checkCallBackReminders"
+        LogUtil.Debug("Checking call back reminders", Psub)
         Dim userId As Integer = currentUser.UserId
-        LogUtil.Debug("Finding call back reminders", "checkCallBackReminders")
+        LogUtil.Debug("Finding call back reminders", Psub)
         Dim _alertList As List(Of Reminder) = GetCallBackAlerts(userId)
-        LogUtil.Info(CStr(_alertList.Count) & " reminders", "checkCallBackReminders")
+        LogUtil.Info(CStr(_alertList.Count) & " reminders", Psub)
         FrmAlert.openForms.Clear()
-
         For Each _alert As Reminder In _alertList
             Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
             Dim subject As String = _alert.Subject
@@ -31,13 +31,12 @@ Public Class CallBackReminder
                 .Height = 80,
                 .Guid = Guid.NewGuid
             }
-            LogUtil.Info("About to show " & slice.Guid.ToString, "checkCallBackReminders")
+            LogUtil.Info("About to show " & slice.Guid.ToString, Psub)
             slice.Show()
-            Threading.Thread.Sleep(1000)
         Next
         state.progressStatus = 0
         worker.ReportProgress(100, state)
-        LogUtil.Debug("Call back reminders complete", "checkCallBackReminders")
+        LogUtil.Debug("Call back reminders complete", Psub)
     End Sub
 
 End Class

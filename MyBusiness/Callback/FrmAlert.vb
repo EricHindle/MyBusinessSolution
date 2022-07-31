@@ -1,3 +1,4 @@
+' Hindleware
 ' Copyright (c) 2015, Eric Hindle
 ' All rights reserved.
 '
@@ -11,7 +12,6 @@ Imports System.Timers
 ''' </summary>
 ''' <remarks>Form pops up toaster style in the bottom corner of the screen</remarks>
 Public Class FrmAlert
-
     Private Class NativeMethods
         ''' <summary>
         ''' Gets the handle of the window that currently has focus.
@@ -65,8 +65,6 @@ Public Class FrmAlert
     ''' </summary>
     Private currentForegroundWindow As IntPtr
 
-    Private ReadOnly TestTimer As New List(Of System.Timers.Timer)
-    Private _instance As Integer
 #End Region
 #Region "Constructors"
     ''' <summary>
@@ -78,17 +76,11 @@ Public Class FrmAlert
     Public Sub New(ByVal lifeTime As Integer, ByVal message As String)
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
         'Set the time for which the form should be displayed and the message to display.
-        _instance = Me.TestTimer.Count
-        Me.TestTimer.Add(New Timer With {
-            .Interval = lifeTime,
-            .SynchronizingObject = Me,
-            .AutoReset = True
-        })
-        AddHandler Me.TestTimer(_instance).Elapsed, AddressOf Me.TimerTick
-
+        With Timer1
+            .Interval = lifeTime
+        End With
         Me.messageLabel.Text = message
         'Display the form by sliding up.
         Me.animator = New FormAnimator(Me,
@@ -127,8 +119,8 @@ Public Class FrmAlert
         FrmAlert.openForms.Add(Me)
 
         'Start counting down the form's liftime.
-        LogUtil.Info("Interval " & CStr(TestTimer(_instance).Interval), MyBase.Name)
-        Me.TestTimer(_instance).Start()
+        LogUtil.Info("Starting " & Guid.ToString & ": Interval " & CStr(Timer1.Interval), MyBase.Name)
+        Timer1.Start()
     End Sub
     Private Sub AlertForm_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
         'Prevent the form taking focus when it is initially shown.
@@ -156,9 +148,11 @@ Public Class FrmAlert
         FrmAlert.openForms.Remove(Me)
         LogUtil.Info("Alert form closed " & _guid.ToString, MyBase.Name)
     End Sub
-    Private Sub TimerTick(ByVal sender As Object, ByVal e As ElapsedEventArgs)
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         'The form's lifetime has expired.
-        Me.TestTimer(_instance).Stop()
+        LogUtil.Info(Guid.ToString & " ticked ", "TimerTick")
+        Timer1.Stop()
         Me.Close()
     End Sub
 #End Region

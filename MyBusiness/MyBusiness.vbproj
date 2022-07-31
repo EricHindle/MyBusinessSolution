@@ -261,7 +261,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging\LogUtil.vb" />
-    <Compile Include="Callback\CallBackReminder.vb" />
     <Compile Include="Callback\FrmAlert.designer.vb">
       <DependentUpon>FrmAlert.vb</DependentUpon>
     </Compile>

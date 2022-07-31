@@ -10,6 +10,9 @@ Imports System.ComponentModel
 Imports System.Text
 
 Public Class FrmMain
+#Region "constants"
+    Private Const CALLBACK_MESSAGE As String = vbCrLf & "Callback requested for "
+#End Region
 #Region "variables"
     Private isLoading As Boolean = False
     Private ReadOnly dayOfWeek As Integer = Today.DayOfWeek
@@ -29,10 +32,9 @@ Public Class FrmMain
         FillJobTable(-1, mnuShowAllJobs.Checked)
         FillDiaryTable()
         If My.Settings.checkCallBack Then
-            timerCallBackReminders.Interval = My.Settings.alertNotice * 60000
-            chkCallBackReminders.Checked = True
-            timerCallBackReminders.Enabled = True
-            StartReminderThread()
+            StartReminderCheck()
+            TimerCallBackReminders.Interval = My.Settings.alertNotice * 60000
+            TimerCallBackReminders.Enabled = True
         End If
         Me.EnableControlExtensions()
         isLoading = False
@@ -386,54 +388,39 @@ Public Class FrmMain
     End Sub
 
 #End Region
-#Region "Callback reminder background worker"
-    Sub StartReminderThread()
-        LogUtil.Info("CallBack Reminder Check started", "StartReminderThread")
-        ' Initialize the object that the background worker calls. 
-        Dim oCallBackReminder As New CallBackReminder
-        oCallBackReminder.Principal = My.User.CurrentPrincipal
-        ' Start the asynchronous operation.   
-        CallbackReminderBackgroundWorker.RunWorkerAsync(oCallBackReminder)
-    End Sub
-
-    Private Sub CallbackReminderBackgroundWorker_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) Handles CallbackReminderBackgroundWorker.DoWork
-        LogUtil.Info("Callback Reminder thread ========== Start")
-        Dim worker As BackgroundWorker
-        worker = CType(sender, BackgroundWorker)
-        Dim oCallBackreminder As CallBackReminder = CType(e.Argument, CallBackReminder)
-        oCallBackreminder.CheckCallBackReminders(worker, e)
-        LogUtil.Info("Callback Reminder thread ========== End")
-    End Sub
-
-    Private Sub CallbackReminderBackgroundWorker_RunWorkerCompleted(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) Handles CallbackReminderBackgroundWorker.RunWorkerCompleted
-        ' This event handler is called when the background thread finishes. 
-        ' This method runs on the main thread. 
-        If e.Error IsNot Nothing Then
-            LogUtil.Problem("Error: " & e.Error.Message)
-        ElseIf e.Cancelled Then
-            LogUtil.Info("Callback reminder check cancelled", "CallbackReminderBackgroundWorker")
+#Region "Callback reminders"
+    Sub StartReminderCheck()
+        LogUtil.Info("Callback Reminder check ========== Start", MyBase.Name)
+        If FrmAlert.openForms.Count = 0 Then
+            Dim userId As Integer = currentUser.UserId
+            LogUtil.Info("Finding call back reminders", MyBase.Name)
+            Dim _alertList As List(Of Reminder) = GetCallBackAlerts(userId)
+            LogUtil.Info(CStr(_alertList.Count) & " reminders", MyBase.Name)
+            FrmAlert.openForms.Clear()
+            For Each _alert As Reminder In _alertList
+                Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
+                Dim subject As String = _alert.Subject
+                Dim slice As New FrmAlert(My.Settings.alertDuration * 1000, subject & CALLBACK_MESSAGE & callBackTime) With {
+                .Height = 80,
+                .Guid = Guid.NewGuid
+            }
+                LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
+                slice.Show()
+            Next
+            LogUtil.Info("Callback reminder check complete", MyBase.Name)
         Else
-            LogUtil.Info("Callback reminder check complete", "CallbackReminderBackgroundWorker")
+            LogUtil.Info("Reminder check is aleady progress", MyBase.Name)
         End If
+        LogUtil.Info("Callback Reminder check ========== End", MyBase.Name)
     End Sub
 
-    Private Sub CallbackReminderBackgroundWorker_ProgressChanged(ByVal sender As Object, ByVal e As ProgressChangedEventArgs) Handles CallbackReminderBackgroundWorker.ProgressChanged
-        ' This method runs on the main thread. 
-        Dim state As CallBackReminder.CurrentProgress = CType(e.UserState, CallBackReminder.CurrentProgress)
-        Dim percentage As Integer = e.ProgressPercentage
-        LogUtil.Info("Callback reminder status " & CStr(state.progressStatus), "CallbackReminderBackgroundWorker")
+    Private Sub ChkCallBackReminders_Click(sender As Object, e As EventArgs) Handles ChkCallBackReminders.Click
+        StartReminderCheck()
     End Sub
 
-    Private Sub chkCallBackReminders_Click(sender As Object, e As EventArgs) Handles chkCallBackReminders.Click
-        chkCallBackReminders.Checked = Not chkCallBackReminders.Checked
-        If chkCallBackReminders.Checked Then
-            StartReminderThread()
-        End If
-    End Sub
-
-    Private Sub timerCallBackReminders_Tick(sender As Object, e As EventArgs) Handles timerCallBackReminders.Tick
-        LogUtil.Debug("Timer tick", MyBase.Name)
-        StartReminderThread()
+    Private Sub TimerCallBackReminders_Tick(sender As Object, e As EventArgs) Handles TimerCallBackReminders.Tick
+        LogUtil.Info("Reminder Timer tick", MyBase.Name)
+        StartReminderCheck()
     End Sub
 
 #End Region

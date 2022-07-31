@@ -22,9 +22,11 @@ Partial Class FrmAlert
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAlert))
         Me.messageLabel = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,6 +54,9 @@ Partial Class FrmAlert
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
         '
+        'Timer1
+        '
+        '
         'FrmAlert
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -74,4 +79,5 @@ Partial Class FrmAlert
     Private WithEvents messageLabel As System.Windows.Forms.Label
     '  Private WithEvents lifeTimer As System.Windows.Forms.Timer
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents Timer1 As Timer
 End Class

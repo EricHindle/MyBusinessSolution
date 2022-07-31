@@ -96,10 +96,10 @@ Partial Class FrmMain
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.chkCallBackReminders = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChkCallBackReminders = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.timerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -770,7 +770,7 @@ Partial Class FrmMain
         Me.SettingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.SettingsToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.SettingsToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GlobalSettingsToolStripMenuItem, Me.ToolStripSeparator1, Me.PreferencesToolStripMenuItem, Me.ToolStripSeparator4, Me.chkCallBackReminders})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GlobalSettingsToolStripMenuItem, Me.ToolStripSeparator1, Me.PreferencesToolStripMenuItem, Me.ToolStripSeparator4, Me.ChkCallBackReminders})
         Me.SettingsToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
@@ -801,9 +801,9 @@ Partial Class FrmMain
         '
         'chkCallBackReminders
         '
-        Me.chkCallBackReminders.Name = "chkCallBackReminders"
-        Me.chkCallBackReminders.Size = New System.Drawing.Size(180, 22)
-        Me.chkCallBackReminders.Text = "Callback Reminders"
+        Me.ChkCallBackReminders.Name = "chkCallBackReminders"
+        Me.ChkCallBackReminders.Size = New System.Drawing.Size(180, 22)
+        Me.ChkCallBackReminders.Text = "Callback Reminders"
         '
         'ToolStripMenuItem2
         '
@@ -938,9 +938,9 @@ Partial Class FrmMain
     Friend WithEvents MnuRestore As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents MnuChangePassword As ToolStripMenuItem
-    Friend WithEvents timerCallBackReminders As Timer
+    Friend WithEvents TimerCallBackReminders As Timer
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents chkCallBackReminders As ToolStripMenuItem
+    Friend WithEvents ChkCallBackReminders As ToolStripMenuItem
     Friend WithEvents CallbackReminderBackgroundWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents suppId As DataGridViewTextBoxColumn
     Friend WithEvents suppName As DataGridViewTextBoxColumn
