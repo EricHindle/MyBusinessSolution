@@ -36,15 +36,9 @@ Partial Class FrmJobMaint
         Me.taskStarted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.taskPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnMaintProducts = New System.Windows.Forms.Button()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
-        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
         Me.GrpInvoice = New System.Windows.Forms.GroupBox()
         Me.LblTerms = New System.Windows.Forms.Label()
@@ -76,6 +70,14 @@ Partial Class FrmJobMaint
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.PicDiary = New System.Windows.Forms.PictureBox()
+        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,7 +162,7 @@ Partial Class FrmJobMaint
         '
         Me.btnRemoveTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRemoveTask.Location = New System.Drawing.Point(368, 4)
+        Me.btnRemoveTask.Location = New System.Drawing.Point(450, 4)
         Me.btnRemoveTask.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRemoveTask.Name = "btnRemoveTask"
         Me.btnRemoveTask.Size = New System.Drawing.Size(86, 28)
@@ -172,7 +174,7 @@ Partial Class FrmJobMaint
         '
         Me.btnAddTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddTask.Location = New System.Drawing.Point(275, 4)
+        Me.btnAddTask.Location = New System.Drawing.Point(357, 4)
         Me.btnAddTask.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAddTask.Name = "btnAddTask"
         Me.btnAddTask.Size = New System.Drawing.Size(86, 28)
@@ -189,14 +191,14 @@ Partial Class FrmJobMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours})
+        Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours, Me.taskPrice})
         Me.dgvTasks.Location = New System.Drawing.Point(4, 40)
         Me.dgvTasks.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dgvTasks.Name = "dgvTasks"
         Me.dgvTasks.ReadOnly = True
         Me.dgvTasks.RowHeadersVisible = False
         Me.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvTasks.Size = New System.Drawing.Size(459, 150)
+        Me.dgvTasks.Size = New System.Drawing.Size(541, 150)
         Me.dgvTasks.TabIndex = 0
         '
         'taskId
@@ -219,6 +221,7 @@ Partial Class FrmJobMaint
         Me.taskStartDue.HeaderText = "Start"
         Me.taskStartDue.Name = "taskStartDue"
         Me.taskStartDue.ReadOnly = True
+        Me.taskStartDue.Width = 80
         '
         'taskStarted
         '
@@ -226,7 +229,7 @@ Partial Class FrmJobMaint
         Me.taskStarted.HeaderText = "Begun"
         Me.taskStarted.Name = "taskStarted"
         Me.taskStarted.ReadOnly = True
-        Me.taskStarted.Width = 50
+        Me.taskStarted.Width = 70
         '
         'taskCompleted
         '
@@ -234,7 +237,7 @@ Partial Class FrmJobMaint
         Me.taskCompleted.HeaderText = "Ended"
         Me.taskCompleted.Name = "taskCompleted"
         Me.taskCompleted.ReadOnly = True
-        Me.taskCompleted.Width = 50
+        Me.taskCompleted.Width = 70
         '
         'taskHours
         '
@@ -242,12 +245,20 @@ Partial Class FrmJobMaint
         Me.taskHours.HeaderText = "Hours"
         Me.taskHours.Name = "taskHours"
         Me.taskHours.ReadOnly = True
-        Me.taskHours.Width = 80
+        Me.taskHours.Width = 60
+        '
+        'taskPrice
+        '
+        Me.taskPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.taskPrice.HeaderText = "Price"
+        Me.taskPrice.Name = "taskPrice"
+        Me.taskPrice.ReadOnly = True
+        Me.taskPrice.Width = 60
         '
         'btnMaintProducts
         '
         Me.btnMaintProducts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMaintProducts.Location = New System.Drawing.Point(368, 5)
+        Me.btnMaintProducts.Location = New System.Drawing.Point(450, 5)
         Me.btnMaintProducts.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMaintProducts.Name = "btnMaintProducts"
         Me.btnMaintProducts.Size = New System.Drawing.Size(86, 28)
@@ -264,66 +275,15 @@ Partial Class FrmJobMaint
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice})
+        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
         Me.dgvProducts.Location = New System.Drawing.Point(7, 40)
         Me.dgvProducts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dgvProducts.Name = "dgvProducts"
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(456, 213)
+        Me.dgvProducts.Size = New System.Drawing.Size(538, 213)
         Me.dgvProducts.TabIndex = 0
-        '
-        'jpId
-        '
-        Me.jpId.HeaderText = "Id"
-        Me.jpId.Name = "jpId"
-        Me.jpId.ReadOnly = True
-        Me.jpId.Visible = False
-        '
-        'prodSupp
-        '
-        Me.prodSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodSupp.HeaderText = "Supplier"
-        Me.prodSupp.Name = "prodSupp"
-        Me.prodSupp.ReadOnly = True
-        Me.prodSupp.Width = 120
-        '
-        'prodId
-        '
-        Me.prodId.HeaderText = "prodId"
-        Me.prodId.Name = "prodId"
-        Me.prodId.ReadOnly = True
-        Me.prodId.Visible = False
-        '
-        'prodName
-        '
-        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.prodName.HeaderText = "ProductName"
-        Me.prodName.Name = "prodName"
-        Me.prodName.ReadOnly = True
-        '
-        'prodQty
-        '
-        Me.prodQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodQty.HeaderText = "Qty"
-        Me.prodQty.Name = "prodQty"
-        Me.prodQty.ReadOnly = True
-        Me.prodQty.Width = 60
-        '
-        'prodCost
-        '
-        Me.prodCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodCost.HeaderText = "Cost"
-        Me.prodCost.Name = "prodCost"
-        Me.prodCost.ReadOnly = True
-        '
-        'prodPrice
-        '
-        Me.prodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodPrice.HeaderText = "Price"
-        Me.prodPrice.Name = "prodPrice"
-        Me.prodPrice.ReadOnly = True
         '
         'pnlJob
         '
@@ -346,7 +306,7 @@ Partial Class FrmJobMaint
         Me.pnlJob.Location = New System.Drawing.Point(0, 0)
         Me.pnlJob.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.pnlJob.Name = "pnlJob"
-        Me.pnlJob.Size = New System.Drawing.Size(575, 457)
+        Me.pnlJob.Size = New System.Drawing.Size(494, 457)
         Me.pnlJob.TabIndex = 69
         '
         'GrpInvoice
@@ -366,15 +326,16 @@ Partial Class FrmJobMaint
         Me.GrpInvoice.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.GrpInvoice.Name = "GrpInvoice"
         Me.GrpInvoice.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.GrpInvoice.Size = New System.Drawing.Size(531, 102)
+        Me.GrpInvoice.Size = New System.Drawing.Size(450, 102)
         Me.GrpInvoice.TabIndex = 14
         Me.GrpInvoice.TabStop = False
         '
         'LblTerms
         '
+        Me.LblTerms.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LblTerms.AutoSize = True
         Me.LblTerms.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblTerms.Location = New System.Drawing.Point(172, 67)
+        Me.LblTerms.Location = New System.Drawing.Point(371, 57)
         Me.LblTerms.Name = "LblTerms"
         Me.LblTerms.Size = New System.Drawing.Size(72, 14)
         Me.LblTerms.TabIndex = 77
@@ -382,8 +343,9 @@ Partial Class FrmJobMaint
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(181, 47)
+        Me.Label8.Location = New System.Drawing.Point(380, 37)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(41, 14)
         Me.Label8.TabIndex = 76
@@ -394,7 +356,7 @@ Partial Class FrmJobMaint
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(255, 39)
+        Me.Label12.Location = New System.Drawing.Point(199, 17)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(76, 14)
@@ -417,7 +379,7 @@ Partial Class FrmJobMaint
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(255, 73)
+        Me.Label9.Location = New System.Drawing.Point(199, 58)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(81, 14)
@@ -427,7 +389,7 @@ Partial Class FrmJobMaint
         'DtpPaymentDue
         '
         Me.DtpPaymentDue.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DtpPaymentDue.Location = New System.Drawing.Point(344, 67)
+        Me.DtpPaymentDue.Location = New System.Drawing.Point(199, 75)
         Me.DtpPaymentDue.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.DtpPaymentDue.Name = "DtpPaymentDue"
         Me.DtpPaymentDue.Size = New System.Drawing.Size(165, 22)
@@ -437,7 +399,7 @@ Partial Class FrmJobMaint
         'DtpInvoiceDate
         '
         Me.DtpInvoiceDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DtpInvoiceDate.Location = New System.Drawing.Point(344, 33)
+        Me.DtpInvoiceDate.Location = New System.Drawing.Point(199, 34)
         Me.DtpInvoiceDate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.DtpInvoiceDate.Name = "DtpInvoiceDate"
         Me.DtpInvoiceDate.Size = New System.Drawing.Size(165, 22)
@@ -450,7 +412,7 @@ Partial Class FrmJobMaint
         Me.TxtInvoiceNumber.Location = New System.Drawing.Point(10, 39)
         Me.TxtInvoiceNumber.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TxtInvoiceNumber.Name = "TxtInvoiceNumber"
-        Me.TxtInvoiceNumber.Size = New System.Drawing.Size(142, 22)
+        Me.TxtInvoiceNumber.Size = New System.Drawing.Size(164, 22)
         Me.TxtInvoiceNumber.TabIndex = 1
         '
         'cbUser
@@ -458,7 +420,7 @@ Partial Class FrmJobMaint
         Me.cbUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbUser.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbUser.FormattingEnabled = True
-        Me.cbUser.Location = New System.Drawing.Point(488, 89)
+        Me.cbUser.Location = New System.Drawing.Point(407, 89)
         Me.cbUser.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cbUser.Name = "cbUser"
         Me.cbUser.Size = New System.Drawing.Size(66, 22)
@@ -480,7 +442,7 @@ Partial Class FrmJobMaint
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(409, 92)
+        Me.Label6.Location = New System.Drawing.Point(328, 92)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(71, 14)
@@ -491,7 +453,7 @@ Partial Class FrmJobMaint
         '
         Me.btnViewCust.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnViewCust.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnViewCust.Location = New System.Drawing.Point(488, 16)
+        Me.btnViewCust.Location = New System.Drawing.Point(407, 16)
         Me.btnViewCust.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnViewCust.Name = "btnViewCust"
         Me.btnViewCust.Size = New System.Drawing.Size(68, 26)
@@ -541,7 +503,7 @@ Partial Class FrmJobMaint
         Me.rtbJobNotes.Location = New System.Drawing.Point(24, 179)
         Me.rtbJobNotes.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.rtbJobNotes.Name = "rtbJobNotes"
-        Me.rtbJobNotes.Size = New System.Drawing.Size(530, 164)
+        Me.rtbJobNotes.Size = New System.Drawing.Size(449, 164)
         Me.rtbJobNotes.TabIndex = 6
         Me.rtbJobNotes.Text = ""
         '
@@ -553,7 +515,7 @@ Partial Class FrmJobMaint
         Me.TxtJobReference.Location = New System.Drawing.Point(134, 89)
         Me.TxtJobReference.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TxtJobReference.Name = "TxtJobReference"
-        Me.TxtJobReference.Size = New System.Drawing.Size(256, 22)
+        Me.TxtJobReference.Size = New System.Drawing.Size(175, 22)
         Me.TxtJobReference.TabIndex = 2
         '
         'TxtPurchaseOrder
@@ -564,7 +526,7 @@ Partial Class FrmJobMaint
         Me.TxtPurchaseOrder.Location = New System.Drawing.Point(134, 128)
         Me.TxtPurchaseOrder.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TxtPurchaseOrder.Name = "TxtPurchaseOrder"
-        Me.TxtPurchaseOrder.Size = New System.Drawing.Size(256, 22)
+        Me.TxtPurchaseOrder.Size = New System.Drawing.Size(175, 22)
         Me.TxtPurchaseOrder.TabIndex = 0
         '
         'chkCompleted
@@ -572,7 +534,7 @@ Partial Class FrmJobMaint
         Me.chkCompleted.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkCompleted.AutoSize = True
         Me.chkCompleted.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkCompleted.Location = New System.Drawing.Point(442, 132)
+        Me.chkCompleted.Location = New System.Drawing.Point(361, 132)
         Me.chkCompleted.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Size = New System.Drawing.Size(85, 18)
@@ -588,7 +550,7 @@ Partial Class FrmJobMaint
         Me.txtJobName.Location = New System.Drawing.Point(107, 51)
         Me.txtJobName.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtJobName.Name = "txtJobName"
-        Me.txtJobName.Size = New System.Drawing.Size(447, 27)
+        Me.txtJobName.Size = New System.Drawing.Size(366, 27)
         Me.txtJobName.TabIndex = 2
         '
         'Label1
@@ -611,7 +573,7 @@ Partial Class FrmJobMaint
         Me.cbCust.Location = New System.Drawing.Point(107, 16)
         Me.cbCust.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cbCust.Name = "cbCust"
-        Me.cbCust.Size = New System.Drawing.Size(362, 22)
+        Me.cbCust.Size = New System.Drawing.Size(281, 22)
         Me.cbCust.TabIndex = 0
         '
         'StatusStrip1
@@ -653,7 +615,7 @@ Partial Class FrmJobMaint
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnMaintProducts)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvProducts)
-        Me.SplitContainer1.Size = New System.Drawing.Size(467, 461)
+        Me.SplitContainer1.Size = New System.Drawing.Size(548, 461)
         Me.SplitContainer1.SplitterDistance = 197
         Me.SplitContainer1.TabIndex = 77
         '
@@ -696,7 +658,7 @@ Partial Class FrmJobMaint
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer2.Size = New System.Drawing.Size(1050, 461)
-        Me.SplitContainer2.SplitterDistance = 579
+        Me.SplitContainer2.SplitterDistance = 498
         Me.SplitContainer2.TabIndex = 78
         '
         'PicDiary
@@ -709,6 +671,67 @@ Partial Class FrmJobMaint
         Me.PicDiary.Size = New System.Drawing.Size(42, 42)
         Me.PicDiary.TabIndex = 90
         Me.PicDiary.TabStop = False
+        '
+        'jpId
+        '
+        Me.jpId.HeaderText = "Id"
+        Me.jpId.Name = "jpId"
+        Me.jpId.ReadOnly = True
+        Me.jpId.Visible = False
+        '
+        'prodSupp
+        '
+        Me.prodSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodSupp.HeaderText = "Supplier"
+        Me.prodSupp.Name = "prodSupp"
+        Me.prodSupp.ReadOnly = True
+        Me.prodSupp.Width = 120
+        '
+        'prodId
+        '
+        Me.prodId.HeaderText = "prodId"
+        Me.prodId.Name = "prodId"
+        Me.prodId.ReadOnly = True
+        Me.prodId.Visible = False
+        '
+        'prodName
+        '
+        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.prodName.HeaderText = "ProductName"
+        Me.prodName.Name = "prodName"
+        Me.prodName.ReadOnly = True
+        '
+        'prodQty
+        '
+        Me.prodQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodQty.HeaderText = "Qty"
+        Me.prodQty.Name = "prodQty"
+        Me.prodQty.ReadOnly = True
+        Me.prodQty.Width = 60
+        '
+        'prodCost
+        '
+        Me.prodCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodCost.HeaderText = "Unit Cost"
+        Me.prodCost.Name = "prodCost"
+        Me.prodCost.ReadOnly = True
+        Me.prodCost.Width = 70
+        '
+        'prodPrice
+        '
+        Me.prodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodPrice.HeaderText = "Std Price"
+        Me.prodPrice.Name = "prodPrice"
+        Me.prodPrice.ReadOnly = True
+        Me.prodPrice.Width = 70
+        '
+        'jobPrice
+        '
+        Me.jobPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jobPrice.HeaderText = "Job Price"
+        Me.jobPrice.Name = "jobPrice"
+        Me.jobPrice.ReadOnly = True
+        Me.jobPrice.Width = 70
         '
         'FrmJobMaint
         '
@@ -759,21 +782,8 @@ Partial Class FrmJobMaint
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents btnAddTask As Button
     Friend WithEvents dgvTasks As DataGridView
-    Friend WithEvents taskId As DataGridViewTextBoxColumn
-    Friend WithEvents taskName As DataGridViewTextBoxColumn
-    Friend WithEvents taskStartDue As DataGridViewTextBoxColumn
-    Friend WithEvents taskStarted As DataGridViewTextBoxColumn
-    Friend WithEvents taskCompleted As DataGridViewTextBoxColumn
-    Friend WithEvents taskHours As DataGridViewTextBoxColumn
     Friend WithEvents btnMaintProducts As Button
     Friend WithEvents dgvProducts As DataGridView
-    Friend WithEvents jpId As DataGridViewTextBoxColumn
-    Friend WithEvents prodSupp As DataGridViewTextBoxColumn
-    Friend WithEvents prodId As DataGridViewTextBoxColumn
-    Friend WithEvents prodName As DataGridViewTextBoxColumn
-    Friend WithEvents prodQty As DataGridViewTextBoxColumn
-    Friend WithEvents prodCost As DataGridViewTextBoxColumn
-    Friend WithEvents prodPrice As DataGridViewTextBoxColumn
     Friend WithEvents pnlJob As Panel
     Friend WithEvents Label6 As Label
     Friend WithEvents btnViewCust As Button
@@ -805,4 +815,19 @@ Partial Class FrmJobMaint
     Friend WithEvents LblTerms As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents PicDiary As PictureBox
+    Friend WithEvents taskId As DataGridViewTextBoxColumn
+    Friend WithEvents taskName As DataGridViewTextBoxColumn
+    Friend WithEvents taskStartDue As DataGridViewTextBoxColumn
+    Friend WithEvents taskStarted As DataGridViewTextBoxColumn
+    Friend WithEvents taskCompleted As DataGridViewTextBoxColumn
+    Friend WithEvents taskHours As DataGridViewTextBoxColumn
+    Friend WithEvents taskPrice As DataGridViewTextBoxColumn
+    Friend WithEvents jpId As DataGridViewTextBoxColumn
+    Friend WithEvents prodSupp As DataGridViewTextBoxColumn
+    Friend WithEvents prodId As DataGridViewTextBoxColumn
+    Friend WithEvents prodName As DataGridViewTextBoxColumn
+    Friend WithEvents prodQty As DataGridViewTextBoxColumn
+    Friend WithEvents prodCost As DataGridViewTextBoxColumn
+    Friend WithEvents prodPrice As DataGridViewTextBoxColumn
+    Friend WithEvents jobPrice As DataGridViewTextBoxColumn
 End Class

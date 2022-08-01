@@ -23,9 +23,12 @@ Public Class FrmViewCust
         Me.Close()
     End Sub
     Private Sub FrmViewCust_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        logutil.info("Closing", Me.Name)
+        LogUtil.Info("Closing", Me.Name)
+        My.Settings.CustViewFormPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     Private Sub FrmViewCust_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        GetFormPos(Me, My.Settings.CustViewFormPos)
         txtCustAddr1.Text = _customer.Address.Address1
         txtCustAddr2.Text = _customer.Address.Address2
         txtCustAddr3.Text = _customer.Address.Address3

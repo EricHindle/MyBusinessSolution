@@ -177,7 +177,7 @@ Public Class LoginForm
         End If
         Me.Hide()
         If My.Settings.ShowRemindersAtLogin Then
-            Using _remind As New frmReminderList
+            Using _remind As New FrmReminderList
                 Dim i As Integer = _remind.loadReminders
                 If i > 0 Then
                     _remind.ShowDialog()

@@ -40,6 +40,8 @@ Public Class FrmJobMaint
 #Region "form handlers"
     Private Sub FrmJob_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Debug("Closing", Me.Name)
+        My.Settings.JobMaintFormPos = SetFormPos(Me)
+        My.Settings.Save()
         oCustTa.Dispose()
         oCustListTable.Dispose()
         oUserTa.Dispose()
@@ -47,6 +49,7 @@ Public Class FrmJobMaint
     End Sub
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Started", Me.Name)
+        GetFormPos(Me, My.Settings.JobMaintFormPos)
         isLoading = True
         Try
             oUserTa.Fill(oUserTable)
@@ -245,6 +248,7 @@ Public Class FrmJobMaint
             tRow.Cells(Me.taskHours.Name).Value = oRow.task_time
             tRow.Cells(Me.taskStarted.Name).Value = CStr(CBool(oRow.task_started))
             tRow.Cells(Me.taskCompleted.Name).Value = CStr(CBool(oRow.task_completed))
+            tRow.Cells(taskPrice.Name).Value = oRow.task_cost
         Next
         oTaskTa.Dispose()
         oTaskTable.Dispose()
@@ -289,6 +293,7 @@ Public Class FrmJobMaint
             tRow.Cells(Me.prodQty.Name).Value = _qty
             tRow.Cells(Me.prodCost.Name).Value = _cost
             tRow.Cells(Me.prodPrice.Name).Value = _price
+            tRow.Cells(Me.jobPrice.Name).Value = oRow.jp_price
         Next
         dgvProducts.ClearSelection()
         oJobProductTa.Dispose()
@@ -345,5 +350,6 @@ Public Class FrmJobMaint
             _diary.ShowDialog()
         End Using
     End Sub
+
 #End Region
 End Class

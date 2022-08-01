@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 
-Public Class frmReminderList
+Public Class FrmReminderList
 #Region "variables"
     Private Const FORM_NAME As String = "reminders"
     Private Const DUE_REMINDERS As String = "due reminders"
@@ -19,6 +19,7 @@ Public Class frmReminderList
 #End Region
 #Region "form control handlers"
     Private Sub Reminders_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        GetFormPos(Me, My.Settings.ReminderListPos)
         If dayOfWeek = 6 Then
             dateSectionHeads = Split(My.Resources.Day6SectionHeads, "/")
             dateSectionEnds = {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 8, Today)), Date.MaxValue}
@@ -30,6 +31,8 @@ Public Class frmReminderList
     End Sub
     Private Sub Reminders_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
+        My.Settings.ReminderListPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Me.Close()

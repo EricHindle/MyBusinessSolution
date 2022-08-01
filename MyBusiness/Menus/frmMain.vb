@@ -25,6 +25,7 @@ Public Class FrmMain
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         MenuStrip1.CanOverflow = True
         Me.Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
+        GetFormPos(Me, My.Settings.MainFormPos)
         isLoading = True
         InitialiseData()
         FillCustomerTable()
@@ -210,6 +211,38 @@ Public Class FrmMain
             _log.ShowDialog()
         End Using
     End Sub
+    Private Sub MnuBackup_Click(sender As Object, e As EventArgs) Handles MnuBackup.Click
+        Using _backup As New FrmBackup
+            _backup.ShowDialog()
+        End Using
+    End Sub
+    Private Sub MnuRestore_Click(sender As Object, e As EventArgs) Handles MnuRestore.Click
+        Using _restore As New FrmRestore
+            _restore.ShowDialog()
+        End Using
+    End Sub
+    Private Sub MnuChangePassword_Click(sender As Object, e As EventArgs) Handles MnuChangePassword.Click
+        Using _pwdChange As New FrmChangePassword
+            _pwdChange.ForceChange = False
+            _pwdChange.ShowDialog()
+        End Using
+    End Sub
+    Private Sub ChkCallBackReminders_Click(sender As Object, e As EventArgs) Handles ChkCallBackReminders.Click
+        StartReminderCheck()
+    End Sub
+    Private Sub TimerCallBackReminders_Tick(sender As Object, e As EventArgs) Handles TimerCallBackReminders.Tick
+        LogUtil.Info("Reminder Timer tick", MyBase.Name)
+        StartReminderCheck()
+    End Sub
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        Using _about As New FrmAbout
+            _about.ShowDialog()
+        End Using
+    End Sub
+    Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        My.Settings.MainFormPos = SetFormPos(Me)
+        My.Settings.Save()
+    End Sub
 #End Region
 #Region "subroutines"
     Private Sub FillCustomerTable()
@@ -367,26 +400,6 @@ Public Class FrmMain
         End With
         Return sb.ToString
     End Function
-
-    Private Sub MnuBackup_Click(sender As Object, e As EventArgs) Handles MnuBackup.Click
-        Using _backup As New FrmBackup
-            _backup.ShowDialog()
-        End Using
-    End Sub
-
-    Private Sub MnuRestore_Click(sender As Object, e As EventArgs) Handles MnuRestore.Click
-        Using _restore As New FrmRestore
-            _restore.ShowDialog()
-        End Using
-    End Sub
-
-    Private Sub MnuChangePassword_Click(sender As Object, e As EventArgs) Handles MnuChangePassword.Click
-        Using _pwdChange As New FrmChangePassword
-            _pwdChange.ForceChange = False
-            _pwdChange.ShowDialog()
-        End Using
-    End Sub
-
 #End Region
 #Region "Callback reminders"
     Sub StartReminderCheck()
@@ -398,14 +411,7 @@ Public Class FrmMain
             LogUtil.Info(CStr(_alertList.Count) & " reminders", MyBase.Name)
             FrmAlert.openForms.Clear()
             For Each _alert As Reminder In _alertList
-                Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
-                Dim subject As String = _alert.Subject
-                Dim slice As New FrmAlert(My.Settings.alertDuration * 1000, subject & CALLBACK_MESSAGE & callBackTime) With {
-                .Height = 80,
-                .Guid = Guid.NewGuid
-            }
-                LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
-                slice.Show()
+                ShowAlertMessage(_alert)
             Next
             LogUtil.Info("Callback reminder check complete", MyBase.Name)
         Else
@@ -414,14 +420,15 @@ Public Class FrmMain
         LogUtil.Info("Callback Reminder check ========== End", MyBase.Name)
     End Sub
 
-    Private Sub ChkCallBackReminders_Click(sender As Object, e As EventArgs) Handles ChkCallBackReminders.Click
-        StartReminderCheck()
+    Private Sub ShowAlertMessage(_alert As Reminder)
+        Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
+        Dim subject As String = _alert.Subject
+        Dim slice As New FrmAlert(My.Settings.alertDuration * 1000, subject & CALLBACK_MESSAGE & callBackTime) With {
+        .Height = 80,
+        .Guid = Guid.NewGuid
+    }
+        LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
+        slice.Show()
     End Sub
-
-    Private Sub TimerCallBackReminders_Tick(sender As Object, e As EventArgs) Handles TimerCallBackReminders.Tick
-        LogUtil.Info("Reminder Timer tick", MyBase.Name)
-        StartReminderCheck()
-    End Sub
-
 #End Region
 End Class

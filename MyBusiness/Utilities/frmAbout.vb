@@ -39,7 +39,7 @@ Public NotInheritable Class FrmAbout
             End If
         Next
         Me.TextBoxDescription.Text =
-                vbCrLf & "Multi-operator Self Exclusion" & vbCrLf &
+                vbCrLf & "MyBusiness Work Management" & vbCrLf &
                 vbCrLf & "Computer name : " & My.Computer.Name &
                 vbCrLf & "Data connection: " &
                 vbCrLf & "   server=" & serverName &

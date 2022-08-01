@@ -57,9 +57,12 @@ Public Class FrmReminder
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
+        My.Settings.ReminderFormPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         logutil.info("Starting", FORM_NAME)
+        GetFormPos(Me, My.Settings.ReminderFormPos)
         dtpSelectDate.Value = Today
         lblFormName.Text = FORM_NAME
         lblName.Text = currentUser.UserName

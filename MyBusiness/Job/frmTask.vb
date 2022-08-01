@@ -94,6 +94,7 @@ Public Class FrmTask
         Else
             Inserttask()
         End If
+        Me.Close()
     End Sub
 #End Region
 #Region "subroutines"

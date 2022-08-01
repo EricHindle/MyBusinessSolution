@@ -6,9 +6,6 @@
 
 Public Class FrmCustomerMaint
 #Region "variables"
-    Private ReadOnly oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
-    Private ReadOnly oCustListTable As New netwyrksDataSet.customerDataTable
-    Private ReadOnly oCustTable As New netwyrksDataSet.customerDataTable
     Private _currentCustomer As Customer = Nothing
     Private _newCustomer As Customer = Nothing
     Private isLoading As Boolean = False
@@ -29,7 +26,8 @@ Public Class FrmCustomerMaint
         Me.Close()
     End Sub
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        logutil.info("Started", Me.Name)
+        LogUtil.Info("Started", Me.Name)
+        GetFormPos(Me, My.Settings.CustFormPos)
         isLoading = True
         pnlCustomer.Enabled = False
         SplitContainer1.Panel2Collapsed = True
@@ -46,9 +44,8 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         logutil.info("Closing", Me.Name)
-        oCustListTable.Dispose()
-        oCustTa.Dispose()
-        oCustTable.Dispose()
+        My.Settings.CustFormPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F3 Then
@@ -59,7 +56,7 @@ Public Class FrmCustomerMaint
         logutil.info("Updating", Me.Name)
         Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
         With _currentCustomer
-            _newCustomer = CustomerBuilder.ACustomer.WithAddress(_custAdd) _
+            _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
                 .WithCustName(txtCustName.Text.Trim()) _
                 .WithDateChanged(.DateChanged) _
                 .WithDateCreated(.DateCreated) _
@@ -139,7 +136,8 @@ Public Class FrmCustomerMaint
     Private Function AmendCustomer() As Boolean
         Dim isAmendOK As Boolean = False
         With _newCustomer
-            If oCustTa.UpdateCustomer(.CustName, .Address.Address1, .Address.Address2, .Address.Address3, .Address.Address4, .Address.Postcode, .Phone, .Email, .Discount, .Notes, Now, .Terms, _customerId) = 1 Then
+
+            If UpdateCustomer(_newCustomer) = 1 Then
                 AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
                 ShowStatus(lblStatus, "Customer updated OK", Me.Name, True)

@@ -556,6 +556,210 @@ Namespace My
                 Me("alertDuration") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property MainFormPos() As String
+            Get
+                Return CType(Me("MainFormPos"),String)
+            End Get
+            Set
+                Me("MainFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CustFormPos() As String
+            Get
+                Return CType(Me("CustFormPos"),String)
+            End Get
+            Set
+                Me("CustFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property CustViewFormPos() As String
+            Get
+                Return CType(Me("CustViewFormPos"),String)
+            End Get
+            Set
+                Me("CustViewFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DiaryFormPos() As String
+            Get
+                Return CType(Me("DiaryFormPos"),String)
+            End Get
+            Set
+                Me("DiaryFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ReminderFormPos() As String
+            Get
+                Return CType(Me("ReminderFormPos"),String)
+            End Get
+            Set
+                Me("ReminderFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ReminderListPos() As String
+            Get
+                Return CType(Me("ReminderListPos"),String)
+            End Get
+            Set
+                Me("ReminderListPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ViewInvoiceFormPos() As String
+            Get
+                Return CType(Me("ViewInvoiceFormPos"),String)
+            End Get
+            Set
+                Me("ViewInvoiceFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property JobMaintFormPos() As String
+            Get
+                Return CType(Me("JobMaintFormPos"),String)
+            End Get
+            Set
+                Me("JobMaintFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property TaskFormPos() As String
+            Get
+                Return CType(Me("TaskFormPos"),String)
+            End Get
+            Set
+                Me("TaskFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AuditItemFormPos() As String
+            Get
+                Return CType(Me("AuditItemFormPos"),String)
+            End Get
+            Set
+                Me("AuditItemFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DispAuditFormPos() As String
+            Get
+                Return CType(Me("DispAuditFormPos"),String)
+            End Get
+            Set
+                Me("DispAuditFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LogViewFormPos() As String
+            Get
+                Return CType(Me("LogViewFormPos"),String)
+            End Get
+            Set
+                Me("LogViewFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ProductFormPos() As String
+            Get
+                Return CType(Me("ProductFormPos"),String)
+            End Get
+            Set
+                Me("ProductFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property SupplierFormPos() As String
+            Get
+                Return CType(Me("SupplierFormPos"),String)
+            End Get
+            Set
+                Me("SupplierFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property OptionsFormPos() As String
+            Get
+                Return CType(Me("OptionsFormPos"),String)
+            End Get
+            Set
+                Me("OptionsFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property GlobalFormPos() As String
+            Get
+                Return CType(Me("GlobalFormPos"),String)
+            End Get
+            Set
+                Me("GlobalFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property JobProductsFormPos() As String
+            Get
+                Return CType(Me("JobProductsFormPos"),String)
+            End Get
+            Set
+                Me("JobProductsFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

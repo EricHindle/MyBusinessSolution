@@ -43,8 +43,14 @@
             _job = GetJobById(.jp_job_id)
             _product = GetProductById(.jp_product_id)
             _quantity = .jp_quantity
+
             _jobProductCreated = .jp_created
-            _jobProductChanged = .jp_changed
+            If .Isjp_changedNull Then
+                _jobProductChanged = Nothing
+            Else
+                _jobProductChanged = .jp_changed
+            End If
+
             _taxable = .jp_taxable
             _tax_rate = .jp_tax_rate
             _price = .jp_price
@@ -62,5 +68,52 @@
         _tax_rate = 0.00D
         _price = 0.00D
         Return Me
+    End Function
+    Public Function WithJobProductId(pJobProductId As Integer) As JobProductBuilder
+        _jobProductId = pJobProductId
+        Return Me
+    End Function
+    Public Function WithJob(pJobId As Integer) As JobProductBuilder
+        _job = GetJobById(pJobId)
+        Return Me
+    End Function
+    Public Function WithProduct(pProductId As Integer) As JobProductBuilder
+        _product = GetProductById(pProductId)
+        Return Me
+    End Function
+    Public Function WithQuantity(pQuantity As Integer) As JobProductBuilder
+        _quantity = pQuantity
+        Return Me
+    End Function
+    Public Function WithTaxable(pTaxable As Boolean) As JobProductBuilder
+        _taxable = pTaxable
+        Return Me
+    End Function
+    Public Function WithTaxRate(pTaxRate As Decimal) As JobProductBuilder
+        _tax_rate = pTaxRate
+        Return Me
+    End Function
+    Public Function WithPrice(pPrice As Decimal) As JobProductBuilder
+        _price = pPrice
+        Return Me
+    End Function
+    Public Function WithCreated(ByVal pCreated As DateTime) As JobProductBuilder
+        _jobProductCreated = pCreated
+        Return Me
+    End Function
+    Public Function WithChanged(ByVal pChanged As DateTime?) As JobProductBuilder
+        _jobProductChanged = pChanged
+        Return Me
+    End Function
+    Public Function Build() As JobProduct
+        Return New JobProduct(_jobProductId,
+                              _job,
+                              _product,
+                              _quantity,
+                              _jobProductCreated,
+                              _jobProductChanged,
+                              _taxable,
+                              _tax_rate,
+                              _price)
     End Function
 End Class

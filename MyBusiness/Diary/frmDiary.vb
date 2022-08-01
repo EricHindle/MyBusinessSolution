@@ -57,6 +57,8 @@ Public Class FrmDiary
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
+        My.Settings.DiaryFormPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     ''' <summary>
     ''' Initialse the loading form
@@ -65,7 +67,8 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        logutil.info("Starting", FORM_NAME)
+        LogUtil.Info("Starting", FORM_NAME)
+        GetFormPos(Me, My.Settings.DiaryFormPos)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
         Me.KeyPreview = True

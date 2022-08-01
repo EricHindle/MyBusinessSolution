@@ -185,6 +185,51 @@ Module ModDatabase
         Return _ct
     End Function
 #End Region
+#Region "jobproduct"
+    Public Function GetJobProductByJob(_job As Job) As List(Of JobProduct)
+        Dim _jobProductList As New List(Of JobProduct)
+        oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
+        For Each oRow As netwyrksDataSet.job_productRow In oJobProductTable.Rows
+            _jobProductList.Add(JobProductBuilder.AJobProduct.StartingWith(oRow).Build)
+        Next
+        Return _jobProductList
+    End Function
+    Public Function InsertJobProduct(pJobProduct As JobProduct) As Integer
+        Dim _jobproductId As Integer
+        Try
+            With pJobProduct
+                _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
+                If _jobproductId > 0 Then
+                    AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
+                End If
+            End With
+        Catch ex As Exception
+
+        End Try
+        Return _jobproductId
+    End Function
+    Public Function DeleteJobProduct(pJobProductId As Integer) As Integer
+        Dim _ct As Integer = 0
+        Try
+            _ct = oJobProductTa.DeleteJobProduct(pJobProductId)
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+    Public Function UpdateJobProduct(pJobProduct As JobProduct) As Integer
+        Dim _ct As Integer
+        Try
+            With pJobProduct
+                _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
+            End With
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+
+#End Region
 #Region "product"
     Public Function GetProductById(ByVal pId As Integer) As Product
         Dim _product As Product = ProductBuilder.AProduct.StartingWithNothing.Build
@@ -290,7 +335,7 @@ Module ModDatabase
                                            .Email,
                                            .Discount,
                                            .Notes,
-                                           .DateChanged,
+                                           Now,
                                            .Terms,
                                            .CustomerId)
             End With
@@ -309,7 +354,18 @@ Module ModDatabase
         Next
         Return _supplierList
     End Function
+    Public Function GetSupplierById(pSuppId As Integer) As Supplier
+        Dim _supp As Supplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
+        Try
+            oSupplierTa.FillById(oSupplierTable, pSuppId)
+            If oSupplierTable.Rows.Count > 0 Then
+                _supp = SupplierBuilder.ASupplier.StartingWith(oSupplierTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
 
+        End Try
+        Return _supp
+    End Function
     Public Function InsertSupplier(ByRef pSupplier As Supplier) As Integer
         Dim newId As Integer = -1
         Try
@@ -444,8 +500,6 @@ Module ModDatabase
         End Try
         Return _id
     End Function
-
-
     Public Function GetCallBackAlerts(ByVal userId As Integer) As List(Of Reminder)
         Dim _alertList As New List(Of Reminder)
         Try
@@ -459,8 +513,6 @@ Module ModDatabase
         End Try
         Return _alertList
     End Function
-
-
 #End Region
 #Region "common"
     Public Sub InitialiseData()
@@ -571,11 +623,9 @@ Module ModDatabase
         End If
         Return isTableOK
     End Function
-
     Private Function GetMessage(ex As Exception) As String
         Return If(ex Is Nothing, "", "Exception:  " & ex.Message & vbCrLf & If(ex.InnerException Is Nothing, "", ex.InnerException.Message))
     End Function
-
 #End Region
 #Region "getdata"
     Public Function GetAuditTable() As netwyrksDataSet.auditDataTable
