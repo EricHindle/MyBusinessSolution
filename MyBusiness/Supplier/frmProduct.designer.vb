@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmProduct
+Partial Class FrmProduct
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmProduct
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProduct))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmProduct))
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -42,6 +42,7 @@ Partial Class frmProduct
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.LblAction = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,12 +248,26 @@ Partial Class frmProduct
         Me.Label7.TabIndex = 89
         Me.Label7.Text = "Rate %"
         '
-        'frmProduct
+        'LblAction
+        '
+        Me.LblAction.AutoSize = True
+        Me.LblAction.BackColor = System.Drawing.Color.SeaGreen
+        Me.LblAction.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblAction.ForeColor = System.Drawing.Color.White
+        Me.LblAction.Location = New System.Drawing.Point(353, 28)
+        Me.LblAction.Name = "LblAction"
+        Me.LblAction.Padding = New System.Windows.Forms.Padding(3)
+        Me.LblAction.Size = New System.Drawing.Size(187, 29)
+        Me.LblAction.TabIndex = 91
+        Me.LblAction.Text = "Adding new product"
+        '
+        'FrmProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(573, 550)
+        Me.Controls.Add(Me.LblAction)
         Me.Controls.Add(Me.chkTaxable)
         Me.Controls.Add(Me.nudTaxRate)
         Me.Controls.Add(Me.Label7)
@@ -274,7 +289,7 @@ Partial Class frmProduct
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmProduct"
+        Me.Name = "FrmProduct"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
@@ -306,4 +321,5 @@ Partial Class frmProduct
     Friend WithEvents chkTaxable As System.Windows.Forms.CheckBox
     Friend WithEvents nudTaxRate As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents LblAction As Label
 End Class

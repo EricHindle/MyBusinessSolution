@@ -258,20 +258,14 @@ Module ModDatabase
     Public Function InsertProduct(pProduct As Product) As Integer
         Dim _productId As Integer
         With pProduct
-            _productId = oProductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate)
-            If _productId > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", .ToString)
-            End If
+            _productId = oProductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, .ProductCreated, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate)
         End With
         Return _productId
     End Function
     Public Function UpdateProduct(pProduct As Product) As Integer
         Dim _ct As Integer
         With pProduct
-            _ct = oProductTa.UpdateProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, Now, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, pProduct.ProductId)
-            If _ct = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, pProduct.ProductId, AuditUtil.AuditableAction.create, "", .ToString)
-            End If
+            _ct = oProductTa.UpdateProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, .ProductChanged, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, .ProductId)
         End With
         Return _ct
     End Function

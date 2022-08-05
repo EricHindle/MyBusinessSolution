@@ -26,6 +26,8 @@ Public Class FrmSupplier
         Me.Close()
     End Sub
     Private Sub FrmSupplier_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+        LogUtil.Info("Starting", MyBase.Name)
+        GetFormPos(Me, My.Settings.SupplierFormPos)
         spProducts.Panel2Collapsed = True
         pnlProducts.Enabled = False
         If _supplierId <= 0 Then
@@ -38,6 +40,8 @@ Public Class FrmSupplier
     End Sub
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
+        My.Settings.SupplierFormPos = SetFormPos(Me)
+        My.Settings.Save()
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.ToUpper.Trim).Build
@@ -57,7 +61,7 @@ Public Class FrmSupplier
             End If
         Else
             If CreateSupplier() Then
-                LblStatus.Text = "Inserted New Supplier"
+                LblAction.Text = "Inserted New Supplier"
                 Me.Close()
             End If
         End If
@@ -67,8 +71,8 @@ Public Class FrmSupplier
         If dgvProducts.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
             Dim oProductId As Integer = oRow.Cells(Me.prodId.Name).Value
-            Using _ProductForm As New frmProduct
-                _ProductForm.TheSupplier = _currentSupplier
+            Using _ProductForm As New FrmProduct
+                _ProductForm.SelectSupplier = _currentSupplier
                 _ProductForm.ProductId = oProductId
                 _ProductForm.ShowDialog()
             End Using
@@ -76,8 +80,8 @@ Public Class FrmSupplier
         End If
     End Sub
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
-        Using _productForm As New frmProduct
-            _productForm.TheSupplier = _currentSupplier
+        Using _productForm As New FrmProduct
+            _productForm.SelectSupplier = _currentSupplier
             _productForm.ShowDialog()
             FillProductsList(_supplierId)
         End Using
@@ -101,9 +105,10 @@ Public Class FrmSupplier
 #End Region
 #Region "subroutines"
     Private Sub FillSupplierDetails()
-        LblStatus.Text = "Updating Supplier"
+        LblAction.Text = "Updating Supplier"
         btnUpdate.Text = "Update"
         With _currentSupplier
+            LogUtil.Info("Amending supplier " & CStr(_supplierId) & " : " & .SupplierName, MyBase.Name)
             txtSuppName.Text = .SupplierName
             txtSuppAddr1.Text = .SupplierAddress.Address1
             txtSuppAddr2.Text = .SupplierAddress.Address2
@@ -126,27 +131,31 @@ Public Class FrmSupplier
         If _supplierId > 0 Then
             isInsertOK = True
             AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", _newSupplier.ToString)
+            LogUtil.Info("Supplier created OK", MyBase.Name)
         Else
             MsgBox("Supplier not saved", MsgBoxStyle.Exclamation, "Error")
             LogUtil.Problem("Supplier " & _newSupplier.SupplierName & " not saved")
             isInsertOK = False
-            End If
+        End If
         Return isInsertOK
     End Function
     Private Function AmendSupplier() As Boolean
         Dim isAmendOK As Boolean
+        LogUtil.Info("Updating", Me.Name)
         If UpdateSupplier(_newSupplier) = 1 Then
             isAmendOK = True
             AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.ToString, _newSupplier.ToString)
+            LogUtil.Info("Supplier updated OK", MyBase.Name)
         Else
             isAmendOK = False
-                MsgBox("Supplier not updated", MsgBoxStyle.Exclamation, "Error")
+            MsgBox("Supplier not updated", MsgBoxStyle.Exclamation, "Error")
             LogUtil.Problem("Supplier " & _newSupplier.SupplierName & " not updated")
         End If
         Return isAmendOK
     End Function
     Private Sub NewSupplier()
-        LblStatus.Text = "Adding New Supplier"
+        LogUtil.Info("New supplier", MyBase.Name())
+        LblAction.Text = "Adding New Supplier"
         btnUpdate.Text = "Create"
         _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
         ClearSupplierDetails()

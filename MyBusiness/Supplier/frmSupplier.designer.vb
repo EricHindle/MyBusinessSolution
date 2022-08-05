@@ -64,9 +64,11 @@ Partial Class FrmSupplier
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtProductDesc = New System.Windows.Forms.TextBox()
         Me.btnAddProduct = New System.Windows.Forms.Button()
-        Me.LblStatus = New System.Windows.Forms.Label()
+        Me.LblAction = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlProducts.SuspendLayout()
@@ -134,6 +136,7 @@ Partial Class FrmSupplier
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 609)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
@@ -513,18 +516,18 @@ Partial Class FrmSupplier
         Me.btnAddProduct.Text = "+Product"
         Me.btnAddProduct.UseVisualStyleBackColor = True
         '
-        'LblStatus
+        'LblAction
         '
-        Me.LblStatus.AutoSize = True
-        Me.LblStatus.BackColor = System.Drawing.Color.SeaGreen
-        Me.LblStatus.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblStatus.ForeColor = System.Drawing.Color.White
-        Me.LblStatus.Location = New System.Drawing.Point(562, 28)
-        Me.LblStatus.Name = "LblStatus"
-        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3)
-        Me.LblStatus.Size = New System.Drawing.Size(188, 29)
-        Me.LblStatus.TabIndex = 73
-        Me.LblStatus.Text = "Adding new supplier"
+        Me.LblAction.AutoSize = True
+        Me.LblAction.BackColor = System.Drawing.Color.SeaGreen
+        Me.LblAction.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblAction.ForeColor = System.Drawing.Color.White
+        Me.LblAction.Location = New System.Drawing.Point(562, 28)
+        Me.LblAction.Name = "LblAction"
+        Me.LblAction.Padding = New System.Windows.Forms.Padding(3)
+        Me.LblAction.Size = New System.Drawing.Size(188, 29)
+        Me.LblAction.TabIndex = 73
+        Me.LblAction.Text = "Adding new supplier"
         '
         'SplitContainer1
         '
@@ -546,6 +549,15 @@ Partial Class FrmSupplier
         Me.SplitContainer1.SplitterDistance = 444
         Me.SplitContainer1.TabIndex = 74
         '
+        'LblStatus
+        '
+        Me.LblStatus.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
+        Me.LblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.LblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(2, 0, 3, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(9, 17)
+        '
         'FrmSupplier
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -553,7 +565,7 @@ Partial Class FrmSupplier
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(852, 631)
         Me.Controls.Add(Me.SplitContainer1)
-        Me.Controls.Add(Me.LblStatus)
+        Me.Controls.Add(Me.LblAction)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.StatusStrip1)
@@ -566,6 +578,8 @@ Partial Class FrmSupplier
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.pnlSupplier.ResumeLayout(False)
         Me.pnlSupplier.PerformLayout()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -624,6 +638,7 @@ Partial Class FrmSupplier
     Friend WithEvents ChkAmazon As CheckBox
     Friend WithEvents Label8 As Label
     Friend WithEvents TxtWeb As TextBox
-    Friend WithEvents LblStatus As Label
+    Friend WithEvents LblAction As Label
     Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents LblStatus As ToolStripStatusLabel
 End Class

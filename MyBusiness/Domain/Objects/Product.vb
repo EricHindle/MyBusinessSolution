@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 
+Imports System.Text
+
 Public Class Product
     Private _productId As Integer
     Private _productName As String
@@ -117,4 +119,31 @@ Public Class Product
         _productTaxable = pProductTaxable
         _productTaxRate = pProductRate
     End Sub
+    Public Overrides Function ToString() As String
+        Dim sb As New StringBuilder
+        sb _
+        .Append("Product=[") _
+        .Append("productId=[") _
+        .Append(ProductId) _
+        .Append("], Name=[") _
+        .Append(ProductName) _
+        .Append("], Description=[") _
+        .Append(ProductDescription) _
+        .Append("], SupplierId=[") _
+        .Append(ProductSupplierId) _
+        .Append("], ProductCost=[") _
+        .Append(CStr(ProductCost)) _
+        .Append("], Price=[") _
+        .Append(CStr(ProductPrice)) _
+        .Append("], Taxable=[") _
+        .Append(CStr(IsProductTaxable)) _
+        .Append("], TaxRate=[") _
+        .Append(If(ProductTaxRate Is Nothing, "0.00", CStr(ProductTaxRate))) _
+        .Append("], Created=[") _
+        .Append(Format(ProductCreated, "dd/MM/yyyy")) _
+        .Append("], Changed=[") _
+        .Append(If(ProductChanged Is Nothing, "", Format(ProductChanged, "dd/MM/yyyy"))) _
+        .Append("]]")
+        Return sb.ToString
+    End Function
 End Class

@@ -337,7 +337,6 @@ Public Module netwyrksCommon
         If isLogged Then logutil.info(sText, oFormName)
     End Sub
     Public Function GetFormPos(ByRef oForm As Form, ByVal sPos As String) As Boolean
-        LogUtil.Info("Getting form position for " & oForm.Name, "GetFormPos")
         Dim isOK As Boolean = True
         If sPos = "max" Then
             oForm.WindowState = FormWindowState.Maximized
@@ -365,7 +364,6 @@ Public Module netwyrksCommon
         Else
             sPos = oForm.Top & "~" & oForm.Left & "~" & oForm.Height & "~" & oForm.Width
         End If
-        logutil.info("Generated form position: " & sPos, "SetFormPos")
         Return sPos
     End Function
 #End Region
