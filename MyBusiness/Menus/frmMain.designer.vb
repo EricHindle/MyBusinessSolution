@@ -54,6 +54,12 @@ Partial Class FrmMain
         Me.txtSuppAddress = New System.Windows.Forms.TextBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.dgvJobs = New System.Windows.Forms.DataGridView()
+        Me.jobId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobAssigned = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobUser = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.spDiary = New System.Windows.Forms.SplitContainer()
         Me.dgvDiary = New System.Windows.Forms.DataGridView()
         Me.dremId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -77,6 +83,7 @@ Partial Class FrmMain
         Me.MnuRestore = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.MnuLogView = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JobToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -96,13 +103,8 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.jobId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobAssigned = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobUser = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MnuShowAudit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -429,6 +431,49 @@ Partial Class FrmMain
         Me.dgvJobs.Size = New System.Drawing.Size(783, 455)
         Me.dgvJobs.TabIndex = 0
         '
+        'jobId
+        '
+        Me.jobId.HeaderText = "Id"
+        Me.jobId.Name = "jobId"
+        Me.jobId.ReadOnly = True
+        Me.jobId.Visible = False
+        '
+        'jobName
+        '
+        Me.jobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jobName.HeaderText = "Job/Order"
+        Me.jobName.Name = "jobName"
+        Me.jobName.ReadOnly = True
+        Me.jobName.Width = 200
+        '
+        'jobDesc
+        '
+        Me.jobDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.jobDesc.HeaderText = "Description"
+        Me.jobDesc.Name = "jobDesc"
+        Me.jobDesc.ReadOnly = True
+        '
+        'jobAssigned
+        '
+        Me.jobAssigned.HeaderText = "Assigned to"
+        Me.jobAssigned.Name = "jobAssigned"
+        Me.jobAssigned.ReadOnly = True
+        '
+        'jobCompleted
+        '
+        Me.jobCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jobCompleted.HeaderText = "Done"
+        Me.jobCompleted.Name = "jobCompleted"
+        Me.jobCompleted.ReadOnly = True
+        Me.jobCompleted.Width = 50
+        '
+        'jobUser
+        '
+        Me.jobUser.HeaderText = "User"
+        Me.jobUser.Name = "jobUser"
+        Me.jobUser.ReadOnly = True
+        Me.jobUser.Visible = False
+        '
         'spDiary
         '
         Me.spDiary.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
@@ -586,10 +631,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.TidyFilesToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -599,7 +644,7 @@ Partial Class FrmMain
         Me.AdminToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.AdminToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.AdminToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator2, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
+        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
         Me.AdminToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
@@ -646,6 +691,11 @@ Partial Class FrmMain
         Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
         Me.MnuLogView.Text = "Log Viewer"
         '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
@@ -679,14 +729,14 @@ Partial Class FrmMain
         'mnuAddANewJob
         '
         Me.mnuAddANewJob.Name = "mnuAddANewJob"
-        Me.mnuAddANewJob.Size = New System.Drawing.Size(180, 22)
+        Me.mnuAddANewJob.Size = New System.Drawing.Size(150, 22)
         Me.mnuAddANewJob.Text = "Add a new job"
         '
         'mnuShowAllJobs
         '
         Me.mnuShowAllJobs.CheckOnClick = True
         Me.mnuShowAllJobs.Name = "mnuShowAllJobs"
-        Me.mnuShowAllJobs.Size = New System.Drawing.Size(180, 22)
+        Me.mnuShowAllJobs.Size = New System.Drawing.Size(150, 22)
         Me.mnuShowAllJobs.Text = "Show all jobs"
         '
         'NewSupplierToolStripMenuItem
@@ -716,7 +766,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 19)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 19)
         Me.ToolStripMenuItem1.Text = " "
         '
         'TidyFilesToolStripMenuItem
@@ -776,7 +826,7 @@ Partial Class FrmMain
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(78, 19)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(108, 19)
         Me.ToolStripMenuItem2.Text = " "
         '
         'CloseToolStripMenuItem
@@ -798,53 +848,16 @@ Partial Class FrmMain
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
         '
-        'ToolStripSeparator5
+        'MnuShowAudit
         '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        Me.MnuShowAudit.Name = "MnuShowAudit"
+        Me.MnuShowAudit.Size = New System.Drawing.Size(180, 22)
+        Me.MnuShowAudit.Text = "Show Audit"
         '
-        'jobId
+        'ToolStripSeparator6
         '
-        Me.jobId.HeaderText = "Id"
-        Me.jobId.Name = "jobId"
-        Me.jobId.ReadOnly = True
-        Me.jobId.Visible = False
-        '
-        'jobName
-        '
-        Me.jobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jobName.HeaderText = "Job/Order"
-        Me.jobName.Name = "jobName"
-        Me.jobName.ReadOnly = True
-        Me.jobName.Width = 200
-        '
-        'jobDesc
-        '
-        Me.jobDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.jobDesc.HeaderText = "Description"
-        Me.jobDesc.Name = "jobDesc"
-        Me.jobDesc.ReadOnly = True
-        '
-        'jobAssigned
-        '
-        Me.jobAssigned.HeaderText = "Assigned to"
-        Me.jobAssigned.Name = "jobAssigned"
-        Me.jobAssigned.ReadOnly = True
-        '
-        'jobCompleted
-        '
-        Me.jobCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jobCompleted.HeaderText = "Done"
-        Me.jobCompleted.Name = "jobCompleted"
-        Me.jobCompleted.ReadOnly = True
-        Me.jobCompleted.Width = 50
-        '
-        'jobUser
-        '
-        Me.jobUser.HeaderText = "User"
-        Me.jobUser.Name = "jobUser"
-        Me.jobUser.ReadOnly = True
-        Me.jobUser.Visible = False
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
         '
         'FrmMain
         '
@@ -964,4 +977,6 @@ Partial Class FrmMain
     Friend WithEvents jobAssigned As DataGridViewTextBoxColumn
     Friend WithEvents jobCompleted As DataGridViewTextBoxColumn
     Friend WithEvents jobUser As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents MnuShowAudit As ToolStripMenuItem
 End Class

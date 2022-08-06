@@ -144,8 +144,8 @@ Public Class FrmReminder
             _diaryId = 0
         End Try
         If _diaryId > 0 Then
-            AuditUtil.addAudit(currentUser.UserId, RECORD_TYPE, _diaryId, AuditUtil.AuditableAction.create,, _reminder.ToString)
-            logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " added", True)
+            AuditUtil.AddAudit(currentUser.User_code, RECORD_TYPE, _diaryId, AuditUtil.AuditableAction.create,, _reminder.ToString)
+            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " added", True)
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT added", True, TraceEventType.Warning)
         End If
@@ -169,8 +169,8 @@ Public Class FrmReminder
         Dim _oldReminder As Reminder = _reminder
         _reminder = GetReminderById(recordId)
         If ct = 1 Then
-            AuditUtil.addAudit(currentUser.UserId, RECORD_TYPE, recordId, AuditUtil.AuditableAction.update, _oldReminder.ToString, _reminder.ToString)
-            logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " updated", True)
+            AuditUtil.AddAudit(currentUser.User_code, RECORD_TYPE, recordId, AuditUtil.AuditableAction.update, _oldReminder.ToString, _reminder.ToString)
+            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " updated", True)
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT updated", True, TraceEventType.Warning)
         End If

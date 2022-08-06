@@ -132,7 +132,7 @@ Public Class FrmTask
         logutil.info("Updating task " & CStr(_taskId), Me.Name)
         With _newTask
             If oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, _taskId) = 1 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
                 isAmendOk = True
                 showStatus(lblStatus, "Task updated OK", Me.Name, True)
             Else
@@ -149,7 +149,7 @@ Public Class FrmTask
         With _newTask
             _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
             If _taskId > 0 Then
-                AuditUtil.addAudit(currentUser.UserId, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
                 showStatus(lblStatus, "Task " & CStr(_taskId) & " Created OK", Me.Name, True)
             Else

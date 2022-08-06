@@ -121,7 +121,7 @@ Public Class FrmJobProducts
             .Build
             Dim _newJpId As Integer = InsertJobProduct(_newJobProduct)
             If _newJpId > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _newJobProduct.ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _newJobProduct.ToString)
             End If
             isLoading = True
             FillJobProductList(dgvJobProducts)
@@ -131,7 +131,7 @@ Public Class FrmJobProducts
     Private Sub BtnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         If _selJpId > 0 Then
             If DeleteJobProduct(_selJpId) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.delete, "", "")
             End If
             isLoading = True
             nudQuantity.Value = 0
@@ -157,7 +157,7 @@ Public Class FrmJobProducts
 
 
             If UpdateJobProduct(_newJobProduct) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.update, "", _newJobProduct.ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.update, "", _newJobProduct.ToString)
             End If
             isLoading = True
             FillJobProductList(dgvJobProducts)

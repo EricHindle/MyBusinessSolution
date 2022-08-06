@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 
+Imports System.Text
+
 Public Class Supplier
     Private _supplierId As Integer
     Private _supplierName As String
@@ -133,4 +135,33 @@ Public Class Supplier
             Return If(_isSupplierAmazon, 1, 0)
         End Get
     End Property
+    Public Overrides Function ToString() As String
+        Dim sb As New StringBuilder
+        sb _
+                .Append("Supplier=[") _
+                .Append("supplierId=[") _
+                .Append(SupplierId) _
+                .Append("], Name=[") _
+                .Append(SupplierName) _
+                .Append("], Notes=[") _
+                .Append(SupplierNotes) _
+                .Append("], ") _
+                .Append(SupplierAddress.ToString) _
+                .Append(", Email=[") _
+                .Append(SupplierEmail) _
+                .Append("], phone=[") _
+                .Append(_supplierPhone) _
+                .Append("], discount=[") _
+                .Append(_supplierDiscount) _
+                .Append("], created=[") _
+                .Append(_supplierCreated) _
+                .Append("], changed=[") _
+                .Append(_supplierChanged) _
+                .Append("], isAmazon=[") _
+                .Append(_isSupplierAmazon) _
+                .Append("], url=[") _
+                .Append(_supplierUrl) _
+                .Append("]]")
+        Return sb.ToString
+    End Function
 End Class

@@ -36,6 +36,34 @@ Module ModDatabase
 #Region "variables"
     Public tableList As New List(Of String)
 #End Region
+#Region "audit"
+    Public Function InsertAudit(pAudit As AuditEntry) As Integer
+        Dim _auditId As Integer = -1
+        Try
+            With pAudit
+                _auditId = oAuditTa.InsertAudit(.AuditUsercode, .RecordType, .RecordId, .AuditDate, .Action, .Before, .After, .ComputerName)
+            End With
+        Catch ex As Exception
+            MsgBox("Error:Audit not added.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _auditId
+
+    End Function
+    Public Function GetByUserDateType(pUsercode As String, pRecordType As String, pFromDate As Date, pToDate As Date) As List(Of AuditEntry)
+        Dim _auditList As New List(Of AuditEntry)
+        Try
+            oAuditTa.FillByUserDateType(oAuditTable, pUsercode, pRecordType, pFromDate, pToDate)
+            For Each oRow As netwyrksDataSet.auditRow In oAuditTable.Rows
+                Dim _audit As AuditEntry = AuditEntryBuilder.AnAuditEntry.StartingWith(oRow).Build
+                _auditList.Add(_audit)
+            Next
+        Catch ex As Exception
+
+        End Try
+
+        Return _auditList
+    End Function
+#End Region
 #Region "users"
     Public Function GetUserById(_id As Integer) As User
         Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
@@ -45,6 +73,18 @@ Module ModDatabase
                 _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
             End If
         Catch ex As dbException
+
+        End Try
+        Return _user
+    End Function
+    Public Function GetUserByUsercode(_usercode As String) As User
+        Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
+        Try
+            oUserTa.FillByUsercode(oUserTable, _usercode)
+            If oUserTable.Rows.Count > 0 Then
+                _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
 
         End Try
         Return _user
@@ -158,7 +198,7 @@ Module ModDatabase
         With pJob
             _jobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId)
             If _jobId > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, _jobId, AuditUtil.AuditableAction.create, "", .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Job, _jobId, AuditUtil.AuditableAction.create, "", .ToString)
             End If
         End With
         Return _jobId
@@ -168,7 +208,7 @@ Module ModDatabase
         With pJob
             _ct = oJobTa.UpdateJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId, .JobId)
             If _ct > 0 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Job, .JobId, AuditUtil.AuditableAction.create, pJob.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Job, .JobId, AuditUtil.AuditableAction.create, pJob.ToString, .ToString)
             End If
         End With
         Return _ct
@@ -200,7 +240,7 @@ Module ModDatabase
             With pJobProduct
                 _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
                 If _jobproductId > 0 Then
-                    AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
+                    AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
                 End If
             End With
         Catch ex As Exception

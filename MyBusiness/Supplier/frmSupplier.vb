@@ -130,7 +130,7 @@ Public Class FrmSupplier
         _supplierId = InsertSupplier(_newSupplier)
         If _supplierId > 0 Then
             isInsertOK = True
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", _newSupplier.ToString)
+            AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.create, "", _newSupplier.ToString)
             LogUtil.Info("Supplier created OK", MyBase.Name)
         Else
             MsgBox("Supplier not saved", MsgBoxStyle.Exclamation, "Error")
@@ -144,7 +144,7 @@ Public Class FrmSupplier
         LogUtil.Info("Updating", Me.Name)
         If UpdateSupplier(_newSupplier) = 1 Then
             isAmendOK = True
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.ToString, _newSupplier.ToString)
+            AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.ToString, _newSupplier.ToString)
             LogUtil.Info("Supplier updated OK", MyBase.Name)
         Else
             isAmendOK = False

@@ -27,17 +27,22 @@ Public Class FrmDisplayAudit
     End Sub
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim usercode As String = If(chkUser.Checked, txtUsercode.Text.Trim, "")
-        Dim selectedRecordType As AuditUtil.RecordType = CType(cbRecordType.SelectedValue, AuditUtil.RecordType)
-        Dim recordtype As String = If(chkRecordType.Checked, selectedRecordType.ToString, "")
+
+        Dim selectedRecordType As AuditUtil.RecordType
+        Dim recordtype As String = ""
+        If chkRecordType.Checked AndAlso cbRecordType.SelectedIndex > -1 Then
+            selectedRecordType = CType(cbRecordType.SelectedValue, AuditUtil.RecordType)
+            recordtype = selectedRecordType.ToString
+        End If
         Dim fromDate As Date = If(chkDate.Checked, dtpDate.Value.Date, Date.MinValue)
         Dim todate As Date = If(chkDate.Checked, DateAdd(DateInterval.Day, 1, fromDate), Date.MaxValue)
         LogUtil.Info("Searching for " & usercode & "/" & recordtype & "/" & Format(fromDate, "dd/MM/yyyy"), FORM_NAME)
         Try
-            Dim i As Integer = oTa.FillByUserDateType(oTable, usercode, recordtype, fromDate, todate)
-            LogUtil.Info("Found " & CInt(i) & " records", FORM_NAME)
+            Dim _auditList As List(Of AuditEntry) = GetByUserDateType(usercode, recordtype, fromDate, todate)
+            LogUtil.Info("Found " & CStr(_auditList.Count) & " records", FORM_NAME)
             dgvAudit.Rows.Clear()
-            For Each oRow As netwyrksDataSet.auditRow In oTable.Rows
-                AddTableRow(oRow)
+            For Each _audit As AuditEntry In _auditList
+                AddTableRow(_audit)
             Next
         Catch ex As Exception
             LogUtil.Exception("Error loading audit records", ex, "Audit Search")
@@ -55,17 +60,17 @@ Public Class FrmDisplayAudit
         dtpDate.Value = Today
         dgvAudit.Rows.Clear()
     End Sub
-    Private Sub AddTableRow(ByVal oRow As netwyrksDataSet.auditRow)
-        Dim r As Integer = dgvAudit.Rows.Add
-        With dgvAudit.Rows(r)
-            .Cells(Me.audId.Name).Value = oRow.audit_id
-            .Cells(Me.audDate.Name).Value = Format(oRow.audit_date, "dd/MM/yyyy HH:mm:ss")
-            .Cells(Me.audUser.Name).Value = oRow.audit_user_id
-            .Cells(Me.audComputer.Name).Value = If(oRow.Isaudit_computer_nameNull, "unknown", oRow.audit_computer_name)
-            .Cells(Me.audRecType.Name).Value = oRow.audit_record_type
-            .Cells(Me.audRecId.Name).Value = oRow.audit_record_id
-            .Cells(Me.audAction.Name).Value = oRow.audit_action
-            .Cells(Me.audNewValue.Name).Value = If(oRow.Isaudit_afterNull(), "", oRow.audit_after)
+    Private Sub AddTableRow(ByVal _audit As AuditEntry)
+        Dim oRow As DataGridViewRow = dgvAudit.Rows(dgvAudit.Rows.Add)
+        With oRow
+            .Cells(Me.audId.Name).Value = _audit.AuditId
+            .Cells(Me.audDate.Name).Value = Format(_audit.AuditDate, "dd/MM/yyyy HH:mm:ss")
+            .Cells(Me.audUser.Name).Value = _audit.AuditUsercode
+            .Cells(Me.audComputer.Name).Value = If(_audit.ComputerName Is Nothing, "unknown", _audit.ComputerName)
+            .Cells(Me.audRecType.Name).Value = _audit.RecordType
+            .Cells(Me.audRecId.Name).Value = _audit.RecordId
+            .Cells(Me.audAction.Name).Value = _audit.Action
+            .Cells(Me.audNewValue.Name).Value = If(_audit.After Is Nothing, "", _audit.After)
         End With
     End Sub
     Private Sub OpenAuditItem()

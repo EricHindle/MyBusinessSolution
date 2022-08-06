@@ -204,13 +204,14 @@ Public Class AuthenticationUtil
         Dim isCreatedOK As Boolean = False
         Dim newTempPassword As String = AuthenticationUtil.GeneratePassword()
         Dim currentUserId As Integer = If(currentUser Is Nothing, userId, currentUser.UserId)
+        Dim _usercode As String = If(currentUser Is Nothing, "", currentUser.User_code)
         Try
             Dim emailAddress As String = sEmail
             Dim validate As New ValidationUtil
             Dim sentOnBehalfOf As String = "noreply@dummy.com"
             If validate.IsValidEmail(emailAddress) Then
                 If UpdateTempPassword(userId, newTempPassword, True, salt) = 1 Then
-                    AuditUtil.AddAudit(currentUserId, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
+                    AuditUtil.AddAudit(_usercode, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
                     Dim userEmailAddress As String = emailAddress
                     If EmailUtil.SendMail(sentOnBehalfOf,
                             userEmailAddress,

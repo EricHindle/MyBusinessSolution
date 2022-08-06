@@ -166,7 +166,7 @@ Public Class LoginForm
     Private Sub EnterApplication()
         LogUtil.Info("Entering the application", MyBase.Name)
         currentUser = UserBuilder.AUser.startingWith(AuthorisationUtil.getCurrentUserid).build
-        AuditUtil.addAudit(-1, AuditUtil.RecordType.User, currentUser.userId, AuditUtil.AuditableAction.login, My.Application.Info.Version.ToString, "")
+        AuditUtil.AddAudit("", AuditUtil.RecordType.User, currentUser.UserId, AuditUtil.AuditableAction.login, My.Application.Info.Version.ToString, "")
         'For Citrix: allocate individual temporary folders
         If GlobalSettings.getBooleanSetting(GlobalSettings.PERSONAL_FOLDERS) Then
             SetPersonalisedFolderNames()

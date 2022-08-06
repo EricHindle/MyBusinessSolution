@@ -15,10 +15,6 @@ Public Class FrmUserControl
     Private ReadOnly bChanges As Boolean = False
     Private ReadOnly sha1 As New SHA1CryptoServiceProvider
     Private currentUserId As Integer = 0
-    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oTable As New netwyrksDataSet.userDataTable
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
     Private oUser As User
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
@@ -81,7 +77,7 @@ Public Class FrmUserControl
                     .Build
             Dim updCt As Integer = UpdateUser(_user)
             If updCt = 1 Then
-                AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update, "", txtUserLogin.Text & " - no new password")
+                AuditUtil.AddAudit("", AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update, "", txtUserLogin.Text & " - no new password")
                 LogStatus("User " & txtUserLogin.Text & " details updated", True, TraceEventType.Information)
             Else
                 MsgBox("User not updated", MsgBoxStyle.Exclamation, "Error")
@@ -113,7 +109,7 @@ Public Class FrmUserControl
                             Dim newUserId As Integer = InsertUser(_user, txtPasswd1.Text.Trim)
 
                             LogStatus("User " & txtUserLogin.Text & " details inserted", True, TraceEventType.Information)
-                            AuditUtil.AddAudit(-1, AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.create, "", txtUserLogin.Text)
+                            AuditUtil.AddAudit("", AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.create, "", txtUserLogin.Text)
                             txtStatus.Text = "User " & txtUserLogin.Text.Trim() & " added"
 
                         Else
@@ -186,9 +182,7 @@ Public Class FrmUserControl
     End Function
 
     Private Sub FrmUserControl_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        oTable.Dispose()
-        oTa.Dispose()
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
 
     Private Sub UserControl_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

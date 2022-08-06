@@ -124,7 +124,7 @@ Public Class FrmCustomerMaint
         Dim isInsertOK As Boolean
         _customerId = InsertCustomer(_newCustomer)
         If _customerId > 0 Then
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", _newCustomer.ToString)
+            AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", _newCustomer.ToString)
             isInsertOK = True
             ShowStatus(lblStatus, "Customer " & CStr(_customerId) & " created OK", Me.Name, True)
         Else
@@ -138,7 +138,7 @@ Public Class FrmCustomerMaint
         With _newCustomer
 
             If UpdateCustomer(_newCustomer) = 1 Then
-                AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
                 ShowStatus(lblStatus, "Customer updated OK", Me.Name, True)
             Else

@@ -6,7 +6,7 @@
 
 Public Class AuditEntry
     Private _auditId As Integer
-    Private _auditUser As User
+    Private _auditUsercode As String
     Private _recordType As String
     Private _recordId As Integer
     Private _auditDate As DateTime
@@ -70,12 +70,12 @@ Public Class AuditEntry
             _recordType = value
         End Set
     End Property
-    Public Property AuditUser() As User
+    Public Property AuditUsercode() As String
         Get
-            Return _auditUser
+            Return _auditUsercode
         End Get
-        Set(ByVal value As User)
-            _auditUser = value
+        Set(ByVal value As String)
+            _auditUsercode = value
         End Set
     End Property
     Public Property AuditId() As Integer
@@ -87,7 +87,7 @@ Public Class AuditEntry
         End Set
     End Property
     Public Sub New(pauditId As Integer,
-                    pauditUser As User,
+                    pauditUser As String,
                     precordType As String,
                     precordId As Integer,
                     pauditDate As DateTime,
@@ -96,7 +96,7 @@ Public Class AuditEntry
                     pafter As String,
                     pcomputerName As String)
         _auditId = pauditId
-        _auditUser = pauditUser
+        _auditUsercode = pauditUser
         _recordType = precordType
         _recordId = precordId
         _auditDate = pauditDate

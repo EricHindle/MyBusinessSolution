@@ -126,7 +126,7 @@ Public Class FrmProduct
         LogUtil.Info("Updating", Me.Name)
         _newproduct.ProductChanged = Now
         If UpdateProduct(_newproduct) = 1 Then
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _newproduct.ProductId, AuditUtil.AuditableAction.create, _product.ToString, _newproduct.ToString)
+            AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _newproduct.ProductId, AuditUtil.AuditableAction.create, _product.ToString, _newproduct.ToString)
             isAmendOk = True
             ShowStatus(lblStatus, "Product updated OK", MyBase.Name, True)
         Else
@@ -141,7 +141,7 @@ Public Class FrmProduct
         _newproduct.ProductCreated = Now
         _productId = InsertProduct(_newproduct)
         If _productId > 0 Then
-            AuditUtil.AddAudit(currentUser.UserId, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", _newproduct.ToString)
+            AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", _newproduct.ToString)
             isInsertOk = True
             ShowStatus(lblStatus, "Product " & CStr(_productId) & " Created OK", MyBase.Name, True)
         Else
