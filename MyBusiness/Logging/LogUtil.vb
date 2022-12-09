@@ -44,14 +44,37 @@ Public Class LogUtil
         End If
     End Sub
     Public Shared Sub StartLogging()
-        isDebugOn = My.Settings.DebugOn
+        IsDebugOn = My.Settings.DebugOn
         Info("=".PadRight(40, "="))
         Info(My.Application.Info.Title & " version " & My.Application.Info.Version.ToString)
         Info(My.Application.Info.Copyright)
         Info("Logging started at " & Format(Now, "dd/MM/yyyy HH:mm:ss"))
-        If isDebugOn Then
-            Info("Debug is ON")
+        If IsDebugOn Then
+            Info("Debug : ON")
         End If
+        Info("Computer name    : " & My.Computer.Name)
+        Info("Application path : " & My.Application.Info.DirectoryPath)
+        LogDbDetails()
+        Info("-".PadRight(40, "-"))
+    End Sub
+    Public Shared Sub LogDbDetails()
+        Dim sConnection As String() = Split(My.Settings.netwyrksConnectionString, ";")
+        Dim serverName As String = ""
+        Dim dbName As String = ""
+        For Each oConn As String In sConnection
+            Dim nvp As String() = Split(oConn, "=")
+            If nvp.GetUpperBound(0) = 1 Then
+                Select Case nvp(0)
+                    Case "server"
+                        serverName = nvp(1)
+                    Case "database"
+                        dbName = nvp(1)
+                End Select
+            End If
+        Next
+        Info("Data connection  :")
+        Info("   server   = " & serverName)
+        Info("   database = " & dbName)
     End Sub
     Public Shared Sub StopLogging()
         If isConfigured Then
@@ -68,14 +91,18 @@ Public Class LogUtil
         padCt += (6 - thisThread.Length)
         Dim sPad As String = "".PadRight(padCt)
         Dim sIdentity As NetwyrksIIdentity = TryCast(My.User.CurrentPrincipal.Identity, NetwyrksIIdentity)
-        Dim usercode As String = If(sIdentity Is Nothing, My.User.CurrentPrincipal.Identity.Name, sIdentity.Usercode)
+        Dim sIdentityName As String() = Split(My.User.CurrentPrincipal.Identity.Name, "\")
+
+        Dim usercode As String = If(sIdentity Is Nothing, sIdentityName(sIdentityName.GetUpperBound(0)), sIdentity.Usercode)
         Dim sPrefix As String = sPad & thisThread & My.Computer.Clock.LocalTime.ToString() & " - "
         If Not String.IsNullOrEmpty(usercode) Then
             sPrefix += "[user " & usercode & "] "
         End If
+        Dim sOrigin As String = " "
         If Not String.IsNullOrEmpty(sSub) Then
-            sPrefix += "(" & sSub & ") "
+            sOrigin = "(" & sSub & ") "
         End If
+        sPrefix += sOrigin.PadRight(My.Resources.ORIGIN_WIDTH)
         If Not String.IsNullOrEmpty(errorCode) Then
             sPrefix += "Error code: " & errorCode & " "
         End If

@@ -160,6 +160,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to 22.
+        '''</summary>
+        Friend ReadOnly Property ORIGIN_WIDTH() As String
+            Get
+                Return ResourceManager.GetString("ORIGIN_WIDTH", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property phone() As System.Drawing.Bitmap
