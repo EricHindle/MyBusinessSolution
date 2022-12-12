@@ -31,14 +31,18 @@ Partial Class FrmJobProducts
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblF5 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.dgvJobProducts = New System.Windows.Forms.DataGridView()
+        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpProdId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpProduct = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jpprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DgvSupplier = New System.Windows.Forms.DataGridView()
         Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
-        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodTaxRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblProductName = New System.Windows.Forms.Label()
         Me.nudQuantity = New System.Windows.Forms.NumericUpDown()
         Me.btnRemove = New System.Windows.Forms.Button()
@@ -51,14 +55,11 @@ Partial Class FrmJobProducts
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.nudPrice = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpProdId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpProduct = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jpprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodTaxRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,7 +175,69 @@ Partial Class FrmJobProducts
         Me.dgvJobProducts.Size = New System.Drawing.Size(732, 201)
         Me.dgvJobProducts.TabIndex = 75
         '
-        'dgvSupplier
+        'jpId
+        '
+        Me.jpId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpId.HeaderText = "Id"
+        Me.jpId.Name = "jpId"
+        Me.jpId.ReadOnly = True
+        Me.jpId.Visible = False
+        Me.jpId.Width = 60
+        '
+        'jpProdId
+        '
+        Me.jpProdId.HeaderText = "ProdId"
+        Me.jpProdId.Name = "jpProdId"
+        Me.jpProdId.ReadOnly = True
+        Me.jpProdId.Visible = False
+        '
+        'jpSupp
+        '
+        Me.jpSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpSupp.HeaderText = "Supplier"
+        Me.jpSupp.Name = "jpSupp"
+        Me.jpSupp.ReadOnly = True
+        Me.jpSupp.Width = 200
+        '
+        'jpProduct
+        '
+        Me.jpProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.jpProduct.HeaderText = "Product"
+        Me.jpProduct.Name = "jpProduct"
+        Me.jpProduct.ReadOnly = True
+        '
+        'jpQty
+        '
+        Me.jpQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpQty.HeaderText = "Quantity"
+        Me.jpQty.Name = "jpQty"
+        Me.jpQty.ReadOnly = True
+        '
+        'jpTaxable
+        '
+        Me.jpTaxable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpTaxable.HeaderText = "Taxable"
+        Me.jpTaxable.Name = "jpTaxable"
+        Me.jpTaxable.ReadOnly = True
+        Me.jpTaxable.Width = 65
+        '
+        'jpRate
+        '
+        Me.jpRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpRate.HeaderText = "Rate (%)"
+        Me.jpRate.Name = "jpRate"
+        Me.jpRate.ReadOnly = True
+        Me.jpRate.Width = 90
+        '
+        'jpprice
+        '
+        Me.jpprice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jpprice.HeaderText = "Price"
+        Me.jpprice.Name = "jpprice"
+        Me.jpprice.ReadOnly = True
+        Me.jpprice.Width = 80
+        '
+        'DgvSupplier
         '
         Me.DgvSupplier.AllowUserToAddRows = False
         Me.DgvSupplier.AllowUserToDeleteRows = False
@@ -184,7 +247,7 @@ Partial Class FrmJobProducts
         Me.DgvSupplier.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvSupplier.Location = New System.Drawing.Point(0, 0)
         Me.DgvSupplier.MultiSelect = False
-        Me.DgvSupplier.Name = "dgvSupplier"
+        Me.DgvSupplier.Name = "DgvSupplier"
         Me.DgvSupplier.ReadOnly = True
         Me.DgvSupplier.RowHeadersVisible = False
         Me.DgvSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -211,7 +274,7 @@ Partial Class FrmJobProducts
         Me.dgvProducts.AllowUserToDeleteRows = False
         Me.dgvProducts.AllowUserToResizeRows = False
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate})
+        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate, Me.prodPrice})
         Me.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvProducts.Location = New System.Drawing.Point(0, 0)
         Me.dgvProducts.MultiSelect = False
@@ -221,34 +284,6 @@ Partial Class FrmJobProducts
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvProducts.Size = New System.Drawing.Size(484, 198)
         Me.dgvProducts.TabIndex = 77
-        '
-        'prodId
-        '
-        Me.prodId.HeaderText = "Id"
-        Me.prodId.Name = "prodId"
-        Me.prodId.ReadOnly = True
-        Me.prodId.Visible = False
-        '
-        'prodName
-        '
-        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.prodName.HeaderText = "Product name"
-        Me.prodName.Name = "prodName"
-        Me.prodName.ReadOnly = True
-        '
-        'prodTaxable
-        '
-        Me.prodTaxable.HeaderText = "Taxable"
-        Me.prodTaxable.Name = "prodTaxable"
-        Me.prodTaxable.ReadOnly = True
-        Me.prodTaxable.Visible = False
-        '
-        'prodTaxRate
-        '
-        Me.prodTaxRate.HeaderText = "Rate"
-        Me.prodTaxRate.Name = "prodTaxRate"
-        Me.prodTaxRate.ReadOnly = True
-        Me.prodTaxRate.Visible = False
         '
         'lblProductName
         '
@@ -388,67 +423,40 @@ Partial Class FrmJobProducts
         Me.Label5.TabIndex = 89
         Me.Label5.Text = "Price"
         '
-        'jpId
+        'prodId
         '
-        Me.jpId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpId.HeaderText = "Id"
-        Me.jpId.Name = "jpId"
-        Me.jpId.ReadOnly = True
-        Me.jpId.Visible = False
-        Me.jpId.Width = 60
+        Me.prodId.HeaderText = "Id"
+        Me.prodId.Name = "prodId"
+        Me.prodId.ReadOnly = True
+        Me.prodId.Visible = False
         '
-        'jpProdId
+        'prodName
         '
-        Me.jpProdId.HeaderText = "ProdId"
-        Me.jpProdId.Name = "jpProdId"
-        Me.jpProdId.ReadOnly = True
-        Me.jpProdId.Visible = False
+        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.prodName.HeaderText = "Product name"
+        Me.prodName.Name = "prodName"
+        Me.prodName.ReadOnly = True
         '
-        'jpSupp
+        'prodTaxable
         '
-        Me.jpSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpSupp.HeaderText = "Supplier"
-        Me.jpSupp.Name = "jpSupp"
-        Me.jpSupp.ReadOnly = True
-        Me.jpSupp.Width = 200
+        Me.prodTaxable.HeaderText = "Taxable"
+        Me.prodTaxable.Name = "prodTaxable"
+        Me.prodTaxable.ReadOnly = True
+        Me.prodTaxable.Visible = False
         '
-        'jpProduct
+        'prodTaxRate
         '
-        Me.jpProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.jpProduct.HeaderText = "Product"
-        Me.jpProduct.Name = "jpProduct"
-        Me.jpProduct.ReadOnly = True
+        Me.prodTaxRate.HeaderText = "Rate"
+        Me.prodTaxRate.Name = "prodTaxRate"
+        Me.prodTaxRate.ReadOnly = True
+        Me.prodTaxRate.Visible = False
         '
-        'jpQty
+        'prodPrice
         '
-        Me.jpQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpQty.HeaderText = "Quantity"
-        Me.jpQty.Name = "jpQty"
-        Me.jpQty.ReadOnly = True
-        '
-        'jpTaxable
-        '
-        Me.jpTaxable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpTaxable.HeaderText = "Taxable"
-        Me.jpTaxable.Name = "jpTaxable"
-        Me.jpTaxable.ReadOnly = True
-        Me.jpTaxable.Width = 65
-        '
-        'jpRate
-        '
-        Me.jpRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpRate.HeaderText = "Rate (%)"
-        Me.jpRate.Name = "jpRate"
-        Me.jpRate.ReadOnly = True
-        Me.jpRate.Width = 90
-        '
-        'jpprice
-        '
-        Me.jpprice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jpprice.HeaderText = "Price"
-        Me.jpprice.Name = "jpprice"
-        Me.jpprice.ReadOnly = True
-        Me.jpprice.Width = 80
+        Me.prodPrice.HeaderText = "Price"
+        Me.prodPrice.Name = "prodPrice"
+        Me.prodPrice.ReadOnly = True
+        Me.prodPrice.Visible = False
         '
         'FrmJobProducts
         '
@@ -520,10 +528,6 @@ Partial Class FrmJobProducts
     Friend WithEvents chkTaxable As System.Windows.Forms.CheckBox
     Friend WithEvents nudTaxRate As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents prodId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents prodName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents prodTaxable As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents prodTaxRate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LblF5 As ToolStripStatusLabel
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents SplitContainer2 As SplitContainer
@@ -537,4 +541,9 @@ Partial Class FrmJobProducts
     Friend WithEvents jpTaxable As DataGridViewTextBoxColumn
     Friend WithEvents jpRate As DataGridViewTextBoxColumn
     Friend WithEvents jpprice As DataGridViewTextBoxColumn
+    Friend WithEvents prodId As DataGridViewTextBoxColumn
+    Friend WithEvents prodName As DataGridViewTextBoxColumn
+    Friend WithEvents prodTaxable As DataGridViewTextBoxColumn
+    Friend WithEvents prodTaxRate As DataGridViewTextBoxColumn
+    Friend WithEvents prodPrice As DataGridViewTextBoxColumn
 End Class

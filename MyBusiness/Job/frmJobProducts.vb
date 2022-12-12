@@ -29,7 +29,7 @@ Public Class FrmJobProducts
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmJobProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetFormPos(Me, My.Settings.JobProductsFormPos)
@@ -40,7 +40,7 @@ Public Class FrmJobProducts
         FillJobProductList(dgvJobProducts)
         lblJobName.Text = _job.JobName
         lblProductName.Text = ""
-        Me.KeyPreview = True
+        KeyPreview = True
         isLoading = False
     End Sub
     Private Sub FrmJobProducts_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -53,14 +53,14 @@ Public Class FrmJobProducts
                 isLoading = True
                 nudQuantity.Value = 1
                 Dim pRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-                lblProductName.Text = pRow.Cells(Me.prodName.Name).Value
+                lblProductName.Text = pRow.Cells(prodName.Name).Value
                 _selJpId = -1
-                _selProductId = pRow.Cells(Me.prodId.Name).Value
-                _selIsTaxable = pRow.Cells(Me.prodTaxable.Name).Value
-                _selTaxRate = pRow.Cells(Me.prodTaxRate.Name).Value
+                _selProductId = pRow.Cells(prodId.Name).Value
+                _selIsTaxable = pRow.Cells(prodTaxable.Name).Value
+                _selTaxRate = pRow.Cells(prodTaxRate.Name).Value
                 chkTaxable.Checked = _selIsTaxable
                 nudTaxRate.Value = _selTaxRate
-                isLoading = False
+                nudPrice.Value = pRow.Cells(prodPrice.Name).Value
             End If
         End If
     End Sub
@@ -75,7 +75,7 @@ Public Class FrmJobProducts
                 _selIsTaxable = False
                 _selTaxRate = 0.0
                 Dim sRow As DataGridViewRow = DgvSupplier.SelectedRows(0)
-                _currentSupplierId = sRow.Cells(Me.suppId.Name).Value
+                _currentSupplierId = sRow.Cells(suppId.Name).Value
                 FillProductList()
                 isLoading = False
             End If
@@ -89,13 +89,13 @@ Public Class FrmJobProducts
                 dgvProducts.ClearSelection()
                 isLoading = False
                 Dim tRow As DataGridViewRow = dgvJobProducts.SelectedRows(0)
-                _selJpId = tRow.Cells(Me.jpId.Name).Value
-                _selProductId = tRow.Cells(Me.jpProdId.Name).Value
-                _selIsTaxable = (tRow.Cells(Me.jpTaxable.Name).Value = "Yes")
-                _selTaxRate = tRow.Cells(Me.jpRate.Name).Value
+                _selJpId = tRow.Cells(jpId.Name).Value
+                _selProductId = tRow.Cells(jpProdId.Name).Value
+                _selIsTaxable = tRow.Cells(jpTaxable.Name).Value = "Yes"
+                _selTaxRate = tRow.Cells(jpRate.Name).Value
                 _selPrice = tRow.Cells(jpprice.Name).Value
-                Dim _jpProduct As String = tRow.Cells(Me.jpProduct.Name).Value
-                nudQuantity.Value = tRow.Cells(Me.jpQty.Name).Value
+                Dim _jpProduct As String = tRow.Cells(jpProduct.Name).Value
+                nudQuantity.Value = tRow.Cells(jpQty.Name).Value
                 lblProductName.Text = _jpProduct
                 chkTaxable.Checked = _selIsTaxable
                 nudTaxRate.Value = _selTaxRate
@@ -120,6 +120,7 @@ Public Class FrmJobProducts
             .WithCreated(Now) _
             .Build
             Dim _newJpId As Integer = InsertJobProduct(_newJobProduct)
+
             If _newJpId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _newJpId, AuditUtil.AuditableAction.create, "", _newJobProduct.ToString)
             End If
@@ -183,7 +184,7 @@ Public Class FrmJobProducts
         Try
             Dim i As Integer = DgvSupplier.Rows.Add()
             Dim firstRow As DataGridViewRow = DgvSupplier.Rows(i)
-            firstRow.Cells(Me.suppName.Name).Value = "ALL"
+            firstRow.Cells(suppName.Name).Value = "ALL"
         Catch ex As Exception
             Debug.Print(ex.Message)
         End Try
@@ -191,8 +192,8 @@ Public Class FrmJobProducts
         Dim _supplierList As List(Of Supplier) = GetSuppliers()
         For Each _supplier As Supplier In _supplierList
             Dim tRow As DataGridViewRow = DgvSupplier.Rows(DgvSupplier.Rows.Add())
-            tRow.Cells(Me.suppId.Name).Value = _supplier.SupplierId
-            tRow.Cells(Me.suppName.Name).Value = _supplier.SupplierName
+            tRow.Cells(suppId.Name).Value = _supplier.SupplierId
+            tRow.Cells(suppName.Name).Value = _supplier.SupplierName
         Next
         DgvSupplier.ClearSelection()
     End Sub
@@ -212,10 +213,11 @@ Public Class FrmJobProducts
         For Each _product As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add())
             With _product
-                tRow.Cells(Me.prodId.Name).Value = .ProductId
-                tRow.Cells(Me.prodName.Name).Value = .ProductName
-                tRow.Cells(Me.prodTaxable.Name).Value = .IsProductTaxable
-                tRow.Cells(Me.prodTaxRate.Name).Value = .ProductTaxRate
+                tRow.Cells(prodId.Name).Value = .ProductId
+                tRow.Cells(prodName.Name).Value = .ProductName
+                tRow.Cells(prodTaxable.Name).Value = .IsProductTaxable
+                tRow.Cells(prodTaxRate.Name).Value = .ProductTaxRate
+                tRow.Cells(prodPrice.Name).Value = .ProductPrice
             End With
         Next
         dgvProducts.ClearSelection()
@@ -241,19 +243,19 @@ Public Class FrmJobProducts
                 _supplierId = _product.ProductSupplierId
 
                 If _supplierId > 0 Then
-                    Dim _supplier As Supplier = getsupplierById(_supplierId)
+                    Dim _supplier As Supplier = GetSupplierById(_supplierId)
                     _supplierName = _supplier.SupplierName
                 End If
 
                 Dim tRow As DataGridViewRow = dgv.Rows(dgv.Rows.Add())
-                tRow.Cells(Me.jpSupp.Name).Value = _supplierName
-                tRow.Cells(Me.jpProduct.Name).Value = _productName
-                tRow.Cells(Me.jpProdId.Name).Value = _productId
-                tRow.Cells(Me.jpId.Name).Value = _jpId
-                tRow.Cells(Me.jpQty.Name).Value = _qty
-                tRow.Cells(Me.jpTaxable.Name).Value = _isTaxable
-                tRow.Cells(Me.jpRate.Name).Value = _taxRate
-                tRow.Cells(Me.jpprice.Name).Value = _jobprice
+                tRow.Cells(jpSupp.Name).Value = _supplierName
+                tRow.Cells(jpProduct.Name).Value = _productName
+                tRow.Cells(jpProdId.Name).Value = _productId
+                tRow.Cells(jpId.Name).Value = _jpId
+                tRow.Cells(jpQty.Name).Value = _qty
+                tRow.Cells(jpTaxable.Name).Value = _isTaxable
+                tRow.Cells(jpRate.Name).Value = _taxRate
+                tRow.Cells(jpprice.Name).Value = _jobprice
             End With
         Next
         dgvJobProducts.ClearSelection()
@@ -266,7 +268,7 @@ Public Class FrmJobProducts
     Private Sub DgvSupplier_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSupplier.CellDoubleClick
         If DgvSupplier.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = DgvSupplier.SelectedRows(0)
-            Dim _suppId As Integer = dRow.Cells(Me.suppId.Name).Value
+            Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
             Using _suppForm As New FrmSupplier
                 _suppForm.SupplierId = _suppId
                 _suppForm.ShowDialog()

@@ -238,7 +238,7 @@ Module ModDatabase
         Dim _jobproductId As Integer
         Try
             With pJobProduct
-                _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
+                _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .ThisProduct.ProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
                 If _jobproductId > 0 Then
                     AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
                 End If
