@@ -17,6 +17,15 @@ Public Class Product
     Private _productChanged As DateTime?
     Private _productTaxable As Boolean
     Private _productTaxRate As Decimal?
+    Private _product_purchase_units As Integer
+    Public Property PurchaseUnits() As Integer
+        Get
+            Return _product_purchase_units
+        End Get
+        Set(ByVal value As Integer)
+            _product_purchase_units = value
+        End Set
+    End Property
     Public Property ProductTaxRate() As Decimal?
         Get
             Return _productTaxRate
@@ -106,7 +115,8 @@ Public Class Product
                     ByVal pProductCreated As DateTime,
                     ByVal pProductChanged As DateTime?,
                     ByVal pProductTaxable As Boolean,
-                    ByVal pProductRate As Decimal?
+                    ByVal pProductRate As Decimal?,
+                    ByVal pPurchaseUnits As Integer
                   )
         _productId = pProductId
         _productName = pProductName
@@ -118,6 +128,7 @@ Public Class Product
         _productChanged = pProductChanged
         _productTaxable = pProductTaxable
         _productTaxRate = pProductRate
+        _product_purchase_units = pPurchaseUnits
     End Sub
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder

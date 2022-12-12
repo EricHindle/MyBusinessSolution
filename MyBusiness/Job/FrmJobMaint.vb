@@ -18,6 +18,7 @@ Public Class FrmJobMaint
     Private _customerId As Integer
     Private _currentCust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
     Private _newJob As Job
+    Private _currentJobProduct As JobProduct
 #End Region
 #Region "properties"
     Public Property CustomerId() As Integer
@@ -92,10 +93,11 @@ Public Class FrmJobMaint
         End Using
         FillTaskList(_currentJobId)
     End Sub
-    Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
+    Private Sub BtnMaintProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
         LogUtil.Debug("Maintain products on job", Me.Name)
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
+            _jobProductForm.SelectedJobProduct = Nothing
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -179,8 +181,11 @@ Public Class FrmJobMaint
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Me.Name)
+        Dim _jpId As Integer = dgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
+        _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_jpId).Build
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
+            _jobProductForm.SelectedJobProduct = _currentJobProduct
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -349,6 +354,16 @@ Public Class FrmJobMaint
             _diary.ForJobId = _currentJobId
             _diary.ShowDialog()
         End Using
+    End Sub
+
+    Private Sub dgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
+        If dgvProducts.SelectedRows.Count > 0 Then
+            Dim _row As DataGridViewRow = dgvProducts.SelectedRows(0)
+            Dim _id As Integer = _row.Cells(jpId.Name).Value
+            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
+        Else
+            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
+        End If
     End Sub
 
 #End Region

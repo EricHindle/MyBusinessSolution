@@ -15,6 +15,7 @@ Public Class ProductBuilder
     Private _productId As Integer
     Private _productTaxable As Boolean
     Private _productTaxRate As Decimal?
+    Private _productPurchaseUnits As Integer
     Public Shared Function AProduct() As ProductBuilder
         Return New ProductBuilder
     End Function
@@ -30,6 +31,7 @@ Public Class ProductBuilder
             _productChanged = .ProductChanged
             _productTaxable = .IsProductTaxable
             _productTaxRate = .ProductTaxRate
+            _productPurchaseUnits = .PurchaseUnits
         End With
         Return Me
     End Function
@@ -49,6 +51,7 @@ Public Class ProductBuilder
             End If
             _productTaxable = .product_taxable
             _productTaxRate = If(.Isproduct_tax_rateNull, 0.0, .product_tax_rate)
+            _productPurchaseUnits = If(.Isproduct_purchase_unitsNull, 0, .product_purchase_units)
         End With
         Return Me
     End Function
@@ -63,6 +66,7 @@ Public Class ProductBuilder
         _productChanged = Nothing
         _productTaxable = False
         _productTaxRate = 0.0
+        _productPurchaseUnits = 0
         Return Me
     End Function
     Public Function WithProductId(ByVal pProductId As Integer) As ProductBuilder
@@ -105,6 +109,10 @@ Public Class ProductBuilder
         _productTaxRate = pProductTaxRate
         Return Me
     End Function
+    Public Function WithPurchaseUnits(ByVal pPurchaseUnits As Integer) As ProductBuilder
+        _productPurchaseUnits = pPurchaseUnits
+        Return Me
+    End Function
     Public Function Build() As Product
         Return New Product(_productId,
                            _productName,
@@ -115,6 +123,7 @@ Public Class ProductBuilder
                            _productCreated,
                            _productChanged,
                            _productTaxable,
-                           _productTaxRate)
+                           _productTaxRate,
+                           _productPurchaseUnits)
     End Function
 End Class

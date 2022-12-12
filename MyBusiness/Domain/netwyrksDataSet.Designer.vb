@@ -2203,6 +2203,8 @@ Partial Public Class netwyrksDataSet
         
         Private columnproduct_tax_rate As Global.System.Data.DataColumn
         
+        Private columnproduct_purchase_units As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -2319,6 +2321,14 @@ Partial Public Class netwyrksDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_purchase_unitsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_purchase_units
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2355,9 +2365,9 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddproductRow(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Decimal, ByVal product_price As Decimal, ByVal product_created As Date, ByVal product_changed As Date, ByVal parentsupplierRowByfk_product_supplier1 As supplierRow, ByVal product_taxable As SByte, ByVal product_tax_rate As Decimal) As productRow
+        Public Overloads Function AddproductRow(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Decimal, ByVal product_price As Decimal, ByVal product_created As Date, ByVal product_changed As Date, ByVal parentsupplierRowByfk_product_supplier1 As supplierRow, ByVal product_taxable As SByte, ByVal product_tax_rate As Decimal, ByVal product_purchase_units As Integer) As productRow
             Dim rowproductRow As productRow = CType(Me.NewRow,productRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, product_name, product_description, product_cost, product_price, product_created, product_changed, Nothing, product_taxable, product_tax_rate}
+            Dim columnValuesArray() As Object = New Object() {Nothing, product_name, product_description, product_cost, product_price, product_created, product_changed, Nothing, product_taxable, product_tax_rate, product_purchase_units}
             If (Not (parentsupplierRowByfk_product_supplier1) Is Nothing) Then
                 columnValuesArray(7) = parentsupplierRowByfk_product_supplier1(0)
             End If
@@ -2399,6 +2409,7 @@ Partial Public Class netwyrksDataSet
             Me.columnproduct_supplier_id = MyBase.Columns("product_supplier_id")
             Me.columnproduct_taxable = MyBase.Columns("product_taxable")
             Me.columnproduct_tax_rate = MyBase.Columns("product_tax_rate")
+            Me.columnproduct_purchase_units = MyBase.Columns("product_purchase_units")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2424,6 +2435,8 @@ Partial Public Class netwyrksDataSet
             MyBase.Columns.Add(Me.columnproduct_taxable)
             Me.columnproduct_tax_rate = New Global.System.Data.DataColumn("product_tax_rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnproduct_tax_rate)
+            Me.columnproduct_purchase_units = New Global.System.Data.DataColumn("product_purchase_units", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_purchase_units)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnproduct_id}, true))
             Me.columnproduct_id.AutoIncrement = true
             Me.columnproduct_id.AutoIncrementSeed = -1
@@ -5763,6 +5776,21 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_purchase_units() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableproduct.product_purchase_unitsColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_purchase_units' in table 'product' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableproduct.product_purchase_unitsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property supplierRow() As supplierRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("fk_product_supplier1")),supplierRow)
@@ -5806,6 +5834,18 @@ Partial Public Class netwyrksDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub Setproduct_tax_rateNull()
             Me(Me.tableproduct.product_tax_rateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_purchase_unitsNull() As Boolean
+            Return Me.IsNull(Me.tableproduct.product_purchase_unitsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_purchase_unitsNull()
+            Me(Me.tableproduct.product_purchase_unitsColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13267,22 +13307,23 @@ Namespace netwyrksDataSetTableAdapters
             tableMapping.ColumnMappings.Add("product_supplier_id", "product_supplier_id")
             tableMapping.ColumnMappings.Add("product_taxable", "product_taxable")
             tableMapping.ColumnMappings.Add("product_tax_rate", "product_tax_rate")
+            tableMapping.ColumnMappings.Add("product_purchase_units", "product_purchase_units")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `product` WHERE ((`product_id` = @Original_product_id) AND (`product_"& _ 
-                "name` = @Original_product_name) AND ((@IsNull_product_description = 1 AND `produ"& _ 
-                "ct_description` IS NULL) OR (`product_description` = @Original_product_descripti"& _ 
-                "on)) AND (`product_cost` = @Original_product_cost) AND (`product_price` = @Origi"& _ 
-                "nal_product_price) AND (`product_created` = @Original_product_created) AND ((@Is"& _ 
-                "Null_product_changed = 1 AND `product_changed` IS NULL) OR (`product_changed` = "& _ 
-                "@Original_product_changed)) AND (`product_supplier_id` = @Original_product_suppl"& _ 
-                "ier_id) AND ((@IsNull_product_tax_rate = 1 AND `product_tax_rate` IS NULL) OR (`"& _ 
-                "product_tax_rate` = @Original_product_tax_rate)) AND (`product_taxable` = @Origi"& _ 
-                "nal_product_taxable))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `product` WHERE ((`product_id` = @p1) AND ((@p2 = 1 AND `product_name"& _ 
+                "` IS NULL) OR (`product_name` = @p3)) AND ((@p4 = 1 AND `product_cost` IS NULL) "& _ 
+                "OR (`product_cost` = @p5)) AND ((@p6 = 1 AND `product_price` IS NULL) OR (`produ"& _ 
+                "ct_price` = @p7)) AND ((@p8 = 1 AND `product_created` IS NULL) OR (`product_crea"& _ 
+                "ted` = @p9)) AND ((@p10 = 1 AND `product_changed` IS NULL) OR (`product_changed`"& _ 
+                " = @p11)) AND ((@p12 = 1 AND `product_supplier_id` IS NULL) OR (`product_supplie"& _ 
+                "r_id` = @p13)) AND ((@p14 = 1 AND `product_tax_rate` IS NULL) OR (`product_tax_r"& _ 
+                "ate` = @p15)) AND ((@p16 = 1 AND `product_taxable` IS NULL) OR (`product_taxable"& _ 
+                "` = @p17)) AND ((@p18 = 1 AND `product_purchase_units` IS NULL) OR (`product_pur"& _ 
+                "chase_units` = @p19)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_id"
+            param.ParameterName = "@p1"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13290,7 +13331,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_name"
+            param.ParameterName = "@p2"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
@@ -13298,24 +13348,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_description"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "product_description"
+            param.SourceColumn = "product_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "product_description"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_cost"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13323,7 +13365,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_price"
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_price"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13331,7 +13382,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_created"
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13339,7 +13399,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_changed"
+            param.ParameterName = "@p10"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13348,7 +13408,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_changed"
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13356,7 +13416,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_supplier_id"
+            param.ParameterName = "@p12"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_supplier_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13364,7 +13433,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_tax_rate"
+            param.ParameterName = "@p14"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13373,7 +13442,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_tax_rate"
+            param.ParameterName = "@p15"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13381,23 +13450,48 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_taxable"
+            param.ParameterName = "@p16"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_taxable"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p17"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
             param.SourceColumn = "product_taxable"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p18"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p19"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `product` (`product_name`, `product_description`, `product_cost`, `pr"& _ 
                 "oduct_price`, `product_created`, `product_changed`, `product_supplier_id`, `prod"& _ 
-                "uct_tax_rate`, `product_taxable`) VALUES (@product_name, @product_description, @"& _ 
-                "product_cost, @product_price, @product_created, @product_changed, @product_suppl"& _ 
-                "ier_id, @product_tax_rate, @product_taxable)"
+                "uct_tax_rate`, `product_taxable`, `product_purchase_units`) VALUES (@p1, @p2, @p"& _ 
+                "3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_name"
+            param.ParameterName = "@p1"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
@@ -13405,15 +13499,14 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.ParameterName = "@p2"
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
             param.IsNullable = true
             param.SourceColumn = "product_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_cost"
+            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13421,7 +13514,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_price"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13429,7 +13522,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_created"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13437,7 +13530,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_changed"
+            param.ParameterName = "@p6"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13445,7 +13538,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_supplier_id"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13453,7 +13546,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_tax_rate"
+            param.ParameterName = "@p8"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13461,32 +13554,39 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_taxable"
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
             param.SourceColumn = "product_taxable"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `product` SET `product_name` = @product_name, `product_description` = @pro"& _ 
-                "duct_description, `product_cost` = @product_cost, `product_price` = @product_pri"& _ 
-                "ce, `product_created` = @product_created, `product_changed` = @product_changed, "& _ 
-                "`product_supplier_id` = @product_supplier_id, `product_tax_rate` = @product_tax_"& _ 
-                "rate, `product_taxable` = @product_taxable WHERE ((`product_id` = @Original_prod"& _ 
-                "uct_id) AND (`product_name` = @Original_product_name) AND ((@IsNull_product_desc"& _ 
-                "ription = 1 AND `product_description` IS NULL) OR (`product_description` = @Orig"& _ 
-                "inal_product_description)) AND (`product_cost` = @Original_product_cost) AND (`p"& _ 
-                "roduct_price` = @Original_product_price) AND (`product_created` = @Original_prod"& _ 
-                "uct_created) AND ((@IsNull_product_changed = 1 AND `product_changed` IS NULL) OR"& _ 
-                " (`product_changed` = @Original_product_changed)) AND (`product_supplier_id` = @"& _ 
-                "Original_product_supplier_id) AND ((@IsNull_product_tax_rate = 1 AND `product_ta"& _ 
-                "x_rate` IS NULL) OR (`product_tax_rate` = @Original_product_tax_rate)) AND (`pro"& _ 
-                "duct_taxable` = @Original_product_taxable))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `product` SET `product_name` = @p1, `product_description` = @p2, `product_"& _ 
+                "cost` = @p3, `product_price` = @p4, `product_created` = @p5, `product_changed` ="& _ 
+                " @p6, `product_supplier_id` = @p7, `product_tax_rate` = @p8, `product_taxable` ="& _ 
+                " @p9, `product_purchase_units` = @p10 WHERE ((`product_id` = @p11) AND ((@p12 = "& _ 
+                "1 AND `product_name` IS NULL) OR (`product_name` = @p13)) AND ((@p14 = 1 AND `pr"& _ 
+                "oduct_cost` IS NULL) OR (`product_cost` = @p15)) AND ((@p16 = 1 AND `product_pri"& _ 
+                "ce` IS NULL) OR (`product_price` = @p17)) AND ((@p18 = 1 AND `product_created` I"& _ 
+                "S NULL) OR (`product_created` = @p19)) AND ((@p20 = 1 AND `product_changed` IS N"& _ 
+                "ULL) OR (`product_changed` = @p21)) AND ((@p22 = 1 AND `product_supplier_id` IS "& _ 
+                "NULL) OR (`product_supplier_id` = @p23)) AND ((@p24 = 1 AND `product_tax_rate` I"& _ 
+                "S NULL) OR (`product_tax_rate` = @p25)) AND ((@p26 = 1 AND `product_taxable` IS "& _ 
+                "NULL) OR (`product_taxable` = @p27)) AND ((@p28 = 1 AND `product_purchase_units`"& _ 
+                " IS NULL) OR (`product_purchase_units` = @p29)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_name"
+            param.ParameterName = "@p1"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
@@ -13494,15 +13594,14 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.ParameterName = "@p2"
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
             param.IsNullable = true
             param.SourceColumn = "product_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_cost"
+            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13510,7 +13609,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_price"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13518,7 +13617,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_created"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13526,7 +13625,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_changed"
+            param.ParameterName = "@p6"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13534,7 +13633,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_supplier_id"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13542,7 +13641,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_tax_rate"
+            param.ParameterName = "@p8"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13550,7 +13649,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@product_taxable"
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -13558,7 +13657,15 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_id"
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13566,7 +13673,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_name"
+            param.ParameterName = "@p12"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
@@ -13574,24 +13690,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_description"
+            param.ParameterName = "@p14"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "product_description"
+            param.SourceColumn = "product_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "product_description"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_cost"
+            param.ParameterName = "@p15"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13599,7 +13707,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_price"
+            param.ParameterName = "@p16"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_price"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p17"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13607,7 +13724,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_created"
+            param.ParameterName = "@p18"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p19"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13615,7 +13741,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_changed"
+            param.ParameterName = "@p20"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13624,7 +13750,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_changed"
+            param.ParameterName = "@p21"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -13632,7 +13758,16 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_supplier_id"
+            param.ParameterName = "@p22"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_supplier_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p23"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13640,7 +13775,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_product_tax_rate"
+            param.ParameterName = "@p24"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -13649,7 +13784,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_tax_rate"
+            param.ParameterName = "@p25"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -13657,11 +13792,37 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_product_taxable"
+            param.ParameterName = "@p26"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_taxable"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p27"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
             param.SourceColumn = "product_taxable"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p28"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p29"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -13681,7 +13842,7 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT product_id, product_name, product_description, product_cost, product_price"& _ 
                 ", product_created, product_changed, product_supplier_id, product_tax_rate, produ"& _ 
-                "ct_taxable FROM product"
+                "ct_taxable, product_purchase_units FROM product"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -13699,7 +13860,7 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT product_id, product_name, product_description, product_cost, product_price"& _ 
                 ", product_created, product_changed, product_supplier_id, product_tax_rate, produ"& _ 
-                "ct_taxable FROM product WHERE (product_id = @Id)"
+                "ct_taxable, product_purchase_units FROM product WHERE (product_id = @Id)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Id"
@@ -13713,7 +13874,8 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(3).Connection = Me.Connection
             Me._commandCollection(3).CommandText = "SELECT product_id, product_name, product_description, product_cost, product_price"& _ 
                 ", product_created, product_changed, product_supplier_id, product_tax_rate, produ"& _ 
-                "ct_taxable FROM product WHERE (product_supplier_id = @suppId)"
+                "ct_taxable, product_purchase_units FROM product WHERE (product_supplier_id = @su"& _ 
+                "ppId)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@suppId"
@@ -13727,10 +13889,10 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "INSERT INTO product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (product_name, product_description,"& _ 
                 " product_cost, product_price, product_created, product_supplier_id, product_taxa"& _ 
-                "ble, product_tax_rate)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@product_name, @product_description, @pro"& _ 
-                "duct_cost, @product_price, @product_created, @product_supplier_id, @product_taxa"& _ 
-                "ble, @product_tax_rate);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT        LAST_INSERT_I"& _ 
-                "D()"
+                "ble, product_tax_rate, product_purchase_units)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@product_name, @p"& _ 
+                "roduct_description, @product_cost, @product_price, @product_created, @product_su"& _ 
+                "pplier_id, @product_taxable, @product_tax_rate, @purchaseUnits);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "             SELECT        LAST_INSERT_ID()"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@product_name"
@@ -13744,8 +13906,8 @@ Namespace netwyrksDataSetTableAdapters
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@product_description"
             param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 255
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.Size = 2147483647
             param.IsNullable = true
             param.SourceColumn = "product_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
@@ -13799,6 +13961,14 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumn = "product_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(4).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@purchaseUnits"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(4).Parameters.Add(param)
             Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "TRUNCATE product;"
@@ -13807,9 +13977,10 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(6).Connection = Me.Connection
             Me._commandCollection(6).CommandText = "UPDATE       product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                product_name = @product_name, product_de"& _ 
                 "scription = @product_description, product_cost = @product_cost, product_price = "& _ 
-                "@product_price, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         product_changed = @product_changed, p"& _ 
-                "roduct_supplier_id = @product_supplier_id, product_taxable = @product_taxable, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         product_tax_rate = @product_tax_rate"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (pr"& _ 
-                "oduct_id = @id)"
+                "@product_price, product_changed = @product_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         p"& _ 
+                "roduct_supplier_id = @product_supplier_id, product_taxable = @product_taxable, p"& _ 
+                "roduct_tax_rate = @product_tax_rate, product_purchase_units = @purchaseUnits"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WH"& _ 
+                "ERE        (product_id = @id)"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@product_name"
@@ -13823,8 +13994,8 @@ Namespace netwyrksDataSetTableAdapters
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@product_description"
             param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 255
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.Size = 2147483647
             param.IsNullable = true
             param.SourceColumn = "product_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
@@ -13876,6 +14047,14 @@ Namespace netwyrksDataSetTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
             param.SourceColumn = "product_tax_rate"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(6).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@purchaseUnits"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "product_purchase_units"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -13972,39 +14151,71 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_product_id As Integer, ByVal Original_product_name As String, ByVal Original_product_description As String, ByVal Original_product_cost As Decimal, ByVal Original_product_price As Decimal, ByVal Original_product_created As Date, ByVal Original_product_changed As Global.System.Nullable(Of Date), ByVal Original_product_supplier_id As Integer, ByVal Original_product_tax_rate As Global.System.Nullable(Of Decimal), ByVal Original_product_taxable As Byte) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_product_id,Integer)
-            If (Original_product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_product_name")
+        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p3 As String, ByVal p5 As Global.System.Nullable(Of Decimal), ByVal p7 As Global.System.Nullable(Of Decimal), ByVal p9 As Global.System.Nullable(Of Date), ByVal p11 As Global.System.Nullable(Of Date), ByVal p13 As Global.System.Nullable(Of Integer), ByVal p15 As Global.System.Nullable(Of Decimal), ByVal p17 As Global.System.Nullable(Of Byte), ByVal p19 As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Integer)
+            If (p3 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_product_name,String)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(p3,String)
             End If
-            If (Original_product_description Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
+            If (p5.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(p5.Value,Decimal)
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_product_description,String)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_product_cost,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_product_price,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_product_created,Date)
-            If (Original_product_changed.HasValue = true) Then
+            If (p7.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(p7.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (p9.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_product_changed.Value,Date)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(p9.Value,Date)
             Else
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_product_supplier_id,Integer)
-            If (Original_product_tax_rate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_product_tax_rate.Value,Decimal)
+            If (p11.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(p11.Value,Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_product_taxable,Byte)
+            If (p13.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(p13.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (p15.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(p15.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (p17.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(p17.Value,Byte)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (p19.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(p19.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14024,32 +14235,57 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Decimal, ByVal product_price As Decimal, ByVal product_created As Date, ByVal product_changed As Global.System.Nullable(Of Date), ByVal product_supplier_id As Integer, ByVal product_tax_rate As Global.System.Nullable(Of Decimal), ByVal product_taxable As Byte) As Integer
-            If (product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_name")
+        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Global.System.Nullable(Of Decimal), ByVal p4 As Global.System.Nullable(Of Decimal), ByVal p5 As Global.System.Nullable(Of Date), ByVal p6 As Global.System.Nullable(Of Date), ByVal p7 As Global.System.Nullable(Of Integer), ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p9 As Global.System.Nullable(Of Byte), ByVal p10 As Global.System.Nullable(Of Integer)) As Integer
+            If (p1 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(product_name,String)
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (product_description Is Nothing) Then
+            If (p2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(product_description,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(product_cost,Decimal)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(product_price,Decimal)
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(product_created,Date)
-            If (product_changed.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(product_changed.Value,Date)
+            If (p3.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (p4.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (p5.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (p6.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(product_supplier_id,Integer)
-            If (product_tax_rate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(product_tax_rate.Value,Decimal)
+            If (p7.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (p8.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(product_taxable,Byte)
+            If (p9.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9.Value,Byte)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (p10.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14070,82 +14306,140 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal product_name As String,  _
-                    ByVal product_description As String,  _
-                    ByVal product_cost As Decimal,  _
-                    ByVal product_price As Decimal,  _
-                    ByVal product_created As Date,  _
-                    ByVal product_changed As Global.System.Nullable(Of Date),  _
-                    ByVal product_supplier_id As Integer,  _
-                    ByVal product_tax_rate As Global.System.Nullable(Of Decimal),  _
-                    ByVal product_taxable As Byte,  _
-                    ByVal Original_product_id As Integer,  _
-                    ByVal Original_product_name As String,  _
-                    ByVal Original_product_description As String,  _
-                    ByVal Original_product_cost As Decimal,  _
-                    ByVal Original_product_price As Decimal,  _
-                    ByVal Original_product_created As Date,  _
-                    ByVal Original_product_changed As Global.System.Nullable(Of Date),  _
-                    ByVal Original_product_supplier_id As Integer,  _
-                    ByVal Original_product_tax_rate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_product_taxable As Byte) As Integer
-            If (product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_name")
+                    ByVal p1 As String,  _
+                    ByVal p2 As String,  _
+                    ByVal p3 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p4 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p5 As Global.System.Nullable(Of Date),  _
+                    ByVal p6 As Global.System.Nullable(Of Date),  _
+                    ByVal p7 As Global.System.Nullable(Of Integer),  _
+                    ByVal p8 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p9 As Global.System.Nullable(Of Byte),  _
+                    ByVal p10 As Global.System.Nullable(Of Integer),  _
+                    ByVal p11 As Integer,  _
+                    ByVal p13 As String,  _
+                    ByVal p15 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p17 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p19 As Global.System.Nullable(Of Date),  _
+                    ByVal p21 As Global.System.Nullable(Of Date),  _
+                    ByVal p23 As Global.System.Nullable(Of Integer),  _
+                    ByVal p25 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p27 As Global.System.Nullable(Of Byte),  _
+                    ByVal p29 As Global.System.Nullable(Of Integer)) As Integer
+            If (p1 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(product_name,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (product_description Is Nothing) Then
+            If (p2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(product_description,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(product_cost,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(product_price,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(product_created,Date)
-            If (product_changed.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(product_changed.Value,Date)
+            If (p3.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (p4.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (p5.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (p6.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(product_supplier_id,Integer)
-            If (product_tax_rate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(product_tax_rate.Value,Decimal)
+            If (p7.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (p8.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(product_taxable,Byte)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_product_id,Integer)
-            If (Original_product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_product_name")
+            If (p9.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_product_name,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            If (Original_product_description Is Nothing) Then
+            If (p10.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,Integer)
+            If (p13 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_product_description,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_product_cost,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_product_price,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_product_created,Date)
-            If (Original_product_changed.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_product_changed.Value,Date)
+            If (p15.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_product_supplier_id,Integer)
-            If (Original_product_tax_rate.HasValue = true) Then
+            If (p17.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (p19.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
+            If (p21.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_product_tax_rate.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_product_taxable,Byte)
+            If (p23.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(p23.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (p25.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(p25.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
+            If (p27.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(p27.Value,Byte)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            End If
+            If (p29.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(p29.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14188,10 +14482,10 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertProduct(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Decimal, ByVal product_price As Decimal, ByVal product_created As Date, ByVal product_supplier_id As Integer, ByVal product_taxable As Object, ByVal product_tax_rate As Global.System.Nullable(Of Decimal)) As Object
+        Public Overloads Overridable Function InsertProduct(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Global.System.Nullable(Of Decimal), ByVal product_price As Global.System.Nullable(Of Decimal), ByVal product_created As Global.System.Nullable(Of Date), ByVal product_supplier_id As Global.System.Nullable(Of Integer), ByVal product_taxable As Object, ByVal product_tax_rate As Global.System.Nullable(Of Decimal), ByVal purchaseUnits As Global.System.Nullable(Of Integer)) As Object
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
             If (product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_name")
+                command.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(0).Value = CType(product_name,String)
             End If
@@ -14200,12 +14494,28 @@ Namespace netwyrksDataSetTableAdapters
             Else
                 command.Parameters(1).Value = CType(product_description,String)
             End If
-            command.Parameters(2).Value = CType(product_cost,Decimal)
-            command.Parameters(3).Value = CType(product_price,Decimal)
-            command.Parameters(4).Value = CType(product_created,Date)
-            command.Parameters(5).Value = CType(product_supplier_id,Integer)
+            If (product_cost.HasValue = true) Then
+                command.Parameters(2).Value = CType(product_cost.Value,Decimal)
+            Else
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (product_price.HasValue = true) Then
+                command.Parameters(3).Value = CType(product_price.Value,Decimal)
+            Else
+                command.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (product_created.HasValue = true) Then
+                command.Parameters(4).Value = CType(product_created.Value,Date)
+            Else
+                command.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (product_supplier_id.HasValue = true) Then
+                command.Parameters(5).Value = CType(product_supplier_id.Value,Integer)
+            Else
+                command.Parameters(5).Value = Global.System.DBNull.Value
+            End If
             If (product_taxable Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_taxable")
+                command.Parameters(6).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(6).Value = CType(product_taxable,Object)
             End If
@@ -14213,6 +14523,11 @@ Namespace netwyrksDataSetTableAdapters
                 command.Parameters(7).Value = CType(product_tax_rate.Value,Decimal)
             Else
                 command.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            If (purchaseUnits.HasValue = true) Then
+                command.Parameters(8).Value = CType(purchaseUnits.Value,Integer)
+            Else
+                command.Parameters(8).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -14261,10 +14576,10 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateProduct(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Decimal, ByVal product_price As Decimal, ByVal product_changed As Global.System.Nullable(Of Date), ByVal product_supplier_id As Integer, ByVal product_taxable As Object, ByVal product_tax_rate As Global.System.Nullable(Of Decimal), ByVal id As Integer) As Integer
+        Public Overloads Overridable Function UpdateProduct(ByVal product_name As String, ByVal product_description As String, ByVal product_cost As Global.System.Nullable(Of Decimal), ByVal product_price As Global.System.Nullable(Of Decimal), ByVal product_changed As Global.System.Nullable(Of Date), ByVal product_supplier_id As Global.System.Nullable(Of Integer), ByVal product_taxable As Object, ByVal product_tax_rate As Global.System.Nullable(Of Decimal), ByVal purchaseUnits As Global.System.Nullable(Of Integer), ByVal id As Integer) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
             If (product_name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_name")
+                command.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(0).Value = CType(product_name,String)
             End If
@@ -14273,16 +14588,28 @@ Namespace netwyrksDataSetTableAdapters
             Else
                 command.Parameters(1).Value = CType(product_description,String)
             End If
-            command.Parameters(2).Value = CType(product_cost,Decimal)
-            command.Parameters(3).Value = CType(product_price,Decimal)
+            If (product_cost.HasValue = true) Then
+                command.Parameters(2).Value = CType(product_cost.Value,Decimal)
+            Else
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (product_price.HasValue = true) Then
+                command.Parameters(3).Value = CType(product_price.Value,Decimal)
+            Else
+                command.Parameters(3).Value = Global.System.DBNull.Value
+            End If
             If (product_changed.HasValue = true) Then
                 command.Parameters(4).Value = CType(product_changed.Value,Date)
             Else
                 command.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            command.Parameters(5).Value = CType(product_supplier_id,Integer)
+            If (product_supplier_id.HasValue = true) Then
+                command.Parameters(5).Value = CType(product_supplier_id.Value,Integer)
+            Else
+                command.Parameters(5).Value = Global.System.DBNull.Value
+            End If
             If (product_taxable Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("product_taxable")
+                command.Parameters(6).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(6).Value = CType(product_taxable,Object)
             End If
@@ -14291,7 +14618,12 @@ Namespace netwyrksDataSetTableAdapters
             Else
                 command.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            command.Parameters(8).Value = CType(id,Integer)
+            If (purchaseUnits.HasValue = true) Then
+                command.Parameters(8).Value = CType(purchaseUnits.Value,Integer)
+            Else
+                command.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            command.Parameters(9).Value = CType(id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

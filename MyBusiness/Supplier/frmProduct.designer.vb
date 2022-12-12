@@ -43,11 +43,14 @@ Partial Class FrmProduct
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LblAction = New System.Windows.Forms.Label()
+        Me.NudPurchaseUnits = New System.Windows.Forms.NumericUpDown()
+        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -58,7 +61,7 @@ Partial Class FrmProduct
         Me.lblScreenName.Location = New System.Drawing.Point(70, 15)
         Me.lblScreenName.Name = "lblScreenName"
         Me.lblScreenName.Size = New System.Drawing.Size(125, 25)
-        Me.lblScreenName.TabIndex = 68
+        Me.lblScreenName.TabIndex = 10
         Me.lblScreenName.Text = "Product"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -79,22 +82,22 @@ Partial Class FrmProduct
         '
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(427, 452)
+        Me.btnClose.Location = New System.Drawing.Point(427, 466)
         Me.btnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(114, 50)
-        Me.btnClose.TabIndex = 74
+        Me.btnClose.TabIndex = 8
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'btnSave
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSave.Location = New System.Drawing.Point(14, 452)
+        Me.btnSave.Location = New System.Drawing.Point(14, 466)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(114, 50)
-        Me.btnSave.TabIndex = 73
+        Me.btnSave.TabIndex = 7
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -103,11 +106,11 @@ Partial Class FrmProduct
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 528)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 542)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
         Me.StatusStrip1.Size = New System.Drawing.Size(573, 22)
-        Me.StatusStrip1.TabIndex = 72
+        Me.StatusStrip1.TabIndex = 9
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'lblStatus
@@ -127,7 +130,7 @@ Partial Class FrmProduct
         Me.lblSuppName.Location = New System.Drawing.Point(125, 87)
         Me.lblSuppName.Name = "lblSuppName"
         Me.lblSuppName.Size = New System.Drawing.Size(111, 19)
-        Me.lblSuppName.TabIndex = 83
+        Me.lblSuppName.TabIndex = 13
         Me.lblSuppName.Text = "Supplier name"
         '
         'txtProductName
@@ -137,7 +140,7 @@ Partial Class FrmProduct
         Me.txtProductName.Location = New System.Drawing.Point(149, 137)
         Me.txtProductName.Name = "txtProductName"
         Me.txtProductName.Size = New System.Drawing.Size(378, 24)
-        Me.txtProductName.TabIndex = 75
+        Me.txtProductName.TabIndex = 0
         '
         'rtbDescription
         '
@@ -146,39 +149,39 @@ Partial Class FrmProduct
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbDescription.Location = New System.Drawing.Point(52, 200)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(474, 149)
-        Me.rtbDescription.TabIndex = 76
+        Me.rtbDescription.Size = New System.Drawing.Size(474, 145)
+        Me.rtbDescription.TabIndex = 1
         Me.rtbDescription.Text = ""
         '
         'nudCost
         '
         Me.nudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudCost.DecimalPlaces = 2
-        Me.nudCost.Location = New System.Drawing.Point(91, 370)
+        Me.nudCost.Location = New System.Drawing.Point(149, 351)
         Me.nudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudCost.Name = "nudCost"
         Me.nudCost.Size = New System.Drawing.Size(120, 24)
-        Me.nudCost.TabIndex = 77
+        Me.nudCost.TabIndex = 2
         '
         'Label5
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(353, 372)
+        Me.Label5.Location = New System.Drawing.Point(325, 386)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(37, 17)
-        Me.Label5.TabIndex = 87
-        Me.Label5.Text = "Price"
+        Me.Label5.Size = New System.Drawing.Size(65, 17)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "Unit Price"
         '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(49, 372)
+        Me.Label4.Location = New System.Drawing.Point(47, 353)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(36, 17)
-        Me.Label4.TabIndex = 86
-        Me.Label4.Text = "Cost"
+        Me.Label4.Size = New System.Drawing.Size(96, 17)
+        Me.Label4.TabIndex = 16
+        Me.Label4.Text = "Purchase Cost"
         '
         'Label3
         '
@@ -186,7 +189,7 @@ Partial Class FrmProduct
         Me.Label3.Location = New System.Drawing.Point(52, 180)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(76, 17)
-        Me.Label3.TabIndex = 85
+        Me.Label3.TabIndex = 15
         Me.Label3.Text = "Description"
         '
         'Label2
@@ -195,7 +198,7 @@ Partial Class FrmProduct
         Me.Label2.Location = New System.Drawing.Point(48, 140)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(95, 17)
-        Me.Label2.TabIndex = 84
+        Me.Label2.TabIndex = 14
         Me.Label2.Text = "Product name"
         '
         'Label1
@@ -205,27 +208,27 @@ Partial Class FrmProduct
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(56, 17)
-        Me.Label1.TabIndex = 82
+        Me.Label1.TabIndex = 12
         Me.Label1.Text = "Supplier"
         '
         'nudPrice
         '
         Me.nudPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudPrice.DecimalPlaces = 2
-        Me.nudPrice.Location = New System.Drawing.Point(396, 370)
+        Me.nudPrice.Location = New System.Drawing.Point(396, 384)
         Me.nudPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudPrice.Name = "nudPrice"
         Me.nudPrice.Size = New System.Drawing.Size(120, 24)
-        Me.nudPrice.TabIndex = 78
+        Me.nudPrice.TabIndex = 4
         '
         'chkTaxable
         '
         Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(52, 411)
+        Me.chkTaxable.Location = New System.Drawing.Point(52, 425)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(74, 21)
-        Me.chkTaxable.TabIndex = 90
+        Me.chkTaxable.TabIndex = 5
         Me.chkTaxable.Text = "Taxable"
         Me.chkTaxable.UseVisualStyleBackColor = True
         '
@@ -233,19 +236,19 @@ Partial Class FrmProduct
         '
         Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(204, 410)
+        Me.nudTaxRate.Location = New System.Drawing.Point(204, 424)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(60, 24)
-        Me.nudTaxRate.TabIndex = 88
+        Me.nudTaxRate.TabIndex = 6
         '
         'Label7
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(145, 412)
+        Me.Label7.Location = New System.Drawing.Point(145, 426)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 17)
-        Me.Label7.TabIndex = 89
+        Me.Label7.TabIndex = 19
         Me.Label7.Text = "Rate %"
         '
         'LblAction
@@ -258,15 +261,36 @@ Partial Class FrmProduct
         Me.LblAction.Name = "LblAction"
         Me.LblAction.Padding = New System.Windows.Forms.Padding(3)
         Me.LblAction.Size = New System.Drawing.Size(187, 29)
-        Me.LblAction.TabIndex = 91
+        Me.LblAction.TabIndex = 11
         Me.LblAction.Text = "Adding new product"
+        '
+        'NudPurchaseUnits
+        '
+        Me.NudPurchaseUnits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudPurchaseUnits.Location = New System.Drawing.Point(149, 381)
+        Me.NudPurchaseUnits.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NudPurchaseUnits.Name = "NudPurchaseUnits"
+        Me.NudPurchaseUnits.Size = New System.Drawing.Size(120, 24)
+        Me.NudPurchaseUnits.TabIndex = 3
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(47, 383)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(98, 17)
+        Me.Label6.TabIndex = 17
+        Me.Label6.Text = "Purchase Units"
         '
         'FrmProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(573, 550)
+        Me.ClientSize = New System.Drawing.Size(573, 564)
+        Me.Controls.Add(Me.NudPurchaseUnits)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.LblAction)
         Me.Controls.Add(Me.chkTaxable)
         Me.Controls.Add(Me.nudTaxRate)
@@ -297,6 +321,7 @@ Partial Class FrmProduct
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -322,4 +347,6 @@ Partial Class FrmProduct
     Friend WithEvents nudTaxRate As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents LblAction As Label
+    Friend WithEvents NudPurchaseUnits As NumericUpDown
+    Friend WithEvents Label6 As Label
 End Class

@@ -77,10 +77,20 @@
         _job = GetJobById(pJobId)
         Return Me
     End Function
+    Public Function WithJob(pJob As Job) As JobProductBuilder
+        _job = pJob
+        Return Me
+    End Function
+
     Public Function WithProduct(pProductId As Integer) As JobProductBuilder
         _product = GetProductById(pProductId)
         Return Me
     End Function
+    Public Function WithProduct(pProduct As Product) As JobProductBuilder
+        _product = pProduct
+        Return Me
+    End Function
+
     Public Function WithQuantity(pQuantity As Integer) As JobProductBuilder
         _quantity = pQuantity
         Return Me

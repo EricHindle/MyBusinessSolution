@@ -80,6 +80,7 @@ Public Class FrmProduct
                                 .WithProductSupplierId(_supplierId) _
                                 .WithProductTaxable(chkTaxable.Checked) _
                                 .WithProductTaxRate(nudTaxRate.Value) _
+                                .WithPurchaseUnits(NudPurchaseUnits.Value) _
                                 .Build
             If _productId > 0 Then
                 AmendProduct()
@@ -104,6 +105,7 @@ Public Class FrmProduct
             nudPrice.Value = .ProductPrice
             chkTaxable.Checked = .IsProductTaxable
             nudTaxRate.Value = .ProductTaxRate
+            NudPurchaseUnits.Value = .PurchaseUnits
         End With
     End Sub
     Private Sub ClearProductDetails()
@@ -113,6 +115,7 @@ Public Class FrmProduct
         nudPrice.Value = 0
         chkTaxable.Checked = False
         nudTaxRate.Value = 0.0
+        NudPurchaseUnits.Value = 0
     End Sub
     Private Sub Newproduct()
         LogUtil.Info("New product", MyBase.Name())

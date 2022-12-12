@@ -43,6 +43,11 @@ Partial Class FrmJobProducts
         Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
+        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodTaxRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblProductName = New System.Windows.Forms.Label()
         Me.nudQuantity = New System.Windows.Forms.NumericUpDown()
         Me.btnRemove = New System.Windows.Forms.Button()
@@ -55,11 +60,8 @@ Partial Class FrmJobProducts
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.nudPrice = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodTaxable = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodTaxRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NudUnitPrice = New System.Windows.Forms.NumericUpDown()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +78,7 @@ Partial Class FrmJobProducts
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -285,6 +288,41 @@ Partial Class FrmJobProducts
         Me.dgvProducts.Size = New System.Drawing.Size(484, 198)
         Me.dgvProducts.TabIndex = 77
         '
+        'prodId
+        '
+        Me.prodId.HeaderText = "Id"
+        Me.prodId.Name = "prodId"
+        Me.prodId.ReadOnly = True
+        Me.prodId.Visible = False
+        '
+        'prodName
+        '
+        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.prodName.HeaderText = "Product name"
+        Me.prodName.Name = "prodName"
+        Me.prodName.ReadOnly = True
+        '
+        'prodTaxable
+        '
+        Me.prodTaxable.HeaderText = "Taxable"
+        Me.prodTaxable.Name = "prodTaxable"
+        Me.prodTaxable.ReadOnly = True
+        Me.prodTaxable.Visible = False
+        '
+        'prodTaxRate
+        '
+        Me.prodTaxRate.HeaderText = "Rate"
+        Me.prodTaxRate.Name = "prodTaxRate"
+        Me.prodTaxRate.ReadOnly = True
+        Me.prodTaxRate.Visible = False
+        '
+        'prodPrice
+        '
+        Me.prodPrice.HeaderText = "Price"
+        Me.prodPrice.Name = "prodPrice"
+        Me.prodPrice.ReadOnly = True
+        Me.prodPrice.Visible = False
+        '
         'lblProductName
         '
         Me.lblProductName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -298,7 +336,7 @@ Partial Class FrmJobProducts
         'nudQuantity
         '
         Me.nudQuantity.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.nudQuantity.Location = New System.Drawing.Point(302, 514)
+        Me.nudQuantity.Location = New System.Drawing.Point(266, 516)
         Me.nudQuantity.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudQuantity.Name = "nudQuantity"
         Me.nudQuantity.Size = New System.Drawing.Size(120, 24)
@@ -328,7 +366,7 @@ Partial Class FrmJobProducts
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(265, 514)
+        Me.Label1.Location = New System.Drawing.Point(229, 516)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 17)
         Me.Label1.TabIndex = 82
@@ -338,7 +376,7 @@ Partial Class FrmJobProducts
         '
         Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(424, 547)
+        Me.chkTaxable.Location = New System.Drawing.Point(503, 545)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(86, 21)
         Me.chkTaxable.TabIndex = 83
@@ -349,7 +387,7 @@ Partial Class FrmJobProducts
         '
         Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(590, 546)
+        Me.nudTaxRate.Location = New System.Drawing.Point(669, 544)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(80, 24)
         Me.nudTaxRate.TabIndex = 84
@@ -358,7 +396,7 @@ Partial Class FrmJobProducts
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(530, 548)
+        Me.Label2.Location = New System.Drawing.Point(609, 546)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 17)
         Me.Label2.TabIndex = 85
@@ -407,7 +445,7 @@ Partial Class FrmJobProducts
         '
         Me.nudPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudPrice.DecimalPlaces = 2
-        Me.nudPrice.Location = New System.Drawing.Point(550, 514)
+        Me.nudPrice.Location = New System.Drawing.Point(629, 514)
         Me.nudPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudPrice.Name = "nudPrice"
         Me.nudPrice.Size = New System.Drawing.Size(120, 24)
@@ -417,46 +455,32 @@ Partial Class FrmJobProducts
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(507, 516)
+        Me.Label5.Location = New System.Drawing.Point(586, 516)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(37, 17)
         Me.Label5.TabIndex = 89
         Me.Label5.Text = "Price"
         '
-        'prodId
+        'NudUnitPrice
         '
-        Me.prodId.HeaderText = "Id"
-        Me.prodId.Name = "prodId"
-        Me.prodId.ReadOnly = True
-        Me.prodId.Visible = False
+        Me.NudUnitPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudUnitPrice.DecimalPlaces = 2
+        Me.NudUnitPrice.Enabled = False
+        Me.NudUnitPrice.Location = New System.Drawing.Point(488, 516)
+        Me.NudUnitPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NudUnitPrice.Name = "NudUnitPrice"
+        Me.NudUnitPrice.Size = New System.Drawing.Size(82, 24)
+        Me.NudUnitPrice.TabIndex = 90
         '
-        'prodName
+        'Label3
         '
-        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.prodName.HeaderText = "Product name"
-        Me.prodName.Name = "prodName"
-        Me.prodName.ReadOnly = True
-        '
-        'prodTaxable
-        '
-        Me.prodTaxable.HeaderText = "Taxable"
-        Me.prodTaxable.Name = "prodTaxable"
-        Me.prodTaxable.ReadOnly = True
-        Me.prodTaxable.Visible = False
-        '
-        'prodTaxRate
-        '
-        Me.prodTaxRate.HeaderText = "Rate"
-        Me.prodTaxRate.Name = "prodTaxRate"
-        Me.prodTaxRate.ReadOnly = True
-        Me.prodTaxRate.Visible = False
-        '
-        'prodPrice
-        '
-        Me.prodPrice.HeaderText = "Price"
-        Me.prodPrice.Name = "prodPrice"
-        Me.prodPrice.ReadOnly = True
-        Me.prodPrice.Visible = False
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(417, 518)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(65, 17)
+        Me.Label3.TabIndex = 91
+        Me.Label3.Text = "Unit Price"
         '
         'FrmJobProducts
         '
@@ -464,6 +488,8 @@ Partial Class FrmJobProducts
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(764, 661)
+        Me.Controls.Add(Me.NudUnitPrice)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.nudPrice)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.SplitContainer2)
@@ -504,6 +530,7 @@ Partial Class FrmJobProducts
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -546,4 +573,6 @@ Partial Class FrmJobProducts
     Friend WithEvents prodTaxable As DataGridViewTextBoxColumn
     Friend WithEvents prodTaxRate As DataGridViewTextBoxColumn
     Friend WithEvents prodPrice As DataGridViewTextBoxColumn
+    Friend WithEvents NudUnitPrice As NumericUpDown
+    Friend WithEvents Label3 As Label
 End Class
