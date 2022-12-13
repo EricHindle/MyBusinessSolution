@@ -233,6 +233,7 @@ Public Class frmOptions
         txtLogPath.Text = My.Settings.LogFolder
         txtReportFolder.Text = My.Settings.ReportFolder
         txtCacheFolder.Text = My.Settings.CacheFolder
+        TxtImageFolder.Text = My.Settings.SourceImages
     End Sub
 
     ''' <summary>
@@ -244,7 +245,8 @@ Public Class frmOptions
         My.Settings.LogFolder = txtLogPath.Text
         My.Settings.ReportFolder = txtReportFolder.Text
         My.Settings.CacheFolder = txtCacheFolder.Text
-        setFolderNames()
+        My.Settings.SourceImages = TxtImageFolder.Text
+        SetFolderNames()
     End Sub
 
     ''' <summary>

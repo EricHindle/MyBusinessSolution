@@ -107,6 +107,8 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TxtImageFolder = New System.Windows.Forms.TextBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -353,7 +355,7 @@ Partial Class frmOptions
         Me.Label6.Location = New System.Drawing.Point(257, 29)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(34, 16)
+        Me.Label6.Size = New System.Drawing.Size(33, 16)
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "days"
         '
@@ -365,7 +367,7 @@ Partial Class frmOptions
         Me.chkAutoTidy.Location = New System.Drawing.Point(16, 59)
         Me.chkAutoTidy.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.chkAutoTidy.Name = "chkAutoTidy"
-        Me.chkAutoTidy.Size = New System.Drawing.Size(81, 20)
+        Me.chkAutoTidy.Size = New System.Drawing.Size(80, 20)
         Me.chkAutoTidy.TabIndex = 1
         Me.chkAutoTidy.Text = "Auto Tidy"
         Me.ToolTip1.SetToolTip(Me.chkAutoTidy, "Check to automatically remove old cached files ")
@@ -379,7 +381,7 @@ Partial Class frmOptions
         Me.Label4.Location = New System.Drawing.Point(14, 29)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(141, 16)
+        Me.Label4.Size = New System.Drawing.Size(140, 16)
         Me.Label4.TabIndex = 2
         Me.Label4.Text = "Cache Retention Period"
         '
@@ -487,7 +489,7 @@ Partial Class frmOptions
         Me.Label17.ForeColor = System.Drawing.Color.Black
         Me.Label17.Location = New System.Drawing.Point(85, 285)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(45, 16)
+        Me.Label17.Size = New System.Drawing.Size(44, 16)
         Me.Label17.TabIndex = 74
         Me.Label17.Text = "Footer"
         '
@@ -498,7 +500,7 @@ Partial Class frmOptions
         Me.Label12.ForeColor = System.Drawing.Color.Black
         Me.Label12.Location = New System.Drawing.Point(50, 237)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(80, 16)
+        Me.Label12.Size = New System.Drawing.Size(79, 16)
         Me.Label12.TabIndex = 73
         Me.Label12.Text = "Body Normal"
         '
@@ -509,7 +511,7 @@ Partial Class frmOptions
         Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(59, 189)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(71, 16)
+        Me.Label9.Size = New System.Drawing.Size(70, 16)
         Me.Label9.TabIndex = 72
         Me.Label9.Text = "Body Large"
         '
@@ -520,7 +522,7 @@ Partial Class frmOptions
         Me.Label8.ForeColor = System.Drawing.Color.Black
         Me.Label8.Location = New System.Drawing.Point(81, 141)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(49, 16)
+        Me.Label8.Size = New System.Drawing.Size(48, 16)
         Me.Label8.TabIndex = 71
         Me.Label8.Text = "Header"
         '
@@ -531,7 +533,7 @@ Partial Class frmOptions
         Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(19, 94)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(111, 16)
+        Me.Label7.Size = New System.Drawing.Size(110, 16)
         Me.Label7.TabIndex = 70
         Me.Label7.Text = "Company Address"
         '
@@ -542,7 +544,7 @@ Partial Class frmOptions
         Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(32, 46)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(98, 16)
+        Me.Label5.Size = New System.Drawing.Size(97, 16)
         Me.Label5.TabIndex = 69
         Me.Label5.Text = "Company Name"
         '
@@ -662,6 +664,8 @@ Partial Class frmOptions
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.TxtImageFolder)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.txtReportFolder)
         Me.GroupBox1.Controls.Add(Me.txtCacheFolder)
@@ -674,7 +678,7 @@ Partial Class frmOptions
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox1.Size = New System.Drawing.Size(460, 128)
+        Me.GroupBox1.Size = New System.Drawing.Size(460, 176)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Application Files"
@@ -687,7 +691,7 @@ Partial Class frmOptions
         Me.Label16.Location = New System.Drawing.Point(16, 88)
         Me.Label16.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(102, 16)
+        Me.Label16.Size = New System.Drawing.Size(101, 16)
         Me.Label16.TabIndex = 3
         Me.Label16.Text = "File cache folder"
         '
@@ -744,7 +748,7 @@ Partial Class frmOptions
         Me.lblLogFolder.Location = New System.Drawing.Point(16, 25)
         Me.lblLogFolder.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLogFolder.Name = "lblLogFolder"
-        Me.lblLogFolder.Size = New System.Drawing.Size(68, 16)
+        Me.lblLogFolder.Size = New System.Drawing.Size(67, 16)
         Me.lblLogFolder.TabIndex = 6
         Me.lblLogFolder.Text = "Log Folder"
         '
@@ -756,7 +760,7 @@ Partial Class frmOptions
         Me.GroupBox2.Controls.Add(Me.txtTempFolder)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox2.Location = New System.Drawing.Point(9, 140)
+        Me.GroupBox2.Location = New System.Drawing.Point(9, 188)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -773,7 +777,7 @@ Partial Class frmOptions
         Me.lblTempFolder.Location = New System.Drawing.Point(5, 34)
         Me.lblTempFolder.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTempFolder.Name = "lblTempFolder"
-        Me.lblTempFolder.Size = New System.Drawing.Size(111, 16)
+        Me.lblTempFolder.Size = New System.Drawing.Size(110, 16)
         Me.lblTempFolder.TabIndex = 5
         Me.lblTempFolder.Text = "Temporary Folder"
         '
@@ -831,7 +835,7 @@ Partial Class frmOptions
         Me.cbSplchkEnabled.Location = New System.Drawing.Point(9, 18)
         Me.cbSplchkEnabled.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkEnabled.Name = "cbSplchkEnabled"
-        Me.cbSplchkEnabled.Size = New System.Drawing.Size(153, 20)
+        Me.cbSplchkEnabled.Size = New System.Drawing.Size(152, 20)
         Me.cbSplchkEnabled.TabIndex = 4
         Me.cbSplchkEnabled.Text = "Spell Check Enabled"
         Me.cbSplchkEnabled.UseVisualStyleBackColor = True
@@ -870,7 +874,7 @@ Partial Class frmOptions
         Me.Label26.Location = New System.Drawing.Point(292, 264)
         Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(137, 16)
+        Me.Label26.Size = New System.Drawing.Size(136, 16)
         Me.Label26.TabIndex = 16
         Me.Label26.Text = "Case mistake colour"
         '
@@ -897,7 +901,7 @@ Partial Class frmOptions
         Me.Label23.Location = New System.Drawing.Point(169, 264)
         Me.Label23.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(95, 16)
+        Me.Label23.Size = New System.Drawing.Size(94, 16)
         Me.Label23.TabIndex = 14
         Me.Label23.Text = "Ignore colour"
         '
@@ -909,7 +913,7 @@ Partial Class frmOptions
         Me.Label25.Location = New System.Drawing.Point(20, 264)
         Me.Label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(102, 16)
+        Me.Label25.Size = New System.Drawing.Size(101, 16)
         Me.Label25.TabIndex = 13
         Me.Label25.Text = "Mistake colour"
         '
@@ -950,7 +954,7 @@ Partial Class frmOptions
         Me.cbSplchkShowCase.Location = New System.Drawing.Point(62, 213)
         Me.cbSplchkShowCase.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkShowCase.Name = "cbSplchkShowCase"
-        Me.cbSplchkShowCase.Size = New System.Drawing.Size(128, 20)
+        Me.cbSplchkShowCase.Size = New System.Drawing.Size(127, 20)
         Me.cbSplchkShowCase.TabIndex = 10
         Me.cbSplchkShowCase.Text = "Show case errors"
         Me.cbSplchkShowCase.UseVisualStyleBackColor = True
@@ -962,7 +966,7 @@ Partial Class frmOptions
         Me.cbSplchkShowIgnore.Location = New System.Drawing.Point(62, 186)
         Me.cbSplchkShowIgnore.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkShowIgnore.Name = "cbSplchkShowIgnore"
-        Me.cbSplchkShowIgnore.Size = New System.Drawing.Size(145, 20)
+        Me.cbSplchkShowIgnore.Size = New System.Drawing.Size(144, 20)
         Me.cbSplchkShowIgnore.TabIndex = 9
         Me.cbSplchkShowIgnore.Text = "Show ignored words"
         Me.cbSplchkShowIgnore.UseVisualStyleBackColor = True
@@ -974,7 +978,7 @@ Partial Class frmOptions
         Me.cbSplchkMistakes.Location = New System.Drawing.Point(62, 159)
         Me.cbSplchkMistakes.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkMistakes.Name = "cbSplchkMistakes"
-        Me.cbSplchkMistakes.Size = New System.Drawing.Size(209, 20)
+        Me.cbSplchkMistakes.Size = New System.Drawing.Size(208, 20)
         Me.cbSplchkMistakes.TabIndex = 8
         Me.cbSplchkMistakes.Text = "Show mistakes (recommended)"
         Me.cbSplchkMistakes.UseVisualStyleBackColor = True
@@ -986,7 +990,7 @@ Partial Class frmOptions
         Me.cbSplChkNumber.Location = New System.Drawing.Point(62, 132)
         Me.cbSplChkNumber.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplChkNumber.Name = "cbSplChkNumber"
-        Me.cbSplChkNumber.Size = New System.Drawing.Size(185, 20)
+        Me.cbSplChkNumber.Size = New System.Drawing.Size(184, 20)
         Me.cbSplChkNumber.TabIndex = 6
         Me.cbSplChkNumber.Text = "Ignore words with numbers"
         Me.cbSplChkNumber.UseVisualStyleBackColor = True
@@ -998,7 +1002,7 @@ Partial Class frmOptions
         Me.cbSplChkUpper.Location = New System.Drawing.Point(62, 105)
         Me.cbSplChkUpper.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplChkUpper.Name = "cbSplChkUpper"
-        Me.cbSplChkUpper.Size = New System.Drawing.Size(180, 20)
+        Me.cbSplChkUpper.Size = New System.Drawing.Size(179, 20)
         Me.cbSplChkUpper.TabIndex = 5
         Me.cbSplChkUpper.Text = "Ignore words in uppercase"
         Me.cbSplChkUpper.UseVisualStyleBackColor = True
@@ -1010,7 +1014,7 @@ Partial Class frmOptions
         Me.cbSplchkRemove.Location = New System.Drawing.Point(62, 78)
         Me.cbSplchkRemove.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkRemove.Name = "cbSplchkRemove"
-        Me.cbSplchkRemove.Size = New System.Drawing.Size(296, 20)
+        Me.cbSplchkRemove.Size = New System.Drawing.Size(295, 20)
         Me.cbSplchkRemove.TabIndex = 2
         Me.cbSplchkRemove.Text = "Allow words to be removed from the dictionary"
         Me.cbSplchkRemove.UseVisualStyleBackColor = True
@@ -1022,7 +1026,7 @@ Partial Class frmOptions
         Me.cbSplchkIgnore.Location = New System.Drawing.Point(62, 51)
         Me.cbSplchkIgnore.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkIgnore.Name = "cbSplchkIgnore"
-        Me.cbSplchkIgnore.Size = New System.Drawing.Size(177, 20)
+        Me.cbSplchkIgnore.Size = New System.Drawing.Size(176, 20)
         Me.cbSplchkIgnore.TabIndex = 1
         Me.cbSplchkIgnore.Text = "Allow words to be ignored"
         Me.cbSplchkIgnore.UseVisualStyleBackColor = True
@@ -1034,7 +1038,7 @@ Partial Class frmOptions
         Me.cbSplchkAdd.Location = New System.Drawing.Point(62, 24)
         Me.cbSplchkAdd.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.cbSplchkAdd.Name = "cbSplchkAdd"
-        Me.cbSplchkAdd.Size = New System.Drawing.Size(265, 20)
+        Me.cbSplchkAdd.Size = New System.Drawing.Size(264, 20)
         Me.cbSplchkAdd.TabIndex = 0
         Me.cbSplchkAdd.Text = "Allow words to be added to the dictionary"
         Me.cbSplchkAdd.UseVisualStyleBackColor = True
@@ -1132,6 +1136,29 @@ Partial Class frmOptions
         Me.txtStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(18, 126)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(49, 16)
+        Me.Label11.TabIndex = 12
+        Me.Label11.Text = "Images"
+        '
+        'TxtImageFolder
+        '
+        Me.TxtImageFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtImageFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtImageFolder.Location = New System.Drawing.Point(144, 124)
+        Me.TxtImageFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TxtImageFolder.Name = "TxtImageFolder"
+        Me.TxtImageFolder.Size = New System.Drawing.Size(286, 22)
+        Me.TxtImageFolder.TabIndex = 11
         '
         'frmOptions
         '
@@ -1271,4 +1298,6 @@ Partial Class frmOptions
     Friend WithEvents NudAlertDuration As NumericUpDown
     Friend WithEvents NudAlertNotice As NumericUpDown
     Friend WithEvents Label2 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TxtImageFolder As TextBox
 End Class

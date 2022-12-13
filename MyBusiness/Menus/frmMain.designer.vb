@@ -78,6 +78,8 @@ Partial Class FrmMain
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuChangePassword = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuShowAudit = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.MnuBackup = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuRestore = New System.Windows.Forms.ToolStripMenuItem()
@@ -103,8 +105,6 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
-        Me.MnuShowAudit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -654,52 +654,63 @@ Partial Class FrmMain
         'UserControlToolStripMenuItem
         '
         Me.UserControlToolStripMenuItem.Name = "UserControlToolStripMenuItem"
-        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.UserControlToolStripMenuItem.Text = "User Control"
         '
         'MnuChangePassword
         '
         Me.MnuChangePassword.Name = "MnuChangePassword"
-        Me.MnuChangePassword.Size = New System.Drawing.Size(180, 22)
+        Me.MnuChangePassword.Size = New System.Drawing.Size(168, 22)
         Me.MnuChangePassword.Text = "Change password"
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(165, 6)
+        '
+        'MnuShowAudit
+        '
+        Me.MnuShowAudit.Name = "MnuShowAudit"
+        Me.MnuShowAudit.Size = New System.Drawing.Size(168, 22)
+        Me.MnuShowAudit.Text = "Show Audit"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(165, 6)
         '
         'MnuBackup
         '
         Me.MnuBackup.Name = "MnuBackup"
-        Me.MnuBackup.Size = New System.Drawing.Size(180, 22)
+        Me.MnuBackup.Size = New System.Drawing.Size(168, 22)
         Me.MnuBackup.Text = "Backup"
         '
         'MnuRestore
         '
         Me.MnuRestore.Name = "MnuRestore"
-        Me.MnuRestore.Size = New System.Drawing.Size(180, 22)
+        Me.MnuRestore.Size = New System.Drawing.Size(168, 22)
         Me.MnuRestore.Text = "Restore"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(165, 6)
         '
         'MnuLogView
         '
         Me.MnuLogView.Name = "MnuLogView"
-        Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
+        Me.MnuLogView.Size = New System.Drawing.Size(168, 22)
         Me.MnuLogView.Text = "Log Viewer"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(165, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'NewCustomerToolStripMenuItem
@@ -797,29 +808,29 @@ Partial Class FrmMain
         'GlobalSettingsToolStripMenuItem
         '
         Me.GlobalSettingsToolStripMenuItem.Name = "GlobalSettingsToolStripMenuItem"
-        Me.GlobalSettingsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.GlobalSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GlobalSettingsToolStripMenuItem.Text = "Global Settings"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(175, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
         '
         'PreferencesToolStripMenuItem
         '
         Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PreferencesToolStripMenuItem.Text = "Preferences"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(175, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(177, 6)
         '
         'ChkCallBackReminders
         '
         Me.ChkCallBackReminders.Name = "ChkCallBackReminders"
-        Me.ChkCallBackReminders.Size = New System.Drawing.Size(178, 22)
+        Me.ChkCallBackReminders.Size = New System.Drawing.Size(180, 22)
         Me.ChkCallBackReminders.Text = "Callback Reminders"
         '
         'ToolStripMenuItem2
@@ -847,17 +858,6 @@ Partial Class FrmMain
         '
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
-        '
-        'MnuShowAudit
-        '
-        Me.MnuShowAudit.Name = "MnuShowAudit"
-        Me.MnuShowAudit.Size = New System.Drawing.Size(180, 22)
-        Me.MnuShowAudit.Text = "Show Audit"
-        '
-        'ToolStripSeparator6
-        '
-        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
         '
         'FrmMain
         '

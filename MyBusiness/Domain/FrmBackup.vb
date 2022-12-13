@@ -48,6 +48,7 @@ Public Class FrmBackup
     End Sub
     Private Sub BtnSelectPath_Click(sender As Object, e As EventArgs) Handles BtnSelectPath.Click
         Using fbd As New FolderBrowserDialog
+            fbd.RootFolder = Environment.SpecialFolder.MyComputer
             If Not String.IsNullOrEmpty(TxtBackupPath.Text) Then
                 fbd.SelectedPath = TxtBackupPath.Text
             End If
@@ -71,12 +72,14 @@ Public Class FrmBackup
     Private Sub FillImageTree()
         TvImages.Nodes.Clear()
         TvImages.Nodes.Add("Images")
-        'Dim topNode As TreeNode = TvImages.Nodes(0)
-        'Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(My.Settings.sourceImages)
-        'For Each _filename As String In fileList
-        '    Dim _fname As String = Path.GetFileName(_filename)
-        '    topNode.Nodes.Add(_filename, _fname)
-        'Next
+        Dim topNode As TreeNode = TvImages.Nodes(0)
+        If My.Computer.FileSystem.DirectoryExists(My.Settings.SourceImages) Then
+            Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(My.Settings.SourceImages, FileIO.SearchOption.SearchAllSubDirectories)
+            For Each _filename As String In fileList
+                Dim _fname As String = Path.GetFileName(_filename)
+                topNode.Nodes.Add(_filename, _fname)
+            Next
+        End If
     End Sub
     Private Sub FillDocumentTree()
         TvDocuments.Nodes.Clear()
