@@ -16,7 +16,7 @@ Public Class FrmRestore
     Private Sub FrmRestore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Restore", MyBase.Name)
         GetFormPos(Me, My.Settings.RestoreFormPos)
-        TxtBackupPath.Text = My.Settings.BackupPath
+        TxtBackupPath.Text = My.Settings.BackupFolder
         AddProgress("Filling Table Tree")
         FillTableTree(TvDatatables)
         TvDatatables.ExpandAll()

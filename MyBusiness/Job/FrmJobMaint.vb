@@ -282,7 +282,7 @@ Public Class FrmJobMaint
                 Dim pRow As netwyrksDataSet.productRow = oProdTable.Rows(0)
                 _productName = pRow.product_name
                 _supplierId = pRow.product_supplier_id
-                _cost = pRow.product_cost
+                _cost = pRow.product_cost / pRow.product_purchase_units
                 _price = pRow.product_price
             End If
             If _supplierId > 0 Then

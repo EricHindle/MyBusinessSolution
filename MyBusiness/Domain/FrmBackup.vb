@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Configuration
 Imports System.IO
 
 Public Class FrmBackup
@@ -18,7 +19,7 @@ Public Class FrmBackup
     Private Sub FrmBackup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Backup", MyBase.Name)
         GetFormPos(Me, My.Settings.BackupFormPos)
-        TxtBackupPath.Text = My.Settings.BackupPath
+        TxtBackupPath.Text = My.Settings.BackupFolder
         AddProgress("Filling Table Tree")
         FillTableTree(TvDatatables)
         TvDatatables.ExpandAll()
@@ -49,8 +50,15 @@ Public Class FrmBackup
             AddProgress("Backup complete -------------------------")
         End If
     End Sub
+
+    Private Sub DocumentsBackup()
+        ReportsBackup()
+        InvoicesBackup()
+        TvDocuments.Nodes(0).Checked = False
+    End Sub
+
     Private Sub BtnSavePath_Click(sender As Object, e As EventArgs) Handles BtnSavePath.Click
-        My.Settings.BackupPath = TxtBackupPath.Text
+        My.Settings.BackupFolder = TxtBackupPath.Text
         My.Settings.Save()
     End Sub
     Private Sub BtnSelectPath_Click(sender As Object, e As EventArgs) Handles BtnSelectPath.Click
@@ -80,35 +88,37 @@ Public Class FrmBackup
         TvImages.Nodes.Clear()
         TvImages.Nodes.Add("Images")
         Dim topNode As TreeNode = TvImages.Nodes(0)
-        LogUtil.Info(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath))
         If My.Computer.FileSystem.DirectoryExists(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath)) Then
-            Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath), FileIO.SearchOption.SearchAllSubDirectories)
+            Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sImageFolder, FileIO.SearchOption.SearchAllSubDirectories)
             For Each _filename As String In fileList
                 Dim _fname As String = Path.GetFileName(_filename)
-                topNode.Nodes.Add(_filename, _fname)
+                Dim _fpath As String = _filename
+                Dim newNode As TreeNode = topNode.Nodes.Add(_fpath, _fname)
             Next
         End If
     End Sub
     Private Sub FillDocumentTree()
         TvDocuments.Nodes.Clear()
-        TvDocuments.Nodes.Add("Document files")
+        TvDocuments.Nodes.Add("Documents")
 
-        Dim reportFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sReportFolder)
-        Dim invoiceFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sInvoiceFolder)
+        Dim reportFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sReportFolder, FileIO.SearchOption.SearchAllSubDirectories)
+        Dim invoiceFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sInvoiceFolder, FileIO.SearchOption.SearchAllSubDirectories)
 
         TvDocuments.Nodes(0).Nodes.Add("Report files")
         Dim topNode As TreeNode = TvDocuments.Nodes(0).Nodes(0)
         For Each _filename As String In reportFileList
             Dim _fname As String = Path.GetFileName(_filename)
-            topNode.Nodes.Add(_filename, _fname)
+            Dim _fpath As String = _filename
+            Dim newNode As TreeNode = topNode.Nodes.Add(_fpath, _fname)
         Next
 
         TvDocuments.Nodes(0).Nodes.Add("Invoice files")
-        'fileList = My.Computer.FileSystem.GetFiles(GetTextFilePath(CurrentBook))
         topNode = TvDocuments.Nodes(0).Nodes(1)
         For Each _filename As String In invoiceFileList
             Dim _fname As String = Path.GetFileName(_filename)
-            topNode.Nodes.Add(_filename, _fname)
+            Dim _fpath As String = _filename
+            Dim newNode As TreeNode = topNode.Nodes.Add(_fpath, _fname)
+            AddProgress(newNode.Name)
         Next
     End Sub
     Private Function CheckPaths(isOKToBackup As Boolean) As Boolean
@@ -135,23 +145,23 @@ Public Class FrmBackup
                     My.Computer.FileSystem.CreateDirectory(imagePath)
                 End If
             Catch ex As ArgumentException
-                '    DisplayException(ex, "File creation", False, MyBase.Name)
-                '    AddProgress("Failed : " & ex.Message)
-                '    isOKToBackup = False
-                'Catch ex As PathTooLongException
-                '    DisplayException(ex, "File creation", False, MyBase.Name)
-                '    AddProgress("Failed : " & ex.Message)
-                '    isOKToBackup = False
-                'Catch ex As NotSupportedException
-                '    DisplayException(ex, "File creation", False, MyBase.Name)
-                '    AddProgress("Failed : " & ex.Message)
-                '    isOKToBackup = False
-                'Catch ex As IOException
-                '    DisplayException(ex, "File creation", False, MyBase.Name)
-                '    AddProgress("Failed : " & ex.Message)
-                '    isOKToBackup = False
-                'Catch ex As UnauthorizedAccessException
-                '    DisplayException(ex, "File creation", False, MyBase.Name)
+                LogUtil.Exception("File creation", ex, False, MyBase.Name)
+                AddProgress("Failed : " & ex.Message)
+                isOKToBackup = False
+            Catch ex As PathTooLongException
+                LogUtil.Exception("File creation", ex, False, MyBase.Name)
+                AddProgress("Failed : " & ex.Message)
+                isOKToBackup = False
+            Catch ex As NotSupportedException
+                LogUtil.Exception("File creation", ex, False, MyBase.Name)
+                AddProgress("Failed : " & ex.Message)
+                isOKToBackup = False
+            Catch ex As IOException
+                LogUtil.Exception("File creation", ex, False, MyBase.Name)
+                AddProgress("Failed : " & ex.Message)
+                isOKToBackup = False
+            Catch ex As UnauthorizedAccessException
+                LogUtil.Exception("File creation", ex, False, MyBase.Name)
                 AddProgress("Failed : " & ex.Message)
                 isOKToBackup = False
             End Try
@@ -164,33 +174,39 @@ Public Class FrmBackup
     Private Sub ImageBackup()
         AddProgress("Image backup ======")
         For Each oNode As TreeNode In TvImages.Nodes(0).Nodes
-            If oNode.Checked Then
-                AddProgress(oNode.Text)
-                Dim _filename As String = oNode.Text
-                Dim _fullname As String = oNode.Name
-                My.Computer.FileSystem.CopyFile(_fullname, Path.Combine(imagePath, _filename), True)
-                AddProgress(_filename & " copied")
-                oNode.Checked = False
-            End If
+            CopyFileToBackup(oNode, imagePath, sImageFolder)
         Next
         TvImages.Nodes(0).Checked = False
     End Sub
-    Private Sub DocumentsBackup()
-        AddProgress("Document backup ======")
-        For Each oTypeNode As TreeNode In TvDocuments.Nodes(0).Nodes
-            For Each oNode As TreeNode In oTypeNode.Nodes
-                If oNode.Checked Then
-                    AddProgress(oNode.Text)
-                    Dim _filename As String = oNode.Text
-                    Dim _fullname As String = oNode.Name
-                    My.Computer.FileSystem.CopyFile(_fullname, Path.Combine(docPath, _filename), True)
-                    AddProgress(_filename & " copied")
-                    oNode.Checked = False
-                End If
-            Next
-            oTypeNode.Checked = False
+
+    Private Function CopyFileToBackup(pNode As TreeNode, pBackupPath As String, pSourceFolder As String) As TreeNode
+        If pNode.Checked Then
+            AddProgress(pNode.Text)
+            Dim _filename As String = pNode.Text
+            Dim _fullname As String = pNode.Name
+            My.Computer.FileSystem.CopyFile(_fullname, Path.Combine(pBackupPath, _fullname.Replace(pSourceFolder, "")), True)
+            AddProgress(_filename & " copied")
+            pNode.Checked = False
+        End If
+
+        Return pNode
+    End Function
+
+    Private Sub ReportsBackup()
+        AddProgress("Report backup ======")
+        Dim oTypeNode As TreeNode = TvDocuments.Nodes(0).Nodes(0)
+        For Each oNode As TreeNode In oTypeNode.Nodes
+            CopyFileToBackup(oNode, Path.Combine(docPath, "Reports\"), sReportFolder)
         Next
-        TvDocuments.Nodes(0).Checked = False
+        oTypeNode.Checked = False
+    End Sub
+    Private Sub InvoicesBackup()
+        AddProgress("Invoice backup ======")
+        Dim oTypeNode As TreeNode = TvDocuments.Nodes(0).Nodes(1)
+        For Each oNode As TreeNode In oTypeNode.Nodes
+            CopyFileToBackup(oNode, Path.Combine(docPath, "Invoices\"), sInvoiceFolder)
+        Next
+        oTypeNode.Checked = False
     End Sub
     Private Sub DataTableBackup()
         AddProgress("Data backup ======")

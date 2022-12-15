@@ -77,6 +77,9 @@ Public Module netwyrksCommon
     Public sCacheFolder As String
     Public sInvoiceFolder As String
     Public sImageFolder As String
+    Public sBackupFolder As String
+    Public sCustomerFolder As String
+    Public sJobFolder As String
 
     ''' <summary>
     ''' Set standard folder names from personal settings
@@ -114,6 +117,12 @@ Public Module netwyrksCommon
             My.Settings.LogFolder = "<application path>" & Path.DirectorySeparatorChar & "Log"
         End If
         sLogFolder = My.Settings.LogFolder.Replace("<application path>", sApplicationPath)
+
+        If String.IsNullOrEmpty(My.Settings.BackupFolder) Then
+            My.Settings.BackupFolder = "<application path>" & Path.DirectorySeparatorChar & "Backup"
+        End If
+        sBackupFolder = My.Settings.BackupFolder.Replace("<application path>", sApplicationPath)
+
     End Sub
 
     ''' <summary>
@@ -165,6 +174,8 @@ Public Module netwyrksCommon
         My.Computer.FileSystem.CreateDirectory(sCacheFolder)
         My.Computer.FileSystem.CreateDirectory(sInvoiceFolder)
         My.Computer.FileSystem.CreateDirectory(sReportFolder)
+        My.Computer.FileSystem.CreateDirectory(sBackupFolder)
+
     End Sub
 #End Region
 #Region "cache"

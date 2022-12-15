@@ -159,15 +159,17 @@ Public Class InvoicePrinter
         _job = pJob
         oTaskTa.FillByJob(oTaskTable, _job.JobId)
         oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
-        If _job.JobInvoiceNumber <= 0 Then
+        If String.IsNullOrWhiteSpace(_job.JobInvoiceNumber) OrElse Not IsNumeric(_job.JobInvoiceNumber) OrElse _job.JobInvoiceNumber <= 0 Then
             _nextInvoiceNumber = CInt(GlobalSettings.GetSetting(GlobalSettings.INVOICE_NUMBER)) + 1
             GlobalSettings.SetSetting(GlobalSettings.INVOICE_NUMBER, "integer", _nextInvoiceNumber)
             _job.JobInvoiceNumber = _nextInvoiceNumber
         End If
         _job.JobInvoiceDate = Now
         UpdateJob(_job)
-
-        Dim sFilename As String = Path.Combine(sInvoiceFolder, "Invoice_" & _job.JobInvoiceNumber & ".pdf")
+        Dim _customer As Customer = CustomerBuilder.ACustomer.StartingWith(_job.JobCustomerId).Build
+        Dim _customerFolder As String = Path.Combine(sInvoiceFolder, CStr(_customer.CustomerId) & "_" & _customer.CustName)
+        My.Computer.FileSystem.CreateDirectory(_customerFolder)
+        Dim sFilename As String = Path.Combine(_customerFolder, "Invoice_" & _job.JobInvoiceNumber & ".pdf")
         CreateInvoicePdf(sFilename)
         Using _viewInvoice As New dlgViewInvoice
             _viewInvoice.Filename = sFilename

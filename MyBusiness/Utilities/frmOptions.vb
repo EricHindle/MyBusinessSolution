@@ -231,6 +231,7 @@ Public Class frmOptions
         txtCacheFolder.Text = My.Settings.CacheFolder
         TxtImageFolder.Text = My.Settings.ImageFolder
         TxtInvoiceFolder.Text = My.Settings.InvoiceFolder
+        TxtBackupFolder.Text = My.Settings.BackupFolder
     End Sub
 
     ''' <summary>
@@ -244,6 +245,8 @@ Public Class frmOptions
         My.Settings.CacheFolder = txtCacheFolder.Text
         My.Settings.ImageFolder = TxtImageFolder.Text
         My.Settings.InvoiceFolder = TxtInvoiceFolder.Text
+        My.Settings.BackupFolder = TxtBackupFolder.Text
+
         SetFolderNames()
     End Sub
 

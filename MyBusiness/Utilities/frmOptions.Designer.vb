@@ -66,8 +66,9 @@ Partial Class frmOptions
         Me.txtInvBodySample = New System.Windows.Forms.TextBox()
         Me.txtInvHdrSample = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TxtInvoiceFolder = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TxtImageFolder = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -76,6 +77,7 @@ Partial Class frmOptions
         Me.lblReports = New System.Windows.Forms.Label()
         Me.txtLogPath = New System.Windows.Forms.TextBox()
         Me.lblLogFolder = New System.Windows.Forms.Label()
+        Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblTempFolder = New System.Windows.Forms.Label()
         Me.txtTempFolder = New System.Windows.Forms.TextBox()
@@ -109,8 +111,8 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TxtInvoiceFolder = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TxtBackupFolder = New System.Windows.Forms.TextBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -641,8 +643,8 @@ Partial Class frmOptions
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.BtnCreateFolders)
+        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.GroupBox2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -652,20 +654,12 @@ Partial Class frmOptions
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Folders"
         '
-        'BtnCreateFolders
-        '
-        Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnCreateFolders.Location = New System.Drawing.Point(121, 451)
-        Me.BtnCreateFolders.Name = "BtnCreateFolders"
-        Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
-        Me.BtnCreateFolders.TabIndex = 2
-        Me.BtnCreateFolders.Text = "Create missing folders"
-        Me.BtnCreateFolders.UseVisualStyleBackColor = True
-        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.TxtBackupFolder)
         Me.GroupBox1.Controls.Add(Me.Label13)
         Me.GroupBox1.Controls.Add(Me.TxtInvoiceFolder)
         Me.GroupBox1.Controls.Add(Me.Label11)
@@ -682,17 +676,40 @@ Partial Class frmOptions
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.GroupBox1.Size = New System.Drawing.Size(460, 231)
+        Me.GroupBox1.Size = New System.Drawing.Size(460, 266)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Application Files"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.Black
+        Me.Label13.Location = New System.Drawing.Point(11, 181)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(53, 16)
+        Me.Label13.TabIndex = 14
+        Me.Label13.Text = "Invoices"
+        '
+        'TxtInvoiceFolder
+        '
+        Me.TxtInvoiceFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtInvoiceFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtInvoiceFolder.Location = New System.Drawing.Point(142, 179)
+        Me.TxtInvoiceFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TxtInvoiceFolder.Name = "TxtInvoiceFolder"
+        Me.TxtInvoiceFolder.Size = New System.Drawing.Size(286, 22)
+        Me.TxtInvoiceFolder.TabIndex = 4
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(12, 142)
+        Me.Label11.Location = New System.Drawing.Point(11, 143)
         Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(49, 16)
@@ -704,7 +721,7 @@ Partial Class frmOptions
         Me.TxtImageFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtImageFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtImageFolder.Location = New System.Drawing.Point(142, 140)
+        Me.TxtImageFolder.Location = New System.Drawing.Point(142, 143)
         Me.TxtImageFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TxtImageFolder.Name = "TxtImageFolder"
         Me.TxtImageFolder.Size = New System.Drawing.Size(286, 22)
@@ -715,7 +732,7 @@ Partial Class frmOptions
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(12, 107)
+        Me.Label16.Location = New System.Drawing.Point(11, 109)
         Me.Label16.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(101, 16)
@@ -727,7 +744,7 @@ Partial Class frmOptions
         Me.txtReportFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtReportFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtReportFolder.Location = New System.Drawing.Point(142, 70)
+        Me.txtReportFolder.Location = New System.Drawing.Point(142, 71)
         Me.txtReportFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.txtReportFolder.Name = "txtReportFolder"
         Me.txtReportFolder.Size = New System.Drawing.Size(286, 22)
@@ -738,7 +755,7 @@ Partial Class frmOptions
         Me.txtCacheFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCacheFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCacheFolder.Location = New System.Drawing.Point(142, 105)
+        Me.txtCacheFolder.Location = New System.Drawing.Point(142, 107)
         Me.txtCacheFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.txtCacheFolder.Name = "txtCacheFolder"
         Me.txtCacheFolder.Size = New System.Drawing.Size(286, 22)
@@ -749,7 +766,7 @@ Partial Class frmOptions
         Me.lblReports.AutoSize = True
         Me.lblReports.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReports.ForeColor = System.Drawing.Color.Black
-        Me.lblReports.Location = New System.Drawing.Point(12, 73)
+        Me.lblReports.Location = New System.Drawing.Point(11, 74)
         Me.lblReports.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblReports.Name = "lblReports"
         Me.lblReports.Size = New System.Drawing.Size(81, 14)
@@ -772,12 +789,22 @@ Partial Class frmOptions
         Me.lblLogFolder.AutoSize = True
         Me.lblLogFolder.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLogFolder.ForeColor = System.Drawing.Color.Black
-        Me.lblLogFolder.Location = New System.Drawing.Point(12, 37)
+        Me.lblLogFolder.Location = New System.Drawing.Point(11, 37)
         Me.lblLogFolder.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLogFolder.Name = "lblLogFolder"
         Me.lblLogFolder.Size = New System.Drawing.Size(67, 16)
         Me.lblLogFolder.TabIndex = 6
         Me.lblLogFolder.Text = "Log Folder"
+        '
+        'BtnCreateFolders
+        '
+        Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnCreateFolders.Location = New System.Drawing.Point(89, 403)
+        Me.BtnCreateFolders.Name = "BtnCreateFolders"
+        Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
+        Me.BtnCreateFolders.TabIndex = 2
+        Me.BtnCreateFolders.Text = "Create missing folders"
+        Me.BtnCreateFolders.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -787,7 +814,7 @@ Partial Class frmOptions
         Me.GroupBox2.Controls.Add(Me.txtTempFolder)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox2.Location = New System.Drawing.Point(9, 337)
+        Me.GroupBox2.Location = New System.Drawing.Point(9, 278)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -1164,28 +1191,28 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'Label13
+        'Label14
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.Black
-        Me.Label13.Location = New System.Drawing.Point(12, 177)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(53, 16)
-        Me.Label13.TabIndex = 14
-        Me.Label13.Text = "Invoices"
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(11, 217)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(84, 16)
+        Me.Label14.TabIndex = 16
+        Me.Label14.Text = "Backup folder"
         '
-        'TxtInvoiceFolder
+        'TxtBackupFolder
         '
-        Me.TxtInvoiceFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TxtBackupFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtInvoiceFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtInvoiceFolder.Location = New System.Drawing.Point(142, 175)
-        Me.TxtInvoiceFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.TxtInvoiceFolder.Name = "TxtInvoiceFolder"
-        Me.TxtInvoiceFolder.Size = New System.Drawing.Size(286, 22)
-        Me.TxtInvoiceFolder.TabIndex = 4
+        Me.TxtBackupFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtBackupFolder.Location = New System.Drawing.Point(142, 215)
+        Me.TxtBackupFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TxtBackupFolder.Name = "TxtBackupFolder"
+        Me.TxtBackupFolder.Size = New System.Drawing.Size(286, 22)
+        Me.TxtBackupFolder.TabIndex = 15
         '
         'frmOptions
         '
@@ -1329,4 +1356,6 @@ Partial Class frmOptions
     Friend WithEvents TxtImageFolder As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents TxtInvoiceFolder As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TxtBackupFolder As TextBox
 End Class

@@ -476,12 +476,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property BackupPath() As String
+        Public Property BackupFolder() As String
             Get
-                Return CType(Me("BackupPath"),String)
+                Return CType(Me("BackupFolder"),String)
             End Get
             Set
-                Me("BackupPath") = value
+                Me("BackupFolder") = value
             End Set
         End Property
         
