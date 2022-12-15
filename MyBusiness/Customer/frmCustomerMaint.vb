@@ -37,7 +37,7 @@ Public Class FrmCustomerMaint
             NewCustomer()
         Else
             pnlCustomer.Enabled = True
-            _currentCustomer = CustomerBuilder.ACustomer.StartingWith(_customerId).Build
+            _currentCustomer = GetCustomer(_customerId)
             FillCustomerDetails()
         End If
         SpellCheckUtil.EnableSpellChecking({rtbCustNotes})
@@ -172,21 +172,17 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub FillJobsList(ByVal custId As Integer)
         DgvJobs.Rows.Clear()
-        Dim oJobsTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-        Dim oJobsTable As New netwyrksDataSet.jobDataTable
-        logutil.info("Finding jobs", MyBase.Name)
-        oJobsTa.FillByCust(oJobsTable, custId)
-        For Each oRow As netwyrksDataSet.jobRow In oJobsTable.Rows
+        LogUtil.Info("Finding jobs", MyBase.Name)
+        Dim oJobList As List(Of Job) = GetJobsForCustomer(custId)
+        For Each oJob As Job In oJobList
             Dim tRow As DataGridViewRow = DgvJobs.Rows(DgvJobs.Rows.Add)
-            If oRow.job_completed Then
+            If oJob.IsJobCompleted Then
                 tRow.Visible = ChkCompleted.Checked
             End If
-            tRow.Cells(jobId.Name).Value = oRow.job_id
-            tRow.Cells(jobName.Name).Value = oRow.job_name
-            tRow.Cells(jobCompleted.Name).Value = If(oRow.job_completed, "Yes", "")
+            tRow.Cells(jobId.Name).Value = oJob.JobId
+            tRow.Cells(jobName.Name).Value = oJob.JobName
+            tRow.Cells(jobCompleted.Name).Value = If(oJob.IsJobCompleted, "Yes", "")
         Next
-        oJobsTa.Dispose()
-        oJobsTable.Dispose()
     End Sub
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
