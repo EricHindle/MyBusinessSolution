@@ -1,11 +1,12 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Text.RegularExpressions
 Imports System.Text
+Imports System.Text.RegularExpressions
 
 ''' <summary>
 ''' Input validation functions
@@ -89,7 +90,7 @@ Public Class ValidationUtil
         If String.IsNullOrEmpty(sDate) Then Return True
         Dim isValid As Boolean = True
         Try
-            Dim odate As Date = CDate(sDate)
+            Dim odate As Date = sDate
             If odate < New Date(1900, 1, 1) Or odate > DateAdd(DateInterval.Year, -18, Today.Date) Then
                 isValid = False
             End If

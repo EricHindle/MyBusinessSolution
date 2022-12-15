@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports MyBusiness.NetwyrksErrorCodes
 Public Class FrmPasswordRequest
@@ -45,7 +46,7 @@ Public Class FrmPasswordRequest
                 LogStatus("User record incomplete - no email address", True, TraceEventType.Error, GetErrorCode(SystemModule.SECURITY, ErrorType.MISSING_DATA, FailedAction.SINGLE_RECORD_LOAD_EXCEPTION))
             End If
 
-            Me.Close()
+            Close()
         Else
             LogStatus("Username/email not recognised", True, TraceEventType.Information)
             AuditUtil.AddAudit(AuditUtil.RecordType.User, -1, AuditUtil.AuditableAction.update,, "Unsuccessful attempt to reset password (userId)")
@@ -92,7 +93,7 @@ Public Class FrmPasswordRequest
         SetTextboxToDefault(txtEmail, EMAIL_TEXT)
     End Sub
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
 #End Region
 #Region "subroutines"

@@ -1,11 +1,12 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.IO
 Imports System.Drawing.Drawing2D
+Imports System.IO
 
 Public Class ImageUtil
 #Region "enum"
@@ -139,7 +140,7 @@ Public Class ImageUtil
         Dim arrayICI() As System.Drawing.Imaging.ImageCodecInfo = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders()
         Dim thisICI As System.Drawing.Imaging.ImageCodecInfo = Nothing
         For x As Integer = 0 To arrayICI.Length - 1
-            If (arrayICI(x).FormatDescription.Equals(imgType.ToString)) Then
+            If arrayICI(x).FormatDescription.Equals(imgType.ToString) Then
                 thisICI = arrayICI(x)
                 Exit For
             End If

@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmDisplayAudit
 #Region "constants"
@@ -23,7 +24,7 @@ Public Class FrmDisplayAudit
         ClearForm()
     End Sub
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim usercode As String = If(chkUser.Checked, txtUsercode.Text.Trim, "")
@@ -39,7 +40,7 @@ Public Class FrmDisplayAudit
         LogUtil.Info("Searching for " & usercode & "/" & recordtype & "/" & Format(fromDate, "dd/MM/yyyy"), FORM_NAME)
         Try
             Dim _auditList As List(Of AuditEntry) = GetByUserDateType(usercode, recordtype, fromDate, todate)
-            LogUtil.Info("Found " & CStr(_auditList.Count) & " records", FORM_NAME)
+            LogUtil.Info("Found " & _auditList.Count & " records", FORM_NAME)
             dgvAudit.Rows.Clear()
             For Each _audit As AuditEntry In _auditList
                 AddTableRow(_audit)
@@ -63,20 +64,20 @@ Public Class FrmDisplayAudit
     Private Sub AddTableRow(ByVal _audit As AuditEntry)
         Dim oRow As DataGridViewRow = dgvAudit.Rows(dgvAudit.Rows.Add)
         With oRow
-            .Cells(Me.audId.Name).Value = _audit.AuditId
-            .Cells(Me.audDate.Name).Value = Format(_audit.AuditDate, "dd/MM/yyyy HH:mm:ss")
-            .Cells(Me.audUser.Name).Value = _audit.AuditUsercode
-            .Cells(Me.audComputer.Name).Value = If(_audit.ComputerName Is Nothing, "unknown", _audit.ComputerName)
-            .Cells(Me.audRecType.Name).Value = _audit.RecordType
-            .Cells(Me.audRecId.Name).Value = _audit.RecordId
-            .Cells(Me.audAction.Name).Value = _audit.Action
-            .Cells(Me.audNewValue.Name).Value = If(_audit.After Is Nothing, "", _audit.After)
+            .Cells(audId.Name).Value = _audit.AuditId
+            .Cells(audDate.Name).Value = Format(_audit.AuditDate, "dd/MM/yyyy HH:mm:ss")
+            .Cells(audUser.Name).Value = _audit.AuditUsercode
+            .Cells(audComputer.Name).Value = If(_audit.ComputerName Is Nothing, "unknown", _audit.ComputerName)
+            .Cells(audRecType.Name).Value = _audit.RecordType
+            .Cells(audRecId.Name).Value = _audit.RecordId
+            .Cells(audAction.Name).Value = _audit.Action
+            .Cells(audNewValue.Name).Value = If(_audit.After Is Nothing, "", _audit.After)
         End With
     End Sub
     Private Sub OpenAuditItem()
         If dgvAudit.SelectedRows.Count = 1 Then
             Dim eRow As DataGridViewRow = dgvAudit.SelectedRows(0)
-            Dim auditId As Integer = eRow.Cells(Me.audId.Name).Value
+            Dim auditId As Integer = eRow.Cells(audId.Name).Value
             'oExclusion = ExclusionBuilder.anExclusion.startingWith(seId)
             Using _auditItem As New frmAuditItem
                 _auditItem.AuditItemId = auditId

@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2022, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmJobMaint
 
@@ -40,7 +41,7 @@ Public Class FrmJobMaint
 #End Region
 #Region "form handlers"
     Private Sub FrmJob_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Debug("Closing", Me.Name)
+        LogUtil.Debug("Closing", Name)
         My.Settings.JobMaintFormPos = SetFormPos(Me)
         My.Settings.Save()
         oCustTa.Dispose()
@@ -49,7 +50,7 @@ Public Class FrmJobMaint
         oUserTable.Dispose()
     End Sub
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        LogUtil.Debug("Started", Me.Name)
+        LogUtil.Debug("Started", Name)
         GetFormPos(Me, My.Settings.JobMaintFormPos)
         isLoading = True
         Try
@@ -72,21 +73,21 @@ Public Class FrmJobMaint
         If _currentCust.Terms = 0 Then
             LblTerms.Text = "Immediate"
         Else
-            LblTerms.Text = CStr(_currentCust.Terms) & " days"
+            LblTerms.Text = _currentCust.Terms & " days"
         End If
 
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
-        LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Me.Name)
+        LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Name)
         Using _custForm As New FrmViewCust
             _custForm.TheCustomer = _currentCust
             _custForm.ShowDialog()
         End Using
     End Sub
     Private Sub BtnAddTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddTask.Click
-        LogUtil.Debug("Add task to job", Me.Name)
+        LogUtil.Debug("Add task to job", Name)
         Using _taskForm As New FrmTask
             _taskForm.TheJob = _job
             _taskForm.ShowDialog()
@@ -94,7 +95,7 @@ Public Class FrmJobMaint
         FillTaskList(_currentJobId)
     End Sub
     Private Sub BtnMaintProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
-        LogUtil.Debug("Maintain products on job", Me.Name)
+        LogUtil.Debug("Maintain products on job", Name)
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
             _jobProductForm.SelectedJobProduct = Nothing
@@ -103,7 +104,7 @@ Public Class FrmJobMaint
         FillProductList(_currentJobId)
     End Sub
     Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         With _job
@@ -130,7 +131,7 @@ Public Class FrmJobMaint
             SplitContainer2.Panel2Collapsed = False
             GrpInvoice.Enabled = True
         End If
-        Me.Close()
+        Close()
     End Sub
     Private Sub CbCust_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbCust.SelectedIndexChanged
         If Not isLoading Then
@@ -150,15 +151,15 @@ Public Class FrmJobMaint
     End Sub
     Private Sub BtnRemoveTask_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveTask.Click
         If dgvTasks.SelectedRows.Count = 1 Then
-            LogUtil.Debug("Deleting task", Me.Name)
+            LogUtil.Debug("Deleting task", Name)
             Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
             Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
-            Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
-            If MsgBox("Do you want to remove this task?" & vbCrLf & QUOTES & taskName & QUOTES, MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
+            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
+            If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
                 If DeleteTask(_taskId) = 1 Then
-                    ShowStatus(LblStatus, "Task removed OK", Me.Name, True)
+                    ShowStatus(LblStatus, "Task removed OK", Name, True)
                 Else
-                    ShowStatus(LblStatus, "Task NOT removed", Me.Name, True)
+                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
                 End If
                 FillTaskList(_currentJobId)
             End If
@@ -166,9 +167,9 @@ Public Class FrmJobMaint
     End Sub
     Private Sub DgvTasks_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvTasks.CellDoubleClick
         If dgvTasks.SelectedRows.Count = 1 Then
-            LogUtil.Debug("Updating task", Me.Name)
+            LogUtil.Debug("Updating task", Name)
             Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
-            Dim _taskId As Integer = CInt(oRow.Cells(Me.taskId.Name).Value)
+            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             Using _taskForm As New FrmTask
 
                 _taskForm.TheJob = _job
@@ -180,7 +181,7 @@ Public Class FrmJobMaint
         End If
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
-        LogUtil.Debug("Maintain products on job", Me.Name)
+        LogUtil.Debug("Maintain products on job", Name)
         Dim _jpId As Integer = dgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
         _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_jpId).Build
         Using _jobProductForm As New FrmJobProducts
@@ -215,7 +216,7 @@ Public Class FrmJobMaint
             DtpPaymentDue.Value = If(.JobPaymentDue, New Date(Now.Year, 1, 1))
             cbUser.SelectedValue = .JobUserId
         End With
-        LogUtil.Debug("Existing job " & CStr(_currentJobId), Me.Name)
+        LogUtil.Debug("Existing job " & _currentJobId, Name)
         SplitContainer1.Visible = True
         FillTaskList(_currentJobId)
         FillProductList(_currentJobId)
@@ -227,7 +228,7 @@ Public Class FrmJobMaint
         rtbJobNotes.Text = ""
     End Sub
     Private Sub LoadCustomerList()
-        LogUtil.Debug("Finding customers", Me.Name)
+        LogUtil.Debug("Finding customers", Name)
         Try
             oCustTa.Fill(oCustListTable)
             cbCust.DataSource = oCustListTable
@@ -242,17 +243,17 @@ Public Class FrmJobMaint
         dgvTasks.Rows.Clear()
         Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
         Dim oTaskTable As New netwyrksDataSet.taskDataTable
-        LogUtil.Debug("Finding tasks", Me.Name)
+        LogUtil.Debug("Finding tasks", Name)
         oTaskTa.FillByJob(oTaskTable, pJobId)
         For Each oRow As netwyrksDataSet.taskRow In oTaskTable.Rows
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
-            tRow.Cells(Me.taskId.Name).Value = oRow.task_id
-            tRow.Cells(Me.taskName.Name).Value = oRow.task_name
-            Dim _startDue As String = If(oRow.Istask_start_dueNull, "", Format(CDate(oRow.task_start_due), "dd/MM/yyyy"))
-            tRow.Cells(Me.taskStartDue.Name).Value = _startDue
-            tRow.Cells(Me.taskHours.Name).Value = oRow.task_time
-            tRow.Cells(Me.taskStarted.Name).Value = CStr(CBool(oRow.task_started))
-            tRow.Cells(Me.taskCompleted.Name).Value = CStr(CBool(oRow.task_completed))
+            tRow.Cells(taskId.Name).Value = oRow.task_id
+            tRow.Cells(taskName.Name).Value = oRow.task_name
+            Dim _startDue As String = If(oRow.Istask_start_dueNull, "", Format(oRow.task_start_due, "dd/MM/yyyy"))
+            tRow.Cells(taskStartDue.Name).Value = _startDue
+            tRow.Cells(taskHours.Name).Value = oRow.task_time
+            tRow.Cells(taskStarted.Name).Value = CStr(oRow.task_started)
+            tRow.Cells(taskCompleted.Name).Value = CStr(oRow.task_completed)
             tRow.Cells(taskPrice.Name).Value = oRow.task_cost
         Next
         oTaskTa.Dispose()
@@ -266,7 +267,7 @@ Public Class FrmJobMaint
         Dim oProdTable As New netwyrksDataSet.productDataTable
         Dim oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
         Dim oSuppTable As New netwyrksDataSet.supplierDataTable
-        LogUtil.Debug("Finding products", Me.Name)
+        LogUtil.Debug("Finding products", Name)
         oJobProductTa.FillByJob(oJobProductTable, pJobId)
         For Each oRow As netwyrksDataSet.job_productRow In oJobProductTable.Rows
             Dim _jpId As Integer = oRow.job_product_id
@@ -291,14 +292,14 @@ Public Class FrmJobMaint
                 End If
             End If
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-            tRow.Cells(Me.prodSupp.Name).Value = _supplierName
-            tRow.Cells(Me.prodName.Name).Value = _productName
-            tRow.Cells(Me.prodId.Name).Value = _productId
-            tRow.Cells(Me.jpId.Name).Value = _jpId
-            tRow.Cells(Me.prodQty.Name).Value = _qty
-            tRow.Cells(Me.prodCost.Name).Value = _cost
-            tRow.Cells(Me.prodPrice.Name).Value = _price
-            tRow.Cells(Me.jobPrice.Name).Value = oRow.jp_price
+            tRow.Cells(prodSupp.Name).Value = _supplierName
+            tRow.Cells(prodName.Name).Value = _productName
+            tRow.Cells(prodId.Name).Value = _productId
+            tRow.Cells(jpId.Name).Value = _jpId
+            tRow.Cells(prodQty.Name).Value = _qty
+            tRow.Cells(prodCost.Name).Value = _cost
+            tRow.Cells(prodPrice.Name).Value = _price
+            tRow.Cells(jobPrice.Name).Value = oRow.jp_price
         Next
         dgvProducts.ClearSelection()
         oJobProductTa.Dispose()
@@ -309,7 +310,7 @@ Public Class FrmJobMaint
         oSuppTa.Dispose()
     End Sub
     Private Sub NewJob()
-        LogUtil.Debug("New job", Me.Name())
+        LogUtil.Debug("New job", Name())
         SplitContainer2.Panel2Collapsed = True
         GrpInvoice.Enabled = False
         ClearJobdetails()
@@ -321,27 +322,27 @@ Public Class FrmJobMaint
     End Sub
     Private Function Amendjob() As Boolean
         Dim isAmendOk As Boolean
-        LogUtil.Debug("Updating job " & CStr(_currentJobId), Me.Name)
-        dim _ct as integer = updatejob(_newJob)
+        LogUtil.Debug("Updating job " & _currentJobId, Name)
+        Dim _ct As Integer = UpdateJob(_newJob)
         If _ct > 0 Then
             isAmendOk = True
-            ShowStatus(LblStatus, "Job updated OK", Me.Name, True)
+            ShowStatus(LblStatus, "Job updated OK", Name, True)
         Else
             isAmendOk = False
-            ShowStatus(LblStatus, "Job NOT updated", Me.Name, True)
+            ShowStatus(LblStatus, "Job NOT updated", Name, True)
         End If
         Return isAmendOk
     End Function
     Private Function CreateJob() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Debug("Inserting job", Me.Name)
+        LogUtil.Debug("Inserting job", Name)
         _currentJobId = InsertJob(_newJob)
         If _currentJobId > 0 Then
             isInsertOk = True
-            ShowStatus(LblStatus, "Job " & CStr(_currentJobId) & " Created OK", Me.Name, True)
+            ShowStatus(LblStatus, "Job " & _currentJobId & " Created OK", Name, True)
         Else
             isInsertOk = False
-            ShowStatus(LblStatus, "Job NOT created", Me.Name, True)
+            ShowStatus(LblStatus, "Job NOT created", Name, True)
         End If
         Return isInsertOk
     End Function

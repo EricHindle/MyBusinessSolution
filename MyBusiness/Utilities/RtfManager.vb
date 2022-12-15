@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.Text
 
@@ -299,7 +300,7 @@ Public Class RtfManager
                                 cellColor = RtfColour.Green
                             ElseIf oCell.Style.ForeColor = Color.Maroon Then
                                 cellColor = RtfColour.Maroon
-                            ElseIf oCell.Style.ForeColor = Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer)) Then
+                            ElseIf oCell.Style.ForeColor = Color.FromArgb(55, 48, 26) Then
                                 cellColor = RtfColour.Hdr2Blue
                             Else
                                 cellColor = RtfColour.Hdr1Blue
@@ -365,9 +366,9 @@ Public Class RtfManager
                 oCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             End If
             If oCol.Visible Then
-                Dim thisTab As Integer = lasttab + (PixelsToTwips(oCol.Width + 2, dpi))
+                Dim thisTab As Integer = lasttab + PixelsToTwips(oCol.Width + 2, dpi)
                 lasttab = thisTab
-                rtnText.Append("\tx" & CStr(thisTab))
+                rtnText.Append("\tx" & thisTab)
             End If
         Next
         Return rtnText.ToString

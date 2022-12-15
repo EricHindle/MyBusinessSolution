@@ -1,11 +1,12 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Runtime.InteropServices
 Imports System.Drawing.Printing
+Imports System.Runtime.InteropServices
 
 ''' <summary>
 ''' Rich Text Box extension
@@ -14,14 +15,14 @@ Imports System.Drawing.Printing
 Public Class RichTextBoxEx
     Inherits RichTextBox
     <StructLayout(LayoutKind.Sequential)> _
-Private Structure STRUCT_RECT
+    Private Structure STRUCT_RECT
         Public left As Int32
         Public top As Int32
         Public right As Int32
         Public bottom As Int32
     End Structure
     <StructLayout(LayoutKind.Sequential)> _
-Private Structure STRUCT_CHARRANGE
+    Private Structure STRUCT_CHARRANGE
         Public cpMin As Int32
         Public cpMax As Int32
     End Structure

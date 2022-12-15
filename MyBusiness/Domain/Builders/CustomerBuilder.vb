@@ -1,10 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Text
 ''' <summary>
 ''' Customer builder  (see https://en.wikipedia.org/wiki/Builder_pattern)
 ''' </summary>

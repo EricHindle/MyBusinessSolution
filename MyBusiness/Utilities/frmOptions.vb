@@ -1,13 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-
-Imports System.Collections
-Imports System.Text
-Imports System.IO
-Imports i00SpellCheck
+'
 
 ''' <summary>
 ''' Allows user to set personal preferences
@@ -27,7 +23,7 @@ Public Class frmOptions
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' Load current settings into the forms
@@ -43,7 +39,7 @@ Public Class frmOptions
         LoadFolderOptions()
         SpellCheckUtil.EnableSpellChecking(New System.Windows.Forms.Control() {txtSpellTest})
         LoadSpellcheckOptions()
-        setTooltips()
+        SetTooltips()
         isLoading = False
     End Sub
     ''' <summary>
@@ -62,7 +58,7 @@ Public Class frmOptions
             SaveFolderOptions()
             SaveSpellcheckOptions()
             My.Settings.Save()
-            Me.Close()
+            Close()
         Else
             MsgBox("Some values are invalid", MsgBoxStyle.Exclamation, "Option errors")
         End If
@@ -233,7 +229,8 @@ Public Class frmOptions
         txtLogPath.Text = My.Settings.LogFolder
         txtReportFolder.Text = My.Settings.ReportFolder
         txtCacheFolder.Text = My.Settings.CacheFolder
-        TxtImageFolder.Text = My.Settings.SourceImages
+        TxtImageFolder.Text = My.Settings.ImageFolder
+        TxtInvoiceFolder.Text = My.Settings.InvoiceFolder
     End Sub
 
     ''' <summary>
@@ -245,7 +242,8 @@ Public Class frmOptions
         My.Settings.LogFolder = txtLogPath.Text
         My.Settings.ReportFolder = txtReportFolder.Text
         My.Settings.CacheFolder = txtCacheFolder.Text
-        My.Settings.SourceImages = TxtImageFolder.Text
+        My.Settings.ImageFolder = TxtImageFolder.Text
+        My.Settings.InvoiceFolder = TxtInvoiceFolder.Text
         SetFolderNames()
     End Sub
 
@@ -259,15 +257,15 @@ Public Class frmOptions
         lblTempFolder.ForeColor = Color.Black
         lblLogFolder.ForeColor = Color.Black
         lblReports.ForeColor = Color.Black
-        If Not isValidPathName(txtReportFolder.Text) Then
+        If Not IsValidPathName(txtReportFolder.Text) Then
             lblReports.ForeColor = Color.Red
             bValid = False
         End If
-        If Not isValidPathName(txtTempFolder.Text) Then
+        If Not IsValidPathName(txtTempFolder.Text) Then
             lblTempFolder.ForeColor = Color.Red
             bValid = False
         End If
-        If Not isValidPathName(txtLogPath.Text) Then
+        If Not IsValidPathName(txtLogPath.Text) Then
             lblLogFolder.ForeColor = Color.Red
             bValid = False
         End If
@@ -316,7 +314,7 @@ Public Class frmOptions
     Private Sub BtnCreateFolders_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnCreateFolders.Click
         LogUtil.Info("Creating any missing folders")
         SaveFolderOptions()
-        createMissingFolders()
+        CreateMissingFolders()
         txtStatus.Text = "Missing folders created"
     End Sub
 #End Region
@@ -387,7 +385,6 @@ Public Class frmOptions
         End Using
         Return newFont
     End Function
-
 
 #End Region
 End Class

@@ -1,13 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Text
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text
 Imports System.IO
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class InvoicePrinter
 #Region "variables"
@@ -22,10 +22,10 @@ Public Class InvoicePrinter
     'Private _BodyLargeFont As iTextSharp.text.Font
     Private ReadOnly _FtrFont As iTextSharp.text.Font
     Private _nextInvoiceNumber As Integer
-    Private ReadOnly _companyName As String = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_NAME)
-    Private ReadOnly _companyAddress As String() = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_ADDRESS).Split("/")
-    Private ReadOnly _companyEmail As String = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_EMAIL)
-    Private ReadOnly _companyUrl As String = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_WEBSITE)
+    Private ReadOnly _companyName As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
+    Private ReadOnly _companyAddress As String() = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_ADDRESS).Split("/")
+    Private ReadOnly _companyEmail As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_EMAIL)
+    Private ReadOnly _companyUrl As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_WEBSITE)
     Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
     Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
     Private ReadOnly oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
@@ -131,7 +131,7 @@ Public Class InvoicePrinter
             Dim oProduct As Product = GetProductById(oJobProduct.jp_product_id)
             Dim taxAmount As Decimal = CalcTax(oProduct.ProductPrice, oJobProduct.jp_tax_rate)
             _productTable.AddCell(_iTextManager.BuildTableCell(oProduct.ProductName))
-            _productTable.AddCell(_iTextManager.BuildTableCell(CStr(oJobProduct.jp_quantity)))
+            _productTable.AddCell(_iTextManager.BuildTableCell(oJobProduct.jp_quantity))
             _productTable.AddCell(_iTextManager.BuildTableCell(Format(oProduct.ProductPrice, AMOUNT_FORMAT)))
             totalPrice += oProduct.ProductPrice * oJobProduct.jp_quantity
             _productTable.AddCell(_iTextManager.BuildTableCell(Format(oJobProduct.jp_tax_rate, RATE_FORMAT)))
@@ -155,13 +155,19 @@ Public Class InvoicePrinter
         Return _amount * _rate / 100
     End Function
     Public Sub CreateInvoice(ByRef pJob As Job)
-        LogUtil.Info("Printing Invoice", Me.GetType.Name)
+        LogUtil.Info("Printing Invoice", [GetType].Name)
         _job = pJob
         oTaskTa.FillByJob(oTaskTable, _job.JobId)
         oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
-        _nextInvoiceNumber = CInt(GlobalSettings.getSetting(GlobalSettings.INVOICE_NUMBER)) + 1
-        GlobalSettings.setSetting(GlobalSettings.INVOICE_NUMBER, "integer", CStr(_nextInvoiceNumber))
-        Dim sFilename As String = Path.Combine(sReportFolder, "Invoice_" & CStr(_nextInvoiceNumber) & ".pdf")
+        If _job.JobInvoiceNumber <= 0 Then
+            _nextInvoiceNumber = CInt(GlobalSettings.GetSetting(GlobalSettings.INVOICE_NUMBER)) + 1
+            GlobalSettings.SetSetting(GlobalSettings.INVOICE_NUMBER, "integer", _nextInvoiceNumber)
+            _job.JobInvoiceNumber = _nextInvoiceNumber
+        End If
+        _job.JobInvoiceDate = Now
+        UpdateJob(_job)
+
+        Dim sFilename As String = Path.Combine(sInvoiceFolder, "Invoice_" & _job.JobInvoiceNumber & ".pdf")
         CreateInvoicePdf(sFilename)
         Using _viewInvoice As New dlgViewInvoice
             _viewInvoice.Filename = sFilename

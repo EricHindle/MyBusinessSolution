@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class frmInfoSplash
 #Region "private variables"
@@ -33,7 +34,7 @@ Public Class frmInfoSplash
         End If
     End Sub
     Private Sub Timer1_Tick(ByVal sender As Object, ByVal e As EventArgs) Handles Timer1.Tick
-        Me.Close()
+        Close()
     End Sub
 #End Region
 End Class

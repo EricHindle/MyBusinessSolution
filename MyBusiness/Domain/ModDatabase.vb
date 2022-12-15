@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2022, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.Data.Common
 Imports System.IO
@@ -72,7 +73,7 @@ Module ModDatabase
             If oUserTable.Rows.Count > 0 Then
                 _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
             End If
-        Catch ex As dbException
+        Catch ex As DbException
 
         End Try
         Return _user
@@ -298,7 +299,7 @@ Module ModDatabase
     Public Function InsertProduct(pProduct As Product) As Integer
         Dim _productId As Integer
         With pProduct
-            _productId = oProductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, .ProductCreated, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate,.PurchaseUnits)
+            _productId = oProductTa.InsertProduct(.ProductName, .ProductDescription, .ProductCost, .ProductPrice, .ProductCreated, .ProductSupplierId, .IsProductTaxable, .ProductTaxRate, .PurchaseUnits)
         End With
         Return _productId
     End Function
@@ -326,7 +327,7 @@ Module ModDatabase
             If oCustomerTable.Rows.Count > 0 Then
                 _cust = CustomerBuilder.ACustomer.StartingWith(oCustomerTable.Rows(0)).Build
             End If
-        Catch ex As dbException
+        Catch ex As DbException
 
         End Try
         Return _cust
@@ -537,7 +538,7 @@ Module ModDatabase
     Public Function GetCallBackAlerts(ByVal userId As Integer) As List(Of Reminder)
         Dim _alertList As New List(Of Reminder)
         Try
-            oDiaryTa.FillByCallbackAlert(oDiaryTable, Now, DateAdd(DateInterval.Minute, (My.Settings.alertNotice * 1.5), Now), userId)
+            oDiaryTa.FillByCallbackAlert(oDiaryTable, Now, DateAdd(DateInterval.Minute, My.Settings.alertNotice * 1.5, Now), userId)
             For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
                 Dim _alert As Reminder = ReminderBuilder.AReminder.StartingWith(oRow).Build
                 _alertList.Add(_alert)

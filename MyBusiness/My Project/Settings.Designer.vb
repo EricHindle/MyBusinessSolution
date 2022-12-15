@@ -764,12 +764,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property SourceImages() As String
+        Public Property ImageFolder() As String
             Get
-                Return CType(Me("SourceImages"),String)
+                Return CType(Me("ImageFolder"),String)
             End Get
             Set
-                Me("SourceImages") = value
+                Me("ImageFolder") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property InvoiceFolder() As String
+            Get
+                Return CType(Me("InvoiceFolder"),String)
+            End Get
+            Set
+                Me("InvoiceFolder") = value
             End Set
         End Property
     End Class

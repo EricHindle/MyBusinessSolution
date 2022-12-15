@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021,2022 Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmSupplier
 #Region "variables"
@@ -23,7 +24,7 @@ Public Class FrmSupplier
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmSupplier_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
@@ -57,12 +58,12 @@ Public Class FrmSupplier
                             .WithSupplierUrl(TxtWeb.Text).Build
         If _supplierId > 0 Then
             If AmendSupplier() Then
-                Me.Close()
+                Close()
             End If
         Else
             If CreateSupplier() Then
                 LblAction.Text = "Inserted New Supplier"
-                Me.Close()
+                Close()
             End If
         End If
 
@@ -70,7 +71,7 @@ Public Class FrmSupplier
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         If dgvProducts.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-            Dim oProductId As Integer = oRow.Cells(Me.prodId.Name).Value
+            Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
             Using _ProductForm As New FrmProduct
                 _ProductForm.SelectSupplier = _currentSupplier
                 _ProductForm.ProductId = oProductId
@@ -91,12 +92,12 @@ Public Class FrmSupplier
         If Not isLoadingProducts Then
             If dgvProducts.SelectedRows.Count = 1 Then
                 Dim cRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-                Dim _selProdId As Integer = cRow.Cells(Me.prodId.Name).Value
+                Dim _selProdId As Integer = cRow.Cells(prodId.Name).Value
                 If _selProdId > 0 Then
                     Dim _selectedProduct As Product = GetProductById(_selProdId)
                     txtProductDesc.Text = _selectedProduct.ProductDescription
-                    txtCost.Text = "£" & CStr(_selectedProduct.ProductCost)
-                    txtPrice.Text = "£" & CStr(_selectedProduct.ProductPrice)
+                    txtCost.Text = "£" & _selectedProduct.ProductCost
+                    txtPrice.Text = "£" & _selectedProduct.ProductPrice
                     If My.Settings.showProduct Then spProducts.Panel2Collapsed = False
                 End If
             End If
@@ -108,7 +109,7 @@ Public Class FrmSupplier
         LblAction.Text = "Updating Supplier"
         btnUpdate.Text = "Update"
         With _currentSupplier
-            LogUtil.Info("Amending supplier " & CStr(_supplierId) & " : " & .SupplierName, MyBase.Name)
+            LogUtil.Info("Amending supplier " & _supplierId & " : " & .SupplierName, MyBase.Name)
             txtSuppName.Text = .SupplierName
             txtSuppAddr1.Text = .SupplierAddress.Address1
             txtSuppAddr2.Text = .SupplierAddress.Address2
@@ -141,7 +142,7 @@ Public Class FrmSupplier
     End Function
     Private Function AmendSupplier() As Boolean
         Dim isAmendOK As Boolean
-        LogUtil.Info("Updating", Me.Name)
+        LogUtil.Info("Updating", Name)
         If UpdateSupplier(_newSupplier) = 1 Then
             isAmendOK = True
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Supplier, _supplierId, AuditUtil.AuditableAction.update, _currentSupplier.ToString, _newSupplier.ToString)
@@ -180,14 +181,14 @@ Public Class FrmSupplier
         isLoadingProducts = True
         dgvProducts.Rows.Clear()
         Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-        pRow.Cells(Me.prodId.Name).Value = -1
+        pRow.Cells(prodId.Name).Value = -1
 
         Dim _productList As List(Of Product) = GetProductsBySupplier(suppId)
 
         For Each oProduct As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-            tRow.Cells(Me.prodId.Name).Value = oProduct.ProductId
-            tRow.Cells(Me.prodName.Name).Value = oProduct.ProductName
+            tRow.Cells(prodId.Name).Value = oProduct.ProductId
+            tRow.Cells(prodName.Name).Value = oProduct.ProductName
         Next
         dgvProducts.ClearSelection()
 
@@ -205,7 +206,6 @@ Public Class FrmSupplier
             End If
         End With
     End Sub
-
 
 #End Region
 End Class

@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.IO
 
@@ -15,7 +16,7 @@ Public Class FrmInstallationTest
 #End Region
 #Region "Form"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
@@ -27,7 +28,7 @@ Public Class FrmInstallationTest
     End Sub
     Private Sub BtnSMTP_Click(sender As Object, e As EventArgs) Handles btnSMTP.Click
         lblSMTPResult.Text = "Sending SMTP email..."
-        Me.Refresh()
+        Refresh()
         Dim fromEmail As String = GlobalSettings.getSetting(EmailUtil.SMTP_USERNAME)
         Dim mailResultOK As Boolean = EmailUtil.SendMail(fromEmail, txtTo.Text, New String() {}, "SMTP email test", "Test", txtFrom.Text)
         lblSMTPResult.Text = If(mailResultOK, "OK", "Failed")
@@ -38,7 +39,7 @@ Public Class FrmInstallationTest
         Dim dgv As DataGridView = DataGridView1
         myReportDef.TabStops = prtUtil.SetTabStopsFromColumns(dgv)
         myReportDef.ReportHead = "Installation Test"
-        Me.Refresh()
+        Refresh()
         prtUtil.printGrid(dgv, myReportDef)
         lblPrintResult.Text = "Done"
     End Sub

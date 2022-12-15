@@ -1,11 +1,11 @@
 ﻿' Hindleware
-' Copyright (c) 2021,2022 Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports MyBusiness.NetwyrksErrorCodes
-Imports i00SpellCheck
 ''' <summary>
 ''' Form to create and amend user diary entries
 ''' </summary>
@@ -93,7 +93,7 @@ Public Class FrmReminder
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' 
@@ -149,7 +149,7 @@ Public Class FrmReminder
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT added", True, TraceEventType.Warning)
         End If
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' 
@@ -174,7 +174,7 @@ Public Class FrmReminder
         Else
             logStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT updated", True, TraceEventType.Warning)
         End If
-        Me.Close()
+        Close()
     End Sub
 
     Private Function MakeReminderFromForm() As Reminder

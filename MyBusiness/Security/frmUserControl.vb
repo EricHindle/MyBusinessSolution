@@ -1,10 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Windows.Forms
 Imports System.Security.Cryptography
 
 Public Class FrmUserControl
@@ -18,8 +18,8 @@ Public Class FrmUserControl
     Private oUser As User
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
     End Sub
 
     Private Sub BtnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
@@ -125,7 +125,6 @@ Public Class FrmUserControl
                 MsgBox("No username entered", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
             End If
         End If
-
 
     End Sub
 

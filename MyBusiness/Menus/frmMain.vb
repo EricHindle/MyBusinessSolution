@@ -1,13 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
+Imports System.Text
 Imports i00SpellCheck
 Imports MyBusiness.NetwyrksErrorCodes
-Imports System.ComponentModel
-Imports System.Text
 
 Public Class FrmMain
 #Region "constants"
@@ -24,7 +24,7 @@ Public Class FrmMain
 #Region "form handlers"
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         MenuStrip1.CanOverflow = True
-        Me.Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
+        Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
         GetFormPos(Me, My.Settings.MainFormPos)
         isLoading = True
         InitialiseData()
@@ -37,7 +37,7 @@ Public Class FrmMain
             TimerCallBackReminders.Interval = My.Settings.alertNotice * 60000
             TimerCallBackReminders.Enabled = True
         End If
-        Me.EnableControlExtensions()
+        EnableControlExtensions()
         isLoading = False
     End Sub
     Private Sub DgvCust_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dgvCust.SelectionChanged
@@ -45,7 +45,7 @@ Public Class FrmMain
         If Not isLoading Then
             If dgvCust.SelectedRows.Count = 1 Then
                 Dim cRow As DataGridViewRow = dgvCust.SelectedRows(0)
-                Dim _selCustId As Integer = cRow.Cells(Me.custId.Name).Value
+                Dim _selCustId As Integer = cRow.Cells(custId.Name).Value
                 If _selCustId > 0 Then
                     Dim _selectedCust As Customer = CustomerBuilder.ACustomer.StartingWith(_selCustId).Build
                     FillJobTable(_selectedCust.CustomerId, mnuShowAllJobs.Checked)
@@ -62,7 +62,7 @@ Public Class FrmMain
         If Not isLoading Then
             If dgvDiary.SelectedRows.Count = 1 Then
                 Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-                Dim _diaryId As Integer = dRow.Cells(Me.dremId.Name).Value
+                Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
                 Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
                 rtbDiaryBody.Text = _reminder.Body
             End If
@@ -71,7 +71,7 @@ Public Class FrmMain
     Private Sub DgvDiary_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvDiary.CellDoubleClick
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-            Dim _diaryId As Integer = dRow.Cells(Me.dremId.Name).Value
+            Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
             Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
             Using _diary As New FrmReminder
                 _diary.CurrentReminder = _reminder
@@ -85,7 +85,7 @@ Public Class FrmMain
     Private Sub DgvCust_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvCust.CellDoubleClick
         If dgvCust.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvCust.SelectedRows(0)
-            Dim _custId As Integer = dRow.Cells(Me.custId.Name).Value
+            Dim _custId As Integer = dRow.Cells(custId.Name).Value
             Using _custForm As New FrmCustomerMaint
                 _custForm.CustomerId = _custId
                 _custForm.ShowDialog()
@@ -98,7 +98,7 @@ Public Class FrmMain
     Private Sub DgvSupp_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvSupp.CellDoubleClick
         If dgvSupp.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvSupp.SelectedRows(0)
-            Dim _suppId As Integer = dRow.Cells(Me.suppId.Name).Value
+            Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
             Using _suppForm As New FrmSupplier
                 _suppForm.SupplierId = _suppId
                 _suppForm.ShowDialog()
@@ -111,7 +111,7 @@ Public Class FrmMain
     Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvJobs.CellDoubleClick
         If dgvJobs.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvJobs.SelectedRows(0)
-            Dim _jobId As Integer = dRow.Cells(Me.jobId.Name).Value
+            Dim _jobId As Integer = dRow.Cells(jobId.Name).Value
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_jobId)
                 _jobForm.CustomerId = _jobForm.TheJob.JobCustomerId
@@ -128,7 +128,7 @@ Public Class FrmMain
         If Not isLoading Then
             If dgvSupp.SelectedRows.Count = 1 Then
                 Dim sRow As DataGridViewRow = dgvSupp.SelectedRows(0)
-                Dim _selSuppId As Integer = sRow.Cells(Me.suppId.Name).Value
+                Dim _selSuppId As Integer = sRow.Cells(suppId.Name).Value
                 If _selSuppId > 0 Then
                     Dim _selectedSupp As Supplier = SupplierBuilder.ASupplier.StartingWith(_selSuppId).Build
                     txtSuppAddress.Text = _selectedSupp.SupplierName & vbCrLf & MultilineAddressString(_selectedSupp.SupplierAddress)
@@ -162,7 +162,7 @@ Public Class FrmMain
         isLoading = False
     End Sub
     Private Sub CloseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseToolStripMenuItem.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub PreferencesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PreferencesToolStripMenuItem.Click
         Using _settings As New frmOptions
@@ -202,7 +202,7 @@ Public Class FrmMain
     Private Sub MnuShowAllJobs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuShowAllJobs.Click
         Dim _selCustId As Integer = -1
         If dgvCust.SelectedRows.Count = 1 Then
-            _selCustId = dgvCust.SelectedRows(0).Cells(Me.custId.Name).Value
+            _selCustId = dgvCust.SelectedRows(0).Cells(custId.Name).Value
         End If
         FillJobTable(_selCustId, mnuShowAllJobs.Checked)
     End Sub
@@ -285,13 +285,13 @@ Public Class FrmMain
         For Each ojob As Job In ojobstable
             Dim tRow As DataGridViewRow = dgvJobs.Rows(dgvJobs.Rows.Add)
             tRow.Visible = showAllJobs Or (ojob.JobUserId = currentUser.UserId)
-            tRow.Cells(Me.jobId.Name).Value = ojob.JobId
-            tRow.Cells(Me.jobName.Name).Value = ojob.JobName
-            tRow.Cells(Me.jobDesc.Name).Value = ojob.JobDescription.Replace(Chr(10), " ")
-            tRow.Cells(Me.jobUser.Name).Value = ojob.JobUserId
-            tRow.Cells(Me.jobAssigned.Name).Value = UserBuilder.AUser.StartingWith(ojob.JobUserId).Build.User_code
+            tRow.Cells(jobId.Name).Value = ojob.JobId
+            tRow.Cells(jobName.Name).Value = ojob.JobName
+            tRow.Cells(jobDesc.Name).Value = ojob.JobDescription.Replace(Chr(10), " ")
+            tRow.Cells(jobUser.Name).Value = ojob.JobUserId
+            tRow.Cells(jobAssigned.Name).Value = UserBuilder.AUser.StartingWith(ojob.JobUserId).Build.User_code
             If ojob.IsJobCompleted Then
-                tRow.Cells(Me.jobCompleted.Name).Value = "Yes"
+                tRow.Cells(jobCompleted.Name).Value = "Yes"
             End If
         Next
         dgvJobs.ClearSelection()
@@ -339,12 +339,12 @@ Public Class FrmMain
                     Dim isComplete As Boolean = oReminder.IsClosed
                     Dim isCallBack As Boolean = oReminder.CallBack
                     '   rRow.Cells(Me.dremUserCode.Name).Value = If(oUserList.ContainsKey(oRow.diary_user_id), oUserList(oRow.diary_user_id), "")
-                    rRow.Cells(Me.dremHeader.Name).Value = False
-                    rRow.Cells(Me.dremId.Name).Value = oReminder.Diary_id
-                    rRow.Cells(Me.dremSubject.Name).Value = oReminder.Subject
-                    rRow.Cells(Me.dremDate.Name).Value = Format(oReminder.ReminderDate, "dd/MM/yyyy")
-                    rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Gray
-                    rRow.Cells(Me.dremCustId.Name).Value = oReminder.CustomerId
+                    rRow.Cells(dremHeader.Name).Value = False
+                    rRow.Cells(dremId.Name).Value = oReminder.Diary_id
+                    rRow.Cells(dremSubject.Name).Value = oReminder.Subject
+                    rRow.Cells(dremDate.Name).Value = Format(oReminder.ReminderDate, "dd/MM/yyyy")
+                    rRow.Cells(dremDate.Name).Style.ForeColor = Color.Gray
+                    rRow.Cells(dremCustId.Name).Value = oReminder.CustomerId
                     Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
                     oRemCell.Style.Font = New Font("Wingdings", 11)
                     oRemCell.Value = If(isReminder, Chr(185), "")
@@ -371,9 +371,9 @@ Public Class FrmMain
                 Exit For
             End If
         Next
-        rRow.Cells(Me.dremDate.Name).Value = dateSectionHeads(sectionNo)
-        rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Black
-        rRow.Cells(Me.dremHeader.Name).Value = True
+        rRow.Cells(dremDate.Name).Value = dateSectionHeads(sectionNo)
+        rRow.Cells(dremDate.Name).Style.ForeColor = Color.Black
+        rRow.Cells(dremHeader.Name).Value = True
         For Each oCell As DataGridViewCell In rRow.Cells
             oCell.Style.BackColor = Color.Silver
         Next
@@ -408,7 +408,7 @@ Public Class FrmMain
             Dim userId As Integer = currentUser.UserId
             LogUtil.Info("Finding call back reminders", MyBase.Name)
             Dim _alertList As List(Of Reminder) = GetCallBackAlerts(userId)
-            LogUtil.Info(CStr(_alertList.Count) & " reminders", MyBase.Name)
+            LogUtil.Info(_alertList.Count & " reminders", MyBase.Name)
             FrmAlert.openForms.Clear()
             For Each _alert As Reminder In _alertList
                 ShowAlertMessage(_alert)

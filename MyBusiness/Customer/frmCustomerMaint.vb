@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmCustomerMaint
 #Region "variables"
@@ -23,15 +24,15 @@ Public Class FrmCustomerMaint
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Info("Started", Me.Name)
+        LogUtil.Info("Started", Name)
         GetFormPos(Me, My.Settings.CustFormPos)
         isLoading = True
         pnlCustomer.Enabled = False
         SplitContainer1.Panel2Collapsed = True
-        Me.KeyPreview = True
+        KeyPreview = True
         If _customerId = 0 Then
             NewCustomer()
         Else
@@ -43,7 +44,7 @@ Public Class FrmCustomerMaint
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        logutil.info("Closing", Me.Name)
+        logutil.info("Closing", Name)
         My.Settings.CustFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
@@ -53,7 +54,7 @@ Public Class FrmCustomerMaint
         End If
     End Sub
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        logutil.info("Updating", Me.Name)
+        logutil.info("Updating", Name)
         Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
         With _currentCustomer
             _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
@@ -75,8 +76,8 @@ Public Class FrmCustomerMaint
     Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvJobs.CellDoubleClick
         If DgvJobs.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
-            Dim _JobId As Integer = oRow.Cells(Me.jobId.Name).Value
-            LogUtil.Info("Updating job " & CStr(_JobId), Me.Name)
+            Dim _JobId As Integer = oRow.Cells(jobId.Name).Value
+            LogUtil.Info("Updating job " & _JobId, Name)
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_JobId)
                 _jobForm.CustomerId = _customerId
@@ -85,7 +86,7 @@ Public Class FrmCustomerMaint
         End If
     End Sub
     Private Sub BtnAddJob_Click(sender As Object, e As EventArgs) Handles BtnAddJob.Click
-        LogUtil.Info("Adding job", Me.Name)
+        LogUtil.Info("Adding job", Name)
         Using _jobForm As New FrmJobMaint
             _jobForm.TheJob = Nothing
             _jobForm.CustomerId = _customerId
@@ -117,7 +118,7 @@ Public Class FrmCustomerMaint
             _custId = .CustomerId
         End With
         SplitContainer1.Panel2Collapsed = False
-        LogUtil.Info("Existing customer " & CStr(_custId), Me.Name)
+        LogUtil.Info("Existing customer " & _custId, Name)
         FillJobsList(_custId)
     End Sub
     Private Function CreateCustomer() As Boolean
@@ -126,10 +127,10 @@ Public Class FrmCustomerMaint
         If _customerId > 0 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", _newCustomer.ToString)
             isInsertOK = True
-            ShowStatus(lblStatus, "Customer " & CStr(_customerId) & " created OK", Me.Name, True)
+            ShowStatus(lblStatus, "Customer " & _customerId & " created OK", Name, True)
         Else
             isInsertOK = False
-            ShowStatus(lblStatus, "Customer NOT created", Me.Name, True)
+            ShowStatus(lblStatus, "Customer NOT created", Name, True)
         End If
         Return isInsertOK
     End Function
@@ -140,16 +141,16 @@ Public Class FrmCustomerMaint
             If UpdateCustomer(_newCustomer) = 1 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
-                ShowStatus(lblStatus, "Customer updated OK", Me.Name, True)
+                ShowStatus(lblStatus, "Customer updated OK", Name, True)
             Else
                 isAmendOK = False
-                ShowStatus(lblStatus, "Customer NOT updated", Me.Name, True)
+                ShowStatus(lblStatus, "Customer NOT updated", Name, True)
             End If
         End With
         Return isAmendOK
     End Function
     Private Sub NewCustomer()
-        logutil.info("New customer", Me.Name)
+        logutil.info("New customer", Name)
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
         pnlCustomer.Enabled = True
@@ -180,9 +181,9 @@ Public Class FrmCustomerMaint
             If oRow.job_completed Then
                 tRow.Visible = ChkCompleted.Checked
             End If
-            tRow.Cells(Me.jobId.Name).Value = oRow.job_id
-            tRow.Cells(Me.jobName.Name).Value = oRow.job_name
-            tRow.Cells(Me.jobCompleted.Name).Value = If(oRow.job_completed, "Yes", "")
+            tRow.Cells(jobId.Name).Value = oRow.job_id
+            tRow.Cells(jobName.Name).Value = oRow.job_name
+            tRow.Cells(jobCompleted.Name).Value = If(oRow.job_completed, "Yes", "")
         Next
         oJobsTa.Dispose()
         oJobsTable.Dispose()

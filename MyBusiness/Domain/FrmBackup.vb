@@ -1,4 +1,11 @@
-﻿Imports System.IO
+﻿' Hindleware
+' Copyright (c) 2022 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Imports System.IO
 
 Public Class FrmBackup
 #Region "variables"
@@ -23,7 +30,7 @@ Public Class FrmBackup
         TvImages.ExpandAll()
     End Sub
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub TvDatatables_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles TvDatatables.AfterCheck, TvDocuments.AfterCheck, TvImages.AfterCheck
         Dim node As TreeNode = e.Node
@@ -73,8 +80,9 @@ Public Class FrmBackup
         TvImages.Nodes.Clear()
         TvImages.Nodes.Add("Images")
         Dim topNode As TreeNode = TvImages.Nodes(0)
-        If My.Computer.FileSystem.DirectoryExists(My.Settings.SourceImages) Then
-            Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(My.Settings.SourceImages, FileIO.SearchOption.SearchAllSubDirectories)
+        LogUtil.Info(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath))
+        If My.Computer.FileSystem.DirectoryExists(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath)) Then
+            Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(My.Settings.ImageFolder.Replace("<application path>", sApplicationPath), FileIO.SearchOption.SearchAllSubDirectories)
             For Each _filename As String In fileList
                 Dim _fname As String = Path.GetFileName(_filename)
                 topNode.Nodes.Add(_filename, _fname)
@@ -84,20 +92,24 @@ Public Class FrmBackup
     Private Sub FillDocumentTree()
         TvDocuments.Nodes.Clear()
         TvDocuments.Nodes.Add("Document files")
-        TvDocuments.Nodes(0).Nodes.Add("Invoice files")
-        Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sReportFolder)
+
+        Dim reportFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sReportFolder)
+        Dim invoiceFileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(sInvoiceFolder)
+
+        TvDocuments.Nodes(0).Nodes.Add("Report files")
         Dim topNode As TreeNode = TvDocuments.Nodes(0).Nodes(0)
-        For Each _filename As String In fileList
+        For Each _filename As String In reportFileList
             Dim _fname As String = Path.GetFileName(_filename)
             topNode.Nodes.Add(_filename, _fname)
         Next
-        'TvDocuments.Nodes(0).Nodes.Add("Text files")
+
+        TvDocuments.Nodes(0).Nodes.Add("Invoice files")
         'fileList = My.Computer.FileSystem.GetFiles(GetTextFilePath(CurrentBook))
-        'topNode = TvDocuments.Nodes(0).Nodes(1)
-        'For Each _filename As String In fileList
-        '    Dim _fname As String = Path.GetFileName(_filename)
-        '    topNode.Nodes.Add(_filename, _fname)
-        'Next
+        topNode = TvDocuments.Nodes(0).Nodes(1)
+        For Each _filename As String In invoiceFileList
+            Dim _fname As String = Path.GetFileName(_filename)
+            topNode.Nodes.Add(_filename, _fname)
+        Next
     End Sub
     Private Function CheckPaths(isOKToBackup As Boolean) As Boolean
         If Not String.IsNullOrEmpty(TxtBackupPath.Text) Then

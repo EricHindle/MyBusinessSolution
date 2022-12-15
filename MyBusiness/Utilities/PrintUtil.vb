@@ -1,12 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.Drawing.Printing
-Imports System.Text
 Imports System.IO
+Imports System.Text
 
 ''' <summary>
 ''' Useful functions for printing
@@ -170,7 +171,6 @@ Public Class PrintUtil : Implements IDisposable
         ' 3 = print into half the available space
         ' 4 = print actual size
 
-
         '
         ' Print the image if the file exists
         '
@@ -248,7 +248,7 @@ Public Class PrintUtil : Implements IDisposable
                 Dim cellValue As String = ""
                 If oCell.Value IsNot Nothing Then
                     If oCell.ValueType Is GetType(Date) Then
-                        cellValue = (Format(oCell.Value, "dd/MM/yyyy"))
+                        cellValue = Format(oCell.Value, "dd/MM/yyyy")
                     Else
                         cellValue = CStr(oCell.Value).Trim
                     End If
@@ -306,7 +306,7 @@ Public Class PrintUtil : Implements IDisposable
                                                 myRichTextBoxEx.TextLength)
 
         ' check if there are more pages to print
-        If (m_nFirstCharOnPage < myRichTextBoxEx.TextLength) Then
+        If m_nFirstCharOnPage < myRichTextBoxEx.TextLength Then
             e.HasMorePages = True
         Else
             e.HasMorePages = False
@@ -376,7 +376,7 @@ Public Class PrintUtil : Implements IDisposable
         myDocumentText = New StringBuilder(oReportDef.ReportHead.Replace("}", vbCrLf) & vbCrLf & vbCrLf)
         ' Print headings
         For Each oCol As DataGridViewColumn In dg.Columns
-            myDocumentText.Append(CStr(oCol.HeaderText).Trim).Append(vbTab)
+            myDocumentText.Append(oCol.HeaderText.Trim).Append(vbTab)
         Next
         myDocumentText.Append(vbCrLf)
         Dim iRowCt As Integer = 0
@@ -389,7 +389,7 @@ Public Class PrintUtil : Implements IDisposable
                     If oCell.Value IsNot Nothing AndAlso oCell.Value IsNot DBNull.Value Then
                         hasValue = True
                         If oCell.ValueType Is GetType(Date) Then
-                            cellValue = (Format(oCell.Value, "dd/MM/yyyy"))
+                            cellValue = Format(oCell.Value, "dd/MM/yyyy")
                         Else
                             cellValue = CStr(oCell.Value).Trim
                         End If

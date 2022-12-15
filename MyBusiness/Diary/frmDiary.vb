@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports MyBusiness.NetwyrksErrorCodes
 ''' <summary>
@@ -71,7 +72,7 @@ Public Class FrmDiary
         GetFormPos(Me, My.Settings.DiaryFormPos)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
-        Me.KeyPreview = True
+        KeyPreview = True
         If dayOfWeek = 6 Then
             dateSectionHeads = New String() {"Overdue", "Today", "Tomorrow", "Next Week", "Future"}
             dateSectionEnds = New DateTime() {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 8, Today)), Date.MaxValue}
@@ -97,7 +98,7 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     ''' <summary>
     ''' 
@@ -109,7 +110,7 @@ Public Class FrmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
-            Dim newValue As Integer = If(oRow.Cells(Me.dremRem.Name).Value = "", 1, 0)
+            Dim newValue As Integer = If(oRow.Cells(dremRem.Name).Value = "", 1, 0)
             UpdateIsReminder(newValue, remId)
             RebuildDiaryList()
         End If
@@ -124,7 +125,7 @@ Public Class FrmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
-            Dim newValue As Integer = If(oRow.Cells(Me.dremClosed.Name).Value = "", 1, 0)
+            Dim newValue As Integer = If(oRow.Cells(dremClosed.Name).Value = "", 1, 0)
             UpdateReminderClosed(newValue, remId)
             RebuildDiaryList()
         End If
@@ -138,14 +139,14 @@ Public Class FrmDiary
         Dim iSelectedId As Integer = -1
         If dgvDiary.SelectedRows.Count > 0 Then
             iSelectedRow = dgvDiary.SelectedRows(0).Index
-            iSelectedId = dgvDiary.SelectedRows(0).Cells(Me.dremId.Name).Value
+            iSelectedId = dgvDiary.SelectedRows(0).Cells(dremId.Name).Value
         End If
         Dim iTopRow As Integer = dgvDiary.FirstDisplayedScrollingRowIndex
         Dim iTopRowDiff As Integer = Math.Max(iSelectedRow - iTopRow, 0)
         FillDiaryTable()
         iSelectedRow = Math.Min(iSelectedRow, dgvDiary.Rows.Count - 1)
         For Each oRow As DataGridViewRow In dgvDiary.Rows
-            If oRow.Cells(Me.dremHeader.Name).Value = False AndAlso oRow.Cells(Me.dremId.Name).Value = iSelectedId Then
+            If oRow.Cells(dremHeader.Name).Value = False AndAlso oRow.Cells(dremId.Name).Value = iSelectedId Then
                 iSelectedRow = oRow.Index
             End If
         Next
@@ -242,7 +243,7 @@ Public Class FrmDiary
     Private Sub DgvDiary_SelectionChanged(sender As Object, e As EventArgs) Handles dgvDiary.SelectionChanged
         ClearForm()
         If dgvDiary.SelectedRows.Count = 1 Then
-            If dgvDiary.SelectedRows(0).Cells(Me.dremHeader.Name).Value = False Then
+            If dgvDiary.SelectedRows(0).Cells(dremHeader.Name).Value = False Then
                 Dim orow As DataGridViewRow = dgvDiary.SelectedRows(0)
                 FillForm(orow.Cells(dremId.Name).Value)
             End If
@@ -269,7 +270,6 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnjobLink_Click(sender As Object, e As EventArgs) Handles btnJobLink.Click
-
 
         If currentDiary IsNot Nothing Then
 
@@ -329,7 +329,7 @@ Public Class FrmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Using _reminder As New FrmReminder
-                _reminder.CurrentReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(Me.dremId.Name).Value).build()
+                _reminder.CurrentReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(dremId.Name).Value).build()
                 _reminder.ShowDialog()
             End Using
         Else
@@ -391,14 +391,14 @@ Public Class FrmDiary
                             Dim isComplete As Boolean = _reminder.IsClosed
                             Dim isCallBack As Boolean = _reminder.CallBack
 
-                            rRow.Cells(Me.dremUserCode.Name).Value = _reminder.DiaryUser.User_code
-                            rRow.Cells(Me.dremHeader.Name).Value = False
-                            rRow.Cells(Me.dremId.Name).Value = _reminder.Diary_id
-                            rRow.Cells(Me.dremSubject.Name).Value = _reminder.Subject
-                            rRow.Cells(Me.dremDate.Name).Value = Format(_reminder.ReminderDate, "dd/MM/yyyy")
-                            rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Gray
-                            rRow.Cells(Me.dremCustId.Name).Value = _reminder.CustomerId
-                            rRow.Cells(Me.dremJobId.Name).Value = _reminder.JobId
+                            rRow.Cells(dremUserCode.Name).Value = _reminder.DiaryUser.User_code
+                            rRow.Cells(dremHeader.Name).Value = False
+                            rRow.Cells(dremId.Name).Value = _reminder.Diary_id
+                            rRow.Cells(dremSubject.Name).Value = _reminder.Subject
+                            rRow.Cells(dremDate.Name).Value = Format(_reminder.ReminderDate, "dd/MM/yyyy")
+                            rRow.Cells(dremDate.Name).Style.ForeColor = Color.Gray
+                            rRow.Cells(dremCustId.Name).Value = _reminder.CustomerId
+                            rRow.Cells(dremJobId.Name).Value = _reminder.JobId
                             Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
                             oRemCell.Style.Font = New Font("Wingdings", 11)
                             oRemCell.Value = If(isReminder, Chr(185), "")
@@ -442,9 +442,9 @@ Public Class FrmDiary
                 Exit For
             End If
         Next
-        rRow.Cells(Me.dremDate.Name).Value = dateSectionHeads(sectionNo)
-        rRow.Cells(Me.dremDate.Name).Style.ForeColor = Color.Black
-        rRow.Cells(Me.dremHeader.Name).Value = True
+        rRow.Cells(dremDate.Name).Value = dateSectionHeads(sectionNo)
+        rRow.Cells(dremDate.Name).Style.ForeColor = Color.Black
+        rRow.Cells(dremHeader.Name).Value = True
         For Each oCell As DataGridViewCell In rRow.Cells
             oCell.Style.BackColor = Color.Silver
         Next
@@ -461,11 +461,11 @@ Public Class FrmDiary
         If isShowAll Then
             lblF4.Text = "F4=Show " & userName
             lblName.Text = "All Users"
-            dgvDiary.Columns(Me.dremUserCode.Name).Visible = True
+            dgvDiary.Columns(dremUserCode.Name).Visible = True
         Else
             lblF4.Text = "F4=Show All Users"
             lblName.Text = userName
-            dgvDiary.Columns(Me.dremUserCode.Name).Visible = False
+            dgvDiary.Columns(dremUserCode.Name).Visible = False
         End If
         isLoading = False
         RebuildDiaryList()

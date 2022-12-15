@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2022, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmReminderList
 #Region "variables"
@@ -35,7 +36,7 @@ Public Class FrmReminderList
         My.Settings.Save()
     End Sub
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub ChkShowAtLogin_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowAtLogin.CheckedChanged
         My.Settings.ShowRemindersAtLogin = ChkShowAtLogin.Checked
@@ -95,7 +96,7 @@ Public Class FrmReminderList
         LblJobName.Text = ""
     End Sub
     Private Sub FillForm(ByVal oRow As DataGridViewRow)
-        currentRemId = oRow.Cells(Me.remId.Name).Value
+        currentRemId = oRow.Cells(remId.Name).Value
         Dim _reminder As Reminder = GetReminderById(currentRemId)
         With _reminder
             currentCustId = .CustomerId
@@ -117,14 +118,14 @@ Public Class FrmReminderList
         Dim iSelectedId As Integer = -1
         If DgvReminders.SelectedRows.Count > 0 Then
             iSelectedRow = DgvReminders.SelectedRows(0).Index
-            iSelectedId = DgvReminders.SelectedRows(0).Cells(Me.remId.Name).Value
+            iSelectedId = DgvReminders.SelectedRows(0).Cells(remId.Name).Value
         End If
         Dim iTopRow As Integer = DgvReminders.FirstDisplayedScrollingRowIndex
         Dim iTopRowDiff As Integer = Math.Max(iSelectedRow - iTopRow, 0)
         Dim remCt As Integer = FillReminderTable()
         iSelectedRow = Math.Min(iSelectedRow, DgvReminders.Rows.Count - 1)
         For Each oRow As DataGridViewRow In DgvReminders.Rows
-            If oRow.Cells(Me.remHeader.Name).Value = False AndAlso oRow.Cells(remId.Name).Value = iSelectedId Then
+            If oRow.Cells(remHeader.Name).Value = False AndAlso oRow.Cells(remId.Name).Value = iSelectedId Then
                 iSelectedRow = oRow.Index
             End If
         Next
@@ -132,7 +133,7 @@ Public Class FrmReminderList
         If DgvReminders.Rows.Count > 0 Then
             DgvReminders.Rows(iSelectedRow).Selected = True
             DgvReminders.FirstDisplayedScrollingRowIndex = iTopRow
-            If DgvReminders.SelectedRows(0).Cells(Me.remHeader.Name).Value = False Then
+            If DgvReminders.SelectedRows(0).Cells(remHeader.Name).Value = False Then
                 FillForm(DgvReminders.SelectedRows(0))
             End If
         Else
@@ -148,9 +149,9 @@ Public Class FrmReminderList
                 Exit For
             End If
         Next
-        rRow.Cells(Me.remDate.Name).Value = dateSectionHeads(sectionNo)
-        rRow.Cells(Me.remDate.Name).Style.ForeColor = Color.Black
-        rRow.Cells(Me.remHeader.Name).Value = True
+        rRow.Cells(remDate.Name).Value = dateSectionHeads(sectionNo)
+        rRow.Cells(remDate.Name).Style.ForeColor = Color.Black
+        rRow.Cells(remHeader.Name).Value = True
         For Each oCell As DataGridViewCell In rRow.Cells
             oCell.Style.BackColor = Color.Silver
         Next

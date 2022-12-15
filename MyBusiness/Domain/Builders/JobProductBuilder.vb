@@ -1,4 +1,11 @@
-﻿Public Class JobProductBuilder
+﻿' Hindleware
+' Copyright (c) 2022 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Public Class JobProductBuilder
     Private _jobProductId As Integer
     Private _job As Job
     Private _product As Product

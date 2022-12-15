@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmTask
 #Region "variables"
@@ -44,22 +45,22 @@ Public Class FrmTask
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        logutil.info("Closing", Me.Name)
+        logutil.info("Closing", Name)
         oTaskTa.Dispose()
         oTaskTable.Dispose()
     End Sub
     Private Sub FrmTask_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        logutil.info("Starting", Me.Name)
+        logutil.info("Starting", Name)
         isLoading = True
         If _job IsNot Nothing Then
             _jobId = _job.JobId
             lblJobName.Text = _job.JobName
         Else
             MsgBox("Error: no job selected", MsgBoxStyle.Exclamation, "Error")
-            showStatus(lblStatus, "No job selected", Me.Name, True)
+            showStatus(lblStatus, "No job selected", Name, True)
         End If
         If _taskId > 0 Then
             _taskbuilder = TaskBuilder.ATask.StartingWith(_taskId)
@@ -94,7 +95,7 @@ Public Class FrmTask
         Else
             Inserttask()
         End If
-        Me.Close()
+        Close()
     End Sub
 #End Region
 #Region "subroutines"
@@ -110,7 +111,7 @@ Public Class FrmTask
             chkTaxable.Checked = .IsTaskTaxable
             nudTaxRate.Value = .TaskTaxRate
         End With
-        logutil.info("Existing task " & CStr(_taskId), Me.Name)
+        logutil.info("Existing task " & _taskId, Name)
 
     End Sub
     Private Sub ClearTaskDetails()
@@ -123,21 +124,21 @@ Public Class FrmTask
         chkCompleted.Checked = False
     End Sub
     Private Sub NewTask()
-        logutil.info("New task", Me.Name())
+        logutil.info("New task", Name())
         ClearTaskDetails()
         _taskbuilder = TaskBuilder.ATask.StartingWithNothing
     End Sub
     Private Function Amendtask() As Boolean
         Dim isAmendOk As Boolean = False
-        logutil.info("Updating task " & CStr(_taskId), Me.Name)
+        logutil.info("Updating task " & _taskId, Name)
         With _newTask
             If oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, _taskId) = 1 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
                 isAmendOk = True
-                showStatus(lblStatus, "Task updated OK", Me.Name, True)
+                showStatus(lblStatus, "Task updated OK", Name, True)
             Else
                 isAmendOk = False
-                showStatus(lblStatus, "Task NOT updated", Me.Name, True)
+                showStatus(lblStatus, "Task NOT updated", Name, True)
 
             End If
         End With
@@ -145,16 +146,16 @@ Public Class FrmTask
     End Function
     Private Function Inserttask() As Boolean
         Dim isInsertOk As Boolean
-        logutil.info("Inserting task", Me.Name)
+        logutil.info("Inserting task", Name)
         With _newTask
             _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
             If _taskId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
-                showStatus(lblStatus, "Task " & CStr(_taskId) & " Created OK", Me.Name, True)
+                showStatus(lblStatus, "Task " & _taskId & " Created OK", Name, True)
             Else
                 isInsertOk = False
-                showStatus(lblStatus, "Task NOT created", Me.Name, True)
+                showStatus(lblStatus, "Task NOT created", Name, True)
             End If
         End With
         Return isInsertOk

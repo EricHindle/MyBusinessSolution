@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class NetwyrksErrorCodes
 #Region "Error Codes"
@@ -78,8 +79,8 @@ Public Class NetwyrksErrorCodes
     Public Shared Function GetErrorString(ByVal errorcode As String) As String
         Dim rtnval As String
         Try
-            Dim iModule As Integer = CInt(errorcode.Substring(0, 2))
-            Dim iType As Integer = CInt(errorcode.Substring(2, 2))
+            Dim iModule As Integer = errorcode.Substring(0, 2)
+            Dim iType As Integer = errorcode.Substring(2, 2)
             Dim sCode As String = errorcode.Substring(4, 3)
 
             Dim sModule As String = [Enum].GetName(GetType(SystemModule), iModule)

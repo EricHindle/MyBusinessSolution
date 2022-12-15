@@ -1,10 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-
-Imports System.Drawing.Imaging
+'
 
 ''' <summary>
 ''' This form is displayed when the about menu option is selected
@@ -20,10 +19,10 @@ Public NotInheritable Class FrmAbout
             ApplicationTitle = System.IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName)
         End If
         ' Initialize all of the text displayed on the About Box.
-        Me.LabelProductName.Text = My.Application.Info.ProductName
-        Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
-        Me.LabelCopyright.Text = My.Application.Info.Copyright
-        Me.LabelCompanyName.Text = My.Application.Info.CompanyName
+        LabelProductName.Text = My.Application.Info.ProductName
+        LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
+        LabelCopyright.Text = My.Application.Info.Copyright
+        LabelCompanyName.Text = My.Application.Info.CompanyName
         Dim sConnection As String() = Split(My.Settings.netwyrksConnectionString, ";")
         Dim serverName As String = ""
         Dim dbName As String = ""
@@ -38,7 +37,7 @@ Public NotInheritable Class FrmAbout
                 End Select
             End If
         Next
-        Me.TextBoxDescription.Text =
+        TextBoxDescription.Text =
                 vbCrLf & "MyBusiness Work Management" & vbCrLf &
                 vbCrLf & "Computer name : " & My.Computer.Name &
                 vbCrLf & "Data connection: " &
@@ -48,9 +47,9 @@ Public NotInheritable Class FrmAbout
                 vbCrLf & "Cache path is " & sCacheFolder
     End Sub
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Me.Close()
+        Close()
     End Sub
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
 End Class

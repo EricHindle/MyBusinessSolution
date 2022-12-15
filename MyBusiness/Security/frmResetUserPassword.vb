@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
-' Author Eric Hindle 
+' Author Eric Hindle
+'
 
 Public Class FrmResetUserPassword
 #Region "Constants"
@@ -15,7 +16,7 @@ Public Class FrmResetUserPassword
 #End Region
 #Region "Form"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         oUserTa.Dispose()
@@ -39,7 +40,6 @@ Public Class FrmResetUserPassword
         If cbSelect.SelectedIndex > -1 Then
             If oUserTa.FillById(oUserTable, cbSelect.SelectedValue) = 1 Then
                 Dim userRow As netwyrksDataSet.userRow = oUserTable.Rows(0)
-
 
                 If Not userRow.Isuser_emailNull Then
                     If AuthenticationUtil.createUserTemporaryPassword(userRow.user_id, userRow.salt, userRow.user_email) Then

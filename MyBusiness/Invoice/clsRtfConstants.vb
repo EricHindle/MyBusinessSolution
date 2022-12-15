@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class ClsRtfConstants
     Public Const RTF_ROW_START As String = "\trowd\trgaph108\trleft284\trpaddl108\trpaddr108\trpaddt108\trpaddb108\trpaddfl3\trpaddfr3\trpaddft3\trpaddbr3 "

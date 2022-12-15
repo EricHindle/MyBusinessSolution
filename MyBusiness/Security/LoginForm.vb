@@ -1,12 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
-
-Imports System.IO
-Imports System.Text
-Imports System.ComponentModel
+'
 
 Public Class LoginForm
 
@@ -27,15 +24,15 @@ Public Class LoginForm
     Private Sub LoginForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         _companyName = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_NAME)
         InitialiseLoginForm()
-        Me.Show()
-        Me.Refresh()
+        Show()
+        Refresh()
         If InitialiseApplication() Then
             logutil.info("Settings:")
             logutil.info(" Auto Tidy           : " & My.Settings.AutoTidy)
             logutil.info(" Retention period    : " & My.Settings.RetentionPeriod)
             logutil.info(" Spell Check enabled : " & My.Settings.splchkEnabled)
         Else
-            Me.Close()
+            Close()
         End If
         lblInitMessage.Visible = False
         Panel1.Visible = True
@@ -45,8 +42,8 @@ Public Class LoginForm
 
         ' Creating a new sersIPrincipal checks the username and password and sets the user's role
         Try
-            Dim customPrincipal As New NetwyrksIPrincipal(Me.UsernameTextBox.Text, Me.PasswordTextBox.Text)
-            If (Not customPrincipal.Identity.IsAuthenticated) Then
+            Dim customPrincipal As New NetwyrksIPrincipal(UsernameTextBox.Text, PasswordTextBox.Text)
+            If Not customPrincipal.Identity.IsAuthenticated Then
                 ' The user is still not validated.
                 LogUtil.Warn(NOT_AUTHENTICATED)
                 MsgBox("The username and password pair is incorrect", MsgBoxStyle.Exclamation, "Authentication Error")
@@ -58,7 +55,7 @@ Public Class LoginForm
                 ' Successful login
                 My.User.CurrentPrincipal = customPrincipal
                 If My.User.IsAuthenticated And IsActiveUser() Then
-                    Me.TopMost = False
+                    TopMost = False
                     If AuthenticationUtil.IsPasswordChangeOK Then
                         EnterApplication()
                     Else
@@ -78,7 +75,7 @@ Public Class LoginForm
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         LogUtil.Info("Login cancelled")
         LogUtil.Info("=".PadRight(40, "="))
-        Me.Close()
+        Close()
     End Sub
     Private Function IsActiveUser() As Boolean
         Return My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) _
@@ -88,12 +85,12 @@ Public Class LoginForm
                     Or My.User.IsInRole(ApplicationServices.BuiltInRole.Guest)
     End Function
     Private Sub LblForgottenPassword_DoubleClick(sender As Object, e As EventArgs) Handles lblForgottenPassword.DoubleClick, lblForgottenPassword.Click
-        Me.TopMost = False
+        TopMost = False
         Using _forgot As New FrmPasswordRequest
             _forgot.ShowDialog()
             LogUtil.Info("Login abandoned - forgotten password")
             LogUtil.Info("=".PadRight(40, "="))
-            Me.Close()
+            Close()
         End Using
     End Sub
 #End Region
@@ -113,11 +110,11 @@ Public Class LoginForm
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
         Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build)
-        Me.TopMost = True
+        TopMost = True
         ' put the current Windows login name in the username box
         '
         UsernameTextBox.Text = wiName(wiName.GetUpperBound(0))
-        Me.PasswordTextBox.Text = ""
+        PasswordTextBox.Text = ""
         PasswordTextBox.Select()
     End Sub
     Public Function InitialiseApplication() As Boolean
@@ -175,7 +172,7 @@ Public Class LoginForm
         If My.Settings.AutoTidy Then
             ClearCache(My.Settings.RetentionPeriod, CacheType.All)
         End If
-        Me.Hide()
+        Hide()
         If My.Settings.ShowRemindersAtLogin Then
             Using _remind As New FrmReminderList
                 Dim i As Integer = _remind.loadReminders
@@ -197,7 +194,7 @@ Public Class LoginForm
         LogUtil.Info(My.Application.Info.Title & " closed at " & Format(Now, "dd/MM/yyyy HH:mm:ss"))
         LogUtil.Info("=".PadRight(40, "="))
         LogUtil.StopLogging()
-        Me.Close()
+        Close()
     End Sub
 
 #End Region

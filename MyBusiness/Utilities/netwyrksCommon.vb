@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.IO
 Imports MyBusiness.NetwyrksErrorCodes
@@ -15,19 +16,19 @@ Public Module netwyrksCommon
 #Region "Constants"
     Public Const SELECT_TEXT As String = "Select..."
     Public PeriodDescriptions As String() = New String() _
-            {SELECT_TEXT, _
-                 "All", _
-                 "Yesterday", _
-                 "Current Week", _
-                 "Last Week", _
-                 "Last 7 days", _
-                 "Last 30 days", _
-                 "Current Month", _
-                 "Last Month", _
-                 "Current Quarter", _
-                 "Last Quarter", _
-                 "Current Year", _
-                 "Next 12 Months", _
+            {SELECT_TEXT,
+                 "All",
+                 "Yesterday",
+                 "Current Week",
+                 "Last Week",
+                 "Last 7 days",
+                 "Last 30 days",
+                 "Current Month",
+                 "Last Month",
+                 "Current Quarter",
+                 "Last Quarter",
+                 "Current Year",
+                 "Next 12 Months",
                  "Last 5 Years"}
     Public RECORD_TYPE As String = ""
 #End Region
@@ -43,7 +44,7 @@ Public Module netwyrksCommon
 #End Region
 #Region "current user"
     Public _companyName As String = ""
-    Public currentUser As User = UserBuilder.AUser.startingWithNothing().build
+    Public currentUser As User = UserBuilder.AUser.StartingWithNothing().Build
     Public isAdmin As Boolean = False
     Public isManager As Boolean = False
     Public isExecutive As Boolean = False
@@ -60,11 +61,11 @@ Public Module netwyrksCommon
         isOperator = My.User.IsInRole(ApplicationServices.BuiltInRole.PrintOperator) Or isExecutive
         isGuest = My.User.IsInRole(ApplicationServices.BuiltInRole.Guest) Or isOperator
 
-        If isAdmin Then logutil.info("Is Admin")
-        If isManager Then logutil.info("Is Manager")
-        If isExecutive Then logutil.info("Is Executive")
-        If isOperator Then logutil.info("Is Operator")
-        If isGuest Then logutil.info("Is Guest")
+        If isAdmin Then LogUtil.Info("Is Admin")
+        If isManager Then LogUtil.Info("Is Manager")
+        If isExecutive Then LogUtil.Info("Is Executive")
+        If isOperator Then LogUtil.Info("Is Operator")
+        If isGuest Then LogUtil.Info("Is Guest")
 
     End Sub
 #End Region
@@ -74,6 +75,8 @@ Public Module netwyrksCommon
     Public sReportFolder As String
     Public sLogFolder As String
     Public sCacheFolder As String
+    Public sInvoiceFolder As String
+    Public sImageFolder As String
 
     ''' <summary>
     ''' Set standard folder names from personal settings
@@ -97,6 +100,16 @@ Public Module netwyrksCommon
         End If
         sReportFolder = My.Settings.ReportFolder.Replace("<application path>", sApplicationPath)
 
+        If String.IsNullOrEmpty(My.Settings.InvoiceFolder) Then
+            My.Settings.InvoiceFolder = "<application path>" & Path.DirectorySeparatorChar & "Invoices"
+        End If
+        sInvoiceFolder = My.Settings.InvoiceFolder.Replace("<application path>", sApplicationPath)
+
+        If String.IsNullOrEmpty(My.Settings.ImageFolder) Then
+            My.Settings.ImageFolder = "<application path>" & Path.DirectorySeparatorChar & "Images"
+        End If
+        sImageFolder = My.Settings.ImageFolder.Replace("<application path>", sApplicationPath)
+
         If String.IsNullOrEmpty(My.Settings.LogFolder) Then
             My.Settings.LogFolder = "<application path>" & Path.DirectorySeparatorChar & "Log"
         End If
@@ -112,7 +125,7 @@ Public Module netwyrksCommon
     '''       A warning message will be displayed when this happens.
     '''       The paths can be corrected in preferences. </remarks>
     Public Sub SetPersonalisedFolderNames()
-        Dim userId As String = CStr(currentUser.user_code)
+        Dim userId As String = currentUser.User_code
         Dim isPathChanged As Boolean = False
         If userId.Length > 0 Then
             If Not My.Settings.TempFolder.ToLower.EndsWith(userId) Then
@@ -133,8 +146,8 @@ Public Module netwyrksCommon
             My.Settings.Save()
         End If
 
-        setFolderNames()
-        createMissingFolders()
+        SetFolderNames()
+        CreateMissingFolders()
         If isPathChanged Then
             ' This warning message will be displayed the first time that a user logs in. This is normal.
             MsgBox("New personal folders have been created" & vbCrLf & "Check your folder preferences", MsgBoxStyle.Information, "For information")
@@ -150,6 +163,8 @@ Public Module netwyrksCommon
         My.Computer.FileSystem.CreateDirectory(sTempFolder)
         My.Computer.FileSystem.CreateDirectory(sReportFolder)
         My.Computer.FileSystem.CreateDirectory(sCacheFolder)
+        My.Computer.FileSystem.CreateDirectory(sInvoiceFolder)
+        My.Computer.FileSystem.CreateDirectory(sReportFolder)
     End Sub
 #End Region
 #Region "cache"
@@ -201,17 +216,17 @@ Public Module netwyrksCommon
                     If iDaysOld >= iRetain Then
                         Try
                             My.Computer.FileSystem.DeleteFile(oFileInfo.FullName)
-                            LogUtil.Info(oFileInfo.Name & " - " & CStr(iDaysOld) & " days old - deleted", "TidyFiles")
+                            LogUtil.Info(oFileInfo.Name & " - " & iDaysOld & " days old - deleted", "TidyFiles")
                         Catch ex As Exception
                             '      MsgBox("Unable to remove " & oFileInfo.FullName, MsgBoxStyle.Exclamation, "File Deletion Error")
-                            LogUtil.Exception("Unable to remove " & oFileInfo.FullName, ex, "TidyFiles", getErrorCode(SystemModule.UTILITIES, ErrorType.FILESYSTEM, FailedAction.ERROR_DELETING_FILE))
+                            LogUtil.Exception("Unable to remove " & oFileInfo.FullName, ex, "TidyFiles", GetErrorCode(SystemModule.UTILITIES, ErrorType.FILESYSTEM, FailedAction.ERROR_DELETING_FILE))
                         End Try
                     End If
                 End If
             Next
         Catch ex As Exception
             MsgBox("Problem tidying files:" & vbCrLf & ex.Message, MsgBoxStyle.Exclamation, "File Error")
-            LogUtil.Exception("Problem tidying files", ex, "TidyFiles", getErrorCode(SystemModule.UTILITIES, ErrorType.FILESYSTEM, FailedAction.ERROR_DELETING_FILE))
+            LogUtil.Exception("Problem tidying files", ex, "TidyFiles", GetErrorCode(SystemModule.UTILITIES, ErrorType.FILESYSTEM, FailedAction.ERROR_DELETING_FILE))
         End Try
     End Sub
 #End Region
@@ -227,7 +242,7 @@ Public Module netwyrksCommon
         Dim d1 As Int16 = Today.Day
         Dim dinm As Int16 = Date.DaysInMonth(Today.Year, Today.Month)
         Dim dinlm As Int16 = Date.DaysInMonth(Today.AddMonths(-1).Year, Today.AddMonths(-1).Month)
-        Dim thisQuarterNum As Integer = (Today.Month - 1) \ 3 + 1
+        Dim thisQuarterNum As Integer = ((Today.Month - 1) \ 3) + 1
         Dim lastQuarterNum As Integer = (Today.Month - 1) \ 3
 
         oRange.fromDate = Today
@@ -235,7 +250,7 @@ Public Module netwyrksCommon
         Select Case indx
             Case 0  '   Today
             Case 1  '   All
-                oRange.fromDate = CDate("01-01-1900")
+                oRange.fromDate = "01-01-1900"
                 oRange.toDate = Today
             Case 2  '   Yesterday
                 oRange.fromDate = Today.AddDays(-1)
@@ -259,11 +274,11 @@ Public Module netwyrksCommon
                 oRange.fromDate = DateSerial(Today.Year, Today.Month - 1, 1)
                 oRange.toDate = DateSerial(Today.Year, Today.Month, 0)
             Case 9 '   Current Quarter
-                oRange.fromDate = DateSerial(Today.Year, 3 * thisQuarterNum - 2, 1)
-                oRange.toDate = DateSerial(Today.Year, 3 * thisQuarterNum + 1, 0)
+                oRange.fromDate = DateSerial(Today.Year, (3 * thisQuarterNum) - 2, 1)
+                oRange.toDate = DateSerial(Today.Year, (3 * thisQuarterNum) + 1, 0)
             Case 10 '   Last Quarter
-                oRange.fromDate = DateSerial(Today.Year, 3 * lastQuarterNum - 2, 1)
-                oRange.toDate = DateSerial(Today.Year, 3 * lastQuarterNum + 1, 0)
+                oRange.fromDate = DateSerial(Today.Year, (3 * lastQuarterNum) - 2, 1)
+                oRange.toDate = DateSerial(Today.Year, (3 * lastQuarterNum) + 1, 0)
             Case 11 '   Current Year
                 oRange.fromDate = New Date(Today.Year, 1, 1)
                 oRange.toDate = New Date(Today.Year, 12, 31)

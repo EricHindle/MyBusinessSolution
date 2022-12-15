@@ -1,10 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.IO
 Imports System.Security.Principal
 ''' <summary>
 ''' Identity used to validate username and password and give the user a role
@@ -47,7 +47,6 @@ Public Class NetwyrksIIdentity
                 As Boolean
         Dim rtnVal As Boolean = False
         ' Find user record
-
 
         Dim hashedUser As String = ""
         Dim storedHashedPW As String = ""

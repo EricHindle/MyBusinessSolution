@@ -1,12 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text
 Imports System.IO
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class ITextManager
     Public Shared headerFont As iTextSharp.text.Font

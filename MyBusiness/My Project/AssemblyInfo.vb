@@ -1,4 +1,10 @@
-﻿Imports System
+﻿' Hindleware
+' Copyright (c) 2022 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -10,10 +16,10 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("MyBusiness")>
 <Assembly: AssemblyDescription("Customers, Jobs, Suppliers")>
-<Assembly: AssemblyCompany("netWYrks")> 
+<Assembly: AssemblyCompany("netWYrks")>
 <Assembly: AssemblyProduct("MyBusiness")>
 <Assembly: AssemblyCopyright("Copyright © Eric Hindle 2022")>
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
@@ -31,5 +37,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.4.9.*")>
-<Assembly: AssemblyFileVersion("1.4.9.0")>
+<Assembly: AssemblyVersion("1.4.10.*")>
+<Assembly: AssemblyFileVersion("1.4.10.0")>

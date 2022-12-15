@@ -1,9 +1,9 @@
-﻿'
-' Copyright (c) 2020,2021, Eric Hindle
+﻿' Hindleware
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
-' Author E Hindle
-' Created June 2020
+' Author Eric Hindle
+'
 
 ' Hindleware
 ' Copyright (c) 2021, Eric Hindle
@@ -17,8 +17,8 @@ Public Class FrmLogViewer
 #End Region
 #Region "form handlers"
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.Close()
+        DialogResult = System.Windows.Forms.DialogResult.OK
+        Close()
     End Sub
     Private Sub LogViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         LogUtil.Info("Loading", MyBase.Name)
@@ -77,7 +77,7 @@ Public Class FrmLogViewer
         Dim logContents As String = ""
         If My.Computer.FileSystem.FileExists(newLogFileName) Then
             BtnClearLog.Enabled = False
-            Me.Text = "Log: " & newLogFileName
+            Text = "Log: " & newLogFileName
             If newLogFileName = LogUtil.getLogfileName Then
                 logContents = LogUtil.GetLogContents
                 BtnClearLog.Enabled = True
@@ -96,7 +96,7 @@ Public Class FrmLogViewer
     End Sub
     Private Sub LoadTodaysLog()
         currentDate = Today
-        Me.Text = "Log: " & LogUtil.getLogfileName
+        Text = "Log: " & LogUtil.getLogfileName
         rtbLog.Text = LogUtil.GetLogContents()
         BtnClearLog.Enabled = True
     End Sub

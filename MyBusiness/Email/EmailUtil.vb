@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.IO
 Imports System.Net
@@ -14,7 +15,7 @@ Imports System.Net.Mime
 ''' </summary>
 ''' <remarks></remarks>
 Public NotInheritable Class EmailUtil
-    #Region "constants"
+#Region "constants"
     Public Const className As String = "EmailUtil"
     Public Const USE_SMTP As String = "UseSMTP"
     Public Const SMTP_USERNAME As String = "SMTPUsername"

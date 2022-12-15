@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Public Class FrmViewCust
 #Region "variables"
     Private _customer As Customer
@@ -20,10 +21,10 @@ Public Class FrmViewCust
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmViewCust_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", Me.Name)
+        LogUtil.Info("Closing", Name)
         My.Settings.CustViewFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub

@@ -1,12 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
+Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
-Imports System.IO
 Imports MyBusiness.NetwyrksErrorCodes
 
 ''' <summary>
@@ -152,7 +153,7 @@ Public Class EncryptionUtil
             While lngBytesProcessed < lngFileLength
                 intBytesInCurrentBlock = msInput.Read(bytBuffer, 0, BUFFER_SIZE)
                 csCryptoStream.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                lngBytesProcessed += intBytesInCurrentBlock
             End While
         Catch ex As Exception
             LogUtil.Exception("Error transforming bytes", ex, "EncryptBytesToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
@@ -189,7 +190,7 @@ Public Class EncryptionUtil
             While lngBytesProcessed < lngFileLength
                 intBytesInCurrentBlock = fsInput.Read(bytBuffer, 0, BUFFER_SIZE)
                 csCryptoStream.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                lngBytesProcessed += intBytesInCurrentBlock
             End While
         Catch ex As Exception
             LogUtil.Exception("Error transforming file", ex, "EncryptFileToFile", GetErrorCode(SystemModule.SECURITY, ErrorType.ENCRYPTION, FailedAction.ENCRYPTION_ERROR))
@@ -226,7 +227,7 @@ Public Class EncryptionUtil
             While lngBytesProcessed < lngFileLength
                 intBytesInCurrentBlock = fsInput.Read(bytBuffer, 0, BUFFER_SIZE)
                 csCryptoStream.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                lngBytesProcessed += intBytesInCurrentBlock
             End While
             csCryptoStream.Close()
             toBytes = msOutput.ToArray()
@@ -259,7 +260,7 @@ Public Class EncryptionUtil
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
                     fsOutput.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                    lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                    lngBytesProcessed += intBytesInCurrentBlock
                 Loop
             Else
                 LogUtil.Problem("Invalid file header")
@@ -297,7 +298,7 @@ Public Class EncryptionUtil
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
                     fsOutput.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                    lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                    lngBytesProcessed += intBytesInCurrentBlock
                 Loop
             Else
                 LogUtil.Problem("Invalid file header in " & fromFile)
@@ -330,7 +331,7 @@ Public Class EncryptionUtil
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
                     msOutput.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                    lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                    lngBytesProcessed += intBytesInCurrentBlock
                 Loop
                 '    toBytes = msOutput.ToArray
             Else
@@ -359,7 +360,7 @@ Public Class EncryptionUtil
                     intBytesInCurrentBlock = csCryptoStream.Read(bytBuffer, 0, BUFFER_SIZE)
                     If intBytesInCurrentBlock = 0 Then Exit Do
                     msOutput.Write(bytBuffer, 0, intBytesInCurrentBlock)
-                    lngBytesProcessed += CLng(intBytesInCurrentBlock)
+                    lngBytesProcessed += intBytesInCurrentBlock
                 Loop
                 '     toBytes = msOutput.ToArray
             Else

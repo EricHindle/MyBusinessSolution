@@ -1,11 +1,11 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.IO
-Imports System.Windows.Forms
 
 Public Class DlgViewInvoice
 #Region "variables"
@@ -21,12 +21,12 @@ Public Class DlgViewInvoice
 #End Region
 #Region "form handlers"
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.Close()
+        DialogResult = System.Windows.Forms.DialogResult.OK
+        Close()
     End Sub
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Close()
+        DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Close()
     End Sub
     Private Sub DlgViewInvoice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Viewing Invoice", MyBase.Name)

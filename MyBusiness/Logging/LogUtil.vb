@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.IO
 Imports System.Threading
@@ -87,8 +88,8 @@ Public Class LogUtil
 #Region "Add log"
     Public Shared Sub AddLog(ByVal sText As String, Optional ByVal severity As TraceEventType = TraceEventType.Information, Optional ByVal sSub As String = "", Optional ByVal errorCode As String = Nothing, Optional ByRef padCt As Integer = 0)
         InitialiseLogging()
-        Dim thisThread As String = "{" & CStr(Thread.CurrentThread.ManagedThreadId) & "} "
-        padCt += (6 - thisThread.Length)
+        Dim thisThread As String = "{" & Thread.CurrentThread.ManagedThreadId & "} "
+        padCt += 6 - thisThread.Length
         Dim sPad As String = "".PadRight(padCt)
         Dim sIdentity As NetwyrksIIdentity = TryCast(My.User.CurrentPrincipal.Identity, NetwyrksIIdentity)
         Dim sIdentityName As String() = Split(My.User.CurrentPrincipal.Identity.Name, "\")

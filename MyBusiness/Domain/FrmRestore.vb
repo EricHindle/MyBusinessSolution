@@ -1,4 +1,11 @@
-﻿Imports System.IO
+﻿' Hindleware
+' Copyright (c) 2022 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Imports System.IO
 
 Public Class FrmRestore
 #Region "variables"
@@ -15,7 +22,7 @@ Public Class FrmRestore
         TvDatatables.ExpandAll()
     End Sub
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub TvDatatables_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles TvDatatables.AfterCheck
         Dim node As TreeNode = e.Node
@@ -67,7 +74,7 @@ Public Class FrmRestore
                 Dim rowCount As Integer = RestoreDataTable(oNode.Text, dataPath)
                 If rowCount > 0 Then
                     AddProgress(oNode.Text & " Restore complete ")
-                    AddProgress(CStr(rowCount) & " records")
+                    AddProgress(rowCount & " records")
                 Else
                     AddProgress("No rows restored")
                 End If

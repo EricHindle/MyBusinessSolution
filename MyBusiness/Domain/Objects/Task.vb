@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Imports System.Text
 
@@ -184,8 +185,7 @@ Public Class Task
         Return sb.ToString
     End Function
     Public Function AuditString() As String
-        Return Me.ToString
+        Return ToString
     End Function
 End Class
-
 

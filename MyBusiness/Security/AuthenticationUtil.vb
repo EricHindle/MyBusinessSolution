@@ -1,13 +1,13 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports MyBusiness.NetwyrksErrorCodes
+Imports System.Linq
 Imports System.Security.Cryptography
 Imports i00SpellCheck
-Imports System.Linq
 ''' <summary>
 ''' Functions used in authenticating users
 ''' i.e. deciding whether they are who they say they are
@@ -316,7 +316,7 @@ Public Class AuthenticationUtil
             ' group list. To allow a special character to appear in the
             ' first position, increment the second parameter of the Next
             ' function call by one, i.e. lastLeftGroupsOrderIdx + 1.
-            If (lastLeftGroupsOrderIdx = 0) Then
+            If lastLeftGroupsOrderIdx = 0 Then
                 nextLeftGroupsOrderIdx = 0
             Else
                 nextLeftGroupsOrderIdx = random.Next(0, lastLeftGroupsOrderIdx)
@@ -331,7 +331,7 @@ Public Class AuthenticationUtil
 
             ' If only one unprocessed character is left, pick it; otherwise,
             ' get a random character from the unused character list.
-            If (lastCharIdx = 0) Then
+            If lastCharIdx = 0 Then
                 nextCharIdx = 0
             Else
                 nextCharIdx = random.Next(0, lastCharIdx + 1)
@@ -341,7 +341,7 @@ Public Class AuthenticationUtil
             password(I) = charGroups(nextGroupIdx)(nextCharIdx)
 
             ' If we processed the last character in this group, start over.
-            If (lastCharIdx = 0) Then
+            If lastCharIdx = 0 Then
                 charsLeftInGroup(nextGroupIdx) =
                                 charGroups(nextGroupIdx).Length
                 ' There are more unprocessed characters left.
@@ -349,7 +349,7 @@ Public Class AuthenticationUtil
                 ' Swap processed character with the last unprocessed character
                 ' so that we don't pick it until we process all characters in
                 ' this group.
-                If (lastCharIdx <> nextCharIdx) Then
+                If lastCharIdx <> nextCharIdx Then
                     Dim temp As Char = charGroups(nextGroupIdx)(lastCharIdx)
                     charGroups(nextGroupIdx)(lastCharIdx) =
                                 charGroups(nextGroupIdx)(nextCharIdx)
@@ -363,13 +363,13 @@ Public Class AuthenticationUtil
             End If
 
             ' If we processed the last group, start all over.
-            If (lastLeftGroupsOrderIdx = 0) Then
+            If lastLeftGroupsOrderIdx = 0 Then
                 lastLeftGroupsOrderIdx = leftGroupsOrder.Length - 1
                 ' There are more unprocessed groups left.
             Else
                 ' Swap processed group with the last unprocessed group
                 ' so that we don't pick it until we process all groups.
-                If (lastLeftGroupsOrderIdx <> nextLeftGroupsOrderIdx) Then
+                If lastLeftGroupsOrderIdx <> nextLeftGroupsOrderIdx Then
                     Dim temp As Integer =
                                 leftGroupsOrder(lastLeftGroupsOrderIdx)
                     leftGroupsOrder(lastLeftGroupsOrderIdx) =

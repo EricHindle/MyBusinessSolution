@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2022, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class AuditEntry
     Private _auditId As Integer

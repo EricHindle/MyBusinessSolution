@@ -1,11 +1,12 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
-Imports System.Text
 Imports System.IO
+Imports System.Text
 
 Public Class ExportUtil
     Private Const NEWLINE As String = Chr(27) & " :"
@@ -150,7 +151,7 @@ Public Class ExportUtil
         Dim cCt As Integer = 1
         For Each ocol As DataGridViewColumn In oCols
             If includeInvisible Or ocol.Visible Then
-                sb.Append("F;W ").Append(CStr(cCt)).Append(" ").Append(CStr(cCt)).Append(" ").Append(CStr(CInt(ocol.Width / 6))).Append(vbCrLf)
+                sb.Append("F;W ").Append(CStr(cCt)).Append(" ").Append(CStr(cCt)).Append(" ").Append(CStr(ocol.Width / 6)).Append(vbCrLf)
                 sb.Append("C;Y").Append(CStr(rCt)).Append(";X").Append(CStr(cCt)).Append(";K""")
                 Dim sCellValue As String = ""
                 If ocol.HeaderText IsNot Nothing AndAlso IsDBNull(ocol.HeaderText) = False Then
@@ -166,7 +167,7 @@ Public Class ExportUtil
     End Function
     Private Function ConvertTextToSylk(ByVal oText As String, ByVal rCt As Integer) As String
         Dim sb As New StringBuilder
-        Return "C;Y" & CStr(rCt) & ";X1;K""" & oText.Replace(vbCrLf, NEWLINE) & """" & vbCrLf
+        Return "C;Y" & rCt & ";X1;K""" & oText.Replace(vbCrLf, NEWLINE) & """" & vbCrLf
     End Function
     Private Function ConvertRowToSylk(ByVal oRow As DataGridViewRow, ByVal rCt As Integer, Optional ByVal includeInvisible As Boolean = True) As String
         Dim sb As New StringBuilder
@@ -263,12 +264,12 @@ Public Class ExportUtil
             End If
         Next
         If oReportDef.ShowCount Then
-            response.Append(RtfManager.RtfParagraph(CStr(irowct) & " records selected", RtfManager.RtfFont(RtfManager.RtfFontType.Cambria, 24, RtfManager.RtfColour.Hdr1Blue, , True)))
+            response.Append(RtfManager.RtfParagraph(irowct & " records selected", RtfManager.RtfFont(RtfManager.RtfFontType.Cambria, 24, RtfManager.RtfColour.Hdr1Blue, , True)))
             response.Append(RtfManager.RtfNewPar)
         End If
         Dim sFilename As String = Path.Combine(myOutFolder, myOutfile)
         response.Append(RtfManager.RtfBottom)
-        LogUtil.Info("Writing " & sFilename, Me.GetType.Name)
+        LogUtil.Info("Writing " & sFilename, [GetType].Name)
         Using rtfFile As New StreamWriter(sFilename)
             rtfFile.Write(response.ToString)
         End Using
@@ -280,7 +281,7 @@ Public Class ExportUtil
         _contents.Append(RtfManager.RtfTop(isLandscape))
         _contents.Append(_text)
         _contents.Append(RtfManager.RtfBottom)
-        LogUtil.Info("Writing " & sFilename, Me.GetType.Name)
+        LogUtil.Info("Writing " & sFilename, [GetType].Name)
         Using rtfFile As New StreamWriter(sFilename)
             rtfFile.Write(_contents.ToString)
         End Using

@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmProduct
 #Region "variables"
@@ -41,15 +42,15 @@ Public Class FrmProduct
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Close()
     End Sub
     Private Sub FrmProduct_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", Me.Name)
+        LogUtil.Info("Closing", Name)
         My.Settings.ProductFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
     Private Sub FrmProduct_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        LogUtil.Info("Starting", Me.Name)
+        LogUtil.Info("Starting", Name)
         GetFormPos(Me, My.Settings.ProductFormPos)
         isLoading = True
         If _supplier IsNot Nothing Then
@@ -58,7 +59,7 @@ Public Class FrmProduct
         Else
             MsgBox("Error: no supplier selected", MsgBoxStyle.Exclamation, "Error")
             LogUtil.Problem("Error: no supplier selected", MyBase.Name)
-            Me.Close()
+            Close()
         End If
         If _productId > 0 Then
             _product = GetProductById(_productId)
@@ -87,7 +88,7 @@ Public Class FrmProduct
             Else
                 CreateProduct()
             End If
-            Me.Close()
+            Close()
         Else
             ShowStatus(lblStatus, "Product name missing", MyBase.Name, True)
         End If
@@ -98,7 +99,7 @@ Public Class FrmProduct
         LblAction.Text = "Updating Product"
         btnSave.Text = "Update"
         With _product
-            LogUtil.Info("Amending product " & CStr(_productId) & " : " & .ProductName, MyBase.Name)
+            LogUtil.Info("Amending product " & _productId & " : " & .ProductName, MyBase.Name)
             txtProductName.Text = .ProductName
             rtbDescription.Text = .ProductDescription
             nudCost.Value = .ProductCost
@@ -126,7 +127,7 @@ Public Class FrmProduct
     End Sub
     Private Function AmendProduct() As Boolean
         Dim isAmendOk As Boolean
-        LogUtil.Info("Updating", Me.Name)
+        LogUtil.Info("Updating", Name)
         _newproduct.ProductChanged = Now
         If UpdateProduct(_newproduct) = 1 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _newproduct.ProductId, AuditUtil.AuditableAction.create, _product.ToString, _newproduct.ToString)
@@ -140,13 +141,13 @@ Public Class FrmProduct
     End Function
     Private Function CreateProduct() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting", Me.Name)
+        LogUtil.Info("Inserting", Name)
         _newproduct.ProductCreated = Now
         _productId = InsertProduct(_newproduct)
         If _productId > 0 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", _newproduct.ToString)
             isInsertOk = True
-            ShowStatus(lblStatus, "Product " & CStr(_productId) & " Created OK", MyBase.Name, True)
+            ShowStatus(lblStatus, "Product " & _productId & " Created OK", MyBase.Name, True)
         Else
             isInsertOk = False
             ShowStatus(lblStatus, "Product NOT created", MyBase.Name, True)

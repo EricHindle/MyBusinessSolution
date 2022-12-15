@@ -1,8 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2021, Eric Hindle
+' Copyright (c) 2022 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
+'
 
 Public Class FrmChangePassword
 #Region "Contants"
@@ -32,8 +33,8 @@ Public Class FrmChangePassword
 #End Region
 #Region "Form"
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.DialogResult = DialogResult.Cancel
-        Me.Close()
+        DialogResult = DialogResult.Cancel
+        Close()
     End Sub
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
@@ -73,21 +74,21 @@ Public Class FrmChangePassword
 
         With oTextBox
             .PasswordChar = Nothing
-            .ForeColor = Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
+            .ForeColor = Color.FromArgb(55, 48, 26)
             .BackColor = Color.PeachPuff
             .Font = New Font(.Font.FontFamily, .Font.Size, FontStyle.Italic)
             .Text = stdText
         End With
     End Sub
     Private Sub BtnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
-        Me.DialogResult = DialogResult.Cancel
+        DialogResult = DialogResult.Cancel
         Try
             Dim iMinLen As Integer = GlobalSettings.getSetting("MinPwdLen")
             If AuthenticationUtil.isPasswordOK(txtCurrent.Text.Trim) Then
                 'Changing password
                 If txtNew.Text.Trim.Length < iMinLen Then
                     LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (length)")
-                    MsgBox("Password must be at least " & CStr(iMinLen) & " characters", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
+                    MsgBox("Password must be at least " & iMinLen & " characters", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
                     Exit Sub
                 End If
                 If txtCopy.Text.Trim <> txtNew.Text.Trim Then
@@ -105,8 +106,8 @@ Public Class FrmChangePassword
                     ' Successful login with password change
                     LogStatus("User password changed OK", True, TraceEventType.Information)
                     RemoveTempPassword(userId)
-                    Me.DialogResult = DialogResult.OK
-                    Me.Close()
+                    DialogResult = DialogResult.OK
+                    Close()
                 Else
                     LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (store)")
                     MsgBox("Unable to store new password", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
