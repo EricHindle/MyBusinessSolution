@@ -83,7 +83,7 @@ Public Class FrmJobMaint
     Private Sub BtnAddTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddTask.Click
         LogUtil.Debug("Add task to job", Name)
         Using _taskForm As New FrmTask
-            _taskForm.TheJob = _job
+            _taskForm.CustomerJob = _job
             _taskForm.ShowDialog()
         End Using
         FillTaskList(_currentJobId)
@@ -165,7 +165,7 @@ Public Class FrmJobMaint
             Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             Using _taskForm As New FrmTask
-                _taskForm.TheJob = _job
+                _taskForm.CustomerJob = _job
                 _taskForm.TaskId = _taskId
                 _taskForm.ShowDialog()
             End Using

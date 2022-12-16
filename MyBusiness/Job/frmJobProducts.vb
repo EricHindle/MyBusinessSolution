@@ -11,11 +11,6 @@ Public Class FrmJobProducts
 #Region "variables"
     Private isLoading As Boolean = False
     Private _currentSupplierId As Integer = -1
-    '  Private _selJpId As Integer = -1
-    'Private _selProductId As String = -1
-    'Private _selIsTaxable As Boolean = False
-    'Private _selTaxRate As Decimal = 0.0
-    'Private _selPrice As Decimal = 0.0
 #End Region
 #Region "properties"
     Private _job As Job
@@ -234,7 +229,6 @@ Public Class FrmJobProducts
         Else
             _productList = GetAllProducts()
         End If
-        '    For Each sRow As netwyrksDataSet.productRow In oProdTable.Rows
         For Each _product As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add())
             With _product
@@ -249,9 +243,9 @@ Public Class FrmJobProducts
     End Sub
     Private Sub FillJobProductList(ByRef dgv As DataGridView)
         dgv.Rows.Clear()
-        Dim _jobProductList As List(Of JobProduct) = GetJobProductByJob(_job)
+        Dim _jobProductList As List(Of FullJobProduct) = GetJobProductViewByJob(_job.JobId)
 
-        For Each _jobProduct As JobProduct In _jobProductList
+        For Each _jobProduct As FullJobProduct In _jobProductList
             With _jobProduct
                 Dim _jpId As Integer = .JobProductId
                 Dim _productId As Integer = .ThisProduct.ProductId
@@ -259,13 +253,8 @@ Public Class FrmJobProducts
                 Dim _isTaxable As String = If(.Taxable = False, "No", "Yes")
                 Dim _taxRate As Decimal = .Tax_Rate
                 Dim _jobprice As Decimal = .Price
-                Dim _productName As String = If(_jobProduct.ThisProduct IsNot Nothing, _jobProduct.ThisProduct.ProductName, "** Missing")
-                Dim _supplierName As String = "** Missing"
-                Dim _supplierId As Integer = If(_jobProduct.ThisProduct IsNot Nothing, _jobProduct.ThisProduct.ProductSupplierId, -1)
-                If _supplierId > 0 Then
-                    Dim _supplier As Supplier = GetSupplierById(_supplierId)
-                    _supplierName = _supplier.SupplierName
-                End If
+                Dim _productName As String = If(.ThisProduct IsNot Nothing, .ThisProduct.ProductName, "** Missing")
+                Dim _supplierName As String = If(.ProductSupplier IsNot Nothing, .ProductSupplier.SupplierName, "** Missing")
 
                 Dim tRow As DataGridViewRow = dgv.Rows(dgv.Rows.Add())
                 tRow.Cells(jpSupp.Name).Value = _supplierName

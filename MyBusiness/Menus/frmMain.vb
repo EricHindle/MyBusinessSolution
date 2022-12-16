@@ -419,7 +419,6 @@ Public Class FrmMain
         End If
         LogUtil.Info("Callback Reminder check ========== End", MyBase.Name)
     End Sub
-
     Private Sub ShowAlertMessage(_alert As Reminder)
         Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
         Dim subject As String = _alert.Subject
@@ -430,7 +429,6 @@ Public Class FrmMain
         LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
         slice.Show()
     End Sub
-
     Private Sub MnuShowAudit_Click(sender As Object, e As EventArgs) Handles MnuShowAudit.Click
         Using _audit As New FrmDisplayAudit
             _audit.ShowDialog()

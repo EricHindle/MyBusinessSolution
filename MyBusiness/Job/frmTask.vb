@@ -18,7 +18,7 @@ Public Class FrmTask
     Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
 #End Region
 #Region "properties"
-    Public Property TheJob() As Job
+    Public Property CustomerJob() As Job
         Get
             Return _job
         End Get
@@ -34,14 +34,14 @@ Public Class FrmTask
             _taskId = value
         End Set
     End Property
-    Public Property Thetask() As TaskBuilder
-        Get
-            Return _taskbuilder
-        End Get
-        Set(ByVal value As TaskBuilder)
-            _taskbuilder = value
-        End Set
-    End Property
+    'Public Property Thetask() As TaskBuilder
+    '    Get
+    '        Return _taskbuilder
+    '    End Get
+    '    Set(ByVal value As TaskBuilder)
+    '        _taskbuilder = value
+    '    End Set
+    'End Property
 #End Region
 #Region "form handlers"
     Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
@@ -87,13 +87,14 @@ Public Class FrmTask
             .WithTaskJobId(_jobId) _
             .WithTaskTaxable(chkTaxable.Checked) _
             .WithTaskTaxRate(nudTaxRate.Value) _
+            .WithTaskId(_taskId) _
             .Build()
         End With
         Dim newtaskId As Integer = -1
         If _taskId > 0 Then
             Amendtask()
         Else
-            Inserttask()
+            CreateTask()
         End If
         Close()
     End Sub
@@ -111,7 +112,7 @@ Public Class FrmTask
             chkTaxable.Checked = .IsTaskTaxable
             nudTaxRate.Value = .TaskTaxRate
         End With
-        logutil.info("Existing task " & _taskId, Name)
+        LogUtil.Info("Existing task " & _taskId, Name)
 
     End Sub
     Private Sub ClearTaskDetails()
@@ -124,38 +125,38 @@ Public Class FrmTask
         chkCompleted.Checked = False
     End Sub
     Private Sub NewTask()
-        logutil.info("New task", Name())
+        LogUtil.Info("New task", Name())
         ClearTaskDetails()
         _taskbuilder = TaskBuilder.ATask.StartingWithNothing
     End Sub
     Private Function Amendtask() As Boolean
         Dim isAmendOk As Boolean = False
-        logutil.info("Updating task " & _taskId, Name)
+        LogUtil.Info("Updating task " & _taskId, Name)
         With _newTask
-            If oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, _taskId) = 1 Then
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
+            If UpdateTask(_newTask) = 1 Then
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, .TaskId, AuditUtil.AuditableAction.create, _taskbuilder.ToString, .ToString)
                 isAmendOk = True
-                showStatus(lblStatus, "Task updated OK", Name, True)
+                ShowStatus(lblStatus, "Task updated OK", Name, True)
             Else
                 isAmendOk = False
-                showStatus(lblStatus, "Task NOT updated", Name, True)
+                ShowStatus(lblStatus, "Task NOT updated", Name, True)
 
             End If
         End With
         Return isAmendOk
     End Function
-    Private Function Inserttask() As Boolean
+    Private Function CreateTask() As Boolean
         Dim isInsertOk As Boolean
-        logutil.info("Inserting task", Name)
+        LogUtil.Info("Inserting task", Name)
         With _newTask
-            _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
+            _taskId = InsertTask(_newTask)
             If _taskId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
-                showStatus(lblStatus, "Task " & _taskId & " Created OK", Name, True)
+                ShowStatus(lblStatus, "Task " & _taskId & " Created OK", Name, True)
             Else
                 isInsertOk = False
-                showStatus(lblStatus, "Task NOT created", Name, True)
+                ShowStatus(lblStatus, "Task NOT created", Name, True)
             End If
         End With
         Return isInsertOk

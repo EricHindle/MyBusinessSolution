@@ -7,6 +7,7 @@
 
 Imports System.Data.Common
 Imports System.IO
+Imports MyBusiness.netwyrksDataSetTableAdapters
 
 Module ModDatabase
 #Region "constants"
@@ -230,6 +231,28 @@ Module ModDatabase
 
         End Try
         Return _taskList
+    End Function
+    Public Function InsertTask(_task As Task) As Integer
+        Dim _taskId As Integer = -1
+        Try
+            With _task
+                _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
+            End With
+        Catch ex As DbException
+
+        End Try
+        Return _taskId
+    End Function
+    Public Function UpdateTask(_task As Task) As Integer
+        Dim _rtn As Integer = 0
+        Try
+            With _task
+                _rtn = oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, .TaskId)
+            End With
+        Catch ex As DbException
+
+        End Try
+        Return _rtn
     End Function
     Public Function DeleteTask(pTaskId As Integer) As Integer
         Dim _ct As Integer

@@ -242,7 +242,6 @@
     <Compile Include="Job\FrmTask.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\ModJobCommon.vb" />
     <Compile Include="Logging\AuditUtil.vb" />
     <Compile Include="Logging\FrmAuditItem.designer.vb">
       <DependentUpon>FrmAuditItem.vb</DependentUpon>

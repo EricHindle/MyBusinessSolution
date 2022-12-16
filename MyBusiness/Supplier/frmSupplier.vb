@@ -45,8 +45,15 @@ Public Class FrmSupplier
         My.Settings.Save()
     End Sub
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
-        Dim _suppAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtSuppAddr1.Text.Trim).WithAddress2(txtSuppAddr2.Text.Trim).WithAddress3(txtSuppAddr3.Text.Trim).WithAddress4(txtSuppAddr4.Text.Trim).WithPostcode(txtSuppPostcode.Text.ToUpper.Trim).Build
-        _newSupplier = SupplierBuilder.ASupplier.StartingWith(_currentSupplier) _
+        If IsValidSupplier Then
+            Dim _suppAdd As Address = AddressBuilder.AnAddress _
+                                                    .WithAddress1(txtSuppAddr1.Text.Trim) _
+                                                    .WithAddress2(txtSuppAddr2.Text.Trim) _
+                                                    .WithAddress3(txtSuppAddr3.Text.Trim) _
+                                                    .WithAddress4(txtSuppAddr4.Text.Trim) _
+                                                    .WithPostcode(txtSuppPostcode.Text.ToUpper.Trim) _
+                                                    .Build
+            _newSupplier = SupplierBuilder.ASupplier.StartingWith(_currentSupplier) _
                             .WithSupplierId(_supplierId) _
                             .WithSupplierAddress(_suppAdd) _
                             .WithSupplierName(txtSuppName.Text.Trim()) _
@@ -56,37 +63,33 @@ Public Class FrmSupplier
                             .WithSupplierDiscount(nudSuppDiscount.Value) _
                             .WithIsAmazon(ChkAmazon.Checked) _
                             .WithSupplierUrl(TxtWeb.Text).Build
-        If _supplierId > 0 Then
-            If AmendSupplier() Then
-                Close()
+            If _supplierId > 0 Then
+                If AmendSupplier() Then
+                    Close()
+                End If
+            Else
+                If CreateSupplier() Then
+                    LblAction.Text = "Inserted New Supplier"
+                    Close()
+                End If
             End If
         Else
-            If CreateSupplier() Then
-                LblAction.Text = "Inserted New Supplier"
-                Close()
-            End If
+            LblAction.Text = "Invalid Supplier details"
         End If
 
     End Sub
+
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         If dgvProducts.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
             Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
-            Using _ProductForm As New FrmProduct
-                _ProductForm.SelectSupplier = _currentSupplier
-                _ProductForm.ProductId = oProductId
-                _ProductForm.ShowDialog()
-            End Using
-            FillProductsList(_supplierId)
+            ShowProductForm(oProductId)
         End If
     End Sub
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
-        Using _productForm As New FrmProduct
-            _productForm.SelectSupplier = _currentSupplier
-            _productForm.ShowDialog()
-            FillProductsList(_supplierId)
-        End Using
+        ShowProductForm(-1)
     End Sub
+
     Private Sub DgvProducts_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvProducts.SelectionChanged
         spProducts.Panel2Collapsed = True
         If Not isLoadingProducts Then
@@ -102,6 +105,17 @@ Public Class FrmSupplier
                 End If
             End If
         End If
+    End Sub
+    Private Sub ChkAmazon_CheckedChanged(sender As Object, e As EventArgs) Handles ChkAmazon.CheckedChanged
+        With ChkAmazon
+            If .Checked Then
+                .BackColor = Color.DarkRed
+                .ForeColor = Color.White
+            Else
+                .BackColor = Color.WhiteSmoke
+                .ForeColor = Color.Black
+            End If
+        End With
     End Sub
 #End Region
 #Region "subroutines"
@@ -182,30 +196,29 @@ Public Class FrmSupplier
         dgvProducts.Rows.Clear()
         Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
         pRow.Cells(prodId.Name).Value = -1
-
         Dim _productList As List(Of Product) = GetProductsBySupplier(suppId)
-
         For Each oProduct As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
             tRow.Cells(prodId.Name).Value = oProduct.ProductId
             tRow.Cells(prodName.Name).Value = oProduct.ProductName
         Next
         dgvProducts.ClearSelection()
-
         isLoadingProducts = False
     End Sub
-
-    Private Sub ChkAmazon_CheckedChanged(sender As Object, e As EventArgs) Handles ChkAmazon.CheckedChanged
-        With ChkAmazon
-            If .Checked Then
-                .BackColor = Color.DarkRed
-                .ForeColor = Color.White
-            Else
-                .BackColor = Color.WhiteSmoke
-                .ForeColor = Color.Black
-            End If
-        End With
+    Private Sub ShowProductForm(pProductId As Integer)
+        Using _productForm As New FrmProduct
+            _productForm.SelectSupplier = _currentSupplier
+            _productForm.ProductId = pProductId
+            _productForm.ShowDialog()
+        End Using
+        FillProductsList(_supplierId)
     End Sub
-
+    Private Function IsValidSupplier() As Boolean
+        Dim isOk As Boolean = True
+        If String.IsNullOrWhiteSpace(txtSuppName.Text) Then
+            isOk = False
+        End If
+        Return isOK
+    End Function
 #End Region
 End Class

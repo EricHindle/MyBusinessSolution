@@ -72,7 +72,7 @@ Public Class FrmProduct
         isLoading = False
     End Sub
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
-        If Not String.IsNullOrWhiteSpace(txtProductName.Text) Then
+        If IsValidProduct() Then
             _newproduct = ProductBuilder.AProduct.StartingWith(_product) _
                                 .WithProductName(txtProductName.Text.Trim) _
                                 .WithProductDescription(rtbDescription.Text.Trim) _
@@ -90,7 +90,7 @@ Public Class FrmProduct
             End If
             Close()
         Else
-            ShowStatus(lblStatus, "Product name missing", MyBase.Name, True)
+            ShowStatus(lblStatus, "Invalid Product details", MyBase.Name, True)
         End If
     End Sub
 #End Region
@@ -153,6 +153,13 @@ Public Class FrmProduct
             ShowStatus(lblStatus, "Product NOT created", MyBase.Name, True)
         End If
         Return isInsertOk
+    End Function
+    Private Function IsValidProduct() As Boolean
+        Dim isOk As Boolean = True
+        If String.IsNullOrWhiteSpace(txtProductName.Text) Then
+            isOk = False
+        End If
+        Return isOk
     End Function
 #End Region
 End Class
