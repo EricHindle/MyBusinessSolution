@@ -30,15 +30,17 @@ Public Class FrmViewCust
     End Sub
     Private Sub FrmViewCust_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         GetFormPos(Me, My.Settings.CustViewFormPos)
-        txtCustAddr1.Text = _customer.Address.Address1
-        txtCustAddr2.Text = _customer.Address.Address2
-        txtCustAddr3.Text = _customer.Address.Address3
-        txtCustAddr4.Text = _customer.Address.Address4
-        txtCustEmail.Text = _customer.Email
-        txtCustName.Text = _customer.CustName
-        txtCustPhone.Text = _customer.Phone
-        txtCustPostcode.Text = _customer.Address.Postcode
-        rtbCustNotes.Text = _customer.Notes
+        If _customer IsNot Nothing Then
+            txtCustAddr1.Text = _customer.Address.Address1
+            txtCustAddr2.Text = _customer.Address.Address2
+            txtCustAddr3.Text = _customer.Address.Address3
+            txtCustAddr4.Text = _customer.Address.Address4
+            txtCustEmail.Text = _customer.Email
+            txtCustName.Text = _customer.CustName
+            txtCustPhone.Text = _customer.Phone
+            txtCustPostcode.Text = _customer.Address.Postcode
+            rtbCustNotes.Text = _customer.Notes
+        End If
     End Sub
 #End Region
 End Class

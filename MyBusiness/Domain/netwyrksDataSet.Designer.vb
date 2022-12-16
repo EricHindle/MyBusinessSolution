@@ -45,6 +45,8 @@ Partial Public Class netwyrksDataSet
     
     Private tableaudit As auditDataTable
     
+    Private tablev_jobproduct As v_jobproductDataTable
+    
     Private relationfk_job_customer1 As Global.System.Data.DataRelation
     
     Private relationfk_job_product_job1 As Global.System.Data.DataRelation
@@ -117,6 +119,9 @@ Partial Public Class netwyrksDataSet
             End If
             If (Not (ds.Tables("audit")) Is Nothing) Then
                 MyBase.Tables.Add(New auditDataTable(ds.Tables("audit")))
+            End If
+            If (Not (ds.Tables("v_jobproduct")) Is Nothing) Then
+                MyBase.Tables.Add(New v_jobproductDataTable(ds.Tables("v_jobproduct")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -237,6 +242,16 @@ Partial Public Class netwyrksDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property v_jobproduct() As v_jobproductDataTable
+        Get
+            Return Me.tablev_jobproduct
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -332,6 +347,9 @@ Partial Public Class netwyrksDataSet
             If (Not (ds.Tables("audit")) Is Nothing) Then
                 MyBase.Tables.Add(New auditDataTable(ds.Tables("audit")))
             End If
+            If (Not (ds.Tables("v_jobproduct")) Is Nothing) Then
+                MyBase.Tables.Add(New v_jobproductDataTable(ds.Tables("v_jobproduct")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -424,6 +442,12 @@ Partial Public Class netwyrksDataSet
                 Me.tableaudit.InitVars
             End If
         End If
+        Me.tablev_jobproduct = CType(MyBase.Tables("v_jobproduct"),v_jobproductDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablev_jobproduct) Is Nothing) Then
+                Me.tablev_jobproduct.InitVars
+            End If
+        End If
         Me.relationfk_job_customer1 = Me.Relations("fk_job_customer1")
         Me.relationfk_job_product_job1 = Me.Relations("fk_job_product_job1")
         Me.relationfk_job_product_product1 = Me.Relations("fk_job_product_product1")
@@ -461,6 +485,8 @@ Partial Public Class netwyrksDataSet
         MyBase.Tables.Add(Me.tablediary)
         Me.tableaudit = New auditDataTable()
         MyBase.Tables.Add(Me.tableaudit)
+        Me.tablev_jobproduct = New v_jobproductDataTable()
+        MyBase.Tables.Add(Me.tablev_jobproduct)
         Me.relationfk_job_customer1 = New Global.System.Data.DataRelation("fk_job_customer1", New Global.System.Data.DataColumn() {Me.tablecustomer.customer_idColumn}, New Global.System.Data.DataColumn() {Me.tablejob.job_customer_idColumn}, false)
         Me.Relations.Add(Me.relationfk_job_customer1)
         Me.relationfk_job_product_job1 = New Global.System.Data.DataRelation("fk_job_product_job1", New Global.System.Data.DataColumn() {Me.tablejob.job_idColumn}, New Global.System.Data.DataColumn() {Me.tablejob_product.jp_job_idColumn}, false)
@@ -534,6 +560,12 @@ Partial Public Class netwyrksDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializeaudit() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializev_jobproduct() As Boolean
         Return false
     End Function
     
@@ -624,6 +656,9 @@ Partial Public Class netwyrksDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub auditRowChangeEventHandler(ByVal sender As Object, ByVal e As auditRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub v_jobproductRowChangeEventHandler(ByVal sender As Object, ByVal e As v_jobproductRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -4719,6 +4754,1175 @@ Partial Public Class netwyrksDataSet
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class v_jobproductDataTable
+        Inherits Global.System.Data.TypedTableBase(Of v_jobproductRow)
+        
+        Private columnjob_product_id As Global.System.Data.DataColumn
+        
+        Private columnjp_quantity As Global.System.Data.DataColumn
+        
+        Private columnjp_created As Global.System.Data.DataColumn
+        
+        Private columnjp_changed As Global.System.Data.DataColumn
+        
+        Private columnjp_product_id As Global.System.Data.DataColumn
+        
+        Private columnjp_job_id As Global.System.Data.DataColumn
+        
+        Private columnjp_taxable As Global.System.Data.DataColumn
+        
+        Private columnjp_tax_rate As Global.System.Data.DataColumn
+        
+        Private columnjp_price As Global.System.Data.DataColumn
+        
+        Private columnproduct_id As Global.System.Data.DataColumn
+        
+        Private columnproduct_name As Global.System.Data.DataColumn
+        
+        Private columnproduct_description As Global.System.Data.DataColumn
+        
+        Private columnproduct_cost As Global.System.Data.DataColumn
+        
+        Private columnproduct_price As Global.System.Data.DataColumn
+        
+        Private columnproduct_created As Global.System.Data.DataColumn
+        
+        Private columnproduct_changed As Global.System.Data.DataColumn
+        
+        Private columnproduct_supplier_id As Global.System.Data.DataColumn
+        
+        Private columnproduct_taxable As Global.System.Data.DataColumn
+        
+        Private columnproduct_tax_rate As Global.System.Data.DataColumn
+        
+        Private columnproduct_purchase_units As Global.System.Data.DataColumn
+        
+        Private columnsupplier_id As Global.System.Data.DataColumn
+        
+        Private columnsupplier_name As Global.System.Data.DataColumn
+        
+        Private columnsupplier_address_1 As Global.System.Data.DataColumn
+        
+        Private columnsupplier_address_2 As Global.System.Data.DataColumn
+        
+        Private columnsupplier_address_3 As Global.System.Data.DataColumn
+        
+        Private columnsupplier_address_4 As Global.System.Data.DataColumn
+        
+        Private columnsupplier_postcode As Global.System.Data.DataColumn
+        
+        Private columnsupplier_telephone As Global.System.Data.DataColumn
+        
+        Private columnsupplier_email As Global.System.Data.DataColumn
+        
+        Private columnsupplier_discount_percent As Global.System.Data.DataColumn
+        
+        Private columnsupplier_notes As Global.System.Data.DataColumn
+        
+        Private columnsupplier_created As Global.System.Data.DataColumn
+        
+        Private columnsupplier_changed As Global.System.Data.DataColumn
+        
+        Private columnsupplier_amazon As Global.System.Data.DataColumn
+        
+        Private columnsupplier_url As Global.System.Data.DataColumn
+        
+        Private columnjob_id As Global.System.Data.DataColumn
+        
+        Private columnjob_name As Global.System.Data.DataColumn
+        
+        Private columnjob_description As Global.System.Data.DataColumn
+        
+        Private columnjob_completed As Global.System.Data.DataColumn
+        
+        Private columnjob_created As Global.System.Data.DataColumn
+        
+        Private columnjob_changed As Global.System.Data.DataColumn
+        
+        Private columnjob_customer_id As Global.System.Data.DataColumn
+        
+        Private columnjob_invoice_number As Global.System.Data.DataColumn
+        
+        Private columnjob_po_number As Global.System.Data.DataColumn
+        
+        Private columnjob_reference As Global.System.Data.DataColumn
+        
+        Private columnjob_invoice_date As Global.System.Data.DataColumn
+        
+        Private columnjob_payment_due As Global.System.Data.DataColumn
+        
+        Private columnjob_user_id As Global.System.Data.DataColumn
+        
+        Private columnjob_invoice_no As Global.System.Data.DataColumn
+        
+        Private columncustomer_id As Global.System.Data.DataColumn
+        
+        Private columncustomer_name As Global.System.Data.DataColumn
+        
+        Private columncustomer_address_1 As Global.System.Data.DataColumn
+        
+        Private columncustomer_address_2 As Global.System.Data.DataColumn
+        
+        Private columncustomer_address_3 As Global.System.Data.DataColumn
+        
+        Private columncustomer_address_4 As Global.System.Data.DataColumn
+        
+        Private columncustomer_postcode As Global.System.Data.DataColumn
+        
+        Private columncustomer_telephone As Global.System.Data.DataColumn
+        
+        Private columncustomer_email As Global.System.Data.DataColumn
+        
+        Private columncustomer_discount_percent As Global.System.Data.DataColumn
+        
+        Private columncustomer_notes As Global.System.Data.DataColumn
+        
+        Private columncustomer_created As Global.System.Data.DataColumn
+        
+        Private columncustomer_changed As Global.System.Data.DataColumn
+        
+        Private columncustomer_terms As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "v_jobproduct"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_product_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_product_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_quantityColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_quantity
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_product_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_product_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_job_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_job_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_taxableColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_taxable
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_tax_rateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_tax_rate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property jp_priceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjp_price
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_descriptionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_description
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_costColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_cost
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_priceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_price
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_supplier_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_supplier_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_taxableColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_taxable
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_tax_rateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_tax_rate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property product_purchase_unitsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproduct_purchase_units
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_address_1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_address_1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_address_2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_address_2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_address_3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_address_3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_address_4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_address_4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_postcodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_postcode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_telephoneColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_telephone
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_email
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_discount_percentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_discount_percent
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_notesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_notes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_amazonColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_amazon
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property supplier_urlColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsupplier_url
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_descriptionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_description
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_completedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_completed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_customer_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_customer_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_invoice_numberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_invoice_number
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_po_numberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_po_number
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_referenceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_reference
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_invoice_dateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_invoice_date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_payment_dueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_payment_due
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_user_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_user_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property job_invoice_noColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnjob_invoice_no
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_address_1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_address_1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_address_2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_address_2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_address_3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_address_3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_address_4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_address_4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_postcodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_postcode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_telephoneColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_telephone
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_email
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_discount_percentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_discount_percent
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_notesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_notes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_createdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_created
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_changedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_changed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property customer_termsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustomer_terms
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As v_jobproductRow
+            Get
+                Return CType(Me.Rows(index),v_jobproductRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event v_jobproductRowChanging As v_jobproductRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event v_jobproductRowChanged As v_jobproductRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event v_jobproductRowDeleting As v_jobproductRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event v_jobproductRowDeleted As v_jobproductRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub Addv_jobproductRow(ByVal row As v_jobproductRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function Addv_jobproductRow( _
+                    ByVal jp_quantity As Integer,  _
+                    ByVal jp_created As Date,  _
+                    ByVal jp_changed As Date,  _
+                    ByVal jp_product_id As Integer,  _
+                    ByVal jp_job_id As Integer,  _
+                    ByVal jp_taxable As SByte,  _
+                    ByVal jp_tax_rate As Decimal,  _
+                    ByVal jp_price As Decimal,  _
+                    ByVal product_name As String,  _
+                    ByVal product_description As String,  _
+                    ByVal product_cost As Decimal,  _
+                    ByVal product_price As Decimal,  _
+                    ByVal product_created As Date,  _
+                    ByVal product_changed As Date,  _
+                    ByVal product_supplier_id As Integer,  _
+                    ByVal product_taxable As SByte,  _
+                    ByVal product_tax_rate As Decimal,  _
+                    ByVal product_purchase_units As Integer,  _
+                    ByVal supplier_name As String,  _
+                    ByVal supplier_address_1 As String,  _
+                    ByVal supplier_address_2 As String,  _
+                    ByVal supplier_address_3 As String,  _
+                    ByVal supplier_address_4 As String,  _
+                    ByVal supplier_postcode As String,  _
+                    ByVal supplier_telephone As String,  _
+                    ByVal supplier_email As String,  _
+                    ByVal supplier_discount_percent As Decimal,  _
+                    ByVal supplier_notes As String,  _
+                    ByVal supplier_created As Date,  _
+                    ByVal supplier_changed As Date,  _
+                    ByVal supplier_amazon As SByte,  _
+                    ByVal supplier_url As String,  _
+                    ByVal job_name As String,  _
+                    ByVal job_description As String,  _
+                    ByVal job_completed As SByte,  _
+                    ByVal job_created As Date,  _
+                    ByVal job_changed As Date,  _
+                    ByVal job_customer_id As Integer,  _
+                    ByVal job_invoice_number As String,  _
+                    ByVal job_po_number As String,  _
+                    ByVal job_reference As String,  _
+                    ByVal job_invoice_date As Date,  _
+                    ByVal job_payment_due As Date,  _
+                    ByVal job_user_id As Integer,  _
+                    ByVal job_invoice_no As Integer,  _
+                    ByVal customer_name As String,  _
+                    ByVal customer_address_1 As String,  _
+                    ByVal customer_address_2 As String,  _
+                    ByVal customer_address_3 As String,  _
+                    ByVal customer_address_4 As String,  _
+                    ByVal customer_postcode As String,  _
+                    ByVal customer_telephone As String,  _
+                    ByVal customer_email As String,  _
+                    ByVal customer_discount_percent As Decimal,  _
+                    ByVal customer_notes As String,  _
+                    ByVal customer_created As Date,  _
+                    ByVal customer_changed As Date,  _
+                    ByVal customer_terms As Integer) As v_jobproductRow
+            Dim rowv_jobproductRow As v_jobproductRow = CType(Me.NewRow,v_jobproductRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, Nothing, product_name, product_description, product_cost, product_price, product_created, product_changed, product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, Nothing, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, Nothing, job_name, job_description, job_completed, job_created, job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, Nothing, customer_name, customer_address_1, customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, customer_terms}
+            rowv_jobproductRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowv_jobproductRow)
+            Return rowv_jobproductRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByjob_product_idproduct_idsupplier_idjob_idcustomer_id(ByVal job_product_id As Integer, ByVal product_id As Integer, ByVal supplier_id As Integer, ByVal job_id As Integer, ByVal customer_id As Integer) As v_jobproductRow
+            Return CType(Me.Rows.Find(New Object() {job_product_id, product_id, supplier_id, job_id, customer_id}),v_jobproductRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As v_jobproductDataTable = CType(MyBase.Clone,v_jobproductDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New v_jobproductDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnjob_product_id = MyBase.Columns("job_product_id")
+            Me.columnjp_quantity = MyBase.Columns("jp_quantity")
+            Me.columnjp_created = MyBase.Columns("jp_created")
+            Me.columnjp_changed = MyBase.Columns("jp_changed")
+            Me.columnjp_product_id = MyBase.Columns("jp_product_id")
+            Me.columnjp_job_id = MyBase.Columns("jp_job_id")
+            Me.columnjp_taxable = MyBase.Columns("jp_taxable")
+            Me.columnjp_tax_rate = MyBase.Columns("jp_tax_rate")
+            Me.columnjp_price = MyBase.Columns("jp_price")
+            Me.columnproduct_id = MyBase.Columns("product_id")
+            Me.columnproduct_name = MyBase.Columns("product_name")
+            Me.columnproduct_description = MyBase.Columns("product_description")
+            Me.columnproduct_cost = MyBase.Columns("product_cost")
+            Me.columnproduct_price = MyBase.Columns("product_price")
+            Me.columnproduct_created = MyBase.Columns("product_created")
+            Me.columnproduct_changed = MyBase.Columns("product_changed")
+            Me.columnproduct_supplier_id = MyBase.Columns("product_supplier_id")
+            Me.columnproduct_taxable = MyBase.Columns("product_taxable")
+            Me.columnproduct_tax_rate = MyBase.Columns("product_tax_rate")
+            Me.columnproduct_purchase_units = MyBase.Columns("product_purchase_units")
+            Me.columnsupplier_id = MyBase.Columns("supplier_id")
+            Me.columnsupplier_name = MyBase.Columns("supplier_name")
+            Me.columnsupplier_address_1 = MyBase.Columns("supplier_address_1")
+            Me.columnsupplier_address_2 = MyBase.Columns("supplier_address_2")
+            Me.columnsupplier_address_3 = MyBase.Columns("supplier_address_3")
+            Me.columnsupplier_address_4 = MyBase.Columns("supplier_address_4")
+            Me.columnsupplier_postcode = MyBase.Columns("supplier_postcode")
+            Me.columnsupplier_telephone = MyBase.Columns("supplier_telephone")
+            Me.columnsupplier_email = MyBase.Columns("supplier_email")
+            Me.columnsupplier_discount_percent = MyBase.Columns("supplier_discount_percent")
+            Me.columnsupplier_notes = MyBase.Columns("supplier_notes")
+            Me.columnsupplier_created = MyBase.Columns("supplier_created")
+            Me.columnsupplier_changed = MyBase.Columns("supplier_changed")
+            Me.columnsupplier_amazon = MyBase.Columns("supplier_amazon")
+            Me.columnsupplier_url = MyBase.Columns("supplier_url")
+            Me.columnjob_id = MyBase.Columns("job_id")
+            Me.columnjob_name = MyBase.Columns("job_name")
+            Me.columnjob_description = MyBase.Columns("job_description")
+            Me.columnjob_completed = MyBase.Columns("job_completed")
+            Me.columnjob_created = MyBase.Columns("job_created")
+            Me.columnjob_changed = MyBase.Columns("job_changed")
+            Me.columnjob_customer_id = MyBase.Columns("job_customer_id")
+            Me.columnjob_invoice_number = MyBase.Columns("job_invoice_number")
+            Me.columnjob_po_number = MyBase.Columns("job_po_number")
+            Me.columnjob_reference = MyBase.Columns("job_reference")
+            Me.columnjob_invoice_date = MyBase.Columns("job_invoice_date")
+            Me.columnjob_payment_due = MyBase.Columns("job_payment_due")
+            Me.columnjob_user_id = MyBase.Columns("job_user_id")
+            Me.columnjob_invoice_no = MyBase.Columns("job_invoice_no")
+            Me.columncustomer_id = MyBase.Columns("customer_id")
+            Me.columncustomer_name = MyBase.Columns("customer_name")
+            Me.columncustomer_address_1 = MyBase.Columns("customer_address_1")
+            Me.columncustomer_address_2 = MyBase.Columns("customer_address_2")
+            Me.columncustomer_address_3 = MyBase.Columns("customer_address_3")
+            Me.columncustomer_address_4 = MyBase.Columns("customer_address_4")
+            Me.columncustomer_postcode = MyBase.Columns("customer_postcode")
+            Me.columncustomer_telephone = MyBase.Columns("customer_telephone")
+            Me.columncustomer_email = MyBase.Columns("customer_email")
+            Me.columncustomer_discount_percent = MyBase.Columns("customer_discount_percent")
+            Me.columncustomer_notes = MyBase.Columns("customer_notes")
+            Me.columncustomer_created = MyBase.Columns("customer_created")
+            Me.columncustomer_changed = MyBase.Columns("customer_changed")
+            Me.columncustomer_terms = MyBase.Columns("customer_terms")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnjob_product_id = New Global.System.Data.DataColumn("job_product_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_product_id)
+            Me.columnjp_quantity = New Global.System.Data.DataColumn("jp_quantity", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_quantity)
+            Me.columnjp_created = New Global.System.Data.DataColumn("jp_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_created)
+            Me.columnjp_changed = New Global.System.Data.DataColumn("jp_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_changed)
+            Me.columnjp_product_id = New Global.System.Data.DataColumn("jp_product_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_product_id)
+            Me.columnjp_job_id = New Global.System.Data.DataColumn("jp_job_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_job_id)
+            Me.columnjp_taxable = New Global.System.Data.DataColumn("jp_taxable", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_taxable)
+            Me.columnjp_tax_rate = New Global.System.Data.DataColumn("jp_tax_rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_tax_rate)
+            Me.columnjp_price = New Global.System.Data.DataColumn("jp_price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjp_price)
+            Me.columnproduct_id = New Global.System.Data.DataColumn("product_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_id)
+            Me.columnproduct_name = New Global.System.Data.DataColumn("product_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_name)
+            Me.columnproduct_description = New Global.System.Data.DataColumn("product_description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_description)
+            Me.columnproduct_cost = New Global.System.Data.DataColumn("product_cost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_cost)
+            Me.columnproduct_price = New Global.System.Data.DataColumn("product_price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_price)
+            Me.columnproduct_created = New Global.System.Data.DataColumn("product_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_created)
+            Me.columnproduct_changed = New Global.System.Data.DataColumn("product_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_changed)
+            Me.columnproduct_supplier_id = New Global.System.Data.DataColumn("product_supplier_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_supplier_id)
+            Me.columnproduct_taxable = New Global.System.Data.DataColumn("product_taxable", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_taxable)
+            Me.columnproduct_tax_rate = New Global.System.Data.DataColumn("product_tax_rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_tax_rate)
+            Me.columnproduct_purchase_units = New Global.System.Data.DataColumn("product_purchase_units", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproduct_purchase_units)
+            Me.columnsupplier_id = New Global.System.Data.DataColumn("supplier_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_id)
+            Me.columnsupplier_name = New Global.System.Data.DataColumn("supplier_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_name)
+            Me.columnsupplier_address_1 = New Global.System.Data.DataColumn("supplier_address_1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_address_1)
+            Me.columnsupplier_address_2 = New Global.System.Data.DataColumn("supplier_address_2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_address_2)
+            Me.columnsupplier_address_3 = New Global.System.Data.DataColumn("supplier_address_3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_address_3)
+            Me.columnsupplier_address_4 = New Global.System.Data.DataColumn("supplier_address_4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_address_4)
+            Me.columnsupplier_postcode = New Global.System.Data.DataColumn("supplier_postcode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_postcode)
+            Me.columnsupplier_telephone = New Global.System.Data.DataColumn("supplier_telephone", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_telephone)
+            Me.columnsupplier_email = New Global.System.Data.DataColumn("supplier_email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_email)
+            Me.columnsupplier_discount_percent = New Global.System.Data.DataColumn("supplier_discount_percent", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_discount_percent)
+            Me.columnsupplier_notes = New Global.System.Data.DataColumn("supplier_notes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_notes)
+            Me.columnsupplier_created = New Global.System.Data.DataColumn("supplier_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_created)
+            Me.columnsupplier_changed = New Global.System.Data.DataColumn("supplier_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_changed)
+            Me.columnsupplier_amazon = New Global.System.Data.DataColumn("supplier_amazon", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_amazon)
+            Me.columnsupplier_url = New Global.System.Data.DataColumn("supplier_url", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsupplier_url)
+            Me.columnjob_id = New Global.System.Data.DataColumn("job_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_id)
+            Me.columnjob_name = New Global.System.Data.DataColumn("job_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_name)
+            Me.columnjob_description = New Global.System.Data.DataColumn("job_description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_description)
+            Me.columnjob_completed = New Global.System.Data.DataColumn("job_completed", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_completed)
+            Me.columnjob_created = New Global.System.Data.DataColumn("job_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_created)
+            Me.columnjob_changed = New Global.System.Data.DataColumn("job_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_changed)
+            Me.columnjob_customer_id = New Global.System.Data.DataColumn("job_customer_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_customer_id)
+            Me.columnjob_invoice_number = New Global.System.Data.DataColumn("job_invoice_number", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_invoice_number)
+            Me.columnjob_po_number = New Global.System.Data.DataColumn("job_po_number", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_po_number)
+            Me.columnjob_reference = New Global.System.Data.DataColumn("job_reference", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_reference)
+            Me.columnjob_invoice_date = New Global.System.Data.DataColumn("job_invoice_date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_invoice_date)
+            Me.columnjob_payment_due = New Global.System.Data.DataColumn("job_payment_due", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_payment_due)
+            Me.columnjob_user_id = New Global.System.Data.DataColumn("job_user_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_user_id)
+            Me.columnjob_invoice_no = New Global.System.Data.DataColumn("job_invoice_no", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnjob_invoice_no)
+            Me.columncustomer_id = New Global.System.Data.DataColumn("customer_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_id)
+            Me.columncustomer_name = New Global.System.Data.DataColumn("customer_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_name)
+            Me.columncustomer_address_1 = New Global.System.Data.DataColumn("customer_address_1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_address_1)
+            Me.columncustomer_address_2 = New Global.System.Data.DataColumn("customer_address_2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_address_2)
+            Me.columncustomer_address_3 = New Global.System.Data.DataColumn("customer_address_3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_address_3)
+            Me.columncustomer_address_4 = New Global.System.Data.DataColumn("customer_address_4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_address_4)
+            Me.columncustomer_postcode = New Global.System.Data.DataColumn("customer_postcode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_postcode)
+            Me.columncustomer_telephone = New Global.System.Data.DataColumn("customer_telephone", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_telephone)
+            Me.columncustomer_email = New Global.System.Data.DataColumn("customer_email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_email)
+            Me.columncustomer_discount_percent = New Global.System.Data.DataColumn("customer_discount_percent", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_discount_percent)
+            Me.columncustomer_notes = New Global.System.Data.DataColumn("customer_notes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_notes)
+            Me.columncustomer_created = New Global.System.Data.DataColumn("customer_created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_created)
+            Me.columncustomer_changed = New Global.System.Data.DataColumn("customer_changed", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_changed)
+            Me.columncustomer_terms = New Global.System.Data.DataColumn("customer_terms", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustomer_terms)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnjob_product_id, Me.columnproduct_id, Me.columnsupplier_id, Me.columnjob_id, Me.columncustomer_id}, true))
+            Me.columnjob_product_id.AutoIncrement = true
+            Me.columnjob_product_id.AutoIncrementSeed = -1
+            Me.columnjob_product_id.AutoIncrementStep = -1
+            Me.columnjob_product_id.AllowDBNull = false
+            Me.columnproduct_id.AutoIncrement = true
+            Me.columnproduct_id.AutoIncrementSeed = -1
+            Me.columnproduct_id.AutoIncrementStep = -1
+            Me.columnproduct_id.AllowDBNull = false
+            Me.columnproduct_name.MaxLength = 45
+            Me.columnproduct_description.MaxLength = 65535
+            Me.columnsupplier_id.AutoIncrement = true
+            Me.columnsupplier_id.AutoIncrementSeed = -1
+            Me.columnsupplier_id.AutoIncrementStep = -1
+            Me.columnsupplier_id.AllowDBNull = false
+            Me.columnsupplier_name.MaxLength = 45
+            Me.columnsupplier_address_1.MaxLength = 45
+            Me.columnsupplier_address_2.MaxLength = 45
+            Me.columnsupplier_address_3.MaxLength = 45
+            Me.columnsupplier_address_4.MaxLength = 45
+            Me.columnsupplier_postcode.MaxLength = 45
+            Me.columnsupplier_telephone.MaxLength = 45
+            Me.columnsupplier_email.MaxLength = 45
+            Me.columnsupplier_notes.MaxLength = 65535
+            Me.columnsupplier_url.MaxLength = 256
+            Me.columnjob_id.AutoIncrement = true
+            Me.columnjob_id.AutoIncrementSeed = -1
+            Me.columnjob_id.AutoIncrementStep = -1
+            Me.columnjob_id.AllowDBNull = false
+            Me.columnjob_name.MaxLength = 45
+            Me.columnjob_description.MaxLength = 65535
+            Me.columnjob_invoice_number.MaxLength = 45
+            Me.columnjob_po_number.MaxLength = 45
+            Me.columnjob_reference.MaxLength = 45
+            Me.columncustomer_id.AutoIncrement = true
+            Me.columncustomer_id.AutoIncrementSeed = -1
+            Me.columncustomer_id.AutoIncrementStep = -1
+            Me.columncustomer_id.AllowDBNull = false
+            Me.columncustomer_name.MaxLength = 45
+            Me.columncustomer_address_1.MaxLength = 45
+            Me.columncustomer_address_2.MaxLength = 45
+            Me.columncustomer_address_3.MaxLength = 45
+            Me.columncustomer_address_4.MaxLength = 45
+            Me.columncustomer_postcode.MaxLength = 45
+            Me.columncustomer_telephone.MaxLength = 45
+            Me.columncustomer_email.MaxLength = 45
+            Me.columncustomer_notes.MaxLength = 65535
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Newv_jobproductRow() As v_jobproductRow
+            Return CType(Me.NewRow,v_jobproductRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New v_jobproductRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(v_jobproductRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.v_jobproductRowChangedEvent) Is Nothing) Then
+                RaiseEvent v_jobproductRowChanged(Me, New v_jobproductRowChangeEvent(CType(e.Row,v_jobproductRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.v_jobproductRowChangingEvent) Is Nothing) Then
+                RaiseEvent v_jobproductRowChanging(Me, New v_jobproductRowChangeEvent(CType(e.Row,v_jobproductRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.v_jobproductRowDeletedEvent) Is Nothing) Then
+                RaiseEvent v_jobproductRowDeleted(Me, New v_jobproductRowChangeEvent(CType(e.Row,v_jobproductRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.v_jobproductRowDeletingEvent) Is Nothing) Then
+                RaiseEvent v_jobproductRowDeleting(Me, New v_jobproductRowChangeEvent(CType(e.Row,v_jobproductRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Removev_jobproductRow(ByVal row As v_jobproductRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As netwyrksDataSet = New netwyrksDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "v_jobproductDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class configurationRow
@@ -7400,6 +8604,1645 @@ Partial Public Class netwyrksDataSet
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class v_jobproductRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablev_jobproduct As v_jobproductDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablev_jobproduct = CType(Me.Table,v_jobproductDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_product_id() As Integer
+            Get
+                Return CType(Me(Me.tablev_jobproduct.job_product_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_product_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_quantity() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_quantityColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_quantity' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_quantityColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_created() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_createdColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_created' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_createdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_changed() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_changedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_changed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_changedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_product_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_product_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_product_id' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_product_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_job_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_job_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_job_id' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_job_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_taxable() As SByte
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_taxableColumn),SByte)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_taxable' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_taxableColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_tax_rate() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_tax_rateColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_tax_rate' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_tax_rateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property jp_price() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.jp_priceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'jp_price' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.jp_priceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_id() As Integer
+            Get
+                Return CType(Me(Me.tablev_jobproduct.product_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_nameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_name' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_description() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_descriptionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_description' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_descriptionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_cost() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_costColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_cost' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_costColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_price() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_priceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_price' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_priceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_created() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_createdColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_created' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_createdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_changed() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_changedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_changed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_changedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_supplier_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_supplier_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_supplier_id' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_supplier_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_taxable() As SByte
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_taxableColumn),SByte)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_taxable' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_taxableColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_tax_rate() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_tax_rateColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_tax_rate' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_tax_rateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property product_purchase_units() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.product_purchase_unitsColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'product_purchase_units' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.product_purchase_unitsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_id() As Integer
+            Get
+                Return CType(Me(Me.tablev_jobproduct.supplier_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_nameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_name' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_address_1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_address_1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_address_1' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_address_1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_address_2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_address_2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_address_2' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_address_2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_address_3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_address_3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_address_3' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_address_3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_address_4() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_address_4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_address_4' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_address_4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_postcode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_postcodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_postcode' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_postcodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_telephone() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_telephoneColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_telephone' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_telephoneColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_emailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_email' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_discount_percent() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_discount_percentColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_discount_percent' in table 'v_jobproduct' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_discount_percentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_notes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_notesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_notes' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_notesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_created() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_createdColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_created' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_createdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_changed() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_changedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_changed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_changedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_amazon() As SByte
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_amazonColumn),SByte)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_amazon' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_amazonColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property supplier_url() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.supplier_urlColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'supplier_url' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.supplier_urlColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_id() As Integer
+            Get
+                Return CType(Me(Me.tablev_jobproduct.job_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_nameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_name' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_description() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_descriptionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_description' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_descriptionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_completed() As SByte
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_completedColumn),SByte)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_completed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_completedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_created() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_createdColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_created' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_createdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_changed() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_changedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_changed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_changedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_customer_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_customer_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_customer_id' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_customer_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_invoice_number() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_invoice_numberColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_invoice_number' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_invoice_numberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_po_number() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_po_numberColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_po_number' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_po_numberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_reference() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_referenceColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_reference' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_referenceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_invoice_date() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_invoice_dateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_invoice_date' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_invoice_dateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_payment_due() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_payment_dueColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_payment_due' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_payment_dueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_user_id() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_user_idColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_user_id' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_user_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property job_invoice_no() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.job_invoice_noColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'job_invoice_no' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.job_invoice_noColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_id() As Integer
+            Get
+                Return CType(Me(Me.tablev_jobproduct.customer_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_nameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_name' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_address_1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_address_1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_address_1' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_address_1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_address_2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_address_2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_address_2' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_address_2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_address_3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_address_3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_address_3' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_address_3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_address_4() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_address_4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_address_4' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_address_4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_postcode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_postcodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_postcode' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_postcodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_telephone() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_telephoneColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_telephone' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_telephoneColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_emailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_email' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_discount_percent() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_discount_percentColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_discount_percent' in table 'v_jobproduct' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_discount_percentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_notes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_notesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_notes' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_notesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_created() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_createdColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_created' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_createdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_changed() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_changedColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_changed' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_changedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property customer_terms() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablev_jobproduct.customer_termsColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'customer_terms' in table 'v_jobproduct' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablev_jobproduct.customer_termsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_quantityNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_quantityColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_quantityNull()
+            Me(Me.tablev_jobproduct.jp_quantityColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_createdNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_createdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_createdNull()
+            Me(Me.tablev_jobproduct.jp_createdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_changedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_changedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_changedNull()
+            Me(Me.tablev_jobproduct.jp_changedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_product_idNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_product_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_product_idNull()
+            Me(Me.tablev_jobproduct.jp_product_idColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_job_idNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_job_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_job_idNull()
+            Me(Me.tablev_jobproduct.jp_job_idColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_taxableNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_taxableColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_taxableNull()
+            Me(Me.tablev_jobproduct.jp_taxableColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_tax_rateNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_tax_rateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_tax_rateNull()
+            Me(Me.tablev_jobproduct.jp_tax_rateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjp_priceNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.jp_priceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjp_priceNull()
+            Me(Me.tablev_jobproduct.jp_priceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_nameNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_nameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_nameNull()
+            Me(Me.tablev_jobproduct.product_nameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_descriptionNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_descriptionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_descriptionNull()
+            Me(Me.tablev_jobproduct.product_descriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_costNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_costColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_costNull()
+            Me(Me.tablev_jobproduct.product_costColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_priceNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_priceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_priceNull()
+            Me(Me.tablev_jobproduct.product_priceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_createdNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_createdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_createdNull()
+            Me(Me.tablev_jobproduct.product_createdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_changedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_changedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_changedNull()
+            Me(Me.tablev_jobproduct.product_changedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_supplier_idNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_supplier_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_supplier_idNull()
+            Me(Me.tablev_jobproduct.product_supplier_idColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_taxableNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_taxableColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_taxableNull()
+            Me(Me.tablev_jobproduct.product_taxableColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_tax_rateNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_tax_rateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_tax_rateNull()
+            Me(Me.tablev_jobproduct.product_tax_rateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isproduct_purchase_unitsNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.product_purchase_unitsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setproduct_purchase_unitsNull()
+            Me(Me.tablev_jobproduct.product_purchase_unitsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_nameNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_nameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_nameNull()
+            Me(Me.tablev_jobproduct.supplier_nameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_address_1Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_address_1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_address_1Null()
+            Me(Me.tablev_jobproduct.supplier_address_1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_address_2Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_address_2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_address_2Null()
+            Me(Me.tablev_jobproduct.supplier_address_2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_address_3Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_address_3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_address_3Null()
+            Me(Me.tablev_jobproduct.supplier_address_3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_address_4Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_address_4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_address_4Null()
+            Me(Me.tablev_jobproduct.supplier_address_4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_postcodeNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_postcodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_postcodeNull()
+            Me(Me.tablev_jobproduct.supplier_postcodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_telephoneNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_telephoneColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_telephoneNull()
+            Me(Me.tablev_jobproduct.supplier_telephoneColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_emailNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_emailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_emailNull()
+            Me(Me.tablev_jobproduct.supplier_emailColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_discount_percentNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_discount_percentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_discount_percentNull()
+            Me(Me.tablev_jobproduct.supplier_discount_percentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_notesNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_notesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_notesNull()
+            Me(Me.tablev_jobproduct.supplier_notesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_createdNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_createdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_createdNull()
+            Me(Me.tablev_jobproduct.supplier_createdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_changedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_changedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_changedNull()
+            Me(Me.tablev_jobproduct.supplier_changedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_amazonNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_amazonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_amazonNull()
+            Me(Me.tablev_jobproduct.supplier_amazonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Issupplier_urlNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.supplier_urlColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setsupplier_urlNull()
+            Me(Me.tablev_jobproduct.supplier_urlColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_nameNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_nameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_nameNull()
+            Me(Me.tablev_jobproduct.job_nameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_descriptionNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_descriptionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_descriptionNull()
+            Me(Me.tablev_jobproduct.job_descriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_completedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_completedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_completedNull()
+            Me(Me.tablev_jobproduct.job_completedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_createdNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_createdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_createdNull()
+            Me(Me.tablev_jobproduct.job_createdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_changedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_changedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_changedNull()
+            Me(Me.tablev_jobproduct.job_changedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_customer_idNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_customer_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_customer_idNull()
+            Me(Me.tablev_jobproduct.job_customer_idColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_invoice_numberNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_invoice_numberColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_invoice_numberNull()
+            Me(Me.tablev_jobproduct.job_invoice_numberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_po_numberNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_po_numberColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_po_numberNull()
+            Me(Me.tablev_jobproduct.job_po_numberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_referenceNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_referenceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_referenceNull()
+            Me(Me.tablev_jobproduct.job_referenceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_invoice_dateNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_invoice_dateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_invoice_dateNull()
+            Me(Me.tablev_jobproduct.job_invoice_dateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_payment_dueNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_payment_dueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_payment_dueNull()
+            Me(Me.tablev_jobproduct.job_payment_dueColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_user_idNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_user_idColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_user_idNull()
+            Me(Me.tablev_jobproduct.job_user_idColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isjob_invoice_noNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.job_invoice_noColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setjob_invoice_noNull()
+            Me(Me.tablev_jobproduct.job_invoice_noColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_nameNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_nameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_nameNull()
+            Me(Me.tablev_jobproduct.customer_nameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_address_1Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_address_1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_address_1Null()
+            Me(Me.tablev_jobproduct.customer_address_1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_address_2Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_address_2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_address_2Null()
+            Me(Me.tablev_jobproduct.customer_address_2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_address_3Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_address_3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_address_3Null()
+            Me(Me.tablev_jobproduct.customer_address_3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_address_4Null() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_address_4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_address_4Null()
+            Me(Me.tablev_jobproduct.customer_address_4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_postcodeNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_postcodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_postcodeNull()
+            Me(Me.tablev_jobproduct.customer_postcodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_telephoneNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_telephoneColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_telephoneNull()
+            Me(Me.tablev_jobproduct.customer_telephoneColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_emailNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_emailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_emailNull()
+            Me(Me.tablev_jobproduct.customer_emailColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_discount_percentNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_discount_percentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_discount_percentNull()
+            Me(Me.tablev_jobproduct.customer_discount_percentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_notesNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_notesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_notesNull()
+            Me(Me.tablev_jobproduct.customer_notesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_createdNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_createdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_createdNull()
+            Me(Me.tablev_jobproduct.customer_createdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_changedNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_changedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_changedNull()
+            Me(Me.tablev_jobproduct.customer_changedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Iscustomer_termsNull() As Boolean
+            Return Me.IsNull(Me.tablev_jobproduct.customer_termsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setcustomer_termsNull()
+            Me(Me.tablev_jobproduct.customer_termsColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -7745,6 +10588,42 @@ Partial Public Class netwyrksDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As auditRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class v_jobproductRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As v_jobproductRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As v_jobproductRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As v_jobproductRow
             Get
                 Return Me.eventRow
             End Get
@@ -22522,6 +25401,379 @@ Namespace netwyrksDataSetTableAdapters
                     command.Connection.Close
                 End If
             End Try
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class v_jobproductTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+        
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
+        
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
+        
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "v_jobproduct"
+            tableMapping.ColumnMappings.Add("job_product_id", "job_product_id")
+            tableMapping.ColumnMappings.Add("jp_quantity", "jp_quantity")
+            tableMapping.ColumnMappings.Add("jp_created", "jp_created")
+            tableMapping.ColumnMappings.Add("jp_changed", "jp_changed")
+            tableMapping.ColumnMappings.Add("jp_product_id", "jp_product_id")
+            tableMapping.ColumnMappings.Add("jp_job_id", "jp_job_id")
+            tableMapping.ColumnMappings.Add("jp_taxable", "jp_taxable")
+            tableMapping.ColumnMappings.Add("jp_tax_rate", "jp_tax_rate")
+            tableMapping.ColumnMappings.Add("jp_price", "jp_price")
+            tableMapping.ColumnMappings.Add("product_id", "product_id")
+            tableMapping.ColumnMappings.Add("product_name", "product_name")
+            tableMapping.ColumnMappings.Add("product_description", "product_description")
+            tableMapping.ColumnMappings.Add("product_cost", "product_cost")
+            tableMapping.ColumnMappings.Add("product_price", "product_price")
+            tableMapping.ColumnMappings.Add("product_created", "product_created")
+            tableMapping.ColumnMappings.Add("product_changed", "product_changed")
+            tableMapping.ColumnMappings.Add("product_supplier_id", "product_supplier_id")
+            tableMapping.ColumnMappings.Add("product_taxable", "product_taxable")
+            tableMapping.ColumnMappings.Add("product_tax_rate", "product_tax_rate")
+            tableMapping.ColumnMappings.Add("product_purchase_units", "product_purchase_units")
+            tableMapping.ColumnMappings.Add("supplier_id", "supplier_id")
+            tableMapping.ColumnMappings.Add("supplier_name", "supplier_name")
+            tableMapping.ColumnMappings.Add("supplier_address_1", "supplier_address_1")
+            tableMapping.ColumnMappings.Add("supplier_address_2", "supplier_address_2")
+            tableMapping.ColumnMappings.Add("supplier_address_3", "supplier_address_3")
+            tableMapping.ColumnMappings.Add("supplier_address_4", "supplier_address_4")
+            tableMapping.ColumnMappings.Add("supplier_postcode", "supplier_postcode")
+            tableMapping.ColumnMappings.Add("supplier_telephone", "supplier_telephone")
+            tableMapping.ColumnMappings.Add("supplier_email", "supplier_email")
+            tableMapping.ColumnMappings.Add("supplier_discount_percent", "supplier_discount_percent")
+            tableMapping.ColumnMappings.Add("supplier_notes", "supplier_notes")
+            tableMapping.ColumnMappings.Add("supplier_created", "supplier_created")
+            tableMapping.ColumnMappings.Add("supplier_changed", "supplier_changed")
+            tableMapping.ColumnMappings.Add("supplier_amazon", "supplier_amazon")
+            tableMapping.ColumnMappings.Add("supplier_url", "supplier_url")
+            tableMapping.ColumnMappings.Add("job_id", "job_id")
+            tableMapping.ColumnMappings.Add("job_name", "job_name")
+            tableMapping.ColumnMappings.Add("job_description", "job_description")
+            tableMapping.ColumnMappings.Add("job_completed", "job_completed")
+            tableMapping.ColumnMappings.Add("job_created", "job_created")
+            tableMapping.ColumnMappings.Add("job_changed", "job_changed")
+            tableMapping.ColumnMappings.Add("job_customer_id", "job_customer_id")
+            tableMapping.ColumnMappings.Add("job_invoice_number", "job_invoice_number")
+            tableMapping.ColumnMappings.Add("job_po_number", "job_po_number")
+            tableMapping.ColumnMappings.Add("job_reference", "job_reference")
+            tableMapping.ColumnMappings.Add("job_invoice_date", "job_invoice_date")
+            tableMapping.ColumnMappings.Add("job_payment_due", "job_payment_due")
+            tableMapping.ColumnMappings.Add("job_user_id", "job_user_id")
+            tableMapping.ColumnMappings.Add("job_invoice_no", "job_invoice_no")
+            tableMapping.ColumnMappings.Add("customer_id", "customer_id")
+            tableMapping.ColumnMappings.Add("customer_name", "customer_name")
+            tableMapping.ColumnMappings.Add("customer_address_1", "customer_address_1")
+            tableMapping.ColumnMappings.Add("customer_address_2", "customer_address_2")
+            tableMapping.ColumnMappings.Add("customer_address_3", "customer_address_3")
+            tableMapping.ColumnMappings.Add("customer_address_4", "customer_address_4")
+            tableMapping.ColumnMappings.Add("customer_postcode", "customer_postcode")
+            tableMapping.ColumnMappings.Add("customer_telephone", "customer_telephone")
+            tableMapping.ColumnMappings.Add("customer_email", "customer_email")
+            tableMapping.ColumnMappings.Add("customer_discount_percent", "customer_discount_percent")
+            tableMapping.ColumnMappings.Add("customer_notes", "customer_notes")
+            tableMapping.ColumnMappings.Add("customer_created", "customer_created")
+            tableMapping.ColumnMappings.Add("customer_changed", "customer_changed")
+            tableMapping.ColumnMappings.Add("customer_terms", "customer_terms")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.MyBusiness.My.MySettings.Default.netwyrksConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(3) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT `job_product_id`, `jp_quantity`, `jp_created`, `jp_changed`, `jp_product_i"& _ 
+                "d`, `jp_job_id`, `jp_taxable`, `jp_tax_rate`, `jp_price`, `product_id`, `product"& _ 
+                "_name`, `product_description`, `product_cost`, `product_price`, `product_created"& _ 
+                "`, `product_changed`, `product_supplier_id`, `product_taxable`, `product_tax_rat"& _ 
+                "e`, `product_purchase_units`, `supplier_id`, `supplier_name`, `supplier_address_"& _ 
+                "1`, `supplier_address_2`, `supplier_address_3`, `supplier_address_4`, `supplier_"& _ 
+                "postcode`, `supplier_telephone`, `supplier_email`, `supplier_discount_percent`, "& _ 
+                "`supplier_notes`, `supplier_created`, `supplier_changed`, `supplier_amazon`, `su"& _ 
+                "pplier_url`, `job_id`, `job_name`, `job_description`, `job_completed`, `job_crea"& _ 
+                "ted`, `job_changed`, `job_customer_id`, `job_invoice_number`, `job_po_number`, `"& _ 
+                "job_reference`, `job_invoice_date`, `job_payment_due`, `job_user_id`, `job_invoi"& _ 
+                "ce_no`, `customer_id`, `customer_name`, `customer_address_1`, `customer_address_"& _ 
+                "2`, `customer_address_3`, `customer_address_4`, `customer_postcode`, `customer_t"& _ 
+                "elephone`, `customer_email`, `customer_discount_percent`, `customer_notes`, `cus"& _ 
+                "tomer_created`, `customer_changed`, `customer_terms` FROM `netwyrks`.`v_jobprodu"& _ 
+                "ct`"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id,"& _ 
+                " jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product"& _ 
+                "_description, product_cost, product_price, product_created, product_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        product_supplier_id, product_taxable, product_tax_rate, "& _ 
+                "product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier"& _ 
+                "_address_2, supplier_address_3, supplier_address_4, supplier_postcode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  supplier_telephone, supplier_email, supplier_discount_percent,"& _ 
+                " supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_u"& _ 
+                "rl, job_id, job_name, job_description, job_completed, job_created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "              job_changed, job_customer_id, job_invoice_number, job_po_number, j"& _ 
+                "ob_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, cu"& _ 
+                "stomer_id, customer_name, customer_address_1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         custome"& _ 
+                "r_address_2, customer_address_3, customer_address_4, customer_postcode, customer"& _ 
+                "_telephone, customer_email, customer_discount_percent, customer_notes, customer_"& _ 
+                "created, customer_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         customer_terms"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
+                "      v_jobproduct"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (customer_id = @customerId)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@customerId"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "customer_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id,"& _ 
+                " jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product"& _ 
+                "_description, product_cost, product_price, product_created, product_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        product_supplier_id, product_taxable, product_tax_rate, "& _ 
+                "product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier"& _ 
+                "_address_2, supplier_address_3, supplier_address_4, supplier_postcode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  supplier_telephone, supplier_email, supplier_discount_percent,"& _ 
+                " supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_u"& _ 
+                "rl, job_id, job_name, job_description, job_completed, job_created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "              job_changed, job_customer_id, job_invoice_number, job_po_number, j"& _ 
+                "ob_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, cu"& _ 
+                "stomer_id, customer_name, customer_address_1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         custome"& _ 
+                "r_address_2, customer_address_3, customer_address_4, customer_postcode, customer"& _ 
+                "_telephone, customer_email, customer_discount_percent, customer_notes, customer_"& _ 
+                "created, customer_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         customer_terms"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
+                "      v_jobproduct"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (job_product_id = @Id)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "job_product_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id,"& _ 
+                " jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product"& _ 
+                "_description, product_cost, product_price, product_created, product_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        product_supplier_id, product_taxable, product_tax_rate, "& _ 
+                "product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier"& _ 
+                "_address_2, supplier_address_3, supplier_address_4, supplier_postcode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  supplier_telephone, supplier_email, supplier_discount_percent,"& _ 
+                " supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_u"& _ 
+                "rl, job_id, job_name, job_description, job_completed, job_created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "              job_changed, job_customer_id, job_invoice_number, job_po_number, j"& _ 
+                "ob_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, cu"& _ 
+                "stomer_id, customer_name, customer_address_1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         custome"& _ 
+                "r_address_2, customer_address_3, customer_address_4, customer_postcode, customer"& _ 
+                "_telephone, customer_email, customer_discount_percent, customer_notes, customer_"& _ 
+                "created, customer_changed, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         customer_terms"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
+                "      v_jobproduct"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (job_id = @jobid)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@jobid"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "job_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(3).Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As netwyrksDataSet.v_jobproductDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As netwyrksDataSet.v_jobproductDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As netwyrksDataSet.v_jobproductDataTable = New netwyrksDataSet.v_jobproductDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByCustomerId(ByVal dataTable As netwyrksDataSet.v_jobproductDataTable, ByVal customerId As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(customerId,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillById(ByVal dataTable As netwyrksDataSet.v_jobproductDataTable, ByVal Id As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(Id,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByJobId(ByVal dataTable As netwyrksDataSet.v_jobproductDataTable, ByVal jobid As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(jobid,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
     End Class

@@ -24,7 +24,8 @@ Public Class SupplierBuilder
         Dim oSupplierTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
         Dim oSupplierTable As New netwyrksDataSet.supplierDataTable
         If oSupplierTa.FillById(oSupplierTable, SupplierId) > 0 Then
-            StartingWith(oSupplierTable.Rows(0))
+            Dim _row As netwyrksDataSet.supplierRow = oSupplierTable.Rows(0)
+            StartingWith(_row)
         Else
             StartingWithNothing()
         End If
@@ -54,6 +55,27 @@ Public Class SupplierBuilder
             _supplierId = .supplier_id
             _supplierName = .supplier_name
             _supplierAddress = AddressBuilder.AnAddress.StartingWith(oSupplier).Build
+            _supplierEmail = If(.Issupplier_emailNull, "", .supplier_email)
+            _supplierPhone = If(.Issupplier_telephoneNull, "", .supplier_telephone)
+            _supplierNotes = If(.Issupplier_notesNull, "", .supplier_notes)
+            _supplierDiscount = If(.Issupplier_discount_percentNull, 0, .supplier_discount_percent)
+            _supplierCreated = .supplier_created
+            If .Issupplier_changedNull Then
+                _supplierChanged = Nothing
+            Else
+                _supplierChanged = .supplier_changed
+            End If
+            _supplierUrl = If(.Issupplier_urlNull, "", .supplier_url)
+            _isSupplierAmazon = .supplier_amazon = 1
+        End With
+        Return Me
+    End Function
+    Public Function StartingWith(ByVal ojp As netwyrksDataSet.v_jobproductRow) As SupplierBuilder
+
+        With ojp
+            _supplierId = .supplier_id
+            _supplierName = .supplier_name
+            _supplierAddress = AddressBuilder.AnAddress.StartingWith(ojp).Build
             _supplierEmail = If(.Issupplier_emailNull, "", .supplier_email)
             _supplierPhone = If(.Issupplier_telephoneNull, "", .supplier_telephone)
             _supplierNotes = If(.Issupplier_notesNull, "", .supplier_notes)

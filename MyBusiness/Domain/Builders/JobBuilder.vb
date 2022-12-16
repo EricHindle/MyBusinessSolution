@@ -74,6 +74,35 @@ Public Class JobBuilder
         End With
         Return Me
     End Function
+    Public Function StartingWith(ByVal oJp As netwyrksDataSet.v_jobproductRow) As JobBuilder
+        With oJp
+            _jobId = .job_id
+            _jobName = .job_name
+            _jobDescription = .job_description
+            _jobCompleted = .job_completed
+            _jobCreated = .job_created
+            _jobChanged = If(.Isjob_changedNull(), Nothing, .job_changed)
+            _jobCustomerId = .job_customer_id
+            _jobInvoiceNumber = If(.Isjob_invoice_numberNull, "", .job_invoice_number)
+            _jobPoNumber = If(.Isjob_po_numberNull, "", .job_po_number)
+            _jobReference = If(.Isjob_referenceNull, "", .job_reference)
+            '
+            ' use this form of IF so that NULL value is set correctly
+            '
+            If .Isjob_invoice_dateNull Then
+                _jobInvoiceDate = Nothing
+            Else
+                _jobInvoiceDate = .job_invoice_date
+            End If
+            If .Isjob_payment_dueNull() Then
+                _jobPaymentDue = Nothing
+            Else
+                _jobPaymentDue = .job_payment_due
+            End If
+            _jobUser = .job_user_id
+        End With
+        Return Me
+    End Function
     Public Function StartingWithNothing() As JobBuilder
         _jobId = -1
         _jobName = ""

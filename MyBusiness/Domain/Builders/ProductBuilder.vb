@@ -56,6 +56,26 @@ Public Class ProductBuilder
         End With
         Return Me
     End Function
+    Public Function StartingWith(ByVal oJp As netwyrksDataSet.v_jobproductRow) As ProductBuilder
+        With oJp
+            _productId = .product_id
+            _productName = .product_name
+            _productDescription = If(.Isproduct_descriptionNull, "", .product_description)
+            _productSupplierId = .product_supplier_id
+            _productCost = .product_cost
+            _productPrice = .product_price
+            _productCreated = .product_created
+            If .Isproduct_changedNull Then
+                _productChanged = Nothing
+            Else
+                _productChanged = .product_changed
+            End If
+            _productTaxable = .product_taxable
+            _productTaxRate = If(.Isproduct_tax_rateNull, 0.0, .product_tax_rate)
+            _productPurchaseUnits = If(.Isproduct_purchase_unitsNull, 0, .product_purchase_units)
+        End With
+        Return Me
+    End Function
     Public Function StartingWithNothing() As ProductBuilder
         _productId = -1
         _productName = ""

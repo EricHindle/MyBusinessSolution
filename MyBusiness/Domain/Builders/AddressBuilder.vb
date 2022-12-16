@@ -75,6 +75,14 @@ Public Class AddressBuilder
         _postcode = If(oRow.Issupplier_postcodeNull, "", oRow.supplier_postcode)
         Return Me
     End Function
+    Public Function StartingWith(ByVal oRow As netwyrksDataSet.v_jobproductRow) As AddressBuilder
+        _address1 = If(oRow.Issupplier_address_1Null, "", oRow.supplier_address_1)
+        _address2 = If(oRow.Issupplier_address_2Null, "", oRow.supplier_address_2)
+        _address3 = If(oRow.Issupplier_address_3Null, "", oRow.supplier_address_3)
+        _address4 = If(oRow.Issupplier_address_4Null, "", oRow.supplier_address_4)
+        _postcode = If(oRow.Issupplier_postcodeNull, "", oRow.supplier_postcode)
+        Return Me
+    End Function
     Public Function WithAddress1(ByVal Address1 As String) As AddressBuilder
         _address1 = Address1
         Return Me

@@ -33,6 +33,8 @@ Module ModDatabase
     Private ReadOnly oDiaryTable As New netwyrksDataSet.diaryDataTable
     Private ReadOnly oSupplierTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
     Private ReadOnly oSupplierTable As New netwyrksDataSet.supplierDataTable
+    Private ReadOnly oJobProductViewTa As New netwyrksDataSetTableAdapters.v_jobproductTableAdapter
+    Private ReadOnly oJobProductViewTable As New netwyrksDataSet.v_jobproductDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -170,7 +172,8 @@ Module ModDatabase
         Try
             oJobTa.FillById(oJobTable, pId)
             If oJobTable.Rows.Count > 0 Then
-                _job = JobBuilder.AJob.StartingWith(oJobTable.Rows(0)).Build
+                Dim _row As netwyrksDataSet.jobRow = oJobTable.Rows(0)
+                _job = JobBuilder.AJob.StartingWith(_row).Build
             End If
         Catch ex As DbException
 
@@ -216,6 +219,18 @@ Module ModDatabase
     End Function
 #End Region
 #Region "task"
+    Public Function GetTasksByJob(_jobId As Integer) As List(Of Task)
+        Dim _taskList As New List(Of Task)
+        Try
+            oTaskTa.FillByJob(oTaskTable, _jobId)
+            For Each oRow As netwyrksDataSet.taskRow In oTaskTable.Rows
+                _taskList.Add(TaskBuilder.ATask.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return _taskList
+    End Function
     Public Function DeleteTask(pTaskId As Integer) As Integer
         Dim _ct As Integer
         Try
@@ -227,6 +242,16 @@ Module ModDatabase
     End Function
 #End Region
 #Region "jobproduct"
+    Public Function GetJobProductById(_id As Integer) As JobProduct
+        Dim _jobProduct As JobProduct
+        oJobProductTa.FillById(oJobProductTable, _id)
+        If oJobProductTable.Rows.Count > 0 Then
+            _jobProduct = JobProductBuilder.AJobProduct.StartingWith(oJobProductTable.Rows(0)).Build
+        Else
+            _jobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
+        End If
+        Return _jobProduct
+    End Function
     Public Function GetJobProductByJob(_job As Job) As List(Of JobProduct)
         Dim _jobProductList As New List(Of JobProduct)
         oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
@@ -270,13 +295,54 @@ Module ModDatabase
         Return _ct
     End Function
 
+    Public Function GetJobProductViewById(_id As Integer) As FullJobProduct
+        Dim _jobProduct As FullJobProduct = FullJobProductBuilder.AJobProduct.StartingWithNothing.Build
+        Try
+            oJobProductViewTa.FillById(oJobProductViewTable, _id)
+            If oJobProductViewTable.Rows.Count > 0 Then
+                _jobProduct = FullJobProductBuilder.AJobProduct.StartingWith(oJobProductTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return _jobProduct
+    End Function
+    Public Function GetJobProductViewByJob(_id As Integer) As List(Of FullJobProduct)
+        Dim _jobProductList As New List(Of FullJobProduct)
+
+        Try
+            oJobProductViewTa.FillByJobId(oJobProductViewTable, _id)
+            For Each oRow As netwyrksDataSet.v_jobproductRow In oJobProductViewTable.Rows
+                _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return _jobProductList
+    End Function
+
+    Public Function GetJobProductViewByCustomer(_id As Integer) As List(Of FullJobProduct)
+        Dim _jobProductList As New List(Of FullJobProduct)
+
+        Try
+            oJobProductViewTa.FillByCustomerId(oJobProductViewTable, _id)
+            For Each oRow As netwyrksDataSet.v_jobproductRow In oJobProductViewTable.Rows
+                _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return _jobProductList
+    End Function
+
 #End Region
 #Region "product"
     Public Function GetProductById(ByVal pId As Integer) As Product
         Dim _product As Product = ProductBuilder.AProduct.StartingWithNothing.Build
         oProductTa.FillById(oProductTable, pId)
         If oProductTable.Rows.Count > 0 Then
-            _product = ProductBuilder.AProduct.StartingWith(oProductTable.Rows(0)).Build
+            Dim _row As netwyrksDataSet.productRow = oProductTable.Rows(0)
+            _product = ProductBuilder.AProduct.StartingWith(_row).Build
         End If
         Return _product
     End Function
@@ -325,7 +391,8 @@ Module ModDatabase
         Try
             oCustomerTa.FillById(oCustomerTable, pCustId)
             If oCustomerTable.Rows.Count > 0 Then
-                _cust = CustomerBuilder.ACustomer.StartingWith(oCustomerTable.Rows(0)).Build
+                Dim _row As netwyrksDataSet.customerRow = oCustomerTable.Rows(0)
+                _cust = CustomerBuilder.ACustomer.StartingWith(_row).Build
             End If
         Catch ex As DbException
 
@@ -394,7 +461,8 @@ Module ModDatabase
         Try
             oSupplierTa.FillById(oSupplierTable, pSuppId)
             If oSupplierTable.Rows.Count > 0 Then
-                _supp = SupplierBuilder.ASupplier.StartingWith(oSupplierTable.Rows(0)).Build
+                Dim _row As netwyrksDataSet.supplierRow = oSupplierTable.Rows(0)
+                _supp = SupplierBuilder.ASupplier.StartingWith(_row).Build
             End If
         Catch ex As DbException
 

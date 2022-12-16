@@ -31,7 +31,8 @@ Public Class CustomerBuilder
         Dim oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
         Dim oCustTable As New netwyrksDataSet.customerDataTable
         If oCustTa.FillById(oCustTable, custId) > 0 Then
-            StartingWith(oCustTable.Rows(0))
+            Dim _row As netwyrksDataSet.customerRow = oCustTable.Rows(0)
+            StartingWith(_row)
         Else
             StartingWithNothing()
         End If
@@ -56,6 +57,29 @@ Public Class CustomerBuilder
         Return Me
     End Function
     Public Function StartingWith(ByVal oRow As netwyrksDataSet.customerRow) As CustomerBuilder
+        If oRow Is Nothing Then
+            StartingWithNothing()
+        Else
+            With oRow
+                _custId = .customer_id
+                _custName = .customer_name
+                _custAddress = AddressBuilder.AnAddress.StartingWith(oRow).Build
+                _phone = If(.Iscustomer_telephoneNull, "", .customer_telephone)
+                _email = If(.Iscustomer_emailNull, "", .customer_email)
+                _discount = If(.Iscustomer_discount_percentNull, 0.0, .customer_discount_percent)
+                _notes = If(.Iscustomer_notesNull, "", .customer_notes)
+                _dateCreated = .customer_created
+                If .Iscustomer_changedNull Then
+                    _dateChanged = Nothing
+                Else
+                    _dateChanged = .customer_changed
+                End If
+                _terms = If(.Iscustomer_termsNull, 0, .customer_terms)
+            End With
+        End If
+        Return Me
+    End Function
+    Public Function StartingWith(ByVal oRow As netwyrksDataSet.v_jobproductRow) As CustomerBuilder
         If oRow Is Nothing Then
             StartingWithNothing()
         Else

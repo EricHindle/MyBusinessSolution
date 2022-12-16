@@ -53,14 +53,7 @@ Public Class FrmJobMaint
         LogUtil.Debug("Started", Name)
         GetFormPos(Me, My.Settings.JobMaintFormPos)
         isLoading = True
-        Try
-            oUserTa.Fill(oUserTable)
-            cbUser.DataSource = oUserTable
-            cbUser.DisplayMember = "user_code"
-            cbUser.ValueMember = "user_id"
-        Catch ex As Exception
-
-        End Try
+        LoadUserList()
         LoadCustomerList()
         If _job IsNot Nothing Then
             _currentJobId = _job.JobId
@@ -79,6 +72,7 @@ Public Class FrmJobMaint
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
+
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
         LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Name)
         Using _custForm As New FrmViewCust
@@ -171,7 +165,6 @@ Public Class FrmJobMaint
             Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             Using _taskForm As New FrmTask
-
                 _taskForm.TheJob = _job
                 _taskForm.TaskId = _taskId
                 _taskForm.ShowDialog()
@@ -183,7 +176,7 @@ Public Class FrmJobMaint
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Name)
         Dim _jpId As Integer = dgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
-        _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_jpId).Build
+        _currentJobProduct = GetJobProductById(_jpId)
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
             _jobProductForm.SelectedJobProduct = _currentJobProduct
@@ -239,75 +232,70 @@ Public Class FrmJobMaint
 
         End Try
     End Sub
+
+    Private Sub LoadUserList()
+        Try
+            oUserTa.Fill(oUserTable)
+            cbUser.DataSource = oUserTable
+            cbUser.DisplayMember = "user_code"
+            cbUser.ValueMember = "user_id"
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub FillTaskList(ByVal pJobId As Integer)
         dgvTasks.Rows.Clear()
         Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
         Dim oTaskTable As New netwyrksDataSet.taskDataTable
         LogUtil.Debug("Finding tasks", Name)
-        oTaskTa.FillByJob(oTaskTable, pJobId)
-        For Each oRow As netwyrksDataSet.taskRow In oTaskTable.Rows
+        Dim _taskList As List(Of Task) = GetTasksByJob(pJobId)
+        For Each oTask As Task In _taskList
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
-            tRow.Cells(taskId.Name).Value = oRow.task_id
-            tRow.Cells(taskName.Name).Value = oRow.task_name
-            Dim _startDue As String = If(oRow.Istask_start_dueNull, "", Format(oRow.task_start_due, "dd/MM/yyyy"))
+            tRow.Cells(taskId.Name).Value = oTask.TaskId
+            tRow.Cells(taskName.Name).Value = oTask.TaskName
+            Dim _startDue As String = Format(oTask.TaskStartDue, "dd/MM/yyyy")
             tRow.Cells(taskStartDue.Name).Value = _startDue
-            tRow.Cells(taskHours.Name).Value = oRow.task_time
-            tRow.Cells(taskStarted.Name).Value = CStr(oRow.task_started)
-            tRow.Cells(taskCompleted.Name).Value = CStr(oRow.task_completed)
-            tRow.Cells(taskPrice.Name).Value = oRow.task_cost
+            tRow.Cells(taskHours.Name).Value = oTask.TaskHours
+            tRow.Cells(taskStarted.Name).Value = If(oTask.IsTaskStarted, "Yes", "No")
+            tRow.Cells(taskCompleted.Name).Value = If(oTask.IstaskCompleted, "Yes", "No")
+            tRow.Cells(taskPrice.Name).Value = oTask.TaskCost
         Next
-        oTaskTa.Dispose()
-        oTaskTable.Dispose()
     End Sub
     Private Sub FillProductList(ByVal pJobId As Integer)
         dgvProducts.Rows.Clear()
-        Dim oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
-        Dim oJobProductTable As New netwyrksDataSet.job_productDataTable
-        Dim oProdTa As New netwyrksDataSetTableAdapters.productTableAdapter
-        Dim oProdTable As New netwyrksDataSet.productDataTable
-        Dim oSuppTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-        Dim oSuppTable As New netwyrksDataSet.supplierDataTable
+
         LogUtil.Debug("Finding products", Name)
-        oJobProductTa.FillByJob(oJobProductTable, pJobId)
-        For Each oRow As netwyrksDataSet.job_productRow In oJobProductTable.Rows
-            Dim _jpId As Integer = oRow.job_product_id
-            Dim _productId As Integer = oRow.jp_product_id
-            Dim _qty As Integer = oRow.jp_quantity
-            Dim _productName As String = "** Missing"
+
+        Dim _job As Job = GetJobById(pJobId)
+        Dim _jobProductList As List(Of JobProduct) = GetJobProductByJob(_job)
+
+        For Each _jobProduct As JobProduct In _jobProductList
+            Dim _jpId As Integer = _jobProduct.JobProductId
+            Dim _productId As Integer = _jobProduct.ThisProduct.ProductId
+            Dim _qty As Integer = _jobProduct.Quantity
+            Dim _productName As String = _jobProduct.ThisProduct.ProductName
             Dim _supplierName As String = "** Missing"
-            Dim _supplierId As Integer = -1
-            Dim _cost As Decimal = 0
-            Dim _price As Decimal = 0
-            If oProdTa.FillById(oProdTable, _productId) = 1 Then
-                Dim pRow As netwyrksDataSet.productRow = oProdTable.Rows(0)
-                _productName = pRow.product_name
-                _supplierId = pRow.product_supplier_id
-                _cost = pRow.product_cost / pRow.product_purchase_units
-                _price = pRow.product_price
-            End If
+            Dim _supplierId As Integer = _jobProduct.ThisProduct.ProductSupplierId
+            Dim _cost As Decimal = _jobProduct.ThisProduct.ProductCost / _jobProduct.ThisProduct.PurchaseUnits
+            Dim _price As Decimal = _jobProduct.ThisProduct.ProductPrice
+
             If _supplierId > 0 Then
-                If oSuppTa.FillById(oSuppTable, _supplierId) = 1 Then
-                    Dim sRow As netwyrksDataSet.supplierRow = oSuppTable.Rows(0)
-                    _supplierName = sRow.supplier_name
-                End If
+                Dim _supplier As Supplier = GetSupplierById(_supplierId)
+                _supplierName = _supplier.SupplierName
             End If
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-            tRow.Cells(prodSupp.Name).Value = _supplierName
-            tRow.Cells(prodName.Name).Value = _productName
-            tRow.Cells(prodId.Name).Value = _productId
-            tRow.Cells(jpId.Name).Value = _jpId
-            tRow.Cells(prodQty.Name).Value = _qty
-            tRow.Cells(prodCost.Name).Value = _cost
-            tRow.Cells(prodPrice.Name).Value = _price
-            tRow.Cells(jobPrice.Name).Value = oRow.jp_price
+                tRow.Cells(prodSupp.Name).Value = _supplierName
+                tRow.Cells(prodName.Name).Value = _productName
+                tRow.Cells(prodId.Name).Value = _productId
+                tRow.Cells(jpId.Name).Value = _jpId
+                tRow.Cells(prodQty.Name).Value = _qty
+                tRow.Cells(prodCost.Name).Value = _cost
+                tRow.Cells(prodPrice.Name).Value = _price
+            tRow.Cells(jobPrice.Name).Value = _jobProduct.Price
+
         Next
         dgvProducts.ClearSelection()
-        oJobProductTa.Dispose()
-        oJobProductTable.Dispose()
-        oProdTable.Dispose()
-        oProdTa.Dispose()
-        oSuppTable.Dispose()
-        oSuppTa.Dispose()
+
     End Sub
     Private Sub NewJob()
         LogUtil.Debug("New job", Name())
