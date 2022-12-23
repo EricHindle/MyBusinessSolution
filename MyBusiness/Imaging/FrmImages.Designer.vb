@@ -29,21 +29,34 @@ Partial Class FrmImages
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmImages))
         Me.lblScreenName = New System.Windows.Forms.Label()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.DgvImages = New System.Windows.Forms.DataGridView()
         Me.col1 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.col2 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.col3 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.col4 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.TxtImagePath = New System.Windows.Forms.TextBox()
+        Me.TxtImageDesc = New System.Windows.Forms.TextBox()
+        Me.PicRemove = New System.Windows.Forms.PictureBox()
+        Me.PicAdd = New System.Windows.Forms.PictureBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtnFindFile = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         CType(Me.DgvImages, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -58,28 +71,6 @@ Partial Class FrmImages
         Me.lblScreenName.TabIndex = 70
         Me.lblScreenName.Text = "Images"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnRemove
-        '
-        Me.btnRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnRemove.Location = New System.Drawing.Point(131, 514)
-        Me.btnRemove.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(93, 38)
-        Me.btnRemove.TabIndex = 83
-        Me.btnRemove.Text = "Remove"
-        Me.btnRemove.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(13, 514)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(93, 38)
-        Me.btnAdd.TabIndex = 81
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
@@ -96,13 +87,22 @@ Partial Class FrmImages
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 556)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 478)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(887, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(530, 22)
         Me.StatusStrip1.TabIndex = 85
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'LblStatus
+        '
+        Me.LblStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.LblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.LblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(10, 17)
         '
         'DgvImages
         '
@@ -116,17 +116,17 @@ Partial Class FrmImages
         Me.DgvImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvImages.ColumnHeadersVisible = False
         Me.DgvImages.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col1, Me.col2, Me.col3, Me.col4})
-        Me.DgvImages.Location = New System.Drawing.Point(12, 60)
+        Me.DgvImages.Location = New System.Drawing.Point(9, 72)
         Me.DgvImages.Name = "DgvImages"
         Me.DgvImages.ReadOnly = True
         Me.DgvImages.RowHeadersVisible = False
         Me.DgvImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DgvImages.Size = New System.Drawing.Size(862, 361)
+        Me.DgvImages.Size = New System.Drawing.Size(505, 258)
         Me.DgvImages.TabIndex = 86
         '
         'col1
         '
-        Me.col1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.col1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.col1.HeaderText = "Column1"
         Me.col1.Name = "col1"
         Me.col1.ReadOnly = True
@@ -135,7 +135,7 @@ Partial Class FrmImages
         '
         'col2
         '
-        Me.col2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.col2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.col2.HeaderText = "Column2"
         Me.col2.Name = "col2"
         Me.col2.ReadOnly = True
@@ -144,12 +144,14 @@ Partial Class FrmImages
         '
         'col3
         '
+        Me.col3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.col3.HeaderText = "Column3"
         Me.col3.Name = "col3"
         Me.col3.ReadOnly = True
         '
         'col4
         '
+        Me.col4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.col4.HeaderText = "Column4"
         Me.col4.Name = "col4"
         Me.col4.ReadOnly = True
@@ -159,46 +161,153 @@ Partial Class FrmImages
         Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
         Me.PicClose.InitialImage = Nothing
-        Me.PicClose.Location = New System.Drawing.Point(833, 510)
+        Me.PicClose.Location = New System.Drawing.Point(476, 432)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 93
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
+        '
+        'TxtImagePath
+        '
+        Me.TxtImagePath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtImagePath.Location = New System.Drawing.Point(91, 353)
+        Me.TxtImagePath.Name = "TxtImagePath"
+        Me.TxtImagePath.Size = New System.Drawing.Size(397, 24)
+        Me.TxtImagePath.TabIndex = 94
+        '
+        'TxtImageDesc
+        '
+        Me.TxtImageDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtImageDesc.Location = New System.Drawing.Point(91, 383)
+        Me.TxtImageDesc.Name = "TxtImageDesc"
+        Me.TxtImageDesc.Size = New System.Drawing.Size(406, 24)
+        Me.TxtImageDesc.TabIndex = 95
+        '
+        'PicRemove
+        '
+        Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicRemove.InitialImage = Nothing
+        Me.PicRemove.Location = New System.Drawing.Point(143, 433)
+        Me.PicRemove.Name = "PicRemove"
+        Me.PicRemove.Size = New System.Drawing.Size(42, 42)
+        Me.PicRemove.TabIndex = 96
+        Me.PicRemove.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicRemove, "Remove Image")
+        '
+        'PicAdd
+        '
+        Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.InitialImage = Nothing
+        Me.PicAdd.Location = New System.Drawing.Point(12, 432)
+        Me.PicAdd.Name = "PicAdd"
+        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.TabIndex = 97
+        Me.PicAdd.TabStop = False
+        '
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(76, 433)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 98
+        Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Image")
+        '
+        'BtnFindFile
+        '
+        Me.BtnFindFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnFindFile.BackgroundImage = Global.MyBusiness.My.Resources.Resources.left24
+        Me.BtnFindFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.BtnFindFile.Location = New System.Drawing.Point(494, 353)
+        Me.BtnFindFile.Name = "BtnFindFile"
+        Me.BtnFindFile.Size = New System.Drawing.Size(24, 24)
+        Me.BtnFindFile.TabIndex = 99
+        Me.ToolTip1.SetToolTip(Me.BtnFindFile, "Select file")
+        Me.BtnFindFile.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(10, 357)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(36, 17)
+        Me.Label1.TabIndex = 100
+        Me.Label1.Text = "Path"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(10, 386)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 17)
+        Me.Label2.TabIndex = 101
+        Me.Label2.Text = "Description"
         '
         'FrmImages
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(887, 578)
+        Me.ClientSize = New System.Drawing.Size(530, 500)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.BtnFindFile)
+        Me.Controls.Add(Me.PicUpdate)
+        Me.Controls.Add(Me.PicAdd)
+        Me.Controls.Add(Me.PicRemove)
+        Me.Controls.Add(Me.TxtImageDesc)
+        Me.Controls.Add(Me.TxtImagePath)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.DgvImages)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.btnRemove)
-        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.lblScreenName)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.MinimumSize = New System.Drawing.Size(415, 438)
         Me.Name = "FrmImages"
         Me.ShowIcon = False
+        Me.ToolTip1.SetToolTip(Me, "Add Image")
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         CType(Me.DgvImages, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents lblScreenName As Label
-    Friend WithEvents btnRemove As Button
-    Friend WithEvents btnAdd As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents DgvImages As DataGridView
+    Friend WithEvents PicClose As PictureBox
     Friend WithEvents col1 As DataGridViewImageColumn
     Friend WithEvents col2 As DataGridViewImageColumn
     Friend WithEvents col3 As DataGridViewImageColumn
     Friend WithEvents col4 As DataGridViewImageColumn
-    Friend WithEvents PicClose As PictureBox
+    Friend WithEvents TxtImagePath As TextBox
+    Friend WithEvents TxtImageDesc As TextBox
+    Friend WithEvents PicRemove As PictureBox
+    Friend WithEvents PicAdd As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents BtnFindFile As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents LblStatus As ToolStripStatusLabel
 End Class

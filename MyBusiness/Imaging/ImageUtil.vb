@@ -184,5 +184,32 @@ Public Class ImageUtil
         oEncoderParameters.Param(0) = oEncoderParameter
         Return oEncoderParameters
     End Function
+    Public Shared Function GetImageFileName(ByVal pDialogType As OpenOrSave, Optional ByVal pImgType As Integer = 0, Optional ByVal pFolder As String = Nothing, Optional ByVal pFilename As String = Nothing) As String
+        Dim sFilename As String = ""
+
+        If pDialogType = OpenOrSave.Open Then
+            Using fbd As New OpenFileDialog
+                If Not String.IsNullOrEmpty(pFolder) Then
+                    fbd.InitialDirectory = pFolder
+                End If
+                If Not String.IsNullOrEmpty(pFilename) Then
+                    fbd.FileName = pFilename
+                End If
+                sFilename = ShowFileDialog(fbd, pImgType, sImageFolder)
+            End Using
+        Else
+            Using fbd As New SaveFileDialog
+                If Not String.IsNullOrEmpty(pFolder) Then
+                    fbd.InitialDirectory = pFolder
+                End If
+                If Not String.IsNullOrEmpty(pFilename) Then
+                    fbd.FileName = pFilename
+                End If
+                sFilename = ShowFileDialog(fbd, pImgType, sImageFolder)
+            End Using
+        End If
+        Return sFilename
+    End Function
+
 #End Region
 End Class

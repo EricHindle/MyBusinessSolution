@@ -555,6 +555,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\abandon.png" />
+    <None Include="Images\add.png" />
     <Content Include="Images\anubis.ico" />
     <Content Include="Images\anubis_button.png" />
     <Content Include="Images\anubis_icon_2.jpg" />
@@ -569,6 +570,9 @@
     <Content Include="Images\exitbutton.png" />
     <Content Include="Images\export button.png" />
     <Content Include="Images\gauge42.png" />
+    <None Include="Images\remove.png" />
+    <None Include="Images\left24.png" />
+    <None Include="Images\update.png" />
     <Content Include="MyBusiness5.ico" />
     <None Include="packages.config" />
     <None Include="Resources\MyBusiness.png" />

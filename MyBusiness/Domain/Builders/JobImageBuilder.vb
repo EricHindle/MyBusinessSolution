@@ -52,11 +52,11 @@ Public Class JobImageBuilder
         _imageId = pImageId
         Return Me
     End Function
-    Public Function WithImagePath(pImagepath As Integer) As JobImageBuilder
+    Public Function WithImagePath(pImagepath As String) As JobImageBuilder
         _imagePath = pImagepath
         Return Me
     End Function
-    Public Function WithImageDesc(pImageDesc As Integer) As JobImageBuilder
+    Public Function WithImageDesc(pImageDesc As String) As JobImageBuilder
         _imageDesc = pImageDesc
         Return Me
     End Function
