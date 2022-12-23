@@ -72,7 +72,6 @@ Public Class FrmJobMaint
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
-
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
         LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Name)
         Using _custForm As New FrmViewCust
@@ -97,9 +96,7 @@ Public Class FrmJobMaint
         End Using
         FillProductList(_currentJobId)
     End Sub
-    Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
+
     Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
         With _job
             _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim) _
@@ -190,6 +187,21 @@ Public Class FrmJobMaint
             _invoicePrinter.CreateInvoice(_job)
         End If
     End Sub
+    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles PicDiary.Click
+        ShowDiary()
+    End Sub
+    Private Sub PicImages_Click(sender As Object, e As EventArgs) Handles PicImages.Click
+        ShowImages()
+    End Sub
+    Private Sub dgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
+        If dgvProducts.SelectedRows.Count > 0 Then
+            Dim _row As DataGridViewRow = dgvProducts.SelectedRows(0)
+            Dim _id As Integer = _row.Cells(jpId.Name).Value
+            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
+        Else
+            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
+        End If
+    End Sub
 #End Region
 #Region "functions"
     Private Sub FillJobDetails()
@@ -232,7 +244,6 @@ Public Class FrmJobMaint
 
         End Try
     End Sub
-
     Private Sub LoadUserList()
         Try
             oUserTa.Fill(oUserTable)
@@ -334,26 +345,21 @@ Public Class FrmJobMaint
         End If
         Return isInsertOk
     End Function
-
-    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles picDiary.Click
-        ShowDiary()
-    End Sub
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
             _diary.ForJobId = _currentJobId
             _diary.ShowDialog()
         End Using
     End Sub
-
-    Private Sub dgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
-        If dgvProducts.SelectedRows.Count > 0 Then
-            Dim _row As DataGridViewRow = dgvProducts.SelectedRows(0)
-            Dim _id As Integer = _row.Cells(jpId.Name).Value
-            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
-        Else
-            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
-        End If
+    Private Sub ShowImages()
+        Using _images As New FrmImages
+            _images.ForJob = GetJobById(_currentJobId)
+            _images.ShowDialog()
+        End Using
     End Sub
 
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
 #End Region
 End Class

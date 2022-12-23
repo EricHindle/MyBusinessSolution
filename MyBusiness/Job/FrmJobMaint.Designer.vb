@@ -25,7 +25,6 @@ Partial Class FrmJobMaint
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
         Me.btnAddTask = New System.Windows.Forms.Button()
@@ -39,6 +38,14 @@ Partial Class FrmJobMaint
         Me.taskPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnMaintProducts = New System.Windows.Forms.Button()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
+        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.jobPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
         Me.GrpInvoice = New System.Windows.Forms.GroupBox()
         Me.LblTerms = New System.Windows.Forms.Label()
@@ -70,14 +77,8 @@ Partial Class FrmJobMaint
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.PicDiary = New System.Windows.Forms.PictureBox()
-        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PicImages = New System.Windows.Forms.PictureBox()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +94,8 @@ Partial Class FrmJobMaint
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicImages, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -132,19 +135,6 @@ Partial Class FrmJobMaint
         Me.lblScreenName.TabIndex = 73
         Me.lblScreenName.Text = "Job"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnClose
-        '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(384, 532)
-        Me.btnClose.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(136, 46)
-        Me.btnClose.TabIndex = 72
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
         '
         'btnUpdate
         '
@@ -284,6 +274,67 @@ Partial Class FrmJobMaint
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvProducts.Size = New System.Drawing.Size(538, 213)
         Me.dgvProducts.TabIndex = 0
+        '
+        'jpId
+        '
+        Me.jpId.HeaderText = "Id"
+        Me.jpId.Name = "jpId"
+        Me.jpId.ReadOnly = True
+        Me.jpId.Visible = False
+        '
+        'prodSupp
+        '
+        Me.prodSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodSupp.HeaderText = "Supplier"
+        Me.prodSupp.Name = "prodSupp"
+        Me.prodSupp.ReadOnly = True
+        Me.prodSupp.Width = 120
+        '
+        'prodId
+        '
+        Me.prodId.HeaderText = "prodId"
+        Me.prodId.Name = "prodId"
+        Me.prodId.ReadOnly = True
+        Me.prodId.Visible = False
+        '
+        'prodName
+        '
+        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.prodName.HeaderText = "ProductName"
+        Me.prodName.Name = "prodName"
+        Me.prodName.ReadOnly = True
+        '
+        'prodQty
+        '
+        Me.prodQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodQty.HeaderText = "Qty"
+        Me.prodQty.Name = "prodQty"
+        Me.prodQty.ReadOnly = True
+        Me.prodQty.Width = 60
+        '
+        'prodCost
+        '
+        Me.prodCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodCost.HeaderText = "Unit Cost"
+        Me.prodCost.Name = "prodCost"
+        Me.prodCost.ReadOnly = True
+        Me.prodCost.Width = 70
+        '
+        'prodPrice
+        '
+        Me.prodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.prodPrice.HeaderText = "Std Price"
+        Me.prodPrice.Name = "prodPrice"
+        Me.prodPrice.ReadOnly = True
+        Me.prodPrice.Width = 70
+        '
+        'jobPrice
+        '
+        Me.jobPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.jobPrice.HeaderText = "Job Price"
+        Me.jobPrice.Name = "jobPrice"
+        Me.jobPrice.ReadOnly = True
+        Me.jobPrice.Width = 70
         '
         'pnlJob
         '
@@ -666,84 +717,46 @@ Partial Class FrmJobMaint
         Me.PicDiary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicDiary.Image = Global.MyBusiness.My.Resources.Resources.diary
         Me.PicDiary.InitialImage = Nothing
-        Me.PicDiary.Location = New System.Drawing.Point(1020, 536)
+        Me.PicDiary.Location = New System.Drawing.Point(946, 536)
         Me.PicDiary.Name = "PicDiary"
         Me.PicDiary.Size = New System.Drawing.Size(42, 42)
         Me.PicDiary.TabIndex = 90
         Me.PicDiary.TabStop = False
         '
-        'jpId
+        'PicImages
         '
-        Me.jpId.HeaderText = "Id"
-        Me.jpId.Name = "jpId"
-        Me.jpId.ReadOnly = True
-        Me.jpId.Visible = False
+        Me.PicImages.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicImages.Image = Global.MyBusiness.My.Resources.Resources.image
+        Me.PicImages.InitialImage = Nothing
+        Me.PicImages.Location = New System.Drawing.Point(898, 536)
+        Me.PicImages.Name = "PicImages"
+        Me.PicImages.Size = New System.Drawing.Size(42, 42)
+        Me.PicImages.TabIndex = 91
+        Me.PicImages.TabStop = False
         '
-        'prodSupp
+        'PicClose
         '
-        Me.prodSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodSupp.HeaderText = "Supplier"
-        Me.prodSupp.Name = "prodSupp"
-        Me.prodSupp.ReadOnly = True
-        Me.prodSupp.Width = 120
-        '
-        'prodId
-        '
-        Me.prodId.HeaderText = "prodId"
-        Me.prodId.Name = "prodId"
-        Me.prodId.ReadOnly = True
-        Me.prodId.Visible = False
-        '
-        'prodName
-        '
-        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.prodName.HeaderText = "ProductName"
-        Me.prodName.Name = "prodName"
-        Me.prodName.ReadOnly = True
-        '
-        'prodQty
-        '
-        Me.prodQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodQty.HeaderText = "Qty"
-        Me.prodQty.Name = "prodQty"
-        Me.prodQty.ReadOnly = True
-        Me.prodQty.Width = 60
-        '
-        'prodCost
-        '
-        Me.prodCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodCost.HeaderText = "Unit Cost"
-        Me.prodCost.Name = "prodCost"
-        Me.prodCost.ReadOnly = True
-        Me.prodCost.Width = 70
-        '
-        'prodPrice
-        '
-        Me.prodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodPrice.HeaderText = "Std Price"
-        Me.prodPrice.Name = "prodPrice"
-        Me.prodPrice.ReadOnly = True
-        Me.prodPrice.Width = 70
-        '
-        'jobPrice
-        '
-        Me.jobPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jobPrice.HeaderText = "Job Price"
-        Me.jobPrice.Name = "jobPrice"
-        Me.jobPrice.ReadOnly = True
-        Me.jobPrice.Width = 70
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(1022, 536)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 92
+        Me.PicClose.TabStop = False
         '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 611)
+        Me.Controls.Add(Me.PicClose)
+        Me.Controls.Add(Me.PicImages)
         Me.Controls.Add(Me.PicDiary)
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
-        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnUpdate)
         Me.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -769,6 +782,8 @@ Partial Class FrmJobMaint
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicImages, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -777,7 +792,6 @@ Partial Class FrmJobMaint
     Friend WithEvents btnInvoice As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
-    Friend WithEvents btnClose As Button
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents btnAddTask As Button
@@ -830,4 +844,6 @@ Partial Class FrmJobMaint
     Friend WithEvents prodCost As DataGridViewTextBoxColumn
     Friend WithEvents prodPrice As DataGridViewTextBoxColumn
     Friend WithEvents jobPrice As DataGridViewTextBoxColumn
+    Friend WithEvents PicImages As PictureBox
+    Friend WithEvents PicClose As PictureBox
 End Class

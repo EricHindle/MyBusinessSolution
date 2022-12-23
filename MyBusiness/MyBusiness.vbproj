@@ -174,6 +174,7 @@
     </Compile>
     <Compile Include="Domain\Builders\AuditEntryBuilder.vb" />
     <Compile Include="Domain\Builders\FullJobProductBuilder.vb" />
+    <Compile Include="Domain\Builders\JobImageBuilder.vb" />
     <Compile Include="Domain\Builders\JobProductBuilder.vb" />
     <Compile Include="Domain\Objects\Address.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
@@ -201,6 +202,7 @@
     <Compile Include="Domain\netwyrksDataSet.vb">
       <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Objects\JobImage.vb" />
     <Compile Include="Domain\Objects\JobProduct.vb" />
     <Compile Include="Domain\Objects\Product.vb" />
     <Compile Include="Domain\Builders\ProductBuilder.vb" />
@@ -215,6 +217,12 @@
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
+    <Compile Include="Imaging\FrmImages.Designer.vb">
+      <DependentUpon>FrmImages.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Imaging\FrmImages.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Imaging\ImageUtil.vb" />
     <Compile Include="Invoice\ClsRtfConstants.vb" />
     <Compile Include="Invoice\DlgViewInvoice.Designer.vb">
@@ -424,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\FrmRestore.resx">
       <DependentUpon>FrmRestore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imaging\FrmImages.resx">
+      <DependentUpon>FrmImages.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\DlgViewInvoice.resx">
       <DependentUpon>DlgViewInvoice.vb</DependentUpon>

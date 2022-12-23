@@ -226,6 +226,8 @@ Public Class FrmBackup
                         BackupTable(GetJobTable)
                     Case "Job_Product"
                         BackupTable(GetJob_ProductTable)
+                    Case "Job_Image"
+                        BackupTable(GetJob_ImageTable)
                     Case "Product"
                         BackupTable(GetProductTable)
                     Case "Supplier"

@@ -21,6 +21,6 @@ Partial Class netwyrksDataSet
 End Class
 
 Namespace netwyrksDataSetTableAdapters
-    Partial Public Class diaryTableAdapter
+    Partial Public Class job_imageTableAdapter
     End Class
 End Namespace

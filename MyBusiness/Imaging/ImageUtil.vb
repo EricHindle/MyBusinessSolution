@@ -108,6 +108,33 @@ Public Class ImageUtil
         End If
         Return sFilename
     End Function
+    Public Shared Function ResizeImage(pImage As Bitmap, pWidth As Integer, pHeight As Integer) As Bitmap
+        If pImage IsNot Nothing Then
+            Return New Bitmap(pImage, pWidth, pHeight)
+        Else
+            Return Nothing
+        End If
+    End Function
+    Public Shared Function ResizeImage(pImage As Byte(), pWidth As Integer, pHeight As Integer) As Bitmap
+        Dim _image As Image = ConvertBytesToImage(pImage)
+        If _image IsNot Nothing Then
+            Return ResizeImage(_image, pWidth, pHeight)
+        Else
+            Return Nothing
+        End If
+    End Function
+    Public Shared Function ConvertBytesToImage(pImageBytes As Byte()) As Image
+        Dim _image As System.Drawing.Image = Nothing
+        Try
+            Dim imageConverter As New ImageConverter()
+            _image = imageConverter.ConvertFrom(pImageBytes)
+        Catch ex As ArgumentException
+            LogUtil.Exception("Exception converting bytes", ex, "ImageUtil")
+        Catch ex As NotSupportedException
+            LogUtil.Exception("Exception converting bytes", ex, "ImageUtil")
+        End Try
+        Return _image
+    End Function
     Public Shared Function ResizeImageToBitmap(ByVal sourceImage As System.Drawing.Image, ByVal targetWidth As Integer, targetHeight As Integer, Optional ByVal sourceOriginX As Integer = 0, Optional ByVal sourceOriginY As Integer = 0) As Bitmap
         Using targetBitmap As New System.Drawing.Bitmap(targetWidth, targetHeight)
             Dim targetRectangle As New Rectangle(sourceOriginX, sourceOriginY, targetWidth, targetHeight)

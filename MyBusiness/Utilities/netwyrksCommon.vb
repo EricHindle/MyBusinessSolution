@@ -168,14 +168,47 @@ Public Module netwyrksCommon
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub CreateMissingFolders()
-        My.Computer.FileSystem.CreateDirectory(sLogFolder)
-        My.Computer.FileSystem.CreateDirectory(sTempFolder)
-        My.Computer.FileSystem.CreateDirectory(sReportFolder)
-        My.Computer.FileSystem.CreateDirectory(sCacheFolder)
-        My.Computer.FileSystem.CreateDirectory(sInvoiceFolder)
-        My.Computer.FileSystem.CreateDirectory(sReportFolder)
-        My.Computer.FileSystem.CreateDirectory(sBackupFolder)
+        Try
+            My.Computer.FileSystem.CreateDirectory(sLogFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sLogFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
 
+        Try
+            My.Computer.FileSystem.CreateDirectory(sTempFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sTempFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
+
+        Try
+            My.Computer.FileSystem.CreateDirectory(sReportFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sReportFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
+
+        Try
+            My.Computer.FileSystem.CreateDirectory(sInvoiceFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sInvoiceFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
+
+        Try
+            My.Computer.FileSystem.CreateDirectory(sCacheFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sCacheFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
+
+        Try
+            My.Computer.FileSystem.CreateDirectory(sBackupFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sBackupFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
+
+        Try
+            My.Computer.FileSystem.CreateDirectory(sImageFolder)
+        Catch ex As Exception
+            MsgBox("Cannot create " & sImageFolder, MsgBoxStyle.Exclamation, "Folder Creation")
+        End Try
     End Sub
 #End Region
 #Region "cache"

@@ -7,7 +7,6 @@
 
 Imports System.Data.Common
 Imports System.IO
-Imports MyBusiness.netwyrksDataSetTableAdapters
 
 Module ModDatabase
 #Region "constants"
@@ -36,6 +35,8 @@ Module ModDatabase
     Private ReadOnly oSupplierTable As New netwyrksDataSet.supplierDataTable
     Private ReadOnly oJobProductViewTa As New netwyrksDataSetTableAdapters.v_jobproductTableAdapter
     Private ReadOnly oJobProductViewTable As New netwyrksDataSet.v_jobproductDataTable
+    Private ReadOnly oJobImageTa As New netwyrksDataSetTableAdapters.job_imageTableAdapter
+    Private ReadOnly oJobImageTable As New netwyrksDataSet.job_imageDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -317,7 +318,6 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
-
     Public Function GetJobProductViewById(_id As Integer) As FullJobProduct
         Dim _jobProduct As FullJobProduct = FullJobProductBuilder.AJobProduct.StartingWithNothing.Build
         Try
@@ -343,7 +343,6 @@ Module ModDatabase
         End Try
         Return _jobProductList
     End Function
-
     Public Function GetJobProductViewByCustomer(_id As Integer) As List(Of FullJobProduct)
         Dim _jobProductList As New List(Of FullJobProduct)
 
@@ -357,7 +356,60 @@ Module ModDatabase
         End Try
         Return _jobProductList
     End Function
+#End Region
+#Region "jobimage"
+    Public Function GetJobImageById(_id As Integer) As JobImage
+        Dim _jobImage As JobImage
+        oJobImageTa.FillByImageId(oJobImageTable, _id)
+        If oJobImageTable.Rows.Count > 0 Then
+            _jobImage = JobImageBuilder.AJobImage.StartingWith(oJobImageTable.Rows(0)).Build
+        Else
+            _jobImage = JobImageBuilder.AJobImage.StartingWithNothing.Build
+        End If
+        Return _jobImage
+    End Function
+    Public Function GetJobImageByJob(_job As Job) As List(Of JobImage)
+        Dim _jobImageList As New List(Of JobImage)
+        oJobImageTa.FillByJobId(oJobImageTable, _job.JobId)
+        For Each oRow As netwyrksDataSet.job_imageRow In oJobImageTable.Rows
+            _jobImageList.Add(JobImageBuilder.AJobImage.StartingWith(oRow).Build)
+        Next
+        Return _jobImageList
+    End Function
+    Public Function InsertJobImage(pJobImage As JobImage) As Integer
+        Dim _jobImageId As Integer
+        Try
+            With pJobImage
+                _jobImageId = oJobImageTa.InsertJobImage(.JobId, .ImagePath, .ImageDesc)
+                If _jobImageId > 0 Then
+                    AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobImage, _jobImageId, AuditUtil.AuditableAction.create, "", .ToString)
+                End If
+            End With
+        Catch ex As Exception
 
+        End Try
+        Return _jobImageId
+    End Function
+    Public Function DeleteJobImage(pJobImageId As Integer) As Integer
+        Dim _ct As Integer = 0
+        Try
+            _ct = oJobImageTa.DeleteImage(pJobImageId)
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+    Public Function UpdateJobImage(pJobImage As JobImage) As Integer
+        Dim _ct As Integer
+        Try
+            With pJobImage
+                _ct = oJobImageTa.UpdateJobImage(.JobId, .ImagePath, .ImageDesc, .ImageId)
+            End With
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
 #End Region
 #Region "product"
     Public Function GetProductById(ByVal pId As Integer) As Product
@@ -649,6 +701,7 @@ Module ModDatabase
         tableList.Add("Diary")
         tableList.Add("Job")
         tableList.Add("Job_Product")
+        tableList.Add("Job_Image")
         tableList.Add("Product")
         tableList.Add("Supplier")
         tableList.Add("Task")
@@ -705,6 +758,12 @@ Module ModDatabase
                     If RecreateTable(oJobProductTable, datapath) Then
                         oJobProductTa.TruncateJobProduct()
                         oJobProductTa.Update(oJobProductTable)
+                        rowCount = oJobProductTa.GetData.Rows.Count
+                    End If
+                Case "Job_Image"
+                    If RecreateTable(oJobImageTable, datapath) Then
+                        oJobImageTa.TruncateJobImage()
+                        oJobImageTa.Update(oJobImageTable)
                         rowCount = oJobProductTa.GetData.Rows.Count
                     End If
                 Case "Product"
@@ -773,6 +832,10 @@ Module ModDatabase
     Public Function GetJob_ProductTable() As netwyrksDataSet.job_productDataTable
         LogUtil.Info("Getting Job_Product table", MODULE_NAME)
         Return oJobProductTa.GetData()
+    End Function
+    Public Function GetJob_ImageTable() As netwyrksDataSet.job_imageDataTable
+        LogUtil.Info("Getting Job_Image table", MODULE_NAME)
+        Return oJobImageTa.GetData()
     End Function
     Public Function GetProductTable() As netwyrksDataSet.productDataTable
         LogUtil.Info("Getting Product table", MODULE_NAME)
