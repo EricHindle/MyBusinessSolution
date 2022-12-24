@@ -44,9 +44,7 @@ Public Class FrmTask
     'End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
+
     Private Sub FrmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         logutil.info("Closing", Name)
         oTaskTa.Dispose()
@@ -73,7 +71,10 @@ Public Class FrmTask
         SpellCheckUtil.EnableSpellChecking({rtbDescription})
         isLoading = False
     End Sub
-    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         With _taskbuilder.Build
             _newTask = TaskBuilder.ATask.WithTaskName(txtTaskName.Text.Trim) _
             .WithTaskDescription(rtbDescription.Text.Trim) _
@@ -97,6 +98,7 @@ Public Class FrmTask
             CreateTask()
         End If
         Close()
+
     End Sub
 #End Region
 #Region "subroutines"

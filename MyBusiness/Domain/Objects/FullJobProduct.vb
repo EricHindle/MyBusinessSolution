@@ -5,8 +5,6 @@
 ' Author Eric Hindle
 '
 
-Imports System.Windows.Navigation
-
 Public Class FullJobProduct
     Private _job As Job
     Private _product As Product

@@ -44,8 +44,6 @@ Partial Class FrmCustomerMaint
         Me.txtCustAddr1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtCustName = New System.Windows.Forms.TextBox()
-        Me.BtnUpdate = New System.Windows.Forms.Button()
-        Me.BtnClose = New System.Windows.Forms.Button()
         Me.pnlJobs = New System.Windows.Forms.Panel()
         Me.ChkCompleted = New System.Windows.Forms.CheckBox()
         Me.BtnAddJob = New System.Windows.Forms.Button()
@@ -60,6 +58,8 @@ Partial Class FrmCustomerMaint
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.picDiary = New System.Windows.Forms.PictureBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.pnlCustomer.SuspendLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +72,8 @@ Partial Class FrmCustomerMaint
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.picDiary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlCustomer
@@ -280,28 +282,6 @@ Partial Class FrmCustomerMaint
         Me.txtCustName.Size = New System.Drawing.Size(386, 27)
         Me.txtCustName.TabIndex = 0
         '
-        'BtnUpdate
-        '
-        Me.BtnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnUpdate.Location = New System.Drawing.Point(13, 486)
-        Me.BtnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.BtnUpdate.Name = "BtnUpdate"
-        Me.BtnUpdate.Size = New System.Drawing.Size(117, 43)
-        Me.BtnUpdate.TabIndex = 2
-        Me.BtnUpdate.Text = "Update"
-        Me.BtnUpdate.UseVisualStyleBackColor = True
-        '
-        'BtnClose
-        '
-        Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnClose.Location = New System.Drawing.Point(408, 486)
-        Me.BtnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(117, 43)
-        Me.BtnClose.TabIndex = 3
-        Me.BtnClose.Text = "Close"
-        Me.BtnClose.UseVisualStyleBackColor = True
-        '
         'pnlJobs
         '
         Me.pnlJobs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -460,11 +440,33 @@ Partial Class FrmCustomerMaint
         Me.picDiary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picDiary.Image = Global.MyBusiness.My.Resources.Resources.diary
         Me.picDiary.InitialImage = Nothing
-        Me.picDiary.Location = New System.Drawing.Point(885, 487)
+        Me.picDiary.Location = New System.Drawing.Point(819, 487)
         Me.picDiary.Name = "picDiary"
         Me.picDiary.Size = New System.Drawing.Size(42, 42)
         Me.picDiary.TabIndex = 89
         Me.picDiary.TabStop = False
+        '
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(12, 487)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 94
+        Me.PicUpdate.TabStop = False
+        '
+        'PicClose
+        '
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(885, 487)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 95
+        Me.PicClose.TabStop = False
         '
         'FrmCustomerMaint
         '
@@ -473,13 +475,13 @@ Partial Class FrmCustomerMaint
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(941, 563)
+        Me.Controls.Add(Me.PicClose)
+        Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.picDiary)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.BtnClose)
-        Me.Controls.Add(Me.BtnUpdate)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -502,6 +504,8 @@ Partial Class FrmCustomerMaint
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.picDiary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -524,8 +528,6 @@ Partial Class FrmCustomerMaint
     Friend WithEvents txtCustAddr1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtCustName As TextBox
-    Friend WithEvents BtnUpdate As Button
-    Friend WithEvents BtnClose As Button
     Friend WithEvents pnlJobs As Panel
     Friend WithEvents DgvJobs As DataGridView
     Friend WithEvents StatusStrip1 As StatusStrip
@@ -543,4 +545,6 @@ Partial Class FrmCustomerMaint
     Friend WithEvents nudDays As NumericUpDown
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents picDiary As PictureBox
+    Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents PicClose As PictureBox
 End Class

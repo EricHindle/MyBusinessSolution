@@ -269,13 +269,13 @@
     <Compile Include="Logging\FrmLogViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logging\LogUtil.vb" />
     <Compile Include="Callback\FrmAlert.designer.vb">
       <DependentUpon>FrmAlert.vb</DependentUpon>
     </Compile>
     <Compile Include="Callback\FrmAlert.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logging\LogUtil.vb" />
     <Compile Include="Menus\FrmMain.designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>

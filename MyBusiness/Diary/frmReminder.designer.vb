@@ -26,11 +26,11 @@ Partial Class FrmReminder
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmReminder))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnSetComplete = New System.Windows.Forms.Button()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.PicAdd = New System.Windows.Forms.PictureBox()
+        Me.PicRemove = New System.Windows.Forms.PictureBox()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.rtbBody = New System.Windows.Forms.RichTextBox()
@@ -42,13 +42,17 @@ Partial Class FrmReminder
         Me.lblName = New System.Windows.Forms.Label()
         Me.lblRemDate = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LblJobName = New System.Windows.Forms.Label()
+        Me.LblCustName = New System.Windows.Forms.Label()
         Me.lblJob = New System.Windows.Forms.Label()
         Me.lblCust = New System.Windows.Forms.Label()
         Me.chkReminder = New System.Windows.Forms.CheckBox()
         Me.chkCallBack = New System.Windows.Forms.CheckBox()
-        Me.LblCustName = New System.Windows.Forms.Label()
-        Me.LblJobName = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -57,7 +61,7 @@ Partial Class FrmReminder
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 464)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 461)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(556, 24)
         Me.StatusStrip1.TabIndex = 7
@@ -72,53 +76,53 @@ Partial Class FrmReminder
         Me.lblStatus.Size = New System.Drawing.Size(20, 19)
         Me.lblStatus.Text = "   "
         '
-        'btnClose
+        'PicUpdate
         '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnClose.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Location = New System.Drawing.Point(356, 418)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(88, 34)
-        Me.btnClose.TabIndex = 6
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(76, 410)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 102
+        Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update reminder")
         '
-        'btnAdd
+        'PicAdd
         '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAdd.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.Location = New System.Drawing.Point(12, 418)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(75, 34)
-        Me.btnAdd.TabIndex = 4
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.InitialImage = Nothing
+        Me.PicAdd.Location = New System.Drawing.Point(12, 410)
+        Me.PicAdd.Name = "PicAdd"
+        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.TabIndex = 101
+        Me.PicAdd.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Reminder")
         '
-        'btnUpdate
+        'PicRemove
         '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnUpdate.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(93, 418)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 34)
-        Me.btnUpdate.TabIndex = 5
-        Me.btnUpdate.Text = "Update"
-        Me.btnUpdate.UseVisualStyleBackColor = True
+        Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicRemove.InitialImage = Nothing
+        Me.PicRemove.Location = New System.Drawing.Point(143, 410)
+        Me.PicRemove.Name = "PicRemove"
+        Me.PicRemove.Size = New System.Drawing.Size(42, 42)
+        Me.PicRemove.TabIndex = 100
+        Me.PicRemove.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicRemove, "Mark as completed")
         '
-        'btnSetComplete
+        'PicClose
         '
-        Me.btnSetComplete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSetComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSetComplete.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSetComplete.Location = New System.Drawing.Point(455, 227)
-        Me.btnSetComplete.Name = "btnSetComplete"
-        Me.btnSetComplete.Size = New System.Drawing.Size(89, 54)
-        Me.btnSetComplete.TabIndex = 3
-        Me.btnSetComplete.Text = "Mark as Complete"
-        Me.btnSetComplete.UseVisualStyleBackColor = True
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(492, 410)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 99
+        Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
         '
         'lblFormName
         '
@@ -152,7 +156,7 @@ Partial Class FrmReminder
         Me.rtbBody.BackColor = System.Drawing.Color.Gainsboro
         Me.rtbBody.Location = New System.Drawing.Point(11, 227)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(433, 185)
+        Me.rtbBody.Size = New System.Drawing.Size(433, 173)
         Me.rtbBody.TabIndex = 2
         Me.rtbBody.Text = ""
         '
@@ -250,6 +254,24 @@ Partial Class FrmReminder
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         '
+        'LblJobName
+        '
+        Me.LblJobName.AutoSize = True
+        Me.LblJobName.Location = New System.Drawing.Point(65, 35)
+        Me.LblJobName.Name = "LblJobName"
+        Me.LblJobName.Size = New System.Drawing.Size(32, 13)
+        Me.LblJobName.TabIndex = 4
+        Me.LblJobName.Text = "None"
+        '
+        'LblCustName
+        '
+        Me.LblCustName.AutoSize = True
+        Me.LblCustName.Location = New System.Drawing.Point(65, 13)
+        Me.LblCustName.Name = "LblCustName"
+        Me.LblCustName.Size = New System.Drawing.Size(32, 13)
+        Me.LblCustName.TabIndex = 3
+        Me.LblCustName.Text = "None"
+        '
         'lblJob
         '
         Me.lblJob.AutoSize = True
@@ -291,30 +313,16 @@ Partial Class FrmReminder
         Me.chkCallBack.Text = "Call back required"
         Me.chkCallBack.UseVisualStyleBackColor = True
         '
-        'LblCustName
-        '
-        Me.LblCustName.AutoSize = True
-        Me.LblCustName.Location = New System.Drawing.Point(65, 13)
-        Me.LblCustName.Name = "LblCustName"
-        Me.LblCustName.Size = New System.Drawing.Size(32, 13)
-        Me.LblCustName.TabIndex = 3
-        Me.LblCustName.Text = "None"
-        '
-        'LblJobName
-        '
-        Me.LblJobName.AutoSize = True
-        Me.LblJobName.Location = New System.Drawing.Point(65, 35)
-        Me.LblJobName.Name = "LblJobName"
-        Me.LblJobName.Size = New System.Drawing.Size(32, 13)
-        Me.LblJobName.TabIndex = 4
-        Me.LblJobName.Text = "None"
-        '
         'FrmReminder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(556, 488)
+        Me.ClientSize = New System.Drawing.Size(556, 485)
+        Me.Controls.Add(Me.PicUpdate)
+        Me.Controls.Add(Me.PicAdd)
+        Me.Controls.Add(Me.PicRemove)
+        Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.chkCallBack)
         Me.Controls.Add(Me.chkReminder)
         Me.Controls.Add(Me.GroupBox1)
@@ -328,10 +336,6 @@ Partial Class FrmReminder
         Me.Controls.Add(Me.rtbBody)
         Me.Controls.Add(Me.lblFormName)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.btnSetComplete)
-        Me.Controls.Add(Me.btnUpdate)
-        Me.Controls.Add(Me.btnAdd)
-        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
@@ -343,6 +347,10 @@ Partial Class FrmReminder
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -352,11 +360,7 @@ Partial Class FrmReminder
     End Sub
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents btnAdd As System.Windows.Forms.Button
-    Friend WithEvents btnUpdate As System.Windows.Forms.Button
-    Friend WithEvents btnSetComplete As System.Windows.Forms.Button
     Friend WithEvents lblFormName As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents rtbBody As System.Windows.Forms.RichTextBox
@@ -374,4 +378,8 @@ Partial Class FrmReminder
     Friend WithEvents chkCallBack As System.Windows.Forms.CheckBox
     Friend WithEvents LblJobName As Label
     Friend WithEvents LblCustName As Label
+    Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents PicAdd As PictureBox
+    Friend WithEvents PicRemove As PictureBox
+    Friend WithEvents PicClose As PictureBox
 End Class

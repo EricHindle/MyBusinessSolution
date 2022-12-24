@@ -391,9 +391,21 @@ Public Module netwyrksCommon
         splash.Close()
         splash.Dispose()
     End Sub
-    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
+    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False, Optional pEx As Exception = Nothing)
         oStatusLabel.Text = sText
-        If isLogged Then logutil.info(sText, oFormName)
+        If isLogged Then
+            If pEx Is Nothing Then
+                LogUtil.Info(sText, oFormName)
+            Else
+                DisplayException(pEx, sText, oFormName)
+            End If
+        End If
+    End Sub
+    Public Sub DisplayException(pException As Exception, pExceptionText As String, Optional pSub As String = "")
+        LogUtil.Exception(pExceptionText, pException, pSub)
+        If pException.InnerException IsNot Nothing Then
+            LogUtil.Problem(pException.InnerException.Message, pSub)
+        End If
     End Sub
     Public Function GetFormPos(ByRef oForm As Form, ByVal sPos As String) As Boolean
         Dim isOK As Boolean = True

@@ -41,9 +41,7 @@ Public Class FrmProduct
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
+
     Private Sub FrmProduct_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", Name)
         My.Settings.ProductFormPos = SetFormPos(Me)
@@ -71,7 +69,10 @@ Public Class FrmProduct
         SpellCheckUtil.EnableSpellChecking({rtbDescription})
         isLoading = False
     End Sub
-    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If IsValidProduct() Then
             _newproduct = ProductBuilder.AProduct.StartingWith(_product) _
                                 .WithProductName(txtProductName.Text.Trim) _
@@ -92,12 +93,13 @@ Public Class FrmProduct
         Else
             ShowStatus(lblStatus, "Invalid Product details", MyBase.Name, True)
         End If
+
     End Sub
 #End Region
 #Region "subroutines"
     Private Sub FillProductDetails()
         LblAction.Text = "Updating Product"
-        btnSave.Text = "Update"
+        PicUpdate.Image = My.Resources.update
         With _product
             LogUtil.Info("Amending product " & _productId & " : " & .ProductName, MyBase.Name)
             txtProductName.Text = .ProductName
@@ -122,7 +124,7 @@ Public Class FrmProduct
         LogUtil.Info("New product", MyBase.Name())
         ClearProductDetails()
         LblAction.Text = "Adding New Product"
-        btnSave.Text = "Create"
+        PicUpdate.Image = My.Resources.add
         _product = ProductBuilder.AProduct.StartingWithNothing.Build
     End Sub
     Private Function AmendProduct() As Boolean

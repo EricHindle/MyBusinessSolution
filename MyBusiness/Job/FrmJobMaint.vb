@@ -97,33 +97,6 @@ Public Class FrmJobMaint
         FillProductList(_currentJobId)
     End Sub
 
-    Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
-        With _job
-            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim) _
-            .WithJobDescription(rtbJobNotes.Text.Trim) _
-            .WithJobCustomerId(cbCust.SelectedValue) _
-            .WithJobCompleted(chkCompleted.Checked) _
-            .WithJobReference(TxtJobReference.Text) _
-            .WithJobInvoiceNumber(TxtInvoiceNumber.Text) _
-            .WithJobInvoiceDate(DtpInvoiceDate.Value) _
-            .WithJobPoNumber(TxtPurchaseOrder.Text) _
-            .WithJobCreated(.JobCreated) _
-            .WithJobChanged(.JobChanged) _
-            .WithJobUser(cbUser.SelectedValue) _
-            .WithJobPaymentDue(DtpPaymentDue.Value) _
-            .WithJobId(_currentJobId) _
-            .Build
-        End With
-        Dim newJobId As Integer = -1
-        If _currentJobId > 0 Then
-            Amendjob()
-        Else
-            CreateJob()
-            SplitContainer2.Panel2Collapsed = False
-            GrpInvoice.Enabled = True
-        End If
-        Close()
-    End Sub
     Private Sub CbCust_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbCust.SelectedIndexChanged
         If Not isLoading Then
             GetCurrentCustomer()
@@ -295,13 +268,13 @@ Public Class FrmJobMaint
                 _supplierName = _supplier.SupplierName
             End If
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-                tRow.Cells(prodSupp.Name).Value = _supplierName
-                tRow.Cells(prodName.Name).Value = _productName
-                tRow.Cells(prodId.Name).Value = _productId
-                tRow.Cells(jpId.Name).Value = _jpId
-                tRow.Cells(prodQty.Name).Value = _qty
-                tRow.Cells(prodCost.Name).Value = _cost
-                tRow.Cells(prodPrice.Name).Value = _price
+            tRow.Cells(prodSupp.Name).Value = _supplierName
+            tRow.Cells(prodName.Name).Value = _productName
+            tRow.Cells(prodId.Name).Value = _productId
+            tRow.Cells(jpId.Name).Value = _jpId
+            tRow.Cells(prodQty.Name).Value = _qty
+            tRow.Cells(prodCost.Name).Value = _cost
+            tRow.Cells(prodPrice.Name).Value = _price
             tRow.Cells(jobPrice.Name).Value = _jobProduct.Price
 
         Next
@@ -359,6 +332,34 @@ Public Class FrmJobMaint
     End Sub
 
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
+        With _job
+            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim) _
+            .WithJobDescription(rtbJobNotes.Text.Trim) _
+            .WithJobCustomerId(cbCust.SelectedValue) _
+            .WithJobCompleted(chkCompleted.Checked) _
+            .WithJobReference(TxtJobReference.Text) _
+            .WithJobInvoiceNumber(TxtInvoiceNumber.Text) _
+            .WithJobInvoiceDate(DtpInvoiceDate.Value) _
+            .WithJobPoNumber(TxtPurchaseOrder.Text) _
+            .WithJobCreated(.JobCreated) _
+            .WithJobChanged(.JobChanged) _
+            .WithJobUser(cbUser.SelectedValue) _
+            .WithJobPaymentDue(DtpPaymentDue.Value) _
+            .WithJobId(_currentJobId) _
+            .Build
+        End With
+        Dim newJobId As Integer = -1
+        If _currentJobId > 0 Then
+            Amendjob()
+        Else
+            CreateJob()
+            SplitContainer2.Panel2Collapsed = False
+            GrpInvoice.Enabled = True
+        End If
         Close()
     End Sub
 #End Region

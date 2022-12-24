@@ -31,10 +31,11 @@ Partial Class FrmDiary
         Me.lblF3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblF4 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.PicAdd = New System.Windows.Forms.PictureBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.btnSetReminder = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnSetComplete = New System.Windows.Forms.Button()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -54,7 +55,6 @@ Partial Class FrmDiary
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnJobLink = New System.Windows.Forms.Button()
         Me.btnCustLink = New System.Windows.Forms.Button()
-        Me.btnNew = New System.Windows.Forms.Button()
         Me.chkReminders = New System.Windows.Forms.CheckBox()
         Me.chkComplete = New System.Windows.Forms.CheckBox()
         Me.lblReminder = New System.Windows.Forms.Label()
@@ -68,6 +68,9 @@ Partial Class FrmDiary
         Me.lblJob = New System.Windows.Forms.Label()
         Me.lblCust = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -80,7 +83,7 @@ Partial Class FrmDiary
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblF3, Me.lblF4, Me.lblStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 438)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(926, 26)
+        Me.StatusStrip1.Size = New System.Drawing.Size(851, 26)
         Me.StatusStrip1.TabIndex = 0
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -123,49 +126,58 @@ Partial Class FrmDiary
         Me.lblStatus.Size = New System.Drawing.Size(20, 21)
         Me.lblStatus.Text = "   "
         '
-        'btnClose
+        'PicClose
         '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnClose.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.ForeColor = System.Drawing.Color.Black
-        Me.btnClose.Location = New System.Drawing.Point(295, 401)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 34)
-        Me.btnClose.TabIndex = 1
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(12, 383)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 94
+        Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
+        '
+        'PicAdd
+        '
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.InitialImage = Nothing
+        Me.PicAdd.Location = New System.Drawing.Point(12, 84)
+        Me.PicAdd.Name = "PicAdd"
+        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.TabIndex = 98
+        Me.PicAdd.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Image")
+        '
+        'PicUpdate
+        '
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(12, 132)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 99
+        Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Image")
         '
         'btnSetReminder
         '
         Me.btnSetReminder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnSetReminder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSetReminder.ForeColor = System.Drawing.Color.Black
-        Me.btnSetReminder.Location = New System.Drawing.Point(273, 200)
+        Me.btnSetReminder.Location = New System.Drawing.Point(12, 200)
         Me.btnSetReminder.Name = "btnSetReminder"
         Me.btnSetReminder.Size = New System.Drawing.Size(119, 31)
         Me.btnSetReminder.TabIndex = 4
         Me.btnSetReminder.Text = "Set as reminder"
         Me.btnSetReminder.UseVisualStyleBackColor = True
         '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnUpdate.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.ForeColor = System.Drawing.Color.Black
-        Me.btnUpdate.Location = New System.Drawing.Point(273, 160)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(119, 31)
-        Me.btnUpdate.TabIndex = 6
-        Me.btnUpdate.Text = "Update Entry"
-        Me.btnUpdate.UseVisualStyleBackColor = True
-        '
         'btnSetComplete
         '
         Me.btnSetComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnSetComplete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSetComplete.ForeColor = System.Drawing.Color.Black
-        Me.btnSetComplete.Location = New System.Drawing.Point(273, 240)
+        Me.btnSetComplete.Location = New System.Drawing.Point(12, 240)
         Me.btnSetComplete.Name = "btnSetComplete"
         Me.btnSetComplete.Size = New System.Drawing.Size(119, 31)
         Me.btnSetComplete.TabIndex = 7
@@ -232,7 +244,7 @@ Partial Class FrmDiary
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         Me.dgvDiary.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvDiary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDiary.Size = New System.Drawing.Size(508, 269)
+        Me.dgvDiary.Size = New System.Drawing.Size(433, 269)
         Me.dgvDiary.TabIndex = 23
         '
         'dremId
@@ -318,7 +330,7 @@ Partial Class FrmDiary
         Me.rtbBody.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.rtbBody.BackColor = System.Drawing.Color.Gainsboro
-        Me.rtbBody.Location = New System.Drawing.Point(11, 200)
+        Me.rtbBody.Location = New System.Drawing.Point(142, 200)
         Me.rtbBody.Name = "rtbBody"
         Me.rtbBody.Size = New System.Drawing.Size(247, 213)
         Me.rtbBody.TabIndex = 24
@@ -326,7 +338,7 @@ Partial Class FrmDiary
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(11, 168)
+        Me.txtSubject.Location = New System.Drawing.Point(142, 168)
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(246, 23)
         Me.txtSubject.TabIndex = 25
@@ -336,7 +348,7 @@ Partial Class FrmDiary
         Me.GroupBox1.Controls.Add(Me.btnJobLink)
         Me.GroupBox1.Controls.Add(Me.btnCustLink)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox1.Location = New System.Drawing.Point(284, 277)
+        Me.GroupBox1.Location = New System.Drawing.Point(23, 277)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox1.Size = New System.Drawing.Size(92, 89)
@@ -366,23 +378,11 @@ Partial Class FrmDiary
         Me.btnCustLink.Text = "Customer"
         Me.btnCustLink.UseVisualStyleBackColor = True
         '
-        'btnNew
-        '
-        Me.btnNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.ForeColor = System.Drawing.Color.Black
-        Me.btnNew.Location = New System.Drawing.Point(273, 80)
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(119, 31)
-        Me.btnNew.TabIndex = 27
-        Me.btnNew.Text = "New Entry"
-        Me.btnNew.UseVisualStyleBackColor = True
-        '
         'chkReminders
         '
         Me.chkReminders.AutoSize = True
         Me.chkReminders.ForeColor = System.Drawing.Color.Black
-        Me.chkReminders.Location = New System.Drawing.Point(19, 106)
+        Me.chkReminders.Location = New System.Drawing.Point(150, 106)
         Me.chkReminders.Name = "chkReminders"
         Me.chkReminders.Size = New System.Drawing.Size(114, 20)
         Me.chkReminders.TabIndex = 28
@@ -393,7 +393,7 @@ Partial Class FrmDiary
         '
         Me.chkComplete.AutoSize = True
         Me.chkComplete.ForeColor = System.Drawing.Color.Black
-        Me.chkComplete.Location = New System.Drawing.Point(19, 80)
+        Me.chkComplete.Location = New System.Drawing.Point(150, 80)
         Me.chkComplete.Name = "chkComplete"
         Me.chkComplete.Size = New System.Drawing.Size(166, 20)
         Me.chkComplete.TabIndex = 29
@@ -406,7 +406,7 @@ Partial Class FrmDiary
         Me.lblReminder.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblReminder.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReminder.ForeColor = System.Drawing.Color.White
-        Me.lblReminder.Location = New System.Drawing.Point(12, 144)
+        Me.lblReminder.Location = New System.Drawing.Point(143, 144)
         Me.lblReminder.Name = "lblReminder"
         Me.lblReminder.Size = New System.Drawing.Size(77, 19)
         Me.lblReminder.TabIndex = 30
@@ -418,7 +418,7 @@ Partial Class FrmDiary
         Me.lblComplete.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblComplete.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComplete.ForeColor = System.Drawing.Color.White
-        Me.lblComplete.Location = New System.Drawing.Point(182, 144)
+        Me.lblComplete.Location = New System.Drawing.Point(313, 144)
         Me.lblComplete.Name = "lblComplete"
         Me.lblComplete.Size = New System.Drawing.Size(76, 19)
         Me.lblComplete.TabIndex = 31
@@ -430,7 +430,7 @@ Partial Class FrmDiary
         Me.lblOverdue.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblOverdue.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOverdue.ForeColor = System.Drawing.Color.White
-        Me.lblOverdue.Location = New System.Drawing.Point(95, 144)
+        Me.lblOverdue.Location = New System.Drawing.Point(226, 144)
         Me.lblOverdue.Name = "lblOverdue"
         Me.lblOverdue.Size = New System.Drawing.Size(69, 19)
         Me.lblOverdue.TabIndex = 32
@@ -444,7 +444,7 @@ Partial Class FrmDiary
         Me.lblName.ForeColor = System.Drawing.Color.Black
         Me.lblName.Location = New System.Drawing.Point(509, 12)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(405, 25)
+        Me.lblName.Size = New System.Drawing.Size(330, 25)
         Me.lblName.TabIndex = 35
         Me.lblName.Text = "Name"
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -517,7 +517,10 @@ Partial Class FrmDiary
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(926, 464)
+        Me.ClientSize = New System.Drawing.Size(851, 464)
+        Me.Controls.Add(Me.PicUpdate)
+        Me.Controls.Add(Me.PicAdd)
+        Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.lblDate)
         Me.Controls.Add(Me.lblName)
@@ -526,7 +529,6 @@ Partial Class FrmDiary
         Me.Controls.Add(Me.lblReminder)
         Me.Controls.Add(Me.chkComplete)
         Me.Controls.Add(Me.chkReminders)
-        Me.Controls.Add(Me.btnNew)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtSubject)
         Me.Controls.Add(Me.rtbBody)
@@ -534,9 +536,7 @@ Partial Class FrmDiary
         Me.Controls.Add(Me.lblFormName)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnSetComplete)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnSetReminder)
-        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
@@ -548,6 +548,9 @@ Partial Class FrmDiary
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -559,10 +562,8 @@ Partial Class FrmDiary
     End Sub
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents btnSetReminder As System.Windows.Forms.Button
-    Friend WithEvents btnUpdate As System.Windows.Forms.Button
     Friend WithEvents btnSetComplete As System.Windows.Forms.Button
     Friend WithEvents lblFormName As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
@@ -572,7 +573,6 @@ Partial Class FrmDiary
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents btnJobLink As System.Windows.Forms.Button
     Friend WithEvents btnCustLink As System.Windows.Forms.Button
-    Friend WithEvents btnNew As System.Windows.Forms.Button
     Friend WithEvents chkReminders As System.Windows.Forms.CheckBox
     Friend WithEvents chkComplete As System.Windows.Forms.CheckBox
     Friend WithEvents lblReminder As System.Windows.Forms.Label
@@ -597,4 +597,7 @@ Partial Class FrmDiary
     Friend WithEvents LblCustName As Label
     Friend WithEvents lblJob As Label
     Friend WithEvents lblCust As Label
+    Friend WithEvents PicClose As PictureBox
+    Friend WithEvents PicAdd As PictureBox
+    Friend WithEvents PicUpdate As PictureBox
 End Class

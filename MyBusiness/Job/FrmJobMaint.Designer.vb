@@ -25,7 +25,6 @@ Partial Class FrmJobMaint
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
         Me.btnAddTask = New System.Windows.Forms.Button()
         Me.dgvTasks = New System.Windows.Forms.DataGridView()
@@ -79,6 +78,7 @@ Partial Class FrmJobMaint
         Me.PicDiary = New System.Windows.Forms.PictureBox()
         Me.PicImages = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +96,7 @@ Partial Class FrmJobMaint
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -135,18 +136,6 @@ Partial Class FrmJobMaint
         Me.lblScreenName.TabIndex = 73
         Me.lblScreenName.Text = "Job"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(38, 532)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(136, 46)
-        Me.btnUpdate.TabIndex = 71
-        Me.btnUpdate.Text = "Save"
-        Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'btnRemoveTask
         '
@@ -745,11 +734,23 @@ Partial Class FrmJobMaint
         Me.PicClose.TabIndex = 92
         Me.PicClose.TabStop = False
         '
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(14, 536)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 93
+        Me.PicUpdate.TabStop = False
+        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 611)
+        Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicImages)
         Me.Controls.Add(Me.PicDiary)
@@ -757,7 +758,6 @@ Partial Class FrmJobMaint
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "FrmJobMaint"
@@ -784,6 +784,7 @@ Partial Class FrmJobMaint
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -792,7 +793,6 @@ Partial Class FrmJobMaint
     Friend WithEvents btnInvoice As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
-    Friend WithEvents btnUpdate As Button
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents btnAddTask As Button
     Friend WithEvents dgvTasks As DataGridView
@@ -846,4 +846,5 @@ Partial Class FrmJobMaint
     Friend WithEvents jobPrice As DataGridViewTextBoxColumn
     Friend WithEvents PicImages As PictureBox
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents PicUpdate As PictureBox
 End Class

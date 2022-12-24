@@ -208,6 +208,7 @@ Partial Class FrmImages
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 97
         Me.PicAdd.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Image")
         '
         'PicUpdate
         '
@@ -278,7 +279,6 @@ Partial Class FrmImages
         Me.MinimumSize = New System.Drawing.Size(415, 438)
         Me.Name = "FrmImages"
         Me.ShowIcon = False
-        Me.ToolTip1.SetToolTip(Me, "Add Image")
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()

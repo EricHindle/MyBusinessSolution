@@ -22,7 +22,7 @@ Partial Class FrmTask
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTask))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTask))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -41,16 +41,18 @@ Partial Class FrmTask
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblJobName = New System.Windows.Forms.Label()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -111,7 +113,7 @@ Partial Class FrmTask
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(35, 401)
+        Me.Label4.Location = New System.Drawing.Point(40, 365)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 17)
         Me.Label4.TabIndex = 12
@@ -121,7 +123,7 @@ Partial Class FrmTask
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(290, 401)
+        Me.Label5.Location = New System.Drawing.Point(295, 365)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(86, 17)
         Me.Label5.TabIndex = 13
@@ -131,7 +133,7 @@ Partial Class FrmTask
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(29, 490)
+        Me.Label6.Location = New System.Drawing.Point(29, 452)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(69, 17)
         Me.Label6.TabIndex = 14
@@ -141,7 +143,7 @@ Partial Class FrmTask
         '
         Me.chkStarted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkStarted.AutoSize = True
-        Me.chkStarted.Location = New System.Drawing.Point(378, 486)
+        Me.chkStarted.Location = New System.Drawing.Point(368, 426)
         Me.chkStarted.Name = "chkStarted"
         Me.chkStarted.Size = New System.Drawing.Size(84, 21)
         Me.chkStarted.TabIndex = 5
@@ -152,7 +154,7 @@ Partial Class FrmTask
         '
         Me.chkCompleted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkCompleted.AutoSize = True
-        Me.chkCompleted.Location = New System.Drawing.Point(378, 514)
+        Me.chkCompleted.Location = New System.Drawing.Point(368, 454)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Size = New System.Drawing.Size(105, 21)
         Me.chkCompleted.TabIndex = 6
@@ -162,7 +164,7 @@ Partial Class FrmTask
         'dtpStartDate
         '
         Me.dtpStartDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dtpStartDate.Location = New System.Drawing.Point(104, 484)
+        Me.dtpStartDate.Location = New System.Drawing.Point(109, 448)
         Me.dtpStartDate.Name = "dtpStartDate"
         Me.dtpStartDate.Size = New System.Drawing.Size(200, 24)
         Me.dtpStartDate.TabIndex = 4
@@ -171,7 +173,7 @@ Partial Class FrmTask
         '
         Me.nudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudCost.DecimalPlaces = 2
-        Me.nudCost.Location = New System.Drawing.Point(94, 399)
+        Me.nudCost.Location = New System.Drawing.Point(99, 363)
         Me.nudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudCost.Name = "nudCost"
         Me.nudCost.Size = New System.Drawing.Size(120, 24)
@@ -181,7 +183,7 @@ Partial Class FrmTask
         '
         Me.nudTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTime.DecimalPlaces = 2
-        Me.nudTime.Location = New System.Drawing.Point(382, 399)
+        Me.nudTime.Location = New System.Drawing.Point(387, 363)
         Me.nudTime.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudTime.Name = "nudTime"
         Me.nudTime.Size = New System.Drawing.Size(120, 24)
@@ -194,7 +196,7 @@ Partial Class FrmTask
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbDescription.Location = New System.Drawing.Point(34, 197)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(474, 182)
+        Me.rtbDescription.Size = New System.Drawing.Size(474, 160)
         Me.rtbDescription.TabIndex = 1
         Me.rtbDescription.Text = ""
         '
@@ -213,7 +215,7 @@ Partial Class FrmTask
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 610)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 544)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(537, 22)
         Me.StatusStrip1.TabIndex = 15
@@ -239,32 +241,11 @@ Partial Class FrmTask
         Me.lblJobName.TabIndex = 9
         Me.lblJobName.Text = "Job name"
         '
-        'btnSave
-        '
-        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSave.Location = New System.Drawing.Point(56, 546)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(98, 50)
-        Me.btnSave.TabIndex = 70
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
-        '
-        'btnClose
-        '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(410, 555)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(98, 41)
-        Me.btnClose.TabIndex = 71
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
         'nudTaxRate
         '
         Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(190, 442)
+        Me.nudTaxRate.Location = New System.Drawing.Point(195, 405)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(60, 24)
         Me.nudTaxRate.TabIndex = 72
@@ -273,7 +254,7 @@ Partial Class FrmTask
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(131, 444)
+        Me.Label7.Location = New System.Drawing.Point(136, 409)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 17)
         Me.Label7.TabIndex = 73
@@ -281,25 +262,47 @@ Partial Class FrmTask
         '
         'chkTaxable
         '
+        Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(38, 443)
+        Me.chkTaxable.Location = New System.Drawing.Point(43, 407)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(74, 21)
         Me.chkTaxable.TabIndex = 74
         Me.chkTaxable.Text = "Taxable"
         Me.chkTaxable.UseVisualStyleBackColor = True
         '
-        'frmTask
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(11, 489)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 103
+        Me.PicUpdate.TabStop = False
+        '
+        'PicClose
+        '
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(483, 489)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 104
+        Me.PicClose.TabStop = False
+        '
+        'FrmTask
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(537, 632)
+        Me.ClientSize = New System.Drawing.Size(537, 566)
+        Me.Controls.Add(Me.PicClose)
+        Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.chkTaxable)
         Me.Controls.Add(Me.nudTaxRate)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.lblJobName)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.txtTaskName)
@@ -320,7 +323,7 @@ Partial Class FrmTask
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.Name = "frmTask"
+        Me.Name = "FrmTask"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).EndInit()
@@ -328,6 +331,8 @@ Partial Class FrmTask
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -350,10 +355,10 @@ Partial Class FrmTask
     Friend WithEvents txtTaskName As TextBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblJobName As Label
-    Friend WithEvents btnSave As Button
-    Friend WithEvents btnClose As Button
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents nudTaxRate As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents chkTaxable As System.Windows.Forms.CheckBox
+    Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents PicClose As PictureBox
 End Class

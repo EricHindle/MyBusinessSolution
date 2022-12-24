@@ -35,9 +35,6 @@ Public Class FrmReminderList
         My.Settings.ReminderListPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Close()
-    End Sub
     Private Sub ChkShowAtLogin_CheckedChanged(sender As Object, e As EventArgs) Handles ChkShowAtLogin.CheckedChanged
         My.Settings.ShowRemindersAtLogin = ChkShowAtLogin.Checked
         My.Settings.Save()
@@ -58,16 +55,7 @@ Public Class FrmReminderList
             End If
         End If
     End Sub
-    Private Sub BtnCloseRem_Click(sender As Object, e As EventArgs) Handles BtnCloseRem.Click
-        UpdateReminderClosed(1, currentRemId)
-        LogStatus("Closed reminder", True)
-        LoadReminders()
-    End Sub
-    Private Sub BtnSetReminder_Click(sender As Object, e As EventArgs) Handles BtnSetReminder.Click
-        UpdateIsReminder(Not lblReminder.Visible, currentRemId)
-        LogStatus("Updated reminder flag", True)
-        LoadReminders()
-    End Sub
+
     Private Sub BtnCustomer_Click(sender As Object, e As EventArgs) Handles BtnCustomer.Click
         Using _dialog As New FrmCustomerMaint
             _dialog.CustomerId = currentCustId
@@ -88,7 +76,7 @@ Public Class FrmReminderList
         lblReminder.Visible = False
         txtSubject.Text = ""
         rtbBody.Text = ""
-        BtnCloseRem.Visible = False
+        PicRemove.Visible = False
         BtnCustomer.Visible = False
         BtnJob.Visible = False
         currentRemId = 0
@@ -103,11 +91,11 @@ Public Class FrmReminderList
             currentJobId = .JobId
             txtSubject.Text = .Subject
             rtbBody.Text = .Body
-            BtnSetReminder.Text = If(.IsReminder, "Cancel Reminder", "Set Reminder")
+            '      BtnSetReminder.Text = If(.IsReminder, "Cancel Reminder", "Set Reminder")
             lblReminder.Visible = .IsReminder
             BtnCustomer.Visible = .HasCustomer
             BtnJob.Visible = .HasJob
-            BtnCloseRem.Visible = .IsReminder
+            PicRemove.Visible = .IsReminder
             LblCustName.Text = If(currentCustId > 0, _reminder.LinkedCustomer.CustName, "")
             LblJobName.Text = If(currentJobId > 0, _reminder.LinkedJob.JobName, "")
         End With
@@ -212,6 +200,22 @@ Public Class FrmReminderList
     End Sub
     Private Sub ClearStatus()
         LogStatus("")
+    End Sub
+
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+
+    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
+        UpdateIsReminder(Not lblReminder.Visible, currentRemId)
+        LogStatus("Updated reminder flag", True)
+        LoadReminders()
+    End Sub
+
+    Private Sub PicRemove_Click(sender As Object, e As EventArgs) Handles PicRemove.Click
+        UpdateReminderClosed(1, currentRemId)
+        LogStatus("Closed reminder", True)
+        LoadReminders()
     End Sub
 #End Region
 End Class

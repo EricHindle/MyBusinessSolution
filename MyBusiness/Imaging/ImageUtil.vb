@@ -129,9 +129,9 @@ Public Class ImageUtil
             Dim imageConverter As New ImageConverter()
             _image = imageConverter.ConvertFrom(pImageBytes)
         Catch ex As ArgumentException
-            LogUtil.Exception("Exception converting bytes", ex, "ImageUtil")
+            DisplayException(ex, "Exception converting bytes", "ImageUtil")
         Catch ex As NotSupportedException
-            LogUtil.Exception("Exception converting bytes", ex, "ImageUtil")
+            DisplayException(ex, "Exception converting bytes", "ImageUtil")
         End Try
         Return _image
     End Function

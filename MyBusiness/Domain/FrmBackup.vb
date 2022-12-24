@@ -5,7 +5,6 @@
 ' Author Eric Hindle
 '
 
-Imports System.Configuration
 Imports System.IO
 
 Public Class FrmBackup

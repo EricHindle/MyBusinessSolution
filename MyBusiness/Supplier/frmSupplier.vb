@@ -23,9 +23,6 @@ Public Class FrmSupplier
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
     Private Sub FrmSupplier_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
         GetFormPos(Me, My.Settings.SupplierFormPos)
@@ -44,8 +41,48 @@ Public Class FrmSupplier
         My.Settings.SupplierFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
-    Private Sub BtnUpdate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpdate.Click
-        If IsValidSupplier Then
+    Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
+        If dgvProducts.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
+            Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
+            ShowProductForm(oProductId)
+        End If
+    End Sub
+    Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
+        ShowProductForm(-1)
+    End Sub
+    Private Sub DgvProducts_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvProducts.SelectionChanged
+        spProducts.Panel2Collapsed = True
+        If Not isLoadingProducts Then
+            If dgvProducts.SelectedRows.Count = 1 Then
+                Dim cRow As DataGridViewRow = dgvProducts.SelectedRows(0)
+                Dim _selProdId As Integer = cRow.Cells(prodId.Name).Value
+                If _selProdId > 0 Then
+                    Dim _selectedProduct As Product = GetProductById(_selProdId)
+                    txtProductDesc.Text = _selectedProduct.ProductDescription
+                    txtCost.Text = "£" & _selectedProduct.ProductCost
+                    txtPrice.Text = "£" & _selectedProduct.ProductPrice
+                    If My.Settings.showProduct Then spProducts.Panel2Collapsed = False
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub ChkAmazon_CheckedChanged(sender As Object, e As EventArgs) Handles ChkAmazon.CheckedChanged
+        With ChkAmazon
+            If .Checked Then
+                .BackColor = Color.DarkRed
+                .ForeColor = Color.White
+            Else
+                .BackColor = Color.WhiteSmoke
+                .ForeColor = Color.Black
+            End If
+        End With
+    End Sub
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
+        If IsValidSupplier() Then
             Dim _suppAdd As Address = AddressBuilder.AnAddress _
                                                     .WithAddress1(txtSuppAddr1.Text.Trim) _
                                                     .WithAddress2(txtSuppAddr2.Text.Trim) _
@@ -79,49 +116,11 @@ Public Class FrmSupplier
 
     End Sub
 
-    Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
-        If dgvProducts.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-            Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
-            ShowProductForm(oProductId)
-        End If
-    End Sub
-    Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
-        ShowProductForm(-1)
-    End Sub
-
-    Private Sub DgvProducts_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvProducts.SelectionChanged
-        spProducts.Panel2Collapsed = True
-        If Not isLoadingProducts Then
-            If dgvProducts.SelectedRows.Count = 1 Then
-                Dim cRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-                Dim _selProdId As Integer = cRow.Cells(prodId.Name).Value
-                If _selProdId > 0 Then
-                    Dim _selectedProduct As Product = GetProductById(_selProdId)
-                    txtProductDesc.Text = _selectedProduct.ProductDescription
-                    txtCost.Text = "£" & _selectedProduct.ProductCost
-                    txtPrice.Text = "£" & _selectedProduct.ProductPrice
-                    If My.Settings.showProduct Then spProducts.Panel2Collapsed = False
-                End If
-            End If
-        End If
-    End Sub
-    Private Sub ChkAmazon_CheckedChanged(sender As Object, e As EventArgs) Handles ChkAmazon.CheckedChanged
-        With ChkAmazon
-            If .Checked Then
-                .BackColor = Color.DarkRed
-                .ForeColor = Color.White
-            Else
-                .BackColor = Color.WhiteSmoke
-                .ForeColor = Color.Black
-            End If
-        End With
-    End Sub
 #End Region
 #Region "subroutines"
     Private Sub FillSupplierDetails()
         LblAction.Text = "Updating Supplier"
-        btnUpdate.Text = "Update"
+        PicUpdate.Image = My.Resources.update
         With _currentSupplier
             LogUtil.Info("Amending supplier " & _supplierId & " : " & .SupplierName, MyBase.Name)
             txtSuppName.Text = .SupplierName
@@ -171,7 +170,7 @@ Public Class FrmSupplier
     Private Sub NewSupplier()
         LogUtil.Info("New supplier", MyBase.Name())
         LblAction.Text = "Adding New Supplier"
-        btnUpdate.Text = "Create"
+        PicUpdate.Image = My.Resources.add
         _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
         ClearSupplierDetails()
         pnlProducts.Enabled = False
@@ -220,5 +219,6 @@ Public Class FrmSupplier
         End If
         Return isOK
     End Function
+
 #End Region
 End Class

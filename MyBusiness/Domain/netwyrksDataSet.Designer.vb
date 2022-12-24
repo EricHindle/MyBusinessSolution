@@ -26535,7 +26535,8 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "INSERT INTO job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jobid, imagepath, imagedesc)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VA"& _ 
-                "LUES        (@jobId, @imagePath, @imageDesc)"
+                "LUES        (@jobId, @imagePath, @imageDesc);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT"& _ 
+                "        LAST_INSERT_ID()"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
@@ -26821,7 +26822,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertJobImage(ByVal jobId As Integer, ByVal imagePath As String, ByVal imageDesc As String) As Integer
+        Public Overloads Overridable Function InsertJobImage(ByVal jobId As Integer, ByVal imagePath As String, ByVal imageDesc As String) As Object
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
             command.Parameters(0).Value = CType(jobId,Integer)
             If (imagePath Is Nothing) Then
@@ -26839,15 +26840,20 @@ Namespace netwyrksDataSetTableAdapters
                         <> Global.System.Data.ConnectionState.Open) Then
                 command.Connection.Open
             End If
-            Dim returnValue As Integer
+            Dim returnValue As Object
             Try 
-                returnValue = command.ExecuteNonQuery
+                returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
                     command.Connection.Close
                 End If
             End Try
-            Return returnValue
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

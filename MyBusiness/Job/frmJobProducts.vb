@@ -33,9 +33,6 @@ Public Class FrmJobProducts
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
     Private Sub FrmJobProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetFormPos(Me, My.Settings.JobProductsFormPos)
         isLoading = True
@@ -112,33 +109,40 @@ Public Class FrmJobProducts
             End If
         End If
     End Sub
-
-    Private Sub FillProductDetails()
-        nudQuantity.Value = _selectedJobProduct.Quantity
-        lblProductName.Text = _selectedJobProduct.ThisProduct.ProductName
-        chkTaxable.Checked = _selectedJobProduct.Taxable
-        nudTaxRate.Value = _selectedJobProduct.Tax_Rate
-        nudPrice.Value = _selectedJobProduct.Price
-        NudUnitPrice.Value = _selectedJobProduct.ThisProduct.ProductPrice
+    Private Sub LblF5_Click(sender As Object, e As EventArgs) Handles LblF5.Click
+        AddSupplier()
     End Sub
-
-    Private Sub ClearProductDetails()
-        lblProductName.Text = "Select a product"
-        nudQuantity.Value = 1
-        nudPrice.Value = 0.00
-        NudUnitPrice.Value = 0.00
-        nudTaxRate.Value = 0.00
-        chkTaxable.Checked = False
+    Private Sub DgvSupplier_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSupplier.CellDoubleClick
+        If DgvSupplier.SelectedRows.Count = 1 Then
+            Dim dRow As DataGridViewRow = DgvSupplier.SelectedRows(0)
+            Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
+            Using _suppForm As New FrmSupplier
+                _suppForm.SupplierId = _suppId
+                _suppForm.ShowDialog()
+            End Using
+            isLoading = True
+            FillSupplierList()
+            isLoading = False
+        End If
     End Sub
-
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub FrmJobProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        My.Settings.JobProductsFormPos = SetFormPos(Me)
+        My.Settings.Save()
+    End Sub
+    Private Sub NudQuantity_ValueChanged(sender As Object, e As EventArgs) Handles NudQuantity.ValueChanged
+        nudPrice.Value = NudUnitPrice.Value * NudQuantity.Value
+    End Sub
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
         If dgvJobProducts.SelectedRows.Count = 1 Then
             MsgBox("Use Adjust", MsgBoxStyle.Exclamation, "Error")
         Else
-            If dgvProducts.SelectedRows.Count = 1 And nudQuantity.Value > 0 Then
+            If dgvProducts.SelectedRows.Count = 1 And NudQuantity.Value > 0 Then
                 Dim _newJobProduct As JobProduct = JobProductBuilder.AJobProduct.StartingWith(_selectedJobProduct) _
                 .WithTaxable(chkTaxable.Checked) _
-                .WithQuantity(nudQuantity.Value) _
+                .WithQuantity(NudQuantity.Value) _
                 .WithTaxRate(nudTaxRate.Value) _
                 .WithPrice(nudPrice.Value) _
                 .WithCreated(Now) _
@@ -152,8 +156,31 @@ Public Class FrmJobProducts
                 isLoading = False
             End If
         End If
+
     End Sub
-    Private Sub BtnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
+        If dgvJobProducts.SelectedRows.Count > 0 Then
+            Dim _selJpId As Integer = _selectedJobProduct.JobProductId
+            Dim _newJobProduct As JobProduct = JobProductBuilder.AJobProduct.StartingWithNothing _
+            .WithJobProductId(_selectedJobProduct.JobProductId) _
+            .WithProduct(_selectedJobProduct.ThisProduct) _
+            .WithJob(_selectedJobProduct.ThisJob) _
+            .WithTaxable(chkTaxable.Checked) _
+            .WithQuantity(NudQuantity.Value) _
+            .WithTaxRate(nudTaxRate.Value) _
+            .WithPrice(nudPrice.Value) _
+            .WithCreated(Now) _
+            .Build
+            If UpdateJobProduct(_newJobProduct) = 1 Then
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.update, "", _newJobProduct.ToString)
+            End If
+            isLoading = True
+            FillJobProductList(dgvJobProducts)
+            isLoading = False
+        End If
+
+    End Sub
+    Private Sub PicRemove_Click(sender As Object, e As EventArgs) Handles PicRemove.Click
         If dgvJobProducts.SelectedRows.Count > 0 Then
             Dim _selJpId As Integer = _selectedJobProduct.JobProductId
             If DeleteJobProduct(_selJpId) = 1 Then
@@ -167,27 +194,6 @@ Public Class FrmJobProducts
             isLoading = False
         End If
     End Sub
-    Private Sub BtnAdjust_Click(sender As Object, e As EventArgs) Handles btnAdjust.Click
-        If dgvJobProducts.SelectedRows.Count > 0 Then
-            Dim _selJpId As Integer = _selectedJobProduct.JobProductId
-            Dim _newJobProduct As JobProduct = JobProductBuilder.AJobProduct.StartingWithNothing _
-            .WithJobProductId(_selectedJobProduct.JobProductId) _
-            .WithProduct(_selectedJobProduct.ThisProduct) _
-            .WithJob(_selectedJobProduct.ThisJob) _
-            .WithTaxable(chkTaxable.Checked) _
-            .WithQuantity(nudQuantity.Value) _
-            .WithTaxRate(nudTaxRate.Value) _
-            .WithPrice(nudPrice.Value) _
-            .WithCreated(Now) _
-            .Build
-            If UpdateJobProduct(_newJobProduct) = 1 Then
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _selJpId, AuditUtil.AuditableAction.update, "", _newJobProduct.ToString)
-            End If
-            isLoading = True
-            FillJobProductList(dgvJobProducts)
-            isLoading = False
-        End If
-    End Sub
     Private Sub Form_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F5 Then
             AddSupplier()
@@ -195,6 +201,22 @@ Public Class FrmJobProducts
     End Sub
 #End Region
 #Region "subroutines"
+    Private Sub FillProductDetails()
+        NudQuantity.Value = _selectedJobProduct.Quantity
+        lblProductName.Text = _selectedJobProduct.ThisProduct.ProductName
+        chkTaxable.Checked = _selectedJobProduct.Taxable
+        nudTaxRate.Value = _selectedJobProduct.Tax_Rate
+        nudPrice.Value = _selectedJobProduct.Price
+        NudUnitPrice.Value = _selectedJobProduct.ThisProduct.ProductPrice
+    End Sub
+    Private Sub ClearProductDetails()
+        lblProductName.Text = "Select a product"
+        NudQuantity.Value = 1
+        nudPrice.Value = 0.00
+        NudUnitPrice.Value = 0.00
+        nudTaxRate.Value = 0.00
+        chkTaxable.Checked = False
+    End Sub
     Private Sub AddSupplier()
         Using _suppform As New FrmSupplier
             _suppform.SupplierId = -1
@@ -268,33 +290,6 @@ Public Class FrmJobProducts
             End With
         Next
         dgvJobProducts.ClearSelection()
-    End Sub
-
-    Private Sub LblF5_Click(sender As Object, e As EventArgs) Handles LblF5.Click
-        AddSupplier()
-    End Sub
-
-    Private Sub DgvSupplier_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSupplier.CellDoubleClick
-        If DgvSupplier.SelectedRows.Count = 1 Then
-            Dim dRow As DataGridViewRow = DgvSupplier.SelectedRows(0)
-            Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
-            Using _suppForm As New FrmSupplier
-                _suppForm.SupplierId = _suppId
-                _suppForm.ShowDialog()
-            End Using
-            isLoading = True
-            FillSupplierList()
-            isLoading = False
-        End If
-    End Sub
-
-    Private Sub FrmJobProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        My.Settings.JobProductsFormPos = SetFormPos(Me)
-        My.Settings.Save()
-    End Sub
-
-    Private Sub nudQuantity_ValueChanged(sender As Object, e As EventArgs) Handles nudQuantity.ValueChanged
-        nudPrice.Value = NudUnitPrice.Value * nudQuantity.Value
     End Sub
     Private Sub SelectJobProduct(pJobProductId As Integer)
         For Each oRow As DataGridViewRow In dgvJobProducts.Rows

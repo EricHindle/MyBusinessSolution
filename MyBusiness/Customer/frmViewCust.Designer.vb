@@ -34,8 +34,9 @@ Partial Class FrmViewCust
         Me.txtCustAddr2 = New System.Windows.Forms.Label()
         Me.txtCustAddr1 = New System.Windows.Forms.Label()
         Me.txtCustName = New System.Windows.Forms.Label()
-        Me.btnClose = New System.Windows.Forms.Button()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -157,26 +158,26 @@ Partial Class FrmViewCust
         Me.txtCustName.Size = New System.Drawing.Size(206, 22)
         Me.txtCustName.TabIndex = 0
         '
-        'btnClose
+        'PicClose
         '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(75, 389)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 21)
-        Me.btnClose.TabIndex = 9
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = False
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(181, 369)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(36, 33)
+        Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicClose.TabIndex = 96
+        Me.PicClose.TabStop = False
         '
         'FrmViewCust
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(236, 420)
+        Me.ClientSize = New System.Drawing.Size(229, 407)
         Me.ControlBox = False
-        Me.Controls.Add(Me.btnClose)
+        Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.rtbCustNotes)
         Me.Controls.Add(Me.txtCustEmail)
         Me.Controls.Add(Me.txtCustPhone)
@@ -194,6 +195,7 @@ Partial Class FrmViewCust
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -209,5 +211,5 @@ Partial Class FrmViewCust
     Friend WithEvents txtCustAddr2 As System.Windows.Forms.Label
     Friend WithEvents txtCustAddr1 As System.Windows.Forms.Label
     Friend WithEvents txtCustName As System.Windows.Forms.Label
-    Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents PicClose As PictureBox
 End Class

@@ -97,15 +97,6 @@ Public Class FrmDiary
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
     Private Sub BtnSetReminder_Click(sender As Object, e As EventArgs) Handles btnSetReminder.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
@@ -183,8 +174,8 @@ Public Class FrmDiary
     ''' <remarks></remarks>
     Private Sub ClearForm()
         currentDiary = Nothing
-        btnNew.Visible = True
-        btnUpdate.Visible = False
+        PicAdd.Visible = True
+        PicUpdate.Visible = False
         btnSetComplete.Enabled = False
         btnSetReminder.Enabled = False
         lblOverdue.Visible = False
@@ -232,7 +223,7 @@ Public Class FrmDiary
         btnSetComplete.Enabled = True
         btnSetReminder.Text = If(isReminder, "Cancel", "Set") & " Reminder"
         btnSetComplete.Text = If(isComplete, "Re-open", "Close") & " Reminder"
-        btnUpdate.Visible = True
+        PicUpdate.Visible = True
     End Sub
     ''' <summary>
     ''' 
@@ -284,19 +275,6 @@ Public Class FrmDiary
         End If
     End Sub
     ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        Using _reminder As New FrmReminder
-            _reminder.CurrentReminder = Nothing
-            _reminder.ShowDialog()
-        End Using
-        RebuildDiaryList()
-    End Sub
-    ''' <summary>
     ''' Capture function keypress and take action
     ''' </summary>
     ''' <param name="sender"></param>
@@ -317,15 +295,19 @@ Public Class FrmDiary
     Private Sub LblF4_Click(sender As Object, e As EventArgs) Handles lblF4.Click
         ShowAllUsers()
     End Sub
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
 #End Region
 #Region "Create Update Delete"
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
+        Using _reminder As New FrmReminder
+            _reminder.CurrentReminder = Nothing
+            _reminder.ShowDialog()
+        End Using
+        RebuildDiaryList()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Using _reminder As New FrmReminder

@@ -20,9 +20,6 @@ Public Class FrmViewCust
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
     Private Sub FrmViewCust_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", Name)
         My.Settings.CustViewFormPos = SetFormPos(Me)
@@ -41,6 +38,10 @@ Public Class FrmViewCust
             txtCustPostcode.Text = _customer.Address.Postcode
             rtbCustNotes.Text = _customer.Notes
         End If
+    End Sub
+
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
     End Sub
 #End Region
 End Class

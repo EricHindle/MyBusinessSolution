@@ -167,7 +167,7 @@ Public Class InvoicePrinter
         _job.JobInvoiceDate = Now
         UpdateJob(_job)
         Dim _customer As Customer = CustomerBuilder.ACustomer.StartingWith(_job.JobCustomerId).Build
-        Dim _customerFolder As String = Path.Combine(sInvoiceFolder, CStr(_customer.CustomerId) & "_" & _customer.CustName)
+        Dim _customerFolder As String = Path.Combine(sInvoiceFolder, _customer.CustomerId & "_" & _customer.CustName)
         My.Computer.FileSystem.CreateDirectory(_customerFolder)
         Dim sFilename As String = Path.Combine(_customerFolder, "Invoice_" & _job.JobInvoiceNumber & ".pdf")
         CreateInvoicePdf(sFilename)

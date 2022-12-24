@@ -23,9 +23,7 @@ Public Class FrmCustomerMaint
     End Property
 #End Region
 #Region "form handlers"
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Close()
-    End Sub
+
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Started", Name)
         GetFormPos(Me, My.Settings.CustFormPos)
@@ -33,7 +31,7 @@ Public Class FrmCustomerMaint
         pnlCustomer.Enabled = False
         SplitContainer1.Panel2Collapsed = True
         KeyPreview = True
-        If _customerId = 0 Then
+        If _customerId <= 0 Then
             NewCustomer()
         Else
             pnlCustomer.Enabled = True
@@ -51,26 +49,6 @@ Public Class FrmCustomerMaint
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F3 Then
             ShowDiary()
-        End If
-    End Sub
-    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        logutil.info("Updating", Name)
-        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
-        With _currentCustomer
-            _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
-                .WithCustName(txtCustName.Text.Trim()) _
-                .WithDateChanged(.DateChanged) _
-                .WithDateCreated(.DateCreated) _
-                .WithEmail(txtCustEmail.Text.Trim) _
-                .WithNotes(rtbCustNotes.Text) _
-                .WithPhone(txtCustPhone.Text.Trim) _
-                .WithDiscount(nudCustDiscount.Value) _
-                .WithTerms(nudDays.Value).Build
-        End With
-        If _customerId > 0 Then
-            AmendCustomer()
-        Else
-            CreateCustomer()
         End If
     End Sub
     Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvJobs.CellDoubleClick
@@ -98,6 +76,32 @@ Public Class FrmCustomerMaint
         isLoading = True
         FillJobsList(_customerId)
         isLoading = False
+    End Sub
+    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles picDiary.Click
+        ShowDiary()
+    End Sub
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
+        LogUtil.Info("Updating", Name)
+        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
+        With _currentCustomer
+            _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
+                .WithCustName(txtCustName.Text.Trim()) _
+                .WithDateChanged(.DateChanged) _
+                .WithDateCreated(.DateCreated) _
+                .WithEmail(txtCustEmail.Text.Trim) _
+                .WithNotes(rtbCustNotes.Text) _
+                .WithPhone(txtCustPhone.Text.Trim) _
+                .WithDiscount(nudCustDiscount.Value) _
+                .WithTerms(nudDays.Value).Build
+        End With
+        If _customerId > 0 Then
+            AmendCustomer()
+        Else
+            CreateCustomer()
+        End If
     End Sub
 #End Region
 #Region "functions"
@@ -136,6 +140,7 @@ Public Class FrmCustomerMaint
     End Function
     Private Function AmendCustomer() As Boolean
         Dim isAmendOK As Boolean = False
+        PicUpdate.Image = My.Resources.update
         With _newCustomer
 
             If UpdateCustomer(_newCustomer) = 1 Then
@@ -150,7 +155,8 @@ Public Class FrmCustomerMaint
         Return isAmendOK
     End Function
     Private Sub NewCustomer()
-        logutil.info("New customer", Name)
+        LogUtil.Info("New customer", Name)
+        PicUpdate.Image = My.Resources.add
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
         pnlCustomer.Enabled = True
@@ -190,12 +196,7 @@ Public Class FrmCustomerMaint
             _diary.ShowDialog()
         End Using
     End Sub
-
     Private Sub LblF3_Click(sender As Object, e As EventArgs)
-        ShowDiary()
-    End Sub
-
-    Private Sub PicDiary_Click(sender As Object, e As EventArgs) Handles picDiary.Click
         ShowDiary()
     End Sub
 #End Region

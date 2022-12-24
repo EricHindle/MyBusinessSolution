@@ -26,8 +26,6 @@ Partial Class FrmJobProducts
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblJobName = New System.Windows.Forms.Label()
-        Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblF5 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.dgvJobProducts = New System.Windows.Forms.DataGridView()
@@ -49,9 +47,7 @@ Partial Class FrmJobProducts
         Me.prodTaxRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblProductName = New System.Windows.Forms.Label()
-        Me.nudQuantity = New System.Windows.Forms.NumericUpDown()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.btnAdjust = New System.Windows.Forms.Button()
+        Me.NudQuantity = New System.Windows.Forms.NumericUpDown()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
@@ -62,12 +58,16 @@ Partial Class FrmJobProducts
         Me.Label5 = New System.Windows.Forms.Label()
         Me.NudUnitPrice = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.PicAdd = New System.Windows.Forms.PictureBox()
+        Me.PicRemove = New System.Windows.Forms.PictureBox()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvSupplier, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudQuantity, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudQuantity, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -79,6 +79,10 @@ Partial Class FrmJobProducts
         Me.SplitContainer2.SuspendLayout()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -115,27 +119,6 @@ Partial Class FrmJobProducts
         Me.lblJobName.Size = New System.Drawing.Size(78, 19)
         Me.lblJobName.TabIndex = 70
         Me.lblJobName.Text = "Job name"
-        '
-        'btnClose
-        '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(651, 579)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(98, 41)
-        Me.btnClose.TabIndex = 74
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(12, 579)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(98, 41)
-        Me.btnAdd.TabIndex = 73
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
@@ -335,32 +318,12 @@ Partial Class FrmJobProducts
         '
         'nudQuantity
         '
-        Me.nudQuantity.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.nudQuantity.Location = New System.Drawing.Point(266, 516)
-        Me.nudQuantity.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudQuantity.Name = "nudQuantity"
-        Me.nudQuantity.Size = New System.Drawing.Size(120, 24)
-        Me.nudQuantity.TabIndex = 79
-        '
-        'btnRemove
-        '
-        Me.btnRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnRemove.Location = New System.Drawing.Point(290, 579)
-        Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(98, 41)
-        Me.btnRemove.TabIndex = 80
-        Me.btnRemove.Text = "Remove"
-        Me.btnRemove.UseVisualStyleBackColor = True
-        '
-        'btnAdjust
-        '
-        Me.btnAdjust.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdjust.Location = New System.Drawing.Point(151, 579)
-        Me.btnAdjust.Name = "btnAdjust"
-        Me.btnAdjust.Size = New System.Drawing.Size(98, 41)
-        Me.btnAdjust.TabIndex = 81
-        Me.btnAdjust.Text = "Adjust"
-        Me.btnAdjust.UseVisualStyleBackColor = True
+        Me.NudQuantity.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudQuantity.Location = New System.Drawing.Point(266, 516)
+        Me.NudQuantity.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NudQuantity.Name = "nudQuantity"
+        Me.NudQuantity.Size = New System.Drawing.Size(120, 24)
+        Me.NudQuantity.TabIndex = 79
         '
         'Label1
         '
@@ -482,12 +445,60 @@ Partial Class FrmJobProducts
         Me.Label3.TabIndex = 91
         Me.Label3.Text = "Unit Price"
         '
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(82, 580)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 102
+        Me.PicUpdate.TabStop = False
+        '
+        'PicAdd
+        '
+        Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.InitialImage = Nothing
+        Me.PicAdd.Location = New System.Drawing.Point(18, 579)
+        Me.PicAdd.Name = "PicAdd"
+        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.TabIndex = 101
+        Me.PicAdd.TabStop = False
+        '
+        'PicRemove
+        '
+        Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicRemove.InitialImage = Nothing
+        Me.PicRemove.Location = New System.Drawing.Point(149, 580)
+        Me.PicRemove.Name = "PicRemove"
+        Me.PicRemove.Size = New System.Drawing.Size(42, 42)
+        Me.PicRemove.TabIndex = 100
+        Me.PicRemove.TabStop = False
+        '
+        'PicClose
+        '
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(710, 579)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 99
+        Me.PicClose.TabStop = False
+        '
         'FrmJobProducts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(764, 661)
+        Me.Controls.Add(Me.PicUpdate)
+        Me.Controls.Add(Me.PicAdd)
+        Me.Controls.Add(Me.PicRemove)
+        Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.NudUnitPrice)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.nudPrice)
@@ -497,12 +508,8 @@ Partial Class FrmJobProducts
         Me.Controls.Add(Me.nudTaxRate)
         Me.Controls.Add(Me.chkTaxable)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnAdjust)
-        Me.Controls.Add(Me.btnRemove)
-        Me.Controls.Add(Me.nudQuantity)
+        Me.Controls.Add(Me.NudQuantity)
         Me.Controls.Add(Me.lblProductName)
-        Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.lblJobName)
         Me.Controls.Add(Me.PictureBox1)
@@ -519,7 +526,7 @@ Partial Class FrmJobProducts
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgvSupplier, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudQuantity, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudQuantity, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
@@ -531,6 +538,10 @@ Partial Class FrmJobProducts
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -539,16 +550,12 @@ Partial Class FrmJobProducts
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
     Friend WithEvents lblJobName As Label
-    Friend WithEvents btnClose As Button
-    Friend WithEvents btnAdd As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents dgvJobProducts As DataGridView
     Friend WithEvents DgvSupplier As DataGridView
     Friend WithEvents dgvProducts As DataGridView
     Friend WithEvents lblProductName As Label
-    Friend WithEvents nudQuantity As NumericUpDown
-    Friend WithEvents btnRemove As Button
-    Friend WithEvents btnAdjust As Button
+    Friend WithEvents NudQuantity As NumericUpDown
     Friend WithEvents suppId As DataGridViewTextBoxColumn
     Friend WithEvents suppName As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -575,4 +582,8 @@ Partial Class FrmJobProducts
     Friend WithEvents prodPrice As DataGridViewTextBoxColumn
     Friend WithEvents NudUnitPrice As NumericUpDown
     Friend WithEvents Label3 As Label
+    Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents PicAdd As PictureBox
+    Friend WithEvents PicRemove As PictureBox
+    Friend WithEvents PicClose As PictureBox
 End Class

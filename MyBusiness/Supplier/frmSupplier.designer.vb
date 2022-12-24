@@ -28,9 +28,8 @@ Partial Class FrmSupplier
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSupplier))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
-        Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.pnlSupplier = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TxtWeb = New System.Windows.Forms.TextBox()
@@ -66,7 +65,8 @@ Partial Class FrmSupplier
         Me.btnAddProduct = New System.Windows.Forms.Button()
         Me.LblAction = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.PicUpdate = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
@@ -82,6 +82,8 @@ Partial Class FrmSupplier
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -109,29 +111,6 @@ Partial Class FrmSupplier
         Me.lblScreenName.Text = "Supplier"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btnClose
-        '
-        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnClose.Location = New System.Drawing.Point(374, 555)
-        Me.btnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(114, 50)
-        Me.btnClose.TabIndex = 3
-        Me.btnClose.Text = "Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnUpdate.Location = New System.Drawing.Point(16, 555)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(114, 50)
-        Me.btnUpdate.TabIndex = 2
-        Me.btnUpdate.Text = "Update"
-        Me.btnUpdate.UseVisualStyleBackColor = True
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
@@ -143,6 +122,15 @@ Partial Class FrmSupplier
         Me.StatusStrip1.Size = New System.Drawing.Size(852, 22)
         Me.StatusStrip1.TabIndex = 72
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'LblStatus
+        '
+        Me.LblStatus.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
+        Me.LblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.LblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(2, 0, 3, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(9, 17)
         '
         'pnlSupplier
         '
@@ -549,14 +537,27 @@ Partial Class FrmSupplier
         Me.SplitContainer1.SplitterDistance = 444
         Me.SplitContainer1.TabIndex = 74
         '
-        'LblStatus
+        'PicClose
         '
-        Me.LblStatus.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
-        Me.LblStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.LblStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched
-        Me.LblStatus.Name = "LblStatus"
-        Me.LblStatus.Padding = New System.Windows.Forms.Padding(2, 0, 3, 0)
-        Me.LblStatus.Size = New System.Drawing.Size(9, 17)
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
+        Me.PicClose.InitialImage = Nothing
+        Me.PicClose.Location = New System.Drawing.Point(796, 558)
+        Me.PicClose.Name = "PicClose"
+        Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.TabIndex = 108
+        Me.PicClose.TabStop = False
+        '
+        'PicUpdate
+        '
+        Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.InitialImage = Nothing
+        Me.PicUpdate.Location = New System.Drawing.Point(14, 558)
+        Me.PicUpdate.Name = "PicUpdate"
+        Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.TabIndex = 107
+        Me.PicUpdate.TabStop = False
         '
         'FrmSupplier
         '
@@ -564,10 +565,10 @@ Partial Class FrmSupplier
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(852, 631)
+        Me.Controls.Add(Me.PicClose)
+        Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.LblAction)
-        Me.Controls.Add(Me.btnClose)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
@@ -595,6 +596,8 @@ Partial Class FrmSupplier
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -602,8 +605,6 @@ Partial Class FrmSupplier
 
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
-    Friend WithEvents btnClose As Button
-    Friend WithEvents btnUpdate As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents pnlSupplier As Panel
     Friend WithEvents Label7 As Label
@@ -641,4 +642,6 @@ Partial Class FrmSupplier
     Friend WithEvents LblAction As Label
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents LblStatus As ToolStripStatusLabel
+    Friend WithEvents PicClose As PictureBox
+    Friend WithEvents PicUpdate As PictureBox
 End Class
