@@ -155,6 +155,7 @@ Public Class FrmMain
     End Sub
     Private Sub NewDiaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewDiaryToolStripMenuItem.Click
         Using _diary As New FrmReminder
+            _diary.CurrentReminder = Nothing
             _diary.ShowDialog()
         End Using
         isLoading = True

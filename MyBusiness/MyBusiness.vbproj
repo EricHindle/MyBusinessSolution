@@ -556,11 +556,16 @@
   <ItemGroup>
     <Content Include="Images\abandon.png" />
     <None Include="Images\add.png" />
+    <None Include="Images\addrem.png" />
+    <None Include="Images\adddiary.png" />
     <Content Include="Images\anubis.ico" />
     <Content Include="Images\anubis_button.png" />
     <Content Include="Images\anubis_icon_2.jpg" />
     <Content Include="Images\calllogbutton.png" />
     <Content Include="Images\cancel.png" />
+    <None Include="Images\delrem.png" />
+    <None Include="Images\cancelreminder.png" />
+    <None Include="Images\closediary.png" />
     <Content Include="Images\diary.png" />
     <Content Include="Images\email-icon.jpg" />
     <Content Include="Images\emailbutton.png" />
@@ -573,6 +578,13 @@
     <None Include="Images\remove.png" />
     <None Include="Images\left24.png" />
     <None Include="Images\update.png" />
+    <None Include="Images\reminder.png" />
+    <None Include="Images\reminder_upd.png" />
+    <None Include="Images\reminder_x.png" />
+    <None Include="Images\setreminder.png" />
+    <None Include="Images\updatediary.png" />
+    <None Include="Images\RmvCallback.png" />
+    <None Include="Images\reopendiary.png" />
     <Content Include="MyBusiness5.ico" />
     <None Include="packages.config" />
     <None Include="Resources\MyBusiness.png" />

@@ -29,8 +29,10 @@ Partial Class FrmReminder
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicAdd = New System.Windows.Forms.PictureBox()
-        Me.PicRemove = New System.Windows.Forms.PictureBox()
+        Me.PicToggleComplete = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.PicSetReminder = New System.Windows.Forms.PictureBox()
+        Me.PicSetCallback = New System.Windows.Forms.PictureBox()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.rtbBody = New System.Windows.Forms.RichTextBox()
@@ -46,13 +48,15 @@ Partial Class FrmReminder
         Me.LblCustName = New System.Windows.Forms.Label()
         Me.lblJob = New System.Windows.Forms.Label()
         Me.lblCust = New System.Windows.Forms.Label()
-        Me.chkReminder = New System.Windows.Forms.CheckBox()
         Me.chkCallBack = New System.Windows.Forms.CheckBox()
+        Me.chkReminder = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicSetCallback, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -79,7 +83,7 @@ Partial Class FrmReminder
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.updatediary
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(76, 410)
         Me.PicUpdate.Name = "PicUpdate"
@@ -91,7 +95,7 @@ Partial Class FrmReminder
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.adddiary
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(12, 410)
         Me.PicAdd.Name = "PicAdd"
@@ -100,17 +104,17 @@ Partial Class FrmReminder
         Me.PicAdd.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Reminder")
         '
-        'PicRemove
+        'PicToggleComplete
         '
-        Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
-        Me.PicRemove.InitialImage = Nothing
-        Me.PicRemove.Location = New System.Drawing.Point(143, 410)
-        Me.PicRemove.Name = "PicRemove"
-        Me.PicRemove.Size = New System.Drawing.Size(42, 42)
-        Me.PicRemove.TabIndex = 100
-        Me.PicRemove.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicRemove, "Mark as completed")
+        Me.PicToggleComplete.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicToggleComplete.Image = Global.MyBusiness.My.Resources.Resources.closediary
+        Me.PicToggleComplete.InitialImage = Nothing
+        Me.PicToggleComplete.Location = New System.Drawing.Point(143, 410)
+        Me.PicToggleComplete.Name = "PicToggleComplete"
+        Me.PicToggleComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleComplete.TabIndex = 100
+        Me.PicToggleComplete.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicToggleComplete, "Mark as completed")
         '
         'PicClose
         '
@@ -123,6 +127,30 @@ Partial Class FrmReminder
         Me.PicClose.TabIndex = 99
         Me.PicClose.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
+        '
+        'PicSetReminder
+        '
+        Me.PicSetReminder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicSetReminder.Image = Global.MyBusiness.My.Resources.Resources.setreminder
+        Me.PicSetReminder.InitialImage = Nothing
+        Me.PicSetReminder.Location = New System.Drawing.Point(492, 109)
+        Me.PicSetReminder.Name = "PicSetReminder"
+        Me.PicSetReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetReminder.TabIndex = 103
+        Me.PicSetReminder.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicSetReminder, "Set as reminder")
+        '
+        'PicSetCallback
+        '
+        Me.PicSetCallback.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicSetCallback.Image = Global.MyBusiness.My.Resources.Resources.PhoneCall
+        Me.PicSetCallback.InitialImage = Nothing
+        Me.PicSetCallback.Location = New System.Drawing.Point(492, 157)
+        Me.PicSetCallback.Name = "PicSetCallback"
+        Me.PicSetCallback.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetCallback.TabIndex = 104
+        Me.PicSetCallback.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicSetCallback, "Set Callback required")
         '
         'lblFormName
         '
@@ -176,7 +204,7 @@ Partial Class FrmReminder
         Me.lblReminder.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblReminder.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReminder.ForeColor = System.Drawing.Color.White
-        Me.lblReminder.Location = New System.Drawing.Point(461, 168)
+        Me.lblReminder.Location = New System.Drawing.Point(458, 256)
         Me.lblReminder.Name = "lblReminder"
         Me.lblReminder.Size = New System.Drawing.Size(77, 19)
         Me.lblReminder.TabIndex = 15
@@ -189,7 +217,7 @@ Partial Class FrmReminder
         Me.lblComplete.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
         Me.lblComplete.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComplete.ForeColor = System.Drawing.Color.White
-        Me.lblComplete.Location = New System.Drawing.Point(461, 196)
+        Me.lblComplete.Location = New System.Drawing.Point(458, 284)
         Me.lblComplete.Name = "lblComplete"
         Me.lblComplete.Size = New System.Drawing.Size(76, 19)
         Me.lblComplete.TabIndex = 16
@@ -202,7 +230,7 @@ Partial Class FrmReminder
         Me.lblOverdue.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblOverdue.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOverdue.ForeColor = System.Drawing.Color.White
-        Me.lblOverdue.Location = New System.Drawing.Point(465, 139)
+        Me.lblOverdue.Location = New System.Drawing.Point(462, 227)
         Me.lblOverdue.Name = "lblOverdue"
         Me.lblOverdue.Size = New System.Drawing.Size(69, 19)
         Me.lblOverdue.TabIndex = 14
@@ -292,26 +320,29 @@ Partial Class FrmReminder
         Me.lblCust.TabIndex = 0
         Me.lblCust.Text = "Customer"
         '
-        'chkReminder
-        '
-        Me.chkReminder.AutoSize = True
-        Me.chkReminder.Location = New System.Drawing.Point(334, 127)
-        Me.chkReminder.Name = "chkReminder"
-        Me.chkReminder.Size = New System.Drawing.Size(109, 21)
-        Me.chkReminder.TabIndex = 11
-        Me.chkReminder.Text = "Set Reminder"
-        Me.chkReminder.UseVisualStyleBackColor = True
-        '
         'chkCallBack
         '
         Me.chkCallBack.AutoSize = True
-        Me.chkCallBack.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkCallBack.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkCallBack.Location = New System.Drawing.Point(334, 154)
         Me.chkCallBack.Name = "chkCallBack"
-        Me.chkCallBack.Size = New System.Drawing.Size(121, 18)
+        Me.chkCallBack.Size = New System.Drawing.Size(111, 17)
         Me.chkCallBack.TabIndex = 12
         Me.chkCallBack.Text = "Call back required"
         Me.chkCallBack.UseVisualStyleBackColor = True
+        Me.chkCallBack.Visible = False
+        '
+        'chkReminder
+        '
+        Me.chkReminder.AutoSize = True
+        Me.chkReminder.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkReminder.Location = New System.Drawing.Point(334, 127)
+        Me.chkReminder.Name = "chkReminder"
+        Me.chkReminder.Size = New System.Drawing.Size(74, 17)
+        Me.chkReminder.TabIndex = 11
+        Me.chkReminder.Text = " Reminder"
+        Me.chkReminder.UseVisualStyleBackColor = True
+        Me.chkReminder.Visible = False
         '
         'FrmReminder
         '
@@ -319,9 +350,11 @@ Partial Class FrmReminder
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(556, 485)
+        Me.Controls.Add(Me.PicSetCallback)
+        Me.Controls.Add(Me.PicSetReminder)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicAdd)
-        Me.Controls.Add(Me.PicRemove)
+        Me.Controls.Add(Me.PicToggleComplete)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.chkCallBack)
         Me.Controls.Add(Me.chkReminder)
@@ -349,8 +382,10 @@ Partial Class FrmReminder
         Me.StatusStrip1.PerformLayout()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicSetCallback, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -374,12 +409,14 @@ Partial Class FrmReminder
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents lblJob As System.Windows.Forms.Label
     Friend WithEvents lblCust As System.Windows.Forms.Label
-    Friend WithEvents chkReminder As System.Windows.Forms.CheckBox
     Friend WithEvents chkCallBack As System.Windows.Forms.CheckBox
     Friend WithEvents LblJobName As Label
     Friend WithEvents LblCustName As Label
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicAdd As PictureBox
-    Friend WithEvents PicRemove As PictureBox
+    Friend WithEvents PicToggleComplete As PictureBox
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents PicSetReminder As PictureBox
+    Friend WithEvents PicSetCallback As PictureBox
+    Friend WithEvents chkReminder As CheckBox
 End Class

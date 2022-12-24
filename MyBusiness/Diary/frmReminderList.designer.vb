@@ -359,7 +359,7 @@ Partial Class FrmReminderList
         '
         'PicAdd
         '
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.setreminder
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(346, 129)
         Me.PicAdd.Name = "PicAdd"
@@ -369,7 +369,7 @@ Partial Class FrmReminderList
         '
         'PicRemove
         '
-        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.cancelreminder
         Me.PicRemove.InitialImage = Nothing
         Me.PicRemove.Location = New System.Drawing.Point(346, 201)
         Me.PicRemove.Name = "PicRemove"

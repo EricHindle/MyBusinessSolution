@@ -102,6 +102,7 @@ Public Class FrmDiary
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim remId As Integer = oRow.Cells(dremId.Name).Value
             Dim newValue As Integer = If(oRow.Cells(dremRem.Name).Value = "", 1, 0)
+            btnSetReminder.Text = If(oRow.Cells(dremRem.Name).Value = "", "Cancel Reminder", "Set a reminder")
             UpdateIsReminder(newValue, remId)
             RebuildDiaryList()
         End If
@@ -221,7 +222,7 @@ Public Class FrmDiary
         lblOverdue.Visible = currentDiary.IsReminder And currentDiary.ReminderDate < Today.Date And Not isComplete
         btnSetReminder.Enabled = True
         btnSetComplete.Enabled = True
-        btnSetReminder.Text = If(isReminder, "Cancel", "Set") & " Reminder"
+        btnSetReminder.Text = If(isReminder, "Cancel ", "Set a") & " Reminder"
         btnSetComplete.Text = If(isComplete, "Re-open", "Close") & " Reminder"
         PicUpdate.Visible = True
     End Sub

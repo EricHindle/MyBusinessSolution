@@ -649,6 +649,16 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
+    Public Function UpdateCallback(pValue As SByte, pRemId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oDiaryTa.UpdateCallback(pValue, pRemId)
+        Catch ex As Exception
+            DisplayException(ex, "Exception updating reminder", MODULE_NAME)
+            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Return _ct
+    End Function
     Public Function UpdateDiary(pReminder As Reminder) As Integer
         Dim _ct As Integer
         Try

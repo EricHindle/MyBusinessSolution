@@ -140,25 +140,25 @@ Partial Class FrmDiary
         '
         'PicAdd
         '
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.adddiary
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(12, 84)
         Me.PicAdd.Name = "PicAdd"
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 98
         Me.PicAdd.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Image")
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add diary entry")
         '
         'PicUpdate
         '
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.updatediary
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(12, 132)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 99
         Me.PicUpdate.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Image")
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update diary entry")
         '
         'btnSetReminder
         '
@@ -169,7 +169,7 @@ Partial Class FrmDiary
         Me.btnSetReminder.Name = "btnSetReminder"
         Me.btnSetReminder.Size = New System.Drawing.Size(119, 31)
         Me.btnSetReminder.TabIndex = 4
-        Me.btnSetReminder.Text = "Set as reminder"
+        Me.btnSetReminder.Text = "Set a reminder"
         Me.btnSetReminder.UseVisualStyleBackColor = True
         '
         'btnSetComplete

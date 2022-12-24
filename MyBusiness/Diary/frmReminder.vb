@@ -69,14 +69,15 @@ Public Class FrmReminder
         ClearForm()
         SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
         PicAdd.Visible = True
-        If _reminder IsNot Nothing Then
-            If _reminder.Diary_id > 0 Then
+
+        If _reminder Is Nothing Then
+            _reminder = ReminderBuilder.AReminder.StartingWithNothing.Build
+        End If
+        If _reminder.Diary_id > 0 Then
                 FillForm()
                 _customer = _reminder.LinkedCustomer
                 _job = _reminder.LinkedJob
             End If
-        End If
-
         If _customer IsNot Nothing Then
             lblCust.ForeColor = Color.Black
             LblCustName.Text = _customer.CustName
@@ -84,25 +85,6 @@ Public Class FrmReminder
         If _job IsNot Nothing Then
             lblJob.ForeColor = Color.Black
             LblJobName.Text = _job.JobName
-        End If
-    End Sub
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ChkReminder_CheckedChanged(sender As Object, e As EventArgs) Handles chkReminder.CheckedChanged
-        FORM_NAME = If(chkReminder.Checked, REMINDER_TEXT, DIARY_TEXT)
-        lblFormName.Text = FORM_NAME
-        lblRemDate.Text = FORM_NAME & " for"
-    End Sub
-    Private Sub ChkCallBack_CheckedChanged(sender As Object, e As EventArgs) Handles chkCallBack.CheckedChanged
-        If chkCallBack.Checked Then
-            dtpSelectDate.Format = DateTimePickerFormat.Custom
-            dtpSelectDate.CustomFormat = "dd MMMM yyyy  HH:mm"
-        Else
-            dtpSelectDate.CustomFormat = vbLongDate
         End If
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
@@ -148,11 +130,22 @@ Public Class FrmReminder
         Close()
 
     End Sub
-    Private Sub PicRemove_Click(sender As Object, e As EventArgs) Handles PicRemove.Click
+    Private Sub PicToggleComplete_Click(sender As Object, e As EventArgs) Handles PicToggleComplete.Click
         Dim newValue As SByte = If(_reminder.IsClosed, 0, 1)
+        SetCompletePic()
         UpdateReminderClosed(newValue, _reminder.Diary_id)
         _reminder.IsClosed = newValue
         FillForm()
+    End Sub
+
+    Private Sub SetCompletePic()
+        If _reminder.IsClosed Then
+            PicToggleComplete.Image = My.Resources.reopendiary
+            ToolTip1.SetToolTip(PicToggleComplete, "Reopen diary entry")
+        Else
+            PicToggleComplete.Image = My.Resources.closediary
+            ToolTip1.SetToolTip(PicToggleComplete, "Mark as complete")
+        End If
     End Sub
 #End Region
 #Region "Subroutines"
@@ -163,13 +156,13 @@ Public Class FrmReminder
         LblJobName.Text = ""
         PicUpdate.Visible = False
         PicAdd.Visible = False
-        PicRemove.Enabled = False
+        PicToggleComplete.Enabled = False
         lblOverdue.Visible = False
         lblReminder.Visible = False
         lblComplete.Visible = False
         txtSubject.Text = ""
         rtbBody.Text = ""
-        chkReminder.Checked = True
+        PicSetReminder.Image = My.Resources.setreminder
     End Sub
 
     Private Function MakeReminderFromForm() As Reminder
@@ -190,15 +183,16 @@ Public Class FrmReminder
         rtbBody.Text = _reminder.Body
         dtpSelectDate.Value = _reminder.ReminderDate
         lblReminder.Visible = _reminder.IsReminder
+        SetCompletePic()
         lblComplete.Visible = isComplete
         lblOverdue.Visible = isComplete = False And _reminder.ReminderDate < Today.Date
-        PicRemove.Enabled = True
-        '     PicRemove.Text = If(isComplete, "Unset", "Mark as") & " Complete"
+        PicToggleComplete.Enabled = True
         PicAdd.Visible = False
         PicUpdate.Visible = True
         chkReminder.Checked = _reminder.IsReminder
         chkCallBack.Checked = _reminder.CallBack
-
+        SetReminderPic()
+        SetCallbackPic()
     End Sub
     ''' <summary>
     ''' Display a message in the status bar and optionally log it
@@ -210,6 +204,52 @@ Public Class FrmReminder
     Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
         lblStatus.Text = sText
         If islogged Then LogUtil.addLog(sText, level, FORM_NAME)
+    End Sub
+
+    Private Sub PicSetReminder_Click(sender As Object, e As EventArgs) Handles PicSetReminder.Click
+        _reminder.IsReminder = Not _reminder.IsReminder
+        If _reminder.Diary_id > 0 Then
+            UpdateIsReminder(_reminder.IsReminder, _reminder.Diary_id)
+        End If
+        SetReminderPic()
+    End Sub
+
+    Private Sub SetReminderPic()
+        If _reminder.IsReminder Then
+            FORM_NAME = REMINDER_TEXT
+            PicSetReminder.Image = My.Resources.cancelreminder
+            ToolTip1.SetToolTip(PicSetReminder, "Cancel reminder")
+        Else
+            FORM_NAME = DIARY_TEXT
+            PicSetReminder.Image = My.Resources.setreminder
+            ToolTip1.SetToolTip(PicSetReminder, "Set a reminder")
+        End If
+        lblFormName.Text = FORM_NAME
+        lblRemDate.Text = FORM_NAME & " for"
+        chkReminder.Checked = _reminder.IsReminder
+    End Sub
+
+    Private Sub PicSetCallback_Click(sender As Object, e As EventArgs) Handles PicSetCallback.Click
+        _reminder.CallBack = Not _reminder.CallBack
+        If _reminder.Diary_id > 0 Then
+            UpdateCallback(_reminder.CallBack, _reminder.Diary_id)
+        End If
+
+        SetCallbackPic()
+    End Sub
+
+    Private Sub SetCallbackPic()
+        chkCallBack.Checked = _reminder.CallBack
+        If _reminder.CallBack Then
+            dtpSelectDate.Format = DateTimePickerFormat.Custom
+            dtpSelectDate.CustomFormat = "dd MMMM yyyy  HH:mm"
+            ToolTip1.SetToolTip(PicSetCallback, "Cancel caLLback")
+        Else
+            dtpSelectDate.Format = DateTimePickerFormat.Long
+            ToolTip1.SetToolTip(PicSetCallback, "Set callback required")
+        End If
+        PicSetCallback.Image = If(_reminder.CallBack, My.Resources.RmvCallback, My.Resources.PhoneCall)
+        ToolTip1.SetToolTip(PicSetCallback, "")
     End Sub
 #End Region
 End Class
