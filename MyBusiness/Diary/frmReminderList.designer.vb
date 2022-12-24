@@ -52,16 +52,16 @@ Partial Class FrmReminderList
         Me.lblJob = New System.Windows.Forms.Label()
         Me.lblCust = New System.Windows.Forms.Label()
         Me.PicClose = New System.Windows.Forms.PictureBox()
-        Me.PicAdd = New System.Windows.Forms.PictureBox()
-        Me.PicRemove = New System.Windows.Forms.PictureBox()
+        Me.PicToggleReminder = New System.Windows.Forms.PictureBox()
+        Me.PicSetComplete = New System.Windows.Forms.PictureBox()
         CType(Me.DgvReminders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicToggleReminder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicSetComplete, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DgvReminders
@@ -357,25 +357,25 @@ Partial Class FrmReminderList
         Me.PicClose.TabIndex = 100
         Me.PicClose.TabStop = False
         '
-        'PicAdd
+        'PicToggleReminder
         '
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.setreminder
-        Me.PicAdd.InitialImage = Nothing
-        Me.PicAdd.Location = New System.Drawing.Point(346, 129)
-        Me.PicAdd.Name = "PicAdd"
-        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
-        Me.PicAdd.TabIndex = 103
-        Me.PicAdd.TabStop = False
+        Me.PicToggleReminder.Image = Global.MyBusiness.My.Resources.Resources.setreminder
+        Me.PicToggleReminder.InitialImage = Nothing
+        Me.PicToggleReminder.Location = New System.Drawing.Point(346, 129)
+        Me.PicToggleReminder.Name = "PicToggleReminder"
+        Me.PicToggleReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleReminder.TabIndex = 103
+        Me.PicToggleReminder.TabStop = False
         '
-        'PicRemove
+        'PicSetComplete
         '
-        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.cancelreminder
-        Me.PicRemove.InitialImage = Nothing
-        Me.PicRemove.Location = New System.Drawing.Point(346, 201)
-        Me.PicRemove.Name = "PicRemove"
-        Me.PicRemove.Size = New System.Drawing.Size(42, 42)
-        Me.PicRemove.TabIndex = 102
-        Me.PicRemove.TabStop = False
+        Me.PicSetComplete.Image = Global.MyBusiness.My.Resources.Resources.closediary
+        Me.PicSetComplete.InitialImage = Nothing
+        Me.PicSetComplete.Location = New System.Drawing.Point(346, 201)
+        Me.PicSetComplete.Name = "PicSetComplete"
+        Me.PicSetComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetComplete.TabIndex = 102
+        Me.PicSetComplete.TabStop = False
         '
         'FrmReminderList
         '
@@ -384,8 +384,8 @@ Partial Class FrmReminderList
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(790, 453)
         Me.ControlBox = False
-        Me.Controls.Add(Me.PicAdd)
-        Me.Controls.Add(Me.PicRemove)
+        Me.Controls.Add(Me.PicToggleReminder)
+        Me.Controls.Add(Me.PicSetComplete)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -412,8 +412,8 @@ Partial Class FrmReminderList
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicToggleReminder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicSetComplete, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -443,6 +443,6 @@ Partial Class FrmReminderList
     Friend WithEvents lblCust As Label
     Friend WithEvents LblStatus As ToolStripStatusLabel
     Friend WithEvents PicClose As PictureBox
-    Friend WithEvents PicAdd As PictureBox
-    Friend WithEvents PicRemove As PictureBox
+    Friend WithEvents PicToggleReminder As PictureBox
+    Friend WithEvents PicSetComplete As PictureBox
 End Class

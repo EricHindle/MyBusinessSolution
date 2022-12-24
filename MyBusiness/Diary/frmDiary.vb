@@ -91,37 +91,7 @@ Public Class FrmDiary
         FillDiaryTable()
         SpellCheckUtil.EnableSpellChecking({rtbBody, txtSubject})
     End Sub
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub BtnSetReminder_Click(sender As Object, e As EventArgs) Handles btnSetReminder.Click
-        If dgvDiary.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-            Dim remId As Integer = oRow.Cells(dremId.Name).Value
-            Dim newValue As Integer = If(oRow.Cells(dremRem.Name).Value = "", 1, 0)
-            btnSetReminder.Text = If(oRow.Cells(dremRem.Name).Value = "", "Cancel Reminder", "Set a reminder")
-            UpdateIsReminder(newValue, remId)
-            RebuildDiaryList()
-        End If
-    End Sub
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub BtnSetComplete_Click(sender As Object, e As EventArgs) Handles btnSetComplete.Click
-        If dgvDiary.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-            Dim remId As Integer = oRow.Cells(dremId.Name).Value
-            Dim newValue As Integer = If(oRow.Cells(dremClosed.Name).Value = "", 1, 0)
-            UpdateReminderClosed(newValue, remId)
-            RebuildDiaryList()
-        End If
-    End Sub
+
     ''' <summary>
     ''' Refill the diary grid and position the selected row as before
     ''' </summary>
@@ -177,8 +147,8 @@ Public Class FrmDiary
         currentDiary = Nothing
         PicAdd.Visible = True
         PicUpdate.Visible = False
-        btnSetComplete.Enabled = False
-        btnSetReminder.Enabled = False
+        PicToggleComplete.Visible = False
+        PicSetReminder.Visible = False
         lblOverdue.Visible = False
         lblReminder.Visible = False
         lblComplete.Visible = False
@@ -220,11 +190,11 @@ Public Class FrmDiary
         lblReminder.Visible = isReminder
         lblComplete.Visible = isComplete
         lblOverdue.Visible = currentDiary.IsReminder And currentDiary.ReminderDate < Today.Date And Not isComplete
-        btnSetReminder.Enabled = True
-        btnSetComplete.Enabled = True
-        btnSetReminder.Text = If(isReminder, "Cancel ", "Set a") & " Reminder"
-        btnSetComplete.Text = If(isComplete, "Re-open", "Close") & " Reminder"
-        PicUpdate.Visible = True
+        PicSetReminder.Visible = currentDiary.Diary_id > 0
+        PicToggleComplete.Visible = currentDiary.Diary_id > 0
+        PicSetReminder.Image = If(isReminder, My.Resources.cancelreminder, My.Resources.setreminder)
+        PicToggleComplete.Image = If(isComplete, My.Resources.reopendiary, My.Resources.closediary)
+        PicUpdate.Visible = currentDiary.Diary_id > 0
     End Sub
     ''' <summary>
     ''' 
@@ -464,5 +434,28 @@ Public Class FrmDiary
         isLoading = False
         RebuildDiaryList()
     End Sub
+
+    Private Sub PicSetReminder_Click(sender As Object, e As EventArgs) Handles PicSetReminder.Click
+        If dgvDiary.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
+            Dim remId As Integer = oRow.Cells(dremId.Name).Value
+            Dim _rem As Reminder = GetReminderById(remId)
+            Dim newValue As Integer = If(_rem.IsReminder, 0, 1)
+            PicSetReminder.Image = If(_rem.IsReminder, My.Resources.setreminder, My.Resources.cancelreminder)
+            UpdateIsReminder(newValue, remId)
+            RebuildDiaryList()
+        End If
+    End Sub
+
+    Private Sub PicToggleComplete_Click(sender As Object, e As EventArgs) Handles PicToggleComplete.Click
+        If dgvDiary.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
+            Dim remId As Integer = oRow.Cells(dremId.Name).Value
+            Dim newValue As Integer = If(oRow.Cells(dremClosed.Name).Value = "", 1, 0)
+            UpdateReminderClosed(newValue, remId)
+            RebuildDiaryList()
+        End If
+    End Sub
+
 #End Region
 End Class

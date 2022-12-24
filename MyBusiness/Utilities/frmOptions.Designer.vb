@@ -66,7 +66,10 @@ Partial Class frmOptions
         Me.txtInvBodySample = New System.Windows.Forms.TextBox()
         Me.txtInvHdrSample = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TxtBackupFolder = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TxtInvoiceFolder = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -77,7 +80,6 @@ Partial Class frmOptions
         Me.lblReports = New System.Windows.Forms.Label()
         Me.txtLogPath = New System.Windows.Forms.TextBox()
         Me.lblLogFolder = New System.Windows.Forms.Label()
-        Me.BtnCreateFolders = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblTempFolder = New System.Windows.Forms.Label()
         Me.txtTempFolder = New System.Windows.Forms.TextBox()
@@ -111,8 +113,8 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.TxtBackupFolder = New System.Windows.Forms.TextBox()
+        Me.ChkShowDiary = New System.Windows.Forms.CheckBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -131,6 +133,7 @@ Partial Class frmOptions
         Me.grpSplChk.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox10
@@ -180,6 +183,7 @@ Partial Class frmOptions
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.Transparent
+        Me.TabPage1.Controls.Add(Me.GroupBox6)
         Me.TabPage1.Controls.Add(Me.GroupBox5)
         Me.TabPage1.Controls.Add(Me.grpDiary)
         Me.TabPage1.Controls.Add(Me.GroupBox10)
@@ -654,6 +658,16 @@ Partial Class frmOptions
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Folders"
         '
+        'BtnCreateFolders
+        '
+        Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.BtnCreateFolders.Location = New System.Drawing.Point(89, 403)
+        Me.BtnCreateFolders.Name = "BtnCreateFolders"
+        Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
+        Me.BtnCreateFolders.TabIndex = 2
+        Me.BtnCreateFolders.Text = "Create missing folders"
+        Me.BtnCreateFolders.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -680,6 +694,29 @@ Partial Class frmOptions
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Application Files"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(11, 217)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(84, 16)
+        Me.Label14.TabIndex = 16
+        Me.Label14.Text = "Backup folder"
+        '
+        'TxtBackupFolder
+        '
+        Me.TxtBackupFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtBackupFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtBackupFolder.Location = New System.Drawing.Point(142, 215)
+        Me.TxtBackupFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TxtBackupFolder.Name = "TxtBackupFolder"
+        Me.TxtBackupFolder.Size = New System.Drawing.Size(286, 22)
+        Me.TxtBackupFolder.TabIndex = 15
         '
         'Label13
         '
@@ -795,16 +832,6 @@ Partial Class frmOptions
         Me.lblLogFolder.Size = New System.Drawing.Size(67, 16)
         Me.lblLogFolder.TabIndex = 6
         Me.lblLogFolder.Text = "Log Folder"
-        '
-        'BtnCreateFolders
-        '
-        Me.BtnCreateFolders.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnCreateFolders.Location = New System.Drawing.Point(89, 403)
-        Me.BtnCreateFolders.Name = "BtnCreateFolders"
-        Me.BtnCreateFolders.Size = New System.Drawing.Size(223, 23)
-        Me.BtnCreateFolders.TabIndex = 2
-        Me.BtnCreateFolders.Text = "Create missing folders"
-        Me.BtnCreateFolders.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -1191,28 +1218,29 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'Label14
+        'ChkShowDiary
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(11, 217)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(84, 16)
-        Me.Label14.TabIndex = 16
-        Me.Label14.Text = "Backup folder"
+        Me.ChkShowDiary.AutoSize = True
+        Me.ChkShowDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowDiary.ForeColor = System.Drawing.Color.Black
+        Me.ChkShowDiary.Location = New System.Drawing.Point(10, 19)
+        Me.ChkShowDiary.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.ChkShowDiary.Name = "ChkShowDiary"
+        Me.ChkShowDiary.Size = New System.Drawing.Size(135, 18)
+        Me.ChkShowDiary.TabIndex = 1
+        Me.ChkShowDiary.Text = "Show Diary at Login"
+        Me.ChkShowDiary.UseVisualStyleBackColor = True
         '
-        'TxtBackupFolder
+        'GroupBox6
         '
-        Me.TxtBackupFolder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtBackupFolder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtBackupFolder.Location = New System.Drawing.Point(142, 215)
-        Me.TxtBackupFolder.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.TxtBackupFolder.Name = "TxtBackupFolder"
-        Me.TxtBackupFolder.Size = New System.Drawing.Size(286, 22)
-        Me.TxtBackupFolder.TabIndex = 15
+        Me.GroupBox6.Controls.Add(Me.ChkShowDiary)
+        Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox6.Location = New System.Drawing.Point(122, 6)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(200, 46)
+        Me.GroupBox6.TabIndex = 10
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Diary"
         '
         'frmOptions
         '
@@ -1264,6 +1292,8 @@ Partial Class frmOptions
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1358,4 +1388,6 @@ Partial Class frmOptions
     Friend WithEvents TxtInvoiceFolder As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents TxtBackupFolder As TextBox
+    Friend WithEvents ChkShowDiary As CheckBox
+    Friend WithEvents GroupBox6 As GroupBox
 End Class

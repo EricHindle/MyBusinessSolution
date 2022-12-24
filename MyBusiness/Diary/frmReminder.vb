@@ -61,7 +61,7 @@ Public Class FrmReminder
         My.Settings.Save()
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        logutil.info("Starting", FORM_NAME)
+        LogUtil.Info("Starting", FORM_NAME)
         GetFormPos(Me, My.Settings.ReminderFormPos)
         dtpSelectDate.Value = Today
         lblFormName.Text = FORM_NAME
@@ -69,7 +69,6 @@ Public Class FrmReminder
         ClearForm()
         SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
         PicAdd.Visible = True
-
         If _reminder Is Nothing Then
             _reminder = ReminderBuilder.AReminder.StartingWithNothing.Build
         End If
@@ -156,7 +155,7 @@ Public Class FrmReminder
         LblJobName.Text = ""
         PicUpdate.Visible = False
         PicAdd.Visible = False
-        PicToggleComplete.Enabled = False
+        PicToggleComplete.Visible = False
         lblOverdue.Visible = False
         lblReminder.Visible = False
         lblComplete.Visible = False
@@ -185,8 +184,8 @@ Public Class FrmReminder
         lblReminder.Visible = _reminder.IsReminder
         SetCompletePic()
         lblComplete.Visible = isComplete
-        lblOverdue.Visible = isComplete = False And _reminder.ReminderDate < Today.Date
-        PicToggleComplete.Enabled = True
+        lblOverdue.Visible = _reminder.IsReminder And isComplete = False And _reminder.ReminderDate < Today.Date
+        PicToggleComplete.Visible = True
         PicAdd.Visible = False
         PicUpdate.Visible = True
         chkReminder.Checked = _reminder.IsReminder
@@ -227,6 +226,7 @@ Public Class FrmReminder
         lblFormName.Text = FORM_NAME
         lblRemDate.Text = FORM_NAME & " for"
         chkReminder.Checked = _reminder.IsReminder
+        lblReminder.Visible = _reminder.IsReminder
     End Sub
 
     Private Sub PicSetCallback_Click(sender As Object, e As EventArgs) Handles PicSetCallback.Click

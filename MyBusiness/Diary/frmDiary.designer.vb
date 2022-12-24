@@ -35,8 +35,8 @@ Partial Class FrmDiary
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicAdd = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
-        Me.btnSetReminder = New System.Windows.Forms.Button()
-        Me.btnSetComplete = New System.Windows.Forms.Button()
+        Me.PicSetReminder = New System.Windows.Forms.PictureBox()
+        Me.PicToggleComplete = New System.Windows.Forms.PictureBox()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvDiary = New System.Windows.Forms.DataGridView()
@@ -71,6 +71,8 @@ Partial Class FrmDiary
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -160,29 +162,27 @@ Partial Class FrmDiary
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update diary entry")
         '
-        'btnSetReminder
+        'PicSetReminder
         '
-        Me.btnSetReminder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSetReminder.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSetReminder.ForeColor = System.Drawing.Color.Black
-        Me.btnSetReminder.Location = New System.Drawing.Point(12, 200)
-        Me.btnSetReminder.Name = "btnSetReminder"
-        Me.btnSetReminder.Size = New System.Drawing.Size(119, 31)
-        Me.btnSetReminder.TabIndex = 4
-        Me.btnSetReminder.Text = "Set a reminder"
-        Me.btnSetReminder.UseVisualStyleBackColor = True
+        Me.PicSetReminder.Image = Global.MyBusiness.My.Resources.Resources.setreminder
+        Me.PicSetReminder.InitialImage = Nothing
+        Me.PicSetReminder.Location = New System.Drawing.Point(12, 180)
+        Me.PicSetReminder.Name = "PicSetReminder"
+        Me.PicSetReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetReminder.TabIndex = 100
+        Me.PicSetReminder.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicSetReminder, "Set a reminder")
         '
-        'btnSetComplete
+        'PicToggleComplete
         '
-        Me.btnSetComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnSetComplete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSetComplete.ForeColor = System.Drawing.Color.Black
-        Me.btnSetComplete.Location = New System.Drawing.Point(12, 240)
-        Me.btnSetComplete.Name = "btnSetComplete"
-        Me.btnSetComplete.Size = New System.Drawing.Size(119, 31)
-        Me.btnSetComplete.TabIndex = 7
-        Me.btnSetComplete.Text = "Close Reminder"
-        Me.btnSetComplete.UseVisualStyleBackColor = True
+        Me.PicToggleComplete.Image = Global.MyBusiness.My.Resources.Resources.closediary
+        Me.PicToggleComplete.InitialImage = Nothing
+        Me.PicToggleComplete.Location = New System.Drawing.Point(12, 228)
+        Me.PicToggleComplete.Name = "PicToggleComplete"
+        Me.PicToggleComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleComplete.TabIndex = 102
+        Me.PicToggleComplete.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicToggleComplete, "Set complete")
         '
         'lblFormName
         '
@@ -348,7 +348,7 @@ Partial Class FrmDiary
         Me.GroupBox1.Controls.Add(Me.btnJobLink)
         Me.GroupBox1.Controls.Add(Me.btnCustLink)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox1.Location = New System.Drawing.Point(23, 277)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 282)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox1.Size = New System.Drawing.Size(92, 89)
@@ -430,7 +430,7 @@ Partial Class FrmDiary
         Me.lblOverdue.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblOverdue.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOverdue.ForeColor = System.Drawing.Color.White
-        Me.lblOverdue.Location = New System.Drawing.Point(226, 144)
+        Me.lblOverdue.Location = New System.Drawing.Point(232, 144)
         Me.lblOverdue.Name = "lblOverdue"
         Me.lblOverdue.Size = New System.Drawing.Size(69, 19)
         Me.lblOverdue.TabIndex = 32
@@ -518,6 +518,8 @@ Partial Class FrmDiary
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(851, 464)
+        Me.Controls.Add(Me.PicToggleComplete)
+        Me.Controls.Add(Me.PicSetReminder)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicAdd)
         Me.Controls.Add(Me.PicClose)
@@ -535,8 +537,6 @@ Partial Class FrmDiary
         Me.Controls.Add(Me.dgvDiary)
         Me.Controls.Add(Me.lblFormName)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.btnSetComplete)
-        Me.Controls.Add(Me.btnSetReminder)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
@@ -551,6 +551,8 @@ Partial Class FrmDiary
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -563,8 +565,6 @@ Partial Class FrmDiary
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents btnSetReminder As System.Windows.Forms.Button
-    Friend WithEvents btnSetComplete As System.Windows.Forms.Button
     Friend WithEvents lblFormName As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents dgvDiary As System.Windows.Forms.DataGridView
@@ -600,4 +600,6 @@ Partial Class FrmDiary
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicAdd As PictureBox
     Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents PicSetReminder As PictureBox
+    Friend WithEvents PicToggleComplete As PictureBox
 End Class
