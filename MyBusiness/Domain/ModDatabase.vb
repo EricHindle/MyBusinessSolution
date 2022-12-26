@@ -669,9 +669,9 @@ Module ModDatabase
                                            .CustomerId,
                                            .Body,
                                            .Subject,
-                                           .IsReminder,
-                                           .IsClosed,
-                                           .CallBack,
+                                           If(.IsReminder, 1, 0),
+                                           If(.IsClosed, 1, 0),
+                                           If(.CallBack, 1, 0),
                                            .Diary_id)
             End With
         Catch ex As DbException
@@ -690,9 +690,9 @@ Module ModDatabase
                                            .CustomerId,
                                            .Body,
                                            .Subject,
-                                           .IsReminder,
-                                           .IsClosed,
-                                           .CallBack)
+                                           If(.IsReminder, 1, 0),
+                                           If(.IsClosed, 1, 0),
+                                           If(.CallBack, 1, 0))
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception inserting diary", MODULE_NAME)

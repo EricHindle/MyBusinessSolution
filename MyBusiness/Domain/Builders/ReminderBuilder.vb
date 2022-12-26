@@ -51,40 +51,19 @@ Public Class ReminderBuilder
         _callback = False
         Return Me
     End Function
-    Public Function StartingWith(ByVal iReminderId As Integer) As ReminderBuilder
-        Dim oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-        Dim oDiaryTable As New netwyrksDataSet.diaryDataTable
-        If oDiaryTa.FillById(oDiaryTable, iReminderId) = 1 Then
-            StartingWith(oDiaryTable.Rows(0))
-        Else
-            StartingWithNothing()
-        End If
-        oDiaryTa.Dispose()
-        oDiaryTable.Dispose()
-        Return Me
-    End Function
     Public Function StartingWith(ByVal oReminder As netwyrksDataSet.diaryRow) As ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
                 _diaryId = .diary_id
-                _userId = .diary_user_id
-                _reminderDate = .diary_date
-                _subject = .diary_subject
-                _body = .diary_body
-                _isReminder = .diary_reminder
-                _isClosed = .diary_closed
-                If .Isdiary_jobNull Then
-                    _jobId = -1
-                Else
-                    _jobId = .diary_job
-                End If
-                If .Isdiary_cust_idNull Then
-                    _customerId = -1
-                Else
-                    _customerId = .diary_cust_id
-                End If
-
-                _callback = .diary_callback
+                _userId = If(.Isdiary_user_idNull, -1, .diary_user_id)
+                _reminderDate = If(.Isdiary_dateNull, Date.MinValue, .diary_date)
+                _subject = If(.Isdiary_subjectNull, "", .diary_subject)
+                _body = If(.Isdiary_bodyNull, "", .diary_body)
+                _isReminder = Not .Isdiary_reminderNull AndAlso .diary_reminder <> 0
+                _isClosed = Not .Isdiary_closedNull AndAlso .diary_closed <> 0
+                _jobId = If(.Isdiary_jobNull, -1, .diary_job)
+                _customerId = If(.Isdiary_cust_idNull, -1, .diary_cust_id)
+                _callback = Not .Isdiary_callbackNull AndAlso .diary_callback <> 0
             End With
         Else
             StartingWithNothing()

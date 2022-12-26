@@ -15,6 +15,7 @@ Public Class FrmReminderList
     Private dateSectionEnds As Date() = {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 8 - dayOfWeek, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 14 - dayOfWeek, Today)), Date.MaxValue}
     Private dateSection As Integer = 0
     Private currentRemId As Integer = 0
+    Private currentReminder As Reminder
     Private currentCustId As Integer = 0
     Private currentJobId As Integer = 0
 #End Region
@@ -29,6 +30,10 @@ Public Class FrmReminderList
         ChkShowAll.Checked = My.Settings.ShowAllReminders
         ChkShowAtLogin.Checked = My.Settings.ShowRemindersAtLogin
         LoadReminders()
+        currentReminder = ReminderBuilder.AReminder.StartingWithNothing.Build
+        currentRemId = -1
+        currentJobId = -1
+        currentCustId = -1
     End Sub
     Private Sub Reminders_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
@@ -79,28 +84,36 @@ Public Class FrmReminderList
         PicSetComplete.Visible = False
         BtnCustomer.Visible = False
         BtnJob.Visible = False
-        currentRemId = 0
+        currentRemId = -1
+        currentCustId = -1
+        currentJobId = -1
+        currentReminder = ReminderBuilder.AReminder.StartingWithNothing.Build
         LblCustName.Text = ""
         LblJobName.Text = ""
     End Sub
     Private Sub FillForm(ByVal oRow As DataGridViewRow)
-        currentRemId = oRow.Cells(remId.Name).Value
-        Dim _reminder As Reminder = GetReminderById(currentRemId)
-        With _reminder
-            currentCustId = .CustomerId
-            currentJobId = .JobId
-            txtSubject.Text = .Subject
-            rtbBody.Text = .Body
-            lblReminder.Visible = .IsReminder
-            BtnCustomer.Visible = .HasCustomer
-            BtnJob.Visible = .HasJob
-            PicSetComplete.Visible = .Diary_id > 0
-            PicToggleReminder.Visible = .Diary_id > 0
-            PicSetComplete.Image = If(.IsClosed, My.Resources.reopendiary, My.Resources.closediary)
-            PicToggleReminder.Image = If(.IsReminder, My.Resources.cancelreminder, My.Resources.setreminder)
-            LblCustName.Text = If(currentCustId > 0, _reminder.LinkedCustomer.CustName, "")
-            LblJobName.Text = If(currentJobId > 0, _reminder.LinkedJob.JobName, "")
-        End With
+        Dim _remid As String = oRow.Cells(remId.Name).Value
+        If IsNumeric(_remid) Then
+            currentRemId = oRow.Cells(remId.Name).Value
+            currentReminder = GetReminderById(currentRemId)
+            With currentReminder
+                currentCustId = .CustomerId
+                currentJobId = .JobId
+                txtSubject.Text = .Subject
+                rtbBody.Text = .Body
+                lblReminder.Visible = .IsReminder
+                BtnCustomer.Visible = .HasCustomer
+                BtnJob.Visible = .HasJob
+                PicSetComplete.Visible = .Diary_id > 0
+                PicToggleReminder.Visible = .Diary_id > 0
+                PicSetComplete.Image = If(.IsClosed, My.Resources.reopendiary, My.Resources.closediary)
+                PicToggleReminder.Image = If(.IsReminder, My.Resources.cancelreminder, My.Resources.setreminder)
+                ToolTip1.SetToolTip(PicToggleReminder, If(.IsReminder, "Cancel reminder", "Set a reminder"))
+                ToolTip1.SetToolTip(PicSetComplete, If(.IsClosed, "Reopen diary entry", "Mark as complete"))
+                LblCustName.Text = If(currentCustId > 0, currentReminder.LinkedCustomer.CustName, "")
+                LblJobName.Text = If(currentJobId > 0, currentReminder.LinkedJob.JobName, "")
+            End With
+        End If
     End Sub
     Public Function LoadReminders() As Integer
         ClearForm()
@@ -209,7 +222,8 @@ Public Class FrmReminderList
     End Sub
 
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicToggleReminder.Click
-        UpdateIsReminder(Not lblReminder.Visible, currentRemId)
+        currentReminder.IsReminder = Not currentReminder.IsReminder
+        UpdateIsReminder(currentReminder.IsReminder, currentRemId)
         LogStatus("Updated reminder flag", True)
         LoadReminders()
     End Sub

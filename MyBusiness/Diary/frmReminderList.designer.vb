@@ -22,6 +22,7 @@ Partial Class FrmReminderList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -54,6 +55,7 @@ Partial Class FrmReminderList
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicToggleReminder = New System.Windows.Forms.PictureBox()
         Me.PicSetComplete = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.DgvReminders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -205,6 +207,7 @@ Partial Class FrmReminderList
         Me.BtnCustomer.Size = New System.Drawing.Size(74, 23)
         Me.BtnCustomer.TabIndex = 0
         Me.BtnCustomer.Text = "Customer"
+        Me.ToolTip1.SetToolTip(Me.BtnCustomer, "Show linked customer")
         Me.BtnCustomer.UseVisualStyleBackColor = False
         '
         'BtnJob
@@ -217,6 +220,7 @@ Partial Class FrmReminderList
         Me.BtnJob.Size = New System.Drawing.Size(74, 23)
         Me.BtnJob.TabIndex = 1
         Me.BtnJob.Text = "Job"
+        Me.ToolTip1.SetToolTip(Me.BtnJob, "Show linked job")
         Me.BtnJob.UseVisualStyleBackColor = False
         '
         'lblReminder
@@ -356,6 +360,7 @@ Partial Class FrmReminderList
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 100
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close  the form")
         '
         'PicToggleReminder
         '
@@ -366,6 +371,7 @@ Partial Class FrmReminderList
         Me.PicToggleReminder.Size = New System.Drawing.Size(42, 42)
         Me.PicToggleReminder.TabIndex = 103
         Me.PicToggleReminder.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicToggleReminder, "Set Reminder")
         '
         'PicSetComplete
         '
@@ -376,6 +382,7 @@ Partial Class FrmReminderList
         Me.PicSetComplete.Size = New System.Drawing.Size(42, 42)
         Me.PicSetComplete.TabIndex = 102
         Me.PicSetComplete.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicSetComplete, "Close diary entry")
         '
         'FrmReminderList
         '
@@ -445,4 +452,5 @@ Partial Class FrmReminderList
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicToggleReminder As PictureBox
     Friend WithEvents PicSetComplete As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

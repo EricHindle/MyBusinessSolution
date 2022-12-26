@@ -282,7 +282,7 @@ Public Class FrmDiary
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Using _reminder As New FrmReminder
-                _reminder.CurrentReminder = ReminderBuilder.AReminder.StartingWith(oRow.Cells(dremId.Name).Value).build()
+                _reminder.CurrentReminder = GetReminderById(oRow.Cells(dremId.Name).Value)
                 _reminder.ShowDialog()
             End Using
         Else

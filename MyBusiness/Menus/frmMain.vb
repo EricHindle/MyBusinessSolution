@@ -63,7 +63,7 @@ Public Class FrmMain
             If dgvDiary.SelectedRows.Count = 1 Then
                 Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
                 Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
-                Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
+                Dim _reminder As Reminder = GetReminderById(_diaryId)
                 rtbDiaryBody.Text = _reminder.Body
             End If
         End If
@@ -72,7 +72,7 @@ Public Class FrmMain
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
-            Dim _reminder As Reminder = ReminderBuilder.AReminder.StartingWith(_diaryId).Build
+            Dim _reminder As Reminder = GetReminderById(_diaryId)
             Using _diary As New FrmReminder
                 _diary.CurrentReminder = _reminder
                 _diary.ShowDialog()
