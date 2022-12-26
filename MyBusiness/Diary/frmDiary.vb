@@ -450,9 +450,9 @@ Public Class FrmDiary
     Private Sub PicToggleComplete_Click(sender As Object, e As EventArgs) Handles PicToggleComplete.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
-            Dim remId As Integer = oRow.Cells(dremId.Name).Value
-            Dim newValue As Integer = If(oRow.Cells(dremClosed.Name).Value = "", 1, 0)
-            UpdateReminderClosed(newValue, remId)
+            Dim _reminder As Reminder = GetReminderById(oRow.Cells(dremId.Name).Value)
+            _reminder.IsClosed = Not _reminder.IsClosed
+            UpdateReminderClosed(_reminder.IsClosed, _reminder.Diary_id)
             RebuildDiaryList()
         End If
     End Sub

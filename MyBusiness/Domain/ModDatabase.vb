@@ -629,30 +629,30 @@ Module ModDatabase
         End Try
         Return _rem
     End Function
-    Public Function UpdateReminderClosed(pValue As SByte, pRemId As Integer) As Integer
+    Public Function UpdateReminderClosed(pValue As Boolean, pRemId As Integer) As Integer
         Dim _ct As Integer
         Try
-            _ct = oDiaryTa.UpdateClosed(pValue, pRemId)
+            _ct = oDiaryTa.UpdateClosed(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
             DisplayException(ex, "Exception updating reminder", MODULE_NAME)
             MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
         End Try
         Return _ct
     End Function
-    Public Function UpdateIsReminder(pValue As SByte, pRemId As Integer) As Integer
+    Public Function UpdateIsReminder(pValue As Boolean, pRemId As Integer) As Integer
         Dim _ct As Integer
         Try
-            _ct = oDiaryTa.UpdateReminder(pValue, pRemId)
+            _ct = oDiaryTa.UpdateReminder(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
             DisplayException(ex, "Exception updating reminder", MODULE_NAME)
             MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
         End Try
         Return _ct
     End Function
-    Public Function UpdateCallback(pValue As SByte, pRemId As Integer) As Integer
+    Public Function UpdateCallback(pValue As Boolean, pRemId As Integer) As Integer
         Dim _ct As Integer
         Try
-            _ct = oDiaryTa.UpdateCallback(pValue, pRemId)
+            _ct = oDiaryTa.UpdateCallback(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
             DisplayException(ex, "Exception updating reminder", MODULE_NAME)
             MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")

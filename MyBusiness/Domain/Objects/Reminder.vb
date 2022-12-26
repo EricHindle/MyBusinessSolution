@@ -136,14 +136,14 @@ Public Class Reminder
 #End Region
 #Region "constructors"
     Public Sub New(ByVal pDiaryId As Integer,
-                    ByVal pUserId As Integer,
+                    ByVal pUser As User,
                     ByVal pReminderDate As DateTime,
                     ByVal pSubject As String,
                     ByVal pBody As String,
                     ByVal pReminder As Boolean,
                     ByVal pClosed As Boolean,
-                    ByVal pCustomerId As Integer,
-                    ByVal pJobId As Integer,
+                    ByVal pCustomer As Customer,
+                    ByVal pJob As Job,
                     ByVal pCallBack As Boolean)
         _diaryId = pDiaryId
         _reminderDate = pReminderDate
@@ -152,9 +152,9 @@ Public Class Reminder
         _isReminder = pReminder
         _isClosed = pClosed
         _callBack = pCallBack
-        _user = GetUserById(pUserId)
-        _customer = GetCustomer(pCustomerId)
-        _job = GetJobById(pJobId)
+        _user = pUser
+        _customer = pCustomer
+        _job = pJob
     End Sub
 #End Region
 #Region "methods"

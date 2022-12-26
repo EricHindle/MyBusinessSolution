@@ -7,14 +7,14 @@
 
 Public Class ReminderBuilder
     Private _diaryId As Integer
-    Private _userId As Integer
+    Private _user As User
     Private _reminderDate As DateTime
     Private _subject As String
     Private _body As String
     Private _isReminder As Boolean
     Private _isClosed As Boolean
-    Private _customerId As Integer
-    Private _jobId As Integer
+    Private _customer As Customer
+    Private _job As Job
     Private _callback As Boolean
     Public Shared Function AReminder() As ReminderBuilder
         Return New ReminderBuilder
@@ -23,14 +23,14 @@ Public Class ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
                 _diaryId = .Diary_id
-                _userId = .UserId
+                _user = .DiaryUser
                 _reminderDate = .ReminderDate
                 _subject = .Subject
                 _body = .Body
                 _isReminder = .IsReminder
                 _isClosed = .IsClosed
-                _customerId = .CustomerId
-                _jobId = .JobId
+                _customer = .LinkedCustomer
+                _job = .LinkedJob
                 _callback = .CallBack
             End With
         Else
@@ -40,14 +40,14 @@ Public Class ReminderBuilder
     End Function
     Public Function StartingWithNothing() As ReminderBuilder
         _diaryId = 0
-        _userId = -1
+        _user = UserBuilder.AUser.StartingWithNothing.Build
         _reminderDate = Today.Date
         _subject = ""
         _body = ""
         _isReminder = False
         _isClosed = False
-        _customerId = -1
-        _jobId = -1
+        _customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
+        _job = JobBuilder.AJob.StartingWithNothing.Build
         _callback = False
         Return Me
     End Function
@@ -55,14 +55,14 @@ Public Class ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
                 _diaryId = .diary_id
-                _userId = If(.Isdiary_user_idNull, -1, .diary_user_id)
+                _user = If(.Isdiary_user_idNull, UserBuilder.AUser.StartingWithNothing.Build, GetUserById(.diary_user_id))
                 _reminderDate = If(.Isdiary_dateNull, Date.MinValue, .diary_date)
                 _subject = If(.Isdiary_subjectNull, "", .diary_subject)
                 _body = If(.Isdiary_bodyNull, "", .diary_body)
                 _isReminder = Not .Isdiary_reminderNull AndAlso .diary_reminder <> 0
                 _isClosed = Not .Isdiary_closedNull AndAlso .diary_closed <> 0
-                _jobId = If(.Isdiary_jobNull, -1, .diary_job)
-                _customerId = If(.Isdiary_cust_idNull, -1, .diary_cust_id)
+                _job = If(.Isdiary_jobNull, JobBuilder.AJob.StartingWithNothing.Build, GetJobById(.diary_job))
+                _customer = If(.Isdiary_cust_idNull, CustomerBuilder.ACustomer.StartingWithNothing.Build, GetCustomer(.diary_cust_id))
                 _callback = Not .Isdiary_callbackNull AndAlso .diary_callback <> 0
             End With
         Else
@@ -75,7 +75,7 @@ Public Class ReminderBuilder
         Return Me
     End Function
     Public Function WithUserId(ByVal userId As Integer) As ReminderBuilder
-        _userId = userId
+        _user = GetUserById(userId)
         Return Me
     End Function
     Public Function WithReminderDate(ByVal reminderDate As DateTime) As ReminderBuilder
@@ -99,11 +99,11 @@ Public Class ReminderBuilder
         Return Me
     End Function
     Public Function WithCustomerId(ByVal pCustomerId As Integer?) As ReminderBuilder
-        _customerId = pCustomerId
+        _customer = GetCustomer(pCustomerId)
         Return Me
     End Function
     Public Function WithJobId(ByVal pJobId As Integer?) As ReminderBuilder
-        _jobId = pJobId
+        _job = GetJobById(pJobId)
         Return Me
     End Function
     Public Function WithCallBack(ByVal pCallBack As Boolean) As ReminderBuilder
@@ -113,14 +113,14 @@ Public Class ReminderBuilder
 
     Public Function Build() As Reminder
         Return New Reminder(_diaryId,
-                            _userId,
+                            _user,
                             _reminderDate,
                             _subject,
                             _body,
                             _isReminder,
                             _isClosed,
-                            _customerId,
-                            _jobId,
+                            _customer,
+                            _job,
                             _callback)
     End Function
 End Class

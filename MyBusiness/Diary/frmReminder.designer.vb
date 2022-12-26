@@ -130,7 +130,7 @@ Partial Class FrmReminder
         '
         'PicSetReminder
         '
-        Me.PicSetReminder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicSetReminder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicSetReminder.Image = Global.MyBusiness.My.Resources.Resources.setreminder
         Me.PicSetReminder.InitialImage = Nothing
         Me.PicSetReminder.Location = New System.Drawing.Point(492, 109)
@@ -142,7 +142,7 @@ Partial Class FrmReminder
         '
         'PicSetCallback
         '
-        Me.PicSetCallback.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicSetCallback.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicSetCallback.Image = Global.MyBusiness.My.Resources.Resources.PhoneCall
         Me.PicSetCallback.InitialImage = Nothing
         Me.PicSetCallback.Location = New System.Drawing.Point(492, 157)
@@ -270,6 +270,8 @@ Partial Class FrmReminder
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.LblJobName)
         Me.GroupBox1.Controls.Add(Me.LblCustName)
         Me.GroupBox1.Controls.Add(Me.lblJob)

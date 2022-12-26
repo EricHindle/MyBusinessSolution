@@ -6,6 +6,7 @@
 '
 
 Imports MyBusiness.NetwyrksErrorCodes
+Imports Org.BouncyCastle.Security.Certificates
 ''' <summary>
 ''' Form to create and amend user diary entries
 ''' </summary>
@@ -73,10 +74,10 @@ Public Class FrmReminder
             _reminder = ReminderBuilder.AReminder.StartingWithNothing.Build
         End If
         If _reminder.Diary_id > 0 Then
-                FillForm()
-                _customer = _reminder.LinkedCustomer
-                _job = _reminder.LinkedJob
-            End If
+            FillForm()
+            _customer = _reminder.LinkedCustomer
+            _job = _reminder.LinkedJob
+        End If
         If _customer IsNot Nothing Then
             lblCust.ForeColor = Color.Black
             LblCustName.Text = _customer.CustName
@@ -130,10 +131,9 @@ Public Class FrmReminder
 
     End Sub
     Private Sub PicToggleComplete_Click(sender As Object, e As EventArgs) Handles PicToggleComplete.Click
-        Dim newValue As SByte = If(_reminder.IsClosed, 0, 1)
+        _reminder.IsClosed = Not _reminder.IsClosed
         SetCompletePic()
-        UpdateReminderClosed(newValue, _reminder.Diary_id)
-        _reminder.IsClosed = newValue
+        UpdateReminderClosed(_reminder.IsClosed, _reminder.Diary_id)
         FillForm()
     End Sub
 
