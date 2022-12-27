@@ -22,6 +22,7 @@ Partial Class FrmTask
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTask))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -46,6 +47,7 @@ Partial Class FrmTask
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTime, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,6 +150,7 @@ Partial Class FrmTask
         Me.chkStarted.Size = New System.Drawing.Size(84, 21)
         Me.chkStarted.TabIndex = 5
         Me.chkStarted.Text = "is Started"
+        Me.ToolTip1.SetToolTip(Me.chkStarted, "Has the task been started")
         Me.chkStarted.UseVisualStyleBackColor = True
         '
         'chkCompleted
@@ -159,6 +162,7 @@ Partial Class FrmTask
         Me.chkCompleted.Size = New System.Drawing.Size(105, 21)
         Me.chkCompleted.TabIndex = 6
         Me.chkCompleted.Text = "is Completed"
+        Me.ToolTip1.SetToolTip(Me.chkCompleted, "Is the task complete?")
         Me.chkCompleted.UseVisualStyleBackColor = True
         '
         'dtpStartDate
@@ -269,6 +273,7 @@ Partial Class FrmTask
         Me.chkTaxable.Size = New System.Drawing.Size(74, 21)
         Me.chkTaxable.TabIndex = 74
         Me.chkTaxable.Text = "Taxable"
+        Me.ToolTip1.SetToolTip(Me.chkTaxable, "Add tax to the price?")
         Me.chkTaxable.UseVisualStyleBackColor = True
         '
         'PicUpdate
@@ -281,6 +286,7 @@ Partial Class FrmTask
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 103
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the task")
         '
         'PicClose
         '
@@ -292,6 +298,7 @@ Partial Class FrmTask
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 104
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'FrmTask
         '
@@ -361,4 +368,5 @@ Partial Class FrmTask
     Friend WithEvents chkTaxable As System.Windows.Forms.CheckBox
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

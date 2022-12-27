@@ -22,6 +22,7 @@ Partial Class FrmJobProducts
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmJobProducts))
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -62,6 +63,7 @@ Partial Class FrmJobProducts
         Me.PicAdd = New System.Windows.Forms.PictureBox()
         Me.PicRemove = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.dgvJobProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -316,12 +318,12 @@ Partial Class FrmJobProducts
         Me.lblProductName.TabIndex = 78
         Me.lblProductName.Text = "Select a product"
         '
-        'nudQuantity
+        'NudQuantity
         '
         Me.NudQuantity.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.NudQuantity.Location = New System.Drawing.Point(266, 516)
         Me.NudQuantity.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.NudQuantity.Name = "nudQuantity"
+        Me.NudQuantity.Name = "NudQuantity"
         Me.NudQuantity.Size = New System.Drawing.Size(120, 24)
         Me.NudQuantity.TabIndex = 79
         '
@@ -344,6 +346,7 @@ Partial Class FrmJobProducts
         Me.chkTaxable.Size = New System.Drawing.Size(86, 21)
         Me.chkTaxable.TabIndex = 83
         Me.chkTaxable.Text = "is Taxable"
+        Me.ToolTip1.SetToolTip(Me.chkTaxable, "Add tax to the price?")
         Me.chkTaxable.UseVisualStyleBackColor = True
         '
         'nudTaxRate
@@ -455,6 +458,7 @@ Partial Class FrmJobProducts
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 102
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the product on the job")
         '
         'PicAdd
         '
@@ -466,6 +470,7 @@ Partial Class FrmJobProducts
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 101
         Me.PicAdd.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add a product to the job")
         '
         'PicRemove
         '
@@ -477,6 +482,7 @@ Partial Class FrmJobProducts
         Me.PicRemove.Size = New System.Drawing.Size(42, 42)
         Me.PicRemove.TabIndex = 100
         Me.PicRemove.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicRemove, "Remove the product from the job")
         '
         'PicClose
         '
@@ -488,6 +494,7 @@ Partial Class FrmJobProducts
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 99
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'FrmJobProducts
         '
@@ -586,4 +593,5 @@ Partial Class FrmJobProducts
     Friend WithEvents PicAdd As PictureBox
     Friend WithEvents PicRemove As PictureBox
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

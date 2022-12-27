@@ -22,6 +22,7 @@ Partial Class FrmViewCust
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmViewCust))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -35,6 +36,7 @@ Partial Class FrmViewCust
         Me.txtCustAddr1 = New System.Windows.Forms.Label()
         Me.txtCustName = New System.Windows.Forms.Label()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -169,6 +171,7 @@ Partial Class FrmViewCust
         Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 96
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'FrmViewCust
         '
@@ -212,4 +215,5 @@ Partial Class FrmViewCust
     Friend WithEvents txtCustAddr1 As System.Windows.Forms.Label
     Friend WithEvents txtCustName As System.Windows.Forms.Label
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

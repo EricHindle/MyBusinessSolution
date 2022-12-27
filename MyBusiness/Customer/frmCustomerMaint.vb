@@ -5,6 +5,9 @@
 ' Author Eric Hindle
 '
 
+Imports System.Deployment.Application
+Imports MyBusiness.netwyrksDataSetTableAdapters
+
 Public Class FrmCustomerMaint
 #Region "variables"
     Private _currentCustomer As Customer = Nothing
@@ -42,7 +45,7 @@ Public Class FrmCustomerMaint
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        logutil.info("Closing", Name)
+        LogUtil.Info("Closing", Name)
         My.Settings.CustFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
@@ -141,6 +144,7 @@ Public Class FrmCustomerMaint
     Private Function AmendCustomer() As Boolean
         Dim isAmendOK As Boolean = False
         PicUpdate.Image = My.Resources.update
+        ToolTip1.SetToolTip(PicUpdate, "Update the customer")
         With _newCustomer
 
             If UpdateCustomer(_newCustomer) = 1 Then
@@ -157,6 +161,7 @@ Public Class FrmCustomerMaint
     Private Sub NewCustomer()
         LogUtil.Info("New customer", Name)
         PicUpdate.Image = My.Resources.add
+        ToolTip1.SetToolTip(PicUpdate, "Add a new customer")
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
         pnlCustomer.Enabled = True

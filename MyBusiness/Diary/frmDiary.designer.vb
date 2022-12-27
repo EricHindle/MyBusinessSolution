@@ -365,6 +365,7 @@ Partial Class FrmDiary
         Me.btnJobLink.Size = New System.Drawing.Size(75, 23)
         Me.btnJobLink.TabIndex = 2
         Me.btnJobLink.Text = "Job"
+        Me.ToolTip1.SetToolTip(Me.btnJobLink, "Show linked job")
         Me.btnJobLink.UseVisualStyleBackColor = True
         '
         'btnCustLink
@@ -376,6 +377,7 @@ Partial Class FrmDiary
         Me.btnCustLink.Size = New System.Drawing.Size(75, 23)
         Me.btnCustLink.TabIndex = 0
         Me.btnCustLink.Text = "Customer"
+        Me.ToolTip1.SetToolTip(Me.btnCustLink, "Show linked customer")
         Me.btnCustLink.UseVisualStyleBackColor = True
         '
         'chkReminders

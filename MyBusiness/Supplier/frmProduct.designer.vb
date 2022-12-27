@@ -22,6 +22,7 @@ Partial Class FrmProduct
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmProduct))
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -45,6 +46,7 @@ Partial Class FrmProduct
         Me.Label6 = New System.Windows.Forms.Label()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -272,6 +274,7 @@ Partial Class FrmProduct
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 106
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'PicUpdate
         '
@@ -283,6 +286,7 @@ Partial Class FrmProduct
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 105
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the product")
         '
         'FrmProduct
         '
@@ -352,4 +356,5 @@ Partial Class FrmProduct
     Friend WithEvents Label6 As Label
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

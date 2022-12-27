@@ -121,6 +121,7 @@ Public Class FrmSupplier
     Private Sub FillSupplierDetails()
         LblAction.Text = "Updating Supplier"
         PicUpdate.Image = My.Resources.update
+        ToolTip1.SetToolTip(PicUpdate, "Update the supplier")
         With _currentSupplier
             LogUtil.Info("Amending supplier " & _supplierId & " : " & .SupplierName, MyBase.Name)
             txtSuppName.Text = .SupplierName
@@ -171,6 +172,7 @@ Public Class FrmSupplier
         LogUtil.Info("New supplier", MyBase.Name())
         LblAction.Text = "Adding New Supplier"
         PicUpdate.Image = My.Resources.add
+        ToolTip1.SetToolTip(PicUpdate, "Add a new supplier")
         _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
         ClearSupplierDetails()
         pnlProducts.Enabled = False

@@ -22,6 +22,7 @@ Partial Class FrmSupplier
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -67,6 +68,7 @@ Partial Class FrmSupplier
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
@@ -558,6 +560,7 @@ Partial Class FrmSupplier
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 107
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the supplier")
         '
         'FrmSupplier
         '
@@ -644,4 +647,5 @@ Partial Class FrmSupplier
     Friend WithEvents LblStatus As ToolStripStatusLabel
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

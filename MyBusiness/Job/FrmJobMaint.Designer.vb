@@ -22,6 +22,7 @@ Partial Class FrmJobMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -79,6 +80,7 @@ Partial Class FrmJobMaint
         Me.PicImages = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +111,7 @@ Partial Class FrmJobMaint
         Me.btnInvoice.Size = New System.Drawing.Size(136, 30)
         Me.btnInvoice.TabIndex = 75
         Me.btnInvoice.Text = "Produce Invoice"
+        Me.ToolTip1.SetToolTip(Me.btnInvoice, "Prepare pdf Invoice")
         Me.btnInvoice.UseVisualStyleBackColor = True
         '
         'PictureBox1
@@ -147,6 +150,7 @@ Partial Class FrmJobMaint
         Me.btnRemoveTask.Size = New System.Drawing.Size(86, 28)
         Me.btnRemoveTask.TabIndex = 70
         Me.btnRemoveTask.Text = "Remove"
+        Me.ToolTip1.SetToolTip(Me.btnRemoveTask, "Remove the selected task")
         Me.btnRemoveTask.UseVisualStyleBackColor = True
         '
         'btnAddTask
@@ -159,6 +163,7 @@ Partial Class FrmJobMaint
         Me.btnAddTask.Size = New System.Drawing.Size(86, 28)
         Me.btnAddTask.TabIndex = 69
         Me.btnAddTask.Text = "Add"
+        Me.ToolTip1.SetToolTip(Me.btnAddTask, "Add a task")
         Me.btnAddTask.UseVisualStyleBackColor = True
         '
         'dgvTasks
@@ -499,6 +504,7 @@ Partial Class FrmJobMaint
         Me.btnViewCust.Size = New System.Drawing.Size(68, 26)
         Me.btnViewCust.TabIndex = 11
         Me.btnViewCust.Text = "View"
+        Me.ToolTip1.SetToolTip(Me.btnViewCust, "View customer details")
         Me.btnViewCust.UseVisualStyleBackColor = True
         '
         'Label5
@@ -711,6 +717,7 @@ Partial Class FrmJobMaint
         Me.PicDiary.Size = New System.Drawing.Size(42, 42)
         Me.PicDiary.TabIndex = 90
         Me.PicDiary.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicDiary, "Reminders")
         '
         'PicImages
         '
@@ -722,6 +729,7 @@ Partial Class FrmJobMaint
         Me.PicImages.Size = New System.Drawing.Size(42, 42)
         Me.PicImages.TabIndex = 91
         Me.PicImages.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicImages, "Images")
         '
         'PicClose
         '
@@ -733,6 +741,7 @@ Partial Class FrmJobMaint
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 92
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'PicUpdate
         '
@@ -744,6 +753,7 @@ Partial Class FrmJobMaint
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 93
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Job")
         '
         'FrmJobMaint
         '
@@ -847,4 +857,5 @@ Partial Class FrmJobMaint
     Friend WithEvents PicImages As PictureBox
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

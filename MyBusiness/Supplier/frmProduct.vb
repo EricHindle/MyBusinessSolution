@@ -100,6 +100,7 @@ Public Class FrmProduct
     Private Sub FillProductDetails()
         LblAction.Text = "Updating Product"
         PicUpdate.Image = My.Resources.update
+        ToolTip1.SetToolTip(PicUpdate, "Update the product")
         With _product
             LogUtil.Info("Amending product " & _productId & " : " & .ProductName, MyBase.Name)
             txtProductName.Text = .ProductName
@@ -125,6 +126,7 @@ Public Class FrmProduct
         ClearProductDetails()
         LblAction.Text = "Adding New Product"
         PicUpdate.Image = My.Resources.add
+        ToolTip1.SetToolTip(PicUpdate, "Add a new product")
         _product = ProductBuilder.AProduct.StartingWithNothing.Build
     End Sub
     Private Function AmendProduct() As Boolean

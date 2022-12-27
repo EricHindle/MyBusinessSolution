@@ -22,6 +22,7 @@ Partial Class FrmCustomerMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCustomerMaint))
         Me.pnlCustomer = New System.Windows.Forms.Panel()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -60,6 +61,7 @@ Partial Class FrmCustomerMaint
         Me.picDiary = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlCustomer.SuspendLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +167,7 @@ Partial Class FrmCustomerMaint
         Me.nudCustDiscount.Name = "nudCustDiscount"
         Me.nudCustDiscount.Size = New System.Drawing.Size(120, 24)
         Me.nudCustDiscount.TabIndex = 8
+        Me.ToolTip1.SetToolTip(Me.nudCustDiscount, "Percentage discount applied the job price")
         '
         'Label5
         '
@@ -445,6 +448,7 @@ Partial Class FrmCustomerMaint
         Me.picDiary.Size = New System.Drawing.Size(42, 42)
         Me.picDiary.TabIndex = 89
         Me.picDiary.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picDiary, "Reminders linked to the custromer")
         '
         'PicUpdate
         '
@@ -456,6 +460,7 @@ Partial Class FrmCustomerMaint
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 94
         Me.PicUpdate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the customer")
         '
         'PicClose
         '
@@ -467,6 +472,7 @@ Partial Class FrmCustomerMaint
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 95
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
         'FrmCustomerMaint
         '
@@ -547,4 +553,5 @@ Partial Class FrmCustomerMaint
     Friend WithEvents picDiary As PictureBox
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicClose As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
