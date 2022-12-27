@@ -199,8 +199,4 @@ Public Class LoginForm
 
 #End Region
 
-#Region "Snapshot background worker"
-
-#End Region
-
 End Class
