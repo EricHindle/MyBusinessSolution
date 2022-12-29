@@ -9,7 +9,7 @@ Public Class TemplateProduct
     Private _templateProductId As Integer
     Private _product As Product
     Private _quantity As Integer
-    Private _template As Template
+    Private _templateId As Integer
     Public Property TemplateProductId() As Integer
         Get
             Return _templateProductId
@@ -39,22 +39,22 @@ Public Class TemplateProduct
             _quantity = value
         End Set
     End Property
-    Public Property Template() As Template
+    Public Property TemplateId() As Integer
         Get
-            Return _template
+            Return _templateId
         End Get
-        Set(ByVal value As Template)
-            _template = value
+        Set(ByVal value As Integer)
+            _templateId = value
         End Set
     End Property
     Public Sub New(ByVal pId As Integer,
-                   ByVal pTemplate As Template,
+                   ByVal pTemplateId As Integer,
                    ByVal pProduct As Product,
                    ByVal pQuantity As Decimal)
         _templateProductId = pId
         _product = pProduct
         _quantity = pQuantity
-        _template = pTemplate
+        _templateId = pTemplateId
     End Sub
 
 End Class

@@ -997,5 +997,41 @@ Module ModDatabase
         End Try
         Return _templateProduct
     End Function
+
+    Public Function InsertTemplate(ptemplate As Template) As Integer
+        Dim _id As Integer
+        Try
+            With ptemplate
+                _id = oTemplateTa.InsertTemplate(.TemplateName, .TemplateDescription)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception inserting template", MODULE_NAME)
+        End Try
+        Return _id
+    End Function
+    Public Function InsertTemplateProduct(ptemplateproduct As TemplateProduct) As Integer
+        Dim _id As Integer
+        Try
+            With ptemplateproduct
+                _id = oTemplateProductTa.InsertTemplateProduct(.Quantity, .ProductId, .Template.TemplateId)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception inserting template product", MODULE_NAME)
+        End Try
+        Return _id
+    End Function
+    Public Function InsertTemplatetask(ptemplatetask As TemplateTask) As Integer
+        Dim _id As Integer
+        Try
+            With ptemplatetask
+                _id = oTemplateTaskTa.InsertTemplateTask(.Name, .Description, .Cost, .Hours, .Template.TemplateId, .TaxRate, .IsTaskTaxable)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception inserting template task", MODULE_NAME)
+        End Try
+        Return _id
+    End Function
+
+
 #End Region
 End Module

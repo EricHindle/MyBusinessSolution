@@ -223,10 +223,10 @@
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
-    <Compile Include="FrmJobTemplates.Designer.vb">
+    <Compile Include="Templates\FrmJobTemplates.Designer.vb">
       <DependentUpon>FrmJobTemplates.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmJobTemplates.vb">
+    <Compile Include="Templates\FrmJobTemplates.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Imaging\FrmImages.Designer.vb">
@@ -445,7 +445,7 @@
     <EmbeddedResource Include="Domain\FrmRestore.resx">
       <DependentUpon>FrmRestore.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmJobTemplates.resx">
+    <EmbeddedResource Include="Templates\FrmJobTemplates.resx">
       <DependentUpon>FrmJobTemplates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Imaging\FrmImages.resx">

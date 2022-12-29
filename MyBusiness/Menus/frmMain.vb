@@ -449,7 +449,30 @@ Public Class FrmMain
     End Sub
 
     Private Sub MnuAddJobAsTemplate_Click(sender As Object, e As EventArgs) Handles MnuAddJobAsTemplate.Click
-
+        If dgvJobs.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
+            Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
+            Dim _jobproducts As List(Of JobProduct) = GetJobProductByJob(_job)
+            Dim _jobtasks As List(Of Task) = GetTasksByJob(_job.JobId)
+            Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing.WithTemplateName(_job.JobName).WithTemplateDescription(_job.JobDescription).Build
+            Dim _templateId As Integer = InsertTemplate(_template)
+            If _templateId > 0 Then
+                For Each _jobproduct As JobProduct In _jobproducts
+                    Dim _templateproduct As TemplateProduct = TemplateProductBuilder.ATemplateProduct.StartingWith(_jobproduct) _
+                    .WithTemplateId(_templateId) _
+                    .Build
+                    InsertTemplateProduct(_templateproduct)
+                Next
+                For Each _task As Task In _jobtasks
+                    Dim _templatetask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_task) _
+                    .WithTemplateId(_templateId) _
+                    .Build
+                    InsertTemplatetask(_templatetask)
+                Next
+            End If
+        Else
+            '   ShowStatus(lblstatus, "No job selected")
+        End If
     End Sub
 
     Private Sub MnuMaintainTemplates_Click(sender As Object, e As EventArgs) Handles MnuMaintainTemplates.Click

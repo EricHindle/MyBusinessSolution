@@ -12,7 +12,7 @@ Public Class TemplateTask
     Private _name As String
     Private _description As String
     Private _cost As Decimal
-    Private _template As Template
+    Private _templateId As Integer
     Private _hours As Decimal
     Private _taxable As Boolean
     Private _taxRate As Decimal
@@ -72,21 +72,16 @@ Public Class TemplateTask
             _taskId = value
         End Set
     End Property
-    Public Property Template() As Template
+    Public Property TemplateId() As Integer
         Get
-            Return _template
+            Return _templateId
         End Get
-        Set(ByVal value As Template)
-            _template = value
+        Set(ByVal value As Integer)
+            _templateId = value
         End Set
     End Property
-    Public ReadOnly Property TemplateId() As Integer
-        Get
-            Return _template.TemplateId
-        End Get
-    End Property
     Public Sub New(ByVal pTaskId As Integer,
-                    ByVal pTemplate As Template,
+                    ByVal pTemplateId As Integer,
                     ByVal pTaskName As String,
                     ByVal pTaskDescription As String,
                     ByVal pTaskCost As Decimal,
@@ -94,7 +89,7 @@ Public Class TemplateTask
                     ByVal pTaskTaxable As Boolean,
                     ByVal pTaskTaxRate As Decimal)
         _taskId = pTaskId
-        _template = pTemplate
+        _templateId = pTemplateId
         _name = pTaskName
         _description = pTaskDescription
         _cost = pTaskCost
@@ -112,7 +107,7 @@ Public Class TemplateTask
         .Append("], description=[") _
         .Append(_description) _
         .Append("], templateId=[") _
-        .Append(_template.TemplateId) _
+        .Append(_templateId) _
         .Append("], cost=[") _
         .Append(_cost) _
         .Append("], hours=[") _

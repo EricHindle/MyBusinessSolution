@@ -10,7 +10,7 @@ Public Class TemplateTaskBuilder
     Private _name As String
     Private _description As String
     Private _cost As Decimal
-    Private _template As Template
+    Private _templateId As Integer
     Private _hours As Decimal
     Private _taxable As Boolean
     Private _taxRate As Decimal
@@ -20,7 +20,7 @@ Public Class TemplateTaskBuilder
     Public Function StartingWith(ByVal oTemplateTask As TemplateTask) As TemplateTaskBuilder
         With oTemplateTask
             _taskId = .TaskId
-            _template = .Template
+            _templateId = .TemplateId
             _name = .Name
             _description = .Description
             _cost = .Cost
@@ -30,10 +30,22 @@ Public Class TemplateTaskBuilder
         End With
         Return Me
     End Function
+    Public Function StartingWith(ByVal oTask As Task) As TemplateTaskBuilder
+        With oTask
+            _taskId = .TaskId
+            _name = .TaskName
+            _description = .TaskDescription
+            _cost = .TaskCost
+            _hours = .TaskHours
+            _taxable = .IsTaskTaxable
+            _taxRate = .TaskTaxRate
+        End With
+        Return Me
+    End Function
     Public Function StartingWith(ByVal oTemplateTask As netwyrksDataSet.template_taskRow) As TemplateTaskBuilder
         With oTemplateTask
             _taskId = .task_id
-            _template = getTemplateById(.template_id)
+            _templateId = .template_id
             _name = .task_name
             _description = .task_description
             _cost = .task_cost
@@ -51,14 +63,15 @@ Public Class TemplateTaskBuilder
         _hours = 0
         _taxable = False
         _taxRate = 0.00
+        _templateId = -1
         Return Me
     End Function
     Public Function WithTaskId(ByVal pTemplateTaskId As Integer) As TemplateTaskBuilder
         _taskId = pTemplateTaskId
         Return Me
     End Function
-    Public Function WithTemplate(ByVal pTemplate As Template) As TemplateTaskBuilder
-        _template = pTemplate
+    Public Function WithTemplateId(ByVal pTemplateId As Integer) As TemplateTaskBuilder
+        _templateId = pTemplateId
         Return Me
     End Function
     Public Function WithName(ByVal pTemplateTaskName As String) As TemplateTaskBuilder
@@ -87,7 +100,7 @@ Public Class TemplateTaskBuilder
     End Function
     Public Function Build() As TemplateTask
         Return New TemplateTask(_taskId,
-                        _template,
+                        _templateId,
                         _name,
                         _description,
                         _cost,
