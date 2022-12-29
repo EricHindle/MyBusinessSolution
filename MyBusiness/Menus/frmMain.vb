@@ -25,7 +25,11 @@ Public Class FrmMain
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         MenuStrip1.CanOverflow = True
         Text = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
-        GetFormPos(Me, My.Settings.MainFormPos)
+        If GetFormPos(Me, My.Settings.MainFormPos) Then
+            SplitContainer1.SplitterDistance = My.Settings.MainSplitterDist1
+            SplitContainer2.SplitterDistance = My.Settings.MainSplitterDist2
+            SplitContainer3.SplitterDistance = My.Settings.MainSplitterDist3
+        End If
         isLoading = True
         InitialiseData()
         FillCustomerTable()
@@ -92,6 +96,7 @@ Public Class FrmMain
             End Using
             isLoading = True
             FillCustomerTable()
+            FillDiaryTable()
             isLoading = False
         End If
     End Sub
@@ -120,6 +125,7 @@ Public Class FrmMain
             isLoading = True
             dgvCust.ClearSelection()
             FillJobTable(-1, mnuShowAllJobs.Checked)
+            FillDiaryTable()
             isLoading = False
         End If
     End Sub
@@ -185,12 +191,7 @@ Public Class FrmMain
             _userControl.ShowDialog()
         End Using
     End Sub
-    Private Sub TidyFilesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TidyFilesToolStripMenuItem.Click
-        Dim logFolder As String = sLogFolder
-        Dim retentionPeriod As Integer = My.Settings.RetentionPeriod
-        TidyFiles(logFolder, "*.*", retentionPeriod)
-        MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
-    End Sub
+
     Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
         Using _jobForm As New FrmJobMaint
             _jobForm.CustomerId = -1
@@ -242,6 +243,10 @@ Public Class FrmMain
     End Sub
     Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         My.Settings.MainFormPos = SetFormPos(Me)
+        My.Settings.MainSplitterDist1 = SplitContainer1.SplitterDistance
+        My.Settings.MainSplitterDist2 = SplitContainer2.SplitterDistance
+        My.Settings.MainSplitterDist3 = SplitContainer3.SplitterDistance
+
         My.Settings.Save()
     End Sub
 #End Region
@@ -433,6 +438,23 @@ Public Class FrmMain
     Private Sub MnuShowAudit_Click(sender As Object, e As EventArgs) Handles MnuShowAudit.Click
         Using _audit As New FrmDisplayAudit
             _audit.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub MnuTidyFiles_Click(sender As Object, e As EventArgs) Handles MnuTidyFiles.Click
+        Dim logFolder As String = sLogFolder
+        Dim retentionPeriod As Integer = My.Settings.RetentionPeriod
+        TidyFiles(logFolder, "*.*", retentionPeriod)
+        MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
+    End Sub
+
+    Private Sub MnuAddJobAsTemplate_Click(sender As Object, e As EventArgs) Handles MnuAddJobAsTemplate.Click
+
+    End Sub
+
+    Private Sub MnuMaintainTemplates_Click(sender As Object, e As EventArgs) Handles MnuMaintainTemplates.Click
+        Using _templates As New FrmJobTemplates
+            _templates.ShowDialog()
         End Using
     End Sub
 #End Region

@@ -43,6 +43,8 @@ Public Class FrmJobMaint
     Private Sub FrmJob_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Debug("Closing", Name)
         My.Settings.JobMaintFormPos = SetFormPos(Me)
+        My.Settings.JobSplitterDist1 = SplitContainer1.SplitterDistance
+        My.Settings.JobSplitterDist2 = SplitContainer2.SplitterDistance
         My.Settings.Save()
         oCustTa.Dispose()
         oCustListTable.Dispose()
@@ -51,7 +53,10 @@ Public Class FrmJobMaint
     End Sub
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Started", Name)
-        GetFormPos(Me, My.Settings.JobMaintFormPos)
+        If GetFormPos(Me, My.Settings.JobMaintFormPos) Then
+            SplitContainer1.SplitterDistance = My.Settings.JobSplitterDist1
+            SplitContainer2.SplitterDistance = My.Settings.JobSplitterDist2
+        End If
         isLoading = True
         LoadUserList()
         LoadCustomerList()

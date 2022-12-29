@@ -29,7 +29,9 @@ Public Class FrmCustomerMaint
 
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Started", Name)
-        GetFormPos(Me, My.Settings.CustFormPos)
+        If GetFormPos(Me, My.Settings.CustFormPos) Then
+            SplitContainer1.SplitterDistance = CInt("0" & My.Settings.CustSplitterDist1)
+        End If
         isLoading = True
         pnlCustomer.Enabled = False
         SplitContainer1.Panel2Collapsed = True
@@ -47,6 +49,7 @@ Public Class FrmCustomerMaint
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", Name)
         My.Settings.CustFormPos = SetFormPos(Me)
+        My.Settings.CustSplitterDist1 = SplitContainer1.SplitterDistance
         My.Settings.Save()
     End Sub
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown

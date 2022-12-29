@@ -1772,7 +1772,7 @@ VALUES        (@diary_date, @diary_userid, @diary_job, @diary_custid, @diary_bod
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateCallback" Modifier="Public" Name="UpdateCallback" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="UpdateCallback">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateCallback" Modifier="Public" Name="UpdateCallback" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="UpdateCallback">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       diary
@@ -1785,7 +1785,7 @@ WHERE        (diary_id = @id)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateClosed" Modifier="Public" Name="UpdateClosed" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="UpdateClosed">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateClosed" Modifier="Public" Name="UpdateClosed" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="UpdateClosed">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       diary
@@ -1798,7 +1798,7 @@ WHERE        (diary_id = @id)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateDiary" Modifier="Public" Name="UpdateDiary" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="UpdateDiary">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateDiary" Modifier="Public" Name="UpdateDiary" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="UpdateDiary">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       diary
@@ -1820,7 +1820,7 @@ WHERE        (diary_id = @id)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateReminder" Modifier="Public" Name="UpdateReminder" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="UpdateReminder">
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateReminder" Modifier="Public" Name="UpdateReminder" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="UpdateReminder">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       diary
@@ -1986,7 +1986,7 @@ VALUES        (@audit_user_id, @audit_record_type, @audit_record_id, @audit_date
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.v_jobproduct" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT `job_product_id`, `jp_quantity`, `jp_created`, `jp_changed`, `jp_product_id`, `jp_job_id`, `jp_taxable`, `jp_tax_rate`, `jp_price`, `product_id`, `product_name`, `product_description`, `product_cost`, `product_price`, `product_created`, `product_changed`, `product_supplier_id`, `product_taxable`, `product_tax_rate`, `product_purchase_units`, `supplier_id`, `supplier_name`, `supplier_address_1`, `supplier_address_2`, `supplier_address_3`, `supplier_address_4`, `supplier_postcode`, `supplier_telephone`, `supplier_email`, `supplier_discount_percent`, `supplier_notes`, `supplier_created`, `supplier_changed`, `supplier_amazon`, `supplier_url`, `job_id`, `job_name`, `job_description`, `job_completed`, `job_created`, `job_changed`, `job_customer_id`, `job_invoice_number`, `job_po_number`, `job_reference`, `job_invoice_date`, `job_payment_due`, `job_user_id`, `job_invoice_no`, `customer_id`, `customer_name`, `customer_address_1`, `customer_address_2`, `customer_address_3`, `customer_address_4`, `customer_postcode`, `customer_telephone`, `customer_email`, `customer_discount_percent`, `customer_notes`, `customer_created`, `customer_changed`, `customer_terms` FROM `netwyrks`.`v_jobproduct`</CommandText>
+                    <CommandText>SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, customer_id, customer_name, customer_address_1, customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, customer_terms FROM v_jobproduct</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -2041,7 +2041,6 @@ VALUES        (@audit_user_id, @audit_record_type, @audit_record_id, @audit_date
               <Mapping SourceColumn="job_invoice_date" DataSetColumn="job_invoice_date" />
               <Mapping SourceColumn="job_payment_due" DataSetColumn="job_payment_due" />
               <Mapping SourceColumn="job_user_id" DataSetColumn="job_user_id" />
-              <Mapping SourceColumn="job_invoice_no" DataSetColumn="job_invoice_no" />
               <Mapping SourceColumn="customer_id" DataSetColumn="customer_id" />
               <Mapping SourceColumn="customer_name" DataSetColumn="customer_name" />
               <Mapping SourceColumn="customer_address_1" DataSetColumn="customer_address_1" />
@@ -2061,14 +2060,7 @@ VALUES        (@audit_user_id, @audit_record_type, @audit_record_id, @audit_date
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.v_jobproduct" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByCustomerId" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByCustomerId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByCustomerId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, 
-                         product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, 
-                         supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, 
-                         job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, customer_id, customer_name, customer_address_1, 
-                         customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, 
-                         customer_terms
-FROM            v_jobproduct
-WHERE        (customer_id = @customerId)</CommandText>
+                    <CommandText>SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, customer_id, customer_name, customer_address_1, customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, customer_terms FROM v_jobproduct WHERE (customer_id = @customerId)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="customerId" ColumnName="customer_id" DataSourceName="netwyrks.v_jobproduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customerId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="customer_id" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -2078,14 +2070,7 @@ WHERE        (customer_id = @customerId)</CommandText>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.v_jobproduct" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, 
-                         product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, 
-                         supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, 
-                         job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, customer_id, customer_name, customer_address_1, 
-                         customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, 
-                         customer_terms
-FROM            v_jobproduct
-WHERE        (job_product_id = @Id)</CommandText>
+                    <CommandText>SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, customer_id, customer_name, customer_address_1, customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, customer_terms FROM v_jobproduct WHERE (job_product_id = @Id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="job_product_id" DataSourceName="netwyrks.v_jobproduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="job_product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -2095,14 +2080,7 @@ WHERE        (job_product_id = @Id)</CommandText>
               <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.v_jobproduct" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByJobId" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByJobId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillByJobId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, 
-                         product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, 
-                         supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, 
-                         job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, job_invoice_no, customer_id, customer_name, customer_address_1, 
-                         customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, 
-                         customer_terms
-FROM            v_jobproduct
-WHERE        (job_id = @jobid)</CommandText>
+                    <CommandText>SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price, product_id, product_name, product_description, product_cost, product_price, product_created, product_changed, product_supplier_id, product_taxable, product_tax_rate, product_purchase_units, supplier_id, supplier_name, supplier_address_1, supplier_address_2, supplier_address_3, supplier_address_4, supplier_postcode, supplier_telephone, supplier_email, supplier_discount_percent, supplier_notes, supplier_created, supplier_changed, supplier_amazon, supplier_url, job_id, job_name, job_description, job_completed, job_created, job_changed, job_customer_id, job_invoice_number, job_po_number, job_reference, job_invoice_date, job_payment_due, job_user_id, customer_id, customer_name, customer_address_1, customer_address_2, customer_address_3, customer_address_4, customer_postcode, customer_telephone, customer_email, customer_discount_percent, customer_notes, customer_created, customer_changed, customer_terms FROM v_jobproduct WHERE (job_id = @jobid)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="jobid" ColumnName="job_id" DataSourceName="netwyrks.v_jobproduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@jobid" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="job_id" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -2230,6 +2208,424 @@ WHERE        (imageid = @imageId)</CommandText>
                       <Parameter AllowDbNull="false" AutogeneratedName="ImagePath" ColumnName="imagepath" DataSourceName="netwyrks.job_image" DataTypeServer="varchar(256)(256)" DbType="String" Direction="Input" ParameterName="@ImagePath" Precision="0" ProviderType="VarChar" Scale="0" Size="256" SourceColumn="imagepath" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="ImageDesc" ColumnName="imagedesc" DataSourceName="netwyrks.job_image" DataTypeServer="varchar(256)(256)" DbType="String" Direction="Input" ParameterName="@ImageDesc" Precision="0" ProviderType="VarChar" Scale="0" Size="256" SourceColumn="imagedesc" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="imageId" ColumnName="imageid" DataSourceName="netwyrks.job_image" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@imageId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="imageid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="templateTableAdapter" GeneratorDataComponentClassName="templateTableAdapter" Name="template" UserDataComponentName="templateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `template` WHERE ((`template_id` = @p1) AND (`template_name` = @p2))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `template` (`template_name`, `template_description`) VALUES (@p1, @p2)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="template_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_id, template_name, template_description
+FROM            template</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `template` SET `template_name` = @p1, `template_description` = @p2 WHERE ((`template_id` = @p3) AND (`template_name` = @p4))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="template_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="template_id" DataSetColumn="template_id" />
+              <Mapping SourceColumn="template_name" DataSetColumn="template_name" />
+              <Mapping SourceColumn="template_description" DataSetColumn="template_description" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteTemplateById" Modifier="Public" Name="DeleteTemplateById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteTemplateById">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM template
+WHERE        (template_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_id" DataSourceName="netwyrks.template" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_id, template_name, template_description
+FROM            template
+WHERE        (template_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_id" DataSourceName="netwyrks.template" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertTemplate" Modifier="Public" Name="InsertTemplate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertTemplate">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO template
+                         (template_name, template_description)
+VALUES        (@name, @description)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="name" ColumnName="template_name" DataSourceName="netwyrks.template" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="description" ColumnName="template_description" DataSourceName="netwyrks.template" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="template_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTemplate" Modifier="Public" Name="TruncateTemplate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TruncateTemplate">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE `template` </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateTemplate" Modifier="Public" Name="UpdateTemplate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateTemplate">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       template
+SET                template_name = @name, template_description = @description
+WHERE        (template_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="name" ColumnName="template_name" DataSourceName="netwyrks.template" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="template_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="description" ColumnName="template_description" DataSourceName="netwyrks.template" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="template_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_id" DataSourceName="netwyrks.template" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="template_productTableAdapter" GeneratorDataComponentClassName="template_productTableAdapter" Name="template_product" UserDataComponentName="template_productTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_product" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `template_product` WHERE ((`template_product_id` = @p1) AND (`quantity` = @p2) AND (`product_id` = @p3) AND (`template_id` = @p4))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `template_product` (`quantity`, `product_id`, `template_id`) VALUES (@p1, @p2, @p3)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_product_id, quantity, product_id, template_id
+FROM            template_product</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `template_product` SET `quantity` = @p1, `product_id` = @p2, `template_id` = @p3 WHERE ((`template_product_id` = @p4) AND (`quantity` = @p5) AND (`product_id` = @p6) AND (`template_id` = @p7))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="template_product_id" DataSetColumn="template_product_id" />
+              <Mapping SourceColumn="quantity" DataSetColumn="quantity" />
+              <Mapping SourceColumn="product_id" DataSetColumn="product_id" />
+              <Mapping SourceColumn="template_id" DataSetColumn="template_id" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteTemplateProductById" Modifier="Public" Name="DeleteTemplateProductById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteTemplateProductById">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM template_product
+WHERE        (template_product_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteTemplateProductsForTemplate" Modifier="Public" Name="DeleteTemplateProductsForTemplate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteTemplateProductsForTemplate">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM template_product
+WHERE        (template_id = @templateId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="template_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_product" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_product_id, quantity, product_id, template_id
+FROM            template_product
+WHERE        (template_product_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_product" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByProductId" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByProductId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="FillByProductId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_product_id, quantity, product_id, template_id
+FROM            template_product
+WHERE        (product_id = @ProductId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProductId" ColumnName="product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ProductId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_product" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTemplateId" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByTemplateId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="FillByTemplateId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        template_product_id, quantity, product_id, template_id
+FROM            template_product
+WHERE        (template_id = @templateId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="template_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertTemplateProduct" Modifier="Public" Name="InsertTemplateProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="InsertTemplateProduct">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO template_product
+                         (quantity, product_id, template_id)
+VALUES        (@quantity, @productId, @templateId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="quantity" ColumnName="quantity" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@quantity" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="productId" ColumnName="product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@productId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="template_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTemplateProduct" Modifier="Public" Name="TruncateTemplateProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="TruncateTemplateProduct">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE `template_product` </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateTemplateProduct" Modifier="Public" Name="UpdateTemplateProduct" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="UpdateTemplateProduct">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       template_product
+SET                quantity = @quantity, product_id = @productId, template_id = @templateId
+WHERE        (template_product_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="quantity" ColumnName="quantity" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@quantity" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="quantity" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="productId" ColumnName="product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@productId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="product_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="template_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="template_product_id" DataSourceName="netwyrks.template_product" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_product_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="template_taskTableAdapter" GeneratorDataComponentClassName="template_taskTableAdapter" Name="template_task" UserDataComponentName="template_taskTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_task" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `template_task` WHERE ((`task_id` = @p1) AND (`task_name` = @p2) AND (`task_cost` = @p3) AND (`task_time` = @p4) AND (`task_tax_rate` = @p5) AND (`task_taxable` = @p6) AND (`template_id` = @p7))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="task_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `template_task` (`task_name`, `task_description`, `task_cost`, `task_time`, `task_tax_rate`, `task_taxable`, `template_id`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="task_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate, task_taxable, template_id FROM template_task</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `template_task` SET `task_name` = @p1, `task_description` = @p2, `task_cost` = @p3, `task_time` = @p4, `task_tax_rate` = @p5, `task_taxable` = @p6, `template_id` = @p7 WHERE ((`task_id` = @p8) AND (`task_name` = @p9) AND (`task_cost` = @p10) AND (`task_time` = @p11) AND (`task_tax_rate` = @p12) AND (`task_taxable` = @p13) AND (`template_id` = @p14))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="task_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="task_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p11" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p12" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p13" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p14" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="template_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="task_id" DataSetColumn="task_id" />
+              <Mapping SourceColumn="task_name" DataSetColumn="task_name" />
+              <Mapping SourceColumn="task_description" DataSetColumn="task_description" />
+              <Mapping SourceColumn="task_cost" DataSetColumn="task_cost" />
+              <Mapping SourceColumn="task_time" DataSetColumn="task_time" />
+              <Mapping SourceColumn="task_tax_rate" DataSetColumn="task_tax_rate" />
+              <Mapping SourceColumn="task_taxable" DataSetColumn="task_taxable" />
+              <Mapping SourceColumn="template_id" DataSetColumn="template_id" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteTemplateTaskById" Modifier="Public" Name="DeleteTemplateTaskById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteTemplateTaskById">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM template_task
+WHERE        (task_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="task_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="task_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteTemplateTasksForTemplate" Modifier="Public" Name="DeleteTemplateTasksForTemplate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteTemplateTasksForTemplate">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM template_task
+WHERE        (templatel_id = @templateId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="templatel_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="templatel_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_task" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate, task_taxable, template_id FROM template_task WHERE (task_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="task_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="task_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="netwyrks.template_task" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTemplateId" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByTemplateId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="FillByTemplateId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate, task_taxable, template_id FROM template_task WHERE (templatel_id = @templateId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="templatel_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="templatel_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertTemplateTask" Modifier="Public" Name="InsertTemplateTask" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="InsertTemplateTask">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO template_task
+                         (task_name, task_description, task_cost, task_time, templatel_id, task_tax_rate, task_taxable)
+VALUES        (@name, @description, @cost, @time, @templateId, @taxrate, @taxable)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="name" ColumnName="task_name" DataSourceName="netwyrks.template_task" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="description" ColumnName="task_description" DataSourceName="netwyrks.template_task" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="task_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="cost" ColumnName="task_cost" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@cost" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="time" ColumnName="task_time" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@time" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="templatel_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="templatel_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="taxrate" ColumnName="task_tax_rate" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@taxrate" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="taxable" ColumnName="task_taxable" DataSourceName="netwyrks.template_task" DataTypeServer="tinyint" DbType="Object" Direction="Input" ParameterName="@taxable" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTemplateTask" Modifier="Public" Name="TruncateTemplateTask" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="TruncateTemplateTask">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>TRUNCATE `template_task` </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="netwyrksConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateTemplateTask" Modifier="Public" Name="UpdateTemplateTask" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="UpdateTemplateTask">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       template_task
+SET                task_name = @name, task_description = @description, task_cost = @cost, task_time = @time, templatel_id = @templateId, task_tax_rate = @taxrate, task_taxable = @taxable
+WHERE        (task_id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="name" ColumnName="task_name" DataSourceName="netwyrks.template_task" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="task_name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="description" ColumnName="task_description" DataSourceName="netwyrks.template_task" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="task_description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="cost" ColumnName="task_cost" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@cost" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="time" ColumnName="task_time" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@time" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_time" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="templateId" ColumnName="templatel_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@templateId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="templatel_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="taxrate" ColumnName="task_tax_rate" DataSourceName="netwyrks.template_task" DataTypeServer="decimal(9,2)" DbType="Decimal" Direction="Input" ParameterName="@taxrate" Precision="9" ProviderType="NewDecimal" Scale="2" Size="0" SourceColumn="task_tax_rate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="taxable" ColumnName="task_taxable" DataSourceName="netwyrks.template_task" DataTypeServer="tinyint" DbType="Object" Direction="Input" ParameterName="@taxable" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="task_taxable" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="task_id" DataSourceName="netwyrks.template_task" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="task_id" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
@@ -2883,7 +3279,6 @@ WHERE        (imageid = @imageId)</CommandText>
               <xs:element name="job_invoice_date" msprop:Generator_ColumnVarNameInTable="columnjob_invoice_date" msprop:Generator_ColumnPropNameInRow="job_invoice_date" msprop:Generator_ColumnPropNameInTable="job_invoice_dateColumn" msprop:Generator_UserColumnName="job_invoice_date" type="xs:dateTime" minOccurs="0" />
               <xs:element name="job_payment_due" msprop:Generator_ColumnVarNameInTable="columnjob_payment_due" msprop:Generator_ColumnPropNameInRow="job_payment_due" msprop:Generator_ColumnPropNameInTable="job_payment_dueColumn" msprop:Generator_UserColumnName="job_payment_due" type="xs:dateTime" minOccurs="0" />
               <xs:element name="job_user_id" msprop:Generator_ColumnVarNameInTable="columnjob_user_id" msprop:Generator_ColumnPropNameInRow="job_user_id" msprop:Generator_ColumnPropNameInTable="job_user_idColumn" msprop:Generator_UserColumnName="job_user_id" type="xs:int" minOccurs="0" />
-              <xs:element name="job_invoice_no" msprop:Generator_ColumnVarNameInTable="columnjob_invoice_no" msprop:Generator_ColumnPropNameInRow="job_invoice_no" msprop:Generator_ColumnPropNameInTable="job_invoice_noColumn" msprop:Generator_UserColumnName="job_invoice_no" type="xs:int" minOccurs="0" />
               <xs:element name="customer_id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncustomer_id" msprop:Generator_ColumnPropNameInRow="customer_id" msprop:Generator_ColumnPropNameInTable="customer_idColumn" msprop:Generator_UserColumnName="customer_id" type="xs:int" />
               <xs:element name="customer_name" msprop:Generator_ColumnVarNameInTable="columncustomer_name" msprop:Generator_ColumnPropNameInRow="customer_name" msprop:Generator_ColumnPropNameInTable="customer_nameColumn" msprop:Generator_UserColumnName="customer_name" minOccurs="0">
                 <xs:simpleType>
@@ -2977,6 +3372,63 @@ WHERE        (imageid = @imageId)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="template" msprop:Generator_TableClassName="templateDataTable" msprop:Generator_TableVarName="tabletemplate" msprop:Generator_TablePropName="template" msprop:Generator_RowDeletingName="templateRowDeleting" msprop:Generator_RowChangingName="templateRowChanging" msprop:Generator_RowEvHandlerName="templateRowChangeEventHandler" msprop:Generator_RowDeletedName="templateRowDeleted" msprop:Generator_UserTableName="template" msprop:Generator_RowChangedName="templateRowChanged" msprop:Generator_RowEvArgName="templateRowChangeEvent" msprop:Generator_RowClassName="templateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="template_id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columntemplate_id" msprop:Generator_ColumnPropNameInRow="template_id" msprop:Generator_ColumnPropNameInTable="template_idColumn" msprop:Generator_UserColumnName="template_id" type="xs:int" />
+              <xs:element name="template_name" msprop:Generator_ColumnVarNameInTable="columntemplate_name" msprop:Generator_ColumnPropNameInRow="template_name" msprop:Generator_ColumnPropNameInTable="template_nameColumn" msprop:Generator_UserColumnName="template_name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="template_description" msprop:Generator_ColumnVarNameInTable="columntemplate_description" msprop:Generator_ColumnPropNameInRow="template_description" msprop:Generator_ColumnPropNameInTable="template_descriptionColumn" msprop:Generator_UserColumnName="template_description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="65535" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="template_product" msprop:Generator_TableClassName="template_productDataTable" msprop:Generator_TableVarName="tabletemplate_product" msprop:Generator_TablePropName="template_product" msprop:Generator_RowDeletingName="template_productRowDeleting" msprop:Generator_RowChangingName="template_productRowChanging" msprop:Generator_RowEvHandlerName="template_productRowChangeEventHandler" msprop:Generator_RowDeletedName="template_productRowDeleted" msprop:Generator_UserTableName="template_product" msprop:Generator_RowChangedName="template_productRowChanged" msprop:Generator_RowEvArgName="template_productRowChangeEvent" msprop:Generator_RowClassName="template_productRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="template_product_id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columntemplate_product_id" msprop:Generator_ColumnPropNameInRow="template_product_id" msprop:Generator_ColumnPropNameInTable="template_product_idColumn" msprop:Generator_UserColumnName="template_product_id" type="xs:int" />
+              <xs:element name="quantity" msprop:Generator_ColumnVarNameInTable="columnquantity" msprop:Generator_ColumnPropNameInRow="quantity" msprop:Generator_ColumnPropNameInTable="quantityColumn" msprop:Generator_UserColumnName="quantity" type="xs:int" />
+              <xs:element name="product_id" msprop:Generator_ColumnVarNameInTable="columnproduct_id" msprop:Generator_ColumnPropNameInRow="product_id" msprop:Generator_ColumnPropNameInTable="product_idColumn" msprop:Generator_UserColumnName="product_id" type="xs:int" />
+              <xs:element name="template_id" msprop:Generator_ColumnVarNameInTable="columntemplate_id" msprop:Generator_ColumnPropNameInRow="template_id" msprop:Generator_ColumnPropNameInTable="template_idColumn" msprop:Generator_UserColumnName="template_id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="template_task" msprop:Generator_TableClassName="template_taskDataTable" msprop:Generator_TableVarName="tabletemplate_task" msprop:Generator_TablePropName="template_task" msprop:Generator_RowDeletingName="template_taskRowDeleting" msprop:Generator_RowChangingName="template_taskRowChanging" msprop:Generator_RowEvHandlerName="template_taskRowChangeEventHandler" msprop:Generator_RowDeletedName="template_taskRowDeleted" msprop:Generator_UserTableName="template_task" msprop:Generator_RowChangedName="template_taskRowChanged" msprop:Generator_RowEvArgName="template_taskRowChangeEvent" msprop:Generator_RowClassName="template_taskRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="task_id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columntask_id" msprop:Generator_ColumnPropNameInRow="task_id" msprop:Generator_ColumnPropNameInTable="task_idColumn" msprop:Generator_UserColumnName="task_id" type="xs:int" />
+              <xs:element name="task_name" msprop:Generator_ColumnVarNameInTable="columntask_name" msprop:Generator_ColumnPropNameInRow="task_name" msprop:Generator_ColumnPropNameInTable="task_nameColumn" msprop:Generator_UserColumnName="task_name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="task_description" msprop:Generator_ColumnVarNameInTable="columntask_description" msprop:Generator_ColumnPropNameInRow="task_description" msprop:Generator_ColumnPropNameInTable="task_descriptionColumn" msprop:Generator_UserColumnName="task_description">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="65535" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="task_cost" msprop:Generator_ColumnVarNameInTable="columntask_cost" msprop:Generator_ColumnPropNameInRow="task_cost" msprop:Generator_ColumnPropNameInTable="task_costColumn" msprop:Generator_UserColumnName="task_cost" type="xs:decimal" />
+              <xs:element name="task_time" msprop:Generator_ColumnVarNameInTable="columntask_time" msprop:Generator_ColumnPropNameInRow="task_time" msprop:Generator_ColumnPropNameInTable="task_timeColumn" msprop:Generator_UserColumnName="task_time" type="xs:decimal" />
+              <xs:element name="task_tax_rate" msprop:Generator_ColumnVarNameInTable="columntask_tax_rate" msprop:Generator_ColumnPropNameInRow="task_tax_rate" msprop:Generator_ColumnPropNameInTable="task_tax_rateColumn" msprop:Generator_UserColumnName="task_tax_rate" type="xs:decimal" />
+              <xs:element name="task_taxable" msprop:Generator_ColumnVarNameInTable="columntask_taxable" msprop:Generator_ColumnPropNameInRow="task_taxable" msprop:Generator_ColumnPropNameInTable="task_taxableColumn" msprop:Generator_UserColumnName="task_taxable" type="xs:byte" />
+              <xs:element name="template_id" msprop:Generator_ColumnVarNameInTable="columntemplate_id" msprop:Generator_ColumnPropNameInRow="template_id" msprop:Generator_ColumnPropNameInTable="template_idColumn" msprop:Generator_UserColumnName="template_id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -3031,16 +3483,17 @@ WHERE        (imageid = @imageId)</CommandText>
       <xs:selector xpath=".//mstns:job_image" />
       <xs:field xpath="mstns:imageid" />
     </xs:unique>
+    <xs:unique name="template_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:template" />
+      <xs:field xpath="mstns:template_id" />
+    </xs:unique>
+    <xs:unique name="template_product_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:template_product" />
+      <xs:field xpath="mstns:template_product_id" />
+    </xs:unique>
+    <xs:unique name="template_task_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:template_task" />
+      <xs:field xpath="mstns:task_id" />
+    </xs:unique>
   </xs:element>
-  <xs:annotation>
-    <xs:appinfo>
-      <msdata:Relationship name="fk_job_customer1" msdata:parent="customer" msdata:child="job" msdata:parentkey="customer_id" msdata:childkey="job_customer_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_customer1" msprop:Generator_RelationVarName="relationfk_job_customer1" msprop:Generator_UserParentTable="customer" msprop:Generator_ParentPropName="customerRow" />
-      <msdata:Relationship name="fk_job_product_job1" msdata:parent="job" msdata:child="job_product" msdata:parentkey="job_id" msdata:childkey="jp_job_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_job1" msprop:Generator_RelationVarName="relationfk_job_product_job1" msprop:Generator_UserParentTable="job" msprop:Generator_ParentPropName="jobRow" />
-      <msdata:Relationship name="fk_job_product_product1" msdata:parent="product" msdata:child="job_product" msdata:parentkey="product_id" msdata:childkey="jp_product_id" msprop:Generator_UserChildTable="job_product" msprop:Generator_ChildPropName="Getjob_productRows" msprop:Generator_UserRelationName="fk_job_product_product1" msprop:Generator_RelationVarName="relationfk_job_product_product1" msprop:Generator_UserParentTable="product" msprop:Generator_ParentPropName="productRow" />
-      <msdata:Relationship name="fk_product_supplier1" msdata:parent="supplier" msdata:child="product" msdata:parentkey="supplier_id" msdata:childkey="product_supplier_id" msprop:Generator_UserChildTable="product" msprop:Generator_ChildPropName="GetproductRows" msprop:Generator_UserRelationName="fk_product_supplier1" msprop:Generator_RelationVarName="relationfk_product_supplier1" msprop:Generator_UserParentTable="supplier" msprop:Generator_ParentPropName="supplierRow" />
-      <msdata:Relationship name="fk_task_job1" msdata:parent="job" msdata:child="task" msdata:parentkey="job_id" msdata:childkey="task_job_id" msprop:Generator_UserChildTable="task" msprop:Generator_ChildPropName="GettaskRows" msprop:Generator_UserRelationName="fk_task_job1" msprop:Generator_RelationVarName="relationfk_task_job1" msprop:Generator_UserParentTable="job" msprop:Generator_ParentPropName="jobRow" />
-      <msdata:Relationship name="fk_job_user1" msdata:parent="user" msdata:child="job" msdata:parentkey="user_id" msdata:childkey="job_user_id" msprop:Generator_UserChildTable="job" msprop:Generator_ChildPropName="GetjobRows" msprop:Generator_UserRelationName="fk_job_user1" msprop:Generator_RelationVarName="relationfk_job_user1" msprop:Generator_UserParentTable="user" msprop:Generator_ParentPropName="userRow" />
-      <msdata:Relationship name="user_diary" msdata:parent="user" msdata:child="diary" msdata:parentkey="user_id" msdata:childkey="diary_id" msprop:Generator_UserChildTable="diary" msprop:Generator_ChildPropName="GetdiaryRows" msprop:Generator_UserRelationName="user_diary" msprop:Generator_ParentPropName="userRow" msprop:Generator_RelationVarName="relationuser_diary" msprop:Generator_UserParentTable="user" />
-    </xs:appinfo>
-  </xs:annotation>
 </xs:schema>

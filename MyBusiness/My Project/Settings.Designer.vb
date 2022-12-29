@@ -796,6 +796,150 @@ Namespace My
                 Me("ImagesFormPos") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property TmplFormPos() As String
+            Get
+                Return CType(Me("TmplFormPos"),String)
+            End Get
+            Set
+                Me("TmplFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property TmplSplitterDist1() As Integer
+            Get
+                Return CType(Me("TmplSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("TmplSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property TmplSplitterDist2() As Integer
+            Get
+                Return CType(Me("TmplSplitterDist2"),Integer)
+            End Get
+            Set
+                Me("TmplSplitterDist2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property SuppSplitterDist1() As Integer
+            Get
+                Return CType(Me("SuppSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("SuppSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property CustSplitterDist1() As Integer
+            Get
+                Return CType(Me("CustSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("CustSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property JobSplitterDist1() As Integer
+            Get
+                Return CType(Me("JobSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("JobSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property JobSplitterDist2() As Integer
+            Get
+                Return CType(Me("JobSplitterDist2"),Integer)
+            End Get
+            Set
+                Me("JobSplitterDist2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property JobProdSplitterDist1() As Integer
+            Get
+                Return CType(Me("JobProdSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("JobProdSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property JobProdSplitterDist2() As Integer
+            Get
+                Return CType(Me("JobProdSplitterDist2"),Integer)
+            End Get
+            Set
+                Me("JobProdSplitterDist2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property MainSplitterDist1() As Integer
+            Get
+                Return CType(Me("MainSplitterDist1"),Integer)
+            End Get
+            Set
+                Me("MainSplitterDist1") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property MainSplitterDist2() As Integer
+            Get
+                Return CType(Me("MainSplitterDist2"),Integer)
+            End Get
+            Set
+                Me("MainSplitterDist2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property MainSplitterDist3() As Integer
+            Get
+                Return CType(Me("MainSplitterDist3"),Integer)
+            End Get
+            Set
+                Me("MainSplitterDist3") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

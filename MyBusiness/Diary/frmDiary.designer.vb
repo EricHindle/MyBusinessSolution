@@ -37,6 +37,8 @@ Partial Class FrmDiary
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicSetReminder = New System.Windows.Forms.PictureBox()
         Me.PicToggleComplete = New System.Windows.Forms.PictureBox()
+        Me.btnJobLink = New System.Windows.Forms.Button()
+        Me.btnCustLink = New System.Windows.Forms.Button()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvDiary = New System.Windows.Forms.DataGridView()
@@ -53,8 +55,6 @@ Partial Class FrmDiary
         Me.rtbBody = New System.Windows.Forms.RichTextBox()
         Me.txtSubject = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnJobLink = New System.Windows.Forms.Button()
-        Me.btnCustLink = New System.Windows.Forms.Button()
         Me.chkReminders = New System.Windows.Forms.CheckBox()
         Me.chkComplete = New System.Windows.Forms.CheckBox()
         Me.lblReminder = New System.Windows.Forms.Label()
@@ -183,6 +183,30 @@ Partial Class FrmDiary
         Me.PicToggleComplete.TabIndex = 102
         Me.PicToggleComplete.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicToggleComplete, "Set complete")
+        '
+        'btnJobLink
+        '
+        Me.btnJobLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnJobLink.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnJobLink.Location = New System.Drawing.Point(11, 51)
+        Me.btnJobLink.Name = "btnJobLink"
+        Me.btnJobLink.Size = New System.Drawing.Size(75, 23)
+        Me.btnJobLink.TabIndex = 2
+        Me.btnJobLink.Text = "Job"
+        Me.ToolTip1.SetToolTip(Me.btnJobLink, "Show linked job")
+        Me.btnJobLink.UseVisualStyleBackColor = True
+        '
+        'btnCustLink
+        '
+        Me.btnCustLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCustLink.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCustLink.Location = New System.Drawing.Point(11, 22)
+        Me.btnCustLink.Name = "btnCustLink"
+        Me.btnCustLink.Size = New System.Drawing.Size(75, 23)
+        Me.btnCustLink.TabIndex = 0
+        Me.btnCustLink.Text = "Customer"
+        Me.ToolTip1.SetToolTip(Me.btnCustLink, "Show linked customer")
+        Me.btnCustLink.UseVisualStyleBackColor = True
         '
         'lblFormName
         '
@@ -355,30 +379,6 @@ Partial Class FrmDiary
         Me.GroupBox1.TabIndex = 26
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Links"
-        '
-        'btnJobLink
-        '
-        Me.btnJobLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnJobLink.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnJobLink.Location = New System.Drawing.Point(11, 51)
-        Me.btnJobLink.Name = "btnJobLink"
-        Me.btnJobLink.Size = New System.Drawing.Size(75, 23)
-        Me.btnJobLink.TabIndex = 2
-        Me.btnJobLink.Text = "Job"
-        Me.ToolTip1.SetToolTip(Me.btnJobLink, "Show linked job")
-        Me.btnJobLink.UseVisualStyleBackColor = True
-        '
-        'btnCustLink
-        '
-        Me.btnCustLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCustLink.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCustLink.Location = New System.Drawing.Point(11, 22)
-        Me.btnCustLink.Name = "btnCustLink"
-        Me.btnCustLink.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustLink.TabIndex = 0
-        Me.btnCustLink.Text = "Customer"
-        Me.ToolTip1.SetToolTip(Me.btnCustLink, "Show linked customer")
-        Me.btnCustLink.UseVisualStyleBackColor = True
         '
         'chkReminders
         '

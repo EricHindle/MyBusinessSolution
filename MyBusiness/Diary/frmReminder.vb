@@ -70,8 +70,17 @@ Public Class FrmReminder
         ClearForm()
         SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
         PicAdd.Visible = True
+        Dim _identity As NetwyrksIIdentity = My.User.CurrentPrincipal.Identity
+
         If _reminder Is Nothing Then
-            _reminder = ReminderBuilder.AReminder.StartingWithNothing.Build
+            If _customer Is Nothing And _job IsNot Nothing Then
+                _customer = GetCustomer(_job.JobCustomerId)
+            End If
+            _reminder = ReminderBuilder.AReminder.StartingWithNothing _
+                                    .WithCustomerId(If(_customer Is Nothing, -1, _customer.CustomerId)) _
+                                    .WithJobId(If(_job Is Nothing, -1, _job.JobId)) _
+                                    .WithUserId(_identity.UserId) _
+                                    .Build
         End If
         If _reminder.Diary_id > 0 Then
             FillForm()

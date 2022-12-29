@@ -273,6 +273,12 @@ Public Class FrmDiary
 #Region "Create Update Delete"
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
         Using _reminder As New FrmReminder
+            If _forJobId > 0 Then
+                _reminder.CurrentJob = GetJobById(_forJobId)
+            End If
+            If _forCustomerId > 0 Then
+                _reminder.CurrentCustomer = GetCustomer(_forCustomerId)
+            End If
             _reminder.CurrentReminder = Nothing
             _reminder.ShowDialog()
         End Using

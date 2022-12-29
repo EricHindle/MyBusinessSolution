@@ -81,6 +81,7 @@ Partial Class FrmMain
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.MnuShowAudit = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuTidyFiles = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuBackup = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuRestore = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
@@ -94,7 +95,7 @@ Partial Class FrmMain
         Me.NewSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewDiaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TidyFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GlobalSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -105,6 +106,8 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
+        Me.MnuAddJobAsTemplate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuMaintainTemplates = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -630,7 +633,7 @@ Partial Class FrmMain
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.TidyFilesToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.MnuTemplates, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
@@ -644,7 +647,7 @@ Partial Class FrmMain
         Me.AdminToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.AdminToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.AdminToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
+        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuTidyFiles, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
         Me.AdminToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
@@ -678,6 +681,12 @@ Partial Class FrmMain
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(165, 6)
+        '
+        'MnuTidyFiles
+        '
+        Me.MnuTidyFiles.Name = "MnuTidyFiles"
+        Me.MnuTidyFiles.Size = New System.Drawing.Size(168, 22)
+        Me.MnuTidyFiles.Text = "Tidy Files"
         '
         'MnuBackup
         '
@@ -780,17 +789,18 @@ Partial Class FrmMain
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 19)
         Me.ToolStripMenuItem1.Text = " "
         '
-        'TidyFilesToolStripMenuItem
+        'MnuTemplates
         '
-        Me.TidyFilesToolStripMenuItem.AutoSize = False
-        Me.TidyFilesToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.TidyFilesToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.TidyFilesToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.TidyFilesToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.TidyFilesToolStripMenuItem.Name = "TidyFilesToolStripMenuItem"
-        Me.TidyFilesToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.TidyFilesToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.TidyFilesToolStripMenuItem.Text = "Tidy Files"
+        Me.MnuTemplates.AutoSize = False
+        Me.MnuTemplates.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuTemplates.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuTemplates.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJobAsTemplate, Me.MnuMaintainTemplates})
+        Me.MnuTemplates.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuTemplates.Name = "MnuTemplates"
+        Me.MnuTemplates.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.MnuTemplates.Size = New System.Drawing.Size(90, 90)
+        Me.MnuTemplates.Text = "Templates"
         '
         'SettingsToolStripMenuItem
         '
@@ -808,29 +818,29 @@ Partial Class FrmMain
         'GlobalSettingsToolStripMenuItem
         '
         Me.GlobalSettingsToolStripMenuItem.Name = "GlobalSettingsToolStripMenuItem"
-        Me.GlobalSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GlobalSettingsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.GlobalSettingsToolStripMenuItem.Text = "Global Settings"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(175, 6)
         '
         'PreferencesToolStripMenuItem
         '
         Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.PreferencesToolStripMenuItem.Text = "Preferences"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(175, 6)
         '
         'ChkCallBackReminders
         '
         Me.ChkCallBackReminders.Name = "ChkCallBackReminders"
-        Me.ChkCallBackReminders.Size = New System.Drawing.Size(180, 22)
+        Me.ChkCallBackReminders.Size = New System.Drawing.Size(178, 22)
         Me.ChkCallBackReminders.Text = "Callback Reminders"
         '
         'ToolStripMenuItem2
@@ -858,6 +868,18 @@ Partial Class FrmMain
         '
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
+        '
+        'MnuAddJobAsTemplate
+        '
+        Me.MnuAddJobAsTemplate.Name = "MnuAddJobAsTemplate"
+        Me.MnuAddJobAsTemplate.Size = New System.Drawing.Size(182, 22)
+        Me.MnuAddJobAsTemplate.Text = "Add Job as Template"
+        '
+        'MnuMaintainTemplates
+        '
+        Me.MnuMaintainTemplates.Name = "MnuMaintainTemplates"
+        Me.MnuMaintainTemplates.Size = New System.Drawing.Size(182, 22)
+        Me.MnuMaintainTemplates.Text = "Maintain Templates"
         '
         'FrmMain
         '
@@ -942,7 +964,7 @@ Partial Class FrmMain
     Friend WithEvents JobToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewDiaryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TidyFilesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuTemplates As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -979,4 +1001,7 @@ Partial Class FrmMain
     Friend WithEvents jobUser As DataGridViewTextBoxColumn
     Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
     Friend WithEvents MnuShowAudit As ToolStripMenuItem
+    Friend WithEvents MnuTidyFiles As ToolStripMenuItem
+    Friend WithEvents MnuAddJobAsTemplate As ToolStripMenuItem
+    Friend WithEvents MnuMaintainTemplates As ToolStripMenuItem
 End Class

@@ -37,6 +37,12 @@ Module ModDatabase
     Private ReadOnly oJobProductViewTable As New netwyrksDataSet.v_jobproductDataTable
     Private ReadOnly oJobImageTa As New netwyrksDataSetTableAdapters.job_imageTableAdapter
     Private ReadOnly oJobImageTable As New netwyrksDataSet.job_imageDataTable
+    Private ReadOnly oTemplateTa As New netwyrksDataSetTableAdapters.templateTableAdapter
+    Private ReadOnly oTemplateTable As New netwyrksDataSet.templateDataTable
+    Private ReadOnly oTemplateTaskTa As New netwyrksDataSetTableAdapters.template_taskTableAdapter
+    Private ReadOnly oTemplateTaskTable As New netwyrksDataSet.template_taskDataTable
+    Private ReadOnly oTemplateProductTa As New netwyrksDataSetTableAdapters.template_productTableAdapter
+    Private ReadOnly oTemplateProductTable As New netwyrksDataSet.template_productDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -366,9 +372,9 @@ Module ModDatabase
         Dim _jobImage As JobImage
         oJobImageTa.FillByImageId(oJobImageTable, _id)
         If oJobImageTable.Rows.Count > 0 Then
-            _jobImage = JobImageBuilder.AJobImage.StartingWith(oJobImageTable.Rows(0)).Build
+            _jobImage = JobImageBuilder.aJobImage.StartingWith(oJobImageTable.Rows(0)).Build
         Else
-            _jobImage = JobImageBuilder.AJobImage.StartingWithNothing.Build
+            _jobImage = JobImageBuilder.aJobImage.StartingWithNothing.Build
         End If
         Return _jobImage
     End Function
@@ -376,7 +382,7 @@ Module ModDatabase
         Dim _jobImageList As New List(Of JobImage)
         oJobImageTa.FillByJobId(oJobImageTable, _job.JobId)
         For Each oRow As netwyrksDataSet.job_imageRow In oJobImageTable.Rows
-            _jobImageList.Add(JobImageBuilder.AJobImage.StartingWith(oRow).Build)
+            _jobImageList.Add(JobImageBuilder.aJobImage.StartingWith(oRow).Build)
         Next
         Return _jobImageList
     End Function
@@ -389,7 +395,7 @@ Module ModDatabase
                     AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobImage, _jobImageId, AuditUtil.AuditableAction.create, "", .ToString)
                 End If
             End With
-        Catch ex As dbException
+        Catch ex As DbException
             DisplayException(ex, "Exception inserting image", MODULE_NAME)
         End Try
         Return _jobImageId
@@ -497,7 +503,7 @@ Module ModDatabase
                                            .Terms)
 
             End With
-        Catch ex As dbException
+        Catch ex As DbException
             DisplayException(ex, "Exception inserting customer", MODULE_NAME)
             MsgBox("Error:Customer not added.", MsgBoxStyle.Exclamation, "Error")
         End Try
@@ -521,7 +527,7 @@ Module ModDatabase
                                            .Terms,
                                            .CustomerId)
             End With
-        Catch ex As dbException
+        Catch ex As DbException
             DisplayException(ex, "Exception updating image", MODULE_NAME)
             MsgBox("Error:Customer not updated", MsgBoxStyle.Exclamation, "Error")
         End Try
@@ -728,6 +734,9 @@ Module ModDatabase
         tableList.Add("Supplier")
         tableList.Add("Task")
         tableList.Add("User")
+        tableList.Add("Template")
+        tableList.Add("Template_Task")
+        tableList.Add("Template_Product")
     End Sub
     Public Sub FillTableTree(ByRef tvtables As TreeView)
         tvtables.Nodes.Clear()
@@ -806,6 +815,24 @@ Module ModDatabase
                         oTaskTa.Update(oTaskTable)
                         rowCount = oTaskTa.GetData.Rows.Count
                     End If
+                Case "Template"
+                    If RecreateTable(oTemplateTable, datapath) Then
+                        oTemplateTa.TruncateTemplate()
+                        oTemplateTa.Update(oTemplateTable)
+                        rowCount = oTaskTa.GetData.Rows.Count
+                    End If
+                Case "Template_Task"
+                    If RecreateTable(oTemplateTaskTable, datapath) Then
+                        oTemplateTaskTa.TruncateTemplateTask()
+                        oTemplateTaskTa.Update(oTemplateTaskTable)
+                        rowCount = oTaskTa.GetData.Rows.Count
+                    End If
+                Case "Template_Product"
+                    If RecreateTable(oTemplateProductTable, datapath) Then
+                        oTemplateProductTa.TruncateTemplateProduct()
+                        oTemplateProductTa.Update(oTemplateProductTable)
+                        rowCount = oTaskTa.GetData.Rows.Count
+                    End If
             End Select
         Catch ex As Exception
             DisplayException(ex, "Exception restoring table", MODULE_NAME)
@@ -880,6 +907,95 @@ Module ModDatabase
     Public Function GetSupplierTable() As netwyrksDataSet.supplierDataTable
         LogUtil.Info("Getting Supplier table", MODULE_NAME)
         Return oSupplierTa.GetData()
+    End Function
+#End Region
+#Region "templates"
+    Public Function GetTemplateTable() As netwyrksDataSet.templateDataTable
+        LogUtil.Info("Getting Template table", MODULE_NAME)
+        Return oTemplateTa.GetData
+    End Function
+    Public Function GetTemplate_TaskTable() As netwyrksDataSet.template_taskDataTable
+        LogUtil.Info("Getting Template Task table", MODULE_NAME)
+        Return oTemplateTaskTa.GetData
+    End Function
+    Public Function GetTemplate_ProductTable() As netwyrksDataSet.template_productDataTable
+        LogUtil.Info("Getting Template Product table", MODULE_NAME)
+        Return oTemplateProductTa.GetData
+    End Function
+
+    Public Function GetAllTemplates() As List(Of Template)
+        Dim _templateList As New List(Of Template)
+        Try
+            oTemplateTa.Fill(oTemplateTable)
+            For Each oRow As netwyrksDataSet.templateRow In oTemplateTable.Rows
+                _templateList.Add(TemplateBuilder.ATemplate.StartingWith(oRow).Build)
+            Next
+        Catch ex As DbException
+
+        End Try
+        Return _templateList
+    End Function
+    Public Function GetTemplateById(pId As Integer) As Template
+        Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing.Build
+        Try
+            oTemplateTa.FillById(oTemplateTable, pId)
+            If oTemplateTable.Rows.Count > 0 Then
+                _template = TemplateBuilder.ATemplate.StartingWith(oTemplateTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+
+        End Try
+        Return _template
+    End Function
+
+    Public Function GetTemplateTasksForTemplate(pTemplateId) As List(Of TemplateTask)
+        Dim _templateTaskList As New List(Of TemplateTask)
+        Try
+            oTemplateTaskTa.FillByTemplateId(oTemplateTaskTable, pTemplateId)
+            For Each oRow As netwyrksDataSet.template_taskRow In oTemplateTaskTable.Rows
+                _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
+            Next
+        Catch ex As DbException
+
+        End Try
+        Return _templateTaskList
+    End Function
+    Public Function GetTemplateTaskById(pId As Integer) As TemplateTask
+        Dim _templateTask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWithNothing.Build
+        Try
+            oTemplateTaskTa.FillById(oTemplateTaskTable, pId)
+            If oTemplateTaskTable.Rows.Count > 0 Then
+                _templatetask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+
+        End Try
+        Return _templatetask
+    End Function
+
+    Public Function GetTemplateProductsForTemplate(pTemplateId) As List(Of TemplateProduct)
+        Dim _templateProductList As New List(Of TemplateProduct)
+        Try
+            oTemplateProductTa.FillByTemplateId(oTemplateProductTable, pTemplateId)
+            For Each oRow As netwyrksDataSet.template_productRow In oTemplateProductTable.Rows
+                _templateProductList.Add(TemplateProductBuilder.ATemplateProduct.StartingWith(oRow).Build)
+            Next
+        Catch ex As DbException
+
+        End Try
+        Return _templateProductList
+    End Function
+    Public Function GetTemplateProductById(pId As Integer) As TemplateProduct
+        Dim _templateProduct As TemplateProduct = TemplateProductBuilder.ATemplateProduct.StartingWithNothing.Build
+        Try
+            oTemplateProductTa.FillById(oTemplateProductTable, pId)
+            If oTemplateProductTable.Rows.Count > 0 Then
+                _templateProduct = TemplateProductBuilder.ATemplateProduct.StartingWith(oTemplateProductTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+
+        End Try
+        Return _templateProduct
     End Function
 #End Region
 End Module

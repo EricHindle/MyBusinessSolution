@@ -176,6 +176,9 @@
     <Compile Include="Domain\Builders\FullJobProductBuilder.vb" />
     <Compile Include="Domain\Builders\JobImageBuilder.vb" />
     <Compile Include="Domain\Builders\JobProductBuilder.vb" />
+    <Compile Include="Domain\Builders\TemplateBuilder.vb" />
+    <Compile Include="Domain\Builders\TemplateProductBuilder.vb" />
+    <Compile Include="Domain\Builders\TemplateTaskBuilder.vb" />
     <Compile Include="Domain\Objects\Address.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
     <Compile Include="Domain\Objects\AuditEntry.vb" />
@@ -204,6 +207,9 @@
     </Compile>
     <Compile Include="Domain\Objects\JobImage.vb" />
     <Compile Include="Domain\Objects\JobProduct.vb" />
+    <Compile Include="Domain\Objects\Template.vb" />
+    <Compile Include="Domain\Objects\TemplateProduct.vb" />
+    <Compile Include="Domain\Objects\TemplateTask.vb" />
     <Compile Include="Domain\Objects\Product.vb" />
     <Compile Include="Domain\Builders\ProductBuilder.vb" />
     <Compile Include="Domain\Objects\Reminder.vb" />
@@ -217,6 +223,12 @@
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
+    <Compile Include="FrmJobTemplates.Designer.vb">
+      <DependentUpon>FrmJobTemplates.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmJobTemplates.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Imaging\FrmImages.Designer.vb">
       <DependentUpon>FrmImages.vb</DependentUpon>
     </Compile>
@@ -432,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\FrmRestore.resx">
       <DependentUpon>FrmRestore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmJobTemplates.resx">
+      <DependentUpon>FrmJobTemplates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Imaging\FrmImages.resx">
       <DependentUpon>FrmImages.vb</DependentUpon>

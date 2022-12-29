@@ -235,7 +235,12 @@ Public Class FrmBackup
                         BackupTable(GetTaskTable)
                     Case "User"
                         BackupTable(GetUserTable)
-
+                    Case "Template"
+                        BackupTable(GetTemplateTable)
+                    Case "Template_Product"
+                        BackupTable(GetTemplate_ProductTable)
+                    Case "Template_Task"
+                        BackupTable(GetTemplate_TaskTable)
                 End Select
                 oNode.Checked = False
             End If
