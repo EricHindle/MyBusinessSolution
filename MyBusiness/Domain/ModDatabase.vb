@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -43,6 +43,8 @@ Module ModDatabase
     Private ReadOnly oTemplateTaskTable As New netwyrksDataSet.template_taskDataTable
     Private ReadOnly oTemplateProductTa As New netwyrksDataSetTableAdapters.template_productTableAdapter
     Private ReadOnly oTemplateProductTable As New netwyrksDataSet.template_productDataTable
+    Private ReadOnly oTemplateProductViewTa As New netwyrksDataSetTableAdapters.v_templateproductTableAdapter
+    Private ReadOnly oTemplateProductViewTable As New netwyrksDataSet.v_templateproductDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -922,7 +924,6 @@ Module ModDatabase
         LogUtil.Info("Getting Template Product table", MODULE_NAME)
         Return oTemplateProductTa.GetData
     End Function
-
     Public Function GetAllTemplates() As List(Of Template)
         Dim _templateList As New List(Of Template)
         Try
@@ -947,7 +948,6 @@ Module ModDatabase
         End Try
         Return _template
     End Function
-
     Public Function GetTemplateTasksForTemplate(pTemplateId) As List(Of TemplateTask)
         Dim _templateTaskList As New List(Of TemplateTask)
         Try
@@ -972,7 +972,6 @@ Module ModDatabase
         End Try
         Return _templatetask
     End Function
-
     Public Function GetTemplateProductsForTemplate(pTemplateId) As List(Of TemplateProduct)
         Dim _templateProductList As New List(Of TemplateProduct)
         Try
@@ -998,6 +997,31 @@ Module ModDatabase
         Return _templateProduct
     End Function
 
+    Public Function GetTemplateProductViewbyId(pId As Integer) As FullTemplateProduct
+        Dim oFullTemplateProduct As FullTemplateProduct = Nothing
+        Try
+            oTemplateProductViewTa.FillById(oTemplateProductViewTable, pId)
+            If oTemplateProductViewTable.Rows.Count > 0 Then
+                oFullTemplateProduct = FullTemplateProductBuilder.ATemplateProduct.StartingWith(oTemplateProductViewTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return oFullTemplateProduct
+    End Function
+
+    Public Function GetTemplateProductViewbyTemplateId(pId As Integer) As List(Of FullTemplateProduct)
+        Dim oFullTemplateProductList As New List(Of FullTemplateProduct)
+        Try
+            oTemplateProductViewTa.FillByTemplateId(oTemplateProductViewTable, pId)
+            For Each oRow As netwyrksDataSet.v_templateproductRow In oTemplateProductViewTable.Rows
+                oFullTemplateProductList.Add(FullTemplateProductBuilder.ATemplateProduct.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return oFullTemplateProductList
+    End Function
     Public Function InsertTemplate(ptemplate As Template) As Integer
         Dim _id As Integer
         Try
@@ -1013,7 +1037,7 @@ Module ModDatabase
         Dim _id As Integer
         Try
             With ptemplateproduct
-                _id = oTemplateProductTa.InsertTemplateProduct(.Quantity, .ProductId, .Template.TemplateId)
+                _id = oTemplateProductTa.InsertTemplateProduct(.Quantity, .ProductId, .TemplateId)
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception inserting template product", MODULE_NAME)
@@ -1024,14 +1048,13 @@ Module ModDatabase
         Dim _id As Integer
         Try
             With ptemplatetask
-                _id = oTemplateTaskTa.InsertTemplateTask(.Name, .Description, .Cost, .Hours, .Template.TemplateId, .TaxRate, .IsTaskTaxable)
+                _id = oTemplateTaskTa.InsertTemplateTask(.Name, .Description, .Cost, .Hours, .TemplateId, .TaxRate, .IsTaskTaxable)
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception inserting template task", MODULE_NAME)
         End Try
         Return _id
     End Function
-
 
 #End Region
 End Module

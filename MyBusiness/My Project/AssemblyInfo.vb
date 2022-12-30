@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -37,5 +37,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.7.0.*")>
-<Assembly: AssemblyFileVersion("1.7.0.0")>
+<Assembly: AssemblyVersion("1.7.2.*")>
+<Assembly: AssemblyFileVersion("1.7.2.0")>

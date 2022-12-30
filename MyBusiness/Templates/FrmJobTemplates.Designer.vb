@@ -38,33 +38,35 @@ Partial Class FrmJobTemplates
         Me.btnRemoveTask = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DgvTemplates = New System.Windows.Forms.DataGridView()
+        Me.tmplId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tmplName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvTasks = New System.Windows.Forms.DataGridView()
         Me.taskId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.taskStartDue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.taskStarted = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.taskCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnMaintProducts = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
-        Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.jobPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpProdId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpProdName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tpCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PicAddTemplate = New System.Windows.Forms.PictureBox()
+        Me.PicDeleteTemplate = New System.Windows.Forms.PictureBox()
+        Me.TxtTmplName = New System.Windows.Forms.TextBox()
+        Me.TxtTmplDesc = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LblId = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -80,8 +82,8 @@ Partial Class FrmJobTemplates
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAddTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicDeleteTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StatusStrip1
@@ -133,6 +135,9 @@ Partial Class FrmJobTemplates
         '
         'SplitContainer1
         '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.SplitContainer1.Location = New System.Drawing.Point(15, 78)
         Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4)
@@ -152,12 +157,33 @@ Partial Class FrmJobTemplates
         '
         'DgvTemplates
         '
+        Me.DgvTemplates.AllowUserToAddRows = False
+        Me.DgvTemplates.AllowUserToDeleteRows = False
         Me.DgvTemplates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvTemplates.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.tmplId, Me.tmplName})
         Me.DgvTemplates.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvTemplates.Location = New System.Drawing.Point(0, 0)
+        Me.DgvTemplates.MultiSelect = False
         Me.DgvTemplates.Name = "DgvTemplates"
+        Me.DgvTemplates.ReadOnly = True
+        Me.DgvTemplates.RowHeadersVisible = False
+        Me.DgvTemplates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvTemplates.Size = New System.Drawing.Size(297, 333)
         Me.DgvTemplates.TabIndex = 0
+        '
+        'tmplId
+        '
+        Me.tmplId.HeaderText = "Id"
+        Me.tmplId.Name = "tmplId"
+        Me.tmplId.ReadOnly = True
+        Me.tmplId.Visible = False
+        '
+        'tmplName
+        '
+        Me.tmplName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.tmplName.HeaderText = "Name"
+        Me.tmplName.Name = "tmplName"
+        Me.tmplName.ReadOnly = True
         '
         'SplitContainer2
         '
@@ -205,7 +231,7 @@ Partial Class FrmJobTemplates
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours, Me.taskPrice})
+        Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskHours, Me.taskPrice})
         Me.dgvTasks.Location = New System.Drawing.Point(8, 39)
         Me.dgvTasks.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dgvTasks.Name = "dgvTasks"
@@ -228,30 +254,6 @@ Partial Class FrmJobTemplates
         Me.taskName.HeaderText = "Name"
         Me.taskName.Name = "taskName"
         Me.taskName.ReadOnly = True
-        '
-        'taskStartDue
-        '
-        Me.taskStartDue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.taskStartDue.HeaderText = "Start"
-        Me.taskStartDue.Name = "taskStartDue"
-        Me.taskStartDue.ReadOnly = True
-        Me.taskStartDue.Width = 80
-        '
-        'taskStarted
-        '
-        Me.taskStarted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.taskStarted.HeaderText = "Begun"
-        Me.taskStarted.Name = "taskStarted"
-        Me.taskStarted.ReadOnly = True
-        Me.taskStarted.Width = 70
-        '
-        'taskCompleted
-        '
-        Me.taskCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.taskCompleted.HeaderText = "Ended"
-        Me.taskCompleted.Name = "taskCompleted"
-        Me.taskCompleted.ReadOnly = True
-        Me.taskCompleted.Width = 70
         '
         'taskHours
         '
@@ -300,76 +302,60 @@ Partial Class FrmJobTemplates
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
+        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.tpId, Me.tpSupp, Me.tpProdId, Me.tpProdName, Me.tpQty, Me.tpCost})
         Me.dgvProducts.Location = New System.Drawing.Point(8, 35)
         Me.dgvProducts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dgvProducts.Name = "dgvProducts"
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 124)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 119)
         Me.dgvProducts.TabIndex = 73
         '
-        'jpId
+        'tpId
         '
-        Me.jpId.HeaderText = "Id"
-        Me.jpId.Name = "jpId"
-        Me.jpId.ReadOnly = True
-        Me.jpId.Visible = False
+        Me.tpId.HeaderText = "Id"
+        Me.tpId.Name = "tpId"
+        Me.tpId.ReadOnly = True
+        Me.tpId.Visible = False
         '
-        'prodSupp
+        'tpSupp
         '
-        Me.prodSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodSupp.HeaderText = "Supplier"
-        Me.prodSupp.Name = "prodSupp"
-        Me.prodSupp.ReadOnly = True
-        Me.prodSupp.Width = 120
+        Me.tpSupp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.tpSupp.HeaderText = "Supplier"
+        Me.tpSupp.Name = "tpSupp"
+        Me.tpSupp.ReadOnly = True
+        Me.tpSupp.Width = 120
         '
-        'prodId
+        'tpProdId
         '
-        Me.prodId.HeaderText = "prodId"
-        Me.prodId.Name = "prodId"
-        Me.prodId.ReadOnly = True
-        Me.prodId.Visible = False
+        Me.tpProdId.HeaderText = "prodId"
+        Me.tpProdId.Name = "tpProdId"
+        Me.tpProdId.ReadOnly = True
+        Me.tpProdId.Visible = False
         '
-        'prodName
+        'tpProdName
         '
-        Me.prodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.prodName.HeaderText = "ProductName"
-        Me.prodName.Name = "prodName"
-        Me.prodName.ReadOnly = True
+        Me.tpProdName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.tpProdName.HeaderText = "ProductName"
+        Me.tpProdName.Name = "tpProdName"
+        Me.tpProdName.ReadOnly = True
         '
-        'prodQty
+        'tpQty
         '
-        Me.prodQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodQty.HeaderText = "Qty"
-        Me.prodQty.Name = "prodQty"
-        Me.prodQty.ReadOnly = True
-        Me.prodQty.Width = 60
+        Me.tpQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.tpQty.HeaderText = "Qty"
+        Me.tpQty.Name = "tpQty"
+        Me.tpQty.ReadOnly = True
+        Me.tpQty.Width = 60
         '
-        'prodCost
+        'tpCost
         '
-        Me.prodCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodCost.HeaderText = "Unit Cost"
-        Me.prodCost.Name = "prodCost"
-        Me.prodCost.ReadOnly = True
-        Me.prodCost.Width = 70
-        '
-        'prodPrice
-        '
-        Me.prodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.prodPrice.HeaderText = "Std Price"
-        Me.prodPrice.Name = "prodPrice"
-        Me.prodPrice.ReadOnly = True
-        Me.prodPrice.Width = 70
-        '
-        'jobPrice
-        '
-        Me.jobPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.jobPrice.HeaderText = "Job Price"
-        Me.jobPrice.Name = "jobPrice"
-        Me.jobPrice.ReadOnly = True
-        Me.jobPrice.Width = 70
+        Me.tpCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.tpCost.HeaderText = "Unit Cost"
+        Me.tpCost.Name = "tpCost"
+        Me.tpCost.ReadOnly = True
+        Me.tpCost.Width = 70
         '
         'PicClose
         '
@@ -419,35 +405,88 @@ Partial Class FrmJobTemplates
         Me.lblScreenName.Text = "Job Templates"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox2
+        'PicAddTemplate
         '
-        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox2.Image = Global.MyBusiness.My.Resources.Resources.add
-        Me.PictureBox2.InitialImage = Nothing
-        Me.PictureBox2.Location = New System.Drawing.Point(12, 520)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(42, 42)
-        Me.PictureBox2.TabIndex = 102
-        Me.PictureBox2.TabStop = False
+        Me.PicAddTemplate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAddTemplate.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAddTemplate.InitialImage = Nothing
+        Me.PicAddTemplate.Location = New System.Drawing.Point(12, 520)
+        Me.PicAddTemplate.Name = "PicAddTemplate"
+        Me.PicAddTemplate.Size = New System.Drawing.Size(42, 42)
+        Me.PicAddTemplate.TabIndex = 102
+        Me.PicAddTemplate.TabStop = False
         '
-        'PictureBox3
+        'PicDeleteTemplate
         '
-        Me.PictureBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox3.Image = Global.MyBusiness.My.Resources.Resources.remove
-        Me.PictureBox3.InitialImage = Nothing
-        Me.PictureBox3.Location = New System.Drawing.Point(108, 520)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(42, 42)
-        Me.PictureBox3.TabIndex = 103
-        Me.PictureBox3.TabStop = False
+        Me.PicDeleteTemplate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicDeleteTemplate.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicDeleteTemplate.InitialImage = Nothing
+        Me.PicDeleteTemplate.Location = New System.Drawing.Point(108, 520)
+        Me.PicDeleteTemplate.Name = "PicDeleteTemplate"
+        Me.PicDeleteTemplate.Size = New System.Drawing.Size(42, 42)
+        Me.PicDeleteTemplate.TabIndex = 103
+        Me.PicDeleteTemplate.TabStop = False
+        '
+        'TxtTmplName
+        '
+        Me.TxtTmplName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TxtTmplName.Location = New System.Drawing.Point(69, 446)
+        Me.TxtTmplName.Name = "TxtTmplName"
+        Me.TxtTmplName.Size = New System.Drawing.Size(256, 24)
+        Me.TxtTmplName.TabIndex = 104
+        '
+        'TxtTmplDesc
+        '
+        Me.TxtTmplDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtTmplDesc.Location = New System.Drawing.Point(331, 446)
+        Me.TxtTmplDesc.Multiline = True
+        Me.TxtTmplDesc.Name = "TxtTmplDesc"
+        Me.TxtTmplDesc.Size = New System.Drawing.Size(582, 56)
+        Me.TxtTmplDesc.TabIndex = 105
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(66, 426)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(43, 17)
+        Me.Label1.TabIndex = 106
+        Me.Label1.Text = "Name"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(329, 426)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 17)
+        Me.Label2.TabIndex = 107
+        Me.Label2.Text = "Description"
+        '
+        'LblId
+        '
+        Me.LblId.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LblId.AutoSize = True
+        Me.LblId.Location = New System.Drawing.Point(16, 449)
+        Me.LblId.Name = "LblId"
+        Me.LblId.Size = New System.Drawing.Size(21, 17)
+        Me.LblId.TabIndex = 108
+        Me.LblId.Text = "-1"
         '
         'FrmJobTemplates
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 587)
-        Me.Controls.Add(Me.PictureBox3)
-        Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.LblId)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.TxtTmplDesc)
+        Me.Controls.Add(Me.TxtTmplName)
+        Me.Controls.Add(Me.PicDeleteTemplate)
+        Me.Controls.Add(Me.PicAddTemplate)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PictureBox1)
@@ -477,8 +516,8 @@ Partial Class FrmJobTemplates
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAddTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicDeleteTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -495,26 +534,28 @@ Partial Class FrmJobTemplates
     Friend WithEvents Label3 As Label
     Friend WithEvents btnAddTask As Button
     Friend WithEvents dgvTasks As DataGridView
-    Friend WithEvents taskId As DataGridViewTextBoxColumn
-    Friend WithEvents taskName As DataGridViewTextBoxColumn
-    Friend WithEvents taskStartDue As DataGridViewTextBoxColumn
-    Friend WithEvents taskStarted As DataGridViewTextBoxColumn
-    Friend WithEvents taskCompleted As DataGridViewTextBoxColumn
-    Friend WithEvents taskHours As DataGridViewTextBoxColumn
-    Friend WithEvents taskPrice As DataGridViewTextBoxColumn
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents DgvTemplates As DataGridView
     Friend WithEvents btnMaintProducts As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents dgvProducts As DataGridView
-    Friend WithEvents jpId As DataGridViewTextBoxColumn
-    Friend WithEvents prodSupp As DataGridViewTextBoxColumn
-    Friend WithEvents prodId As DataGridViewTextBoxColumn
-    Friend WithEvents prodName As DataGridViewTextBoxColumn
-    Friend WithEvents prodQty As DataGridViewTextBoxColumn
-    Friend WithEvents prodCost As DataGridViewTextBoxColumn
-    Friend WithEvents prodPrice As DataGridViewTextBoxColumn
-    Friend WithEvents jobPrice As DataGridViewTextBoxColumn
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents PicAddTemplate As PictureBox
+    Friend WithEvents PicDeleteTemplate As PictureBox
+    Friend WithEvents tmplId As DataGridViewTextBoxColumn
+    Friend WithEvents tmplName As DataGridViewTextBoxColumn
+    Friend WithEvents TxtTmplName As TextBox
+    Friend WithEvents TxtTmplDesc As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents LblId As Label
+    Friend WithEvents taskId As DataGridViewTextBoxColumn
+    Friend WithEvents taskName As DataGridViewTextBoxColumn
+    Friend WithEvents taskHours As DataGridViewTextBoxColumn
+    Friend WithEvents taskPrice As DataGridViewTextBoxColumn
+    Friend WithEvents tpId As DataGridViewTextBoxColumn
+    Friend WithEvents tpSupp As DataGridViewTextBoxColumn
+    Friend WithEvents tpProdId As DataGridViewTextBoxColumn
+    Friend WithEvents tpProdName As DataGridViewTextBoxColumn
+    Friend WithEvents tpQty As DataGridViewTextBoxColumn
+    Friend WithEvents tpCost As DataGridViewTextBoxColumn
 End Class

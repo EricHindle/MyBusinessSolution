@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -50,7 +50,7 @@ Public Class TemplateTaskBuilder
             _description = .task_description
             _cost = .task_cost
             _hours = .task_time
-            _taxable = (.task_taxable = 1)
+            _taxable = .task_taxable = 1
             _taxRate = .task_tax_rate
         End With
         Return Me

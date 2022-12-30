@@ -1,12 +1,11 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
 
 Imports MyBusiness.NetwyrksErrorCodes
-Imports Org.BouncyCastle.Security.Certificates
 ''' <summary>
 ''' Form to create and amend user diary entries
 ''' </summary>

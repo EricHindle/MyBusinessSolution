@@ -1,12 +1,9 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
-
-Imports System.Deployment.Application
-Imports MyBusiness.netwyrksDataSetTableAdapters
 
 Public Class FrmCustomerMaint
 #Region "variables"

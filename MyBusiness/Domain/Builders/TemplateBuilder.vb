@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2022 Eric Hindle
+' Copyright (c) 2022-23 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -16,7 +16,7 @@ Public Class TemplateBuilder
     Public Function StartingWithNothing() As TemplateBuilder
         _templateId = -1
         _templateName = ""
-            _templateDescription = ""
+        _templateDescription = ""
         Return Me
     End Function
     Public Function StartingWith(ByVal oTemplate As Template) As TemplateBuilder
