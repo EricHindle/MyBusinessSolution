@@ -22,18 +22,6 @@ Public Class TaskBuilder
     Public Shared Function ATask() As TaskBuilder
         Return New TaskBuilder
     End Function
-    Public Function StartingWith(ByVal TaskId As Integer) As TaskBuilder
-        Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-        Dim oTaskTable As New netwyrksDataSet.taskDataTable
-        If oTaskTa.FillById(oTaskTable, TaskId) > 0 Then
-            StartingWith(oTaskTable.Rows(0))
-        Else
-            StartingWithNothing()
-        End If
-        oTaskTa.Dispose()
-        oTaskTable.Dispose()
-        Return Me
-    End Function
     Public Function StartingWith(ByVal oTask As Task) As TaskBuilder
         With oTask
             _taskId = .TaskId
@@ -49,6 +37,19 @@ Public Class TaskBuilder
             _taskChanged = .TaskChanged
             _taskTaxable = .IsTaskTaxable
             _taskTaxRate = .TaskTaxRate
+        End With
+        Return Me
+    End Function
+    Public Function StartingWith(ByVal oTask As TemplateTask) As TaskBuilder
+        StartingWithNothing()
+        With oTask
+            _taskId = -1
+            _taskName = .Name
+            _taskDescription = .Description
+            _taskCost = .Cost
+            _taskHours = .Hours
+            _taskTaxable = .IsTaskTaxable
+            _taskTaxRate = .TaxRate
         End With
         Return Me
     End Function

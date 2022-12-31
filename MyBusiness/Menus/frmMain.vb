@@ -464,13 +464,13 @@ Public Class FrmMain
                     Dim _templateproduct As TemplateProduct = TemplateProductBuilder.ATemplateProduct.StartingWith(_jobproduct) _
                                                                                                         .WithTemplateId(_templateId) _
                                                                                                         .Build
-                    InsertTemplateProduct(_templateproduct)
+                    Dim _tmplProdId As Integer = InsertTemplateProduct(_templateproduct)
                 Next
                 For Each _task As Task In _jobtasks
                     Dim _templatetask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_task) _
                                                                                             .WithTemplateId(_templateId) _
                                                                                             .Build
-                    InsertTemplatetask(_templatetask)
+                    Dim _tmplTaskId As Integer = InsertTemplatetask(_templatetask)
                 Next
             End If
             Using _templates As New FrmJobTemplates
@@ -486,6 +486,25 @@ Public Class FrmMain
         Using _templates As New FrmJobTemplates
             _templates.ShowDialog()
         End Using
+    End Sub
+
+    Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
+        Dim _selectedTemplate As Template = Nothing
+        Using _selTmpl As New FrmSelectTemplate
+            If _selTmpl.ShowDialog() = DialogResult.OK Then
+                _selectedTemplate = _selTmpl.SelectedTemplate
+            End If
+        End Using
+        If _selectedTemplate IsNot Nothing Then
+            Using _jobForm As New FrmJobMaint
+                _jobForm.Template = _selectedTemplate
+                _jobForm.CustomerId = -1
+                _jobForm.ShowDialog()
+            End Using
+            isLoading = True
+        FillJobTable(-1, mnuShowAllJobs.Checked)
+            isLoading = False
+        End If
     End Sub
 #End Region
 End Class

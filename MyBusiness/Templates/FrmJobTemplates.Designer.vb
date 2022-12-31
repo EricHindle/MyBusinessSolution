@@ -5,12 +5,12 @@
 ' Author Eric Hindle
 '
 
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmJobTemplates
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -27,7 +27,7 @@ Partial Class FrmJobTemplates
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmJobTemplates))
@@ -36,13 +36,14 @@ Partial Class FrmJobTemplates
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnAddTask = New System.Windows.Forms.Button()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
+        Me.BtnClearForm = New System.Windows.Forms.Button()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DgvTemplates = New System.Windows.Forms.DataGridView()
         Me.tmplId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tmplName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.dgvTasks = New System.Windows.Forms.DataGridView()
+        Me.DgvTasks = New System.Windows.Forms.DataGridView()
         Me.taskId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -77,7 +78,7 @@ Partial Class FrmJobTemplates
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
-        CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +133,19 @@ Partial Class FrmJobTemplates
         Me.btnRemoveTask.Text = "Remove"
         Me.ToolTip1.SetToolTip(Me.btnRemoveTask, "Remove the selected task")
         Me.btnRemoveTask.UseVisualStyleBackColor = True
+        '
+        'BtnClearForm
+        '
+        Me.BtnClearForm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnClearForm.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnClearForm.Location = New System.Drawing.Point(863, 446)
+        Me.BtnClearForm.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnClearForm.Name = "BtnClearForm"
+        Me.BtnClearForm.Size = New System.Drawing.Size(56, 56)
+        Me.BtnClearForm.TabIndex = 76
+        Me.BtnClearForm.Text = "Clear Form"
+        Me.ToolTip1.SetToolTip(Me.BtnClearForm, "Add a task")
+        Me.BtnClearForm.UseVisualStyleBackColor = True
         '
         'SplitContainer1
         '
@@ -198,7 +212,7 @@ Partial Class FrmJobTemplates
         '
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label3)
         Me.SplitContainer2.Panel1.Controls.Add(Me.btnAddTask)
-        Me.SplitContainer2.Panel1.Controls.Add(Me.dgvTasks)
+        Me.SplitContainer2.Panel1.Controls.Add(Me.DgvTasks)
         Me.SplitContainer2.Panel1.Controls.Add(Me.btnRemoveTask)
         '
         'SplitContainer2.Panel2
@@ -222,24 +236,24 @@ Partial Class FrmJobTemplates
         Me.Label3.TabIndex = 75
         Me.Label3.Text = "Tasks"
         '
-        'dgvTasks
+        'DgvTasks
         '
-        Me.dgvTasks.AllowUserToAddRows = False
-        Me.dgvTasks.AllowUserToDeleteRows = False
-        Me.dgvTasks.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvTasks.AllowUserToAddRows = False
+        Me.DgvTasks.AllowUserToDeleteRows = False
+        Me.DgvTasks.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
-        Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskHours, Me.taskPrice})
-        Me.dgvTasks.Location = New System.Drawing.Point(8, 39)
-        Me.dgvTasks.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.dgvTasks.Name = "dgvTasks"
-        Me.dgvTasks.ReadOnly = True
-        Me.dgvTasks.RowHeadersVisible = False
-        Me.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvTasks.Size = New System.Drawing.Size(582, 119)
-        Me.dgvTasks.TabIndex = 72
+        Me.DgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.DgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskHours, Me.taskPrice})
+        Me.DgvTasks.Location = New System.Drawing.Point(8, 39)
+        Me.DgvTasks.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.DgvTasks.Name = "DgvTasks"
+        Me.DgvTasks.ReadOnly = True
+        Me.DgvTasks.RowHeadersVisible = False
+        Me.DgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvTasks.Size = New System.Drawing.Size(582, 119)
+        Me.DgvTasks.TabIndex = 72
         '
         'taskId
         '
@@ -309,7 +323,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 119)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 123)
         Me.dgvProducts.TabIndex = 73
         '
         'tpId
@@ -355,7 +369,7 @@ Partial Class FrmJobTemplates
         Me.tpCost.HeaderText = "Unit Cost"
         Me.tpCost.Name = "tpCost"
         Me.tpCost.ReadOnly = True
-        Me.tpCost.Width = 70
+        Me.tpCost.Width = 90
         '
         'PicClose
         '
@@ -442,7 +456,7 @@ Partial Class FrmJobTemplates
         Me.TxtTmplDesc.Location = New System.Drawing.Point(331, 446)
         Me.TxtTmplDesc.Multiline = True
         Me.TxtTmplDesc.Name = "TxtTmplDesc"
-        Me.TxtTmplDesc.Size = New System.Drawing.Size(582, 56)
+        Me.TxtTmplDesc.Size = New System.Drawing.Size(525, 56)
         Me.TxtTmplDesc.TabIndex = 105
         '
         'Label1
@@ -480,6 +494,7 @@ Partial Class FrmJobTemplates
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 587)
+        Me.Controls.Add(Me.BtnClearForm)
         Me.Controls.Add(Me.LblId)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -511,7 +526,7 @@ Partial Class FrmJobTemplates
         Me.SplitContainer2.Panel2.PerformLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
-        CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvTasks, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -533,7 +548,7 @@ Partial Class FrmJobTemplates
     Friend WithEvents lblScreenName As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents btnAddTask As Button
-    Friend WithEvents dgvTasks As DataGridView
+    Friend WithEvents DgvTasks As DataGridView
     Friend WithEvents btnRemoveTask As Button
     Friend WithEvents DgvTemplates As DataGridView
     Friend WithEvents btnMaintProducts As Button
@@ -548,6 +563,7 @@ Partial Class FrmJobTemplates
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents LblId As Label
+    Friend WithEvents BtnClearForm As Button
     Friend WithEvents taskId As DataGridViewTextBoxColumn
     Friend WithEvents taskName As DataGridViewTextBoxColumn
     Friend WithEvents taskHours As DataGridViewTextBoxColumn

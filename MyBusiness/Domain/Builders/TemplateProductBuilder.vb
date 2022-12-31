@@ -22,6 +22,15 @@ Public Class TemplateProductBuilder
         End With
         Return Me
     End Function
+    Public Function StartingWith(ByVal oTemplateProduct As fullTemplateProduct) As TemplateProductBuilder
+        With oTemplateProduct
+            _templateProductId = .TemplateProductId
+            _product = .Product
+            _quantity = .Quantity
+            _templateId = .Template.TemplateId
+        End With
+        Return Me
+    End Function
     Public Function StartingWith(ByVal oJobProduct As JobProduct) As TemplateProductBuilder
         With oJobProduct
             _product = .ThisProduct

@@ -365,6 +365,12 @@
     <Compile Include="Supplier\FrmSupplier.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Templates\FrmSelectTemplate.Designer.vb">
+      <DependentUpon>FrmSelectTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\FrmSelectTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\ConvertUtil.vb" />
     <Compile Include="Utilities\ExportUtil.vb" />
     <Compile Include="Utilities\FileTransformer.vb" />
@@ -521,6 +527,9 @@
       <DependentUpon>FrmSupplier.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Templates\FrmSelectTemplate.resx">
+      <DependentUpon>FrmSelectTemplate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\FrmAbout.resx">
       <DependentUpon>FrmAbout.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -583,6 +592,7 @@
     <None Include="Images\delrem.png" />
     <None Include="Images\cancelreminder.png" />
     <None Include="Images\closediary.png" />
+    <None Include="Images\createfromtemplate.png" />
     <Content Include="Images\diary.png" />
     <Content Include="Images\email-icon.jpg" />
     <Content Include="Images\emailbutton.png" />

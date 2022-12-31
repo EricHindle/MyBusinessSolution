@@ -44,6 +44,20 @@ Public Class JobProductBuilder
         End With
         Return Me
     End Function
+    Public Function StartingWith(ByVal oTemplateProduct As FullTemplateProduct) As JobProductBuilder
+        With oTemplateProduct
+            _jobProductId = .Product.ProductId
+            _job = Nothing
+            _product = .Product
+            _quantity = .Quantity
+            _jobProductCreated = Now
+            _jobProductChanged = Nothing
+            _taxable = .Product.IsProductTaxable
+            _tax_rate = .Product.ProductTaxRate
+            _price = .Product.ProductCost
+        End With
+        Return Me
+    End Function
     Public Function StartingWith(ByVal oRow As netwyrksDataSet.job_productRow) As JobProductBuilder
         With oRow
             _jobProductId = .job_product_id

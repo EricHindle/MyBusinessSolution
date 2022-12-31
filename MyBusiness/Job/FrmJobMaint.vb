@@ -22,6 +22,15 @@ Public Class FrmJobMaint
     Private _currentJobProduct As JobProduct
 #End Region
 #Region "properties"
+    Private _template As Template
+    Public Property Template() As Template
+        Get
+            Return _template
+        End Get
+        Set(ByVal value As Template)
+            _template = value
+        End Set
+    End Property
     Public Property CustomerId() As Integer
         Get
             Return _customerId
@@ -66,6 +75,9 @@ Public Class FrmJobMaint
         Else
             NewJob()
             _currentJobId = -1
+            If _template IsNot Nothing Then
+                CreateJobFromTemplate()
+            End If
         End If
 
         If _currentCust.Terms = 0 Then
@@ -77,6 +89,30 @@ Public Class FrmJobMaint
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
+
+    Private Sub CreateJobFromTemplate()
+        _newJob = JobBuilder.AJob.StartingWithNothing.WithJobName(_template.TemplateName).WithJobUser(currentUser.UserId).Build
+        If CreateJob() Then
+            Dim _templateProducts As List(Of FullTemplateProduct) = GetTemplateProductViewbyTemplateId(_template.TemplateId)
+            Dim _templateTasks As List(Of TemplateTask) = GetTemplateTasksForTemplate(_template.TemplateId)
+            Dim _products As New List(Of JobProduct)
+            Dim _tasks As New List(Of Task)
+            For Each _templateTask As TemplateTask In _templateTasks
+                _tasks.Add(TaskBuilder.ATask.StartingWith(_templateTask) _
+                                            .WithTaskJobId(_currentJobId) _
+                                            .Build)
+            Next
+            For Each _templateProduct As FullTemplateProduct In _templateProducts
+                _products.Add(JobProductBuilder.AJobProduct.StartingWith(_templateProduct) _
+                                            .WithJob(_newJob) _
+                                            .Build)
+            Next
+            AddJobProductsToJob(_products)
+            AddTasksToJob(_tasks)
+            Close()
+        End If
+    End Sub
+
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
         LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Name)
         Using _custForm As New FrmViewCust
@@ -88,6 +124,7 @@ Public Class FrmJobMaint
         LogUtil.Debug("Add task to job", Name)
         Using _taskForm As New FrmTask
             _taskForm.CustomerJob = _job
+            _taskForm.Template = Nothing
             _taskForm.ShowDialog()
         End Using
         FillTaskList(_currentJobId)
@@ -142,6 +179,7 @@ Public Class FrmJobMaint
             Using _taskForm As New FrmTask
                 _taskForm.CustomerJob = _job
                 _taskForm.TaskId = _taskId
+                _taskForm.Template = Nothing
                 _taskForm.ShowDialog()
             End Using
             ClearJobdetails()
@@ -238,6 +276,10 @@ Public Class FrmJobMaint
         Dim oTaskTable As New netwyrksDataSet.taskDataTable
         LogUtil.Debug("Finding tasks", Name)
         Dim _taskList As List(Of Task) = GetTasksByJob(pJobId)
+        FillTableFromTaskList(_taskList)
+    End Sub
+
+    Private Sub FillTableFromTaskList(_taskList As List(Of Task))
         For Each oTask As Task In _taskList
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
             tRow.Cells(taskId.Name).Value = oTask.TaskId
@@ -250,6 +292,13 @@ Public Class FrmJobMaint
             tRow.Cells(taskPrice.Name).Value = oTask.TaskCost
         Next
     End Sub
+
+    Private Sub AddTasksToJob(pTaskList As List(Of Task))
+        For Each oTask As Task In pTaskList
+            InsertTask(oTask)
+        Next
+    End Sub
+
     Private Sub FillProductList(ByVal pJobId As Integer)
         dgvProducts.Rows.Clear()
 
@@ -258,6 +307,11 @@ Public Class FrmJobMaint
         Dim _job As Job = GetJobById(pJobId)
         Dim _jobProductList As List(Of JobProduct) = GetJobProductByJob(_job)
 
+        FillTableFromJobProductList(_jobProductList)
+
+    End Sub
+
+    Private Sub FillTableFromJobProductList(_jobProductList As List(Of JobProduct))
         For Each _jobProduct As JobProduct In _jobProductList
             Dim _jpId As Integer = _jobProduct.JobProductId
             Dim _productId As Integer = _jobProduct.ThisProduct.ProductId
@@ -281,11 +335,16 @@ Public Class FrmJobMaint
             tRow.Cells(prodCost.Name).Value = _cost
             tRow.Cells(prodPrice.Name).Value = _price
             tRow.Cells(jobPrice.Name).Value = _jobProduct.Price
-
         Next
         dgvProducts.ClearSelection()
-
     End Sub
+
+    Private Sub AddJobProductsToJob(_jobProductList As List(Of JobProduct))
+        For Each _jobProduct As JobProduct In _jobProductList
+            InsertJobProduct(_jobProduct)
+        Next
+    End Sub
+
     Private Sub NewJob()
         LogUtil.Debug("New job", Name())
         SplitContainer2.Panel2Collapsed = True
@@ -315,6 +374,7 @@ Public Class FrmJobMaint
         LogUtil.Debug("Inserting job", Name)
         _currentJobId = InsertJob(_newJob)
         If _currentJobId > 0 Then
+            _newJob.JobId = _currentJobId
             isInsertOk = True
             ShowStatus(LblStatus, "Job " & _currentJobId & " Created OK", Name, True)
         Else

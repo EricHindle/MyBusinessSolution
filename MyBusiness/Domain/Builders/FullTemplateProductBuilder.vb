@@ -39,6 +39,10 @@ Public Class FullTemplateProductBuilder
                                         .WithTemplateName(.template_name) _
                                         .WithTemplateDescription(.template_description) _
                                         .Build
+            _supplier = SupplierBuilder.ASupplier.StartingWithNothing _
+                                        .WithSupplierId(.supplier_id) _
+                                        .WithSupplierName(.supplier_name) _
+                                        .Build
             _product = ProductBuilder.AProduct.StartingWithNothing _
                                         .WithProductId(.product_id) _
                                         .WithProductName(.product_name) _
@@ -46,13 +50,11 @@ Public Class FullTemplateProductBuilder
                                         .WithProductCost(.product_cost) _
                                         .WithProductPrice(.product_price) _
                                         .WithProductTaxable(.product_taxable) _
-                                        .WithPurchaseUnits(.product_tax_rate) _
+                                        .WithPurchaseUnits(.product_purchase_units) _
                                         .WithProductTaxRate(.product_tax_rate) _
+                                        .WithProductSupplierId(.supplier_id) _
                                         .Build
-            _supplier = SupplierBuilder.ASupplier.StartingWithNothing _
-                                        .WithSupplierId(.supplier_id) _
-                                        .WithSupplierName(.supplier_name) _
-                                        .Build
+
             _quantity = .quantity
         End With
         Return Me

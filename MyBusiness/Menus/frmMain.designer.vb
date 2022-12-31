@@ -96,6 +96,8 @@ Partial Class FrmMain
         Me.NewDiaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAddJobAsTemplate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuMaintainTemplates = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GlobalSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -106,8 +108,7 @@ Partial Class FrmMain
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
-        Me.MnuAddJobAsTemplate = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuMaintainTemplates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuJobFromTemplate = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -740,7 +741,7 @@ Partial Class FrmMain
         Me.JobToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
         Me.JobToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.JobToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.JobToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAddANewJob, Me.mnuShowAllJobs})
+        Me.JobToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAddANewJob, Me.MnuJobFromTemplate, Me.mnuShowAllJobs})
         Me.JobToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.JobToolStripMenuItem.Name = "JobToolStripMenuItem"
         Me.JobToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
@@ -749,14 +750,14 @@ Partial Class FrmMain
         'mnuAddANewJob
         '
         Me.mnuAddANewJob.Name = "mnuAddANewJob"
-        Me.mnuAddANewJob.Size = New System.Drawing.Size(150, 22)
+        Me.mnuAddANewJob.Size = New System.Drawing.Size(250, 22)
         Me.mnuAddANewJob.Text = "Add a new job"
         '
         'mnuShowAllJobs
         '
         Me.mnuShowAllJobs.CheckOnClick = True
         Me.mnuShowAllJobs.Name = "mnuShowAllJobs"
-        Me.mnuShowAllJobs.Size = New System.Drawing.Size(150, 22)
+        Me.mnuShowAllJobs.Size = New System.Drawing.Size(250, 22)
         Me.mnuShowAllJobs.Text = "Show all jobs"
         '
         'NewSupplierToolStripMenuItem
@@ -801,6 +802,18 @@ Partial Class FrmMain
         Me.MnuTemplates.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
         Me.MnuTemplates.Size = New System.Drawing.Size(90, 90)
         Me.MnuTemplates.Text = "Templates"
+        '
+        'MnuAddJobAsTemplate
+        '
+        Me.MnuAddJobAsTemplate.Name = "MnuAddJobAsTemplate"
+        Me.MnuAddJobAsTemplate.Size = New System.Drawing.Size(182, 22)
+        Me.MnuAddJobAsTemplate.Text = "Add Job as Template"
+        '
+        'MnuMaintainTemplates
+        '
+        Me.MnuMaintainTemplates.Name = "MnuMaintainTemplates"
+        Me.MnuMaintainTemplates.Size = New System.Drawing.Size(182, 22)
+        Me.MnuMaintainTemplates.Text = "Maintain Templates"
         '
         'SettingsToolStripMenuItem
         '
@@ -869,17 +882,11 @@ Partial Class FrmMain
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
         '
-        'MnuAddJobAsTemplate
+        'MnuJobFromTemplate
         '
-        Me.MnuAddJobAsTemplate.Name = "MnuAddJobAsTemplate"
-        Me.MnuAddJobAsTemplate.Size = New System.Drawing.Size(182, 22)
-        Me.MnuAddJobAsTemplate.Text = "Add Job as Template"
-        '
-        'MnuMaintainTemplates
-        '
-        Me.MnuMaintainTemplates.Name = "MnuMaintainTemplates"
-        Me.MnuMaintainTemplates.Size = New System.Drawing.Size(182, 22)
-        Me.MnuMaintainTemplates.Text = "Maintain Templates"
+        Me.MnuJobFromTemplate.Name = "MnuJobFromTemplate"
+        Me.MnuJobFromTemplate.Size = New System.Drawing.Size(250, 22)
+        Me.MnuJobFromTemplate.Text = "Create a new job from a template"
         '
         'FrmMain
         '
@@ -1004,4 +1011,5 @@ Partial Class FrmMain
     Friend WithEvents MnuTidyFiles As ToolStripMenuItem
     Friend WithEvents MnuAddJobAsTemplate As ToolStripMenuItem
     Friend WithEvents MnuMaintainTemplates As ToolStripMenuItem
+    Friend WithEvents MnuJobFromTemplate As ToolStripMenuItem
 End Class
