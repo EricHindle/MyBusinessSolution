@@ -231,6 +231,20 @@ Module ModDatabase
         End With
         Return _ct
     End Function
+    Public Function DeleteJob(pJobId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oJobTa.DeleteJob(pJobId)
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+    Public Function DeleteAllJob(pJobId As Integer) As Boolean
+        DeleteTasksByJob(pJobId)
+        DeleteJobProductsByJob(pJobId)
+        DeleteJob(pJobId)
+    End Function
 #End Region
 #Region "task"
     Public Function GetTaskById(pId As Integer) As Task
@@ -288,6 +302,16 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
+    Public Function DeleteTasksByJob(pJobId As Integer) As Boolean
+        Dim isOk As Boolean = True
+        Try
+            oTaskTa.DeleteTasksByJob(pJobId)
+        Catch ex As Exception
+            isOk = False
+        End Try
+
+        Return isOk
+    End Function
 #End Region
 #Region "jobproduct"
     Public Function GetJobProductById(_id As Integer) As JobProduct
@@ -307,40 +331,6 @@ Module ModDatabase
             _jobProductList.Add(JobProductBuilder.AJobProduct.StartingWith(oRow).Build)
         Next
         Return _jobProductList
-    End Function
-    Public Function InsertJobProduct(pJobProduct As JobProduct) As Integer
-        Dim _jobproductId As Integer
-        Try
-            With pJobProduct
-                _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .ThisProduct.ProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
-                If _jobproductId > 0 Then
-                    AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
-                End If
-            End With
-        Catch ex As Exception
-            DisplayException(ex, "Exception inserting job product", MODULE_NAME)
-        End Try
-        Return _jobproductId
-    End Function
-    Public Function DeleteJobProduct(pJobProductId As Integer) As Integer
-        Dim _ct As Integer = 0
-        Try
-            _ct = oJobProductTa.DeleteJobProduct(pJobProductId)
-        Catch ex As Exception
-            DisplayException(ex, "Exception deleting job product", MODULE_NAME)
-        End Try
-        Return _ct
-    End Function
-    Public Function UpdateJobProduct(pJobProduct As JobProduct) As Integer
-        Dim _ct As Integer
-        Try
-            With pJobProduct
-                _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
-            End With
-        Catch ex As Exception
-            DisplayException(ex, "Exception updating job product", MODULE_NAME)
-        End Try
-        Return _ct
     End Function
     Public Function GetJobProductViewById(_id As Integer) As FullJobProduct
         Dim _jobProduct As FullJobProduct = FullJobProductBuilder.AJobProduct.StartingWithNothing.Build
@@ -379,6 +369,49 @@ Module ModDatabase
             DisplayException(ex, "Exception getting job products", MODULE_NAME)
         End Try
         Return _jobProductList
+    End Function
+    Public Function InsertJobProduct(pJobProduct As JobProduct) As Integer
+        Dim _jobproductId As Integer
+        Try
+            With pJobProduct
+                _jobproductId = oJobProductTa.InsertJobProduct(.Quantity, Now, .ThisProduct.ProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price)
+                If _jobproductId > 0 Then
+                    AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobProduct, _jobproductId, AuditUtil.AuditableAction.create, "", .ToString)
+                End If
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception inserting job product", MODULE_NAME)
+        End Try
+        Return _jobproductId
+    End Function
+    Public Function UpdateJobProduct(pJobProduct As JobProduct) As Integer
+        Dim _ct As Integer
+        Try
+            With pJobProduct
+                _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception updating job product", MODULE_NAME)
+        End Try
+        Return _ct
+    End Function
+    Public Function DeleteJobProduct(pJobProductId As Integer) As Integer
+        Dim _ct As Integer = 0
+        Try
+            _ct = oJobProductTa.DeleteJobProduct(pJobProductId)
+        Catch ex As Exception
+            DisplayException(ex, "Exception deleting job product", MODULE_NAME)
+        End Try
+        Return _ct
+    End Function
+    Public Function DeleteJobProductsByJob(pJobId As Integer) As Boolean
+        Dim isOk As Boolean = True
+        Try
+            oJobProductTa.DeleteJobProductByJob(pJobId)
+        Catch ex As Exception
+            isOk = False
+        End Try
+        Return isOk
     End Function
 #End Region
 #Region "jobimage"
@@ -922,8 +955,6 @@ Module ModDatabase
         LogUtil.Info("Getting Supplier table", MODULE_NAME)
         Return oSupplierTa.GetData()
     End Function
-#End Region
-#Region "templates"
     Public Function GetTemplateTable() As netwyrksDataSet.templateDataTable
         LogUtil.Info("Getting Template table", MODULE_NAME)
         Return oTemplateTa.GetData
@@ -936,6 +967,9 @@ Module ModDatabase
         LogUtil.Info("Getting Template Product table", MODULE_NAME)
         Return oTemplateProductTa.GetData
     End Function
+
+#End Region
+#Region "template"
     Public Function GetAllTemplates() As List(Of Template)
         Dim _templateList As New List(Of Template)
         Try
@@ -960,30 +994,50 @@ Module ModDatabase
         End Try
         Return _template
     End Function
-    Public Function GetTemplateTasksForTemplate(pTemplateId) As List(Of TemplateTask)
-        Dim _templateTaskList As New List(Of TemplateTask)
+    Public Function InsertTemplate(pTemplate As Template) As Integer
+        Dim _id As Integer
         Try
-            oTemplateTaskTa.FillByTemplateId(oTemplateTaskTable, pTemplateId)
-            For Each oRow As netwyrksDataSet.template_taskRow In oTemplateTaskTable.Rows
-                _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
-            Next
-        Catch ex As DbException
-
+            With pTemplate
+                _id = oTemplateTa.InsertTemplate(.TemplateName, .TemplateDescription)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception inserting template", MODULE_NAME)
         End Try
-        Return _templateTaskList
+        Return _id
     End Function
-    Public Function GetTemplateTaskById(pId As Integer) As TemplateTask
-        Dim _templateTask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWithNothing.Build
+    Public Function UpdateTemplate(pTemplate As Template) As Integer
+        Dim _ct As Integer
         Try
-            oTemplateTaskTa.FillById(oTemplateTaskTable, pId)
-            If oTemplateTaskTable.Rows.Count > 0 Then
-                _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
-            End If
-        Catch ex As DbException
-
+            With pTemplate
+                _ct = oTemplateTa.UpdateTemplate(.TemplateName, .TemplateDescription, .TemplateId)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Exception updating template", MODULE_NAME)
         End Try
-        Return _templateTask
+        Return _ct
     End Function
+    Public Function DeleteTemplate(pTemplateId As Integer) As Boolean
+        Dim isOk As Boolean
+        Try
+            isOk = oTemplateTa.DeleteTemplateById(pTemplateId) = 1
+        Catch ex As Exception
+            isOk = False
+        End Try
+        Return isOk
+    End Function
+    Public Function DeleteAllTemplate(pTemplateId As Integer) As Boolean
+        Dim isOk As Boolean = True
+        Try
+            DeleteAllTemplateTasks(pTemplateId)
+            DeleteAllTemplateProducts(pTemplateId)
+            DeleteTemplate(pTemplateId)
+        Catch ex As Exception
+            isOk = False
+        End Try
+        Return isOk
+    End Function
+#End Region
+#Region "templateproduct"
     Public Function GetTemplateProductsForTemplate(pTemplateId) As List(Of TemplateProduct)
         Dim _templateProductList As New List(Of TemplateProduct)
         Try
@@ -1008,7 +1062,6 @@ Module ModDatabase
         End Try
         Return _templateProduct
     End Function
-
     Public Function GetTemplateProductViewbyId(pId As Integer) As FullTemplateProduct
         Dim oFullTemplateProduct As FullTemplateProduct = Nothing
         Try
@@ -1021,7 +1074,6 @@ Module ModDatabase
         End Try
         Return oFullTemplateProduct
     End Function
-
     Public Function GetTemplateProductViewbyTemplateId(pId As Integer) As List(Of FullTemplateProduct)
         Dim oFullTemplateProductList As New List(Of FullTemplateProduct)
         Try
@@ -1033,28 +1085,6 @@ Module ModDatabase
 
         End Try
         Return oFullTemplateProductList
-    End Function
-    Public Function InsertTemplate(pTemplate As Template) As Integer
-        Dim _id As Integer
-        Try
-            With pTemplate
-                _id = oTemplateTa.InsertTemplate(.TemplateName, .TemplateDescription)
-            End With
-        Catch ex As Exception
-            DisplayException(ex, "Exception inserting template", MODULE_NAME)
-        End Try
-        Return _id
-    End Function
-    Public Function UpdateTemplate(pTemplate As Template) As Integer
-        Dim _ct As Integer
-        Try
-            With pTemplate
-                _ct = oTemplateTa.UpdateTemplate(.TemplateName, .TemplateDescription, .TemplateId)
-            End With
-        Catch ex As Exception
-            DisplayException(ex, "Exception updating template", MODULE_NAME)
-        End Try
-        Return _ct
     End Function
     Public Function InsertTemplateProduct(pTemplateProduct As TemplateProduct) As Integer
         Dim _id As Integer
@@ -1078,6 +1108,50 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
+    Public Function DeleteTemplateProduct(pTemplateProductId As Integer) As Boolean
+        Dim isOk As Boolean
+        Try
+            isOk = oTemplateProductTa.DeleteTemplateProductById(pTemplateProductId) = 1
+        Catch ex As Exception
+            isOk = False
+        End Try
+        Return isOk
+    End Function
+    Public Function DeleteAllTemplateProducts(pTemplateId As Integer) As Boolean
+        Dim isOk As Boolean = True
+        Try
+            oTemplateProductTa.DeleteTemplateProductsForTemplate(pTemplateId)
+        Catch ex As Exception
+            isOk = False
+        End Try
+        Return isOk
+    End Function
+#End Region
+#Region "tenmplatetask"
+    Public Function GetTemplateTasksForTemplate(pTemplateId) As List(Of TemplateTask)
+        Dim _templateTaskList As New List(Of TemplateTask)
+        Try
+            oTemplateTaskTa.FillByTemplateId(oTemplateTaskTable, pTemplateId)
+            For Each oRow As netwyrksDataSet.template_taskRow In oTemplateTaskTable.Rows
+                _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
+            Next
+        Catch ex As DbException
+
+        End Try
+        Return _templateTaskList
+    End Function
+    Public Function GetTemplateTaskById(pId As Integer) As TemplateTask
+        Dim _templateTask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWithNothing.Build
+        Try
+            oTemplateTaskTa.FillById(oTemplateTaskTable, pId)
+            If oTemplateTaskTable.Rows.Count > 0 Then
+                _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+
+        End Try
+        Return _templateTask
+    End Function
     Public Function InsertTemplatetask(pTemplateTask As TemplateTask) As Integer
         Dim _id As Integer
         Try
@@ -1100,16 +1174,6 @@ Module ModDatabase
         End Try
         Return _ct
     End Function
-    Public Function DeleteTemplate(pTemplateId As Integer) As Boolean
-        Dim isOk As Boolean
-        Try
-            isOk = oTemplateTa.DeleteTemplateById(pTemplateId) = 1
-        Catch ex As Exception
-            isOk = False
-        End Try
-        Return isOk
-    End Function
-
     Public Function DeleteTemplateTask(pTemplateTaskId As Integer) As Boolean
         Dim isOk As Boolean
         Try
@@ -1123,35 +1187,6 @@ Module ModDatabase
         Dim isOk As Boolean = True
         Try
             oTemplateTaskTa.DeleteTemplateTasksForTemplate(pTemplateId)
-        Catch ex As Exception
-            isOk = False
-        End Try
-        Return isOk
-    End Function
-    Public Function DeleteTemplateProduct(pTemplateProductId As Integer) As Boolean
-        Dim isOk As Boolean
-        Try
-            isOk = oTemplateProductTa.DeleteTemplateProductById(pTemplateProductId) = 1
-        Catch ex As Exception
-            isOk = False
-        End Try
-        Return isOk
-    End Function
-    Public Function DeleteAllTemplateProducts(pTemplateId As Integer) As Boolean
-        Dim isOk As Boolean = True
-        Try
-            oTemplateProductTa.DeleteTemplateProductsForTemplate(pTemplateId)
-        Catch ex As Exception
-            isOk = False
-        End Try
-        Return isOk
-    End Function
-    Public Function DeleteAllTemplate(pTemplateId As Integer) As Boolean
-        Dim isOk As Boolean = True
-        Try
-            DeleteAllTemplateTasks(pTemplateId)
-            DeleteAllTemplateProducts(pTemplateId)
-            DeleteTemplate(pTemplateId)
         Catch ex As Exception
             isOk = False
         End Try

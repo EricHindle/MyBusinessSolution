@@ -194,6 +194,7 @@ Public Class FrmMain
 
     Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
         Using _jobForm As New FrmJobMaint
+            _jobForm.TheJob = Nothing
             _jobForm.CustomerId = -1
             _jobForm.ShowDialog()
         End Using
@@ -489,20 +490,12 @@ Public Class FrmMain
     End Sub
 
     Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
-        Dim _selectedTemplate As Template = Nothing
-        Using _selTmpl As New FrmSelectTemplate
-            If _selTmpl.ShowDialog() = DialogResult.OK Then
-                _selectedTemplate = _selTmpl.SelectedTemplate
-            End If
-        End Using
+        Dim _selectedTemplate As Template = SelectATemplate()
+
         If _selectedTemplate IsNot Nothing Then
-            Using _jobForm As New FrmJobMaint
-                _jobForm.Template = _selectedTemplate
-                _jobForm.CustomerId = -1
-                _jobForm.ShowDialog()
-            End Using
+            CreateJobFromTemplate(_selectedTemplate)
             isLoading = True
-        FillJobTable(-1, mnuShowAllJobs.Checked)
+            FillJobTable(-1, mnuShowAllJobs.Checked)
             isLoading = False
         End If
     End Sub

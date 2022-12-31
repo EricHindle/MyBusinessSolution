@@ -37,7 +37,7 @@ Partial Class FrmJobMaint
         Me.taskHours = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnMaintProducts = New System.Windows.Forms.Button()
-        Me.dgvProducts = New System.Windows.Forms.DataGridView()
+        Me.DgvProducts = New System.Windows.Forms.DataGridView()
         Me.jpId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodSupp = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,9 +81,10 @@ Partial Class FrmJobMaint
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PicDeleteJob = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJob.SuspendLayout()
         Me.GrpInvoice.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -99,6 +100,7 @@ Partial Class FrmJobMaint
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicDeleteJob, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnInvoice
@@ -252,22 +254,22 @@ Partial Class FrmJobMaint
         '
         'dgvProducts
         '
-        Me.dgvProducts.AllowUserToAddRows = False
-        Me.dgvProducts.AllowUserToDeleteRows = False
-        Me.dgvProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvProducts.AllowUserToAddRows = False
+        Me.DgvProducts.AllowUserToDeleteRows = False
+        Me.DgvProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
-        Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
-        Me.dgvProducts.Location = New System.Drawing.Point(7, 40)
-        Me.dgvProducts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.dgvProducts.Name = "dgvProducts"
-        Me.dgvProducts.ReadOnly = True
-        Me.dgvProducts.RowHeadersVisible = False
-        Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(538, 213)
-        Me.dgvProducts.TabIndex = 0
+        Me.DgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.DgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
+        Me.DgvProducts.Location = New System.Drawing.Point(7, 40)
+        Me.DgvProducts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.DgvProducts.Name = "dgvProducts"
+        Me.DgvProducts.ReadOnly = True
+        Me.DgvProducts.RowHeadersVisible = False
+        Me.DgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvProducts.Size = New System.Drawing.Size(538, 213)
+        Me.DgvProducts.TabIndex = 0
         '
         'jpId
         '
@@ -660,7 +662,7 @@ Partial Class FrmJobMaint
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnMaintProducts)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.dgvProducts)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.DgvProducts)
         Me.SplitContainer1.Size = New System.Drawing.Size(548, 461)
         Me.SplitContainer1.SplitterDistance = 197
         Me.SplitContainer1.TabIndex = 77
@@ -755,11 +757,24 @@ Partial Class FrmJobMaint
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Job")
         '
+        'PicDeleteJob
+        '
+        Me.PicDeleteJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicDeleteJob.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicDeleteJob.InitialImage = Nothing
+        Me.PicDeleteJob.Location = New System.Drawing.Point(86, 536)
+        Me.PicDeleteJob.Name = "PicDeleteJob"
+        Me.PicDeleteJob.Size = New System.Drawing.Size(42, 42)
+        Me.PicDeleteJob.TabIndex = 94
+        Me.PicDeleteJob.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicDeleteJob, "Remove Job")
+        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 611)
+        Me.Controls.Add(Me.PicDeleteJob)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicImages)
@@ -774,7 +789,7 @@ Partial Class FrmJobMaint
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlJob.ResumeLayout(False)
         Me.pnlJob.PerformLayout()
         Me.GrpInvoice.ResumeLayout(False)
@@ -795,6 +810,7 @@ Partial Class FrmJobMaint
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicDeleteJob, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -807,7 +823,7 @@ Partial Class FrmJobMaint
     Friend WithEvents btnAddTask As Button
     Friend WithEvents dgvTasks As DataGridView
     Friend WithEvents btnMaintProducts As Button
-    Friend WithEvents dgvProducts As DataGridView
+    Friend WithEvents DgvProducts As DataGridView
     Friend WithEvents pnlJob As Panel
     Friend WithEvents Label6 As Label
     Friend WithEvents btnViewCust As Button
@@ -858,4 +874,5 @@ Partial Class FrmJobMaint
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents PicDeleteJob As PictureBox
 End Class

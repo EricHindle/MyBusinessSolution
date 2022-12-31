@@ -371,6 +371,7 @@
     <Compile Include="Templates\FrmSelectTemplate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Templates\ModTemplate.vb" />
     <Compile Include="Utilities\ConvertUtil.vb" />
     <Compile Include="Utilities\ExportUtil.vb" />
     <Compile Include="Utilities\FileTransformer.vb" />

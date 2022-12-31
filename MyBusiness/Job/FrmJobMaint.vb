@@ -22,15 +22,6 @@ Public Class FrmJobMaint
     Private _currentJobProduct As JobProduct
 #End Region
 #Region "properties"
-    Private _template As Template
-    Public Property Template() As Template
-        Get
-            Return _template
-        End Get
-        Set(ByVal value As Template)
-            _template = value
-        End Set
-    End Property
     Public Property CustomerId() As Integer
         Get
             Return _customerId
@@ -75,9 +66,6 @@ Public Class FrmJobMaint
         Else
             NewJob()
             _currentJobId = -1
-            If _template IsNot Nothing Then
-                CreateJobFromTemplate()
-            End If
         End If
 
         If _currentCust.Terms = 0 Then
@@ -88,29 +76,6 @@ Public Class FrmJobMaint
 
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
-    End Sub
-
-    Private Sub CreateJobFromTemplate()
-        _newJob = JobBuilder.AJob.StartingWithNothing.WithJobName(_template.TemplateName).WithJobUser(currentUser.UserId).Build
-        If CreateJob() Then
-            Dim _templateProducts As List(Of FullTemplateProduct) = GetTemplateProductViewbyTemplateId(_template.TemplateId)
-            Dim _templateTasks As List(Of TemplateTask) = GetTemplateTasksForTemplate(_template.TemplateId)
-            Dim _products As New List(Of JobProduct)
-            Dim _tasks As New List(Of Task)
-            For Each _templateTask As TemplateTask In _templateTasks
-                _tasks.Add(TaskBuilder.ATask.StartingWith(_templateTask) _
-                                            .WithTaskJobId(_currentJobId) _
-                                            .Build)
-            Next
-            For Each _templateProduct As FullTemplateProduct In _templateProducts
-                _products.Add(JobProductBuilder.AJobProduct.StartingWith(_templateProduct) _
-                                            .WithJob(_newJob) _
-                                            .Build)
-            Next
-            AddJobProductsToJob(_products)
-            AddTasksToJob(_tasks)
-            Close()
-        End If
     End Sub
 
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
@@ -186,9 +151,9 @@ Public Class FrmJobMaint
             FillJobDetails()
         End If
     End Sub
-    Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
+    Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Name)
-        Dim _jpId As Integer = dgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
+        Dim _jpId As Integer = DgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
         _currentJobProduct = GetJobProductById(_jpId)
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
@@ -209,9 +174,9 @@ Public Class FrmJobMaint
     Private Sub PicImages_Click(sender As Object, e As EventArgs) Handles PicImages.Click
         ShowImages()
     End Sub
-    Private Sub dgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles dgvProducts.SelectionChanged
-        If dgvProducts.SelectedRows.Count > 0 Then
-            Dim _row As DataGridViewRow = dgvProducts.SelectedRows(0)
+    Private Sub DgvProducts_SelectionChanged(sender As Object, e As EventArgs) Handles DgvProducts.SelectionChanged
+        If DgvProducts.SelectedRows.Count > 0 Then
+            Dim _row As DataGridViewRow = DgvProducts.SelectedRows(0)
             Dim _id As Integer = _row.Cells(jpId.Name).Value
             _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
         Else
@@ -247,6 +212,7 @@ Public Class FrmJobMaint
         txtJobName.Text = ""
         chkCompleted.Checked = False
         rtbJobNotes.Text = ""
+        PicDeleteJob.Visible = False
     End Sub
     Private Sub LoadCustomerList()
         LogUtil.Debug("Finding customers", Name)
@@ -293,14 +259,10 @@ Public Class FrmJobMaint
         Next
     End Sub
 
-    Private Sub AddTasksToJob(pTaskList As List(Of Task))
-        For Each oTask As Task In pTaskList
-            InsertTask(oTask)
-        Next
-    End Sub
+
 
     Private Sub FillProductList(ByVal pJobId As Integer)
-        dgvProducts.Rows.Clear()
+        DgvProducts.Rows.Clear()
 
         LogUtil.Debug("Finding products", Name)
 
@@ -326,7 +288,7 @@ Public Class FrmJobMaint
                 Dim _supplier As Supplier = GetSupplierById(_supplierId)
                 _supplierName = _supplier.SupplierName
             End If
-            Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
+            Dim tRow As DataGridViewRow = DgvProducts.Rows(DgvProducts.Rows.Add)
             tRow.Cells(prodSupp.Name).Value = _supplierName
             tRow.Cells(prodName.Name).Value = _productName
             tRow.Cells(prodId.Name).Value = _productId
@@ -336,15 +298,8 @@ Public Class FrmJobMaint
             tRow.Cells(prodPrice.Name).Value = _price
             tRow.Cells(jobPrice.Name).Value = _jobProduct.Price
         Next
-        dgvProducts.ClearSelection()
+        DgvProducts.ClearSelection()
     End Sub
-
-    Private Sub AddJobProductsToJob(_jobProductList As List(Of JobProduct))
-        For Each _jobProduct As JobProduct In _jobProductList
-            InsertJobProduct(_jobProduct)
-        Next
-    End Sub
-
     Private Sub NewJob()
         LogUtil.Debug("New job", Name())
         SplitContainer2.Panel2Collapsed = True
@@ -426,6 +381,16 @@ Public Class FrmJobMaint
             GrpInvoice.Enabled = True
         End If
         Close()
+    End Sub
+
+    Private Sub PicDeleteJob_Click(sender As Object, e As EventArgs) Handles PicDeleteJob.Click
+        If TheJob IsNot Nothing Then
+            If MsgBox("Do you want to remove this job?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
+                LogUtil.Info("Removing Job")
+                DeleteAllJob(TheJob.JobId)
+                Close()
+            End If
+        End If
     End Sub
 #End Region
 End Class

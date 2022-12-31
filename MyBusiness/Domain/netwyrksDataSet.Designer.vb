@@ -17782,7 +17782,7 @@ Namespace netwyrksDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(8) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
@@ -17802,10 +17802,22 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
+            Me._commandCollection(2).CommandText = "DELETE FROM job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (jp_job_id = @jobId)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@jobId"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jp_job_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
                 "_id, jp_tax_rate, jp_taxable, jp_price FROM job_product WHERE (job_product_id = "& _ 
                 "@jpId)"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jpId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17813,13 +17825,13 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "job_product_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(2).Parameters.Add(param)
-            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
                 "_id, jp_tax_rate, jp_taxable, jp_price FROM job_product WHERE (jp_job_id = @jobI"& _ 
                 "d)"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17827,13 +17839,13 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(3).Parameters.Add(param)
-            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
+            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "SELECT job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id, jp_job"& _ 
                 "_id, jp_tax_rate, jp_taxable, jp_price FROM job_product WHERE (jp_product_id = @"& _ 
                 "productId)"
-            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@productId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17841,14 +17853,14 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_product_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "INSERT INTO job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jp_quantity, jp_created, jp_pr"& _ 
+            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(6).Connection = Me.Connection
+            Me._commandCollection(6).CommandText = "INSERT INTO job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jp_quantity, jp_created, jp_pr"& _ 
                 "oduct_id, jp_job_id, jp_taxable, jp_tax_rate, jp_price)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@jp_quan"& _ 
                 "tity, @jp_created, @jp_product_id, @jp_job_id, @jp_taxable, @jp_tax_rate, @jp_pr"& _ 
                 "ice);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT        LAST_INSERT_ID()"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_quantity"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17856,7 +17868,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_quantity"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_created"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -17864,7 +17876,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_created"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_product_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17872,7 +17884,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_product_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_job_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17880,7 +17892,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_taxable"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -17889,7 +17901,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_tax_rate"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -17897,7 +17909,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_price"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -17905,18 +17917,18 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_price"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
-            Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "TRUNCATE job_product;"
-            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(6).Parameters.Add(param)
             Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "UPDATE       job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                jp_quantity = @jp_quantity, jp_chang"& _ 
+            Me._commandCollection(7).CommandText = "TRUNCATE job_product;"
+            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(8) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(8).Connection = Me.Connection
+            Me._commandCollection(8).CommandText = "UPDATE       job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                jp_quantity = @jp_quantity, jp_chang"& _ 
                 "ed = @jp_changed, jp_product_id = @jp_product_id, jp_job_id = @jp_job_id, jp_tax"& _ 
                 "able = @jp_taxable, jp_tax_rate = @jp_tax_rate, jp_price = @jp_price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
                 "   (job_product_id = @id)"
-            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_quantity"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17924,7 +17936,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_quantity"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_changed"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -17932,7 +17944,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_changed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_product_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17940,7 +17952,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_product_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_job_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17948,7 +17960,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_taxable"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -17957,7 +17969,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_tax_rate"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -17965,7 +17977,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jp_price"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -17973,7 +17985,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jp_price"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -17981,7 +17993,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "job_product_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(7).Parameters.Add(param)
+            Me._commandCollection(8).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -18013,7 +18025,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillById(ByVal dataTable As netwyrksDataSet.job_productDataTable, ByVal jpId As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(jpId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -18027,7 +18039,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByJob(ByVal dataTable As netwyrksDataSet.job_productDataTable, ByVal jobId As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(jobId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -18041,7 +18053,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByProduct(ByVal dataTable As netwyrksDataSet.job_productDataTable, ByVal productId As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(productId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -18375,9 +18387,36 @@ Namespace netwyrksDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteJobProductByJob(ByVal jobId As Global.System.Nullable(Of Integer)) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
+            If (jobId.HasValue = true) Then
+                command.Parameters(0).Value = CType(jobId.Value,Integer)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
         Public Overloads Overridable Function InsertJobProduct(ByVal jp_quantity As Global.System.Nullable(Of Integer), ByVal jp_created As Global.System.Nullable(Of Date), ByVal jp_product_id As Global.System.Nullable(Of Integer), ByVal jp_job_id As Global.System.Nullable(Of Integer), ByVal jp_taxable As Object, ByVal jp_tax_rate As Global.System.Nullable(Of Decimal), ByVal jp_price As Global.System.Nullable(Of Decimal)) As Object
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
             If (jp_quantity.HasValue = true) Then
                 command.Parameters(0).Value = CType(jp_quantity.Value,Integer)
             Else
@@ -18439,7 +18478,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function TruncateJobProduct() As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -18461,7 +18500,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateJobProduct(ByVal jp_quantity As Global.System.Nullable(Of Integer), ByVal jp_changed As Global.System.Nullable(Of Date), ByVal jp_product_id As Global.System.Nullable(Of Integer), ByVal jp_job_id As Global.System.Nullable(Of Integer), ByVal jp_taxable As Object, ByVal jp_tax_rate As Global.System.Nullable(Of Decimal), ByVal jp_price As Global.System.Nullable(Of Decimal), ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(8)
             If (jp_quantity.HasValue = true) Then
                 command.Parameters(0).Value = CType(jp_quantity.Value,Integer)
             Else
@@ -22286,7 +22325,7 @@ Namespace netwyrksDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(6) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_start_due"& _ 
@@ -22307,10 +22346,22 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_start_due"& _ 
+            Me._commandCollection(2).CommandText = "DELETE FROM task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (task_job_id = @jobId)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@jobId"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "task_job_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_start_due"& _ 
                 ", task_started, task_completed, task_created, task_changed, task_job_id, task_ta"& _ 
                 "x_rate, task_taxable, task_start_date FROM task WHERE (task_id = @Id)"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -22318,13 +22369,13 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(2).Parameters.Add(param)
-            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_start_due"& _ 
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_start_due"& _ 
                 ", task_started, task_completed, task_created, task_changed, task_job_id, task_ta"& _ 
                 "x_rate, task_taxable, task_start_date FROM task WHERE (task_job_id = @jobId)"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -22332,16 +22383,16 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(3).Parameters.Add(param)
-            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "INSERT INTO task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (task_name, task_description, task_cos"& _ 
+            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "INSERT INTO task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (task_name, task_description, task_cos"& _ 
                 "t, task_time, task_start_due, task_started, task_completed, task_created, task_j"& _ 
                 "ob_id, task_taxable, task_tax_rate)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@task_name, @task_descriptio"& _ 
                 "n, @task_cost, @task_time, @task_start_due, @task_started, @task_completed, @tas"& _ 
                 "k_created, @task_job_id, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @task_taxable, @task_tax_rat"& _ 
                 "e);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT        LAST_INSERT_ID()"
-            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_name"
             param.DbType = Global.System.Data.DbType.[String]
@@ -22350,7 +22401,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_name"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_description"
             param.DbType = Global.System.Data.DbType.[String]
@@ -22359,7 +22410,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_cost"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22367,7 +22418,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_time"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22375,7 +22426,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_start_due"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -22383,7 +22434,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_started"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22392,7 +22443,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_completed"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22401,7 +22452,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_completed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_created"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -22409,7 +22460,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_created"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_job_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -22417,7 +22468,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_taxable"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22426,7 +22477,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_tax_rate"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22434,20 +22485,20 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "TRUNCATE task;"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(param)
             Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "UPDATE       task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                task_name = @task_name, task_description = "& _ 
+            Me._commandCollection(6).CommandText = "TRUNCATE task;"
+            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(7).Connection = Me.Connection
+            Me._commandCollection(7).CommandText = "UPDATE       task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                task_name = @task_name, task_description = "& _ 
                 "@task_description, task_cost = @task_cost, task_time = @task_time, task_start_du"& _ 
                 "e = @task_start_due, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         task_started = @task_started, ta"& _ 
                 "sk_completed = @task_completed, task_changed = @task_changed, task_job_id = @tas"& _ 
                 "k_job_id, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         task_taxable = @task_taxable, task_tax_rate"& _ 
                 " = @task_tax_rate"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (task_id = @id)"
-            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_name"
             param.DbType = Global.System.Data.DbType.[String]
@@ -22456,7 +22507,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_name"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_description"
             param.DbType = Global.System.Data.DbType.[String]
@@ -22465,7 +22516,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_description"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_cost"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22473,7 +22524,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_time"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22481,7 +22532,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_start_due"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -22489,7 +22540,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_started"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22498,7 +22549,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_completed"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22507,7 +22558,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_completed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_changed"
             param.DbType = Global.System.Data.DbType.DateTime
@@ -22515,7 +22566,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_changed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_job_id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -22523,7 +22574,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_job_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_taxable"
             param.DbType = Global.System.Data.DbType.[Object]
@@ -22532,7 +22583,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_tax_rate"
             param.DbType = Global.System.Data.DbType.[Decimal]
@@ -22540,7 +22591,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@id"
             param.DbType = Global.System.Data.DbType.Int32
@@ -22548,7 +22599,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22580,7 +22631,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillById(ByVal dataTable As netwyrksDataSet.taskDataTable, ByVal Id As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(Id,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -22594,7 +22645,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByJob(ByVal dataTable As netwyrksDataSet.taskDataTable, ByVal jobId As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(jobId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -23043,9 +23094,36 @@ Namespace netwyrksDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteTasksByJob(ByVal jobId As Global.System.Nullable(Of Integer)) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
+            If (jobId.HasValue = true) Then
+                command.Parameters(0).Value = CType(jobId.Value,Integer)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
         Public Overloads Overridable Function InsertTask(ByVal task_name As String, ByVal task_description As String, ByVal task_cost As Global.System.Nullable(Of Decimal), ByVal task_time As Global.System.Nullable(Of Decimal), ByVal task_start_due As Global.System.Nullable(Of Date), ByVal task_started As Object, ByVal task_completed As Object, ByVal task_created As Date, ByVal task_job_id As Integer, ByVal task_taxable As Object, ByVal task_tax_rate As Global.System.Nullable(Of Decimal)) As Object
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
             If (task_name Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("task_name")
             Else
@@ -23119,7 +23197,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function TruncateTasks() As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -23141,7 +23219,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateTask(ByVal task_name As String, ByVal task_description As String, ByVal task_cost As Global.System.Nullable(Of Decimal), ByVal task_time As Global.System.Nullable(Of Decimal), ByVal task_start_due As Global.System.Nullable(Of Date), ByVal task_started As Object, ByVal task_completed As Object, ByVal task_changed As Global.System.Nullable(Of Date), ByVal task_job_id As Integer, ByVal task_taxable As Object, ByVal task_tax_rate As Global.System.Nullable(Of Decimal), ByVal id As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
             If (task_name Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("task_name")
             Else
