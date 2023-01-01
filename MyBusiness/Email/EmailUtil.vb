@@ -103,8 +103,8 @@ Public NotInheritable Class EmailUtil
             If Not String.IsNullOrEmpty(strFromName) Then
                 objMessage.From = New MailAddress(strFromAddress, strFromName)
             End If
-            Dim smtpUserName As String = GlobalSettings.getSetting(SMTP_USERNAME)
-            Dim smtpPassword As String = GlobalSettings.getSetting(SMTP_PASSWORD)
+            Dim smtpUserName As String = GlobalSettings.GetSettingValue(SMTP_USERNAME)
+            Dim smtpPassword As String = GlobalSettings.GetSettingValue(SMTP_PASSWORD)
             Dim bodyformat As EmailBodyType = bodyType
             If bodyformat = EmailBodyType.Html Then
                 ConvertBodyToHtml(strBody, oFont, objMessage)
@@ -114,7 +114,7 @@ Public NotInheritable Class EmailUtil
             '
             ' Validate the parameters
             '
-            Dim strSmtpHost As String = GlobalSettings.getSetting(SMTP_HOST)
+            Dim strSmtpHost As String = GlobalSettings.GetSettingValue(SMTP_HOST)
             If String.IsNullOrEmpty(strSmtpHost) Then
                 LogUtil.Problem("No smtp host specified", SEND_VIA)
                 Throw New ApplicationException("Error: No Mail Host")

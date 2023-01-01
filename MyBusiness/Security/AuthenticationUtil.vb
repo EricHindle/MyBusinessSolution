@@ -218,7 +218,7 @@ Public Class AuthenticationUtil
                             {},
                             "Temporary Password",
                             PASSWORD_CHANGE_EMAIL.Replace("{}",
-                            newTempPassword), GlobalSettings.GetSetting(EmailUtil.SMTP_FROMNAME)) Then
+                            newTempPassword), GlobalSettings.GetSettingValue(EmailUtil.SMTP_FROMNAME)) Then
                         isCreatedOK = True
                         MsgBox("An email has been sent to your registered address.", , "Password Reset")
                     Else

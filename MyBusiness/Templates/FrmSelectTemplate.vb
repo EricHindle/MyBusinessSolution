@@ -19,7 +19,7 @@ Public Class FrmSelectTemplate
     End Sub
 
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
-        Me.DialogResult = DialogResult.Cancel
+        DialogResult = DialogResult.Cancel
         Close()
     End Sub
 

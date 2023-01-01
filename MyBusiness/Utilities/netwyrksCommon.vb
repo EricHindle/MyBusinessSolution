@@ -14,22 +14,6 @@ Imports MyBusiness.NetwyrksErrorCodes
 ''' <remarks></remarks>
 Public Module netwyrksCommon
 #Region "Constants"
-    Public Const SELECT_TEXT As String = "Select..."
-    Public PeriodDescriptions As String() = New String() _
-            {SELECT_TEXT,
-                 "All",
-                 "Yesterday",
-                 "Current Week",
-                 "Last Week",
-                 "Last 7 days",
-                 "Last 30 days",
-                 "Current Month",
-                 "Last Month",
-                 "Current Quarter",
-                 "Last Quarter",
-                 "Current Year",
-                 "Next 12 Months",
-                 "Last 5 Years"}
     Public RECORD_TYPE As String = ""
 #End Region
 #Region "Structures"

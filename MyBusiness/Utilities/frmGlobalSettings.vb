@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Runtime.InteropServices.ComTypes
 ''' <summary>
 ''' Form to maintain Global Settings values
 ''' </summary>
@@ -17,16 +18,16 @@ Public Class FrmGlobalSettings
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Setting
-    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.configurationTableAdapter
-    Private ReadOnly oTable As New netwyrksDataSet.configurationDataTable
+    'Private ReadOnly oTa As New netwyrksDataSetTableAdapters.configurationTableAdapter
+    Private oTable As New netwyrksDataSet.configurationDataTable
 #End Region
 #Region "Form"
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        logutil.info("Closed", FORM_NAME)
+        LogUtil.Info("Closed", FORM_NAME)
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        logutil.info("Starting", FORM_NAME)
-        oTa.Fill(oTable)
+        LogUtil.Info("Starting", FORM_NAME)
+        oTable = GetConfigurationTable()
         cbSelect.DataSource = oTable
         cbSelect.DisplayMember = "configuration_id"
         cbSelect.ValueMember = "configuration_id"
@@ -38,20 +39,18 @@ Public Class FrmGlobalSettings
     End Sub
     Private Sub ClearForm()
         cbSelect.SelectedIndex = -1
-        cbType.SelectedValue = 0
+        cbType.SelectedIndex = -1
         txtValue.Text = ""
     End Sub
     Private Sub FillForm(ByVal _name As String)
-        Dim _table As New netwyrksDataSet.configurationDataTable
-        Dim i As Integer = oTa.FillById(_table, _name)
-        If i = 1 Then
-            Dim oRow As netwyrksDataSet.configurationRow = _table.Rows(0)
-            txtValue.Text = oRow.configuration_value
-            cbType.SelectedIndex = cbType.FindString(oRow.configuration_type)
+        Dim _setting As GlobalSetting = GetSetting(_name)
+
+        If _setting IsNot Nothing Then
+            txtValue.Text = _setting.SettingValue
+            cbType.SelectedIndex = _setting.ValueType
         Else
             lblStatus.Text = "Cannot identify a single record"
         End If
-        _table.Dispose()
     End Sub
     Private Sub CbSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSelect.SelectedIndexChanged
         If cbSelect.SelectedIndex > -1 Then
@@ -67,8 +66,7 @@ Public Class FrmGlobalSettings
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If cbSelect.SelectedIndex > -1 Then
             Dim recordId As String = cbSelect.SelectedValue
-
-            If GlobalSettings.SetSetting(recordId, cbType.SelectedItem, txtValue.Text) Then
+            If GlobalSettings.SetSetting(recordId, cbType.SelectedIndex, txtValue.Text) Then
                 LogStatus(RECORD_TYPE.ToString() & " " & recordId & " updated", True)
             Else
                 LogStatus(RECORD_TYPE.ToString() & " " & recordId & " NOT updated", True, TraceEventType.Warning)
@@ -76,7 +74,6 @@ Public Class FrmGlobalSettings
         Else
             MsgBox("Pick an item from the list", MsgBoxStyle.Exclamation Or MsgBoxStyle.OkOnly, "Selection error")
         End If
-        oTa.Fill(oTable)
         ClearForm()
     End Sub
 #End Region

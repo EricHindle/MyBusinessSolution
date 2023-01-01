@@ -27,6 +27,8 @@ Partial Class frmOptions
         Me.cbDebug = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkShowDiary = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -113,11 +115,12 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.ChkShowDiary = New System.Windows.Forms.CheckBox()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ChkShowTask = New System.Windows.Forms.CheckBox()
+        Me.ChkShowProduct = New System.Windows.Forms.CheckBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         CType(Me.NudAlertDuration, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudAlertNotice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +136,6 @@ Partial Class frmOptions
         Me.grpSplChk.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox10
@@ -195,6 +197,30 @@ Partial Class frmOptions
         Me.TabPage1.Size = New System.Drawing.Size(480, 432)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General 1"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.ChkShowDiary)
+        Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox6.Location = New System.Drawing.Point(122, 6)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(200, 46)
+        Me.GroupBox6.TabIndex = 10
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Diary"
+        '
+        'ChkShowDiary
+        '
+        Me.ChkShowDiary.AutoSize = True
+        Me.ChkShowDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowDiary.ForeColor = System.Drawing.Color.Black
+        Me.ChkShowDiary.Location = New System.Drawing.Point(10, 19)
+        Me.ChkShowDiary.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.ChkShowDiary.Name = "ChkShowDiary"
+        Me.ChkShowDiary.Size = New System.Drawing.Size(135, 18)
+        Me.ChkShowDiary.TabIndex = 1
+        Me.ChkShowDiary.Text = "Show Diary at Login"
+        Me.ChkShowDiary.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
@@ -282,6 +308,8 @@ Partial Class frmOptions
         '
         'grpDiary
         '
+        Me.grpDiary.Controls.Add(Me.ChkShowProduct)
+        Me.grpDiary.Controls.Add(Me.ChkShowTask)
         Me.grpDiary.Controls.Add(Me.chkShowJob)
         Me.grpDiary.Controls.Add(Me.chkShowSupplier)
         Me.grpDiary.Controls.Add(Me.chkShowCustomer)
@@ -289,7 +317,7 @@ Partial Class frmOptions
         Me.grpDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpDiary.Location = New System.Drawing.Point(13, 163)
         Me.grpDiary.Name = "grpDiary"
-        Me.grpDiary.Size = New System.Drawing.Size(142, 148)
+        Me.grpDiary.Size = New System.Drawing.Size(142, 186)
         Me.grpDiary.TabIndex = 8
         Me.grpDiary.TabStop = False
         Me.grpDiary.Text = "Show Selected "
@@ -1218,29 +1246,27 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'ChkShowDiary
+        'ChkShowTask
         '
-        Me.ChkShowDiary.AutoSize = True
-        Me.ChkShowDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChkShowDiary.ForeColor = System.Drawing.Color.Black
-        Me.ChkShowDiary.Location = New System.Drawing.Point(10, 19)
-        Me.ChkShowDiary.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.ChkShowDiary.Name = "ChkShowDiary"
-        Me.ChkShowDiary.Size = New System.Drawing.Size(135, 18)
-        Me.ChkShowDiary.TabIndex = 1
-        Me.ChkShowDiary.Text = "Show Diary at Login"
-        Me.ChkShowDiary.UseVisualStyleBackColor = True
+        Me.ChkShowTask.AutoSize = True
+        Me.ChkShowTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowTask.Location = New System.Drawing.Point(12, 127)
+        Me.ChkShowTask.Name = "ChkShowTask"
+        Me.ChkShowTask.Size = New System.Drawing.Size(90, 18)
+        Me.ChkShowTask.TabIndex = 4
+        Me.ChkShowTask.Text = "Task Details"
+        Me.ChkShowTask.UseVisualStyleBackColor = True
         '
-        'GroupBox6
+        'ChkShowProduct
         '
-        Me.GroupBox6.Controls.Add(Me.ChkShowDiary)
-        Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox6.Location = New System.Drawing.Point(122, 6)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(200, 46)
-        Me.GroupBox6.TabIndex = 10
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "Diary"
+        Me.ChkShowProduct.AutoSize = True
+        Me.ChkShowProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowProduct.Location = New System.Drawing.Point(12, 151)
+        Me.ChkShowProduct.Name = "ChkShowProduct"
+        Me.ChkShowProduct.Size = New System.Drawing.Size(108, 18)
+        Me.ChkShowProduct.TabIndex = 5
+        Me.ChkShowProduct.Text = "Product Details"
+        Me.ChkShowProduct.UseVisualStyleBackColor = True
         '
         'frmOptions
         '
@@ -1268,6 +1294,8 @@ Partial Class frmOptions
         Me.GroupBox10.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         CType(Me.NudAlertDuration, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1292,8 +1320,6 @@ Partial Class frmOptions
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1390,4 +1416,6 @@ Partial Class frmOptions
     Friend WithEvents TxtBackupFolder As TextBox
     Friend WithEvents ChkShowDiary As CheckBox
     Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents ChkShowTask As CheckBox
+    Friend WithEvents ChkShowProduct As CheckBox
 End Class

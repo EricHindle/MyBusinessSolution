@@ -160,7 +160,7 @@ Public Class InvoicePrinter
         oTaskTa.FillByJob(oTaskTable, _job.JobId)
         oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
         If String.IsNullOrWhiteSpace(_job.JobInvoiceNumber) OrElse Not IsNumeric(_job.JobInvoiceNumber) OrElse _job.JobInvoiceNumber <= 0 Then
-            _nextInvoiceNumber = CInt(GlobalSettings.GetSetting(GlobalSettings.INVOICE_NUMBER)) + 1
+            _nextInvoiceNumber = CInt(GlobalSettings.GetSettingValue(GlobalSettings.INVOICE_NUMBER)) + 1
             GlobalSettings.SetSetting(GlobalSettings.INVOICE_NUMBER, "integer", _nextInvoiceNumber)
             _job.JobInvoiceNumber = _nextInvoiceNumber
         End If

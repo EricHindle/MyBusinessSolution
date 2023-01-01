@@ -103,7 +103,7 @@ Public Class LogUtil
         If Not String.IsNullOrEmpty(sSub) Then
             sOrigin = "(" & sSub & ") "
         End If
-        sPrefix += sOrigin.PadRight(My.Resources.ORIGIN_WIDTH)
+        sPrefix += sOrigin
         If Not String.IsNullOrEmpty(errorCode) Then
             sPrefix += "Error code: " & errorCode & " "
         End If

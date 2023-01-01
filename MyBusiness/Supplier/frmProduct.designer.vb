@@ -250,9 +250,11 @@ Partial Class FrmProduct
         Me.NudPurchaseUnits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.NudPurchaseUnits.Location = New System.Drawing.Point(150, 384)
         Me.NudPurchaseUnits.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NudPurchaseUnits.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NudPurchaseUnits.Name = "NudPurchaseUnits"
         Me.NudPurchaseUnits.Size = New System.Drawing.Size(120, 24)
         Me.NudPurchaseUnits.TabIndex = 3
+        Me.NudPurchaseUnits.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'Label6
         '

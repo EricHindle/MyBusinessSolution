@@ -33,8 +33,22 @@ Module netwyrksConstants
     Public FORM_FOREGROUND_COLOUR As Color = Color.FromArgb(55, 48, 26)
     Public FIELD_BACKGROUND_COLOUR As Color = Color.WhiteSmoke
     Public HARD_SPACE As String = ChrW(160)
-    Public Const NO_OF_PREM As String = "No. of premises = "
     Public Const STATUS_MESSAGE_MAX_LENGTH As Integer = 90
-
+    Public Const SELECT_TEXT As String = "Select..."
+    Public PeriodDescriptions As String() = New String() _
+            {SELECT_TEXT,
+                 "All",
+                 "Yesterday",
+                 "Current Week",
+                 "Last Week",
+                 "Last 7 days",
+                 "Last 30 days",
+                 "Current Month",
+                 "Last Month",
+                 "Current Quarter",
+                 "Last Quarter",
+                 "Current Year",
+                 "Next 12 Months",
+                 "Last 5 Years"}
 #End Region
 End Module

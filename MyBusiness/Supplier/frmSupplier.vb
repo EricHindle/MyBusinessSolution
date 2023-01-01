@@ -25,7 +25,10 @@ Public Class FrmSupplier
 #Region "form handlers"
     Private Sub FrmSupplier_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
-        GetFormPos(Me, My.Settings.SupplierFormPos)
+        If GetFormPos(Me, My.Settings.SupplierFormPos) Then
+            SplitContainer1.SplitterDistance = My.Settings.SuppSplitterDist1
+            spProducts.SplitterDistance = My.Settings.SuppSplitterDist2
+        End If
         spProducts.Panel2Collapsed = True
         pnlProducts.Enabled = False
         If _supplierId <= 0 Then
@@ -39,6 +42,8 @@ Public Class FrmSupplier
     Private Sub FrmSupplier_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
         My.Settings.SupplierFormPos = SetFormPos(Me)
+        My.Settings.SuppSplitterDist1 = SplitContainer1.SplitterDistance
+        My.Settings.SuppSplitterDist2 = spProducts.SplitterDistance
         My.Settings.Save()
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
@@ -62,7 +67,7 @@ Public Class FrmSupplier
                     txtProductDesc.Text = _selectedProduct.ProductDescription
                     txtCost.Text = "£" & _selectedProduct.ProductCost
                     txtPrice.Text = "£" & _selectedProduct.ProductPrice
-                    If My.Settings.showProduct Then spProducts.Panel2Collapsed = False
+                    If My.Settings.ShowProduct Then spProducts.Panel2Collapsed = False
                 End If
             End If
         End If

@@ -259,8 +259,6 @@ Public Class FrmJobMaint
         Next
     End Sub
 
-
-
     Private Sub FillProductList(ByVal pJobId As Integer)
         DgvProducts.Rows.Clear()
 

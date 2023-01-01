@@ -10,22 +10,16 @@ Public Class NetwyrksErrorCodes
     Public Enum SystemModule
         UNKNOWN = 0
         CUSTOMER = 1
-        EXCLUSION = 2
-        INCIDENT = 3
-        REFERENCE = 4
-        ADMIN = 5
-        SECURITY = 6
-        MAPPING = 7
-        IMAGES = 8
-        DIARY = 9
-        EMAIL = 10
-        LOGGING = 11
-        UTILITIES = 12
-        TEMPLATES = 13
-        LBO = 14
-        BOOKMAKER = 15
-        SETTINGS = 16
-        REPORTING = 17
+        ADMIN = 2
+        SECURITY = 3
+        IMAGES = 4
+        DIARY = 5
+        EMAIL = 6
+        LOGGING = 7
+        UTILITIES = 8
+        TEMPLATES = 9
+        SETTINGS = 10
+        REPORTING = 11
     End Enum
     Public Enum ErrorType
         UNKNOWN = 0
@@ -37,7 +31,6 @@ Public Class NetwyrksErrorCodes
         APPLICATION = 6
         CONVERSION = 7
         FILESYSTEM = 8
-        SERS = 9
     End Enum
     Public Enum FailedAction
         UNKNOWN = 0

@@ -23,8 +23,6 @@ Public Class GlobalSettings
 
     Private Shared RECORD_TYPE As AuditUtil.RecordType
 
-    Private Shared ReadOnly oTa As New netwyrksDataSetTableAdapters.configurationTableAdapter
-    Private Shared ReadOnly oTable As New netwyrksDataSet.configurationDataTable
     Private Shared ReadOnly className As String = "GlobalSettings"
     ''' <summary>
     ''' Get a setting
@@ -32,34 +30,41 @@ Public Class GlobalSettings
     ''' <param name="settingName">Name of setting to be returned</param>
     ''' <returns>Value of setting</returns>
     ''' <remarks></remarks>
-    Public Shared Function GetSetting(ByVal settingName As String) As Object
+    Public Shared Function GetSettingValue(ByVal settingName As String) As Object
+        LogUtil.Info("Getting global setting " & settingName, className)
         Dim rtnValue As Object = Nothing
         Try
-            Dim i As Integer = oTa.FillById(oTable, settingName)
+            Dim _setting As GlobalSetting = GetSetting(settingName)
+            'Dim i As Integer = oTa.FillById(oTable, settingName)
 
-            If i = 1 Then
-                Dim oRow As netwyrksDataSet.configurationRow = oTable.Rows(0)
-                Dim value As String = oRow.configuration_value
+            If _setting IsNot Nothing Then
+                'Dim oRow As netwyrksDataSet.configurationRow = oTable.Rows(0)
+                'Dim value As String = oRow.configuration_value
                 Try
-                    Select Case oRow.configuration_type.ToLower
-                        Case "string"
-                            rtnValue = value
-                        Case "integer"
-                            rtnValue = CInt(value)
-                        Case "date"
-                            rtnValue = CDate(value)
-                        Case "boolean"
-                            rtnValue = CBool(value)
-                        Case "decimal"
-                            rtnValue = CDec(value)
-                        Case "char"
-                            rtnValue = CChar(value)
+                    Select Case _setting.ValueType
+                        Case GlobalSetting.SettingType.STR
+                            rtnValue = _setting.SettingValue
+                        Case GlobalSetting.SettingType.INT
+                            rtnValue = CInt(_setting.SettingValue)
+                        Case GlobalSetting.SettingType.DAT
+                            rtnValue = CDate(_setting.SettingValue)
+                        Case GlobalSetting.SettingType.BOO
+                            rtnValue = CBool(_setting.SettingValue)
+                        Case GlobalSetting.SettingType.DEC
+                            rtnValue = CDec(_setting.SettingValue)
+                        Case GlobalSetting.SettingType.CHA
+                            rtnValue = CChar(_setting.SettingValue)
                     End Select
                 Catch ex As Exception
                     LogUtil.Exception("Cannot return setting value", ex, "GlobalSettings.getSetting", GetErrorCode(SystemModule.UTILITIES, ErrorType.CONVERSION, FailedAction.GLOBAL_SETTING_ERROR))
                 End Try
             Else
-                oTa.InsertSetting(settingName, "string", "")
+                _setting = GlobalSettingBuilder.AGlobalSetting.StartingWithNothing _
+                    .WithId(settingName) _
+                    .WithType(GlobalSetting.SettingType.STR) _
+                    .WithValue("") _
+                    .Build
+                InsertSetting(_setting)
                 rtnValue = ""
             End If
         Catch ex As MySql.Data.MySqlClient.MySqlException
@@ -70,10 +75,10 @@ Public Class GlobalSettings
     End Function
 
     Public Shared Function GetStringSetting(ByVal settingName As String) As String
-        Return CStr(GetSetting(settingName))
+        Return CStr(GetSettingValue(settingName))
     End Function
     Public Shared Function GetBooleanSetting(ByVal settingName As String) As Boolean
-        Dim stringValue As String = GetSetting(settingName)
+        Dim stringValue As String = GetSettingValue(settingName)
         Dim booleanValue As Boolean = False
         Try
             If stringValue IsNot Nothing Then
@@ -85,7 +90,7 @@ Public Class GlobalSettings
         Return booleanValue
     End Function
     Public Shared Function GetIntegerSetting(ByVal settingName As String) As Integer
-        Dim stringValue As String = GetSetting(settingName)
+        Dim stringValue As String = GetSettingValue(settingName)
         Dim intValue As Integer = 0
         Try
             If stringValue IsNot Nothing AndAlso IsNumeric(stringValue) Then
@@ -98,18 +103,16 @@ Public Class GlobalSettings
         Return intValue
     End Function
 
-    Public Shared Function SetSetting(ByVal settingName As String, ByVal settingType As String, ByVal settingValue As String) As Boolean
+    Public Shared Function SetSetting(ByVal settingName As String, ByVal valueType As String, ByVal settingValue As String) As Boolean
         RECORD_TYPE = AuditUtil.RecordType.Setting
         Dim rtnVal As Boolean = True
-        Dim ct As Integer
-        Try
-            ct = oTa.UpdateSetting(settingType, settingValue, settingName)
-        Catch ex As Exception
-            LogUtil.Exception("Update exception", ex, className, GetErrorCode(SystemModule.UTILITIES, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
-            ct = 0
-            rtnVal = False
-        End Try
-        If ct = 1 Then
+        Dim _setting As GlobalSetting = GlobalSettingBuilder.AGlobalSetting.StartingWithNothing _
+                    .WithId(settingName) _
+                    .WithType(valueType) _
+                    .WithValue(settingValue) _
+                    .Build
+        If UpdateSetting(_setting) = 1 Then
+
             AuditUtil.AddAudit(RECORD_TYPE, -1, AuditUtil.AuditableAction.update,, settingValue)
             LogUtil.Info(RECORD_TYPE.ToString() & " " & settingName & " updated", True)
         Else

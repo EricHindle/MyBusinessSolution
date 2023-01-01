@@ -29,6 +29,8 @@ Public Class FrmMain
             SplitContainer1.SplitterDistance = My.Settings.MainSplitterDist1
             SplitContainer2.SplitterDistance = My.Settings.MainSplitterDist2
             SplitContainer3.SplitterDistance = My.Settings.MainSplitterDist3
+            spCustomer.SplitterDistance = My.Settings.MainSplitterDist4
+            spSupplier.SplitterDistance = My.Settings.MainSplitterDist5
         End If
         isLoading = True
         InitialiseData()
@@ -247,7 +249,8 @@ Public Class FrmMain
         My.Settings.MainSplitterDist1 = SplitContainer1.SplitterDistance
         My.Settings.MainSplitterDist2 = SplitContainer2.SplitterDistance
         My.Settings.MainSplitterDist3 = SplitContainer3.SplitterDistance
-
+        My.Settings.MainSplitterDist4 = spCustomer.SplitterDistance
+        My.Settings.MainSplitterDist5 = spSupplier.SplitterDistance
         My.Settings.Save()
     End Sub
 #End Region

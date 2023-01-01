@@ -21,7 +21,7 @@ Public Class FrmInstallationTest
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
         lblFormName.Text = FORM_NAME
-        txtFrom.Text = GlobalSettings.getSetting(EmailUtil.SMTP_FROMNAME)
+        txtFrom.Text = GlobalSettings.GetSettingValue(EmailUtil.SMTP_FROMNAME)
         myReportDef = New ReportDefinition()
         InitialiseDgv()
         rtbLog.Text = ""
@@ -29,7 +29,7 @@ Public Class FrmInstallationTest
     Private Sub BtnSMTP_Click(sender As Object, e As EventArgs) Handles btnSMTP.Click
         lblSMTPResult.Text = "Sending SMTP email..."
         Refresh()
-        Dim fromEmail As String = GlobalSettings.getSetting(EmailUtil.SMTP_USERNAME)
+        Dim fromEmail As String = GlobalSettings.GetSettingValue(EmailUtil.SMTP_USERNAME)
         Dim mailResultOK As Boolean = EmailUtil.SendMail(fromEmail, txtTo.Text, New String() {}, "SMTP email test", "Test", txtFrom.Text)
         lblSMTPResult.Text = If(mailResultOK, "OK", "Failed")
 

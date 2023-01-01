@@ -368,24 +368,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property showProduct() As Boolean
+        Public Property ShowProduct() As Boolean
             Get
-                Return CType(Me("showProduct"),Boolean)
+                Return CType(Me("ShowProduct"),Boolean)
             End Get
             Set
-                Me("showProduct") = value
+                Me("ShowProduct") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property showTask() As Boolean
+        Public Property ShowTask() As Boolean
             Get
-                Return CType(Me("showTask"),Boolean)
+                Return CType(Me("ShowTask"),Boolean)
             End Get
             Set
-                Me("showTask") = value
+                Me("ShowTask") = value
             End Set
         End Property
         
@@ -938,6 +938,42 @@ Namespace My
             End Get
             Set
                 Me("MainSplitterDist3") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property SuppSplitterDist2() As Integer
+            Get
+                Return CType(Me("SuppSplitterDist2"),Integer)
+            End Get
+            Set
+                Me("SuppSplitterDist2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property MainSplitterDist4() As String
+            Get
+                Return CType(Me("MainSplitterDist4"),String)
+            End Get
+            Set
+                Me("MainSplitterDist4") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property MainSplitterDist5() As String
+            Get
+                Return CType(Me("MainSplitterDist5"),String)
+            End Get
+            Set
+                Me("MainSplitterDist5") = value
             End Set
         End Property
     End Class

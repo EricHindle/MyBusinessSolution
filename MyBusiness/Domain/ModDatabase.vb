@@ -1193,4 +1193,42 @@ Module ModDatabase
         Return isOk
     End Function
 #End Region
+#Region "global options"
+    Public Function GetSetting(ByVal pSettingName As String) As GlobalSetting
+        LogUtil.Info("Getting global setting " & pSettingName, MODULE_NAME)
+        Dim rtnValue As GlobalSetting = Nothing
+        Try
+            oConfigurationTa.FillById(oConfigurationTable, pSettingName)
+            If oConfigurationTable.Rows.Count = 1 Then
+                Dim orow As netwyrksDataSet.configurationRow = oConfigurationTable.Rows(0)
+                rtnValue = GlobalSettingBuilder.AGlobalSetting.StartingWith(orow).Build
+            End If
+        Catch ex As DbException
+        End Try
+        Return rtnValue
+    End Function
+    Public Function InsertSetting(pSetting As GlobalSetting) As Integer
+        Dim _ct As Integer
+        Try
+            With pSetting
+                _ct = oConfigurationTa.InsertSetting(.SettingId, .ValueType, .SettingValue)
+            End With
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+    Public Function UpdateSetting(pSetting As GlobalSetting) As Integer
+        Dim _ct As Integer
+        Try
+            With pSetting
+                _ct = oConfigurationTa.UpdateSetting(.ValueType, .SettingValue, .SettingId)
+            End With
+        Catch ex As Exception
+
+        End Try
+        Return _ct
+    End Function
+
+#End Region
 End Module

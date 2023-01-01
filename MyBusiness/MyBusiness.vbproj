@@ -175,6 +175,7 @@
     <Compile Include="Domain\Builders\AuditEntryBuilder.vb" />
     <Compile Include="Domain\Builders\FullJobProductBuilder.vb" />
     <Compile Include="Domain\Builders\FullTemplateProductBuilder.vb" />
+    <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
     <Compile Include="Domain\Builders\JobImageBuilder.vb" />
     <Compile Include="Domain\Builders\JobProductBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateBuilder.vb" />
@@ -201,6 +202,7 @@
     </Compile>
     <Compile Include="Domain\Objects\FullJobProduct.vb" />
     <Compile Include="Domain\Objects\FullTemplateProduct.vb" />
+    <Compile Include="Domain\Objects\GlobalSetting.vb" />
     <Compile Include="Domain\Objects\Job.vb" />
     <Compile Include="Domain\Builders\JobBuilder.vb" />
     <Compile Include="Domain\ModDatabase.vb" />

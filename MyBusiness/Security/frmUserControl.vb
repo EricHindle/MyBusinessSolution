@@ -47,11 +47,11 @@ Public Class FrmUserControl
             Else
                 ' changing password
                 If txtPasswd1.Text = txtPasswd2.Text Then
-                    If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSetting("MinPwdLen") Then
+                    If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSettingValue("MinPwdLen") Then
                         ' update user
                         storedHashedPW = AuthenticationUtil.GetHashed(salt & txtPasswd1.Text.Trim)
                     Else
-                        MsgBox("Password must be at least " & GlobalSettings.GetSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
+                        MsgBox("Password must be at least " & GlobalSettings.GetSettingValue("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
 
                     End If
                 Else
@@ -87,7 +87,7 @@ Public Class FrmUserControl
             If txtUserLogin.TextLength > 0 Then
                 If txtPasswd1.Text.Trim.Length > 0 Then
                     If txtPasswd1.Text = txtPasswd2.Text Then
-                        If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSetting("MinPwdLen") Then
+                        If txtPasswd1.Text.Trim.Length >= GlobalSettings.GetSettingValue("MinPwdLen") Then
                             ' insert user
                             hashedUser = AuthenticationUtil.HashedUsername(txtUserLogin.Text)
                             salt = AuthenticationUtil.GetNewSalt(txtUserLogin.Text)
@@ -113,7 +113,7 @@ Public Class FrmUserControl
                             txtStatus.Text = "User " & txtUserLogin.Text.Trim() & " added"
 
                         Else
-                            MsgBox("Password must be at least " & GlobalSettings.GetSetting("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
+                            MsgBox("Password must be at least " & GlobalSettings.GetSettingValue("MinPwdLen") & " characters", MsgBoxStyle.Exclamation, MSGBOX_TITLE)
                         End If
                     Else
                         MsgBox("Mis-matched passwords", MsgBoxStyle.Exclamation, MSGBOX_TITLE)

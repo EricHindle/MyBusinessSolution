@@ -85,10 +85,10 @@
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.0.0</Value>
     </Setting>
-    <Setting Name="showProduct" Type="System.Boolean" Scope="User">
+    <Setting Name="ShowProduct" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="showTask" Type="System.Boolean" Scope="User">
+    <Setting Name="ShowTask" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="InvHdrFont" Type="System.Drawing.Font" Scope="User">
@@ -227,6 +227,15 @@
       <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="MainSplitterDist3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="SuppSplitterDist2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="MainSplitterDist4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="MainSplitterDist5" Type="System.String" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
   </Settings>

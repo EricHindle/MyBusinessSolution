@@ -83,7 +83,7 @@ Public Class FrmChangePassword
     Private Sub BtnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
         DialogResult = DialogResult.Cancel
         Try
-            Dim iMinLen As Integer = GlobalSettings.getSetting("MinPwdLen")
+            Dim iMinLen As Integer = GlobalSettings.GetSettingValue("MinPwdLen")
             If AuthenticationUtil.isPasswordOK(txtCurrent.Text.Trim) Then
                 'Changing password
                 If txtNew.Text.Trim.Length < iMinLen Then

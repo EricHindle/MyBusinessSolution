@@ -161,7 +161,6 @@ Public Class FrmJobTemplates
     Private Sub PicAddTemplate_Click(sender As Object, e As EventArgs) Handles PicAddTemplate.Click
         If Not String.IsNullOrWhiteSpace(TxtTmplName.Text) Then
 
-
             Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing _
                                             .WithTemplateName(TxtTmplName.Text) _
                                             .WithTemplateDescription(TxtTmplDesc.Text) _
