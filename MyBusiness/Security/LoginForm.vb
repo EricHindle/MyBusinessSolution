@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
 Public Class LoginForm
 
@@ -136,7 +137,7 @@ Public Class LoginForm
                 setFolderNames()
                 createMissingFolders()
                 LogUtil.LogFolder = sLogFolder
-                LogUtil.StartLogging()
+                LogUtil.StartLogging(My.Settings.netwyrksConnectionString)
                 If isVersionChange Then
                     LogUtil.Info("Version change " & oldVersion & " >> " & My.Settings.Version)
                     LogUtil.Info("Upgrading settings")

@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 '
-
+Imports HindlewareLib.Domain.Objects
 Public Class SupplierBuilder
     Private _supplierId As Integer
     Private _supplierName As String

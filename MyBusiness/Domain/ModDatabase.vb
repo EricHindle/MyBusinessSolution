@@ -7,6 +7,7 @@
 
 Imports System.Data.Common
 Imports System.IO
+Imports HindlewareLib.Logging
 
 Module ModDatabase
 #Region "constants"

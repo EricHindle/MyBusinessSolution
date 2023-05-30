@@ -4,8 +4,8 @@
 '
 ' Author Eric Hindle
 '
-
 Imports System.IO
+Imports HindlewareLib.Logging
 
 Public Class FrmBackup
 #Region "variables"

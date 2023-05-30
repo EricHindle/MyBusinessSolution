@@ -6,6 +6,7 @@
 '
 
 Imports System.Runtime.InteropServices
+Imports HindlewareLib.Logging
 ''' <summary>
 ''' Alert Form 
 ''' </summary>

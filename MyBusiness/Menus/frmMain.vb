@@ -6,9 +6,10 @@
 '
 
 Imports System.Text
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
 Imports i00SpellCheck
-Imports MyBusiness.NetwyrksErrorCodes
-
 Public Class FrmMain
 #Region "constants"
     Private Const CALLBACK_MESSAGE As String = vbCrLf & "Callback requested for "

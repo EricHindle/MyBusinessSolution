@@ -60,6 +60,9 @@
     <Reference Include="Google.Protobuf, Version=3.21.2.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.21.2\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="HindlewareLib">
+      <HintPath>..\..\HindlewareLib\bin\Release\HindlewareLib.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\InstallationFiles\itextsharp.dll</HintPath>
@@ -181,13 +184,10 @@
     <Compile Include="Domain\Builders\TemplateBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateProductBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateTaskBuilder.vb" />
-    <Compile Include="Domain\Objects\Address.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
     <Compile Include="Domain\Objects\AuditEntry.vb" />
     <Compile Include="Domain\Objects\Customer.vb" />
     <Compile Include="Domain\Builders\CustomerBuilder.vb" />
-    <Compile Include="Domain\Objects\Email.vb" />
-    <Compile Include="Domain\Builders\EmailBuilder.vb" />
     <Compile Include="Domain\FrmBackup.designer.vb">
       <DependentUpon>FrmBackup.vb</DependentUpon>
     </Compile>
@@ -291,7 +291,6 @@
     <Compile Include="Callback\FrmAlert.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logging\LogUtil.vb" />
     <Compile Include="Menus\FrmMain.designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
@@ -418,7 +417,6 @@
     <Compile Include="Utilities\ITextManager.vb" />
     <Compile Include="Utilities\netwyrksCommon.vb" />
     <Compile Include="Utilities\netwyrksConstants.vb" />
-    <Compile Include="Utilities\NetwyrksErrorCodes.vb" />
     <Compile Include="Utilities\PrintUtil.vb" />
     <Compile Include="Utilities\ReportDefinition.vb" />
     <Compile Include="Utilities\RichTextBoxEx.vb">
@@ -559,6 +557,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="app.config" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

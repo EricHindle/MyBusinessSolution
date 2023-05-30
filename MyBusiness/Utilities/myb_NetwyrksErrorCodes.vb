@@ -5,7 +5,7 @@
 ' Author Eric Hindle
 '
 
-Public Class NetwyrksErrorCodes
+Public Class myb_NetwyrksErrorCodes
 #Region "Error Codes"
     Public Enum SystemModule
         UNKNOWN = 0

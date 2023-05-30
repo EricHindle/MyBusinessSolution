@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
 Public Class FrmSelectTemplate
     Private IsLoading As Boolean

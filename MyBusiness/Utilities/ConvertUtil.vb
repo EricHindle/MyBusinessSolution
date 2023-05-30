@@ -6,6 +6,7 @@
 '
 
 Imports System.Text
+Imports HindlewareLib.Logging
 
 ''' <summary>
 ''' The ConvertUtil module contains the procedures used to perform various conversion operations.

@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
 Imports i00SpellCheck
 ''' <summary>

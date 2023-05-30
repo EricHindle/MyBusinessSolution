@@ -9,6 +9,7 @@ Imports System.IO
 Imports System.Net
 Imports System.Net.Mail
 Imports System.Net.Mime
+Imports HindlewareLib.Logging
 
 ''' <summary>
 ''' Utility for sending emails

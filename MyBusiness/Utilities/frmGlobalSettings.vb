@@ -4,8 +4,8 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
-Imports System.Runtime.InteropServices.ComTypes
 ''' <summary>
 ''' Form to maintain Global Settings values
 ''' </summary>

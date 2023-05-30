@@ -4,8 +4,8 @@
 '
 ' Author Eric Hindle
 '
-
 Imports System.Text
+Imports HindlewareLib.Domain.Objects
 ''' <summary>
 ''' Object to describe a customer
 ''' </summary>

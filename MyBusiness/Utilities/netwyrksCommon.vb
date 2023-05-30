@@ -6,7 +6,8 @@
 '
 
 Imports System.IO
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Globally available functions

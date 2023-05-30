@@ -6,7 +6,9 @@
 '
 
 Imports System.IO
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
+
 Public Class FileTransformer
 #Region "variables"
     Private Shared fsInput As System.IO.Stream

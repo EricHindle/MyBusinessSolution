@@ -6,6 +6,7 @@
 '
 
 Imports System.Security.Cryptography
+Imports HindlewareLib.Logging
 
 Public Class FrmUserControl
     Const MSGBOX_TITLE As String = "Remove Error"

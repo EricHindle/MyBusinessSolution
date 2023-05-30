@@ -4,8 +4,9 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.NetwyrksErrorCodes
 Public Class FrmPasswordRequest
 
 #Region "Constants"

@@ -4,8 +4,8 @@
 '
 ' Author Eric Hindle
 '
-
 Imports System.Text
+Imports HindlewareLib.Domain.Objects
 
 Public Class Supplier
     Private _supplierId As Integer

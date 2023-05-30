@@ -6,6 +6,7 @@
 '
 
 Imports System.IO
+Imports HindlewareLib.Logging
 
 Public Class FrmInstallationTest
 #Region "Contants"

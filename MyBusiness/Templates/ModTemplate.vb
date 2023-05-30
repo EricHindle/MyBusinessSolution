@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
 Module ModTemplate
     Public Function SelectATemplate() As Template

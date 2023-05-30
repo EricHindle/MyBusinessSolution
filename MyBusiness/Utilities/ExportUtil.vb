@@ -7,6 +7,7 @@
 
 Imports System.IO
 Imports System.Text
+Imports HindlewareLib.Logging
 
 Public Class ExportUtil
     Private Const NEWLINE As String = Chr(27) & " :"

@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Logging
 
 Public Class FrmSupplier
 #Region "variables"
@@ -88,7 +90,7 @@ Public Class FrmSupplier
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If IsValidSupplier() Then
-            Dim _suppAdd As Address = AddressBuilder.AnAddress _
+            Dim _suppAdd As Address = HindlewareLib.Domain.Builders.AddressBuilder.AnAddress _
                                                     .WithAddress1(txtSuppAddr1.Text.Trim) _
                                                     .WithAddress2(txtSuppAddr2.Text.Trim) _
                                                     .WithAddress3(txtSuppAddr3.Text.Trim) _

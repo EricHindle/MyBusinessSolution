@@ -4,8 +4,9 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.NetwyrksErrorCodes
 ''' <summary>
 ''' Form to create and amend user diary entries
 ''' </summary>

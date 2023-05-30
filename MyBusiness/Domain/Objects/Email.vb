@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Net.Mail
 Imports System.Text
 
 ''' <summary>
@@ -16,19 +17,19 @@ Public Class Email
     Private _ccAddress As List(Of String)
     Private _subject As String
     Private _body As List(Of String)
-    Private _attachment As String
-    Private _format As String
+    Private _attachments As List(Of Attachment)
+    Private _format As Boolean
     Private _readReceipt As Boolean
-    Private _deliveryReport As Boolean
+    Private _deliveryReport As DeliveryNotificationOptions
     Private _fromAddress As String
     Private _sendDate As Date
     Private _transport As String
-    Private _importance As String
+    Private _priority As String
     Public Sub New(ByVal pToAddress As List(Of String),
                    ByVal pCcAddress As List(Of String),
                    ByVal pSubject As String,
                    ByVal pBody As List(Of String),
-                   ByVal pAttachment As String,
+                   ByVal pAttachments As List(Of Attachment),
                    ByVal pFormat As String,
                    ByVal pReadReceipt As Boolean,
                    ByVal pDeliveryReport As Boolean,
@@ -41,31 +42,31 @@ Public Class Email
         _ccAddress = pCcAddress
         _subject = pSubject
         _body = pBody
-        _attachment = pAttachment
+        _attachments = pAttachments
         _format = pFormat
         _readReceipt = pReadReceipt
         _deliveryReport = pDeliveryReport
         _fromAddress = pFromaddress
         _sendDate = pSendDate
         _transport = pTransport
-        _importance = pImportance
+        _priority = pImportance
     End Sub
-    Public Property Importance() As String
+    Public Property Priority() As String
         Get
-            Return _importance
+            Return _priority
         End Get
         Set(ByVal value As String)
-            _importance = value
+            _priority = value
         End Set
     End Property
-    Public Property Transport() As String
-        Get
-            Return _transport
-        End Get
-        Set(ByVal value As String)
-            _transport = value
-        End Set
-    End Property
+    'Public Property Transport() As String
+    '    Get
+    '        Return _transport
+    '    End Get
+    '    Set(ByVal value As String)
+    '        _transport = value
+    '    End Set
+    'End Property
     Public Property SendDate() As Date
         Get
             Return _sendDate
@@ -82,36 +83,36 @@ Public Class Email
             _fromAddress = value
         End Set
     End Property
-    Public Property DeliveryReport() As Boolean
+    Public Property DeliveryReport() As DeliveryNotificationOptions
         Get
             Return _deliveryReport
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As DeliveryNotificationOptions)
             _deliveryReport = value
         End Set
     End Property
-    Public Property ReadReceipt() As Boolean
-        Get
-            Return _readReceipt
-        End Get
-        Set(ByVal value As Boolean)
-            _readReceipt = value
-        End Set
-    End Property
-    Public Property BodyFormat() As String
+    'Public Property ReadReceipt() As Boolean
+    '    Get
+    '        Return _readReceipt
+    '    End Get
+    '    Set(ByVal value As Boolean)
+    '        _readReceipt = value
+    '    End Set
+    'End Property
+    Public Property IsHtml() As Boolean
         Get
             Return _format
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Boolean)
             _format = value
         End Set
     End Property
-    Public Property Attachment() As String
+    Public Property Attachments() As List(Of Attachment)
         Get
-            Return _attachment
+            Return _attachments
         End Get
-        Set(ByVal value As String)
-            _attachment = value
+        Set(ByVal value As List(Of Attachment))
+            _attachments = value
         End Set
     End Property
     Public Property ToAddress() As List(Of String)
@@ -163,7 +164,7 @@ Public Class Email
             .Append("], body=[") _
             .Append(String.Join("\", _body.ToArray)) _
             .Append("], attachment=[") _
-            .Append(_attachment) _
+            .Append(_attachments) _
             .Append("], format=[") _
             .Append(_format) _
             .Append("], fromAddress=[") _
@@ -173,7 +174,7 @@ Public Class Email
             .Append("], transport=[") _
             .Append(_transport) _
             .Append("], importance=[") _
-            .Append(_importance) _
+            .Append(_priority) _
             .Append("]]")
         Return sb.ToString
     End Function

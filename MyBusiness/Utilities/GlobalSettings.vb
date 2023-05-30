@@ -5,7 +5,8 @@
 ' Author Eric Hindle
 '
 
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Options and settings to be used by all users

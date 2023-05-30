@@ -4,7 +4,7 @@
 '
 ' Author Eric Hindle
 '
-
+Imports HindlewareLib.Domain.Objects
 ''' <summary>
 ''' Customer builder  (see https://en.wikipedia.org/wiki/Builder_pattern)
 ''' </summary>
@@ -105,7 +105,7 @@ Public Class CustomerBuilder
     Public Function StartingWithNothing() As CustomerBuilder
         _custId = 0
         _custName = ""
-        _custAddress = AddressBuilder.AnAddress.StartingWithNothing().Build
+        _custAddress = HindlewareLib.Domain.Builders.AddressBuilder.AnAddress.StartingWithNothing().Build
         _phone = ""
         _email = ""
         _discount = 0.0

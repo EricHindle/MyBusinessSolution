@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Net.Mail
 ''' <summary>
 ''' Email object builder
 ''' </summary>
@@ -14,7 +15,7 @@ Public Class EmailBuilder
     Private _ccAddress As List(Of String)
     Private _subject As String
     Private _body As List(Of String)
-    Private _attachment As String
+    Private _attachments As List(Of Attachment)
     Private _format As String
     Private _deliveryReport As Boolean
     Private _readReceipt As Boolean
@@ -38,14 +39,14 @@ Public Class EmailBuilder
         _ccAddress = pEmail.CcAddress
         _subject = pEmail.Subject
         _body = pEmail.Body
-        _attachment = pEmail.Attachment
-        _format = pEmail.BodyFormat
+        _attachments = pEmail.Attachments
+        _format = pEmail.IsHtml
         _deliveryReport = pEmail.DeliveryReport
-        _readReceipt = pEmail.ReadReceipt
+        '       _readReceipt = pEmail.ReadReceipt
         _fromAddress = pEmail.Fromaddress
         _sendDate = pEmail.SendDate
-        _transport = pEmail.Transport
-        _importance = pEmail.Importance
+        '       _transport = pEmail.Transport
+        _importance = pEmail.Priority
         Return Me
     End Function
 
@@ -59,7 +60,7 @@ Public Class EmailBuilder
         _ccAddress = New List(Of String)
         _subject = ""
         _body = New List(Of String)
-        _attachment = Nothing
+        _attachments = Nothing
         _format = "H"
         _deliveryReport = False
         _readReceipt = False
@@ -110,8 +111,8 @@ Public Class EmailBuilder
         _body = pBody
         Return Me
     End Function
-    Public Function WithAttachment(ByVal pAttachment As String) As EmailBuilder
-        _attachment = pAttachment
+    Public Function WithAttachment(ByVal pAttachments As List(Of Attachment)) As EmailBuilder
+        _attachments = pAttachments
         Return Me
     End Function
     Public Function WithFormat(ByVal pFormat As String) As EmailBuilder
@@ -144,7 +145,7 @@ Public Class EmailBuilder
                          _ccAddress,
                          _subject,
                          _body,
-                         _attachment,
+                         _attachments,
                          _format,
                          _readReceipt,
                          _deliveryReport,

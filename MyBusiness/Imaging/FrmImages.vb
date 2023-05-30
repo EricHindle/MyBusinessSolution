@@ -6,6 +6,7 @@
 '
 
 Imports System.ComponentModel
+Imports HindlewareLib.Logging
 
 Public Class FrmImages
 #Region "properties"

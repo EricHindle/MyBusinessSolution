@@ -5,7 +5,9 @@
 ' Author Eric Hindle
 '
 
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
+
 ''' <summary>
 ''' Form to display and maintain the user diary
 ''' </summary>

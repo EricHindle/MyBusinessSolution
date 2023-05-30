@@ -5,6 +5,9 @@
 ' Author Eric Hindle
 '
 
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Logging
+
 Public Class FrmCustomerMaint
 #Region "variables"
     Private _currentCustomer As Customer = Nothing
@@ -88,7 +91,7 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         LogUtil.Info("Updating", Name)
-        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
+        Dim _custAdd As Address = HindlewareLib.Domain.Builders.AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
         With _currentCustomer
             _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
                 .WithCustName(txtCustName.Text.Trim()) _

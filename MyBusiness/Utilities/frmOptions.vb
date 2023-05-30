@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports HindlewareLib.Logging
 
 ''' <summary>
 ''' Allows user to set personal preferences

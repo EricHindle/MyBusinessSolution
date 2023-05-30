@@ -8,7 +8,8 @@
 Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
-Imports MyBusiness.NetwyrksErrorCodes
+Imports HindlewareLib.Logging
+Imports HindlewareLib.NetwyrksErrorCodes
 
 ''' <summary>
 ''' Useful encryption/decryption functions
