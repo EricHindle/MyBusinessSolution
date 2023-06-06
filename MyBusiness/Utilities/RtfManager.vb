@@ -313,7 +313,7 @@ Public Class RtfManager
                             Dim cellVal As String = ""
                             If oCell.Value IsNot Nothing AndAlso oCell.Value IsNot DBNull.Value Then
                                 If maxColWidth > 0 Then
-                                    aCellValues = PrintUtil.wrapString(CStr(oCell.Value).Trim, maxColWidth)
+                                    aCellValues = HindlewareLib.Utilities.PrintUtil.WrapString(CStr(oCell.Value).Trim, maxColWidth)
                                     If aCellValues.Count > 0 Then
                                         cellVal = aCellValues(0)
                                     End If

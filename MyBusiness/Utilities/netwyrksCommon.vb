@@ -260,7 +260,7 @@ Public Module netwyrksCommon
     End Sub
 #End Region
 #Region "Utilities"
-    Public prtUtil As New PrintUtil
+    Public prtUtil As New HindlewareLib.Utilities.PrintUtil
     Public Sub SetRowColours(ByRef oRow As DataGridViewRow, ByVal forecolor As Color, ByVal backcolor As Color)
         oRow.DefaultCellStyle.ForeColor = forecolor
         oRow.DefaultCellStyle.BackColor = backcolor

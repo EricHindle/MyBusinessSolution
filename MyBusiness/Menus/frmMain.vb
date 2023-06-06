@@ -9,6 +9,7 @@ Imports System.Text
 Imports HindlewareLib.Domain.Objects
 Imports HindlewareLib.Logging
 Imports HindlewareLib.NetwyrksErrorCodes
+Imports HindlewareLib.Popup
 Imports i00SpellCheck
 Public Class FrmMain
 #Region "constants"
@@ -415,12 +416,12 @@ Public Class FrmMain
 #Region "Callback reminders"
     Sub StartReminderCheck()
         LogUtil.Info("Callback Reminder check ========== Start", MyBase.Name)
-        If FrmAlert.openForms.Count = 0 Then
+        If FrmPopup.openForms.Count = 0 Then
             Dim userId As Integer = currentUser.UserId
             LogUtil.Info("Finding call back reminders", MyBase.Name)
             Dim _alertList As List(Of Reminder) = GetCallBackAlerts(userId)
             LogUtil.Info(_alertList.Count & " reminders", MyBase.Name)
-            FrmAlert.openForms.Clear()
+            FrmPopup.openForms.Clear()
             For Each _alert As Reminder In _alertList
                 ShowAlertMessage(_alert)
             Next
@@ -433,7 +434,7 @@ Public Class FrmMain
     Private Sub ShowAlertMessage(_alert As Reminder)
         Dim callBackTime As String = Format(_alert.ReminderDate, "HH:mm")
         Dim subject As String = _alert.Subject
-        Dim slice As New FrmAlert(My.Settings.alertDuration * 1000, subject & CALLBACK_MESSAGE & callBackTime) With {
+        Dim slice As New FrmPopup(My.Settings.alertDuration * 1000, subject & CALLBACK_MESSAGE & callBackTime) With {
         .Height = 80,
         .Guid = Guid.NewGuid
     }

@@ -37,7 +37,7 @@ Public Class ImageUtil
 #End Region
 #Region "functions"
     Public Shared Sub PrintImage(ByVal imageFile As String)
-        Dim oPrintUtil As New PrintUtil
+        Dim oPrintUtil As New HindlewareLib.Utilities.PrintUtil
         oPrintUtil.PreparePrintDocument()
         oPrintUtil.printSelectedImage(imageFile, 2)
     End Sub

@@ -144,7 +144,6 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\FormAnimator.vb" />
     <Compile Include="Customer\FrmCustomerMaint.designer.vb">
       <DependentUpon>FrmCustomerMaint.vb</DependentUpon>
     </Compile>
@@ -218,8 +217,6 @@
     <Compile Include="Domain\Builders\ProductBuilder.vb" />
     <Compile Include="Domain\Objects\Reminder.vb" />
     <Compile Include="Domain\Builders\ReminderBuilder.vb" />
-    <Compile Include="Domain\Objects\ReportColumn.vb" />
-    <Compile Include="Domain\Builders\ReportColumnBuilder.vb" />
     <Compile Include="Domain\Objects\Supplier.vb" />
     <Compile Include="Domain\Builders\SupplierBuilder.vb" />
     <Compile Include="Domain\Objects\Task.vb" />
@@ -283,12 +280,6 @@
       <DependentUpon>FrmLogViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="Logging\FrmLogViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Callback\FrmAlert.designer.vb">
-      <DependentUpon>FrmAlert.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Callback\FrmAlert.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menus\FrmMain.designer.vb">
@@ -374,9 +365,7 @@
     </Compile>
     <Compile Include="Templates\ModTemplate.vb" />
     <Compile Include="Utilities\ConvertUtil.vb" />
-    <Compile Include="Utilities\ExportUtil.vb" />
     <Compile Include="Utilities\FileTransformer.vb" />
-    <Compile Include="Utilities\FileUtil.vb" />
     <Compile Include="Utilities\FrmAbout.designer.vb">
       <DependentUpon>FrmAbout.vb</DependentUpon>
     </Compile>
@@ -417,14 +406,7 @@
     <Compile Include="Utilities\ITextManager.vb" />
     <Compile Include="Utilities\netwyrksCommon.vb" />
     <Compile Include="Utilities\netwyrksConstants.vb" />
-    <Compile Include="Utilities\PrintUtil.vb" />
-    <Compile Include="Utilities\ReportDefinition.vb" />
-    <Compile Include="Utilities\RichTextBoxEx.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utilities\RtfManager.vb" />
     <Compile Include="Utilities\SpellCheckUtil.vb" />
-    <Compile Include="Utilities\TextUtil.vb" />
     <Compile Include="Utilities\ValidationUtil.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -486,9 +468,6 @@
     <EmbeddedResource Include="Logging\FrmLogViewer.resx">
       <DependentUpon>FrmLogViewer.vb</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Callback\FrmAlert.resx">
-      <DependentUpon>FrmAlert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>

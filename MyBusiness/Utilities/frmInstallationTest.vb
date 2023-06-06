@@ -7,7 +7,7 @@
 
 Imports System.IO
 Imports HindlewareLib.Logging
-
+Imports HindlewareLib.Utilities
 Public Class FrmInstallationTest
 #Region "Contants"
     Private Const FORM_NAME As String = "installation Test"
