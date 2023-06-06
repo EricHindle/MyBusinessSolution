@@ -236,7 +236,6 @@
     <Compile Include="Imaging\FrmImages.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Imaging\ImageUtil.vb" />
     <Compile Include="Invoice\ClsRtfConstants.vb" />
     <Compile Include="Invoice\DlgViewInvoice.Designer.vb">
       <DependentUpon>DlgViewInvoice.vb</DependentUpon>
