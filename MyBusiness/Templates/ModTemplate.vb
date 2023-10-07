@@ -25,9 +25,9 @@ Module ModTemplate
             Dim _templateProducts As List(Of FullTemplateProduct) = GetTemplateProductViewbyTemplateId(pTemplate.TemplateId)
             Dim _templateTasks As List(Of TemplateTask) = GetTemplateTasksForTemplate(pTemplate.TemplateId)
             Dim _products As New List(Of JobProduct)
-            Dim _tasks As New List(Of Task)
+            Dim _tasks As New List(Of JobTask)
             For Each _templateTask As TemplateTask In _templateTasks
-                _tasks.Add(TaskBuilder.ATask.StartingWith(_templateTask) _
+                _tasks.Add(JobTaskBuilder.AJobTask.StartingWith(_templateTask) _
                                             .WithTaskJobId(_jobId) _
                                             .Build)
             Next
@@ -41,9 +41,9 @@ Module ModTemplate
 
         End If
     End Sub
-    Private Sub AddTasksToJob(pTaskList As List(Of Task))
-        For Each oTask As Task In pTaskList
-            InsertTask(oTask)
+    Private Sub AddTasksToJob(pTaskList As List(Of JobTask))
+        For Each oTask As JobTask In pTaskList
+            InsertJobTask(oTask)
         Next
     End Sub
     Private Sub AddJobProductsToJob(_jobProductList As List(Of JobProduct))

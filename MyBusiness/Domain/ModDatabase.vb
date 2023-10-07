@@ -28,6 +28,8 @@ Module ModDatabase
     Private ReadOnly oJobProductTable As New netwyrksDataSet.job_productDataTable
     Private ReadOnly oProductTa As New netwyrksDataSetTableAdapters.productTableAdapter
     Private ReadOnly oProductTable As New netwyrksDataSet.productDataTable
+    Private ReadOnly oJobTaskTa As New netwyrksDataSetTableAdapters.job_taskTableAdapter
+    Private ReadOnly oJobTaskTable As New netwyrksDataSet.job_taskDataTable
     Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
     Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
     Private ReadOnly oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
@@ -242,29 +244,29 @@ Module ModDatabase
         Return _ct
     End Function
     Public Function DeleteAllJob(pJobId As Integer) As Boolean
-        DeleteTasksByJob(pJobId)
+        DeleteJobTasksByJob(pJobId)
         DeleteJobProductsByJob(pJobId)
         DeleteJob(pJobId)
     End Function
 #End Region
-#Region "task"
-    Public Function GetTaskById(pId As Integer) As Task
-        Dim _task As Task = TaskBuilder.ATask.StartingWithNothing.Build
+#Region "jobtask"
+    Public Function GetJobTaskById(pId As Integer) As JobTask
+        Dim _task As JobTask = JobTaskBuilder.AJobTask.StartingWithNothing.Build
         Try
-            oTaskTa.FillById(oTaskTable, pId)
-            If oTaskTable.Rows.Count = 1 Then
-                _task = TaskBuilder.ATask.StartingWith(oTaskTable.Rows(0)).Build
+            oJobTaskTa.FillById(oJobTaskTable, pId)
+            If oJobTaskTable.Rows.Count = 1 Then
+                _task = JobTaskBuilder.AJobTask.StartingWith(oJobTaskTable.Rows(0)).Build
             End If
         Catch ex As Exception
 
         End Try
         Return _task
     End Function
-    Public Function GetTasksByJob(_jobId As Integer) As List(Of Task)
-        Dim _taskList As New List(Of Task)
+    Public Function GetJobTasksByJob(_jobId As Integer) As List(Of JobTask)
+        Dim _taskList As New List(Of JobTask)
         Try
-            oTaskTa.FillByJob(oTaskTable, _jobId)
-            For Each oRow As netwyrksDataSet.taskRow In oTaskTable.Rows
+            oJobTaskTa.FillByJob(oJobTaskTable, _jobId)
+            For Each oRow As netwyrksDataSet.job_taskRow In oJobTaskTable.Rows
                 _taskList.Add(TaskBuilder.ATask.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
@@ -272,41 +274,41 @@ Module ModDatabase
         End Try
         Return _taskList
     End Function
-    Public Function InsertTask(_task As Task) As Integer
+    Public Function InsertJobTask(_task As JobTask) As Integer
         Dim _taskId As Integer = -1
         Try
             With _task
-                _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
+                _taskId = oJobTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
             End With
         Catch ex As DbException
             DisplayException(ex, "Exception inserting task", MODULE_NAME)
         End Try
         Return _taskId
     End Function
-    Public Function UpdateTask(_task As Task) As Integer
+    Public Function UpdateJobTask(_task As JobTask) As Integer
         Dim _rtn As Integer = 0
         Try
             With _task
-                _rtn = oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, .TaskId)
+                _rtn = oJobTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, .TaskId)
             End With
         Catch ex As DbException
             DisplayException(ex, "Exception updating task", MODULE_NAME)
         End Try
         Return _rtn
     End Function
-    Public Function DeleteTask(pTaskId As Integer) As Integer
+    Public Function DeleteJobTask(pTaskId As Integer) As Integer
         Dim _ct As Integer
         Try
-            _ct = oTaskTa.DeleteTask(pTaskId)
+            _ct = oJobTaskTa.DeleteTask(pTaskId)
         Catch ex As Exception
             DisplayException(ex, "Exception deleting task", MODULE_NAME)
         End Try
         Return _ct
     End Function
-    Public Function DeleteTasksByJob(pJobId As Integer) As Boolean
+    Public Function DeleteJobTasksByJob(pJobId As Integer) As Boolean
         Dim isOk As Boolean = True
         Try
-            oTaskTa.DeleteTasksByJob(pJobId)
+            oJobTaskTa.DeleteTasksByJob(pJobId)
         Catch ex As Exception
             isOk = False
         End Try
@@ -654,6 +656,51 @@ Module ModDatabase
         Return _ct
     End Function
 #End Region
+#Region "task"
+    Public Function GetTaskById(pId As Integer) As Task
+        Dim _task As Task = TaskBuilder.ATask.StartingWithNothing.Build
+        Try
+            oTaskTa.FillById(oTaskTable, pId)
+            If oTaskTable.Rows.Count = 1 Then
+                _task = TaskBuilder.ATask.StartingWith(oTaskTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return _task
+    End Function
+    Public Function InsertTask(_task As JobTask) As Integer
+        Dim _taskId As Integer = -1
+        Try
+            With _task
+                _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription)
+            End With
+        Catch ex As DbException
+            DisplayException(ex, "Exception inserting task", MODULE_NAME)
+        End Try
+        Return _taskId
+    End Function
+    Public Function UpdateTask(_task As JobTask) As Integer
+        Dim _rtn As Integer = 0
+        Try
+            With _task
+                _rtn = oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskId)
+            End With
+        Catch ex As DbException
+            DisplayException(ex, "Exception updating task", MODULE_NAME)
+        End Try
+        Return _rtn
+    End Function
+    Public Function DeleteTask(pTaskId As Integer) As Integer
+        Dim _ct As Integer
+        Try
+            _ct = oTaskTa.DeleteTask(pTaskId)
+        Catch ex As Exception
+            DisplayException(ex, "Exception deleting task", MODULE_NAME)
+        End Try
+        Return _ct
+    End Function
+#End Region
 #Region "diary"
     Public Function GetAllReminders() As List(Of Reminder)
         Dim _remList As New List(Of Reminder)
@@ -778,6 +825,7 @@ Module ModDatabase
         tableList.Add("Job")
         tableList.Add("Job_Product")
         tableList.Add("Job_Image")
+        tableList.Add("Job_Task")
         tableList.Add("Product")
         tableList.Add("Supplier")
         tableList.Add("Task")
@@ -859,7 +907,7 @@ Module ModDatabase
                     End If
                 Case "Task"
                     If RecreateTable(oTaskTable, datapath) Then
-                        oTaskTa.TruncateTasks()
+                        oTaskTa.TruncateTask()
                         oTaskTa.Update(oTaskTable)
                         rowCount = oTaskTa.GetData.Rows.Count
                     End If
@@ -867,19 +915,19 @@ Module ModDatabase
                     If RecreateTable(oTemplateTable, datapath) Then
                         oTemplateTa.TruncateTemplate()
                         oTemplateTa.Update(oTemplateTable)
-                        rowCount = oTaskTa.GetData.Rows.Count
+                        rowCount = oJobTaskTa.GetData.Rows.Count
                     End If
                 Case "Template_Task"
                     If RecreateTable(oTemplateTaskTable, datapath) Then
                         oTemplateTaskTa.TruncateTemplateTask()
                         oTemplateTaskTa.Update(oTemplateTaskTable)
-                        rowCount = oTaskTa.GetData.Rows.Count
+                        rowCount = oJobTaskTa.GetData.Rows.Count
                     End If
                 Case "Template_Product"
                     If RecreateTable(oTemplateProductTable, datapath) Then
                         oTemplateProductTa.TruncateTemplateProduct()
                         oTemplateProductTa.Update(oTemplateProductTable)
-                        rowCount = oTaskTa.GetData.Rows.Count
+                        rowCount = oJobTaskTa.GetData.Rows.Count
                     End If
             End Select
         Catch ex As Exception
@@ -931,6 +979,10 @@ Module ModDatabase
     Public Function GetJob_ProductTable() As netwyrksDataSet.job_productDataTable
         LogUtil.Info("Getting Job_Product table", MODULE_NAME)
         Return oJobProductTa.GetData()
+    End Function
+    Public Function GetJob_TaskTable() As netwyrksDataSet.job_taskDataTable
+        LogUtil.Info("Getting Job_Task table", MODULE_NAME)
+        Return oJobTaskTa.GetData()
     End Function
     Public Function GetJob_ImageTable() As netwyrksDataSet.job_imageDataTable
         LogUtil.Info("Getting Job_Image table", MODULE_NAME)

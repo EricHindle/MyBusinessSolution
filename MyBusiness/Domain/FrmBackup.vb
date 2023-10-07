@@ -233,6 +233,8 @@ Public Class FrmBackup
                         BackupTable(GetSupplierTable)
                     Case "Task"
                         BackupTable(GetTaskTable)
+                    Case "Job_Task"
+                        BackupTable(GetJob_TaskTable)
                     Case "User"
                         BackupTable(GetUserTable)
                     Case "Template"

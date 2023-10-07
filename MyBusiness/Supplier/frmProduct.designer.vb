@@ -47,6 +47,7 @@ Partial Class FrmProduct
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtnOpenWeb = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -290,12 +291,24 @@ Partial Class FrmProduct
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the product")
         '
+        'BtnOpenWeb
+        '
+        Me.BtnOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnOpenWeb.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnOpenWeb.Location = New System.Drawing.Point(422, 87)
+        Me.BtnOpenWeb.Name = "BtnOpenWeb"
+        Me.BtnOpenWeb.Size = New System.Drawing.Size(95, 23)
+        Me.BtnOpenWeb.TabIndex = 107
+        Me.BtnOpenWeb.Text = "Open website"
+        Me.BtnOpenWeb.UseVisualStyleBackColor = True
+        '
         'FrmProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(537, 534)
+        Me.Controls.Add(Me.BtnOpenWeb)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.NudPurchaseUnits)
@@ -359,4 +372,5 @@ Partial Class FrmProduct
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents BtnOpenWeb As Button
 End Class

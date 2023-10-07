@@ -7,10 +7,9 @@
 
 Imports System.Text
 
-Public Class Task
+Public Class JobTask
     Private _taskId As Integer
-    Private _taskName As String
-    Private _taskDescription As String
+    Private _task As Task
     Private _taskCost As Decimal
     Private _taskCompleted As Boolean
     Private _taskCreated As DateTime
@@ -101,20 +100,12 @@ Public Class Task
             _taskCost = value
         End Set
     End Property
-    Public Property TaskDescription() As String
+    Public Property Task() As Task
         Get
-            Return _taskDescription
+            Return _task
         End Get
-        Set(ByVal value As String)
-            _taskDescription = value
-        End Set
-    End Property
-    Public Property TaskName() As String
-        Get
-            Return _taskName
-        End Get
-        Set(ByVal value As String)
-            _taskName = value
+        Set(ByVal value As Task)
+            _task = value
         End Set
     End Property
     Public Property TaskId() As Integer
@@ -126,9 +117,8 @@ Public Class Task
         End Set
     End Property
     Public Sub New(ByVal pTaskId As Integer,
+                   ByVal pTask As Task,
                     ByVal pTaskJob As Integer,
-                    ByVal pTaskName As String,
-                    ByVal pTaskDescription As String,
                     ByVal pTaskCost As Decimal,
                     ByVal pTaskHours As Decimal,
                     ByVal pTaskStartDue As DateTime?,
@@ -138,10 +128,9 @@ Public Class Task
                     ByVal pTaskChanged As DateTime?,
                     ByVal pTaskTaxable As Boolean,
                     ByVal pTaskTaxRate As Decimal?)
+        _task = pTask
         _taskId = pTaskId
         _taskJobId = pTaskJob
-        _taskName = pTaskName
-        _taskDescription = pTaskDescription
         _taskCost = pTaskCost
         _taskHours = pTaskHours
         _taskStartDue = pTaskStartDue
@@ -158,9 +147,9 @@ Public Class Task
         .Append("taskId=[") _
         .Append(_taskId) _
         .Append("], name=[") _
-        .Append(_taskName) _
+        .Append(_task.TaskName) _
         .Append("], description=[") _
-        .Append(_taskDescription) _
+        .Append(_task.TaskDescription) _
         .Append("], jobId=[") _
         .Append(_taskJobId) _
         .Append("], cost=[") _
@@ -185,7 +174,7 @@ Public Class Task
         Return sb.ToString
     End Function
     Public Function AuditString() As String
-        Return ToString
+        Return ToString()
     End Function
 End Class
 

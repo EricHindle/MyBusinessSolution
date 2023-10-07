@@ -459,7 +459,7 @@ Public Class FrmMain
             Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
             Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
             Dim _jobproducts As List(Of JobProduct) = GetJobProductByJob(_job)
-            Dim _jobtasks As List(Of Task) = GetTasksByJob(_job.JobId)
+            Dim _jobtasks As List(Of JobTask) = GetJobTasksByJob(_job.JobId)
             Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing _
                                                         .WithTemplateName(_job.JobName) _
                                                         .WithTemplateDescription(_job.JobDescription) _
@@ -472,7 +472,7 @@ Public Class FrmMain
                                                                                                         .Build
                     Dim _tmplProdId As Integer = InsertTemplateProduct(_templateproduct)
                 Next
-                For Each _task As Task In _jobtasks
+                For Each _task As JobTask In _jobtasks
                     Dim _templatetask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_task) _
                                                                                             .WithTemplateId(_templateId) _
                                                                                             .Build

@@ -93,7 +93,7 @@ Public Class FrmJobMaint
             _taskForm.Template = Nothing
             _taskForm.ShowDialog()
         End Using
-        FillTaskList(_currentJobId)
+        FillJobTaskList(_currentJobId)
     End Sub
     Private Sub BtnMaintProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
         LogUtil.Debug("Maintain products on job", Name)
@@ -128,12 +128,12 @@ Public Class FrmJobMaint
             Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
-                If DeleteTask(_taskId) = 1 Then
+                If DeleteJobTask(_taskId) = 1 Then
                     ShowStatus(LblStatus, "Task removed OK", Name, True)
                 Else
                     ShowStatus(LblStatus, "Task NOT removed", Name, True)
                 End If
-                FillTaskList(_currentJobId)
+                FillJobTaskList(_currentJobId)
             End If
         End If
     End Sub
@@ -205,7 +205,7 @@ Public Class FrmJobMaint
         End With
         LogUtil.Debug("Existing job " & _currentJobId, Name)
         SplitContainer1.Visible = True
-        FillTaskList(_currentJobId)
+        FillJobTaskList(_currentJobId)
         FillProductList(_currentJobId)
     End Sub
     Private Sub ClearJobdetails()
@@ -237,17 +237,15 @@ Public Class FrmJobMaint
 
         End Try
     End Sub
-    Private Sub FillTaskList(ByVal pJobId As Integer)
+    Private Sub FillJobTaskList(ByVal pJobId As Integer)
         dgvTasks.Rows.Clear()
-        Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-        Dim oTaskTable As New netwyrksDataSet.taskDataTable
         LogUtil.Debug("Finding tasks", Name)
-        Dim _taskList As List(Of Task) = GetTasksByJob(pJobId)
+        Dim _taskList As List(Of JobTask) = GetJobTasksByJob(pJobId)
         FillTableFromTaskList(_taskList)
     End Sub
 
-    Private Sub FillTableFromTaskList(_taskList As List(Of Task))
-        For Each oTask As Task In _taskList
+    Private Sub FillTableFromTaskList(_taskList As List(Of JobTask))
+        For Each oTask As JobTask In _taskList
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
             tRow.Cells(taskId.Name).Value = oTask.TaskId
             tRow.Cells(taskName.Name).Value = oTask.TaskName

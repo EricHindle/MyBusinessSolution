@@ -30,7 +30,7 @@ Public Class TemplateTaskBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTask As Task) As TemplateTaskBuilder
+    Public Function StartingWith(ByVal oTask As JobTask) As TemplateTaskBuilder
         With oTask
             _taskId = .TaskId
             _name = .TaskName

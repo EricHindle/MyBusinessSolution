@@ -13,8 +13,8 @@ Public Class FrmTask
     Private _tmplId As Integer
     Private _template As Template
     Private _taskId As Integer
-    Private _task As Task
-    Private _newTask As Task
+    Private _task As JobTask
+    Private _newTask As JobTask
     Private _templateTask As TemplateTask
     Private _newTemplateTask As TemplateTask
     Private IsLoading As Boolean = False
@@ -67,13 +67,13 @@ Public Class FrmTask
             MsgBox("Error: no job selected", MsgBoxStyle.Exclamation, "Error")
             Close()
         End If
-        _task = TaskBuilder.ATask.StartingWithNothing.Build
+        _task = JobTaskBuilder.AJobTask.StartingWithNothing.Build
         If _taskId > 0 Then
             If IsTemplateTask Then
                 _templateTask = GetTemplateTaskById(_taskId)
                 FillTaskDetails(_templateTask)
             Else
-                _task = GetTaskById(_taskId)
+                _task = GetJobTaskById(_taskId)
                 FillTaskDetails(_task)
             End If
         Else
@@ -93,9 +93,7 @@ Public Class FrmTask
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If Not String.IsNullOrEmpty(txtTaskName.Text) Then
-            _newTask = TaskBuilder.ATask.WithTaskName(txtTaskName.Text.Trim) _
-                                        .WithTaskDescription(rtbDescription.Text.Trim) _
-                                        .WithTaskCost(nudCost.Value) _
+            _newTask = JobTaskBuilder.AJobTask.WithTaskCost(nudCost.Value) _
                                         .WithTaskTime(nudTime.Value) _
                                         .WithTaskCompleted(chkCompleted.Checked) _
                                         .WithTaskStartDue(dtpStartDate.Value.Date) _
@@ -121,7 +119,7 @@ Public Class FrmTask
     End Sub
 #End Region
 #Region "subroutines"
-    Private Sub FillTaskDetails(pTask As Task)
+    Private Sub FillTaskDetails(pTask As JobTask)
         With pTask
             txtTaskName.Text = .TaskName
             rtbDescription.Text = .TaskDescription
@@ -136,7 +134,7 @@ Public Class FrmTask
         LogUtil.Info("Existing task " & _taskId, Name)
     End Sub
     Private Sub FillTaskDetails(pTemplateTask As TemplateTask)
-        FillTaskDetails(TaskBuilder.ATask.StartingWith(pTemplateTask).Build)
+        FillTaskDetails(JobTaskBuilder.AJobTask.StartingWith(pTemplateTask).Build)
     End Sub
     Private Sub ClearTaskDetails()
         txtTaskName.Text = ""
@@ -159,7 +157,7 @@ Public Class FrmTask
             If IsTemplateTask Then
                 _ct = UpdateTemplateTask(_newTemplateTask)
             Else
-                _ct = UpdateTask(_newTask)
+                _ct = UpdateJobTask(_newTask)
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, .TaskId, AuditUtil.AuditableAction.create, _task.ToString, .ToString)
             End If
             If _ct = 1 Then
@@ -179,7 +177,7 @@ Public Class FrmTask
             If IsTemplateTask Then
                 _taskId = InsertTemplatetask(_newTemplateTask)
             Else
-                _taskId = InsertTask(_newTask)
+                _taskId = InsertJobTask(_newTask)
             End If
             If _taskId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)

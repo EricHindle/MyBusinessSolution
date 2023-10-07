@@ -27,8 +27,8 @@ Public Class InvoicePrinter
     Private ReadOnly _companyAddress As String() = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_ADDRESS).Split("/")
     Private ReadOnly _companyEmail As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_EMAIL)
     Private ReadOnly _companyUrl As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_WEBSITE)
-    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-    Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
+    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.job_taskTableAdapter
+    Private ReadOnly oTaskTable As New netwyrksDataSet.job_taskDataTable
     Private ReadOnly oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
     Private ReadOnly oJobProductTable As New netwyrksDataSet.job_productDataTable
     Private Const LEFT_MARGIN As Integer = 32
@@ -109,8 +109,8 @@ Public Class InvoicePrinter
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax rate"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
-        For Each oTaskRow As netwyrksDataSet.taskRow In oTaskTable.Rows
-            Dim oTask As Task = TaskBuilder.ATask.StartingWith(oTaskRow).Build
+        For Each oTaskRow As netwyrksDataSet.job_taskRow In oTaskTable.Rows
+            Dim oTask As JobTask = JobTaskBuilder.AJobTask.StartingWith(oTaskRow).Build
             Dim taxAmount As Decimal = CalcTax(oTask.TaskCost, oTask.TaskTaxRate)
             _taskTable.AddCell(_iTextManager.BuildTableCell(oTask.TaskDescription, Element.ALIGN_LEFT))
             _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oTask.TaskCost, AMOUNT_FORMAT)))

@@ -120,7 +120,7 @@ Public Class FrmProduct
         nudPrice.Value = 0
         chkTaxable.Checked = False
         nudTaxRate.Value = 0.0
-        NudPurchaseUnits.Value = 0
+        NudPurchaseUnits.Value = 1
     End Sub
     Private Sub Newproduct()
         LogUtil.Info("New product", MyBase.Name())
@@ -166,5 +166,11 @@ Public Class FrmProduct
         End If
         Return isOk
     End Function
+
+    Private Sub BtnOpenWeb_Click(sender As Object, e As EventArgs) Handles BtnOpenWeb.Click
+        If Not String.IsNullOrWhiteSpace(_supplier.SupplierUrl) Then
+            Process.Start(_supplier.SupplierUrl.ToString)
+        End If
+    End Sub
 #End Region
 End Class

@@ -180,6 +180,7 @@
     <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
     <Compile Include="Domain\Builders\JobImageBuilder.vb" />
     <Compile Include="Domain\Builders\JobProductBuilder.vb" />
+    <Compile Include="Domain\Builders\JobTaskBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateProductBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateTaskBuilder.vb" />
@@ -210,6 +211,7 @@
     </Compile>
     <Compile Include="Domain\Objects\JobImage.vb" />
     <Compile Include="Domain\Objects\JobProduct.vb" />
+    <Compile Include="Domain\Objects\Task .vb" />
     <Compile Include="Domain\Objects\Template.vb" />
     <Compile Include="Domain\Objects\TemplateProduct.vb" />
     <Compile Include="Domain\Objects\TemplateTask.vb" />
@@ -219,7 +221,7 @@
     <Compile Include="Domain\Builders\ReminderBuilder.vb" />
     <Compile Include="Domain\Objects\Supplier.vb" />
     <Compile Include="Domain\Builders\SupplierBuilder.vb" />
-    <Compile Include="Domain\Objects\Task.vb" />
+    <Compile Include="Domain\Objects\JobTask.vb" />
     <Compile Include="Domain\Builders\TaskBuilder.vb" />
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
@@ -447,6 +449,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmJobMaint.resx">
       <DependentUpon>FrmJobMaint.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmJobProducts.resx">
       <DependentUpon>FrmJobProducts.vb</DependentUpon>
@@ -535,7 +538,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".editorconfig" />
+    <None Include="Utilities\.editorconfig" />
     <None Include="app.config" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
