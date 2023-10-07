@@ -89,6 +89,7 @@ Public Class FrmJobMaint
     Private Sub BtnAddTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddTask.Click
         LogUtil.Debug("Add task to job", Name)
         Using _taskForm As New FrmTask
+            _taskForm.JobTaskId = -1
             _taskForm.CustomerJob = _job
             _taskForm.Template = Nothing
             _taskForm.ShowDialog()
@@ -144,7 +145,7 @@ Public Class FrmJobMaint
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             Using _taskForm As New FrmTask
                 _taskForm.CustomerJob = _job
-                _taskForm.TaskId = _taskId
+                _taskForm.JobTaskId = _taskId
                 _taskForm.Template = Nothing
                 _taskForm.ShowDialog()
             End Using
@@ -247,8 +248,8 @@ Public Class FrmJobMaint
     Private Sub FillTableFromTaskList(_taskList As List(Of JobTask))
         For Each oTask As JobTask In _taskList
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
-            tRow.Cells(taskId.Name).Value = oTask.TaskId
-            tRow.Cells(taskName.Name).Value = oTask.TaskName
+            tRow.Cells(taskId.Name).Value = oTask.JobTaskId
+            tRow.Cells(taskName.Name).Value = oTask.Task.TaskName
             Dim _startDue As String = Format(oTask.TaskStartDue, "dd/MM/yyyy")
             tRow.Cells(taskStartDue.Name).Value = _startDue
             tRow.Cells(taskHours.Name).Value = oTask.TaskHours

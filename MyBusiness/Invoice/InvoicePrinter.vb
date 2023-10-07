@@ -110,15 +110,15 @@ Public Class InvoicePrinter
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
         For Each oTaskRow As netwyrksDataSet.job_taskRow In oTaskTable.Rows
-            Dim oTask As JobTask = JobTaskBuilder.AJobTask.StartingWith(oTaskRow).Build
-            Dim taxAmount As Decimal = CalcTax(oTask.TaskCost, oTask.TaskTaxRate)
-            _taskTable.AddCell(_iTextManager.BuildTableCell(oTask.TaskDescription, Element.ALIGN_LEFT))
-            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oTask.TaskCost, AMOUNT_FORMAT)))
-            totalPrice += oTask.TaskCost
-            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oTask.TaskTaxRate, RATE_FORMAT)))
+            Dim oJobTask As JobTask = JobTaskBuilder.AJobTask.StartingWith(oTaskRow).Build
+            Dim taxAmount As Decimal = CalcTax(oJobTask.TaskCost, oJobTask.TaskTaxRate)
+            _taskTable.AddCell(_iTextManager.BuildTableCell(oJobTask.Task.TaskDescription, Element.ALIGN_LEFT))
+            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oJobTask.TaskCost, AMOUNT_FORMAT)))
+            totalPrice += oJobTask.TaskCost
+            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oJobTask.TaskTaxRate, RATE_FORMAT)))
             _taskTable.AddCell(_iTextManager.BuildTableCell(Format(taxAmount, AMOUNT_FORMAT)))
             totalTax += taxAmount
-            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oTask.TaskCost + taxAmount, AMOUNT_FORMAT)))
+            _taskTable.AddCell(_iTextManager.BuildTableCell(Format(oJobTask.TaskCost + taxAmount, AMOUNT_FORMAT)))
         Next
         _document.Add(_taskTable)
         Dim _productTable As iTextSharp.text.pdf.PdfPTable = _iTextManager.BuildTable(New Single() {30, 10, 15, 15, 12, 18})

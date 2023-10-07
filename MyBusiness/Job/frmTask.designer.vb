@@ -48,6 +48,9 @@ Partial Class FrmTask
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtnAdd = New System.Windows.Forms.Button()
+        Me.CbTask = New System.Windows.Forms.ComboBox()
+        Me.PicAdd = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTime, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +58,7 @@ Partial Class FrmTask
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -86,7 +90,7 @@ Partial Class FrmTask
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(29, 85)
+        Me.Label1.Location = New System.Drawing.Point(29, 75)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(30, 17)
@@ -96,7 +100,7 @@ Partial Class FrmTask
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(29, 133)
+        Me.Label2.Location = New System.Drawing.Point(31, 118)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(74, 17)
         Me.Label2.TabIndex = 10
@@ -209,9 +213,9 @@ Partial Class FrmTask
         Me.txtTaskName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTaskName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTaskName.Location = New System.Drawing.Point(110, 130)
+        Me.txtTaskName.Location = New System.Drawing.Point(111, 115)
         Me.txtTaskName.Name = "txtTaskName"
-        Me.txtTaskName.Size = New System.Drawing.Size(398, 27)
+        Me.txtTaskName.Size = New System.Drawing.Size(357, 27)
         Me.txtTaskName.TabIndex = 0
         '
         'StatusStrip1
@@ -239,7 +243,7 @@ Partial Class FrmTask
         '
         Me.lblJobName.AutoSize = True
         Me.lblJobName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblJobName.Location = New System.Drawing.Point(107, 85)
+        Me.lblJobName.Location = New System.Drawing.Point(107, 75)
         Me.lblJobName.Name = "lblJobName"
         Me.lblJobName.Size = New System.Drawing.Size(78, 19)
         Me.lblJobName.TabIndex = 9
@@ -300,11 +304,46 @@ Partial Class FrmTask
         Me.PicClose.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
         '
+        'BtnAdd
+        '
+        Me.BtnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAdd.BackgroundImage = Global.MyBusiness.My.Resources.Resources.addany
+        Me.BtnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BtnAdd.Location = New System.Drawing.Point(480, 112)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(29, 29)
+        Me.BtnAdd.TabIndex = 106
+        Me.ToolTip1.SetToolTip(Me.BtnAdd, "Create a new task")
+        Me.BtnAdd.UseVisualStyleBackColor = True
+        '
+        'CbTask
+        '
+        Me.CbTask.FormattingEnabled = True
+        Me.CbTask.Location = New System.Drawing.Point(111, 115)
+        Me.CbTask.Name = "CbTask"
+        Me.CbTask.Size = New System.Drawing.Size(341, 24)
+        Me.CbTask.TabIndex = 105
+        '
+        'PicAdd
+        '
+        Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.InitialImage = Nothing
+        Me.PicAdd.Location = New System.Drawing.Point(11, 489)
+        Me.PicAdd.Name = "PicAdd"
+        Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.TabIndex = 107
+        Me.PicAdd.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add the new task")
+        '
         'FrmTask
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(537, 566)
+        Me.Controls.Add(Me.PicAdd)
+        Me.Controls.Add(Me.BtnAdd)
+        Me.Controls.Add(Me.CbTask)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.chkTaxable)
@@ -340,6 +379,7 @@ Partial Class FrmTask
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -369,4 +409,7 @@ Partial Class FrmTask
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents CbTask As ComboBox
+    Friend WithEvents BtnAdd As Button
+    Friend WithEvents PicAdd As PictureBox
 End Class

@@ -567,6 +567,7 @@
     <None Include="Images\add.png" />
     <None Include="Images\addrem.png" />
     <None Include="Images\adddiary.png" />
+    <None Include="Images\addany.png" />
     <Content Include="Images\anubis.ico" />
     <Content Include="Images\anubis_button.png" />
     <Content Include="Images\anubis_icon_2.jpg" />

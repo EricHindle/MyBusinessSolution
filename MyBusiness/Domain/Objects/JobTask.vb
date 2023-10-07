@@ -8,18 +8,51 @@
 Imports System.Text
 
 Public Class JobTask
+    Private _jobtaskId As Integer
     Private _taskId As Integer
+    Private _jobId As Integer
     Private _task As Task
     Private _taskCost As Decimal
     Private _taskCompleted As Boolean
     Private _taskCreated As DateTime
     Private _taskChanged As DateTime?
-    Private _taskJobId As Integer
     Private _taskHours As Decimal
     Private _taskStarted As Boolean
     Private _taskStartDue As DateTime?
     Private _taskTaxable As Boolean
     Private _taskTaxRate As Decimal?
+    Public Property JobTaskId() As Integer
+        Get
+            Return _jobtaskId
+        End Get
+        Set(ByVal value As Integer)
+            _jobtaskId = value
+        End Set
+    End Property
+    Public Property Task() As Task
+        Get
+            Return _task
+        End Get
+        Set(ByVal value As Task)
+            _task = value
+        End Set
+    End Property
+    Public Property TaskId() As Integer
+        Get
+            Return _taskId
+        End Get
+        Set(ByVal value As Integer)
+            _taskId = value
+        End Set
+    End Property
+    Public Property JobId() As Integer
+        Get
+            Return _jobId
+        End Get
+        Set(ByVal value As Integer)
+            _jobId = value
+        End Set
+    End Property
     Public Property TaskTaxRate() As Decimal?
         Get
             Return _taskTaxRate
@@ -60,14 +93,6 @@ Public Class JobTask
             _taskHours = value
         End Set
     End Property
-    Public Property TaskJobId() As Integer
-        Get
-            Return _taskJobId
-        End Get
-        Set(ByVal value As Integer)
-            _taskJobId = value
-        End Set
-    End Property
     Public Property TaskChanged() As DateTime?
         Get
             Return _taskChanged
@@ -100,22 +125,6 @@ Public Class JobTask
             _taskCost = value
         End Set
     End Property
-    Public Property Task() As Task
-        Get
-            Return _task
-        End Get
-        Set(ByVal value As Task)
-            _task = value
-        End Set
-    End Property
-    Public Property TaskId() As Integer
-        Get
-            Return _taskId
-        End Get
-        Set(ByVal value As Integer)
-            _taskId = value
-        End Set
-    End Property
     Public Sub New(ByVal pTaskId As Integer,
                    ByVal pTask As Task,
                     ByVal pTaskJob As Integer,
@@ -129,8 +138,9 @@ Public Class JobTask
                     ByVal pTaskTaxable As Boolean,
                     ByVal pTaskTaxRate As Decimal?)
         _task = pTask
-        _taskId = pTaskId
-        _taskJobId = pTaskJob
+        _jobtaskId = pTaskId
+        _jobId = pTaskJob
+        _taskId = pTask.TaskId
         _taskCost = pTaskCost
         _taskHours = pTaskHours
         _taskStartDue = pTaskStartDue
@@ -144,14 +154,16 @@ Public Class JobTask
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
         sb _
-        .Append("taskId=[") _
+        .Append("jobtaskId=[") _
+        .Append(_jobtaskId) _
+        .Append("], taskid=[") _
         .Append(_taskId) _
         .Append("], name=[") _
         .Append(_task.TaskName) _
         .Append("], description=[") _
         .Append(_task.TaskDescription) _
         .Append("], jobId=[") _
-        .Append(_taskJobId) _
+        .Append(_jobId) _
         .Append("], cost=[") _
         .Append(_taskCost) _
         .Append("], hours=[") _

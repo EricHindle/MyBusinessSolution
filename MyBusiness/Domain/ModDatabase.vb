@@ -267,7 +267,7 @@ Module ModDatabase
         Try
             oJobTaskTa.FillByJob(oJobTaskTable, _jobId)
             For Each oRow As netwyrksDataSet.job_taskRow In oJobTaskTable.Rows
-                _taskList.Add(TaskBuilder.ATask.StartingWith(oRow).Build)
+                _taskList.Add(JobTaskBuilder.AJobTask.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
             DisplayException(ex, "Exception getting tasks", MODULE_NAME)
@@ -278,7 +278,7 @@ Module ModDatabase
         Dim _taskId As Integer = -1
         Try
             With _task
-                _taskId = oJobTaskTa.InsertTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate)
+                _taskId = oJobTaskTa.InsertJobTask(.TaskId, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate)
             End With
         Catch ex As DbException
             DisplayException(ex, "Exception inserting task", MODULE_NAME)
@@ -289,7 +289,7 @@ Module ModDatabase
         Dim _rtn As Integer = 0
         Try
             With _task
-                _rtn = oJobTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .TaskJobId, .IsTaskTaxable, .TaskTaxRate, .TaskId)
+                _rtn = oJobTaskTa.UpdateJobTask(.TaskId, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate, .JobTaskId)
             End With
         Catch ex As DbException
             DisplayException(ex, "Exception updating task", MODULE_NAME)
@@ -299,7 +299,7 @@ Module ModDatabase
     Public Function DeleteJobTask(pTaskId As Integer) As Integer
         Dim _ct As Integer
         Try
-            _ct = oJobTaskTa.DeleteTask(pTaskId)
+            _ct = oJobTaskTa.DeleteJobTask(pTaskId)
         Catch ex As Exception
             DisplayException(ex, "Exception deleting task", MODULE_NAME)
         End Try
@@ -308,7 +308,7 @@ Module ModDatabase
     Public Function DeleteJobTasksByJob(pJobId As Integer) As Boolean
         Dim isOk As Boolean = True
         Try
-            oJobTaskTa.DeleteTasksByJob(pJobId)
+            oJobTaskTa.DeleteJobTasksByJob(pJobId)
         Catch ex As Exception
             isOk = False
         End Try
@@ -669,7 +669,7 @@ Module ModDatabase
         End Try
         Return _task
     End Function
-    Public Function InsertTask(_task As JobTask) As Integer
+    Public Function InsertTask(_task As Task) As Integer
         Dim _taskId As Integer = -1
         Try
             With _task
@@ -680,7 +680,7 @@ Module ModDatabase
         End Try
         Return _taskId
     End Function
-    Public Function UpdateTask(_task As JobTask) As Integer
+    Public Function UpdateTask(_task As Task) As Integer
         Dim _rtn As Integer = 0
         Try
             With _task

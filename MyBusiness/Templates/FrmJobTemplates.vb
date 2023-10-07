@@ -242,7 +242,7 @@ Public Class FrmJobTemplates
             Using _taskForm As New FrmTask
                 _taskForm.CustomerJob = Nothing
                 _taskForm.Template = SelectedTemplate
-                _taskForm.TaskId = _taskId
+                _taskForm.JobTaskId = _taskId
                 _taskForm.ShowDialog()
             End Using
             LoadTaskTable()

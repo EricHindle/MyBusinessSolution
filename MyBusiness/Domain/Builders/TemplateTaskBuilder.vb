@@ -32,9 +32,9 @@ Public Class TemplateTaskBuilder
     End Function
     Public Function StartingWith(ByVal oTask As JobTask) As TemplateTaskBuilder
         With oTask
-            _taskId = .TaskId
-            _name = .TaskName
-            _description = .TaskDescription
+            _taskId = .JobTaskId
+            _name = .Task.TaskName
+            _description = .Task.TaskDescription
             _cost = .TaskCost
             _hours = .TaskHours
             _taxable = .IsTaskTaxable
