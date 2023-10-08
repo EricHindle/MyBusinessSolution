@@ -21,7 +21,6 @@ Module ModTemplate
         Dim _newJob As Job = JobBuilder.AJob.StartingWithNothing.WithJobName(pTemplate.TemplateName).WithJobUser(currentUser.UserId).Build
         Dim _jobId = CreateJob(_newJob)
         If _jobId > 0 Then
-
             Dim _templateProducts As List(Of FullTemplateProduct) = GetTemplateProductViewbyTemplateId(pTemplate.TemplateId)
             Dim _templateTasks As List(Of TemplateTask) = GetTemplateTasksForTemplate(pTemplate.TemplateId)
             Dim _products As New List(Of JobProduct)

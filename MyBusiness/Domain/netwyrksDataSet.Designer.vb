@@ -6248,21 +6248,19 @@ Partial Public Class netwyrksDataSet
     Partial Public Class template_taskDataTable
         Inherits Global.System.Data.TypedTableBase(Of template_taskRow)
         
-        Private columntask_id As Global.System.Data.DataColumn
-        
-        Private columntask_name As Global.System.Data.DataColumn
-        
-        Private columntask_description As Global.System.Data.DataColumn
-        
-        Private columntask_cost As Global.System.Data.DataColumn
-        
-        Private columntask_time As Global.System.Data.DataColumn
-        
-        Private columntask_tax_rate As Global.System.Data.DataColumn
-        
-        Private columntask_taxable As Global.System.Data.DataColumn
-        
         Private columntemplate_id As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_id As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_task_id As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_cost As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_time As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_tax_rate As Global.System.Data.DataColumn
+        
+        Private columntemplatetask_taxable As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -6301,65 +6299,57 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_idColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_id
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_nameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_name
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_descriptionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_description
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_costColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_cost
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_timeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_time
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_tax_rateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_tax_rate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_taxableColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_taxable
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property template_idColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columntemplate_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_task_idColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_task_id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_costColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_cost
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_timeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_time
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_tax_rateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_tax_rate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property templatetask_taxableColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntemplatetask_taxable
             End Get
         End Property
         
@@ -6400,9 +6390,9 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addtemplate_taskRow(ByVal task_name As String, ByVal task_description As String, ByVal task_cost As Decimal, ByVal task_time As Decimal, ByVal task_tax_rate As Decimal, ByVal task_taxable As SByte, ByVal template_id As Integer) As template_taskRow
+        Public Overloads Function Addtemplate_taskRow(ByVal template_id As Integer, ByVal templatetask_task_id As Integer, ByVal templatetask_cost As Decimal, ByVal templatetask_time As Decimal, ByVal templatetask_tax_rate As Decimal, ByVal templatetask_taxable As SByte) As template_taskRow
             Dim rowtemplate_taskRow As template_taskRow = CType(Me.NewRow,template_taskRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, task_name, task_description, task_cost, task_time, task_tax_rate, task_taxable, template_id}
+            Dim columnValuesArray() As Object = New Object() {template_id, Nothing, templatetask_task_id, templatetask_cost, templatetask_time, templatetask_tax_rate, templatetask_taxable}
             rowtemplate_taskRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowtemplate_taskRow)
             Return rowtemplate_taskRow
@@ -6410,8 +6400,8 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function FindBytask_id(ByVal task_id As Integer) As template_taskRow
-            Return CType(Me.Rows.Find(New Object() {task_id}),template_taskRow)
+        Public Function FindBytemplatetask_id(ByVal templatetask_id As Integer) As template_taskRow
+            Return CType(Me.Rows.Find(New Object() {templatetask_id}),template_taskRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6431,50 +6421,44 @@ Partial Public Class netwyrksDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columntask_id = MyBase.Columns("task_id")
-            Me.columntask_name = MyBase.Columns("task_name")
-            Me.columntask_description = MyBase.Columns("task_description")
-            Me.columntask_cost = MyBase.Columns("task_cost")
-            Me.columntask_time = MyBase.Columns("task_time")
-            Me.columntask_tax_rate = MyBase.Columns("task_tax_rate")
-            Me.columntask_taxable = MyBase.Columns("task_taxable")
             Me.columntemplate_id = MyBase.Columns("template_id")
+            Me.columntemplatetask_id = MyBase.Columns("templatetask_id")
+            Me.columntemplatetask_task_id = MyBase.Columns("templatetask_task_id")
+            Me.columntemplatetask_cost = MyBase.Columns("templatetask_cost")
+            Me.columntemplatetask_time = MyBase.Columns("templatetask_time")
+            Me.columntemplatetask_tax_rate = MyBase.Columns("templatetask_tax_rate")
+            Me.columntemplatetask_taxable = MyBase.Columns("templatetask_taxable")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitClass()
-            Me.columntask_id = New Global.System.Data.DataColumn("task_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_id)
-            Me.columntask_name = New Global.System.Data.DataColumn("task_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_name)
-            Me.columntask_description = New Global.System.Data.DataColumn("task_description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_description)
-            Me.columntask_cost = New Global.System.Data.DataColumn("task_cost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_cost)
-            Me.columntask_time = New Global.System.Data.DataColumn("task_time", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_time)
-            Me.columntask_tax_rate = New Global.System.Data.DataColumn("task_tax_rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_tax_rate)
-            Me.columntask_taxable = New Global.System.Data.DataColumn("task_taxable", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_taxable)
             Me.columntemplate_id = New Global.System.Data.DataColumn("template_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntemplate_id)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columntask_id}, true))
-            Me.columntask_id.AutoIncrement = true
-            Me.columntask_id.AutoIncrementSeed = -1
-            Me.columntask_id.AutoIncrementStep = -1
-            Me.columntask_id.AllowDBNull = false
-            Me.columntask_id.Unique = true
-            Me.columntask_name.AllowDBNull = false
-            Me.columntask_name.MaxLength = 45
-            Me.columntask_description.AllowDBNull = false
-            Me.columntask_description.MaxLength = 65535
-            Me.columntask_cost.AllowDBNull = false
-            Me.columntask_time.AllowDBNull = false
-            Me.columntask_tax_rate.AllowDBNull = false
-            Me.columntask_taxable.AllowDBNull = false
+            Me.columntemplatetask_id = New Global.System.Data.DataColumn("templatetask_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_id)
+            Me.columntemplatetask_task_id = New Global.System.Data.DataColumn("templatetask_task_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_task_id)
+            Me.columntemplatetask_cost = New Global.System.Data.DataColumn("templatetask_cost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_cost)
+            Me.columntemplatetask_time = New Global.System.Data.DataColumn("templatetask_time", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_time)
+            Me.columntemplatetask_tax_rate = New Global.System.Data.DataColumn("templatetask_tax_rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_tax_rate)
+            Me.columntemplatetask_taxable = New Global.System.Data.DataColumn("templatetask_taxable", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntemplatetask_taxable)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columntemplatetask_id}, true))
             Me.columntemplate_id.AllowDBNull = false
+            Me.columntemplatetask_id.AutoIncrement = true
+            Me.columntemplatetask_id.AutoIncrementSeed = -1
+            Me.columntemplatetask_id.AutoIncrementStep = -1
+            Me.columntemplatetask_id.AllowDBNull = false
+            Me.columntemplatetask_id.Unique = true
+            Me.columntemplatetask_task_id.AllowDBNull = false
+            Me.columntemplatetask_cost.AllowDBNull = false
+            Me.columntemplatetask_time.AllowDBNull = false
+            Me.columntemplatetask_tax_rate.AllowDBNull = false
+            Me.columntemplatetask_taxable.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12103,89 +12087,78 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_id() As Integer
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_idColumn),Integer)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_idColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_name() As String
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_nameColumn),String)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_nameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_description() As String
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_descriptionColumn),String)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_descriptionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_cost() As Decimal
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_costColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_costColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_time() As Decimal
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_timeColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_timeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_tax_rate() As Decimal
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_tax_rateColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_tax_rateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_taxable() As SByte
-            Get
-                Return CType(Me(Me.tabletemplate_task.task_taxableColumn),SByte)
-            End Get
-            Set
-                Me(Me.tabletemplate_task.task_taxableColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property template_id() As Integer
             Get
                 Return CType(Me(Me.tabletemplate_task.template_idColumn),Integer)
             End Get
             Set
                 Me(Me.tabletemplate_task.template_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_id() As Integer
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_task_id() As Integer
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_task_idColumn),Integer)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_task_idColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_cost() As Decimal
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_costColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_costColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_time() As Decimal
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_timeColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_timeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_tax_rate() As Decimal
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_tax_rateColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_tax_rateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property templatetask_taxable() As SByte
+            Get
+                Return CType(Me(Me.tabletemplate_task.templatetask_taxableColumn),SByte)
+            End Get
+            Set
+                Me(Me.tabletemplate_task.templatetask_taxableColumn) = value
             End Set
         End Property
     End Class
@@ -28534,51 +28507,51 @@ Namespace netwyrksDataSetTableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "template_task"
-            tableMapping.ColumnMappings.Add("task_id", "task_id")
-            tableMapping.ColumnMappings.Add("task_name", "task_name")
-            tableMapping.ColumnMappings.Add("task_description", "task_description")
-            tableMapping.ColumnMappings.Add("task_cost", "task_cost")
-            tableMapping.ColumnMappings.Add("task_time", "task_time")
-            tableMapping.ColumnMappings.Add("task_tax_rate", "task_tax_rate")
-            tableMapping.ColumnMappings.Add("task_taxable", "task_taxable")
             tableMapping.ColumnMappings.Add("template_id", "template_id")
+            tableMapping.ColumnMappings.Add("templatetask_id", "templatetask_id")
+            tableMapping.ColumnMappings.Add("templatetask_task_id", "templatetask_task_id")
+            tableMapping.ColumnMappings.Add("templatetask_cost", "templatetask_cost")
+            tableMapping.ColumnMappings.Add("templatetask_time", "templatetask_time")
+            tableMapping.ColumnMappings.Add("templatetask_tax_rate", "templatetask_tax_rate")
+            tableMapping.ColumnMappings.Add("templatetask_taxable", "templatetask_taxable")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `template_task` WHERE ((`task_id` = @p1) AND (`task_name` = @p2) AND "& _ 
-                "(`task_cost` = @p3) AND (`task_time` = @p4) AND (`task_tax_rate` = @p5) AND (`ta"& _ 
-                "sk_taxable` = @p6) AND (`template_id` = @p7))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `template_task` WHERE ((`template_id` = @p1) AND (`templatetask_cost`"& _ 
+                " = @p2) AND (`templatetask_id` = @p3) AND (`templatetask_task_id` = @p4) AND (`t"& _ 
+                "emplatetask_tax_rate` = @p5) AND (`templatetask_taxable` = @p6) AND (`templateta"& _ 
+                "sk_time` = @p7))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_id"
+            param.SourceColumn = "template_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p2"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p3"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p4"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28586,7 +28559,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28594,44 +28567,45 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p7"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "template_id"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `template_task` (`task_name`, `task_description`, `task_cost`, `task_"& _ 
-                "time`, `task_tax_rate`, `task_taxable`, `template_id`) VALUES (@p1, @p2, @p3, @p"& _ 
-                "4, @p5, @p6, @p7)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `template_task` (`template_id`, `templatetask_cost`, `templatetask_ta"& _ 
+                "sk_id`, `templatetask_tax_rate`, `templatetask_taxable`, `templatetask_time`) VA"& _ 
+                "LUES (@p1, @p2, @p3, @p4, @p5, @p6)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "template_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p2"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_description"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p3"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28639,62 +28613,56 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p5"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p6"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "template_id"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `template_task` SET `task_name` = @p1, `task_description` = @p2, `task_cos"& _ 
-                "t` = @p3, `task_time` = @p4, `task_tax_rate` = @p5, `task_taxable` = @p6, `templ"& _ 
-                "ate_id` = @p7 WHERE ((`task_id` = @p8) AND (`task_name` = @p9) AND (`task_cost` "& _ 
-                "= @p10) AND (`task_time` = @p11) AND (`task_tax_rate` = @p12) AND (`task_taxable"& _ 
-                "` = @p13) AND (`template_id` = @p14))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `template_task` SET `template_id` = @p1, `templatetask_cost` = @p2, `templ"& _ 
+                "atetask_task_id` = @p3, `templatetask_tax_rate` = @p4, `templatetask_taxable` = "& _ 
+                "@p5, `templatetask_time` = @p6 WHERE ((`template_id` = @p7) AND (`templatetask_c"& _ 
+                "ost` = @p8) AND (`templatetask_id` = @p9) AND (`templatetask_task_id` = @p10) AN"& _ 
+                "D (`templatetask_tax_rate` = @p11) AND (`templatetask_taxable` = @p12) AND (`tem"& _ 
+                "platetask_time` = @p13))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "template_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p2"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_description"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p3"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28702,23 +28670,23 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p5"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p6"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28727,30 +28695,30 @@ Namespace netwyrksDataSetTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "template_id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p8"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_id"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p9"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "templatetask_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p10"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28758,31 +28726,23 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p12"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p13"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p14"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "template_id"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -28800,19 +28760,19 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate,"& _ 
-                " task_taxable, template_id FROM template_task"
+            Me._commandCollection(0).CommandText = "SELECT template_id, templatetask_cost, templatetask_id, templatetask_task_id, tem"& _ 
+                "platetask_tax_rate, templatetask_taxable, templatetask_time FROM template_task"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "DELETE FROM template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (task_id = @Id)"
+            Me._commandCollection(1).CommandText = "DELETE FROM template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (templatetask_id = @Id)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Id"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_id"
+            param.SourceColumn = "templatetask_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
@@ -28829,21 +28789,23 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(param)
             Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate,"& _ 
-                " task_taxable, template_id FROM template_task WHERE (task_id = @Id)"
+            Me._commandCollection(3).CommandText = "SELECT template_id, templatetask_cost, templatetask_id, templatetask_task_id, tem"& _ 
+                "platetask_tax_rate, templatetask_taxable, templatetask_time FROM template_task W"& _ 
+                "HERE (templatetask_id = @Id)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Id"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_id"
+            param.SourceColumn = "templatetask_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(3).Parameters.Add(param)
             Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT task_id, task_name, task_description, task_cost, task_time, task_tax_rate,"& _ 
-                " task_taxable, template_id FROM template_task WHERE (template_id = @templateId)"
+            Me._commandCollection(4).CommandText = "SELECT template_id, templatetask_cost, templatetask_id, templatetask_task_id, tem"& _ 
+                "platetask_tax_rate, templatetask_taxable, templatetask_time FROM template_task W"& _ 
+                "HERE (template_id = @templateId)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@templateId"
@@ -28855,27 +28817,17 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(4).Parameters.Add(param)
             Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "INSERT INTO template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (task_name, task_description,"& _ 
-                " task_cost, task_time, template_id, task_tax_rate, task_taxable)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        "& _ 
-                "(@name, @description, @cost, @time, @templateId, @taxrate, @taxable);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                  SELECT        LAST_INSERT_ID()"
+            Me._commandCollection(5).CommandText = "INSERT INTO template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (templatetask_task_id, templa"& _ 
+                "tetask_cost, templatetask_time, template_id, templatetask_tax_rate, templatetask"& _ 
+                "_taxable)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@taskid, @cost, @time, @templateId, @taxrate, @taxable"& _ 
+                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT        LAST_INSERT_ID()"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
+            param.ParameterName = "@taskid"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(5).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.Size = 2147483647
-            param.IsNullable = true
-            param.SourceColumn = "task_description"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28883,7 +28835,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28891,7 +28843,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28899,7 +28851,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "templatel_id"
+            param.SourceColumn = "template_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28907,7 +28859,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28916,7 +28868,7 @@ Namespace netwyrksDataSetTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(5).Parameters.Add(param)
             Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
@@ -28925,27 +28877,17 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "UPDATE       template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                task_name = @name, task_descriptio"& _ 
-                "n = @description, task_cost = @cost, task_time = @time, template_id = @templateI"& _ 
-                "d, task_tax_rate = @taxrate, task_taxable = @taxable"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (task_id = @I"& _ 
-                "d)"
+            Me._commandCollection(7).CommandText = "UPDATE       template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                templatetask_task_id = @id, templa"& _ 
+                "tetask_cost = @cost, templatetask_time = @time, template_id = @templateId, templ"& _ 
+                "atetask_tax_rate = @taxrate, templatetask_taxable = @taxable"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (temp"& _ 
+                "latetask_id = @Id)"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 45
+            param.ParameterName = "@id"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(7).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@description"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.Size = 2147483647
-            param.IsNullable = true
-            param.SourceColumn = "task_description"
+            param.SourceColumn = "templatetask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28953,7 +28895,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_cost"
+            param.SourceColumn = "templatetask_cost"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28961,7 +28903,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_time"
+            param.SourceColumn = "templatetask_time"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28977,7 +28919,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "task_tax_rate"
+            param.SourceColumn = "templatetask_tax_rate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28986,7 +28928,7 @@ Namespace netwyrksDataSetTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
             param.IsNullable = true
-            param.SourceColumn = "task_taxable"
+            param.SourceColumn = "templatetask_taxable"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -28994,7 +28936,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_id"
+            param.SourceColumn = "templatetask_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(7).Parameters.Add(param)
         End Sub
@@ -29083,18 +29025,14 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p2 As String, ByVal p3 As Decimal, ByVal p4 As Decimal, ByVal p5 As Decimal, ByVal p6 As Byte, ByVal p7 As Integer) As Integer
+        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p2 As Decimal, ByVal p3 As Integer, ByVal p4 As Integer, ByVal p5 As Decimal, ByVal p6 As Byte, ByVal p7 As Decimal) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Integer)
-            If (p2 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p2")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(p3,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(p4,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(p3,Integer)
+            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(p4,Integer)
             Me.Adapter.DeleteCommand.Parameters(4).Value = CType(p5,Decimal)
             Me.Adapter.DeleteCommand.Parameters(5).Value = CType(p6,Byte)
-            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(p7,Integer)
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(p7,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -29114,22 +29052,13 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Decimal, ByVal p4 As Decimal, ByVal p5 As Decimal, ByVal p6 As Byte, ByVal p7 As Integer) As Integer
-            If (p1 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p1")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
-            End If
-            If (p2 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p2")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,Decimal)
+        Public Overloads Overridable Function Insert(ByVal p1 As Integer, ByVal p2 As Decimal, ByVal p3 As Integer, ByVal p4 As Decimal, ByVal p5 As Byte, ByVal p6 As Decimal) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,Integer)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,Decimal)
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3,Integer)
             Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4,Decimal)
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,Decimal)
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,Byte)
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,Integer)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,Byte)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -29149,33 +29078,20 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Decimal, ByVal p4 As Decimal, ByVal p5 As Decimal, ByVal p6 As Byte, ByVal p7 As Integer, ByVal p8 As Integer, ByVal p9 As String, ByVal p10 As Decimal, ByVal p11 As Decimal, ByVal p12 As Decimal, ByVal p13 As Byte, ByVal p14 As Integer) As Integer
-            If (p1 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p1")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
-            End If
-            If (p2 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p2")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,Decimal)
+        Public Overloads Overridable Function Update(ByVal p1 As Integer, ByVal p2 As Decimal, ByVal p3 As Integer, ByVal p4 As Decimal, ByVal p5 As Byte, ByVal p6 As Decimal, ByVal p7 As Integer, ByVal p8 As Decimal, ByVal p9 As Integer, ByVal p10 As Integer, ByVal p11 As Decimal, ByVal p12 As Byte, ByVal p13 As Decimal) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,Integer)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3,Integer)
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,Byte)
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,Byte)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6,Decimal)
             Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,Integer)
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,Integer)
-            If (p9 Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("p9")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,Integer)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,Integer)
             Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,Byte)
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,Byte)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -29241,41 +29157,37 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertTemplateTask(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal time As Decimal, ByVal templateId As Integer, ByVal taxrate As Decimal, ByVal taxable As Object) As Integer
+        Public Overloads Overridable Function InsertTemplateTask(ByVal taskid As Integer, ByVal cost As Decimal, ByVal time As Decimal, ByVal templateId As Integer, ByVal taxrate As Decimal, ByVal taxable As Object) As Object
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
-            If (name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("name")
-            Else
-                command.Parameters(0).Value = CType(name,String)
-            End If
-            If (description Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("description")
-            Else
-                command.Parameters(1).Value = CType(description,String)
-            End If
-            command.Parameters(2).Value = CType(cost,Decimal)
-            command.Parameters(3).Value = CType(time,Decimal)
-            command.Parameters(4).Value = CType(templateId,Integer)
-            command.Parameters(5).Value = CType(taxrate,Decimal)
+            command.Parameters(0).Value = CType(taskid,Integer)
+            command.Parameters(1).Value = CType(cost,Decimal)
+            command.Parameters(2).Value = CType(time,Decimal)
+            command.Parameters(3).Value = CType(templateId,Integer)
+            command.Parameters(4).Value = CType(taxrate,Decimal)
             If (taxable Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("taxable")
             Else
-                command.Parameters(6).Value = CType(taxable,Object)
+                command.Parameters(5).Value = CType(taxable,Object)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
                 command.Connection.Open
             End If
-            Dim returnValue As Integer
+            Dim returnValue As Object
             Try 
-                returnValue = command.ExecuteNonQuery
+                returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
                     command.Connection.Close
                 End If
             End Try
-            Return returnValue
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29304,28 +29216,19 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateTemplateTask(ByVal name As String, ByVal description As String, ByVal cost As Decimal, ByVal time As Decimal, ByVal templateId As Integer, ByVal taxrate As Decimal, ByVal taxable As Object, ByVal Id As Integer) As Integer
+        Public Overloads Overridable Function UpdateTemplateTask(ByVal id As Integer, ByVal cost As Decimal, ByVal time As Decimal, ByVal templateId As Integer, ByVal taxrate As Decimal, ByVal taxable As Object, ByVal Id1 As Integer) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
-            If (name Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("name")
-            Else
-                command.Parameters(0).Value = CType(name,String)
-            End If
-            If (description Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("description")
-            Else
-                command.Parameters(1).Value = CType(description,String)
-            End If
-            command.Parameters(2).Value = CType(cost,Decimal)
-            command.Parameters(3).Value = CType(time,Decimal)
-            command.Parameters(4).Value = CType(templateId,Integer)
-            command.Parameters(5).Value = CType(taxrate,Decimal)
+            command.Parameters(0).Value = CType(id,Integer)
+            command.Parameters(1).Value = CType(cost,Decimal)
+            command.Parameters(2).Value = CType(time,Decimal)
+            command.Parameters(3).Value = CType(templateId,Integer)
+            command.Parameters(4).Value = CType(taxrate,Decimal)
             If (taxable Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("taxable")
             Else
-                command.Parameters(6).Value = CType(taxable,Object)
+                command.Parameters(5).Value = CType(taxable,Object)
             End If
-            command.Parameters(7).Value = CType(Id,Integer)
+            command.Parameters(6).Value = CType(Id1,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

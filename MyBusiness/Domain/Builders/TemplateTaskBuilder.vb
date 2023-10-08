@@ -6,7 +6,9 @@
 '
 
 Public Class TemplateTaskBuilder
+    Private _templatetaskId As Integer
     Private _taskId As Integer
+    Private _task As Task
     Private _name As String
     Private _description As String
     Private _cost As Decimal
@@ -19,10 +21,10 @@ Public Class TemplateTaskBuilder
     End Function
     Public Function StartingWith(ByVal oTemplateTask As TemplateTask) As TemplateTaskBuilder
         With oTemplateTask
-            _taskId = .TaskId
+            _templatetaskId = .TemplateTaskId
+            _task = .Task
+            _taskId = .Task.TaskId
             _templateId = .TemplateId
-            _name = .Name
-            _description = .Description
             _cost = .Cost
             _hours = .Hours
             _taxable = .IsTaskTaxable
@@ -32,9 +34,9 @@ Public Class TemplateTaskBuilder
     End Function
     Public Function StartingWith(ByVal oTask As JobTask) As TemplateTaskBuilder
         With oTask
-            _taskId = .JobTaskId
-            _name = .Task.TaskName
-            _description = .Task.TaskDescription
+            _templatetaskId = .JobTaskId
+            _task = .Task
+            _taskId = .Task.TaskId
             _cost = .TaskCost
             _hours = .TaskHours
             _taxable = .IsTaskTaxable
@@ -44,21 +46,20 @@ Public Class TemplateTaskBuilder
     End Function
     Public Function StartingWith(ByVal oTemplateTask As netwyrksDataSet.template_taskRow) As TemplateTaskBuilder
         With oTemplateTask
-            _taskId = .task_id
+            _templatetaskId = .templatetask_id
             _templateId = .template_id
-            _name = .task_name
-            _description = .task_description
-            _cost = .task_cost
-            _hours = .task_time
-            _taxable = .task_taxable = 1
-            _taxRate = .task_tax_rate
+            _task = GetTaskById(.templatetask_task_id)
+            _cost = .templatetask_cost
+            _hours = .templatetask_time
+            _taxable = .templatetask_taxable = 1
+            _taxRate = .templatetask_tax_rate
         End With
         Return Me
     End Function
     Public Function StartingWithNothing() As TemplateTaskBuilder
+        _templatetaskId = -1
+        _task = TaskBuilder.ATask.StartingWithNothing.Build
         _taskId = -1
-        _name = ""
-        _description = ""
         _cost = 0.00
         _hours = 0
         _taxable = False
@@ -66,8 +67,19 @@ Public Class TemplateTaskBuilder
         _templateId = -1
         Return Me
     End Function
+
     Public Function WithTaskId(ByVal pTemplateTaskId As Integer) As TemplateTaskBuilder
-        _taskId = pTemplateTaskId
+        _templatetaskId = pTemplateTaskId
+        Return Me
+    End Function
+    Public Function WithTask(ByVal pTaskId As Integer) As TemplateTaskBuilder
+        _taskId = pTaskId
+        _task = GetTaskById(pTaskId)
+        Return Me
+    End Function
+    Public Function WithTask(ByVal pTask As Task) As TemplateTaskBuilder
+        _taskId = pTask.TaskId
+        _task = pTask
         Return Me
     End Function
     Public Function WithTemplateId(ByVal pTemplateId As Integer) As TemplateTaskBuilder
@@ -99,7 +111,8 @@ Public Class TemplateTaskBuilder
         Return Me
     End Function
     Public Function Build() As TemplateTask
-        Return New TemplateTask(_taskId,
+        Return New TemplateTask(_templatetaskId,
+                        _task,
                         _templateId,
                         _name,
                         _description,

@@ -44,8 +44,8 @@ Public Class JobTaskBuilder
         StartingWithNothing()
         With oTask
             _jobtaskId = -1
-            _taskId = .TaskId
-            _task = GetTaskById(.TaskId)
+            _taskId = .TemplateTaskId
+            _task = GetTaskById(.TemplateTaskId)
             _taskCost = .Cost
             _taskHours = .Hours
             _taskTaxable = .IsTaskTaxable

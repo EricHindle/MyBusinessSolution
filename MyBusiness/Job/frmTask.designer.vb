@@ -49,8 +49,8 @@ Partial Class FrmTask
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtnAdd = New System.Windows.Forms.Button()
-        Me.CbTask = New System.Windows.Forms.ComboBox()
         Me.PicAdd = New System.Windows.Forms.PictureBox()
+        Me.CbTask = New System.Windows.Forms.ComboBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTime, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +213,7 @@ Partial Class FrmTask
         Me.txtTaskName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTaskName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTaskName.Location = New System.Drawing.Point(111, 115)
+        Me.txtTaskName.Location = New System.Drawing.Point(111, 114)
         Me.txtTaskName.Name = "txtTaskName"
         Me.txtTaskName.Size = New System.Drawing.Size(357, 27)
         Me.txtTaskName.TabIndex = 0
@@ -316,14 +316,6 @@ Partial Class FrmTask
         Me.ToolTip1.SetToolTip(Me.BtnAdd, "Create a new task")
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
-        'CbTask
-        '
-        Me.CbTask.FormattingEnabled = True
-        Me.CbTask.Location = New System.Drawing.Point(111, 115)
-        Me.CbTask.Name = "CbTask"
-        Me.CbTask.Size = New System.Drawing.Size(341, 24)
-        Me.CbTask.TabIndex = 105
-        '
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -335,6 +327,14 @@ Partial Class FrmTask
         Me.PicAdd.TabIndex = 107
         Me.PicAdd.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicAdd, "Add the new task")
+        '
+        'CbTask
+        '
+        Me.CbTask.FormattingEnabled = True
+        Me.CbTask.Location = New System.Drawing.Point(111, 115)
+        Me.CbTask.Name = "CbTask"
+        Me.CbTask.Size = New System.Drawing.Size(341, 24)
+        Me.CbTask.TabIndex = 105
         '
         'FrmTask
         '

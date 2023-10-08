@@ -125,12 +125,12 @@ Public Class FrmJobTemplates
     Private Sub LoadTaskTable()
         DgvTasks.Rows.Clear()
         SelectedTasks = GetTemplateTasksForTemplate(SelectedTemplate.TemplateId)
-        For Each _task As TemplateTask In SelectedTasks
+        For Each _templatetask As TemplateTask In SelectedTasks
             Dim oRow As DataGridViewRow = DgvTasks.Rows(DgvTasks.Rows.Add())
-            oRow.Cells(taskId.Name).Value = _task.TaskId
-            oRow.Cells(taskName.Name).Value = _task.Name
-            oRow.Cells(taskHours.Name).Value = _task.Hours
-            oRow.Cells(taskPrice.Name).Value = _task.Cost
+            oRow.Cells(taskId.Name).Value = _templatetask.TemplateTaskId
+            oRow.Cells(taskName.Name).Value = _templatetask.Task.TaskName
+            oRow.Cells(taskHours.Name).Value = _templatetask.Hours
+            oRow.Cells(taskPrice.Name).Value = _templatetask.Cost
         Next
     End Sub
 

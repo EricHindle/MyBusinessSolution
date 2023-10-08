@@ -1209,7 +1209,7 @@ Module ModDatabase
         Dim _id As Integer
         Try
             With pTemplateTask
-                _id = oTemplateTaskTa.InsertTemplateTask(.Name, .Description, .Cost, .Hours, .TemplateId, .TaxRate, .IsTaskTaxable)
+                _id = oTemplateTaskTa.InsertTemplateTask(.TaskId, .Cost, .Hours, .TemplateId, .TaxRate, .IsTaskTaxable)
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception inserting template task", MODULE_NAME)
@@ -1220,7 +1220,7 @@ Module ModDatabase
         Dim _ct As Integer
         Try
             With pTemplateTask
-                _ct = oTemplateTaskTa.UpdateTemplateTask(.Name, .Description, .Cost, .Hours, .TemplateId, .TaxRate, If(.IsTaskTaxable, 1, 0), .TaskId)
+                _ct = oTemplateTaskTa.UpdateTemplateTask(.TaskId, .Cost, .Hours, .TemplateId, .TaxRate, If(.IsTaskTaxable, 1, 0), .TemplateTaskId)
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception updating template", MODULE_NAME)

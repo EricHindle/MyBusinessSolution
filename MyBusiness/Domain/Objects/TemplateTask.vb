@@ -8,7 +8,9 @@
 Imports System.Text
 
 Public Class TemplateTask
+    Private _templatetaskId As Integer
     Private _taskId As Integer
+    Private _task As Task
     Private _name As String
     Private _description As String
     Private _cost As Decimal
@@ -16,6 +18,22 @@ Public Class TemplateTask
     Private _hours As Decimal
     Private _taxable As Boolean
     Private _taxRate As Decimal
+    Public Property Task() As Task
+        Get
+            Return _task
+        End Get
+        Set(ByVal value As Task)
+            _task = value
+        End Set
+    End Property
+    Public Property TaskId() As Integer
+        Get
+            Return _taskId
+        End Get
+        Set(ByVal value As Integer)
+            _taskId = value
+        End Set
+    End Property
     Public Property TaxRate() As Decimal
         Get
             Return _taxRate
@@ -64,12 +82,12 @@ Public Class TemplateTask
             _name = value
         End Set
     End Property
-    Public Property TaskId() As Integer
+    Public Property TemplateTaskId() As Integer
         Get
-            Return _taskId
+            Return _templatetaskId
         End Get
         Set(ByVal value As Integer)
-            _taskId = value
+            _templatetaskId = value
         End Set
     End Property
     Public Property TemplateId() As Integer
@@ -81,6 +99,7 @@ Public Class TemplateTask
         End Set
     End Property
     Public Sub New(ByVal pTaskId As Integer,
+                    ByVal pTask As Task,
                     ByVal pTemplateId As Integer,
                     ByVal pTaskName As String,
                     ByVal pTaskDescription As String,
@@ -88,7 +107,9 @@ Public Class TemplateTask
                     ByVal pTaskHours As Decimal,
                     ByVal pTaskTaxable As Boolean,
                     ByVal pTaskTaxRate As Decimal)
-        _taskId = pTaskId
+        _task = pTask
+        _taskId = pTask.TaskId
+        _templatetaskId = pTaskId
         _templateId = pTemplateId
         _name = pTaskName
         _description = pTaskDescription
@@ -101,11 +122,13 @@ Public Class TemplateTask
         Dim sb As New StringBuilder
         sb _
         .Append("taskId=[") _
+        .Append(_templatetaskId) _
+        .Append("], taskid=[") _
         .Append(_taskId) _
         .Append("], name=[") _
-        .Append(_name) _
+        .Append(_task.TaskName) _
         .Append("], description=[") _
-        .Append(_description) _
+        .Append(_task.TaskDescription) _
         .Append("], templateId=[") _
         .Append(_templateId) _
         .Append("], cost=[") _
