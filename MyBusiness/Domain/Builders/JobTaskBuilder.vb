@@ -40,12 +40,12 @@ Public Class JobTaskBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTask As TemplateTask) As JobTaskBuilder
+    Public Function StartingWith(ByVal oTemplateTask As TemplateTask) As JobTaskBuilder
         StartingWithNothing()
-        With oTask
+        With oTemplateTask
             _jobtaskId = -1
-            _taskId = .TemplateTaskId
-            _task = GetTaskById(.TemplateTaskId)
+            _taskId = .TaskId
+            _task = GetTaskById(.TaskId)
             _taskCost = .Cost
             _taskHours = .Hours
             _taskTaxable = .IsTaskTaxable

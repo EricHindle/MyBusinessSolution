@@ -274,16 +274,17 @@ Module ModDatabase
         End Try
         Return _taskList
     End Function
-    Public Function InsertJobTask(_task As JobTask) As Integer
-        Dim _taskId As Integer = -1
+    Public Function InsertJobTask(_jobtask As JobTask) As Integer
+        Dim _jobtaskId As Integer = -1
         Try
-            With _task
-                _taskId = oJobTaskTa.InsertJobTask(.TaskId, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate)
+            With _jobtask
+                _jobtaskId = oJobTaskTa.InsertJobTask(.TaskId, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted,
+                                                      .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate)
             End With
         Catch ex As DbException
             DisplayException(ex, "Exception inserting task", MODULE_NAME)
         End Try
-        Return _taskId
+        Return _jobtaskId
     End Function
     Public Function UpdateJobTask(_task As JobTask) As Integer
         Dim _rtn As Integer = 0

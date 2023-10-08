@@ -7350,10 +7350,6 @@ Partial Public Class netwyrksDataSet
     Partial Public Class job_taskDataTable
         Inherits Global.System.Data.TypedTableBase(Of job_taskRow)
         
-        Private columntask_name As Global.System.Data.DataColumn
-        
-        Private columntask_description As Global.System.Data.DataColumn
-        
         Private columnjobtask_id As Global.System.Data.DataColumn
         
         Private columnjobtask_task_id As Global.System.Data.DataColumn
@@ -7414,22 +7410,6 @@ Partial Public Class netwyrksDataSet
             MyBase.New(info, context)
             Me.InitVars
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_nameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_name
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property task_descriptionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntask_description
-            End Get
-        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -7572,9 +7552,9 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addjob_taskRow(ByVal task_name As String, ByVal task_description As String, ByVal jobtask_task_id As Integer, ByVal jobtask_cost As Decimal, ByVal jobtask_time As Decimal, ByVal jobtask_start_date As Date, ByVal jobtask_started As SByte, ByVal jobtask_completed As SByte, ByVal jobtask_created As Date, ByVal jobtask_changed As Date, ByVal jobtask_job_id As Integer, ByVal jobtask_tax_rate As Decimal, ByVal jobtask_taxable As SByte, ByVal jobtask_start_due As Date) As job_taskRow
+        Public Overloads Function Addjob_taskRow(ByVal jobtask_task_id As Integer, ByVal jobtask_cost As Decimal, ByVal jobtask_time As Decimal, ByVal jobtask_start_date As Date, ByVal jobtask_started As SByte, ByVal jobtask_completed As SByte, ByVal jobtask_created As Date, ByVal jobtask_changed As Date, ByVal jobtask_job_id As Integer, ByVal jobtask_tax_rate As Decimal, ByVal jobtask_taxable As SByte, ByVal jobtask_start_due As Date) As job_taskRow
             Dim rowjob_taskRow As job_taskRow = CType(Me.NewRow,job_taskRow)
-            Dim columnValuesArray() As Object = New Object() {task_name, task_description, Nothing, jobtask_task_id, jobtask_cost, jobtask_time, jobtask_start_date, jobtask_started, jobtask_completed, jobtask_created, jobtask_changed, jobtask_job_id, jobtask_tax_rate, jobtask_taxable, jobtask_start_due}
+            Dim columnValuesArray() As Object = New Object() {Nothing, jobtask_task_id, jobtask_cost, jobtask_time, jobtask_start_date, jobtask_started, jobtask_completed, jobtask_created, jobtask_changed, jobtask_job_id, jobtask_tax_rate, jobtask_taxable, jobtask_start_due}
             rowjob_taskRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowjob_taskRow)
             Return rowjob_taskRow
@@ -7603,8 +7583,6 @@ Partial Public Class netwyrksDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columntask_name = MyBase.Columns("task_name")
-            Me.columntask_description = MyBase.Columns("task_description")
             Me.columnjobtask_id = MyBase.Columns("jobtask_id")
             Me.columnjobtask_task_id = MyBase.Columns("jobtask_task_id")
             Me.columnjobtask_cost = MyBase.Columns("jobtask_cost")
@@ -7623,10 +7601,6 @@ Partial Public Class netwyrksDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitClass()
-            Me.columntask_name = New Global.System.Data.DataColumn("task_name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_name)
-            Me.columntask_description = New Global.System.Data.DataColumn("task_description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntask_description)
             Me.columnjobtask_id = New Global.System.Data.DataColumn("jobtask_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnjobtask_id)
             Me.columnjobtask_task_id = New Global.System.Data.DataColumn("jobtask_task_id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
@@ -7654,8 +7628,6 @@ Partial Public Class netwyrksDataSet
             Me.columnjobtask_start_due = New Global.System.Data.DataColumn("jobtask_start_due", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnjobtask_start_due)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnjobtask_id}, true))
-            Me.columntask_name.MaxLength = 45
-            Me.columntask_description.MaxLength = 65535
             Me.columnjobtask_id.AutoIncrement = true
             Me.columnjobtask_id.AutoIncrementSeed = -1
             Me.columnjobtask_id.AutoIncrementStep = -1
@@ -12573,36 +12545,6 @@ Partial Public Class netwyrksDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_name() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablejob_task.task_nameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'task_name' in table 'job_task' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablejob_task.task_nameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property task_description() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablejob_task.task_descriptionColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'task_description' in table 'job_task' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablejob_task.task_descriptionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property jobtask_id() As Integer
             Get
                 Return CType(Me(Me.tablejob_task.jobtask_idColumn),Integer)
@@ -12783,30 +12725,6 @@ Partial Public Class netwyrksDataSet
                 Me(Me.tablejob_task.jobtask_start_dueColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Istask_nameNull() As Boolean
-            Return Me.IsNull(Me.tablejob_task.task_nameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Settask_nameNull()
-            Me(Me.tablejob_task.task_nameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Istask_descriptionNull() As Boolean
-            Return Me.IsNull(Me.tablejob_task.task_descriptionColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Settask_descriptionNull()
-            Me(Me.tablejob_task.task_descriptionColumn) = Global.System.Convert.DBNull
-        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -30281,8 +30199,6 @@ Namespace netwyrksDataSetTableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "job_task"
-            tableMapping.ColumnMappings.Add("task_name", "task_name")
-            tableMapping.ColumnMappings.Add("task_description", "task_description")
             tableMapping.ColumnMappings.Add("jobtask_id", "jobtask_id")
             tableMapping.ColumnMappings.Add("jobtask_task_id", "jobtask_task_id")
             tableMapping.ColumnMappings.Add("jobtask_cost", "jobtask_cost")
@@ -30299,34 +30215,33 @@ Namespace netwyrksDataSetTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `job_task` WHERE (((@p1 = 1 AND `task_name` IS NULL) OR (`task_name` "& _ 
-                "= @p2)) AND ((@p3 = 1 AND `jobtask_changed` IS NULL) OR (`jobtask_changed` = @p4"& _ 
-                ")) AND ((@p5 = 1 AND `jobtask_completed` IS NULL) OR (`jobtask_completed` = @p6)"& _ 
-                ") AND ((@p7 = 1 AND `jobtask_cost` IS NULL) OR (`jobtask_cost` = @p8)) AND ((@p9"& _ 
-                " = 1 AND `jobtask_created` IS NULL) OR (`jobtask_created` = @p10)) AND (`jobtask"& _ 
-                "_id` = @p11) AND (`jobtask_job_id` = @p12) AND ((@p13 = 1 AND `jobtask_start_dat"& _ 
-                "e` IS NULL) OR (`jobtask_start_date` = @p14)) AND ((@p15 = 1 AND `jobtask_start_"& _ 
-                "due` IS NULL) OR (`jobtask_start_due` = @p16)) AND ((@p17 = 1 AND `jobtask_start"& _ 
-                "ed` IS NULL) OR (`jobtask_started` = @p18)) AND (`jobtask_task_id` = @p19) AND ("& _ 
-                "(@p20 = 1 AND `jobtask_tax_rate` IS NULL) OR (`jobtask_tax_rate` = @p21)) AND (("& _ 
-                "@p22 = 1 AND `jobtask_taxable` IS NULL) OR (`jobtask_taxable` = @p23)) AND ((@p2"& _ 
-                "4 = 1 AND `jobtask_time` IS NULL) OR (`jobtask_time` = @p25)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `job_task` WHERE (((@p1 = 1 AND `jobtask_changed` IS NULL) OR (`jobta"& _ 
+                "sk_changed` = @p2)) AND ((@p3 = 1 AND `jobtask_completed` IS NULL) OR (`jobtask_"& _ 
+                "completed` = @p4)) AND ((@p5 = 1 AND `jobtask_cost` IS NULL) OR (`jobtask_cost` "& _ 
+                "= @p6)) AND ((@p7 = 1 AND `jobtask_created` IS NULL) OR (`jobtask_created` = @p8"& _ 
+                ")) AND (`jobtask_id` = @p9) AND (`jobtask_job_id` = @p10) AND ((@p11 = 1 AND `jo"& _ 
+                "btask_start_date` IS NULL) OR (`jobtask_start_date` = @p12)) AND ((@p13 = 1 AND "& _ 
+                "`jobtask_start_due` IS NULL) OR (`jobtask_start_due` = @p14)) AND ((@p15 = 1 AND"& _ 
+                " `jobtask_started` IS NULL) OR (`jobtask_started` = @p16)) AND (`jobtask_task_id"& _ 
+                "` = @p17) AND ((@p18 = 1 AND `jobtask_tax_rate` IS NULL) OR (`jobtask_tax_rate` "& _ 
+                "= @p19)) AND ((@p20 = 1 AND `jobtask_taxable` IS NULL) OR (`jobtask_taxable` = @"& _ 
+                "p21)) AND ((@p22 = 1 AND `jobtask_time` IS NULL) OR (`jobtask_time` = @p23)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "jobtask_changed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p2"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
-            param.SourceColumn = "task_name"
+            param.SourceColumn = "jobtask_changed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30334,29 +30249,12 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p4"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "jobtask_changed"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p5"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
             param.SourceColumn = "jobtask_completed"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p6"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30364,7 +30262,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30373,7 +30271,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p8"
+            param.ParameterName = "@p6"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30381,7 +30279,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p9"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30390,7 +30288,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p10"
+            param.ParameterName = "@p8"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30398,7 +30296,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p11"
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30406,7 +30304,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p12"
+            param.ParameterName = "@p10"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30414,11 +30312,28 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p13"
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "jobtask_start_date"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p12"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_start_date"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p13"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -30427,7 +30342,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_date"
+            param.SourceColumn = "jobtask_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30435,16 +30350,16 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_due"
+            param.SourceColumn = "jobtask_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p16"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_due"
+            param.SourceColumn = "jobtask_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30452,28 +30367,11 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_started"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p18"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "jobtask_started"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p19"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
             param.SourceColumn = "jobtask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p20"
+            param.ParameterName = "@p18"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30482,7 +30380,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p21"
+            param.ParameterName = "@p19"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30490,7 +30388,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p22"
+            param.ParameterName = "@p20"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30499,7 +30397,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p23"
+            param.ParameterName = "@p21"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30507,7 +30405,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p24"
+            param.ParameterName = "@p22"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30516,7 +30414,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p25"
+            param.ParameterName = "@p23"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30525,29 +30423,14 @@ Namespace netwyrksDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `job_task` (`task_name`, `task_description`, `jobtask_changed`, `jobt"& _ 
-                "ask_completed`, `jobtask_cost`, `jobtask_created`, `jobtask_job_id`, `jobtask_st"& _ 
-                "art_date`, `jobtask_start_due`, `jobtask_started`, `jobtask_task_id`, `jobtask_t"& _ 
-                "ax_rate`, `jobtask_taxable`, `jobtask_time`) VALUES (@p1, @p2, @p3, @p4, @p5, @p"& _ 
-                "6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `job_task` (`jobtask_changed`, `jobtask_completed`, `jobtask_cost`, `"& _ 
+                "jobtask_created`, `jobtask_job_id`, `jobtask_start_date`, `jobtask_start_due`, `"& _ 
+                "jobtask_started`, `jobtask_task_id`, `jobtask_tax_rate`, `jobtask_taxable`, `job"& _ 
+                "task_time`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p1"& _ 
+                "2)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p2"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "task_description"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30555,7 +30438,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p4"
+            param.ParameterName = "@p2"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30563,7 +30446,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p5"
+            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30571,7 +30454,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p6"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30579,7 +30462,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30587,7 +30470,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p8"
+            param.ParameterName = "@p6"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30595,7 +30478,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p9"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30603,7 +30486,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p10"
+            param.ParameterName = "@p8"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30611,7 +30494,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p11"
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30619,7 +30502,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p12"
+            param.ParameterName = "@p10"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30627,7 +30510,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p13"
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30635,7 +30518,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p14"
+            param.ParameterName = "@p12"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30644,41 +30527,24 @@ Namespace netwyrksDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `job_task` SET `task_name` = @p1, `task_description` = @p2, `jobtask_chang"& _ 
-                "ed` = @p3, `jobtask_completed` = @p4, `jobtask_cost` = @p5, `jobtask_created` = "& _ 
-                "@p6, `jobtask_job_id` = @p7, `jobtask_start_date` = @p8, `jobtask_start_due` = @"& _ 
-                "p9, `jobtask_started` = @p10, `jobtask_task_id` = @p11, `jobtask_tax_rate` = @p1"& _ 
-                "2, `jobtask_taxable` = @p13, `jobtask_time` = @p14 WHERE (((@p15 = 1 AND `task_n"& _ 
-                "ame` IS NULL) OR (`task_name` = @p16)) AND ((@p17 = 1 AND `jobtask_changed` IS N"& _ 
-                "ULL) OR (`jobtask_changed` = @p18)) AND ((@p19 = 1 AND `jobtask_completed` IS NU"& _ 
-                "LL) OR (`jobtask_completed` = @p20)) AND ((@p21 = 1 AND `jobtask_cost` IS NULL) "& _ 
-                "OR (`jobtask_cost` = @p22)) AND ((@p23 = 1 AND `jobtask_created` IS NULL) OR (`j"& _ 
-                "obtask_created` = @p24)) AND (`jobtask_id` = @p25) AND (`jobtask_job_id` = @p26)"& _ 
-                " AND ((@p27 = 1 AND `jobtask_start_date` IS NULL) OR (`jobtask_start_date` = @p2"& _ 
-                "8)) AND ((@p29 = 1 AND `jobtask_start_due` IS NULL) OR (`jobtask_start_due` = @p"& _ 
-                "30)) AND ((@p31 = 1 AND `jobtask_started` IS NULL) OR (`jobtask_started` = @p32)"& _ 
-                ") AND (`jobtask_task_id` = @p33) AND ((@p34 = 1 AND `jobtask_tax_rate` IS NULL) "& _ 
-                "OR (`jobtask_tax_rate` = @p35)) AND ((@p36 = 1 AND `jobtask_taxable` IS NULL) OR"& _ 
-                " (`jobtask_taxable` = @p37)) AND ((@p38 = 1 AND `jobtask_time` IS NULL) OR (`job"& _ 
-                "task_time` = @p39)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `job_task` SET `jobtask_changed` = @p1, `jobtask_completed` = @p2, `jobtas"& _ 
+                "k_cost` = @p3, `jobtask_created` = @p4, `jobtask_job_id` = @p5, `jobtask_start_d"& _ 
+                "ate` = @p6, `jobtask_start_due` = @p7, `jobtask_started` = @p8, `jobtask_task_id"& _ 
+                "` = @p9, `jobtask_tax_rate` = @p10, `jobtask_taxable` = @p11, `jobtask_time` = @"& _ 
+                "p12 WHERE (((@p13 = 1 AND `jobtask_changed` IS NULL) OR (`jobtask_changed` = @p1"& _ 
+                "4)) AND ((@p15 = 1 AND `jobtask_completed` IS NULL) OR (`jobtask_completed` = @p"& _ 
+                "16)) AND ((@p17 = 1 AND `jobtask_cost` IS NULL) OR (`jobtask_cost` = @p18)) AND "& _ 
+                "((@p19 = 1 AND `jobtask_created` IS NULL) OR (`jobtask_created` = @p20)) AND (`j"& _ 
+                "obtask_id` = @p21) AND (`jobtask_job_id` = @p22) AND ((@p23 = 1 AND `jobtask_sta"& _ 
+                "rt_date` IS NULL) OR (`jobtask_start_date` = @p24)) AND ((@p25 = 1 AND `jobtask_"& _ 
+                "start_due` IS NULL) OR (`jobtask_start_due` = @p26)) AND ((@p27 = 1 AND `jobtask"& _ 
+                "_started` IS NULL) OR (`jobtask_started` = @p28)) AND (`jobtask_task_id` = @p29)"& _ 
+                " AND ((@p30 = 1 AND `jobtask_tax_rate` IS NULL) OR (`jobtask_tax_rate` = @p31)) "& _ 
+                "AND ((@p32 = 1 AND `jobtask_taxable` IS NULL) OR (`jobtask_taxable` = @p33)) AND"& _ 
+                " ((@p34 = 1 AND `jobtask_time` IS NULL) OR (`jobtask_time` = @p35)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p2"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "task_description"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30686,7 +30552,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p4"
+            param.ParameterName = "@p2"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30694,7 +30560,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p5"
+            param.ParameterName = "@p3"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30702,7 +30568,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p6"
+            param.ParameterName = "@p4"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30710,7 +30576,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30718,7 +30584,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p8"
+            param.ParameterName = "@p6"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30726,7 +30592,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p9"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30734,7 +30600,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p10"
+            param.ParameterName = "@p8"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30742,7 +30608,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p11"
+            param.ParameterName = "@p9"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30750,7 +30616,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p12"
+            param.ParameterName = "@p10"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30758,7 +30624,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p13"
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30766,7 +30632,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p14"
+            param.ParameterName = "@p12"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30774,24 +30640,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p15"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p16"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "task_name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p17"
+            param.ParameterName = "@p13"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30800,7 +30649,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p18"
+            param.ParameterName = "@p14"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
@@ -30808,7 +30657,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p19"
+            param.ParameterName = "@p15"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30817,7 +30666,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p20"
+            param.ParameterName = "@p16"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30825,7 +30674,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p21"
+            param.ParameterName = "@p17"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30834,7 +30683,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p22"
+            param.ParameterName = "@p18"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30842,11 +30691,44 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p23"
+            param.ParameterName = "@p19"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "jobtask_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p20"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_created"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p21"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p22"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_job_id"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p23"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jobtask_start_date"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -30855,7 +30737,7 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
-            param.SourceColumn = "jobtask_created"
+            param.SourceColumn = "jobtask_start_date"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30863,15 +30745,16 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_id"
+            param.SourceColumn = "jobtask_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p26"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.IsNullable = true
-            param.SourceColumn = "jobtask_job_id"
+            param.SourceColumn = "jobtask_start_due"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30879,16 +30762,16 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_date"
+            param.SourceColumn = "jobtask_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p28"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.DbType = Global.System.Data.DbType.[SByte]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_date"
+            param.SourceColumn = "jobtask_started"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -30896,45 +30779,11 @@ Namespace netwyrksDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "jobtask_start_due"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p30"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "jobtask_start_due"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p31"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "jobtask_started"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p32"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "jobtask_started"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p33"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
             param.SourceColumn = "jobtask_task_id"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p34"
+            param.ParameterName = "@p30"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30943,7 +30792,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p35"
+            param.ParameterName = "@p31"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30951,7 +30800,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p36"
+            param.ParameterName = "@p32"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30960,7 +30809,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p37"
+            param.ParameterName = "@p33"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.IsNullable = true
@@ -30968,7 +30817,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p38"
+            param.ParameterName = "@p34"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -30977,7 +30826,7 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p39"
+            param.ParameterName = "@p35"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -30999,10 +30848,9 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        task_name, task_description, jobtask_changed, jobtask_completed, jo"& _ 
-                "btask_cost, jobtask_created, jobtask_id, jobtask_job_id, jobtask_start_date, job"& _ 
-                "task_start_due, jobtask_started, jobtask_task_id, jobtask_tax_rate, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               jobtask_taxable, jobtask_time"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_task"
+            Me._commandCollection(0).CommandText = "SELECT jobtask_changed, jobtask_completed, jobtask_cost, jobtask_created, jobtask"& _ 
+                "_id, jobtask_job_id, jobtask_start_date, jobtask_start_due, jobtask_started, job"& _ 
+                "task_task_id, jobtask_tax_rate, jobtask_taxable, jobtask_time FROM job_task"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -31030,11 +30878,10 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(param)
             Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        jobtask_changed, jobtask_completed, jobtask_cost, jobtask_created, "& _ 
-                "jobtask_id, jobtask_job_id, jobtask_start_date, jobtask_start_due, jobtask_start"& _ 
-                "ed, jobtask_task_id, jobtask_tax_rate, jobtask_taxable, jobtask_time, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
-                "                 task_description, task_name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE   "& _ 
-                "     (jobtask_id = @Id)"
+            Me._commandCollection(3).CommandText = "SELECT jobtask_changed, jobtask_completed, jobtask_cost, jobtask_created, jobtask"& _ 
+                "_id, jobtask_job_id, jobtask_start_date, jobtask_start_due, jobtask_started, job"& _ 
+                "task_task_id, jobtask_tax_rate, jobtask_taxable, jobtask_time FROM job_task WHER"& _ 
+                "E (jobtask_id = @Id)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Id"
@@ -31046,11 +30893,10 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(3).Parameters.Add(param)
             Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT        jobtask_changed, jobtask_completed, jobtask_cost, jobtask_created, "& _ 
-                "jobtask_id, jobtask_job_id, jobtask_start_date, jobtask_start_due, jobtask_start"& _ 
-                "ed, jobtask_task_id, jobtask_tax_rate, jobtask_taxable, jobtask_time, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
-                "                 task_description, task_name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE   "& _ 
-                "     (jobtask_job_id = @jobId)"
+            Me._commandCollection(4).CommandText = "SELECT jobtask_changed, jobtask_completed, jobtask_cost, jobtask_created, jobtask"& _ 
+                "_id, jobtask_job_id, jobtask_start_date, jobtask_start_due, jobtask_started, job"& _ 
+                "task_task_id, jobtask_tax_rate, jobtask_taxable, jobtask_time FROM job_task WHER"& _ 
+                "E (jobtask_job_id = @jobId)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
@@ -31064,10 +30910,10 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "INSERT INTO job_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jobtask_task_id, jobtask_cost, jo"& _ 
                 "btask_time, jobtask_start_due, jobtask_started, jobtask_completed, jobtask_creat"& _ 
-                "ed, jobtask_job_id, jobtask_taxable, jobtask_tax_rate, jobtask_taxable)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES "& _ 
-                "       (@task_id, @task_cost, @task_time, @task_start_due, @task_started, @task_"& _ 
-                "completed, @task_created, @task_job_id, @task_taxable, @task_tax_rate, @task_tax"& _ 
-                "able);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             SELECT        LAST_INSERT_ID()"
+                "ed, jobtask_job_id, jobtask_taxable, jobtask_tax_rate)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@task_id,"& _ 
+                " @task_cost, @task_time, @task_start_due, @task_started, @task_completed, @task_"& _ 
+                "created, @task_job_id, @task_taxable, @task_tax_rate);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                "     SELECT        LAST_INSERT_ID()"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@task_id"
@@ -31342,44 +31188,44 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal p2 As String, ByVal p4 As Global.System.Nullable(Of Date), ByVal p6 As Global.System.Nullable(Of Byte), ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p10 As Global.System.Nullable(Of Date), ByVal p11 As Integer, ByVal p12 As Integer, ByVal p14 As Global.System.Nullable(Of Date), ByVal p16 As Global.System.Nullable(Of Date), ByVal p18 As Global.System.Nullable(Of Byte), ByVal p19 As Integer, ByVal p21 As Global.System.Nullable(Of Decimal), ByVal p23 As Global.System.Nullable(Of Byte), ByVal p25 As Global.System.Nullable(Of Decimal)) As Integer
-            If (p2 Is Nothing) Then
+        Public Overloads Overridable Function Delete(ByVal p2 As Global.System.Nullable(Of Date), ByVal p4 As Global.System.Nullable(Of Byte), ByVal p6 As Global.System.Nullable(Of Decimal), ByVal p8 As Global.System.Nullable(Of Date), ByVal p9 As Integer, ByVal p10 As Integer, ByVal p12 As Global.System.Nullable(Of Date), ByVal p14 As Global.System.Nullable(Of Date), ByVal p16 As Global.System.Nullable(Of Byte), ByVal p17 As Integer, ByVal p19 As Global.System.Nullable(Of Decimal), ByVal p21 As Global.System.Nullable(Of Byte), ByVal p23 As Global.System.Nullable(Of Decimal)) As Integer
+            If (p2.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2.Value,Date)
+            Else
                 Me.Adapter.DeleteCommand.Parameters(0).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(1).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2,String)
             End If
             If (p4.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(p4.Value,Date)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(p4.Value,Byte)
             Else
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
             If (p6.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(p6.Value,Byte)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(p6.Value,Decimal)
             Else
                 Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
             If (p8.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(p8.Value,Decimal)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(p8.Value,Date)
             Else
                 Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (p10.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(p10.Value,Date)
+            Me.Adapter.DeleteCommand.Parameters(8).Value = CType(p9,Integer)
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(p10,Integer)
+            If (p12.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(p12.Value,Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(p11,Integer)
-            Me.Adapter.DeleteCommand.Parameters(11).Value = CType(p12,Integer)
             If (p14.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(p14.Value,Date)
@@ -31389,39 +31235,32 @@ Namespace netwyrksDataSetTableAdapters
             End If
             If (p16.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(p16.Value,Date)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(p16.Value,Byte)
             Else
                 Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (p18.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(p18.Value,Byte)
+            Me.Adapter.DeleteCommand.Parameters(16).Value = CType(p17,Integer)
+            If (p19.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(p19.Value,Decimal)
             Else
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(p19,Integer)
             If (p21.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(p21.Value,Decimal)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(p21.Value,Byte)
             Else
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
             If (p23.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(p23.Value,Byte)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(p23.Value,Decimal)
             Else
                 Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (p25.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(p25.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -31442,68 +31281,58 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Global.System.Nullable(Of Date), ByVal p4 As Global.System.Nullable(Of Byte), ByVal p5 As Global.System.Nullable(Of Decimal), ByVal p6 As Global.System.Nullable(Of Date), ByVal p7 As Integer, ByVal p8 As Global.System.Nullable(Of Date), ByVal p9 As Global.System.Nullable(Of Date), ByVal p10 As Global.System.Nullable(Of Byte), ByVal p11 As Integer, ByVal p12 As Global.System.Nullable(Of Decimal), ByVal p13 As Global.System.Nullable(Of Byte), ByVal p14 As Global.System.Nullable(Of Decimal)) As Integer
-            If (p1 Is Nothing) Then
+        Public Overloads Overridable Function Insert(ByVal p1 As Global.System.Nullable(Of Date), ByVal p2 As Global.System.Nullable(Of Byte), ByVal p3 As Global.System.Nullable(Of Decimal), ByVal p4 As Global.System.Nullable(Of Date), ByVal p5 As Integer, ByVal p6 As Global.System.Nullable(Of Date), ByVal p7 As Global.System.Nullable(Of Date), ByVal p8 As Global.System.Nullable(Of Byte), ByVal p9 As Integer, ByVal p10 As Global.System.Nullable(Of Decimal), ByVal p11 As Global.System.Nullable(Of Byte), ByVal p12 As Global.System.Nullable(Of Decimal)) As Integer
+            If (p1.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1.Value,Date)
+            Else
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (p2 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            If (p2.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2.Value,Byte)
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (p3.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3.Value,Date)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(p3.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Byte)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
-            If (p5.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(p5,Integer)
             If (p6.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7,Integer)
+            If (p7.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(p7.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
             If (p8.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Date)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Byte)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (p9.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9,Integer)
             If (p10.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10.Value,Byte)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11,Integer)
+            If (p11.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(p11.Value,Byte)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
             If (p12.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(11).Value = CType(p12.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (p13.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(p13.Value,Byte)
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (p14.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(p14.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -31525,124 +31354,113 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal p1 As String,  _
-                    ByVal p2 As String,  _
-                    ByVal p3 As Global.System.Nullable(Of Date),  _
-                    ByVal p4 As Global.System.Nullable(Of Byte),  _
-                    ByVal p5 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p1 As Global.System.Nullable(Of Date),  _
+                    ByVal p2 As Global.System.Nullable(Of Byte),  _
+                    ByVal p3 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p4 As Global.System.Nullable(Of Date),  _
+                    ByVal p5 As Integer,  _
                     ByVal p6 As Global.System.Nullable(Of Date),  _
-                    ByVal p7 As Integer,  _
-                    ByVal p8 As Global.System.Nullable(Of Date),  _
-                    ByVal p9 As Global.System.Nullable(Of Date),  _
-                    ByVal p10 As Global.System.Nullable(Of Byte),  _
-                    ByVal p11 As Integer,  _
+                    ByVal p7 As Global.System.Nullable(Of Date),  _
+                    ByVal p8 As Global.System.Nullable(Of Byte),  _
+                    ByVal p9 As Integer,  _
+                    ByVal p10 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p11 As Global.System.Nullable(Of Byte),  _
                     ByVal p12 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p13 As Global.System.Nullable(Of Byte),  _
-                    ByVal p14 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p16 As String,  _
-                    ByVal p18 As Global.System.Nullable(Of Date),  _
-                    ByVal p20 As Global.System.Nullable(Of Byte),  _
-                    ByVal p22 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p16 As Global.System.Nullable(Of Byte),  _
+                    ByVal p18 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p20 As Global.System.Nullable(Of Date),  _
+                    ByVal p21 As Integer,  _
+                    ByVal p22 As Integer,  _
                     ByVal p24 As Global.System.Nullable(Of Date),  _
-                    ByVal p25 As Integer,  _
-                    ByVal p26 As Integer,  _
-                    ByVal p28 As Global.System.Nullable(Of Date),  _
-                    ByVal p30 As Global.System.Nullable(Of Date),  _
-                    ByVal p32 As Global.System.Nullable(Of Byte),  _
-                    ByVal p33 As Integer,  _
-                    ByVal p35 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p37 As Global.System.Nullable(Of Byte),  _
-                    ByVal p39 As Global.System.Nullable(Of Decimal)) As Integer
-            If (p1 Is Nothing) Then
+                    ByVal p26 As Global.System.Nullable(Of Date),  _
+                    ByVal p28 As Global.System.Nullable(Of Byte),  _
+                    ByVal p29 As Integer,  _
+                    ByVal p31 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p33 As Global.System.Nullable(Of Byte),  _
+                    ByVal p35 As Global.System.Nullable(Of Decimal)) As Integer
+            If (p1.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1.Value,Date)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,String)
             End If
-            If (p2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            If (p2.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (p3.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(p3.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
-            If (p5.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(p5,Integer)
             If (p6.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = CType(p6.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7,Integer)
+            If (p7.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(p7.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
             If (p8.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Byte)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (p9.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9,Integer)
             If (p10.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,Integer)
+            If (p11.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11.Value,Byte)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
             If (p12.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            If (p13.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
             If (p14.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14.Value,Date)
             Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
-            If (p16 Is Nothing) Then
+            If (p16.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16.Value,Byte)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,String)
             End If
             If (p18.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
             If (p20.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20.Value,Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (p22.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(p22.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21,Integer)
+            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(p22,Integer)
             If (p24.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24.Value,Date)
@@ -31650,50 +31468,41 @@ Namespace netwyrksDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(p25,Integer)
-            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26,Integer)
+            If (p26.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            End If
             If (p28.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(p28.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(p28.Value,Byte)
             Else
                 Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
-            If (p30.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(p30.Value,Date)
+            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(p29,Integer)
+            If (p31.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(p31.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             End If
-            If (p32.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(p32.Value,Byte)
+            If (p33.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(p33.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(32).Value = CType(p33,Integer)
             If (p35.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
                 Me.Adapter.UpdateCommand.Parameters(34).Value = CType(p35.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            If (p37.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(p37.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
-            End If
-            If (p39.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(p39.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
