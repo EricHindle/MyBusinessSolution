@@ -7,6 +7,7 @@
 
 Imports System.Data.Common
 Imports System.IO
+Imports System.Linq
 Imports HindlewareLib.Logging
 
 Module ModDatabase
@@ -215,13 +216,19 @@ Module ModDatabase
         Return _jobList
     End Function
     Public Function InsertJob(pJob As Job) As Integer
+        LogUtil.Info("Insert job : " & pJob.ToString, "ModDatabase")
         Dim _jobId As Integer = -1
-        With pJob
-            _jobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId)
-            If _jobId > 0 Then
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Job, _jobId, AuditUtil.AuditableAction.create, "", .ToString)
-            End If
-        End With
+        Try
+            With pJob
+                _jobId = oJobTa.InsertJob(.JobName, .JobDescription, .IsJobCompleted, Now, .JobCustomerId, .JobInvoiceNumber, .JobPoNumber, .JobReference, .JobInvoiceDate, .JobPaymentDue, .JobUserId)
+                If _jobId > 0 Then
+                    AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Job, _jobId, AuditUtil.AuditableAction.create, "", .ToString)
+                End If
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "Error inserting job", "ModDatabase")
+        End Try
+
         Return _jobId
     End Function
     Public Function UpdateJob(pJob As Job) As Integer
@@ -1182,7 +1189,7 @@ Module ModDatabase
     End Function
 #End Region
 #Region "tenmplatetask"
-    Public Function GetTemplateTasksForTemplate(pTemplateId) As List(Of TemplateTask)
+    Public Function GetTemplateTasksForTemplate(pTemplateId As Integer) As List(Of TemplateTask)
         Dim _templateTaskList As New List(Of TemplateTask)
         Try
             oTemplateTaskTa.FillByTemplateId(oTemplateTaskTable, pTemplateId)
@@ -1190,7 +1197,7 @@ Module ModDatabase
                 _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
             Next
         Catch ex As DbException
-
+            DisplayException(ex, "Error getting template tasks", "GetTemplateTasksForTemplate")
         End Try
         Return _templateTaskList
     End Function

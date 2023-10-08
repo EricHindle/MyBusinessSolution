@@ -24,3 +24,8 @@ Namespace netwyrksDataSetTableAdapters
     Partial Public Class job_imageTableAdapter
     End Class
 End Namespace
+
+Namespace netwyrksDataSetTableAdapters
+    Partial Public Class template_taskTableAdapter
+    End Class
+End Namespace

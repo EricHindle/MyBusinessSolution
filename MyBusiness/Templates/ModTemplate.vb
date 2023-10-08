@@ -4,10 +4,12 @@
 '
 ' Author Eric Hindle
 '
+Imports System.Linq
 Imports HindlewareLib.Logging
 
 Module ModTemplate
     Public Function SelectATemplate() As Template
+        LogUtil.Info("Select a template", "ModTemplate")
         Dim _selectedTemplate As Template = Nothing
         Using _selTmpl As New FrmSelectTemplate
             If _selTmpl.ShowDialog() = DialogResult.OK Then
@@ -18,6 +20,7 @@ Module ModTemplate
     End Function
 
     Public Sub CreateJobFromTemplate(pTemplate As Template)
+        LogUtil.Info("Create job from template", "ModTemplate")
         Dim _newJob As Job = JobBuilder.AJob.StartingWithNothing.WithJobName(pTemplate.TemplateName).WithJobUser(currentUser.UserId).Build
         Dim _jobId = CreateJob(_newJob)
         If _jobId > 0 Then
@@ -41,18 +44,20 @@ Module ModTemplate
         End If
     End Sub
     Private Sub AddTasksToJob(pTaskList As List(Of JobTask))
-        For Each oTask As JobTask In pTaskList
-            InsertJobTask(oTask)
+        LogUtil.Info("Add job tasks", "AddTasksToJob")
+        For Each _jobTask As JobTask In pTaskList
+            InsertJobTask(_jobTask)
         Next
     End Sub
     Private Sub AddJobProductsToJob(_jobProductList As List(Of JobProduct))
+        LogUtil.Info("Add job products", "AddJobProductsToJob")
         For Each _jobProduct As JobProduct In _jobProductList
             InsertJobProduct(_jobProduct)
         Next
     End Sub
     Private Function CreateJob(ByRef pNewJob As Job) As Integer
         Dim _jobId As Integer
-        LogUtil.Debug("Inserting job", "Create Job")
+        LogUtil.Info("Inserting job", "CreateJob")
         _jobId = InsertJob(pNewJob)
         If _jobId > 0 Then
             pNewJob.JobId = _jobId

@@ -495,9 +495,11 @@ Public Class FrmMain
     End Sub
 
     Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
+        LogUtil.Info("Job from template", MyBase.Name)
         Dim _selectedTemplate As Template = SelectATemplate()
 
         If _selectedTemplate IsNot Nothing Then
+            LogUtil.Info("Selected template : " & _selectedTemplate.ToString, MyBase.Name)
             CreateJobFromTemplate(_selectedTemplate)
             isLoading = True
             FillJobTable(-1, mnuShowAllJobs.Checked)

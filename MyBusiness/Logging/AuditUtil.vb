@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports HindlewareLib.Logging
 ''' <summary>
 ''' Utility to assist in the recording of audit information
 ''' </summary>
@@ -63,6 +64,7 @@ Public Class AuditUtil
     ''' </summary>
     ''' <remarks>Used for changes made by (e.g.) DB event scripts</remarks>
     Public Shared Sub AddAudit(ByVal usercode As String, ByVal record_type As RecordType, ByVal record_id As String, ByVal auditAction As AuditableAction, Optional ByVal beforeValue As String = Nothing, Optional ByVal afterValue As String = Nothing)
+        LogUtil.Info("Adding audit", "AuditUtil")
         Dim dateChanged As Date = Now
         Dim _audit As AuditEntry = AuditEntryBuilder.AnAuditEntry.StartingWithNothing _
                 .WithUsercode(usercode) _
