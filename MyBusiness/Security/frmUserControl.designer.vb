@@ -137,7 +137,7 @@ Partial Class FrmUserControl
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(82, 97)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(116, 16)
+        Me.Label1.Size = New System.Drawing.Size(115, 16)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "or enter Username"
         '
@@ -147,7 +147,7 @@ Partial Class FrmUserControl
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(13, 178)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 16)
+        Me.Label2.Size = New System.Drawing.Size(91, 16)
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "New Password"
         '
@@ -157,7 +157,7 @@ Partial Class FrmUserControl
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(13, 209)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(112, 16)
+        Me.Label3.Size = New System.Drawing.Size(111, 16)
         Me.Label3.TabIndex = 22
         Me.Label3.Text = "Confirm Password"
         '
@@ -167,7 +167,7 @@ Partial Class FrmUserControl
         Me.rbGuest.Location = New System.Drawing.Point(6, 51)
         Me.rbGuest.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.rbGuest.Name = "rbGuest"
-        Me.rbGuest.Size = New System.Drawing.Size(58, 20)
+        Me.rbGuest.Size = New System.Drawing.Size(57, 20)
         Me.rbGuest.TabIndex = 4
         Me.rbGuest.Text = "Guest"
         Me.rbGuest.UseVisualStyleBackColor = True
@@ -178,7 +178,7 @@ Partial Class FrmUserControl
         Me.rbAdministrator.Location = New System.Drawing.Point(6, 24)
         Me.rbAdministrator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.rbAdministrator.Name = "rbAdministrator"
-        Me.rbAdministrator.Size = New System.Drawing.Size(103, 20)
+        Me.rbAdministrator.Size = New System.Drawing.Size(102, 20)
         Me.rbAdministrator.TabIndex = 0
         Me.rbAdministrator.Text = "Administrator"
         Me.rbAdministrator.UseVisualStyleBackColor = True
@@ -205,7 +205,7 @@ Partial Class FrmUserControl
         Me.rbSuspend.Location = New System.Drawing.Point(134, 51)
         Me.rbSuspend.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.rbSuspend.Name = "rbSuspend"
-        Me.rbSuspend.Size = New System.Drawing.Size(89, 20)
+        Me.rbSuspend.Size = New System.Drawing.Size(88, 20)
         Me.rbSuspend.TabIndex = 5
         Me.rbSuspend.Text = "Suspended"
         Me.rbSuspend.UseVisualStyleBackColor = True
@@ -215,7 +215,7 @@ Partial Class FrmUserControl
         Me.rbOperator.AutoSize = True
         Me.rbOperator.Location = New System.Drawing.Point(134, 24)
         Me.rbOperator.Name = "rbOperator"
-        Me.rbOperator.Size = New System.Drawing.Size(77, 20)
+        Me.rbOperator.Size = New System.Drawing.Size(76, 20)
         Me.rbOperator.TabIndex = 3
         Me.rbOperator.TabStop = True
         Me.rbOperator.Text = "Operator"
@@ -288,7 +288,7 @@ Partial Class FrmUserControl
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(310, 48)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(45, 16)
+        Me.Label8.Size = New System.Drawing.Size(44, 16)
         Me.Label8.TabIndex = 26
         Me.Label8.Text = "Mobile"
         '
@@ -297,7 +297,7 @@ Partial Class FrmUserControl
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(288, 290)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(34, 16)
+        Me.Label11.Size = New System.Drawing.Size(33, 16)
         Me.Label11.TabIndex = 25
         Me.Label11.Text = "Note"
         '
@@ -306,7 +306,7 @@ Partial Class FrmUserControl
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(288, 243)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(56, 16)
+        Me.Label10.Size = New System.Drawing.Size(55, 16)
         Me.Label10.TabIndex = 24
         Me.Label10.Text = "Job Title"
         '
@@ -332,7 +332,7 @@ Partial Class FrmUserControl
         Me.chkForceChange.AutoSize = True
         Me.chkForceChange.Location = New System.Drawing.Point(357, 178)
         Me.chkForceChange.Name = "chkForceChange"
-        Me.chkForceChange.Size = New System.Drawing.Size(118, 36)
+        Me.chkForceChange.Size = New System.Drawing.Size(117, 36)
         Me.chkForceChange.TabIndex = 23
         Me.chkForceChange.Text = "Force Password" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Change"
         Me.chkForceChange.UseVisualStyleBackColor = True
@@ -342,7 +342,7 @@ Partial Class FrmUserControl
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(12, 85)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 16)
+        Me.Label9.Size = New System.Drawing.Size(38, 16)
         Me.Label9.TabIndex = 17
         Me.Label9.Text = "Email"
         '
@@ -366,7 +366,7 @@ Partial Class FrmUserControl
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(203, 118)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(86, 16)
+        Me.Label7.Size = New System.Drawing.Size(85, 16)
         Me.Label7.TabIndex = 19
         Me.Label7.Text = "max. 3 chars."
         '
@@ -383,7 +383,7 @@ Partial Class FrmUserControl
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(12, 118)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(103, 16)
+        Me.Label6.Size = New System.Drawing.Size(102, 16)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Unique usercode"
         '
@@ -400,7 +400,7 @@ Partial Class FrmUserControl
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 48)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(99, 16)
+        Me.Label5.Size = New System.Drawing.Size(98, 16)
         Me.Label5.TabIndex = 16
         Me.Label5.Text = "Contact number"
         '
@@ -409,7 +409,7 @@ Partial Class FrmUserControl
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 17)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 16)
+        Me.Label4.Size = New System.Drawing.Size(40, 16)
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Name"
         '
@@ -417,7 +417,7 @@ Partial Class FrmUserControl
         '
         Me.lblFormName.AutoSize = True
         Me.lblFormName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFormName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.lblFormName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblFormName.Location = New System.Drawing.Point(60, 12)
         Me.lblFormName.Name = "lblFormName"
         Me.lblFormName.Size = New System.Drawing.Size(147, 25)
@@ -443,7 +443,7 @@ Partial Class FrmUserControl
         Me.Label12.ForeColor = System.Drawing.Color.Black
         Me.Label12.Location = New System.Drawing.Point(85, 62)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(43, 16)
+        Me.Label12.Size = New System.Drawing.Size(42, 16)
         Me.Label12.TabIndex = 10
         Me.Label12.Text = "Select"
         '

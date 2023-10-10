@@ -91,7 +91,7 @@ Partial Class FrmJobProducts
         '
         Me.lblScreenName.AutoSize = True
         Me.lblScreenName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScreenName.ForeColor = System.Drawing.Color.Black
+        Me.lblScreenName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblScreenName.Location = New System.Drawing.Point(70, 15)
         Me.lblScreenName.Name = "lblScreenName"
         Me.lblScreenName.Size = New System.Drawing.Size(179, 25)
@@ -150,7 +150,7 @@ Partial Class FrmJobProducts
         Me.dgvJobProducts.AllowUserToAddRows = False
         Me.dgvJobProducts.AllowUserToDeleteRows = False
         Me.dgvJobProducts.AllowUserToResizeRows = False
-        Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.Gainsboro
+        Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.MintCream
         Me.dgvJobProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvJobProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.jpProdId, Me.jpSupp, Me.jpProduct, Me.jpQty, Me.jpTaxable, Me.jpRate, Me.jpprice})
         Me.dgvJobProducts.Dock = System.Windows.Forms.DockStyle.Fill
@@ -160,7 +160,7 @@ Partial Class FrmJobProducts
         Me.dgvJobProducts.ReadOnly = True
         Me.dgvJobProducts.RowHeadersVisible = False
         Me.dgvJobProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvJobProducts.Size = New System.Drawing.Size(732, 201)
+        Me.dgvJobProducts.Size = New System.Drawing.Size(732, 193)
         Me.dgvJobProducts.TabIndex = 75
         '
         'jpId
@@ -230,6 +230,7 @@ Partial Class FrmJobProducts
         Me.DgvSupplier.AllowUserToAddRows = False
         Me.DgvSupplier.AllowUserToDeleteRows = False
         Me.DgvSupplier.AllowUserToResizeRows = False
+        Me.DgvSupplier.BackgroundColor = System.Drawing.Color.Honeydew
         Me.DgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvSupplier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName})
         Me.DgvSupplier.Dock = System.Windows.Forms.DockStyle.Fill
@@ -239,7 +240,7 @@ Partial Class FrmJobProducts
         Me.DgvSupplier.ReadOnly = True
         Me.DgvSupplier.RowHeadersVisible = False
         Me.DgvSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSupplier.Size = New System.Drawing.Size(240, 198)
+        Me.DgvSupplier.Size = New System.Drawing.Size(240, 190)
         Me.DgvSupplier.TabIndex = 76
         '
         'suppId
@@ -261,6 +262,7 @@ Partial Class FrmJobProducts
         Me.dgvProducts.AllowUserToAddRows = False
         Me.dgvProducts.AllowUserToDeleteRows = False
         Me.dgvProducts.AllowUserToResizeRows = False
+        Me.dgvProducts.BackgroundColor = System.Drawing.Color.AliceBlue
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate, Me.prodPrice})
         Me.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill
@@ -270,7 +272,7 @@ Partial Class FrmJobProducts
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(484, 198)
+        Me.dgvProducts.Size = New System.Drawing.Size(484, 190)
         Me.dgvProducts.TabIndex = 77
         '
         'prodId
@@ -312,7 +314,7 @@ Partial Class FrmJobProducts
         '
         Me.lblProductName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblProductName.AutoSize = True
-        Me.lblProductName.Location = New System.Drawing.Point(27, 516)
+        Me.lblProductName.Location = New System.Drawing.Point(31, 495)
         Me.lblProductName.Name = "lblProductName"
         Me.lblProductName.Size = New System.Drawing.Size(108, 17)
         Me.lblProductName.TabIndex = 78
@@ -382,7 +384,7 @@ Partial Class FrmJobProducts
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvProducts)
-        Me.SplitContainer1.Size = New System.Drawing.Size(736, 202)
+        Me.SplitContainer1.Size = New System.Drawing.Size(736, 194)
         Me.SplitContainer1.SplitterDistance = 244
         Me.SplitContainer1.TabIndex = 86
         '
@@ -403,8 +405,8 @@ Partial Class FrmJobProducts
         'SplitContainer2.Panel2
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(736, 411)
-        Me.SplitContainer2.SplitterDistance = 205
+        Me.SplitContainer2.Size = New System.Drawing.Size(736, 395)
+        Me.SplitContainer2.SplitterDistance = 197
         Me.SplitContainer2.TabIndex = 87
         '
         'nudPrice

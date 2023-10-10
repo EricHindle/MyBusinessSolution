@@ -62,7 +62,7 @@ Partial Class FrmProduct
         '
         Me.lblScreenName.AutoSize = True
         Me.lblScreenName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScreenName.ForeColor = System.Drawing.Color.Black
+        Me.lblScreenName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblScreenName.Location = New System.Drawing.Point(70, 15)
         Me.lblScreenName.Name = "lblScreenName"
         Me.lblScreenName.Size = New System.Drawing.Size(125, 25)
@@ -235,11 +235,12 @@ Partial Class FrmProduct
         '
         'LblAction
         '
+        Me.LblAction.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LblAction.AutoSize = True
-        Me.LblAction.BackColor = System.Drawing.Color.SeaGreen
+        Me.LblAction.BackColor = System.Drawing.Color.IndianRed
         Me.LblAction.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblAction.ForeColor = System.Drawing.Color.White
-        Me.LblAction.Location = New System.Drawing.Point(330, 28)
+        Me.LblAction.Location = New System.Drawing.Point(304, 28)
         Me.LblAction.Name = "LblAction"
         Me.LblAction.Padding = New System.Windows.Forms.Padding(3)
         Me.LblAction.Size = New System.Drawing.Size(187, 29)

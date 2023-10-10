@@ -113,12 +113,12 @@ Public Class FrmSupplier
                 End If
             Else
                 If CreateSupplier() Then
-                    LblAction.Text = "Inserted New Supplier"
+                    LblAction.Text = "Added the new supplier"
                     Close()
                 End If
             End If
         Else
-            LblAction.Text = "Invalid Supplier details"
+            LblAction.Text = "Invalid supplier details"
         End If
 
     End Sub
@@ -126,7 +126,7 @@ Public Class FrmSupplier
 #End Region
 #Region "subroutines"
     Private Sub FillSupplierDetails()
-        LblAction.Text = "Updating Supplier"
+        LblAction.Text = "Updating a supplier"
         PicUpdate.Image = My.Resources.update
         ToolTip1.SetToolTip(PicUpdate, "Update the supplier")
         With _currentSupplier
@@ -177,7 +177,7 @@ Public Class FrmSupplier
     End Function
     Private Sub NewSupplier()
         LogUtil.Info("New supplier", MyBase.Name())
-        LblAction.Text = "Adding New Supplier"
+        LblAction.Text = "Adding a new supplier"
         PicUpdate.Image = My.Resources.add
         ToolTip1.SetToolTip(PicUpdate, "Add a new supplier")
         _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
@@ -202,8 +202,8 @@ Public Class FrmSupplier
     Private Sub FillProductsList(ByVal suppId As Integer)
         isLoadingProducts = True
         dgvProducts.Rows.Clear()
-        Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
-        pRow.Cells(prodId.Name).Value = -1
+        'Dim pRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)
+        'pRow.Cells(prodId.Name).Value = -1
         Dim _productList As List(Of Product) = GetProductsBySupplier(suppId)
         For Each oProduct As Product In _productList
             Dim tRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add)

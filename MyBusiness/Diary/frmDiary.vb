@@ -223,6 +223,7 @@ Public Class FrmDiary
 
         Using _dialog As New FrmCustomerMaint
             _dialog.CustomerId = currentCustId
+            _dialog.IsView = True
             _dialog.ShowDialog()
         End Using
 
@@ -241,6 +242,7 @@ Public Class FrmDiary
 
             Using _job As New FrmJobMaint
                 _job.TheJob = ojob
+                _job.IsView = True
                 _job.ShowDialog()
 
             End Using
@@ -463,6 +465,16 @@ Public Class FrmDiary
             UpdateReminderClosed(_reminder.IsClosed, _reminder.Diary_id)
             RebuildDiaryList()
         End If
+    End Sub
+
+    Private Sub PicCancelCustLink_Click(sender As Object, e As EventArgs) Handles PicCancelCustLink.Click
+        _forCustomerId = -1
+        LblCustName.Text = String.Empty
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        _forJobId = -1
+        LblJobName.Text = String.Empty
     End Sub
 
 #End Region

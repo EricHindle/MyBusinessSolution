@@ -88,6 +88,7 @@ Partial Class FrmReminder
         Me.PicUpdate.Location = New System.Drawing.Point(76, 410)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicUpdate.TabIndex = 102
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update reminder")
@@ -100,6 +101,7 @@ Partial Class FrmReminder
         Me.PicAdd.Location = New System.Drawing.Point(12, 410)
         Me.PicAdd.Name = "PicAdd"
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicAdd.TabIndex = 101
         Me.PicAdd.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Reminder")
@@ -112,6 +114,7 @@ Partial Class FrmReminder
         Me.PicToggleComplete.Location = New System.Drawing.Point(143, 410)
         Me.PicToggleComplete.Name = "PicToggleComplete"
         Me.PicToggleComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicToggleComplete.TabIndex = 100
         Me.PicToggleComplete.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicToggleComplete, "Mark as completed")
@@ -124,6 +127,7 @@ Partial Class FrmReminder
         Me.PicClose.Location = New System.Drawing.Point(492, 410)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 99
         Me.PicClose.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
@@ -136,6 +140,7 @@ Partial Class FrmReminder
         Me.PicSetReminder.Location = New System.Drawing.Point(492, 109)
         Me.PicSetReminder.Name = "PicSetReminder"
         Me.PicSetReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetReminder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSetReminder.TabIndex = 103
         Me.PicSetReminder.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicSetReminder, "Set as reminder")
@@ -148,6 +153,7 @@ Partial Class FrmReminder
         Me.PicSetCallback.Location = New System.Drawing.Point(492, 157)
         Me.PicSetCallback.Name = "PicSetCallback"
         Me.PicSetCallback.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetCallback.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSetCallback.TabIndex = 104
         Me.PicSetCallback.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicSetCallback, "Set Callback required")
@@ -157,7 +163,7 @@ Partial Class FrmReminder
         Me.lblFormName.AutoSize = True
         Me.lblFormName.BackColor = System.Drawing.Color.WhiteSmoke
         Me.lblFormName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFormName.ForeColor = System.Drawing.Color.Black
+        Me.lblFormName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblFormName.Location = New System.Drawing.Point(60, 12)
         Me.lblFormName.Name = "lblFormName"
         Me.lblFormName.Size = New System.Drawing.Size(147, 25)
@@ -251,7 +257,7 @@ Partial Class FrmReminder
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblName.BackColor = System.Drawing.Color.WhiteSmoke
         Me.lblName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblName.ForeColor = System.Drawing.Color.Black
+        Me.lblName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblName.Location = New System.Drawing.Point(247, 12)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(297, 25)

@@ -7,6 +7,9 @@
 Imports HindlewareLib.Logging
 
 Public Class FrmReminderList
+    '
+    ' Shows list of reminders (if any) for the current user at login
+    '
 #Region "variables"
     Private Const FORM_NAME As String = "reminders"
     Private Const DUE_REMINDERS As String = "due reminders"
@@ -15,10 +18,7 @@ Public Class FrmReminderList
     Private dateSectionHeads As String() = Split(My.Resources.SectionHeads, "/")
     Private dateSectionEnds As Date() = {Today, DateAdd(DateInterval.Day, 1, Today), DateAdd(DateInterval.Day, 2, Today), DateAdd(DateInterval.Day, 8 - dayOfWeek, Today), DateAdd(DateInterval.Day, 1, DateAdd(DateInterval.Day, 14 - dayOfWeek, Today)), Date.MaxValue}
     Private dateSection As Integer = 0
-    '   Private currentRemId As Integer = 0
     Private currentReminder As Reminder
-    ' Private currentCustId As Integer = 0
-    ' Private currentJobId As Integer = 0
 #End Region
 #Region "form control handlers"
     Private Sub Reminders_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -30,11 +30,7 @@ Public Class FrmReminderList
         lblFormName.Text = FORM_NAME
         ChkShowAll.Checked = My.Settings.ShowAllReminders
         ChkShowAtLogin.Checked = My.Settings.ShowRemindersAtLogin
-        LoadReminders()
         currentReminder = ReminderBuilder.AReminder.StartingWithNothing.Build
-        'currentRemId = -1
-        'currentJobId = -1
-        'currentCustId = -1
     End Sub
     Private Sub Reminders_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closed", FORM_NAME)
@@ -65,6 +61,7 @@ Public Class FrmReminderList
     Private Sub BtnCustomer_Click(sender As Object, e As EventArgs) Handles BtnCustomer.Click
         Using _dialog As New FrmCustomerMaint
             _dialog.CustomerId = currentReminder.LinkedCustomer.CustomerId
+            _dialog.IsView = True
             _dialog.ShowDialog()
         End Using
         LoadReminders()
@@ -72,6 +69,7 @@ Public Class FrmReminderList
     Private Sub BtnJob_Click(sender As Object, e As EventArgs) Handles BtnJob.Click
         Using _dialog As New FrmJobMaint
             _dialog.TheJob = currentReminder.LinkedJob
+            _dialog.IsView = True
             _dialog.ShowDialog()
         End Using
         LoadReminders()
@@ -118,6 +116,9 @@ Public Class FrmReminderList
         End If
     End Sub
     Public Function LoadReminders() As Integer
+        '
+        ' Called from login form
+        '
         ClearForm()
         Dim iSelectedRow As Integer = 0
         Dim iSelectedId As Integer = -1
@@ -175,7 +176,7 @@ Public Class FrmReminderList
                     If oRem.IsClosed Then
                         Continue For
                     End If
-                    If ChkShowAll.Checked Or oRem.ReminderDate.Date <= Today.Date Then
+                    If My.Settings.ShowAllReminders Or oRem.ReminderDate.Date <= Today.Date Then
                         Dim rRow As DataGridViewRow = Nothing
                         If isFirstRow Then
                             Dim oFirstRow As Reminder = _remList(0)

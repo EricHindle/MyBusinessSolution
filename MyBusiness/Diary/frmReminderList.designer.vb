@@ -92,7 +92,7 @@ Partial Class FrmReminderList
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DgvReminders.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DgvReminders.Location = New System.Drawing.Point(420, 63)
+        Me.DgvReminders.Location = New System.Drawing.Point(9, 63)
         Me.DgvReminders.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.DgvReminders.MultiSelect = False
         Me.DgvReminders.Name = "DgvReminders"
@@ -104,7 +104,7 @@ Partial Class FrmReminderList
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
         Me.DgvReminders.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DgvReminders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvReminders.Size = New System.Drawing.Size(367, 360)
+        Me.DgvReminders.Size = New System.Drawing.Size(321, 345)
         Me.DgvReminders.TabIndex = 0
         '
         'remId
@@ -162,7 +162,7 @@ Partial Class FrmReminderList
         Me.ChkShowAtLogin.AutoSize = True
         Me.ChkShowAtLogin.BackColor = System.Drawing.SystemColors.Control
         Me.ChkShowAtLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ChkShowAtLogin.Location = New System.Drawing.Point(674, 11)
+        Me.ChkShowAtLogin.Location = New System.Drawing.Point(628, 11)
         Me.ChkShowAtLogin.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ChkShowAtLogin.Name = "ChkShowAtLogin"
         Me.ChkShowAtLogin.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -177,7 +177,7 @@ Partial Class FrmReminderList
         Me.ChkShowAll.AutoSize = True
         Me.ChkShowAll.BackColor = System.Drawing.SystemColors.Control
         Me.ChkShowAll.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ChkShowAll.Location = New System.Drawing.Point(599, 11)
+        Me.ChkShowAll.Location = New System.Drawing.Point(553, 11)
         Me.ChkShowAll.Name = "ChkShowAll"
         Me.ChkShowAll.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ChkShowAll.Size = New System.Drawing.Size(69, 18)
@@ -190,7 +190,7 @@ Partial Class FrmReminderList
         Me.lblFormName.AutoSize = True
         Me.lblFormName.BackColor = System.Drawing.SystemColors.Control
         Me.lblFormName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFormName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.lblFormName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblFormName.Location = New System.Drawing.Point(60, 11)
         Me.lblFormName.Name = "lblFormName"
         Me.lblFormName.Size = New System.Drawing.Size(147, 25)
@@ -225,11 +225,12 @@ Partial Class FrmReminderList
         '
         'lblReminder
         '
+        Me.lblReminder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblReminder.AutoSize = True
         Me.lblReminder.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(26, Byte), Integer))
         Me.lblReminder.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReminder.ForeColor = System.Drawing.Color.White
-        Me.lblReminder.Location = New System.Drawing.Point(12, 72)
+        Me.lblReminder.Location = New System.Drawing.Point(336, 63)
         Me.lblReminder.Name = "lblReminder"
         Me.lblReminder.Size = New System.Drawing.Size(77, 19)
         Me.lblReminder.TabIndex = 10
@@ -237,7 +238,8 @@ Partial Class FrmReminderList
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(15, 158)
+        Me.txtSubject.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSubject.Location = New System.Drawing.Point(339, 149)
         Me.txtSubject.Multiline = True
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(301, 48)
@@ -246,9 +248,9 @@ Partial Class FrmReminderList
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 431)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 416)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(744, 22)
         Me.StatusStrip1.TabIndex = 11
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -263,11 +265,12 @@ Partial Class FrmReminderList
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox1.Controls.Add(Me.BtnCustomer)
         Me.GroupBox1.Controls.Add(Me.BtnJob)
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox1.Location = New System.Drawing.Point(321, 270)
+        Me.GroupBox1.Location = New System.Drawing.Point(645, 261)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox1.Size = New System.Drawing.Size(92, 86)
@@ -278,10 +281,10 @@ Partial Class FrmReminderList
         'rtbBody
         '
         Me.rtbBody.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.rtbBody.Location = New System.Drawing.Point(16, 212)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rtbBody.Location = New System.Drawing.Point(340, 203)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(301, 211)
+        Me.rtbBody.Size = New System.Drawing.Size(301, 196)
         Me.rtbBody.TabIndex = 36
         Me.rtbBody.Text = ""
         '
@@ -300,13 +303,14 @@ Partial Class FrmReminderList
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.LblJobName)
         Me.GroupBox2.Controls.Add(Me.LblCustName)
         Me.GroupBox2.Controls.Add(Me.lblJob)
         Me.GroupBox2.Controls.Add(Me.lblCust)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GroupBox2.Location = New System.Drawing.Point(16, 94)
+        Me.GroupBox2.Location = New System.Drawing.Point(340, 85)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(300, 58)
         Me.GroupBox2.TabIndex = 76
@@ -352,34 +356,39 @@ Partial Class FrmReminderList
         '
         'PicClose
         '
-        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
         Me.PicClose.InitialImage = Nothing
-        Me.PicClose.Location = New System.Drawing.Point(346, 381)
+        Me.PicClose.Location = New System.Drawing.Point(683, 357)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 100
         Me.PicClose.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicClose, "Close  the form")
         '
         'PicToggleReminder
         '
+        Me.PicToggleReminder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicToggleReminder.Image = Global.MyBusiness.My.Resources.Resources.setreminder
         Me.PicToggleReminder.InitialImage = Nothing
-        Me.PicToggleReminder.Location = New System.Drawing.Point(346, 129)
+        Me.PicToggleReminder.Location = New System.Drawing.Point(670, 120)
         Me.PicToggleReminder.Name = "PicToggleReminder"
         Me.PicToggleReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleReminder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicToggleReminder.TabIndex = 103
         Me.PicToggleReminder.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicToggleReminder, "Set Reminder")
         '
         'PicSetComplete
         '
+        Me.PicSetComplete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicSetComplete.Image = Global.MyBusiness.My.Resources.Resources.closediary
         Me.PicSetComplete.InitialImage = Nothing
-        Me.PicSetComplete.Location = New System.Drawing.Point(346, 201)
+        Me.PicSetComplete.Location = New System.Drawing.Point(670, 192)
         Me.PicSetComplete.Name = "PicSetComplete"
         Me.PicSetComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSetComplete.TabIndex = 102
         Me.PicSetComplete.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicSetComplete, "Close diary entry")
@@ -389,7 +398,7 @@ Partial Class FrmReminderList
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(790, 453)
+        Me.ClientSize = New System.Drawing.Size(744, 438)
         Me.ControlBox = False
         Me.Controls.Add(Me.PicToggleReminder)
         Me.Controls.Add(Me.PicSetComplete)

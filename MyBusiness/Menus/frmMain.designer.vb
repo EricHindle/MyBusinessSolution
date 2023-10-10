@@ -34,6 +34,9 @@ Partial Class FrmMain
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
@@ -75,7 +78,24 @@ Partial Class FrmMain
         Me.dremHeader = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.rtbDiaryBody = New System.Windows.Forms.RichTextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAddJob = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAddCustomer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAddSupplier = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAddDiary = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Gap1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuJobFromTemplate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuTemplateFromJob = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuMaintainTemplates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuSettings = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuGlobalSettings = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuPreferences = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowAllJobs = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuCheckCallBackReminders = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAdmin = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuChangePassword = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
@@ -88,25 +108,8 @@ Partial Class FrmMain
         Me.MnuLogView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NewCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.JobToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAddANewJob = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuJobFromTemplate = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuShowAllJobs = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NewSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NewDiaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuAddJobAsTemplate = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuMaintainTemplates = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GlobalSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ChkCallBackReminders = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Gap2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,25 +215,34 @@ Partial Class FrmMain
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.dgvCust.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvCust.BackgroundColor = System.Drawing.Color.WhiteSmoke
-        Me.dgvCust.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCust.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.custId, Me.custName, Me.custPhone, Me.custemail})
+        Me.dgvCust.BackgroundColor = System.Drawing.Color.OldLace
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FloralWhite
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvCust.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.OldLace
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.SaddleBrown
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvCust.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvCust.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.custId, Me.custName, Me.custPhone, Me.custemail})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvCust.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvCust.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvCust.EnableHeadersVisualStyles = False
         Me.dgvCust.Location = New System.Drawing.Point(0, 0)
+        Me.dgvCust.MultiSelect = False
         Me.dgvCust.Name = "dgvCust"
         Me.dgvCust.ReadOnly = True
         Me.dgvCust.RowHeadersVisible = False
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvCust.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.dgvCust.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvCust.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvCust.Size = New System.Drawing.Size(358, 335)
         Me.dgvCust.TabIndex = 1
@@ -304,29 +316,38 @@ Partial Class FrmMain
         Me.dgvSupp.AllowUserToAddRows = False
         Me.dgvSupp.AllowUserToDeleteRows = False
         Me.dgvSupp.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvSupp.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvSupp.BackgroundColor = System.Drawing.Color.WhiteSmoke
-        Me.dgvSupp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail, Me.suppAmazon})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvSupp.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvSupp.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvSupp.BackgroundColor = System.Drawing.Color.Honeydew
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.MintCream
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Honeydew
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.DarkGreen
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvSupp.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail, Me.suppAmazon})
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvSupp.DefaultCellStyle = DataGridViewCellStyle7
         Me.dgvSupp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvSupp.EnableHeadersVisualStyles = False
         Me.dgvSupp.Location = New System.Drawing.Point(0, 0)
+        Me.dgvSupp.MultiSelect = False
         Me.dgvSupp.Name = "dgvSupp"
         Me.dgvSupp.ReadOnly = True
         Me.dgvSupp.RowHeadersVisible = False
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvSupp.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.dgvSupp.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSupp.Size = New System.Drawing.Size(358, 276)
         Me.dgvSupp.TabIndex = 0
@@ -411,26 +432,35 @@ Partial Class FrmMain
         Me.dgvJobs.AllowUserToAddRows = False
         Me.dgvJobs.AllowUserToDeleteRows = False
         Me.dgvJobs.AllowUserToResizeRows = False
-        Me.dgvJobs.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.dgvJobs.BackgroundColor = System.Drawing.Color.AliceBlue
         Me.dgvJobs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.GhostWhite
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.AliceBlue
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.DarkBlue
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvJobs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.dgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobDesc, Me.jobAssigned, Me.jobCompleted, Me.jobUser})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvJobs.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvJobs.DefaultCellStyle = DataGridViewCellStyle10
         Me.dgvJobs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvJobs.EnableHeadersVisualStyles = False
         Me.dgvJobs.Location = New System.Drawing.Point(0, 0)
+        Me.dgvJobs.MultiSelect = False
         Me.dgvJobs.Name = "dgvJobs"
         Me.dgvJobs.ReadOnly = True
         Me.dgvJobs.RowHeadersVisible = False
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvJobs.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.dgvJobs.RowsDefaultCellStyle = DataGridViewCellStyle11
         Me.dgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvJobs.Size = New System.Drawing.Size(783, 455)
         Me.dgvJobs.TabIndex = 0
@@ -501,24 +531,24 @@ Partial Class FrmMain
         '
         Me.dgvDiary.AllowUserToAddRows = False
         Me.dgvDiary.AllowUserToDeleteRows = False
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White
-        Me.dgvDiary.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
+        Me.dgvDiary.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
         Me.dgvDiary.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.dgvDiary.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvDiary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDiary.ColumnHeadersVisible = False
         Me.dgvDiary.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dremId, Me.dremCustId, Me.dremSeId, Me.dremIncId, Me.dremUserCode, Me.dremDate, Me.dremSubject, Me.dremRem, Me.dremCallback, Me.dremClosed, Me.dremHeader})
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvDiary.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvDiary.DefaultCellStyle = DataGridViewCellStyle13
         Me.dgvDiary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDiary.Location = New System.Drawing.Point(0, 0)
         Me.dgvDiary.Margin = New System.Windows.Forms.Padding(0)
@@ -526,11 +556,11 @@ Partial Class FrmMain
         Me.dgvDiary.Name = "dgvDiary"
         Me.dgvDiary.ReadOnly = True
         Me.dgvDiary.RowHeadersVisible = False
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White
-        Me.dgvDiary.RowsDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
+        Me.dgvDiary.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.dgvDiary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvDiary.Size = New System.Drawing.Size(783, 322)
         Me.dgvDiary.TabIndex = 24
@@ -634,7 +664,7 @@ Partial Class FrmMain
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.NewCustomerToolStripMenuItem, Me.JobToolStripMenuItem, Me.NewSupplierToolStripMenuItem, Me.NewDiaryToolStripMenuItem, Me.ToolStripMenuItem1, Me.MnuTemplates, Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem2, Me.CloseToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJob, Me.MnuAddCustomer, Me.MnuAddSupplier, Me.MnuAddDiary, Me.Gap1, Me.MnuTemplates, Me.MnuSettings, Me.MnuAdmin, Me.Gap2, Me.MnuClose})
         Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
@@ -642,18 +672,155 @@ Partial Class FrmMain
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'AdminToolStripMenuItem
+        'MnuAddJob
         '
-        Me.AdminToolStripMenuItem.AutoSize = False
-        Me.AdminToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.AdminToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.AdminToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuTidyFiles, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
-        Me.AdminToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
-        Me.AdminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.AdminToolStripMenuItem.Text = "Admin"
+        Me.MnuAddJob.AutoSize = False
+        Me.MnuAddJob.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuAddJob.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuAddJob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuAddJob.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuAddJob.Name = "MnuAddJob"
+        Me.MnuAddJob.Size = New System.Drawing.Size(90, 90)
+        Me.MnuAddJob.Text = "+Order/Job"
+        '
+        'MnuAddCustomer
+        '
+        Me.MnuAddCustomer.AutoSize = False
+        Me.MnuAddCustomer.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuAddCustomer.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuAddCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuAddCustomer.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuAddCustomer.Name = "MnuAddCustomer"
+        Me.MnuAddCustomer.Size = New System.Drawing.Size(90, 90)
+        Me.MnuAddCustomer.Text = "+Customer"
+        Me.MnuAddCustomer.ToolTipText = "Add a customer"
+        '
+        'MnuAddSupplier
+        '
+        Me.MnuAddSupplier.AutoSize = False
+        Me.MnuAddSupplier.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuAddSupplier.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuAddSupplier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuAddSupplier.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuAddSupplier.Name = "MnuAddSupplier"
+        Me.MnuAddSupplier.Size = New System.Drawing.Size(90, 90)
+        Me.MnuAddSupplier.Text = "+Supplier"
+        Me.MnuAddSupplier.ToolTipText = "Add a supplier"
+        '
+        'MnuAddDiary
+        '
+        Me.MnuAddDiary.AutoSize = False
+        Me.MnuAddDiary.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuAddDiary.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuAddDiary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuAddDiary.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuAddDiary.Name = "MnuAddDiary"
+        Me.MnuAddDiary.Size = New System.Drawing.Size(90, 90)
+        Me.MnuAddDiary.Text = "+Diary"
+        '
+        'Gap1
+        '
+        Me.Gap1.Name = "Gap1"
+        Me.Gap1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.Gap1.Size = New System.Drawing.Size(78, 19)
+        Me.Gap1.Text = " "
+        '
+        'MnuTemplates
+        '
+        Me.MnuTemplates.AutoSize = False
+        Me.MnuTemplates.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuTemplates.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuTemplates.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuJobFromTemplate, Me.MnuTemplateFromJob, Me.ToolStripSeparator7, Me.MnuMaintainTemplates})
+        Me.MnuTemplates.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuTemplates.Name = "MnuTemplates"
+        Me.MnuTemplates.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.MnuTemplates.Size = New System.Drawing.Size(90, 90)
+        Me.MnuTemplates.Text = "Templates"
+        '
+        'MnuJobFromTemplate
+        '
+        Me.MnuJobFromTemplate.Name = "MnuJobFromTemplate"
+        Me.MnuJobFromTemplate.Size = New System.Drawing.Size(197, 22)
+        Me.MnuJobFromTemplate.Text = "Add Job from Template"
+        '
+        'MnuTemplateFromJob
+        '
+        Me.MnuTemplateFromJob.Name = "MnuTemplateFromJob"
+        Me.MnuTemplateFromJob.Size = New System.Drawing.Size(197, 22)
+        Me.MnuTemplateFromJob.Text = "Add Template from Job"
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(194, 6)
+        '
+        'MnuMaintainTemplates
+        '
+        Me.MnuMaintainTemplates.Name = "MnuMaintainTemplates"
+        Me.MnuMaintainTemplates.Size = New System.Drawing.Size(197, 22)
+        Me.MnuMaintainTemplates.Text = "Maintain Templates"
+        '
+        'MnuSettings
+        '
+        Me.MnuSettings.AutoSize = False
+        Me.MnuSettings.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuSettings.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuGlobalSettings, Me.ToolStripSeparator1, Me.MnuPreferences, Me.MnuShowAllJobs, Me.ToolStripSeparator4, Me.MnuCheckCallBackReminders})
+        Me.MnuSettings.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuSettings.Name = "MnuSettings"
+        Me.MnuSettings.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.MnuSettings.Size = New System.Drawing.Size(90, 90)
+        Me.MnuSettings.Text = "Settings"
+        '
+        'MnuGlobalSettings
+        '
+        Me.MnuGlobalSettings.Name = "MnuGlobalSettings"
+        Me.MnuGlobalSettings.Size = New System.Drawing.Size(195, 22)
+        Me.MnuGlobalSettings.Text = "Global Settings"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(192, 6)
+        '
+        'MnuPreferences
+        '
+        Me.MnuPreferences.Name = "MnuPreferences"
+        Me.MnuPreferences.Size = New System.Drawing.Size(195, 22)
+        Me.MnuPreferences.Text = "Preferences"
+        '
+        'MnuShowAllJobs
+        '
+        Me.MnuShowAllJobs.CheckOnClick = True
+        Me.MnuShowAllJobs.Name = "MnuShowAllJobs"
+        Me.MnuShowAllJobs.Size = New System.Drawing.Size(195, 22)
+        Me.MnuShowAllJobs.Text = "Show Jobs for All Users"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(192, 6)
+        '
+        'MnuCheckCallBackReminders
+        '
+        Me.MnuCheckCallBackReminders.Name = "MnuCheckCallBackReminders"
+        Me.MnuCheckCallBackReminders.Size = New System.Drawing.Size(195, 22)
+        Me.MnuCheckCallBackReminders.Text = "Callback Reminders"
+        '
+        'MnuAdmin
+        '
+        Me.MnuAdmin.AutoSize = False
+        Me.MnuAdmin.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuAdmin.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuAdmin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuAdmin.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuTidyFiles, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
+        Me.MnuAdmin.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuAdmin.Name = "MnuAdmin"
+        Me.MnuAdmin.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.MnuAdmin.Size = New System.Drawing.Size(90, 90)
+        Me.MnuAdmin.Text = "Admin"
         '
         'UserControlToolStripMenuItem
         '
@@ -723,162 +890,23 @@ Partial Class FrmMain
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'NewCustomerToolStripMenuItem
+        'Gap2
         '
-        Me.NewCustomerToolStripMenuItem.AutoSize = False
-        Me.NewCustomerToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.NewCustomerToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.NewCustomerToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.NewCustomerToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.NewCustomerToolStripMenuItem.Name = "NewCustomerToolStripMenuItem"
-        Me.NewCustomerToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.NewCustomerToolStripMenuItem.Text = "+Customer"
-        Me.NewCustomerToolStripMenuItem.ToolTipText = "Add a customer"
+        Me.Gap2.Name = "Gap2"
+        Me.Gap2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
+        Me.Gap2.Size = New System.Drawing.Size(78, 19)
+        Me.Gap2.Text = " "
         '
-        'JobToolStripMenuItem
+        'MnuClose
         '
-        Me.JobToolStripMenuItem.AutoSize = False
-        Me.JobToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.JobToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.JobToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.JobToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAddANewJob, Me.MnuJobFromTemplate, Me.mnuShowAllJobs})
-        Me.JobToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.JobToolStripMenuItem.Name = "JobToolStripMenuItem"
-        Me.JobToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.JobToolStripMenuItem.Text = "Jobs/Orders"
-        '
-        'mnuAddANewJob
-        '
-        Me.mnuAddANewJob.Name = "mnuAddANewJob"
-        Me.mnuAddANewJob.Size = New System.Drawing.Size(250, 22)
-        Me.mnuAddANewJob.Text = "Add a new job"
-        '
-        'MnuJobFromTemplate
-        '
-        Me.MnuJobFromTemplate.Name = "MnuJobFromTemplate"
-        Me.MnuJobFromTemplate.Size = New System.Drawing.Size(250, 22)
-        Me.MnuJobFromTemplate.Text = "Create a new job from a template"
-        '
-        'mnuShowAllJobs
-        '
-        Me.mnuShowAllJobs.CheckOnClick = True
-        Me.mnuShowAllJobs.Name = "mnuShowAllJobs"
-        Me.mnuShowAllJobs.Size = New System.Drawing.Size(250, 22)
-        Me.mnuShowAllJobs.Text = "Show all jobs"
-        '
-        'NewSupplierToolStripMenuItem
-        '
-        Me.NewSupplierToolStripMenuItem.AutoSize = False
-        Me.NewSupplierToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.NewSupplierToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.NewSupplierToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.NewSupplierToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.NewSupplierToolStripMenuItem.Name = "NewSupplierToolStripMenuItem"
-        Me.NewSupplierToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.NewSupplierToolStripMenuItem.Text = "+Supplier"
-        Me.NewSupplierToolStripMenuItem.ToolTipText = "Add a supplier"
-        '
-        'NewDiaryToolStripMenuItem
-        '
-        Me.NewDiaryToolStripMenuItem.AutoSize = False
-        Me.NewDiaryToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.NewDiaryToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.NewDiaryToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.NewDiaryToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.NewDiaryToolStripMenuItem.Name = "NewDiaryToolStripMenuItem"
-        Me.NewDiaryToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.NewDiaryToolStripMenuItem.Text = "+Diary"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 19)
-        Me.ToolStripMenuItem1.Text = " "
-        '
-        'MnuTemplates
-        '
-        Me.MnuTemplates.AutoSize = False
-        Me.MnuTemplates.BackColor = System.Drawing.SystemColors.Control
-        Me.MnuTemplates.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.MnuTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.MnuTemplates.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJobAsTemplate, Me.MnuMaintainTemplates})
-        Me.MnuTemplates.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.MnuTemplates.Name = "MnuTemplates"
-        Me.MnuTemplates.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.MnuTemplates.Size = New System.Drawing.Size(90, 90)
-        Me.MnuTemplates.Text = "Templates"
-        '
-        'MnuAddJobAsTemplate
-        '
-        Me.MnuAddJobAsTemplate.Name = "MnuAddJobAsTemplate"
-        Me.MnuAddJobAsTemplate.Size = New System.Drawing.Size(182, 22)
-        Me.MnuAddJobAsTemplate.Text = "Add Job as Template"
-        '
-        'MnuMaintainTemplates
-        '
-        Me.MnuMaintainTemplates.Name = "MnuMaintainTemplates"
-        Me.MnuMaintainTemplates.Size = New System.Drawing.Size(182, 22)
-        Me.MnuMaintainTemplates.Text = "Maintain Templates"
-        '
-        'SettingsToolStripMenuItem
-        '
-        Me.SettingsToolStripMenuItem.AutoSize = False
-        Me.SettingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.SettingsToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.SettingsToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GlobalSettingsToolStripMenuItem, Me.ToolStripSeparator1, Me.PreferencesToolStripMenuItem, Me.ToolStripSeparator4, Me.ChkCallBackReminders})
-        Me.SettingsToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.SettingsToolStripMenuItem.Text = "Settings"
-        '
-        'GlobalSettingsToolStripMenuItem
-        '
-        Me.GlobalSettingsToolStripMenuItem.Name = "GlobalSettingsToolStripMenuItem"
-        Me.GlobalSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.GlobalSettingsToolStripMenuItem.Text = "Global Settings"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
-        '
-        'PreferencesToolStripMenuItem
-        '
-        Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PreferencesToolStripMenuItem.Text = "Preferences"
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(177, 6)
-        '
-        'ChkCallBackReminders
-        '
-        Me.ChkCallBackReminders.Name = "ChkCallBackReminders"
-        Me.ChkCallBackReminders.Size = New System.Drawing.Size(180, 22)
-        Me.ChkCallBackReminders.Text = "Callback Reminders"
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(78, 19)
-        Me.ToolStripMenuItem2.Text = " "
-        '
-        'CloseToolStripMenuItem
-        '
-        Me.CloseToolStripMenuItem.AutoSize = False
-        Me.CloseToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control
-        Me.CloseToolStripMenuItem.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.CloseToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.CloseToolStripMenuItem.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(90, 90)
-        Me.CloseToolStripMenuItem.Text = "Close"
+        Me.MnuClose.AutoSize = False
+        Me.MnuClose.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuClose.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuClose.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuClose.Name = "MnuClose"
+        Me.MnuClose.Size = New System.Drawing.Size(90, 90)
+        Me.MnuClose.Text = "Close"
         '
         'TimerCallBackReminders
         '
@@ -965,24 +993,22 @@ Partial Class FrmMain
     Friend WithEvents custPhone As DataGridViewTextBoxColumn
     Friend WithEvents custemail As DataGridViewTextBoxColumn
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents AdminToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NewCustomerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NewSupplierToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents JobToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NewDiaryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuAdmin As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuAddCustomer As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuAddSupplier As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuAddJob As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuAddDiary As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Gap1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MnuTemplates As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GlobalSettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PreferencesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuSettings As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Gap2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuClose As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuGlobalSettings As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MnuPreferences As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents UserControlToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents txtCustAddress As System.Windows.Forms.TextBox
     Friend WithEvents txtSuppAddress As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents mnuAddANewJob As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents mnuShowAllJobs As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MnuLogView As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents MnuBackup As ToolStripMenuItem
@@ -991,7 +1017,7 @@ Partial Class FrmMain
     Friend WithEvents MnuChangePassword As ToolStripMenuItem
     Friend WithEvents TimerCallBackReminders As Timer
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents ChkCallBackReminders As ToolStripMenuItem
+    Friend WithEvents MnuCheckCallBackReminders As ToolStripMenuItem
     Friend WithEvents CallbackReminderBackgroundWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents suppId As DataGridViewTextBoxColumn
     Friend WithEvents suppName As DataGridViewTextBoxColumn
@@ -1009,7 +1035,9 @@ Partial Class FrmMain
     Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
     Friend WithEvents MnuShowAudit As ToolStripMenuItem
     Friend WithEvents MnuTidyFiles As ToolStripMenuItem
-    Friend WithEvents MnuAddJobAsTemplate As ToolStripMenuItem
-    Friend WithEvents MnuMaintainTemplates As ToolStripMenuItem
     Friend WithEvents MnuJobFromTemplate As ToolStripMenuItem
+    Friend WithEvents MnuMaintainTemplates As ToolStripMenuItem
+    Friend WithEvents MnuTemplateFromJob As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents MnuShowAllJobs As ToolStripMenuItem
 End Class

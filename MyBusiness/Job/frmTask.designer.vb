@@ -78,7 +78,7 @@ Partial Class FrmTask
         '
         Me.lblScreenName.AutoSize = True
         Me.lblScreenName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScreenName.ForeColor = System.Drawing.Color.Black
+        Me.lblScreenName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblScreenName.Location = New System.Drawing.Point(63, 12)
         Me.lblScreenName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblScreenName.Name = "lblScreenName"

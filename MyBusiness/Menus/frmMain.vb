@@ -36,8 +36,8 @@ Public Class FrmMain
         End If
         isLoading = True
         InitialiseData()
-        FillCustomerTable()
-        FillSupplierTable()
+        FillCustomerTable(-1)
+        FillSupplierTable(-1)
         FillJobTable(-1, mnuShowAllJobs.Checked)
         FillDiaryTable()
         If My.Settings.checkCallBack Then
@@ -98,10 +98,10 @@ Public Class FrmMain
                 _custForm.CustomerId = _custId
                 _custForm.ShowDialog()
             End Using
-            isLoading = True
-            FillCustomerTable()
+            FillCustomerTable(_custId)
             FillDiaryTable()
-            isLoading = False
+        Else
+
         End If
     End Sub
     Private Sub DgvSupp_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvSupp.CellDoubleClick
@@ -113,7 +113,7 @@ Public Class FrmMain
                 _suppForm.ShowDialog()
             End Using
             isLoading = True
-            FillSupplierTable()
+            FillSupplierTable(_suppId)
             isLoading = False
         End If
     End Sub
@@ -147,23 +147,24 @@ Public Class FrmMain
             End If
         End If
     End Sub
-    Private Sub NewCustomerToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewCustomerToolStripMenuItem.Click
+    Private Sub NewCustomerToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuAddCustomer.Click
         Using _custForm As New FrmCustomerMaint
             _custForm.ShowDialog()
+            isLoading = True
+            FillCustomerTable(_custForm.CustomerId)
+            isLoading = False
         End Using
-        isLoading = True
-        FillCustomerTable()
-        isLoading = False
     End Sub
-    Private Sub NewSupplierToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewSupplierToolStripMenuItem.Click
+    Private Sub NewSupplierToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuAddSupplier.Click
         Using _suppForm As New FrmSupplier
             _suppForm.ShowDialog()
+            isLoading = True
+            FillSupplierTable(_suppForm.SupplierId)
+            isLoading = False
         End Using
-        isLoading = True
-        FillSupplierTable()
-        isLoading = False
+
     End Sub
-    Private Sub NewDiaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewDiaryToolStripMenuItem.Click
+    Private Sub NewDiaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuAddDiary.Click
         Using _diary As New FrmReminder
             _diary.CurrentReminder = Nothing
             _diary.ShowDialog()
@@ -172,10 +173,10 @@ Public Class FrmMain
         FillDiaryTable()
         isLoading = False
     End Sub
-    Private Sub CloseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseToolStripMenuItem.Click
+    Private Sub CloseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuClose.Click
         Close()
     End Sub
-    Private Sub PreferencesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PreferencesToolStripMenuItem.Click
+    Private Sub PreferencesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuPreferences.Click
         Using _settings As New frmOptions
             _settings.ShowDialog()
         End Using
@@ -185,7 +186,7 @@ Public Class FrmMain
             spDiary.Panel2Collapsed = True
         End If
     End Sub
-    Private Sub GlobalSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GlobalSettingsToolStripMenuItem.Click
+    Private Sub GlobalSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuGlobalSettings.Click
         Using _global As New FrmGlobalSettings
             _global.ShowDialog()
         End Using
@@ -196,23 +197,7 @@ Public Class FrmMain
         End Using
     End Sub
 
-    Private Sub MnuAddANewJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAddANewJob.Click
-        Using _jobForm As New FrmJobMaint
-            _jobForm.TheJob = Nothing
-            _jobForm.CustomerId = -1
-            _jobForm.ShowDialog()
-        End Using
-        isLoading = True
-        FillJobTable(-1, mnuShowAllJobs.Checked)
-        isLoading = False
-    End Sub
-    Private Sub MnuShowAllJobs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuShowAllJobs.Click
-        Dim _selCustId As Integer = -1
-        If dgvCust.SelectedRows.Count = 1 Then
-            _selCustId = dgvCust.SelectedRows(0).Cells(custId.Name).Value
-        End If
-        FillJobTable(_selCustId, mnuShowAllJobs.Checked)
-    End Sub
+
     Private Sub MnuLogView_Click(sender As Object, e As EventArgs) Handles MnuLogView.Click
         Using _log As New FrmLogViewer
             _log.ShowDialog()
@@ -234,7 +219,7 @@ Public Class FrmMain
             _pwdChange.ShowDialog()
         End Using
     End Sub
-    Private Sub ChkCallBackReminders_Click(sender As Object, e As EventArgs) Handles ChkCallBackReminders.Click
+    Private Sub ChkCallBackReminders_Click(sender As Object, e As EventArgs) Handles MnuCheckCallBackReminders.Click
         StartReminderCheck()
     End Sub
     Private Sub TimerCallBackReminders_Tick(sender As Object, e As EventArgs) Handles TimerCallBackReminders.Tick
@@ -257,10 +242,9 @@ Public Class FrmMain
     End Sub
 #End Region
 #Region "subroutines"
-    Private Sub FillCustomerTable()
+    Private Sub FillCustomerTable(ByVal pCustId As Integer)
+        isLoading = True
         dgvCust.Rows.Clear()
-        Dim row1 As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
-        row1.Cells(custId.Name).Value = -1
         For Each oCust As Customer In GetCustomers()
             Dim tRow As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
             tRow.Cells(custId.Name).Value = oCust.CustomerId
@@ -270,11 +254,22 @@ Public Class FrmMain
         Next
         spCustomer.Panel2Collapsed = True
         dgvCust.ClearSelection()
+        isLoading = False
+        If pCustId > 0 Then
+            FindCustomerInTable(pCustId)
+        End If
     End Sub
-    Private Sub FillSupplierTable()
+    Private Sub FindCustomerInTable(ByVal pCustId As Integer)
+        For Each oRow As DataGridViewRow In dgvCust.Rows
+            If oRow.Cells(custId.Name).Value = pCustId Then
+                oRow.Selected = True
+                Exit For
+            End If
+        Next
+    End Sub
+    Private Sub FillSupplierTable(ByVal pSuppId As Integer)
+        isLoading = True
         dgvSupp.Rows.Clear()
-        Dim row1 As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
-        row1.Cells(suppId.Name).Value = -1
         For Each oSupp As Supplier In GetSuppliers()
             Dim tRow As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
             tRow.Cells(suppId.Name).Value = oSupp.SupplierId
@@ -285,6 +280,18 @@ Public Class FrmMain
         Next
         spSupplier.Panel2Collapsed = True
         dgvSupp.ClearSelection()
+        isLoading = False
+        If pSuppId > 0 Then
+            FindSupplierInTable(pSuppId)
+        End If
+    End Sub
+    Private Sub FindSupplierInTable(ByVal pSuppId As Integer)
+        For Each oRow As DataGridViewRow In dgvSupp.Rows
+            If oRow.Cells(suppId.Name).Value = pSuppId Then
+                oRow.Selected = True
+                Exit For
+            End If
+        Next
     End Sub
     Private Sub FillJobTable(ByVal custId As Integer, ByVal showAllJobs As Boolean)
         dgvJobs.Rows.Clear()
@@ -454,7 +461,7 @@ Public Class FrmMain
         MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
     End Sub
 
-    Private Sub MnuAddJobAsTemplate_Click(sender As Object, e As EventArgs) Handles MnuAddJobAsTemplate.Click
+    Private Sub MnuTemplateFromJob_Click(sender As Object, e As EventArgs) Handles MnuTemplateFromJob.Click
         If dgvJobs.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
             Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
@@ -494,6 +501,25 @@ Public Class FrmMain
         End Using
     End Sub
 
+
+    Private Sub MnuAddJob_Click(sender As Object, e As EventArgs) Handles MnuAddJob.Click
+        Using _jobForm As New FrmJobMaint
+            _jobForm.TheJob = Nothing
+            _jobForm.CustomerId = -1
+            _jobForm.ShowDialog()
+        End Using
+        isLoading = True
+        FillJobTable(-1, MnuShowAllJobs.Checked)
+        isLoading = False
+    End Sub
+
+    Private Sub MnuShowAllJobs_Click(sender As Object, e As EventArgs) Handles MnuShowAllJobs.Click
+        Dim _selCustId As Integer = -1
+        If dgvCust.SelectedRows.Count = 1 Then
+            _selCustId = dgvCust.SelectedRows(0).Cells(custId.Name).Value
+        End If
+        FillJobTable(_selCustId, MnuShowAllJobs.Checked)
+    End Sub
     Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
         LogUtil.Info("Job from template", MyBase.Name)
         Dim _selectedTemplate As Template = SelectATemplate()
@@ -502,7 +528,7 @@ Public Class FrmMain
             LogUtil.Info("Selected template : " & _selectedTemplate.ToString, MyBase.Name)
             CreateJobFromTemplate(_selectedTemplate)
             isLoading = True
-            FillJobTable(-1, mnuShowAllJobs.Checked)
+            FillJobTable(-1, MnuShowAllJobs.Checked)
             isLoading = False
         End If
     End Sub

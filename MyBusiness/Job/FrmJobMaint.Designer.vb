@@ -72,30 +72,31 @@ Partial Class FrmJobMaint
         Me.cbCust = New System.Windows.Forms.ComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ScJobItems = New System.Windows.Forms.SplitContainer()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.ScJob = New System.Windows.Forms.SplitContainer()
         Me.PicDiary = New System.Windows.Forms.PictureBox()
         Me.PicImages = New System.Windows.Forms.PictureBox()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PicDeleteJob = New System.Windows.Forms.PictureBox()
+        Me.LblAction = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvTasks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlJob.SuspendLayout()
         Me.GrpInvoice.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.Panel2.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
+        CType(Me.ScJobItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ScJobItems.Panel1.SuspendLayout()
+        Me.ScJobItems.Panel2.SuspendLayout()
+        Me.ScJobItems.SuspendLayout()
+        CType(Me.ScJob, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ScJob.Panel1.SuspendLayout()
+        Me.ScJob.Panel2.SuspendLayout()
+        Me.ScJob.SuspendLayout()
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +134,7 @@ Partial Class FrmJobMaint
         '
         Me.lblScreenName.AutoSize = True
         Me.lblScreenName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScreenName.ForeColor = System.Drawing.Color.Black
+        Me.lblScreenName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblScreenName.Location = New System.Drawing.Point(70, 13)
         Me.lblScreenName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblScreenName.Name = "lblScreenName"
@@ -175,7 +176,7 @@ Partial Class FrmJobMaint
         Me.dgvTasks.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.dgvTasks.BackgroundColor = System.Drawing.Color.AliceBlue
         Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours, Me.taskPrice})
         Me.dgvTasks.Location = New System.Drawing.Point(4, 40)
@@ -252,19 +253,19 @@ Partial Class FrmJobMaint
         Me.btnMaintProducts.Text = "Update"
         Me.btnMaintProducts.UseVisualStyleBackColor = True
         '
-        'dgvProducts
+        'DgvProducts
         '
         Me.DgvProducts.AllowUserToAddRows = False
         Me.DgvProducts.AllowUserToDeleteRows = False
         Me.DgvProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.DgvProducts.BackgroundColor = System.Drawing.Color.AliceBlue
         Me.DgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
         Me.DgvProducts.Location = New System.Drawing.Point(7, 40)
         Me.DgvProducts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.DgvProducts.Name = "dgvProducts"
+        Me.DgvProducts.Name = "DgvProducts"
         Me.DgvProducts.ReadOnly = True
         Me.DgvProducts.RowHeadersVisible = False
         Me.DgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -334,6 +335,7 @@ Partial Class FrmJobMaint
         '
         'pnlJob
         '
+        Me.pnlJob.BackColor = System.Drawing.Color.GhostWhite
         Me.pnlJob.Controls.Add(Me.GrpInvoice)
         Me.pnlJob.Controls.Add(Me.cbUser)
         Me.pnlJob.Controls.Add(Me.Label10)
@@ -642,30 +644,32 @@ Partial Class FrmJobMaint
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.LblStatus.Size = New System.Drawing.Size(9, 17)
         '
-        'SplitContainer1
+        'ScJobItems
         '
-        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        Me.ScJobItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.ScJobItems.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ScJobItems.Location = New System.Drawing.Point(0, 0)
+        Me.ScJobItems.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ScJobItems.Name = "ScJobItems"
+        Me.ScJobItems.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
-        'SplitContainer1.Panel1
+        'ScJobItems.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.btnAddTask)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.dgvTasks)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.btnRemoveTask)
+        Me.ScJobItems.Panel1.BackColor = System.Drawing.Color.GhostWhite
+        Me.ScJobItems.Panel1.Controls.Add(Me.Label3)
+        Me.ScJobItems.Panel1.Controls.Add(Me.btnAddTask)
+        Me.ScJobItems.Panel1.Controls.Add(Me.dgvTasks)
+        Me.ScJobItems.Panel1.Controls.Add(Me.btnRemoveTask)
         '
-        'SplitContainer1.Panel2
+        'ScJobItems.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.btnMaintProducts)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DgvProducts)
-        Me.SplitContainer1.Size = New System.Drawing.Size(548, 461)
-        Me.SplitContainer1.SplitterDistance = 197
-        Me.SplitContainer1.TabIndex = 77
+        Me.ScJobItems.Panel2.BackColor = System.Drawing.Color.GhostWhite
+        Me.ScJobItems.Panel2.Controls.Add(Me.btnMaintProducts)
+        Me.ScJobItems.Panel2.Controls.Add(Me.Label4)
+        Me.ScJobItems.Panel2.Controls.Add(Me.DgvProducts)
+        Me.ScJobItems.Size = New System.Drawing.Size(548, 461)
+        Me.ScJobItems.SplitterDistance = 197
+        Me.ScJobItems.TabIndex = 77
         '
         'Label3
         '
@@ -689,25 +693,25 @@ Partial Class FrmJobMaint
         Me.Label4.TabIndex = 72
         Me.Label4.Text = "Products"
         '
-        'SplitContainer2
+        'ScJob
         '
-        Me.SplitContainer2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.ScJob.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.SplitContainer2.Location = New System.Drawing.Point(14, 64)
-        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.ScJob.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.ScJob.Location = New System.Drawing.Point(14, 64)
+        Me.ScJob.Name = "ScJob"
         '
-        'SplitContainer2.Panel1
+        'ScJob.Panel1
         '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.pnlJob)
+        Me.ScJob.Panel1.Controls.Add(Me.pnlJob)
         '
-        'SplitContainer2.Panel2
+        'ScJob.Panel2
         '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(1050, 461)
-        Me.SplitContainer2.SplitterDistance = 498
-        Me.SplitContainer2.TabIndex = 78
+        Me.ScJob.Panel2.Controls.Add(Me.ScJobItems)
+        Me.ScJob.Size = New System.Drawing.Size(1050, 461)
+        Me.ScJob.SplitterDistance = 498
+        Me.ScJob.TabIndex = 78
         '
         'PicDiary
         '
@@ -769,17 +773,32 @@ Partial Class FrmJobMaint
         Me.PicDeleteJob.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicDeleteJob, "Remove Job")
         '
+        'LblAction
+        '
+        Me.LblAction.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LblAction.AutoSize = True
+        Me.LblAction.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.LblAction.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblAction.ForeColor = System.Drawing.Color.White
+        Me.LblAction.Location = New System.Drawing.Point(851, 29)
+        Me.LblAction.Name = "LblAction"
+        Me.LblAction.Padding = New System.Windows.Forms.Padding(3)
+        Me.LblAction.Size = New System.Drawing.Size(148, 29)
+        Me.LblAction.TabIndex = 95
+        Me.LblAction.Text = "Adding new job"
+        '
         'FrmJobMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1076, 611)
+        Me.Controls.Add(Me.LblAction)
         Me.Controls.Add(Me.PicDeleteJob)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicImages)
         Me.Controls.Add(Me.PicDiary)
-        Me.Controls.Add(Me.SplitContainer2)
+        Me.Controls.Add(Me.ScJob)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
@@ -796,16 +815,16 @@ Partial Class FrmJobMaint
         Me.GrpInvoice.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.PerformLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        Me.SplitContainer2.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
+        Me.ScJobItems.Panel1.ResumeLayout(False)
+        Me.ScJobItems.Panel1.PerformLayout()
+        Me.ScJobItems.Panel2.ResumeLayout(False)
+        Me.ScJobItems.Panel2.PerformLayout()
+        CType(Me.ScJobItems, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ScJobItems.ResumeLayout(False)
+        Me.ScJob.Panel1.ResumeLayout(False)
+        Me.ScJob.Panel2.ResumeLayout(False)
+        CType(Me.ScJob, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ScJob.ResumeLayout(False)
         CType(Me.PicDiary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicImages, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
@@ -837,7 +856,7 @@ Partial Class FrmJobMaint
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents LblStatus As ToolStripStatusLabel
     Friend WithEvents cbUser As ComboBox
-    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents ScJobItems As SplitContainer
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents GrpInvoice As GroupBox
@@ -851,7 +870,7 @@ Partial Class FrmJobMaint
     Friend WithEvents Label7 As Label
     Friend WithEvents TxtJobReference As TextBox
     Friend WithEvents TxtPurchaseOrder As TextBox
-    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents ScJob As SplitContainer
     Friend WithEvents LblTerms As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents PicDiary As PictureBox
@@ -875,4 +894,5 @@ Partial Class FrmJobMaint
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents PicDeleteJob As PictureBox
+    Friend WithEvents LblAction As Label
 End Class

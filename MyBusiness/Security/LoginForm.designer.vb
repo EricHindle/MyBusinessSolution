@@ -130,7 +130,7 @@ Partial Class LoginForm
         '
         Me.ApplicationTitle.BackColor = System.Drawing.Color.White
         Me.ApplicationTitle.Font = New System.Drawing.Font("Felix Titling", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ApplicationTitle.ForeColor = System.Drawing.Color.Black
+        Me.ApplicationTitle.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.ApplicationTitle.Location = New System.Drawing.Point(178, 13)
         Me.ApplicationTitle.Name = "ApplicationTitle"
         Me.ApplicationTitle.Size = New System.Drawing.Size(357, 64)
@@ -201,7 +201,7 @@ Partial Class LoginForm
         Me.lblInitMessage.AutoSize = True
         Me.lblInitMessage.BackColor = System.Drawing.Color.White
         Me.lblInitMessage.Font = New System.Drawing.Font("Papyrus", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblInitMessage.ForeColor = System.Drawing.Color.Black
+        Me.lblInitMessage.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblInitMessage.Location = New System.Drawing.Point(185, 81)
         Me.lblInitMessage.Name = "lblInitMessage"
         Me.lblInitMessage.Size = New System.Drawing.Size(117, 30)

@@ -74,7 +74,7 @@ Partial Class FrmResetUserPassword
         '
         Me.lblFormName.AutoSize = True
         Me.lblFormName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFormName.ForeColor = System.Drawing.Color.Black
+        Me.lblFormName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblFormName.Location = New System.Drawing.Point(60, 12)
         Me.lblFormName.Name = "lblFormName"
         Me.lblFormName.Size = New System.Drawing.Size(147, 25)

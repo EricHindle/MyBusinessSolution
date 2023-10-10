@@ -7,7 +7,6 @@
 
 Imports System.Data.Common
 Imports System.IO
-Imports System.Linq
 Imports HindlewareLib.Logging
 
 Module ModDatabase

@@ -6,8 +6,8 @@
 '
 
 Imports System.ComponentModel
-Imports HindlewareLib.Logging
 Imports HindlewareLib.Imaging
+Imports HindlewareLib.Logging
 Public Class FrmImages
 #Region "properties"
     Private _job As Job

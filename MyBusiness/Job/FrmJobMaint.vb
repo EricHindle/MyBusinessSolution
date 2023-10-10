@@ -39,13 +39,27 @@ Public Class FrmJobMaint
             _job = value
         End Set
     End Property
+    Private _isView As Boolean
+    Public Property IsView() As Boolean
+        Get
+            Return _isView
+        End Get
+        Set(ByVal value As Boolean)
+            _isView = value
+        End Set
+    End Property
 #End Region
 #Region "form handlers"
     Private Sub FrmJob_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Debug("Closing", Name)
+        If ScJob.Panel2Collapsed Then
+            Dim oldWidth As Integer = GetFormPosValue(My.Settings.JobMaintFormPos, FormPos.WIDTH)
+            If (oldWidth > 0) Then Me.Width = oldWidth
+            ScJob.SplitterDistance = My.Settings.JobSplitterDist2
+        End If
         My.Settings.JobMaintFormPos = SetFormPos(Me)
-        My.Settings.JobSplitterDist1 = SplitContainer1.SplitterDistance
-        My.Settings.JobSplitterDist2 = SplitContainer2.SplitterDistance
+        My.Settings.JobSplitterDist1 = ScJobItems.SplitterDistance
+        My.Settings.JobSplitterDist2 = ScJob.SplitterDistance
         My.Settings.Save()
         oCustTa.Dispose()
         oCustListTable.Dispose()
@@ -55,12 +69,14 @@ Public Class FrmJobMaint
     Private Sub FrmJob_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         LogUtil.Debug("Started", Name)
         If GetFormPos(Me, My.Settings.JobMaintFormPos) Then
-            SplitContainer1.SplitterDistance = My.Settings.JobSplitterDist1
-            SplitContainer2.SplitterDistance = My.Settings.JobSplitterDist2
+            ScJobItems.SplitterDistance = My.Settings.JobSplitterDist1
+            ScJob.SplitterDistance = My.Settings.JobSplitterDist2
         End If
         isLoading = True
         LoadUserList()
         LoadCustomerList()
+        ScJob.Enabled = Not IsView
+        LblAction.Visible = Not IsView
         If _job IsNot Nothing Then
             _currentJobId = _job.JobId
             FillJobDetails()
@@ -188,7 +204,7 @@ Public Class FrmJobMaint
 #End Region
 #Region "functions"
     Private Sub FillJobDetails()
-        SplitContainer2.Panel2Collapsed = False
+        ScJob.Panel2Collapsed = False
         GrpInvoice.Enabled = True
         With _job
             cbCust.SelectedValue = .JobCustomerId
@@ -205,9 +221,10 @@ Public Class FrmJobMaint
             cbUser.SelectedValue = .JobUserId
         End With
         LogUtil.Debug("Existing job " & _currentJobId, Name)
-        SplitContainer1.Visible = True
+        ScJobItems.Visible = True
         FillJobTaskList(_currentJobId)
         FillProductList(_currentJobId)
+        LblAction.Text = "Updating a job"
     End Sub
     Private Sub ClearJobdetails()
         cbCust.SelectedIndex = -1
@@ -300,7 +317,10 @@ Public Class FrmJobMaint
     End Sub
     Private Sub NewJob()
         LogUtil.Debug("New job", Name())
-        SplitContainer2.Panel2Collapsed = True
+        If Not ScJob.Panel2Collapsed Then
+            Me.Width -= ScJob.Panel2.Width
+            ScJob.Panel2Collapsed = True
+        End If
         GrpInvoice.Enabled = False
         ClearJobdetails()
         If _customerId > 0 Then
@@ -308,6 +328,7 @@ Public Class FrmJobMaint
         End If
         _job = JobBuilder.AJob.StartingWithNothing.Build
         cbUser.SelectedValue = currentUser.UserId
+        LblAction.Text = "Adding a new job"
     End Sub
     Private Function Amendjob() As Boolean
         Dim isAmendOk As Boolean
@@ -329,9 +350,11 @@ Public Class FrmJobMaint
         If _currentJobId > 0 Then
             _newJob.JobId = _currentJobId
             isInsertOk = True
+            LblAction.Text = "Added the new customer"
             ShowStatus(LblStatus, "Job " & _currentJobId & " Created OK", Name, True)
         Else
             isInsertOk = False
+            LblAction.Text = "Job NOT created"
             ShowStatus(LblStatus, "Job NOT created", Name, True)
         End If
         Return isInsertOk
@@ -339,6 +362,7 @@ Public Class FrmJobMaint
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
             _diary.ForJobId = _currentJobId
+            _diary.ForCustomerId = _currentCust.CustomerId
             _diary.ShowDialog()
         End Using
     End Sub
@@ -375,7 +399,7 @@ Public Class FrmJobMaint
             Amendjob()
         Else
             CreateJob()
-            SplitContainer2.Panel2Collapsed = False
+            ScJob.Panel2Collapsed = False
             GrpInvoice.Enabled = True
         End If
         Close()
@@ -390,5 +414,6 @@ Public Class FrmJobMaint
             End If
         End If
     End Sub
+
 #End Region
 End Class

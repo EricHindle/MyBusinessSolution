@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmViewCust
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmViewCust
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmViewCust))
@@ -57,7 +57,7 @@ Partial Class FrmViewCust
         '
         Me.lblScreenName.AutoSize = True
         Me.lblScreenName.Font = New System.Drawing.Font("Felix Titling", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScreenName.ForeColor = System.Drawing.Color.Black
+        Me.lblScreenName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblScreenName.Location = New System.Drawing.Point(50, 12)
         Me.lblScreenName.Name = "lblScreenName"
         Me.lblScreenName.Size = New System.Drawing.Size(100, 19)
@@ -68,6 +68,7 @@ Partial Class FrmViewCust
         'rtbCustNotes
         '
         Me.rtbCustNotes.BackColor = System.Drawing.Color.LightGray
+        Me.rtbCustNotes.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rtbCustNotes.Location = New System.Drawing.Point(12, 278)
         Me.rtbCustNotes.Name = "rtbCustNotes"
         Me.rtbCustNotes.Size = New System.Drawing.Size(206, 86)
@@ -171,7 +172,7 @@ Partial Class FrmViewCust
         Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 96
         Me.PicClose.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicClose, "Close the form")
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
         '
         'FrmViewCust
         '
@@ -192,6 +193,7 @@ Partial Class FrmViewCust
         Me.Controls.Add(Me.txtCustName)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
+        Me.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmViewCust"

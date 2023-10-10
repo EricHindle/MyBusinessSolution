@@ -4,7 +4,6 @@
 '
 ' Author Eric Hindle
 '
-Imports System.Linq
 Imports HindlewareLib.Logging
 
 Module ModTemplate

@@ -39,6 +39,8 @@ Partial Class FrmDiary
         Me.PicToggleComplete = New System.Windows.Forms.PictureBox()
         Me.btnJobLink = New System.Windows.Forms.Button()
         Me.btnCustLink = New System.Windows.Forms.Button()
+        Me.PicCancelCustLink = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblFormName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvDiary = New System.Windows.Forms.DataGridView()
@@ -73,6 +75,8 @@ Partial Class FrmDiary
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicCancelCustLink, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -85,7 +89,7 @@ Partial Class FrmDiary
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblF3, Me.lblF4, Me.lblStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 438)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(851, 26)
+        Me.StatusStrip1.Size = New System.Drawing.Size(753, 26)
         Me.StatusStrip1.TabIndex = 0
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -136,6 +140,7 @@ Partial Class FrmDiary
         Me.PicClose.Location = New System.Drawing.Point(12, 383)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
+        Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 94
         Me.PicClose.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicClose, "Close")
@@ -147,6 +152,7 @@ Partial Class FrmDiary
         Me.PicAdd.Location = New System.Drawing.Point(12, 84)
         Me.PicAdd.Name = "PicAdd"
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
+        Me.PicAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicAdd.TabIndex = 98
         Me.PicAdd.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicAdd, "Add diary entry")
@@ -158,6 +164,7 @@ Partial Class FrmDiary
         Me.PicUpdate.Location = New System.Drawing.Point(12, 132)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
+        Me.PicUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicUpdate.TabIndex = 99
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update diary entry")
@@ -169,6 +176,7 @@ Partial Class FrmDiary
         Me.PicSetReminder.Location = New System.Drawing.Point(12, 180)
         Me.PicSetReminder.Name = "PicSetReminder"
         Me.PicSetReminder.Size = New System.Drawing.Size(42, 42)
+        Me.PicSetReminder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSetReminder.TabIndex = 100
         Me.PicSetReminder.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicSetReminder, "Set a reminder")
@@ -180,6 +188,7 @@ Partial Class FrmDiary
         Me.PicToggleComplete.Location = New System.Drawing.Point(12, 228)
         Me.PicToggleComplete.Name = "PicToggleComplete"
         Me.PicToggleComplete.Size = New System.Drawing.Size(42, 42)
+        Me.PicToggleComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicToggleComplete.TabIndex = 102
         Me.PicToggleComplete.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicToggleComplete, "Set complete")
@@ -208,11 +217,33 @@ Partial Class FrmDiary
         Me.ToolTip1.SetToolTip(Me.btnCustLink, "Show linked customer")
         Me.btnCustLink.UseVisualStyleBackColor = True
         '
+        'PicCancelCustLink
+        '
+        Me.PicCancelCustLink.Image = Global.MyBusiness.My.Resources.Resources.cancel
+        Me.PicCancelCustLink.Location = New System.Drawing.Point(92, 25)
+        Me.PicCancelCustLink.Name = "PicCancelCustLink"
+        Me.PicCancelCustLink.Size = New System.Drawing.Size(16, 16)
+        Me.PicCancelCustLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicCancelCustLink.TabIndex = 3
+        Me.PicCancelCustLink.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicCancelCustLink, "Remove link to customer")
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.MyBusiness.My.Resources.Resources.cancel
+        Me.PictureBox2.Location = New System.Drawing.Point(92, 54)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 4
+        Me.PictureBox2.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox2, "Remove link to job")
+        '
         'lblFormName
         '
         Me.lblFormName.AutoSize = True
         Me.lblFormName.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFormName.ForeColor = System.Drawing.Color.Black
+        Me.lblFormName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblFormName.Location = New System.Drawing.Point(62, 12)
         Me.lblFormName.Name = "lblFormName"
         Me.lblFormName.Size = New System.Drawing.Size(147, 25)
@@ -268,7 +299,7 @@ Partial Class FrmDiary
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         Me.dgvDiary.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvDiary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDiary.Size = New System.Drawing.Size(433, 269)
+        Me.dgvDiary.Size = New System.Drawing.Size(335, 269)
         Me.dgvDiary.TabIndex = 23
         '
         'dremId
@@ -369,13 +400,14 @@ Partial Class FrmDiary
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.PictureBox2)
+        Me.GroupBox1.Controls.Add(Me.PicCancelCustLink)
         Me.GroupBox1.Controls.Add(Me.btnJobLink)
         Me.GroupBox1.Controls.Add(Me.btnCustLink)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Black
         Me.GroupBox1.Location = New System.Drawing.Point(12, 282)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(92, 89)
+        Me.GroupBox1.Size = New System.Drawing.Size(124, 89)
         Me.GroupBox1.TabIndex = 26
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Links"
@@ -446,7 +478,7 @@ Partial Class FrmDiary
         Me.lblName.ForeColor = System.Drawing.Color.Black
         Me.lblName.Location = New System.Drawing.Point(509, 12)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(330, 25)
+        Me.lblName.Size = New System.Drawing.Size(232, 25)
         Me.lblName.TabIndex = 35
         Me.lblName.Text = "Name"
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -455,7 +487,7 @@ Partial Class FrmDiary
         '
         Me.lblDate.AutoSize = True
         Me.lblDate.Font = New System.Drawing.Font("Felix Titling", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDate.ForeColor = System.Drawing.Color.Black
+        Me.lblDate.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblDate.Location = New System.Drawing.Point(62, 40)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(152, 25)
@@ -464,6 +496,8 @@ Partial Class FrmDiary
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.LblJobName)
         Me.GroupBox2.Controls.Add(Me.LblCustName)
         Me.GroupBox2.Controls.Add(Me.lblJob)
@@ -472,7 +506,7 @@ Partial Class FrmDiary
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.GroupBox2.Location = New System.Drawing.Point(406, 80)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(433, 58)
+        Me.GroupBox2.Size = New System.Drawing.Size(335, 58)
         Me.GroupBox2.TabIndex = 38
         Me.GroupBox2.TabStop = False
         '
@@ -519,7 +553,7 @@ Partial Class FrmDiary
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(851, 464)
+        Me.ClientSize = New System.Drawing.Size(753, 464)
         Me.Controls.Add(Me.PicToggleComplete)
         Me.Controls.Add(Me.PicSetReminder)
         Me.Controls.Add(Me.PicUpdate)
@@ -555,6 +589,8 @@ Partial Class FrmDiary
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicSetReminder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicToggleComplete, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicCancelCustLink, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvDiary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -604,4 +640,6 @@ Partial Class FrmDiary
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicSetReminder As PictureBox
     Friend WithEvents PicToggleComplete As PictureBox
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents PicCancelCustLink As PictureBox
 End Class

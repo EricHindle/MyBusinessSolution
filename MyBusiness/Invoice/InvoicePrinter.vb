@@ -7,9 +7,9 @@
 
 Imports System.IO
 Imports HindlewareLib.Logging
+Imports HindlewareLib.Utilities
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
-Imports HindlewareLib.Utilities
 Public Class InvoicePrinter
 #Region "variables"
     Private _job As Job

@@ -27,6 +27,14 @@ Public Module netwyrksCommon
         Public toDate As Date
     End Structure
 #End Region
+#Region "enum"
+    Public Enum FormPos
+        TOP
+        LEFT
+        HEIGHT
+        WIDTH
+    End Enum
+#End Region
 #Region "current user"
     Public _companyName As String = ""
     Public currentUser As User = UserBuilder.AUser.StartingWithNothing().Build
@@ -392,6 +400,16 @@ Public Module netwyrksCommon
             LogUtil.Problem(pException.InnerException.Message, pSub)
         End If
     End Sub
+    Public Function GetFormPosValue(ByVal sPos As String, pFormPos As FormPos) As Integer
+        Dim rtnval As Integer = -1
+        If sPos <> "max" AndAlso sPos <> "min" Then
+            Dim pos As String() = sPos.Split("~")
+            If pos.Length = 4 Then
+                rtnval = CInt(pos(pFormPos))
+            End If
+        End If
+        Return rtnval
+    End Function
     Public Function GetFormPos(ByRef oForm As Form, ByVal sPos As String) As Boolean
         Dim isOK As Boolean = True
         If sPos = "max" Then

@@ -40,7 +40,6 @@ Public Class FrmViewCust
             rtbCustNotes.Text = _customer.Notes
         End If
     End Sub
-
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()
     End Sub

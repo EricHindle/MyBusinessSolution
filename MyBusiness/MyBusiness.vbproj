@@ -564,6 +564,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\abandon.png" />
+    <None Include="Resources\MyBusiness_customer.png" />
     <None Include="Images\add.png" />
     <None Include="Images\addrem.png" />
     <None Include="Images\adddiary.png" />

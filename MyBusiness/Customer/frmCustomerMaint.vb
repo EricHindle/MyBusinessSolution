@@ -24,24 +24,33 @@ Public Class FrmCustomerMaint
             _customerId = value
         End Set
     End Property
+    Private _isView As Boolean
+    Public Property IsView() As Boolean
+        Get
+            Return _isView
+        End Get
+        Set(ByVal value As Boolean)
+            _isView = value
+        End Set
+    End Property
 #End Region
 #Region "form handlers"
 
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Started", Name)
         If GetFormPos(Me, My.Settings.CustFormPos) Then
-            SplitContainer1.SplitterDistance = CInt("0" & My.Settings.CustSplitterDist1)
+            ScCustomer.SplitterDistance = CInt("0" & My.Settings.CustSplitterDist1)
         End If
         isLoading = True
-        pnlCustomer.Enabled = False
-        SplitContainer1.Panel2Collapsed = True
+        ScCustomer.Panel2Collapsed = True
         KeyPreview = True
         If _customerId <= 0 Then
             NewCustomer()
         Else
-            pnlCustomer.Enabled = True
             _currentCustomer = GetCustomer(_customerId)
             FillCustomerDetails()
+            ScCustomer.Enabled = Not IsView
+            LblAction.Visible = Not IsView
         End If
         SpellCheckUtil.EnableSpellChecking({rtbCustNotes})
         isLoading = False
@@ -49,7 +58,7 @@ Public Class FrmCustomerMaint
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", Name)
         My.Settings.CustFormPos = SetFormPos(Me)
-        My.Settings.CustSplitterDist1 = SplitContainer1.SplitterDistance
+        My.Settings.CustSplitterDist1 = ScCustomer.SplitterDistance
         My.Settings.Save()
     End Sub
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -69,15 +78,6 @@ Public Class FrmCustomerMaint
             End Using
         End If
     End Sub
-    Private Sub BtnAddJob_Click(sender As Object, e As EventArgs) Handles BtnAddJob.Click
-        LogUtil.Info("Adding job", Name)
-        Using _jobForm As New FrmJobMaint
-            _jobForm.TheJob = Nothing
-            _jobForm.CustomerId = _customerId
-            _jobForm.ShowDialog()
-            FillJobsList(_customerId)
-        End Using
-    End Sub
     Private Sub ChkCompleted_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkCompleted.CheckedChanged
         isLoading = True
         FillJobsList(_customerId)
@@ -91,9 +91,14 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         LogUtil.Info("Updating", Name)
-        Dim _custAdd As Address = HindlewareLib.Domain.Builders.AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim).WithAddress2(txtCustAddr2.Text.Trim).WithAddress3(txtCustAddr3.Text.Trim).WithAddress4(txtCustAddr4.Text.Trim).WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
+        Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim) _
+                                                .WithAddress2(txtCustAddr2.Text.Trim) _
+                                                .WithAddress3(txtCustAddr3.Text.Trim) _
+                                                .WithAddress4(txtCustAddr4.Text.Trim) _
+                                                .WithPostcode(txtCustPostcode.Text.Trim.ToUpper).Build
         With _currentCustomer
-            _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId).WithAddress(_custAdd) _
+            _newCustomer = CustomerBuilder.ACustomer.WithCustId(.CustomerId) _
+                .WithAddress(_custAdd) _
                 .WithCustName(txtCustName.Text.Trim()) _
                 .WithDateChanged(.DateChanged) _
                 .WithDateCreated(.DateCreated) _
@@ -106,12 +111,24 @@ Public Class FrmCustomerMaint
         If _customerId > 0 Then
             AmendCustomer()
         Else
-            CreateCustomer()
+            If CreateCustomer() Then
+                LblAction.Text = "Added the new customer"
+            End If
         End If
+    End Sub
+    Private Sub PicAddJob_Click(sender As Object, e As EventArgs) Handles PicAddJob.Click
+        LogUtil.Info("Adding job", Name)
+        Using _jobForm As New FrmJobMaint
+            _jobForm.TheJob = Nothing
+            _jobForm.CustomerId = _customerId
+            _jobForm.ShowDialog()
+            FillJobsList(_customerId)
+        End Using
     End Sub
 #End Region
 #Region "functions"
     Private Sub FillCustomerDetails()
+        LblAction.Text = "Updating a customer"
         Dim _custId As Integer = 0
         With _currentCustomer
             txtCustName.Text = .CustName
@@ -127,7 +144,7 @@ Public Class FrmCustomerMaint
             rtbCustNotes.Text = .Notes
             _custId = .CustomerId
         End With
-        SplitContainer1.Panel2Collapsed = False
+        ScCustomer.Panel2Collapsed = False
         LogUtil.Info("Existing customer " & _custId, Name)
         FillJobsList(_custId)
     End Sub
@@ -163,12 +180,12 @@ Public Class FrmCustomerMaint
     End Function
     Private Sub NewCustomer()
         LogUtil.Info("New customer", Name)
+        LblAction.Text = "Adding a new customer"
         PicUpdate.Image = My.Resources.add
         ToolTip1.SetToolTip(PicUpdate, "Add a new customer")
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()
-        pnlCustomer.Enabled = True
-        SplitContainer1.Panel2Collapsed = True
+        ScCustomer.Panel2Collapsed = True
         DgvJobs.Rows.Clear()
     End Sub
     Private Sub ClearCustomerDetails()
@@ -197,15 +214,17 @@ Public Class FrmCustomerMaint
             tRow.Cells(jobName.Name).Value = oJob.JobName
             tRow.Cells(jobCompleted.Name).Value = If(oJob.IsJobCompleted, "Yes", "")
         Next
+        DgvJobs.ClearSelection()
     End Sub
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
             _diary.ForCustomerId = _customerId
+            If DgvJobs.SelectedRows.Count = 1 Then
+                _diary.ForJobId = DgvJobs.SelectedRows(0).Cells(jobId.Name).Value
+            End If
             _diary.ShowDialog()
         End Using
     End Sub
-    Private Sub LblF3_Click(sender As Object, e As EventArgs)
-        ShowDiary()
-    End Sub
+
 #End Region
 End Class

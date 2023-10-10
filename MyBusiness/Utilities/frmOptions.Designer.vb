@@ -38,6 +38,8 @@ Partial Class frmOptions
         Me.ChkCheckCallbacks = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.grpDiary = New System.Windows.Forms.GroupBox()
+        Me.ChkShowProduct = New System.Windows.Forms.CheckBox()
+        Me.ChkShowTask = New System.Windows.Forms.CheckBox()
         Me.chkShowJob = New System.Windows.Forms.CheckBox()
         Me.chkShowSupplier = New System.Windows.Forms.CheckBox()
         Me.chkShowCustomer = New System.Windows.Forms.CheckBox()
@@ -115,8 +117,7 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.ChkShowTask = New System.Windows.Forms.CheckBox()
-        Me.ChkShowProduct = New System.Windows.Forms.CheckBox()
+        Me.chkShowAllReminders = New System.Windows.Forms.CheckBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -200,11 +201,12 @@ Partial Class frmOptions
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.chkShowAllReminders)
         Me.GroupBox6.Controls.Add(Me.ChkShowDiary)
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(122, 6)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(200, 46)
+        Me.GroupBox6.Size = New System.Drawing.Size(200, 73)
         Me.GroupBox6.TabIndex = 10
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Diary"
@@ -232,7 +234,7 @@ Partial Class frmOptions
         Me.GroupBox5.Controls.Add(Me.ChkCheckCallbacks)
         Me.GroupBox5.Controls.Add(Me.Label1)
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(171, 163)
+        Me.GroupBox5.Location = New System.Drawing.Point(171, 190)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(237, 105)
         Me.GroupBox5.TabIndex = 9
@@ -315,12 +317,34 @@ Partial Class frmOptions
         Me.grpDiary.Controls.Add(Me.chkShowCustomer)
         Me.grpDiary.Controls.Add(Me.chkShowDiaryBody)
         Me.grpDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpDiary.Location = New System.Drawing.Point(13, 163)
+        Me.grpDiary.Location = New System.Drawing.Point(13, 190)
         Me.grpDiary.Name = "grpDiary"
         Me.grpDiary.Size = New System.Drawing.Size(142, 186)
         Me.grpDiary.TabIndex = 8
         Me.grpDiary.TabStop = False
         Me.grpDiary.Text = "Show Selected "
+        '
+        'ChkShowProduct
+        '
+        Me.ChkShowProduct.AutoSize = True
+        Me.ChkShowProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowProduct.Location = New System.Drawing.Point(12, 151)
+        Me.ChkShowProduct.Name = "ChkShowProduct"
+        Me.ChkShowProduct.Size = New System.Drawing.Size(108, 18)
+        Me.ChkShowProduct.TabIndex = 5
+        Me.ChkShowProduct.Text = "Product Details"
+        Me.ChkShowProduct.UseVisualStyleBackColor = True
+        '
+        'ChkShowTask
+        '
+        Me.ChkShowTask.AutoSize = True
+        Me.ChkShowTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowTask.Location = New System.Drawing.Point(12, 127)
+        Me.ChkShowTask.Name = "ChkShowTask"
+        Me.ChkShowTask.Size = New System.Drawing.Size(90, 18)
+        Me.ChkShowTask.TabIndex = 4
+        Me.ChkShowTask.Text = "Task Details"
+        Me.ChkShowTask.UseVisualStyleBackColor = True
         '
         'chkShowJob
         '
@@ -374,7 +398,7 @@ Partial Class frmOptions
         Me.GroupBox3.Controls.Add(Me.nudRetention)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox3.Location = New System.Drawing.Point(13, 58)
+        Me.GroupBox3.Location = New System.Drawing.Point(13, 85)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -1246,27 +1270,18 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'ChkShowTask
+        'chkShowAllReminders
         '
-        Me.ChkShowTask.AutoSize = True
-        Me.ChkShowTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChkShowTask.Location = New System.Drawing.Point(12, 127)
-        Me.ChkShowTask.Name = "ChkShowTask"
-        Me.ChkShowTask.Size = New System.Drawing.Size(90, 18)
-        Me.ChkShowTask.TabIndex = 4
-        Me.ChkShowTask.Text = "Task Details"
-        Me.ChkShowTask.UseVisualStyleBackColor = True
-        '
-        'ChkShowProduct
-        '
-        Me.ChkShowProduct.AutoSize = True
-        Me.ChkShowProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChkShowProduct.Location = New System.Drawing.Point(12, 151)
-        Me.ChkShowProduct.Name = "ChkShowProduct"
-        Me.ChkShowProduct.Size = New System.Drawing.Size(108, 18)
-        Me.ChkShowProduct.TabIndex = 5
-        Me.ChkShowProduct.Text = "Product Details"
-        Me.ChkShowProduct.UseVisualStyleBackColor = True
+        Me.chkShowAllReminders.AutoSize = True
+        Me.chkShowAllReminders.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkShowAllReminders.ForeColor = System.Drawing.Color.Black
+        Me.chkShowAllReminders.Location = New System.Drawing.Point(10, 43)
+        Me.chkShowAllReminders.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.chkShowAllReminders.Name = "chkShowAllReminders"
+        Me.chkShowAllReminders.Size = New System.Drawing.Size(128, 18)
+        Me.chkShowAllReminders.TabIndex = 2
+        Me.chkShowAllReminders.Text = "Show all reminders"
+        Me.chkShowAllReminders.UseVisualStyleBackColor = True
         '
         'frmOptions
         '
@@ -1418,4 +1433,5 @@ Partial Class frmOptions
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents ChkShowTask As CheckBox
     Friend WithEvents ChkShowProduct As CheckBox
+    Friend WithEvents chkShowAllReminders As CheckBox
 End Class

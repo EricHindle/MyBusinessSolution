@@ -134,6 +134,7 @@ Public Class frmOptions
         chkAutoTidy.Checked = My.Settings.AutoTidy
         ChkCheckCallbacks.Checked = My.Settings.checkCallBack
         ChkShowDiary.Checked = My.Settings.ShowRemindersAtLogin
+        chkShowAllReminders.Checked = My.Settings.ShowAllReminders
         ChkShowProduct.Checked = My.Settings.ShowProduct
         ChkShowTask.Checked = My.Settings.ShowTask
         NudAlertDuration.Value = My.Settings.alertDuration
@@ -156,6 +157,7 @@ Public Class frmOptions
         My.Settings.alertNotice = NudAlertNotice.Value
         My.Settings.alertDuration = NudAlertDuration.Value
         My.Settings.ShowRemindersAtLogin = ChkShowDiary.Checked
+        My.Settings.ShowAllReminders = chkShowAllReminders.Checked
         My.Settings.ShowTask = ChkShowTask.Checked
         My.Settings.ShowProduct = ChkShowProduct.Checked
     End Sub
