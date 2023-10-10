@@ -48,21 +48,23 @@ Public Class FrmMain
         EnableControlExtensions()
         isLoading = False
     End Sub
-    Private Sub DgvCust_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dgvCust.SelectionChanged
+    Private Sub DgvCust_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DgvCust.SelectionChanged
         spCustomer.Panel2Collapsed = True
         If Not isLoading Then
-            If dgvCust.SelectedRows.Count = 1 Then
-                Dim cRow As DataGridViewRow = dgvCust.SelectedRows(0)
+            If DgvCust.SelectedRows.Count = 1 Then
+                Dim cRow As DataGridViewRow = DgvCust.SelectedRows(0)
                 Dim _selCustId As Integer = cRow.Cells(custId.Name).Value
                 If _selCustId > 0 Then
                     Dim _selectedCust As Customer = CustomerBuilder.ACustomer.StartingWith(_selCustId).Build
-                    FillJobTable(_selectedCust.CustomerId, mnuShowAllJobs.Checked)
+                    FillJobTable(_selectedCust.CustomerId, MnuShowAllJobs.Checked)
                     txtCustAddress.Text = _selectedCust.CustName & vbCrLf & MultilineAddressString(_selectedCust.Address)
                     If My.Settings.ShowCustomer Then spCustomer.Panel2Collapsed = False
-                    FillJobTable(_selCustId, mnuShowAllJobs.Checked)
+                    FillJobTable(_selCustId, MnuShowAllJobs.Checked)
                 Else
-                    FillJobTable(-1, mnuShowAllJobs.Checked)
+                    FillJobTable(-1, MnuShowAllJobs.Checked)
                 End If
+            Else
+                FillJobTable(-1, MnuShowAllJobs.Checked)
             End If
         End If
     End Sub
@@ -90,9 +92,9 @@ Public Class FrmMain
             isLoading = False
         End If
     End Sub
-    Private Sub DgvCust_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvCust.CellDoubleClick
-        If dgvCust.SelectedRows.Count = 1 Then
-            Dim dRow As DataGridViewRow = dgvCust.SelectedRows(0)
+    Private Sub DgvCust_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvCust.CellDoubleClick
+        If DgvCust.SelectedRows.Count = 1 Then
+            Dim dRow As DataGridViewRow = DgvCust.SelectedRows(0)
             Dim _custId As Integer = dRow.Cells(custId.Name).Value
             Using _custForm As New FrmCustomerMaint
                 _custForm.CustomerId = _custId
@@ -100,13 +102,11 @@ Public Class FrmMain
             End Using
             FillCustomerTable(_custId)
             FillDiaryTable()
-        Else
-
         End If
     End Sub
-    Private Sub DgvSupp_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvSupp.CellDoubleClick
-        If dgvSupp.SelectedRows.Count = 1 Then
-            Dim dRow As DataGridViewRow = dgvSupp.SelectedRows(0)
+    Private Sub DgvSupp_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvSupp.CellDoubleClick
+        If DgvSupp.SelectedRows.Count = 1 Then
+            Dim dRow As DataGridViewRow = DgvSupp.SelectedRows(0)
             Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
             Using _suppForm As New FrmSupplier
                 _suppForm.SupplierId = _suppId
@@ -127,17 +127,17 @@ Public Class FrmMain
                 _jobForm.ShowDialog()
             End Using
             isLoading = True
-            dgvCust.ClearSelection()
-            FillJobTable(-1, mnuShowAllJobs.Checked)
+            DgvCust.ClearSelection()
+            FillJobTable(-1, MnuShowAllJobs.Checked)
             FillDiaryTable()
             isLoading = False
         End If
     End Sub
-    Private Sub DgvSupp_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dgvSupp.SelectionChanged
+    Private Sub DgvSupp_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DgvSupp.SelectionChanged
         spSupplier.Panel2Collapsed = True
         If Not isLoading Then
-            If dgvSupp.SelectedRows.Count = 1 Then
-                Dim sRow As DataGridViewRow = dgvSupp.SelectedRows(0)
+            If DgvSupp.SelectedRows.Count = 1 Then
+                Dim sRow As DataGridViewRow = DgvSupp.SelectedRows(0)
                 Dim _selSuppId As Integer = sRow.Cells(suppId.Name).Value
                 If _selSuppId > 0 Then
                     Dim _selectedSupp As Supplier = SupplierBuilder.ASupplier.StartingWith(_selSuppId).Build
@@ -196,8 +196,6 @@ Public Class FrmMain
             _userControl.ShowDialog()
         End Using
     End Sub
-
-
     Private Sub MnuLogView_Click(sender As Object, e As EventArgs) Handles MnuLogView.Click
         Using _log As New FrmLogViewer
             _log.ShowDialog()
@@ -240,27 +238,116 @@ Public Class FrmMain
         My.Settings.MainSplitterDist5 = spSupplier.SplitterDistance
         My.Settings.Save()
     End Sub
+    Private Sub MnuShowAudit_Click(sender As Object, e As EventArgs) Handles MnuShowAudit.Click
+        Using _audit As New FrmDisplayAudit
+            _audit.ShowDialog()
+        End Using
+    End Sub
+    Private Sub MnuTidyFiles_Click(sender As Object, e As EventArgs) Handles MnuTidyFiles.Click
+        Dim logFolder As String = sLogFolder
+        Dim retentionPeriod As Integer = My.Settings.RetentionPeriod
+        TidyFiles(logFolder, "*.*", retentionPeriod)
+        MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
+    End Sub
+    Private Sub MnuTemplateFromJob_Click(sender As Object, e As EventArgs) Handles MnuTemplateFromJob.Click
+        If dgvJobs.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
+            Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
+            Dim _jobproducts As List(Of JobProduct) = GetJobProductByJob(_job)
+            Dim _jobtasks As List(Of JobTask) = GetJobTasksByJob(_job.JobId)
+            Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing _
+                                                        .WithTemplateName(_job.JobName) _
+                                                        .WithTemplateDescription(_job.JobDescription) _
+                                                        .Build
+            Dim _templateId As Integer = InsertTemplate(_template)
+            If _templateId > 0 Then
+                For Each _jobproduct As JobProduct In _jobproducts
+                    Dim _templateproduct As TemplateProduct = TemplateProductBuilder.ATemplateProduct.StartingWith(_jobproduct) _
+                                                                                                        .WithTemplateId(_templateId) _
+                                                                                                        .Build
+                    Dim _tmplProdId As Integer = InsertTemplateProduct(_templateproduct)
+                Next
+                For Each _task As JobTask In _jobtasks
+                    Dim _templatetask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_task) _
+                                                                                            .WithTemplateId(_templateId) _
+                                                                                            .Build
+                    Dim _tmplTaskId As Integer = InsertTemplatetask(_templatetask)
+                Next
+            End If
+            Using _templates As New FrmJobTemplates
+                _templates.TemplateId = _templateId
+                _templates.ShowDialog()
+            End Using
+        Else
+            '   ShowStatus(lblstatus, "No job selected")
+        End If
+    End Sub
+    Private Sub MnuMaintainTemplates_Click(sender As Object, e As EventArgs) Handles MnuMaintainTemplates.Click
+        Using _templates As New FrmJobTemplates
+            _templates.ShowDialog()
+        End Using
+    End Sub
+    Private Sub MnuAddJob_Click(sender As Object, e As EventArgs) Handles MnuAddJob.Click
+        Using _jobForm As New FrmJobMaint
+            _jobForm.TheJob = Nothing
+            _jobForm.CustomerId = -1
+            _jobForm.ShowDialog()
+        End Using
+        isLoading = True
+        FillJobTable(-1, MnuShowAllJobs.Checked)
+        isLoading = False
+    End Sub
+    Private Sub MnuShowAllJobs_Click(sender As Object, e As EventArgs) Handles MnuShowAllJobs.Click
+        Dim _selCustId As Integer = -1
+        If DgvCust.SelectedRows.Count = 1 Then
+            _selCustId = DgvCust.SelectedRows(0).Cells(custId.Name).Value
+        End If
+        FillJobTable(_selCustId, MnuShowAllJobs.Checked)
+    End Sub
+    Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
+        LogUtil.Info("Job from template", MyBase.Name)
+        Dim _selectedTemplate As Template = SelectATemplate()
+
+        If _selectedTemplate IsNot Nothing Then
+            LogUtil.Info("Selected template : " & _selectedTemplate.ToString, MyBase.Name)
+            CreateJobFromTemplate(_selectedTemplate)
+            isLoading = True
+            FillJobTable(-1, MnuShowAllJobs.Checked)
+            isLoading = False
+        End If
+    End Sub
+    Private Sub DgvCust_MouseDown(sender As Object, e As MouseEventArgs) Handles DgvCust.MouseDown
+        If e.Button = MouseButtons.Right Then
+            DgvCust.ClearSelection()
+        End If
+    End Sub
+    Private Sub DgvSupp_MouseDown(sender As Object, e As MouseEventArgs) Handles DgvSupp.MouseDown
+        If e.Button = MouseButtons.Right Then
+            DgvSupp.ClearSelection()
+        End If
+    End Sub
+
 #End Region
 #Region "subroutines"
     Private Sub FillCustomerTable(ByVal pCustId As Integer)
         isLoading = True
-        dgvCust.Rows.Clear()
+        DgvCust.Rows.Clear()
         For Each oCust As Customer In GetCustomers()
-            Dim tRow As DataGridViewRow = dgvCust.Rows(dgvCust.Rows.Add)
+            Dim tRow As DataGridViewRow = DgvCust.Rows(DgvCust.Rows.Add)
             tRow.Cells(custId.Name).Value = oCust.CustomerId
             tRow.Cells(custName.Name).Value = oCust.CustName
             tRow.Cells(custPhone.Name).Value = oCust.Phone
             tRow.Cells(custemail.Name).Value = oCust.Email
         Next
         spCustomer.Panel2Collapsed = True
-        dgvCust.ClearSelection()
+        DgvCust.ClearSelection()
         isLoading = False
         If pCustId > 0 Then
             FindCustomerInTable(pCustId)
         End If
     End Sub
     Private Sub FindCustomerInTable(ByVal pCustId As Integer)
-        For Each oRow As DataGridViewRow In dgvCust.Rows
+        For Each oRow As DataGridViewRow In DgvCust.Rows
             If oRow.Cells(custId.Name).Value = pCustId Then
                 oRow.Selected = True
                 Exit For
@@ -269,9 +356,9 @@ Public Class FrmMain
     End Sub
     Private Sub FillSupplierTable(ByVal pSuppId As Integer)
         isLoading = True
-        dgvSupp.Rows.Clear()
+        DgvSupp.Rows.Clear()
         For Each oSupp As Supplier In GetSuppliers()
-            Dim tRow As DataGridViewRow = dgvSupp.Rows(dgvSupp.Rows.Add)
+            Dim tRow As DataGridViewRow = DgvSupp.Rows(DgvSupp.Rows.Add)
             tRow.Cells(suppId.Name).Value = oSupp.SupplierId
             tRow.Cells(suppName.Name).Value = oSupp.SupplierName
             tRow.Cells(suppPhone.Name).Value = oSupp.SupplierPhone
@@ -279,14 +366,14 @@ Public Class FrmMain
             tRow.Cells(suppAmazon.Name).Value = oSupp.IsSupplierAmazon
         Next
         spSupplier.Panel2Collapsed = True
-        dgvSupp.ClearSelection()
+        DgvSupp.ClearSelection()
         isLoading = False
         If pSuppId > 0 Then
             FindSupplierInTable(pSuppId)
         End If
     End Sub
     Private Sub FindSupplierInTable(ByVal pSuppId As Integer)
-        For Each oRow As DataGridViewRow In dgvSupp.Rows
+        For Each oRow As DataGridViewRow In DgvSupp.Rows
             If oRow.Cells(suppId.Name).Value = pSuppId Then
                 oRow.Selected = True
                 Exit For
@@ -448,89 +535,6 @@ Public Class FrmMain
         LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
         slice.Show()
     End Sub
-    Private Sub MnuShowAudit_Click(sender As Object, e As EventArgs) Handles MnuShowAudit.Click
-        Using _audit As New FrmDisplayAudit
-            _audit.ShowDialog()
-        End Using
-    End Sub
 
-    Private Sub MnuTidyFiles_Click(sender As Object, e As EventArgs) Handles MnuTidyFiles.Click
-        Dim logFolder As String = sLogFolder
-        Dim retentionPeriod As Integer = My.Settings.RetentionPeriod
-        TidyFiles(logFolder, "*.*", retentionPeriod)
-        MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
-    End Sub
-
-    Private Sub MnuTemplateFromJob_Click(sender As Object, e As EventArgs) Handles MnuTemplateFromJob.Click
-        If dgvJobs.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
-            Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
-            Dim _jobproducts As List(Of JobProduct) = GetJobProductByJob(_job)
-            Dim _jobtasks As List(Of JobTask) = GetJobTasksByJob(_job.JobId)
-            Dim _template As Template = TemplateBuilder.ATemplate.StartingWithNothing _
-                                                        .WithTemplateName(_job.JobName) _
-                                                        .WithTemplateDescription(_job.JobDescription) _
-                                                        .Build
-            Dim _templateId As Integer = InsertTemplate(_template)
-            If _templateId > 0 Then
-                For Each _jobproduct As JobProduct In _jobproducts
-                    Dim _templateproduct As TemplateProduct = TemplateProductBuilder.ATemplateProduct.StartingWith(_jobproduct) _
-                                                                                                        .WithTemplateId(_templateId) _
-                                                                                                        .Build
-                    Dim _tmplProdId As Integer = InsertTemplateProduct(_templateproduct)
-                Next
-                For Each _task As JobTask In _jobtasks
-                    Dim _templatetask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_task) _
-                                                                                            .WithTemplateId(_templateId) _
-                                                                                            .Build
-                    Dim _tmplTaskId As Integer = InsertTemplatetask(_templatetask)
-                Next
-            End If
-            Using _templates As New FrmJobTemplates
-                _templates.TemplateId = _templateId
-                _templates.ShowDialog()
-            End Using
-        Else
-            '   ShowStatus(lblstatus, "No job selected")
-        End If
-    End Sub
-
-    Private Sub MnuMaintainTemplates_Click(sender As Object, e As EventArgs) Handles MnuMaintainTemplates.Click
-        Using _templates As New FrmJobTemplates
-            _templates.ShowDialog()
-        End Using
-    End Sub
-
-
-    Private Sub MnuAddJob_Click(sender As Object, e As EventArgs) Handles MnuAddJob.Click
-        Using _jobForm As New FrmJobMaint
-            _jobForm.TheJob = Nothing
-            _jobForm.CustomerId = -1
-            _jobForm.ShowDialog()
-        End Using
-        isLoading = True
-        FillJobTable(-1, MnuShowAllJobs.Checked)
-        isLoading = False
-    End Sub
-
-    Private Sub MnuShowAllJobs_Click(sender As Object, e As EventArgs) Handles MnuShowAllJobs.Click
-        Dim _selCustId As Integer = -1
-        If dgvCust.SelectedRows.Count = 1 Then
-            _selCustId = dgvCust.SelectedRows(0).Cells(custId.Name).Value
-        End If
-        FillJobTable(_selCustId, MnuShowAllJobs.Checked)
-    End Sub
-    Private Sub MnuJobFromTemplate_Click(sender As Object, e As EventArgs) Handles MnuJobFromTemplate.Click
-        LogUtil.Info("Job from template", MyBase.Name)
-        Dim _selectedTemplate As Template = SelectATemplate()
-
-        If _selectedTemplate IsNot Nothing Then
-            LogUtil.Info("Selected template : " & _selectedTemplate.ToString, MyBase.Name)
-            CreateJobFromTemplate(_selectedTemplate)
-            isLoading = True
-            FillJobTable(-1, MnuShowAllJobs.Checked)
-            isLoading = False
-        End If
-    End Sub
 #End Region
 End Class

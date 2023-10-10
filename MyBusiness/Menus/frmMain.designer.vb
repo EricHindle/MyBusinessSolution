@@ -41,14 +41,14 @@ Partial Class FrmMain
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.spCustomer = New System.Windows.Forms.SplitContainer()
-        Me.dgvCust = New System.Windows.Forms.DataGridView()
+        Me.DgvCust = New System.Windows.Forms.DataGridView()
         Me.custId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.custName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.custPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.custemail = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtCustAddress = New System.Windows.Forms.TextBox()
         Me.spSupplier = New System.Windows.Forms.SplitContainer()
-        Me.dgvSupp = New System.Windows.Forms.DataGridView()
+        Me.DgvSupp = New System.Windows.Forms.DataGridView()
         Me.suppId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.suppName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.suppPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -124,12 +124,12 @@ Partial Class FrmMain
         Me.spCustomer.Panel1.SuspendLayout()
         Me.spCustomer.Panel2.SuspendLayout()
         Me.spCustomer.SuspendLayout()
-        CType(Me.dgvCust, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvCust, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spSupplier, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spSupplier.Panel1.SuspendLayout()
         Me.spSupplier.Panel2.SuspendLayout()
         Me.spSupplier.SuspendLayout()
-        CType(Me.dgvSupp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvSupp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer3.Panel1.SuspendLayout()
         Me.SplitContainer3.Panel2.SuspendLayout()
@@ -196,7 +196,7 @@ Partial Class FrmMain
         '
         'spCustomer.Panel1
         '
-        Me.spCustomer.Panel1.Controls.Add(Me.dgvCust)
+        Me.spCustomer.Panel1.Controls.Add(Me.DgvCust)
         '
         'spCustomer.Panel2
         '
@@ -208,14 +208,14 @@ Partial Class FrmMain
         '
         'dgvCust
         '
-        Me.dgvCust.AllowUserToAddRows = False
-        Me.dgvCust.AllowUserToDeleteRows = False
-        Me.dgvCust.AllowUserToResizeRows = False
+        Me.DgvCust.AllowUserToAddRows = False
+        Me.DgvCust.AllowUserToDeleteRows = False
+        Me.DgvCust.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvCust.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvCust.BackgroundColor = System.Drawing.Color.OldLace
+        Me.DgvCust.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DgvCust.BackgroundColor = System.Drawing.Color.OldLace
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FloralWhite
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -223,8 +223,8 @@ Partial Class FrmMain
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.OldLace
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.SaddleBrown
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvCust.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvCust.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.custId, Me.custName, Me.custPhone, Me.custemail})
+        Me.DgvCust.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DgvCust.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.custId, Me.custName, Me.custPhone, Me.custemail})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -232,20 +232,20 @@ Partial Class FrmMain
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvCust.DefaultCellStyle = DataGridViewCellStyle3
-        Me.dgvCust.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvCust.EnableHeadersVisualStyles = False
-        Me.dgvCust.Location = New System.Drawing.Point(0, 0)
-        Me.dgvCust.MultiSelect = False
-        Me.dgvCust.Name = "dgvCust"
-        Me.dgvCust.ReadOnly = True
-        Me.dgvCust.RowHeadersVisible = False
+        Me.DgvCust.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DgvCust.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvCust.EnableHeadersVisualStyles = False
+        Me.DgvCust.Location = New System.Drawing.Point(0, 0)
+        Me.DgvCust.MultiSelect = False
+        Me.DgvCust.Name = "dgvCust"
+        Me.DgvCust.ReadOnly = True
+        Me.DgvCust.RowHeadersVisible = False
         DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvCust.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvCust.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCust.Size = New System.Drawing.Size(358, 335)
-        Me.dgvCust.TabIndex = 1
+        Me.DgvCust.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.DgvCust.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvCust.Size = New System.Drawing.Size(358, 335)
+        Me.DgvCust.TabIndex = 1
         '
         'custId
         '
@@ -301,7 +301,7 @@ Partial Class FrmMain
         '
         'spSupplier.Panel1
         '
-        Me.spSupplier.Panel1.Controls.Add(Me.dgvSupp)
+        Me.spSupplier.Panel1.Controls.Add(Me.DgvSupp)
         '
         'spSupplier.Panel2
         '
@@ -313,14 +313,14 @@ Partial Class FrmMain
         '
         'dgvSupp
         '
-        Me.dgvSupp.AllowUserToAddRows = False
-        Me.dgvSupp.AllowUserToDeleteRows = False
-        Me.dgvSupp.AllowUserToResizeRows = False
+        Me.DgvSupp.AllowUserToAddRows = False
+        Me.DgvSupp.AllowUserToDeleteRows = False
+        Me.DgvSupp.AllowUserToResizeRows = False
         DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(232, Byte), Integer))
         DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvSupp.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvSupp.BackgroundColor = System.Drawing.Color.Honeydew
+        Me.DgvSupp.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.DgvSupp.BackgroundColor = System.Drawing.Color.Honeydew
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.MintCream
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -328,8 +328,8 @@ Partial Class FrmMain
         DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Honeydew
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.DarkGreen
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvSupp.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail, Me.suppAmazon})
+        Me.DgvSupp.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.DgvSupp.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName, Me.suppPhone, Me.suppEmail, Me.suppAmazon})
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -337,20 +337,20 @@ Partial Class FrmMain
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvSupp.DefaultCellStyle = DataGridViewCellStyle7
-        Me.dgvSupp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvSupp.EnableHeadersVisualStyles = False
-        Me.dgvSupp.Location = New System.Drawing.Point(0, 0)
-        Me.dgvSupp.MultiSelect = False
-        Me.dgvSupp.Name = "dgvSupp"
-        Me.dgvSupp.ReadOnly = True
-        Me.dgvSupp.RowHeadersVisible = False
+        Me.DgvSupp.DefaultCellStyle = DataGridViewCellStyle7
+        Me.DgvSupp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvSupp.EnableHeadersVisualStyles = False
+        Me.DgvSupp.Location = New System.Drawing.Point(0, 0)
+        Me.DgvSupp.MultiSelect = False
+        Me.DgvSupp.Name = "dgvSupp"
+        Me.DgvSupp.ReadOnly = True
+        Me.DgvSupp.RowHeadersVisible = False
         DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvSupp.RowsDefaultCellStyle = DataGridViewCellStyle8
-        Me.dgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSupp.Size = New System.Drawing.Size(358, 276)
-        Me.dgvSupp.TabIndex = 0
+        Me.DgvSupp.RowsDefaultCellStyle = DataGridViewCellStyle8
+        Me.DgvSupp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvSupp.Size = New System.Drawing.Size(358, 276)
+        Me.DgvSupp.TabIndex = 0
         '
         'suppId
         '
@@ -942,13 +942,13 @@ Partial Class FrmMain
         Me.spCustomer.Panel2.PerformLayout()
         CType(Me.spCustomer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spCustomer.ResumeLayout(False)
-        CType(Me.dgvCust, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvCust, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spSupplier.Panel1.ResumeLayout(False)
         Me.spSupplier.Panel2.ResumeLayout(False)
         Me.spSupplier.Panel2.PerformLayout()
         CType(Me.spSupplier, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spSupplier.ResumeLayout(False)
-        CType(Me.dgvSupp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvSupp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.Panel1.ResumeLayout(False)
         Me.SplitContainer3.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -968,7 +968,7 @@ Partial Class FrmMain
 
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents SplitContainer2 As SplitContainer
-    Friend WithEvents dgvSupp As DataGridView
+    Friend WithEvents DgvSupp As DataGridView
     Friend WithEvents SplitContainer3 As SplitContainer
     Friend WithEvents dgvJobs As DataGridView
     Friend WithEvents dgvDiary As DataGridView
@@ -987,7 +987,7 @@ Partial Class FrmMain
     Friend WithEvents rtbDiaryBody As RichTextBox
     Friend WithEvents spCustomer As SplitContainer
     Friend WithEvents spSupplier As SplitContainer
-    Friend WithEvents dgvCust As DataGridView
+    Friend WithEvents DgvCust As DataGridView
     Friend WithEvents custId As DataGridViewTextBoxColumn
     Friend WithEvents custName As DataGridViewTextBoxColumn
     Friend WithEvents custPhone As DataGridViewTextBoxColumn
