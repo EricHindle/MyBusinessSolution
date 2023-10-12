@@ -92,7 +92,7 @@ Public Class JobTaskBuilder
         _taskCreated = Now
         _taskChanged = Nothing
         _taskTaxable = False
-        _taskTaxRate = Nothing
+        _taskTaxRate = 0.00
         Return Me
     End Function
     Public Function WithJobTaskId(ByVal pTaskId As Integer) As JobTaskBuilder

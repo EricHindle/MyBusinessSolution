@@ -54,7 +54,7 @@ Public Class FrmJobMaint
         LogUtil.Debug("Closing", Name)
         If ScJob.Panel2Collapsed Then
             Dim oldWidth As Integer = GetFormPosValue(My.Settings.JobMaintFormPos, FormPos.WIDTH)
-            If (oldWidth > 0) Then Me.Width = oldWidth
+            If oldWidth > 0 Then Width = oldWidth
             ScJob.SplitterDistance = My.Settings.JobSplitterDist2
         End If
         My.Settings.JobMaintFormPos = SetFormPos(Me)
@@ -318,7 +318,7 @@ Public Class FrmJobMaint
     Private Sub NewJob()
         LogUtil.Debug("New job", Name())
         If Not ScJob.Panel2Collapsed Then
-            Me.Width -= ScJob.Panel2.Width
+            Width -= ScJob.Panel2.Width
             ScJob.Panel2Collapsed = True
         End If
         GrpInvoice.Enabled = False

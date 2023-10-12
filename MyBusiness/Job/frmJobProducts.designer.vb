@@ -23,6 +23,8 @@ Partial Class FrmJobProducts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmJobProducts))
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -150,7 +152,7 @@ Partial Class FrmJobProducts
         Me.dgvJobProducts.AllowUserToAddRows = False
         Me.dgvJobProducts.AllowUserToDeleteRows = False
         Me.dgvJobProducts.AllowUserToResizeRows = False
-        Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.MintCream
+        Me.dgvJobProducts.BackgroundColor = System.Drawing.Color.SeaShell
         Me.dgvJobProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvJobProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.jpProdId, Me.jpSupp, Me.jpProduct, Me.jpQty, Me.jpTaxable, Me.jpRate, Me.jpprice})
         Me.dgvJobProducts.Dock = System.Windows.Forms.DockStyle.Fill
@@ -231,9 +233,18 @@ Partial Class FrmJobProducts
         Me.DgvSupplier.AllowUserToDeleteRows = False
         Me.DgvSupplier.AllowUserToResizeRows = False
         Me.DgvSupplier.BackgroundColor = System.Drawing.Color.Honeydew
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.MintCream
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvSupplier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvSupplier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.suppId, Me.suppName})
         Me.DgvSupplier.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvSupplier.EnableHeadersVisualStyles = False
         Me.DgvSupplier.Location = New System.Drawing.Point(0, 0)
         Me.DgvSupplier.MultiSelect = False
         Me.DgvSupplier.Name = "DgvSupplier"
@@ -263,9 +274,18 @@ Partial Class FrmJobProducts
         Me.dgvProducts.AllowUserToDeleteRows = False
         Me.dgvProducts.AllowUserToResizeRows = False
         Me.dgvProducts.BackgroundColor = System.Drawing.Color.AliceBlue
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.GhostWhite
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName, Me.prodTaxable, Me.prodTaxRate, Me.prodPrice})
         Me.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvProducts.EnableHeadersVisualStyles = False
         Me.dgvProducts.Location = New System.Drawing.Point(0, 0)
         Me.dgvProducts.MultiSelect = False
         Me.dgvProducts.Name = "dgvProducts"

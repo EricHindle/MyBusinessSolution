@@ -290,6 +290,7 @@ Partial Class FrmJobTemplates
         'btnMaintProducts
         '
         Me.btnMaintProducts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMaintProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnMaintProducts.Location = New System.Drawing.Point(504, 4)
         Me.btnMaintProducts.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMaintProducts.Name = "btnMaintProducts"
@@ -325,7 +326,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 121)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 120)
         Me.dgvProducts.TabIndex = 73
         '
         'tpId

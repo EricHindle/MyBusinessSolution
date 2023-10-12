@@ -25,6 +25,8 @@ Public Class AuditUtil
         JobProduct
         JobImage
         JobTask
+        Template
+        TemplateTask
     End Enum
     Public Enum AuditableAction
         create

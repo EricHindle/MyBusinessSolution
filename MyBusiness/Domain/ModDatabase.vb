@@ -264,7 +264,19 @@ Module ModDatabase
                 _task = JobTaskBuilder.AJobTask.StartingWith(oJobTaskTable.Rows(0)).Build
             End If
         Catch ex As Exception
-
+            DisplayException(ex, "Exception getting jobtask", MODULE_NAME)
+        End Try
+        Return _task
+    End Function
+    Public Function GetJobTaskByJobAndTask(pJobId As Integer, pTaskId As Integer) As JobTask
+        Dim _task As JobTask = JobTaskBuilder.AJobTask.StartingWithNothing.Build
+        Try
+            oJobTaskTa.FillByJobTask(oJobTaskTable, pJobId, pTaskId)
+            If oJobTaskTable.Rows.Count = 1 Then
+                _task = JobTaskBuilder.AJobTask.StartingWith(oJobTaskTable.Rows(0)).Build
+            End If
+        Catch ex As Exception
+            DisplayException(ex, "Exception getting jobtask", MODULE_NAME)
         End Try
         Return _task
     End Function
@@ -1208,7 +1220,19 @@ Module ModDatabase
                 _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
             End If
         Catch ex As DbException
-
+            DisplayException(ex, "Error getting template tasks", "GetTemplateTaskById")
+        End Try
+        Return _templateTask
+    End Function
+    Public Function GetTemplateTaskByTemplateAndTask(pTemplateId As Integer, pTaskId As Integer) As TemplateTask
+        Dim _templateTask As TemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWithNothing.Build
+        Try
+            oTemplateTaskTa.FillByTemplateTask(oTemplateTaskTable, pTemplateId, pTaskId)
+            If oTemplateTaskTable.Rows.Count > 0 Then
+                _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
+            End If
+        Catch ex As DbException
+            DisplayException(ex, "Error getting template task", "GetTemplateTaskByTemplateAndTask")
         End Try
         Return _templateTask
     End Function

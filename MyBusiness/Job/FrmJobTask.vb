@@ -55,8 +55,8 @@ Public Class FrmJobTask
         GetFormPos(Me, My.Settings.JobTaskFormPos)
         LoadTaskList()
         IsTasksLoaded = True
-        IsLoading = True
         IsTemplateTask = False
+        IsLoading = True
         If _job IsNot Nothing Then
             _jobId = _job.JobId
             lblJobName.Text = _job.JobName
@@ -65,36 +65,32 @@ Public Class FrmJobTask
             _tmplId = _template.TemplateId
             lblJobName.Text = "Template: " & _template.TemplateName
             IsTemplateTask = True
+            lblScreenName.Text = "Template Task"
             LogUtil.Info("Template Task", Name)
         Else
-            ShowStatus(lblStatus, "No job selected", Name, True)
+            ShowStatus(lblStatus, "No job/template selected", Name, True)
             MsgBox("Error: no job selected", MsgBoxStyle.Exclamation, "Error")
             Close()
         End If
         _jobtask = JobTaskBuilder.AJobTask.StartingWithNothing.Build
         ClearTaskDetails()
+        rtbDescription.Enabled = False
         If _jobtaskId > 0 Then
-            CbTask.Enabled = False
-            rtbDescription.Enabled = False
-            txtTaskName.Visible = False
             BtnAdd.Visible = False
-            PicUpdate.Visible = True
-            PicAdd.Visible = False
+            SetButtonVisibility(False)
             If IsTemplateTask Then
                 _templateTask = GetTemplateTaskById(_jobtaskId)
-                FillTaskDetails(_templateTask)
+                FillTaskDetails(JobTaskBuilder.AJobTask.StartingWith(_templateTask).Build)
+                FillTemplateTaskDetails(_templateTask)
             Else
                 _jobtask = GetJobTaskById(_jobtaskId)
                 FillTaskDetails(_jobtask)
+                FillJobTaskDetails(_jobtask)
             End If
         Else
             _jobtaskId = -1
-            CbTask.Enabled = True
-            rtbDescription.Enabled = False
-            txtTaskName.Visible = False
             BtnAdd.Visible = True
-            PicUpdate.Visible = False
-            PicAdd.Visible = True
+            SetButtonVisibility(True)
         End If
         SpellCheckUtil.EnableSpellChecking({rtbDescription})
         IsLoading = False
@@ -108,18 +104,18 @@ Public Class FrmJobTask
         My.Settings.Save()
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
-        If Not String.IsNullOrEmpty(txtTaskName.Text) Then
-            CreateNewJobTaskFromForm()
+        _newJobTask = CreateNewJobTaskFromForm()
+        If IsTemplateTask Then
             _newTemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_newJobTask).WithTemplateId(_tmplId).Build
-            Amendtask()
-            Close()
+            AmendTemplateTask()
         Else
-            ShowStatus(lblStatus, "Missing values. No action")
+            AmendJobTask()
         End If
+        Close()
     End Sub
 
-    Private Sub CreateNewJobTaskFromForm()
-        _newJobTask = JobTaskBuilder.AJobTask.WithTask(_task) _
+    Private Function CreateNewJobTaskFromForm() As JobTask
+        Return JobTaskBuilder.AJobTask.WithTask(_task) _
                                     .WithTaskCost(nudCost.Value) _
                                     .WithTaskTime(nudTime.Value) _
                                     .WithTaskCompleted(chkCompleted.Checked) _
@@ -132,13 +128,7 @@ Public Class FrmJobTask
                                     .WithTaskTaxRate(nudTaxRate.Value) _
                                     .WithJobTaskId(_jobtaskId) _
                                     .Build()
-    End Sub
-    Private Sub CreateTaskFromForm()
-        _task = TaskBuilder.ATask.StartingWithNothing _
-                            .WithTaskName(txtTaskName.Text) _
-                            .WithTaskDescription(rtbDescription.Text) _
-                            .Build
-    End Sub
+    End Function
 #End Region
 #Region "subroutines"
     Private Sub LoadTaskList()
@@ -148,13 +138,16 @@ Public Class FrmJobTask
         CbTask.ValueMember = "taskid"
         CbTask.DisplayMember = "task_name"
     End Sub
-    Private Sub FillTaskDetails(pTask As JobTask)
-        With pTask
-            _task = pTask.Task
+    Private Sub FillTaskDetails(pJobTask As JobTask)
+        With pJobTask
+            _task = .Task
             _taskId = _task.TaskId
-            CbTask.SelectedValue = pTask.TaskId
-            txtTaskName.Text = .Task.TaskName
+            CbTask.SelectedValue = _taskId
             rtbDescription.Text = .Task.TaskDescription
+        End With
+    End Sub
+    Private Sub FillJobTaskDetails(pJobTask As JobTask)
+        With pJobTask
             nudCost.Value = .TaskCost
             nudTime.Value = .TaskHours
             dtpStartDate.Value = If(.TaskStartDue Is Nothing, Now.Date, CDate(.TaskStartDue).Date)
@@ -163,107 +156,136 @@ Public Class FrmJobTask
             chkTaxable.Checked = .IsTaskTaxable
             nudTaxRate.Value = .TaskTaxRate
         End With
-        LogUtil.Info("Existing task " & _jobtaskId, Name)
     End Sub
-    Private Sub FillTaskDetails(pTemplateTask As TemplateTask)
-        FillTaskDetails(JobTaskBuilder.AJobTask.StartingWith(pTemplateTask).Build)
+    Private Sub FillTemplateTaskDetails(pTemplateTask As TemplateTask)
+        With pTemplateTask
+            nudCost.Value = .Cost
+            nudTime.Value = .Hours
+            chkTaxable.Checked = .IsTaskTaxable
+            nudTaxRate.Value = .TaxRate
+        End With
     End Sub
     Private Sub ClearTaskDetails()
-        txtTaskName.Text = ""
         rtbDescription.Text = ""
         nudCost.Value = 0
         nudTime.Value = 0
         dtpStartDate.Value = Today.Date
         chkStarted.Checked = False
         chkCompleted.Checked = False
-        txtTaskName.Visible = False
         CbTask.SelectedIndex = -1
         _task = TaskBuilder.ATask.StartingWithNothing.Build
         _taskId = -1
     End Sub
-    Private Sub NewTask()
-        LogUtil.Info("New task", Name)
-        ClearTaskDetails()
-    End Sub
-    Private Function Amendtask() As Boolean
-        Dim isAmendOk As Boolean = False
-        LogUtil.Info("Updating task", Name)
-        With _newJobTask
-            Dim _ct As Integer
-            If IsTemplateTask Then
-                _ct = UpdateTemplateTask(_newTemplateTask)
-            Else
-                _ct = UpdateJobTask(_newJobTask)
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, .JobTaskId, AuditUtil.AuditableAction.create, _jobtask.ToString, .ToString)
-            End If
-            If _ct = 1 Then
-                isAmendOk = True
-                ShowStatus(lblStatus, "Task updated OK", Name, True)
-            Else
-                isAmendOk = False
-                ShowStatus(lblStatus, "Task NOT updated", Name, True)
-            End If
-        End With
+    Private Function AmendJobTask() As Boolean
+        LogUtil.Info("Updating job task", Name)
+        Dim _ct As Integer
+        _ct = UpdateJobTask(_newJobTask)
+        AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, _newJobTask.JobTaskId, AuditUtil.AuditableAction.create, _jobtask.ToString, _newJobTask.ToString)
+        Dim isAmendOk As Boolean
+        If _ct = 1 Then
+            isAmendOk = True
+            ShowStatus(lblStatus, "Job Task updated OK", Name, True)
+        Else
+            isAmendOk = False
+            ShowStatus(lblStatus, "Job Task NOT updated", Name, True)
+        End If
         Return isAmendOk
     End Function
-    Private Function CreateTask() As Boolean
+    Private Function AmendTemplateTask() As Boolean
+        LogUtil.Info("Updating template task", Name)
+        Dim _ct As Integer
+        _ct = UpdateTemplateTask(_newTemplateTask)
+        AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.TemplateTask, _newTemplateTask.TemplateTaskId, AuditUtil.AuditableAction.create, _templateTask.ToString, _newTemplateTask.ToString)
+        Dim isAmendOk As Boolean
+        If _ct = 1 Then
+            isAmendOk = True
+            ShowStatus(lblStatus, "Template Task updated OK", Name, True)
+        Else
+            isAmendOk = False
+            ShowStatus(lblStatus, "Template Task NOT updated", Name, True)
+        End If
+        Return isAmendOk
+    End Function
+    Private Function CreateJobTask() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting task", Name)
-        With _newJobTask
-            If IsTemplateTask Then
-                _jobtaskId = InsertTemplatetask(_newTemplateTask)
-            Else
-                _jobtaskId = InsertJobTask(_newJobTask)
-            End If
-            If _jobtaskId > 0 Then
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, _jobtaskId, AuditUtil.AuditableAction.create, "", .ToString)
-                isInsertOk = True
-                ShowStatus(lblStatus, "Task " & _jobtaskId & " Created OK", Name, True)
-            Else
-                isInsertOk = False
-                ShowStatus(lblStatus, "Task NOT created", Name, True)
-            End If
-        End With
+        LogUtil.Info("Inserting job task", Name)
+        _jobtaskId = InsertJobTask(_newJobTask)
+        AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, _jobtaskId, AuditUtil.AuditableAction.create, "", _newJobTask.ToString)
+        If _jobtaskId > 0 Then
+            isInsertOk = True
+            ShowStatus(lblStatus, "Job Task " & _jobtaskId & " Created OK", Name, True)
+        Else
+            isInsertOk = False
+            ShowStatus(lblStatus, "Job Task NOT created", Name, True)
+        End If
         Return isInsertOk
     End Function
-
+    Private Function CreateTemplateTask() As Boolean
+        Dim isInsertOk As Boolean
+        LogUtil.Info("Inserting template task", Name)
+        _jobtaskId = InsertTemplatetask(_newTemplateTask)
+        AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.TemplateTask, _jobtaskId, AuditUtil.AuditableAction.create, "", _newTemplateTask.ToString)
+        If _jobtaskId > 0 Then
+            isInsertOk = True
+            ShowStatus(lblStatus, "Template Task " & _jobtaskId & " Created OK", Name, True)
+        Else
+            isInsertOk = False
+            ShowStatus(lblStatus, "Template Task NOT created", Name, True)
+        End If
+        Return isInsertOk
+    End Function
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        txtTaskName.Visible = True
-        CbTask.SelectedIndex = -1
-        CbTask.Visible = False
-        rtbDescription.Enabled = True
-        BtnAdd.Visible = False
+        Using _taskForm As New FrmTasks
+            _taskForm.ShowDialog()
+            _taskId = _taskForm.TaskId
+        End Using
+        LoadTaskList()
     End Sub
 
     Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
-        If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
-            _taskId = CbTask.SelectedValue
-            _task = GetTaskById(_taskId)
-            txtTaskName.Text = _task.TaskName
-            rtbDescription.Text = _task.TaskDescription
-        Else
-            txtTaskName.Text = String.Empty
-            rtbDescription.Text = String.Empty
-            _taskId = -1
-            _task = TaskBuilder.ATask.StartingWithNothing.Build
+        If Not IsLoading Then
+            If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
+                _taskId = CbTask.SelectedValue
+                _task = GetTaskById(_taskId)
+                rtbDescription.Text = _task.TaskDescription
+                Dim _existingId As Integer
+                If IsTemplateTask Then
+                    Dim _existingTemplateTask As TemplateTask = GetTemplateTaskByTemplateAndTask(_template.TemplateId, _taskId)
+                    FillTemplateTaskDetails(_existingTemplateTask)
+                    _existingId = _existingTemplateTask.TemplateTaskId
+                Else
+                    Dim _existingJobTask As JobTask = GetJobTaskByJobAndTask(_jobId, _taskId)
+                    FillJobTaskDetails(_existingJobTask)
+                    _existingId = _existingJobTask.JobTaskId
+                End If
+                _jobtaskId = _existingId
+                SetButtonVisibility(_existingId < 0)
+            Else
+                rtbDescription.Text = String.Empty
+                _taskId = -1
+                _task = TaskBuilder.ATask.StartingWithNothing.Build
+            End If
         End If
     End Sub
 
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
-        If Not String.IsNullOrEmpty(txtTaskName.Text) Then
-            If _taskId < 0 Then
-                CreateTaskFromForm()
-                _taskId = InsertTask(_task)
-                _task.TaskId = _taskId
+        If CbTask.SelectedIndex > -1 Then
+            _newJobTask = CreateNewJobTaskFromForm()
+            If IsTemplateTask Then
+                _newTemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_newJobTask).WithTemplateId(_tmplId).Build
+                CreateTemplateTask()
+            Else
+                CreateJobTask()
             End If
-            CreateNewJobTaskFromForm()
-            _newTemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_newJobTask).WithTemplateId(_tmplId).Build
-
-            CreateTask()
             Close()
         Else
             ShowStatus(lblStatus, "Missing values. No action")
         End If
+    End Sub
+
+    Private Sub SetButtonVisibility(IsAddVisible As Boolean)
+        PicAdd.Visible = IsAddVisible
+        PicUpdate.Visible = Not IsAddVisible
     End Sub
 #End Region
 End Class

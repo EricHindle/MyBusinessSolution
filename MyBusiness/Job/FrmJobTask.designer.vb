@@ -38,7 +38,6 @@ Partial Class FrmJobTask
         Me.nudCost = New System.Windows.Forms.NumericUpDown()
         Me.nudTime = New System.Windows.Forms.NumericUpDown()
         Me.rtbDescription = New System.Windows.Forms.RichTextBox()
-        Me.txtTaskName = New System.Windows.Forms.TextBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblJobName = New System.Windows.Forms.Label()
@@ -119,7 +118,7 @@ Partial Class FrmJobTask
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(40, 365)
+        Me.Label4.Location = New System.Drawing.Point(40, 285)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 17)
         Me.Label4.TabIndex = 12
@@ -129,7 +128,7 @@ Partial Class FrmJobTask
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(295, 365)
+        Me.Label5.Location = New System.Drawing.Point(295, 285)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(86, 17)
         Me.Label5.TabIndex = 13
@@ -139,7 +138,7 @@ Partial Class FrmJobTask
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(29, 452)
+        Me.Label6.Location = New System.Drawing.Point(29, 372)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(69, 17)
         Me.Label6.TabIndex = 14
@@ -149,7 +148,7 @@ Partial Class FrmJobTask
         '
         Me.chkStarted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkStarted.AutoSize = True
-        Me.chkStarted.Location = New System.Drawing.Point(368, 426)
+        Me.chkStarted.Location = New System.Drawing.Point(368, 346)
         Me.chkStarted.Name = "chkStarted"
         Me.chkStarted.Size = New System.Drawing.Size(84, 21)
         Me.chkStarted.TabIndex = 5
@@ -161,7 +160,7 @@ Partial Class FrmJobTask
         '
         Me.chkCompleted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkCompleted.AutoSize = True
-        Me.chkCompleted.Location = New System.Drawing.Point(368, 454)
+        Me.chkCompleted.Location = New System.Drawing.Point(368, 374)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Size = New System.Drawing.Size(105, 21)
         Me.chkCompleted.TabIndex = 6
@@ -172,7 +171,7 @@ Partial Class FrmJobTask
         'dtpStartDate
         '
         Me.dtpStartDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dtpStartDate.Location = New System.Drawing.Point(109, 448)
+        Me.dtpStartDate.Location = New System.Drawing.Point(109, 368)
         Me.dtpStartDate.Name = "dtpStartDate"
         Me.dtpStartDate.Size = New System.Drawing.Size(200, 24)
         Me.dtpStartDate.TabIndex = 4
@@ -181,7 +180,7 @@ Partial Class FrmJobTask
         '
         Me.nudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudCost.DecimalPlaces = 2
-        Me.nudCost.Location = New System.Drawing.Point(99, 363)
+        Me.nudCost.Location = New System.Drawing.Point(99, 283)
         Me.nudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudCost.Name = "nudCost"
         Me.nudCost.Size = New System.Drawing.Size(120, 24)
@@ -191,7 +190,7 @@ Partial Class FrmJobTask
         '
         Me.nudTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTime.DecimalPlaces = 2
-        Me.nudTime.Location = New System.Drawing.Point(387, 363)
+        Me.nudTime.Location = New System.Drawing.Point(387, 283)
         Me.nudTime.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudTime.Name = "nudTime"
         Me.nudTime.Size = New System.Drawing.Size(120, 24)
@@ -204,26 +203,16 @@ Partial Class FrmJobTask
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbDescription.Location = New System.Drawing.Point(34, 197)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(474, 160)
+        Me.rtbDescription.Size = New System.Drawing.Size(474, 80)
         Me.rtbDescription.TabIndex = 1
         Me.rtbDescription.Text = ""
-        '
-        'txtTaskName
-        '
-        Me.txtTaskName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTaskName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTaskName.Location = New System.Drawing.Point(111, 114)
-        Me.txtTaskName.Name = "txtTaskName"
-        Me.txtTaskName.Size = New System.Drawing.Size(357, 27)
-        Me.txtTaskName.TabIndex = 0
         '
         'StatusStrip1
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 544)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 464)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(537, 22)
         Me.StatusStrip1.TabIndex = 15
@@ -253,7 +242,7 @@ Partial Class FrmJobTask
         '
         Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(195, 405)
+        Me.nudTaxRate.Location = New System.Drawing.Point(195, 325)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(60, 24)
         Me.nudTaxRate.TabIndex = 72
@@ -262,7 +251,7 @@ Partial Class FrmJobTask
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(136, 409)
+        Me.Label7.Location = New System.Drawing.Point(136, 329)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 17)
         Me.Label7.TabIndex = 73
@@ -272,7 +261,7 @@ Partial Class FrmJobTask
         '
         Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(43, 407)
+        Me.chkTaxable.Location = New System.Drawing.Point(43, 327)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(74, 21)
         Me.chkTaxable.TabIndex = 74
@@ -285,7 +274,7 @@ Partial Class FrmJobTask
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
         Me.PicUpdate.InitialImage = Nothing
-        Me.PicUpdate.Location = New System.Drawing.Point(11, 489)
+        Me.PicUpdate.Location = New System.Drawing.Point(32, 409)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 103
@@ -297,7 +286,7 @@ Partial Class FrmJobTask
         Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
         Me.PicClose.InitialImage = Nothing
-        Me.PicClose.Location = New System.Drawing.Point(483, 489)
+        Me.PicClose.Location = New System.Drawing.Point(467, 409)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 104
@@ -321,7 +310,7 @@ Partial Class FrmJobTask
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
         Me.PicAdd.InitialImage = Nothing
-        Me.PicAdd.Location = New System.Drawing.Point(11, 489)
+        Me.PicAdd.Location = New System.Drawing.Point(32, 409)
         Me.PicAdd.Name = "PicAdd"
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 107
@@ -340,7 +329,7 @@ Partial Class FrmJobTask
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 566)
+        Me.ClientSize = New System.Drawing.Size(537, 486)
         Me.Controls.Add(Me.PicAdd)
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.CbTask)
@@ -351,7 +340,6 @@ Partial Class FrmJobTask
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblJobName)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.txtTaskName)
         Me.Controls.Add(Me.rtbDescription)
         Me.Controls.Add(Me.nudTime)
         Me.Controls.Add(Me.nudCost)
@@ -399,7 +387,6 @@ Partial Class FrmJobTask
     Friend WithEvents nudCost As NumericUpDown
     Friend WithEvents nudTime As NumericUpDown
     Friend WithEvents rtbDescription As RichTextBox
-    Friend WithEvents txtTaskName As TextBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblJobName As Label
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel

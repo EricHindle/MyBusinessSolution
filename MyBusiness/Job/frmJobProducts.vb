@@ -42,7 +42,7 @@ Public Class FrmJobProducts
         FillJobProductList(dgvJobProducts)
         lblJobName.Text = _job.JobName
         lblProductName.Text = ""
-
+        SetButtonsVisible(False, False, False)
         KeyPreview = True
         If _selectedJobProduct IsNot Nothing Then
             SelectSupplier(_selectedJobProduct.ThisProduct.ProductSupplierId)
@@ -63,14 +63,26 @@ Public Class FrmJobProducts
                 isLoading = True
                 Dim pRow As DataGridViewRow = dgvProducts.SelectedRows(0)
                 Dim _ProductId As Integer = pRow.Cells(prodId.Name).Value
+                dgvJobProducts.ClearSelection()
                 Dim _jpId As Integer = SelectJobProductByProduct(_ProductId)
                 If _jpId > 0 Then
                     _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWith(_jpId).Build
                 Else
                     Dim _product As Product = GetProductById(_ProductId)
-                    _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.WithJob(_job).WithProduct(_product).Build
+                    _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing _
+                        .WithJob(_job) _
+                        .WithProduct(_product) _
+                        .WithQuantity(1) _
+                        .WithPrice(_product.ProductCost) _
+                        .Build
                 End If
                 SelectSupplier(_selectedJobProduct.ThisProduct.ProductSupplierId)
+                RemoveProducts(_selectedJobProduct.ThisProduct.ProductSupplierId)
+                If dgvJobProducts.SelectedRows.Count = 1 Then
+                    SetButtonsVisible(False, True, True)
+                Else
+                    SetButtonsVisible(True, False, False)
+                End If
                 isLoading = False
                 FillProductDetails()
             Else
@@ -79,11 +91,20 @@ Public Class FrmJobProducts
             End If
         End If
     End Sub
+    Private Sub RemoveProducts(pSupplierId As Integer)
+        For Each oRow As DataGridViewRow In dgvProducts.Rows
+            Dim _productId As Integer = oRow.Cells(prodId.Name).Value
+            If GetProductById(_productId).ProductSupplierId <> pSupplierId Then
+                oRow.Visible = False
+            End If
+        Next
+    End Sub
     Private Sub DgvSupplier_SelectionChanged(sender As Object, e As EventArgs) Handles DgvSupplier.SelectionChanged
         If Not isLoading Then
             isLoading = True
             dgvJobProducts.ClearSelection()
             dgvProducts.ClearSelection()
+            SetButtonsVisible(False, False, False)
             ClearProductDetails()
             _selectedJobProduct = Nothing
             If DgvSupplier.SelectedRows.Count = 1 Then
@@ -100,15 +121,26 @@ Public Class FrmJobProducts
                 Dim tRow As DataGridViewRow = dgvJobProducts.SelectedRows(0)
                 _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWith(tRow.Cells(jpId.Name).Value).Build
                 isLoading = True
-                SelectSupplier(_selectedJobProduct.ThisProduct.ProductSupplierId)
+                _currentSupplierId = _selectedJobProduct.ThisProduct.ProductSupplierId
+                SelectSupplier(_currentSupplierId)
+                FillProductList()
                 SelectProduct(_selectedJobProduct.ThisProduct.ProductId)
                 isLoading = False
                 FillProductDetails()
+                SetButtonsVisible(False, True, True)
             Else
                 ClearProductDetails()
+                SetButtonsVisible(True, False, False)
             End If
         End If
     End Sub
+
+    Private Sub SetButtonsVisible(pAdd As Boolean, pUpdate As Boolean, pDelete As Boolean)
+        PicAdd.Visible = pAdd
+        PicUpdate.Visible = pUpdate
+        PicRemove.Visible = pDelete
+    End Sub
+
     Private Sub LblF5_Click(sender As Object, e As EventArgs) Handles LblF5.Click
         AddSupplier()
     End Sub
@@ -299,17 +331,17 @@ Public Class FrmJobProducts
             End If
         Next
     End Sub
-    Private Function SelectJobProductByProduct(pProductId As Integer) As Boolean
-        Dim isFound As Boolean = False
+    Private Function SelectJobProductByProduct(pProductId As Integer) As Integer
+        Dim _jpId As Integer = -1
         For Each oRow As DataGridViewRow In dgvJobProducts.Rows
             If oRow.Cells(jpProdId.Name).Value = pProductId Then
                 oRow.Selected = True
                 dgvJobProducts.FirstDisplayedScrollingRowIndex = oRow.Index
-                isFound = True
+                _jpId = oRow.Cells(jpId.Name).Value
                 Exit For
             End If
         Next
-        Return isFound
+        Return _jpId
     End Function
     Private Sub SelectProduct(pProductId As Integer)
         For Each oRow As DataGridViewRow In dgvProducts.Rows
