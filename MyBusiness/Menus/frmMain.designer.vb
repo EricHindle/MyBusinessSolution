@@ -112,6 +112,8 @@ Partial Class FrmMain
         Me.MnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
+        Me.MnuTasks = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -206,7 +208,7 @@ Partial Class FrmMain
         Me.spCustomer.SplitterDistance = 335
         Me.spCustomer.TabIndex = 1
         '
-        'dgvCust
+        'DgvCust
         '
         Me.DgvCust.AllowUserToAddRows = False
         Me.DgvCust.AllowUserToDeleteRows = False
@@ -237,7 +239,7 @@ Partial Class FrmMain
         Me.DgvCust.EnableHeadersVisualStyles = False
         Me.DgvCust.Location = New System.Drawing.Point(0, 0)
         Me.DgvCust.MultiSelect = False
-        Me.DgvCust.Name = "dgvCust"
+        Me.DgvCust.Name = "DgvCust"
         Me.DgvCust.ReadOnly = True
         Me.DgvCust.RowHeadersVisible = False
         DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -311,7 +313,7 @@ Partial Class FrmMain
         Me.spSupplier.SplitterDistance = 276
         Me.spSupplier.TabIndex = 1
         '
-        'dgvSupp
+        'DgvSupp
         '
         Me.DgvSupp.AllowUserToAddRows = False
         Me.DgvSupp.AllowUserToDeleteRows = False
@@ -342,7 +344,7 @@ Partial Class FrmMain
         Me.DgvSupp.EnableHeadersVisualStyles = False
         Me.DgvSupp.Location = New System.Drawing.Point(0, 0)
         Me.DgvSupp.MultiSelect = False
-        Me.DgvSupp.Name = "dgvSupp"
+        Me.DgvSupp.Name = "DgvSupp"
         Me.DgvSupp.ReadOnly = True
         Me.DgvSupp.RowHeadersVisible = False
         DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
@@ -665,10 +667,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJob, Me.MnuAddCustomer, Me.MnuAddSupplier, Me.MnuAddDiary, Me.Gap1, Me.MnuTemplates, Me.MnuSettings, Me.MnuAdmin, Me.Gap2, Me.MnuClose})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -722,7 +724,7 @@ Partial Class FrmMain
         '
         Me.Gap1.Name = "Gap1"
         Me.Gap1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.Gap1.Size = New System.Drawing.Size(78, 19)
+        Me.Gap1.Size = New System.Drawing.Size(108, 19)
         Me.Gap1.Text = " "
         '
         'MnuTemplates
@@ -815,7 +817,7 @@ Partial Class FrmMain
         Me.MnuAdmin.BackColor = System.Drawing.SystemColors.Control
         Me.MnuAdmin.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
         Me.MnuAdmin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.MnuAdmin.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuTidyFiles, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
+        Me.MnuAdmin.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserControlToolStripMenuItem, Me.MnuChangePassword, Me.ToolStripSeparator6, Me.MnuTasks, Me.ToolStripSeparator8, Me.MnuShowAudit, Me.ToolStripSeparator2, Me.MnuTidyFiles, Me.MnuBackup, Me.MnuRestore, Me.ToolStripSeparator3, Me.MnuLogView, Me.ToolStripSeparator5, Me.AboutToolStripMenuItem})
         Me.MnuAdmin.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.MnuAdmin.Name = "MnuAdmin"
         Me.MnuAdmin.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
@@ -825,76 +827,76 @@ Partial Class FrmMain
         'UserControlToolStripMenuItem
         '
         Me.UserControlToolStripMenuItem.Name = "UserControlToolStripMenuItem"
-        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UserControlToolStripMenuItem.Text = "User Control"
         '
         'MnuChangePassword
         '
         Me.MnuChangePassword.Name = "MnuChangePassword"
-        Me.MnuChangePassword.Size = New System.Drawing.Size(168, 22)
+        Me.MnuChangePassword.Size = New System.Drawing.Size(180, 22)
         Me.MnuChangePassword.Text = "Change password"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
         '
         'MnuShowAudit
         '
         Me.MnuShowAudit.Name = "MnuShowAudit"
-        Me.MnuShowAudit.Size = New System.Drawing.Size(168, 22)
+        Me.MnuShowAudit.Size = New System.Drawing.Size(180, 22)
         Me.MnuShowAudit.Text = "Show Audit"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
         '
         'MnuTidyFiles
         '
         Me.MnuTidyFiles.Name = "MnuTidyFiles"
-        Me.MnuTidyFiles.Size = New System.Drawing.Size(168, 22)
+        Me.MnuTidyFiles.Size = New System.Drawing.Size(180, 22)
         Me.MnuTidyFiles.Text = "Tidy Files"
         '
         'MnuBackup
         '
         Me.MnuBackup.Name = "MnuBackup"
-        Me.MnuBackup.Size = New System.Drawing.Size(168, 22)
+        Me.MnuBackup.Size = New System.Drawing.Size(180, 22)
         Me.MnuBackup.Text = "Backup"
         '
         'MnuRestore
         '
         Me.MnuRestore.Name = "MnuRestore"
-        Me.MnuRestore.Size = New System.Drawing.Size(168, 22)
+        Me.MnuRestore.Size = New System.Drawing.Size(180, 22)
         Me.MnuRestore.Text = "Restore"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
         '
         'MnuLogView
         '
         Me.MnuLogView.Name = "MnuLogView"
-        Me.MnuLogView.Size = New System.Drawing.Size(168, 22)
+        Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
         Me.MnuLogView.Text = "Log Viewer"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'Gap2
         '
         Me.Gap2.Name = "Gap2"
         Me.Gap2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.Gap2.Size = New System.Drawing.Size(78, 19)
+        Me.Gap2.Size = New System.Drawing.Size(108, 19)
         Me.Gap2.Text = " "
         '
         'MnuClose
@@ -915,6 +917,17 @@ Partial Class FrmMain
         '
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
+        '
+        'MnuTasks
+        '
+        Me.MnuTasks.Name = "MnuTasks"
+        Me.MnuTasks.Size = New System.Drawing.Size(180, 22)
+        Me.MnuTasks.Text = "Maintain Tasks"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
         '
         'FrmMain
         '
@@ -1040,4 +1053,6 @@ Partial Class FrmMain
     Friend WithEvents MnuTemplateFromJob As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
     Friend WithEvents MnuShowAllJobs As ToolStripMenuItem
+    Friend WithEvents MnuTasks As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
 End Class

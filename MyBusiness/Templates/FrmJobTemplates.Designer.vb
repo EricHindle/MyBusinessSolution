@@ -36,7 +36,7 @@ Partial Class FrmJobTemplates
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnAddTask = New System.Windows.Forms.Button()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
-        Me.BtnClearForm = New System.Windows.Forms.Button()
+        Me.PicClear = New System.Windows.Forms.PictureBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DgvTemplates = New System.Windows.Forms.DataGridView()
         Me.tmplId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,6 +69,7 @@ Partial Class FrmJobTemplates
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LblId = New System.Windows.Forms.Label()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PicClear, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -134,18 +135,19 @@ Partial Class FrmJobTemplates
         Me.ToolTip1.SetToolTip(Me.btnRemoveTask, "Remove the selected task")
         Me.btnRemoveTask.UseVisualStyleBackColor = True
         '
-        'BtnClearForm
+        'PicClear
         '
-        Me.BtnClearForm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnClearForm.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnClearForm.Location = New System.Drawing.Point(863, 446)
-        Me.BtnClearForm.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnClearForm.Name = "BtnClearForm"
-        Me.BtnClearForm.Size = New System.Drawing.Size(56, 56)
-        Me.BtnClearForm.TabIndex = 76
-        Me.BtnClearForm.Text = "Clear Form"
-        Me.ToolTip1.SetToolTip(Me.BtnClearForm, "Add a task")
-        Me.BtnClearForm.UseVisualStyleBackColor = True
+        Me.PicClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicClear.Image = Global.MyBusiness.My.Resources.Resources.refresh
+        Me.PicClear.InitialImage = Nothing
+        Me.PicClear.Location = New System.Drawing.Point(891, 446)
+        Me.PicClear.Margin = New System.Windows.Forms.Padding(4)
+        Me.PicClear.Name = "PicClear"
+        Me.PicClear.Size = New System.Drawing.Size(30, 30)
+        Me.PicClear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicClear.TabIndex = 134
+        Me.PicClear.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClear, "Clear the form")
         '
         'SplitContainer1
         '
@@ -323,7 +325,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 123)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 121)
         Me.dgvProducts.TabIndex = 73
         '
         'tpId
@@ -494,7 +496,7 @@ Partial Class FrmJobTemplates
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 587)
-        Me.Controls.Add(Me.BtnClearForm)
+        Me.Controls.Add(Me.PicClear)
         Me.Controls.Add(Me.LblId)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -515,6 +517,7 @@ Partial Class FrmJobTemplates
         Me.ShowIcon = False
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PicClear, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -563,7 +566,6 @@ Partial Class FrmJobTemplates
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents LblId As Label
-    Friend WithEvents BtnClearForm As Button
     Friend WithEvents taskId As DataGridViewTextBoxColumn
     Friend WithEvents taskName As DataGridViewTextBoxColumn
     Friend WithEvents taskHours As DataGridViewTextBoxColumn
@@ -574,4 +576,5 @@ Partial Class FrmJobTemplates
     Friend WithEvents tpProdName As DataGridViewTextBoxColumn
     Friend WithEvents tpQty As DataGridViewTextBoxColumn
     Friend WithEvents tpCost As DataGridViewTextBoxColumn
+    Friend WithEvents PicClear As PictureBox
 End Class

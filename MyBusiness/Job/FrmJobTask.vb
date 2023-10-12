@@ -6,7 +6,7 @@
 '
 Imports HindlewareLib.Logging
 
-Public Class FrmTask
+Public Class FrmJobTask
 #Region "variables"
     Private _jobId As Integer
     Private _job As Job
@@ -52,7 +52,7 @@ Public Class FrmTask
 #Region "form handlers"
     Private Sub FrmTask_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         LogUtil.Info("Starting", Name)
-        GetFormPos(Me, My.Settings.TaskFormPos)
+        GetFormPos(Me, My.Settings.JobTaskFormPos)
         LoadTaskList()
         IsTasksLoaded = True
         IsLoading = True
@@ -104,7 +104,7 @@ Public Class FrmTask
     End Sub
     Private Sub FrmTask_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", Name)
-        My.Settings.TaskFormPos = SetFormPos(Me)
+        My.Settings.JobTaskFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
@@ -194,7 +194,7 @@ Public Class FrmTask
                 _ct = UpdateTemplateTask(_newTemplateTask)
             Else
                 _ct = UpdateJobTask(_newJobTask)
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, .JobTaskId, AuditUtil.AuditableAction.create, _jobtask.ToString, .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, .JobTaskId, AuditUtil.AuditableAction.create, _jobtask.ToString, .ToString)
             End If
             If _ct = 1 Then
                 isAmendOk = True
@@ -216,7 +216,7 @@ Public Class FrmTask
                 _jobtaskId = InsertJobTask(_newJobTask)
             End If
             If _jobtaskId > 0 Then
-                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _jobtaskId, AuditUtil.AuditableAction.create, "", .ToString)
+                AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, _jobtaskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
                 ShowStatus(lblStatus, "Task " & _jobtaskId & " Created OK", Name, True)
             Else
@@ -251,8 +251,8 @@ Public Class FrmTask
 
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
         If Not String.IsNullOrEmpty(txtTaskName.Text) Then
-            CreateTaskFromForm()
             If _taskId < 0 Then
+                CreateTaskFromForm()
                 _taskId = InsertTask(_task)
                 _task.TaskId = _taskId
             End If

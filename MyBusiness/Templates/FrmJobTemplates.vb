@@ -192,7 +192,7 @@ Public Class FrmJobTemplates
         End If
     End Sub
 
-    Private Sub BtnClearForm_Click(sender As Object, e As EventArgs) Handles BtnClearForm.Click
+    Private Sub BtnClearForm_Click(sender As Object, e As EventArgs)
         DgvTemplates.ClearSelection()
     End Sub
 
@@ -223,7 +223,7 @@ Public Class FrmJobTemplates
     Private Sub BtnAddTask_Click(sender As Object, e As EventArgs) Handles btnAddTask.Click
         If SelectedTemplate IsNot Nothing AndAlso SelectedTemplate.TemplateId > 0 Then
             LogUtil.Debug("Add task to template", Name)
-            Using _taskForm As New FrmTask
+            Using _taskForm As New FrmJobTask
                 _taskForm.CustomerJob = Nothing
                 _taskForm.Template = SelectedTemplate
                 _taskForm.ShowDialog()
@@ -239,7 +239,7 @@ Public Class FrmJobTemplates
             LogUtil.Debug("Updating task", Name)
             Dim oRow As DataGridViewRow = DgvTasks.SelectedRows(0)
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
-            Using _taskForm As New FrmTask
+            Using _taskForm As New FrmJobTask
                 _taskForm.CustomerJob = Nothing
                 _taskForm.Template = SelectedTemplate
                 _taskForm.JobTaskId = _taskId
@@ -247,6 +247,10 @@ Public Class FrmJobTemplates
             End Using
             LoadTaskTable()
         End If
+    End Sub
+
+    Private Sub PicClear_Click(sender As Object, e As EventArgs) Handles PicClear.Click
+        DgvTemplates.ClearSelection()
     End Sub
 
 #End Region

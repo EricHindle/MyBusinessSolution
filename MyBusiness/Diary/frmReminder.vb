@@ -18,7 +18,7 @@ Public Class FrmReminder
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Reminder
-    Private FORM_NAME As String = REMINDER_TEXT
+    Private FORM_NAME As String = DIARY_TEXT
 #End Region
 #Region "properties"
     Private _reminder As Reminder
@@ -65,7 +65,6 @@ Public Class FrmReminder
         LogUtil.Info("Starting", FORM_NAME)
         GetFormPos(Me, My.Settings.ReminderFormPos)
         dtpSelectDate.Value = Today
-        lblFormName.Text = FORM_NAME
         lblName.Text = currentUser.UserName
         ClearForm()
         SpellCheckUtil.EnableSpellChecking({txtSubject, rtbBody})
@@ -95,6 +94,7 @@ Public Class FrmReminder
             lblJob.ForeColor = Color.Black
             LblJobName.Text = _job.JobName
         End If
+        SetReminderPic()
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()

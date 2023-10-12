@@ -27,7 +27,7 @@ Partial Class FrmJobMaint
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.btnRemoveTask = New System.Windows.Forms.Button()
-        Me.btnAddTask = New System.Windows.Forms.Button()
+        Me.btnAddJobTask = New System.Windows.Forms.Button()
         Me.dgvTasks = New System.Windows.Forms.DataGridView()
         Me.taskId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.taskName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -158,16 +158,16 @@ Partial Class FrmJobMaint
         '
         'btnAddTask
         '
-        Me.btnAddTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddTask.Location = New System.Drawing.Point(357, 4)
-        Me.btnAddTask.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAddTask.Name = "btnAddTask"
-        Me.btnAddTask.Size = New System.Drawing.Size(86, 28)
-        Me.btnAddTask.TabIndex = 69
-        Me.btnAddTask.Text = "Add"
-        Me.ToolTip1.SetToolTip(Me.btnAddTask, "Add a task")
-        Me.btnAddTask.UseVisualStyleBackColor = True
+        Me.btnAddJobTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddJobTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddJobTask.Location = New System.Drawing.Point(357, 4)
+        Me.btnAddJobTask.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAddJobTask.Name = "btnAddTask"
+        Me.btnAddJobTask.Size = New System.Drawing.Size(86, 28)
+        Me.btnAddJobTask.TabIndex = 69
+        Me.btnAddJobTask.Text = "Add"
+        Me.ToolTip1.SetToolTip(Me.btnAddJobTask, "Add a task")
+        Me.btnAddJobTask.UseVisualStyleBackColor = True
         '
         'dgvTasks
         '
@@ -657,7 +657,7 @@ Partial Class FrmJobMaint
         '
         Me.ScJobItems.Panel1.BackColor = System.Drawing.Color.GhostWhite
         Me.ScJobItems.Panel1.Controls.Add(Me.Label3)
-        Me.ScJobItems.Panel1.Controls.Add(Me.btnAddTask)
+        Me.ScJobItems.Panel1.Controls.Add(Me.btnAddJobTask)
         Me.ScJobItems.Panel1.Controls.Add(Me.dgvTasks)
         Me.ScJobItems.Panel1.Controls.Add(Me.btnRemoveTask)
         '
@@ -839,7 +839,7 @@ Partial Class FrmJobMaint
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
     Friend WithEvents btnRemoveTask As Button
-    Friend WithEvents btnAddTask As Button
+    Friend WithEvents btnAddJobTask As Button
     Friend WithEvents dgvTasks As DataGridView
     Friend WithEvents btnMaintProducts As Button
     Friend WithEvents DgvProducts As DataGridView

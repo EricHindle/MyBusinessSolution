@@ -536,5 +536,11 @@ Public Class FrmMain
         slice.Show()
     End Sub
 
+    Private Sub MnuTasks_Click(sender As Object, e As EventArgs) Handles MnuTasks.Click
+        Using _taskForm As New FrmTasks
+            _taskForm.ShowDialog()
+        End Using
+    End Sub
+
 #End Region
 End Class

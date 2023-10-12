@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmTask
+Partial Class FrmJobTask
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class FrmTask
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTask))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmJobTask))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -82,9 +82,9 @@ Partial Class FrmTask
         Me.lblScreenName.Location = New System.Drawing.Point(63, 12)
         Me.lblScreenName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblScreenName.Name = "lblScreenName"
-        Me.lblScreenName.Size = New System.Drawing.Size(69, 25)
+        Me.lblScreenName.Size = New System.Drawing.Size(112, 25)
         Me.lblScreenName.TabIndex = 7
-        Me.lblScreenName.Text = "Task"
+        Me.lblScreenName.Text = "Job Task"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
@@ -290,7 +290,7 @@ Partial Class FrmTask
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 103
         Me.PicUpdate.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the task")
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the job task")
         '
         'PicClose
         '
@@ -326,7 +326,7 @@ Partial Class FrmTask
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 107
         Me.PicAdd.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add the new task")
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add the new job task")
         '
         'CbTask
         '
@@ -336,7 +336,7 @@ Partial Class FrmTask
         Me.CbTask.Size = New System.Drawing.Size(341, 24)
         Me.CbTask.TabIndex = 105
         '
-        'FrmTask
+        'FrmJobTask
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -369,7 +369,7 @@ Partial Class FrmTask
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.Name = "FrmTask"
+        Me.Name = "FrmJobTask"
         Me.ShowIcon = False
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).EndInit()

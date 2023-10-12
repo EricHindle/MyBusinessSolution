@@ -24,6 +24,7 @@ Public Class AuditUtil
         Reminder
         JobProduct
         JobImage
+        JobTask
     End Enum
     Public Enum AuditableAction
         create

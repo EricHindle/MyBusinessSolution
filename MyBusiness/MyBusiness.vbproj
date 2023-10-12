@@ -226,6 +226,12 @@
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\EmailUtil.vb" />
+    <Compile Include="Tasks\FrmTasks.Designer.vb">
+      <DependentUpon>FrmTasks.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\FrmTasks.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Templates\FrmJobTemplates.Designer.vb">
       <DependentUpon>FrmJobTemplates.vb</DependentUpon>
     </Compile>
@@ -258,10 +264,10 @@
     <Compile Include="Job\FrmJobProducts.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\FrmTask.designer.vb">
-      <DependentUpon>FrmTask.vb</DependentUpon>
+    <Compile Include="Job\FrmJobTask.designer.vb">
+      <DependentUpon>FrmJobTask.vb</DependentUpon>
     </Compile>
-    <Compile Include="Job\FrmTask.vb">
+    <Compile Include="Job\FrmJobTask.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging\AuditUtil.vb" />
@@ -437,6 +443,9 @@
     <EmbeddedResource Include="Domain\FrmRestore.resx">
       <DependentUpon>FrmRestore.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\FrmTasks.resx">
+      <DependentUpon>FrmTasks.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Templates\FrmJobTemplates.resx">
       <DependentUpon>FrmJobTemplates.vb</DependentUpon>
     </EmbeddedResource>
@@ -455,8 +464,8 @@
       <DependentUpon>FrmJobProducts.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmTask.resx">
-      <DependentUpon>FrmTask.vb</DependentUpon>
+    <EmbeddedResource Include="Job\FrmJobTask.resx">
+      <DependentUpon>FrmJobTask.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Logging\FrmAuditItem.resx">
@@ -597,6 +606,7 @@
     <None Include="Images\updatediary.png" />
     <None Include="Images\RmvCallback.png" />
     <None Include="Images\reopendiary.png" />
+    <None Include="Images\refresh.png" />
     <Content Include="MyBusiness5.ico" />
     <None Include="packages.config" />
     <None Include="Resources\MyBusiness.png" />
