@@ -305,12 +305,12 @@ Partial Class FrmCustomerMaint
         '
         'PicAddJob
         '
-        Me.PicAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicAddJob.Image = Global.MyBusiness.My.Resources.Resources.addany
         Me.PicAddJob.InitialImage = Nothing
-        Me.PicAddJob.Location = New System.Drawing.Point(367, 379)
+        Me.PicAddJob.Location = New System.Drawing.Point(3, 387)
         Me.PicAddJob.Name = "PicAddJob"
-        Me.PicAddJob.Size = New System.Drawing.Size(32, 32)
+        Me.PicAddJob.Size = New System.Drawing.Size(24, 24)
         Me.PicAddJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicAddJob.TabIndex = 96
         Me.PicAddJob.TabStop = False
@@ -318,11 +318,11 @@ Partial Class FrmCustomerMaint
         '
         'ChkCompleted
         '
-        Me.ChkCompleted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ChkCompleted.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ChkCompleted.AutoSize = True
         Me.ChkCompleted.Checked = True
         Me.ChkCompleted.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkCompleted.Location = New System.Drawing.Point(3, 393)
+        Me.ChkCompleted.Location = New System.Drawing.Point(254, 389)
         Me.ChkCompleted.Name = "ChkCompleted"
         Me.ChkCompleted.Size = New System.Drawing.Size(145, 18)
         Me.ChkCompleted.TabIndex = 3
@@ -355,7 +355,7 @@ Partial Class FrmCustomerMaint
         Me.DgvJobs.ReadOnly = True
         Me.DgvJobs.RowHeadersVisible = False
         Me.DgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvJobs.Size = New System.Drawing.Size(396, 348)
+        Me.DgvJobs.Size = New System.Drawing.Size(396, 357)
         Me.DgvJobs.TabIndex = 2
         '
         'jobId

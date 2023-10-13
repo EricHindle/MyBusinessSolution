@@ -23,6 +23,7 @@ Partial Class FrmJobMaint
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -156,13 +157,13 @@ Partial Class FrmJobMaint
         Me.ToolTip1.SetToolTip(Me.btnRemoveTask, "Remove the selected task")
         Me.btnRemoveTask.UseVisualStyleBackColor = True
         '
-        'btnAddTask
+        'btnAddJobTask
         '
         Me.btnAddJobTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddJobTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddJobTask.Location = New System.Drawing.Point(357, 4)
         Me.btnAddJobTask.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAddJobTask.Name = "btnAddTask"
+        Me.btnAddJobTask.Name = "btnAddJobTask"
         Me.btnAddJobTask.Size = New System.Drawing.Size(86, 28)
         Me.btnAddJobTask.TabIndex = 69
         Me.btnAddJobTask.Text = "Add"
@@ -176,7 +177,7 @@ Partial Class FrmJobMaint
         Me.dgvTasks.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvTasks.BackgroundColor = System.Drawing.Color.AliceBlue
+        Me.dgvTasks.BackgroundColor = System.Drawing.Color.LavenderBlush
         Me.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskStartDue, Me.taskStarted, Me.taskCompleted, Me.taskHours, Me.taskPrice})
         Me.dgvTasks.Location = New System.Drawing.Point(4, 40)
@@ -260,7 +261,15 @@ Partial Class FrmJobMaint
         Me.DgvProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvProducts.BackgroundColor = System.Drawing.Color.AliceBlue
+        Me.DgvProducts.BackgroundColor = System.Drawing.Color.SeaShell
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Snow
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
         Me.DgvProducts.Location = New System.Drawing.Point(7, 40)
@@ -655,7 +664,7 @@ Partial Class FrmJobMaint
         '
         'ScJobItems.Panel1
         '
-        Me.ScJobItems.Panel1.BackColor = System.Drawing.Color.GhostWhite
+        Me.ScJobItems.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ScJobItems.Panel1.Controls.Add(Me.Label3)
         Me.ScJobItems.Panel1.Controls.Add(Me.btnAddJobTask)
         Me.ScJobItems.Panel1.Controls.Add(Me.dgvTasks)
@@ -663,7 +672,7 @@ Partial Class FrmJobMaint
         '
         'ScJobItems.Panel2
         '
-        Me.ScJobItems.Panel2.BackColor = System.Drawing.Color.GhostWhite
+        Me.ScJobItems.Panel2.BackColor = System.Drawing.Color.Snow
         Me.ScJobItems.Panel2.Controls.Add(Me.btnMaintProducts)
         Me.ScJobItems.Panel2.Controls.Add(Me.Label4)
         Me.ScJobItems.Panel2.Controls.Add(Me.DgvProducts)

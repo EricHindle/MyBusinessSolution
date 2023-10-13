@@ -167,7 +167,8 @@ Public Class FrmProduct
         Return isOk
     End Function
 
-    Private Sub BtnOpenWeb_Click(sender As Object, e As EventArgs) Handles BtnOpenWeb.Click
+
+    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
         If Not String.IsNullOrWhiteSpace(_supplier.SupplierUrl) Then
             Process.Start(_supplier.SupplierUrl.ToString)
         End If

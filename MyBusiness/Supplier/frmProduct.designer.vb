@@ -47,7 +47,8 @@ Partial Class FrmProduct
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtnOpenWeb = New System.Windows.Forms.Button()
+        Me.PicOpenWeb = New System.Windows.Forms.PictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +57,8 @@ Partial Class FrmProduct
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblScreenName
@@ -109,7 +112,7 @@ Partial Class FrmProduct
         '
         Me.lblSuppName.AutoSize = True
         Me.lblSuppName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSuppName.Location = New System.Drawing.Point(125, 87)
+        Me.lblSuppName.Location = New System.Drawing.Point(93, 87)
         Me.lblSuppName.Name = "lblSuppName"
         Me.lblSuppName.Size = New System.Drawing.Size(111, 19)
         Me.lblSuppName.TabIndex = 13
@@ -119,9 +122,9 @@ Partial Class FrmProduct
         '
         Me.txtProductName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtProductName.Location = New System.Drawing.Point(149, 137)
+        Me.txtProductName.Location = New System.Drawing.Point(104, 17)
         Me.txtProductName.Name = "txtProductName"
-        Me.txtProductName.Size = New System.Drawing.Size(368, 24)
+        Me.txtProductName.Size = New System.Drawing.Size(400, 24)
         Me.txtProductName.TabIndex = 0
         '
         'rtbDescription
@@ -129,9 +132,9 @@ Partial Class FrmProduct
         Me.rtbDescription.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbDescription.Location = New System.Drawing.Point(52, 200)
+        Me.rtbDescription.Location = New System.Drawing.Point(7, 80)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(465, 144)
+        Me.rtbDescription.Size = New System.Drawing.Size(497, 145)
         Me.rtbDescription.TabIndex = 1
         Me.rtbDescription.Text = ""
         '
@@ -139,7 +142,7 @@ Partial Class FrmProduct
         '
         Me.nudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudCost.DecimalPlaces = 2
-        Me.nudCost.Location = New System.Drawing.Point(150, 354)
+        Me.nudCost.Location = New System.Drawing.Point(104, 231)
         Me.nudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.nudCost.Name = "nudCost"
         Me.nudCost.Size = New System.Drawing.Size(120, 24)
@@ -149,7 +152,7 @@ Partial Class FrmProduct
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(326, 389)
+        Me.Label5.Location = New System.Drawing.Point(280, 266)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(65, 17)
         Me.Label5.TabIndex = 18
@@ -159,7 +162,7 @@ Partial Class FrmProduct
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(48, 356)
+        Me.Label4.Location = New System.Drawing.Point(2, 233)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(96, 17)
         Me.Label4.TabIndex = 16
@@ -168,7 +171,7 @@ Partial Class FrmProduct
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(52, 180)
+        Me.Label3.Location = New System.Drawing.Point(7, 60)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(76, 17)
         Me.Label3.TabIndex = 15
@@ -177,7 +180,7 @@ Partial Class FrmProduct
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(48, 140)
+        Me.Label2.Location = New System.Drawing.Point(3, 20)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(95, 17)
         Me.Label2.TabIndex = 14
@@ -186,7 +189,7 @@ Partial Class FrmProduct
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(52, 87)
+        Me.Label1.Location = New System.Drawing.Point(18, 89)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(56, 17)
@@ -197,7 +200,7 @@ Partial Class FrmProduct
         '
         Me.nudPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudPrice.DecimalPlaces = 2
-        Me.nudPrice.Location = New System.Drawing.Point(397, 387)
+        Me.nudPrice.Location = New System.Drawing.Point(351, 264)
         Me.nudPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudPrice.Name = "nudPrice"
         Me.nudPrice.Size = New System.Drawing.Size(120, 24)
@@ -207,7 +210,7 @@ Partial Class FrmProduct
         '
         Me.chkTaxable.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkTaxable.AutoSize = True
-        Me.chkTaxable.Location = New System.Drawing.Point(53, 428)
+        Me.chkTaxable.Location = New System.Drawing.Point(7, 305)
         Me.chkTaxable.Name = "chkTaxable"
         Me.chkTaxable.Size = New System.Drawing.Size(74, 21)
         Me.chkTaxable.TabIndex = 5
@@ -218,7 +221,7 @@ Partial Class FrmProduct
         '
         Me.nudTaxRate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudTaxRate.DecimalPlaces = 2
-        Me.nudTaxRate.Location = New System.Drawing.Point(205, 427)
+        Me.nudTaxRate.Location = New System.Drawing.Point(159, 304)
         Me.nudTaxRate.Name = "nudTaxRate"
         Me.nudTaxRate.Size = New System.Drawing.Size(60, 24)
         Me.nudTaxRate.TabIndex = 6
@@ -227,7 +230,7 @@ Partial Class FrmProduct
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(146, 429)
+        Me.Label7.Location = New System.Drawing.Point(100, 306)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 17)
         Me.Label7.TabIndex = 19
@@ -250,7 +253,7 @@ Partial Class FrmProduct
         'NudPurchaseUnits
         '
         Me.NudPurchaseUnits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.NudPurchaseUnits.Location = New System.Drawing.Point(150, 384)
+        Me.NudPurchaseUnits.Location = New System.Drawing.Point(104, 261)
         Me.NudPurchaseUnits.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NudPurchaseUnits.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NudPurchaseUnits.Name = "NudPurchaseUnits"
@@ -262,7 +265,7 @@ Partial Class FrmProduct
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(48, 386)
+        Me.Label6.Location = New System.Drawing.Point(2, 263)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(98, 17)
         Me.Label6.TabIndex = 17
@@ -292,16 +295,43 @@ Partial Class FrmProduct
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the product")
         '
-        'BtnOpenWeb
+        'PicOpenWeb
         '
-        Me.BtnOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnOpenWeb.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnOpenWeb.Location = New System.Drawing.Point(422, 87)
-        Me.BtnOpenWeb.Name = "BtnOpenWeb"
-        Me.BtnOpenWeb.Size = New System.Drawing.Size(95, 23)
-        Me.BtnOpenWeb.TabIndex = 107
-        Me.BtnOpenWeb.Text = "Open website"
-        Me.BtnOpenWeb.UseVisualStyleBackColor = True
+        Me.PicOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicOpenWeb.Image = Global.MyBusiness.My.Resources.Resources.www
+        Me.PicOpenWeb.InitialImage = Nothing
+        Me.PicOpenWeb.Location = New System.Drawing.Point(501, 86)
+        Me.PicOpenWeb.Name = "PicOpenWeb"
+        Me.PicOpenWeb.Size = New System.Drawing.Size(24, 24)
+        Me.PicOpenWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicOpenWeb.TabIndex = 109
+        Me.PicOpenWeb.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicOpenWeb, "Update the product")
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.Snow
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Label5)
+        Me.Panel1.Controls.Add(Me.NudPurchaseUnits)
+        Me.Panel1.Controls.Add(Me.nudCost)
+        Me.Panel1.Controls.Add(Me.Label6)
+        Me.Panel1.Controls.Add(Me.nudPrice)
+        Me.Panel1.Controls.Add(Me.rtbDescription)
+        Me.Panel1.Controls.Add(Me.chkTaxable)
+        Me.Panel1.Controls.Add(Me.txtProductName)
+        Me.Panel1.Controls.Add(Me.nudTaxRate)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Location = New System.Drawing.Point(14, 116)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(511, 336)
+        Me.Panel1.TabIndex = 108
         '
         'FrmProduct
         '
@@ -309,24 +339,12 @@ Partial Class FrmProduct
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(537, 534)
-        Me.Controls.Add(Me.BtnOpenWeb)
+        Me.Controls.Add(Me.PicOpenWeb)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
-        Me.Controls.Add(Me.NudPurchaseUnits)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.LblAction)
-        Me.Controls.Add(Me.chkTaxable)
-        Me.Controls.Add(Me.nudTaxRate)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblSuppName)
-        Me.Controls.Add(Me.txtProductName)
-        Me.Controls.Add(Me.rtbDescription)
-        Me.Controls.Add(Me.nudPrice)
-        Me.Controls.Add(Me.nudCost)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PictureBox1)
@@ -345,6 +363,9 @@ Partial Class FrmProduct
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -373,5 +394,6 @@ Partial Class FrmProduct
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents BtnOpenWeb As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents PicOpenWeb As PictureBox
 End Class

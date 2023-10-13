@@ -26,6 +26,7 @@ Partial Class FrmSupplier
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSupplier))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -55,6 +56,7 @@ Partial Class FrmSupplier
         Me.LblAction = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.pnlProducts = New System.Windows.Forms.Panel()
+        Me.PicAddProduct = New System.Windows.Forms.PictureBox()
         Me.spProducts = New System.Windows.Forms.SplitContainer()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
         Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,10 +67,10 @@ Partial Class FrmSupplier
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtProductDesc = New System.Windows.Forms.TextBox()
-        Me.btnAddProduct = New System.Windows.Forms.Button()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PicOpenWeb = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
@@ -78,6 +80,7 @@ Partial Class FrmSupplier
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.pnlProducts.SuspendLayout()
+        CType(Me.PicAddProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spProducts.Panel1.SuspendLayout()
         Me.spProducts.Panel2.SuspendLayout()
@@ -86,6 +89,7 @@ Partial Class FrmSupplier
         Me.Panel1.SuspendLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -137,6 +141,7 @@ Partial Class FrmSupplier
         'pnlSupplier
         '
         Me.pnlSupplier.BackColor = System.Drawing.Color.MintCream
+        Me.pnlSupplier.Controls.Add(Me.PicOpenWeb)
         Me.pnlSupplier.Controls.Add(Me.Label8)
         Me.pnlSupplier.Controls.Add(Me.TxtWeb)
         Me.pnlSupplier.Controls.Add(Me.ChkAmazon)
@@ -178,7 +183,7 @@ Partial Class FrmSupplier
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtWeb.Location = New System.Drawing.Point(112, 281)
         Me.TxtWeb.Name = "TxtWeb"
-        Me.TxtWeb.Size = New System.Drawing.Size(306, 24)
+        Me.TxtWeb.Size = New System.Drawing.Size(286, 24)
         Me.TxtWeb.TabIndex = 8
         '
         'ChkAmazon
@@ -380,15 +385,28 @@ Partial Class FrmSupplier
         '
         'pnlProducts
         '
-        Me.pnlProducts.BackColor = System.Drawing.Color.MintCream
+        Me.pnlProducts.BackColor = System.Drawing.Color.Snow
+        Me.pnlProducts.Controls.Add(Me.PicAddProduct)
         Me.pnlProducts.Controls.Add(Me.spProducts)
-        Me.pnlProducts.Controls.Add(Me.btnAddProduct)
         Me.pnlProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlProducts.Location = New System.Drawing.Point(0, 0)
         Me.pnlProducts.Name = "pnlProducts"
         Me.pnlProducts.Size = New System.Drawing.Size(374, 480)
         Me.pnlProducts.TabIndex = 1
+        '
+        'PicAddProduct
+        '
+        Me.PicAddProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PicAddProduct.Image = Global.MyBusiness.My.Resources.Resources.addany
+        Me.PicAddProduct.InitialImage = Nothing
+        Me.PicAddProduct.Location = New System.Drawing.Point(4, 452)
+        Me.PicAddProduct.Name = "PicAddProduct"
+        Me.PicAddProduct.Size = New System.Drawing.Size(24, 24)
+        Me.PicAddProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicAddProduct.TabIndex = 97
+        Me.PicAddProduct.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicAddProduct, "Add a new product")
         '
         'spProducts
         '
@@ -408,8 +426,8 @@ Partial Class FrmSupplier
         'spProducts.Panel2
         '
         Me.spProducts.Panel2.Controls.Add(Me.Panel1)
-        Me.spProducts.Size = New System.Drawing.Size(368, 445)
-        Me.spProducts.SplitterDistance = 373
+        Me.spProducts.Size = New System.Drawing.Size(368, 444)
+        Me.spProducts.SplitterDistance = 368
         Me.spProducts.TabIndex = 3
         '
         'dgvProducts
@@ -421,29 +439,37 @@ Partial Class FrmSupplier
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.dgvProducts.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvProducts.BackgroundColor = System.Drawing.Color.Honeydew
+        Me.dgvProducts.BackgroundColor = System.Drawing.Color.SeaShell
         Me.dgvProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Snow
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.prodId, Me.prodName})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvProducts.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvProducts.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvProducts.Location = New System.Drawing.Point(0, 0)
         Me.dgvProducts.MultiSelect = False
         Me.dgvProducts.Name = "dgvProducts"
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.dgvProducts.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.dgvProducts.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(366, 371)
+        Me.dgvProducts.Size = New System.Drawing.Size(366, 366)
         Me.dgvProducts.TabIndex = 0
         '
         'prodId
@@ -473,7 +499,7 @@ Partial Class FrmSupplier
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(366, 66)
+        Me.Panel1.Size = New System.Drawing.Size(366, 70)
         Me.Panel1.TabIndex = 0
         '
         'txtPrice
@@ -482,7 +508,7 @@ Partial Class FrmSupplier
         Me.txtPrice.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPrice.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.txtPrice.Location = New System.Drawing.Point(240, 83)
+        Me.txtPrice.Location = New System.Drawing.Point(240, 87)
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(92, 15)
         Me.txtPrice.TabIndex = 4
@@ -493,7 +519,7 @@ Partial Class FrmSupplier
         Me.txtCost.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtCost.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtCost.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.txtCost.Location = New System.Drawing.Point(50, 83)
+        Me.txtCost.Location = New System.Drawing.Point(50, 87)
         Me.txtCost.Name = "txtCost"
         Me.txtCost.Size = New System.Drawing.Size(100, 15)
         Me.txtCost.TabIndex = 3
@@ -504,7 +530,7 @@ Partial Class FrmSupplier
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Label10.ForeColor = System.Drawing.Color.DarkGray
-        Me.Label10.Location = New System.Drawing.Point(201, 84)
+        Me.Label10.Location = New System.Drawing.Point(201, 88)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(33, 14)
         Me.Label10.TabIndex = 2
@@ -515,7 +541,7 @@ Partial Class FrmSupplier
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.ForeColor = System.Drawing.Color.DarkGray
-        Me.Label9.Location = New System.Drawing.Point(13, 84)
+        Me.Label9.Location = New System.Drawing.Point(13, 88)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(31, 14)
         Me.Label9.TabIndex = 1
@@ -533,18 +559,8 @@ Partial Class FrmSupplier
         Me.txtProductDesc.Multiline = True
         Me.txtProductDesc.Name = "txtProductDesc"
         Me.txtProductDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtProductDesc.Size = New System.Drawing.Size(366, 66)
+        Me.txtProductDesc.Size = New System.Drawing.Size(366, 70)
         Me.txtProductDesc.TabIndex = 0
-        '
-        'btnAddProduct
-        '
-        Me.btnAddProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddProduct.Location = New System.Drawing.Point(297, 452)
-        Me.btnAddProduct.Name = "btnAddProduct"
-        Me.btnAddProduct.Size = New System.Drawing.Size(74, 25)
-        Me.btnAddProduct.TabIndex = 0
-        Me.btnAddProduct.Text = "+Product"
-        Me.btnAddProduct.UseVisualStyleBackColor = True
         '
         'PicClose
         '
@@ -568,6 +584,19 @@ Partial Class FrmSupplier
         Me.PicUpdate.TabIndex = 107
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the supplier")
+        '
+        'PicOpenWeb
+        '
+        Me.PicOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicOpenWeb.Image = Global.MyBusiness.My.Resources.Resources.www
+        Me.PicOpenWeb.InitialImage = Nothing
+        Me.PicOpenWeb.Location = New System.Drawing.Point(404, 281)
+        Me.PicOpenWeb.Name = "PicOpenWeb"
+        Me.PicOpenWeb.Size = New System.Drawing.Size(24, 24)
+        Me.PicOpenWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicOpenWeb.TabIndex = 110
+        Me.PicOpenWeb.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicOpenWeb, "Update the product")
         '
         'FrmSupplier
         '
@@ -599,6 +628,7 @@ Partial Class FrmSupplier
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.pnlProducts.ResumeLayout(False)
+        CType(Me.PicAddProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spProducts.Panel1.ResumeLayout(False)
         Me.spProducts.Panel2.ResumeLayout(False)
         CType(Me.spProducts, System.ComponentModel.ISupportInitialize).EndInit()
@@ -608,6 +638,7 @@ Partial Class FrmSupplier
         Me.Panel1.PerformLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -654,5 +685,6 @@ Partial Class FrmSupplier
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents txtProductDesc As TextBox
-    Friend WithEvents btnAddProduct As Button
+    Friend WithEvents PicAddProduct As PictureBox
+    Friend WithEvents PicOpenWeb As PictureBox
 End Class

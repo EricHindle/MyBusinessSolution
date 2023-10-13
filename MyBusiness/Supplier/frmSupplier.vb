@@ -55,7 +55,7 @@ Public Class FrmSupplier
             ShowProductForm(oProductId)
         End If
     End Sub
-    Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddProduct.Click
+    Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs)
         ShowProductForm(-1)
     End Sub
     Private Sub DgvProducts_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvProducts.SelectionChanged
@@ -228,6 +228,16 @@ Public Class FrmSupplier
         End If
         Return isOK
     End Function
+
+    Private Sub PicAddProduct_Click(sender As Object, e As EventArgs) Handles PicAddProduct.Click
+        ShowProductForm(-1)
+    End Sub
+
+    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
+        If Not String.IsNullOrWhiteSpace(TxtWeb.Text) Then
+            Process.Start(TxtWeb.Text)
+        End If
+    End Sub
 
 #End Region
 End Class
