@@ -578,6 +578,7 @@
     <None Include="Images\addrem.png" />
     <None Include="Images\adddiary.png" />
     <None Include="Images\addany.png" />
+    <None Include="Images\add-database.png" />
     <Content Include="Images\anubis.ico" />
     <Content Include="Images\anubis_button.png" />
     <Content Include="Images\anubis_icon_2.jpg" />
@@ -587,6 +588,8 @@
     <None Include="Images\cancelreminder.png" />
     <None Include="Images\closediary.png" />
     <None Include="Images\createfromtemplate.png" />
+    <None Include="Images\delete-database.png" />
+    <None Include="Images\deleteany.png" />
     <Content Include="Images\diary.png" />
     <Content Include="Images\email-icon.jpg" />
     <Content Include="Images\emailbutton.png" />
@@ -608,6 +611,8 @@
     <None Include="Images\reopendiary.png" />
     <None Include="Images\refresh.png" />
     <None Include="Images\www.png" />
+    <None Include="Images\update-database.png" />
+    <None Include="Images\select.png" />
     <Content Include="MyBusiness5.ico" />
     <None Include="packages.config" />
     <None Include="Resources\MyBusiness.png" />

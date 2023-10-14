@@ -7,7 +7,7 @@
 
 Partial Class netwyrksDataSet
     Partial Public Class jobDataTable
-        Private Sub jobDataTable_ColumnChanging(sender As Object, e As DataColumnChangeEventArgs) Handles Me.ColumnChanging
+        Private Sub JobDataTable_ColumnChanging(sender As Object, e As DataColumnChangeEventArgs) Handles Me.ColumnChanging
             If e.Column.ColumnName = job_createdColumn.ColumnName Then
                 'Add user code here
             End If

@@ -127,6 +127,9 @@
   <data name="adddiary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\adddiary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="add_database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\add-database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="anubis" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\anubis.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,6 +150,12 @@
   </data>
   <data name="Day6SectionHeads" xml:space="preserve">
     <value>Overdue/Today/Tomorrow/Next Week/Future</value>
+  </data>
+  <data name="deleteany" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\deleteany.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\delete-database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="diary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\diary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,6 +208,9 @@
   <data name="SectionHeads" xml:space="preserve">
     <value>Overdue/Today/Tomorrow/This Week/Next Week/Future</value>
   </data>
+  <data name="select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\select.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="setreminder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\setreminder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -213,6 +225,9 @@
   </data>
   <data name="updatediary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\updatediary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update_database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\update-database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="www" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\www.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

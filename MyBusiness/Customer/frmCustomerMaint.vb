@@ -163,7 +163,7 @@ Public Class FrmCustomerMaint
     End Function
     Private Function AmendCustomer() As Boolean
         Dim isAmendOK As Boolean = False
-        PicUpdate.Image = My.Resources.update
+        PicUpdate.Image = My.Resources.update_database
         ToolTip1.SetToolTip(PicUpdate, "Update the customer")
         With _newCustomer
 
@@ -181,7 +181,7 @@ Public Class FrmCustomerMaint
     Private Sub NewCustomer()
         LogUtil.Info("New customer", Name)
         LblAction.Text = "Adding a new customer"
-        PicUpdate.Image = My.Resources.add
+        PicUpdate.Image = My.Resources.add_database
         ToolTip1.SetToolTip(PicUpdate, "Add a new customer")
         _currentCustomer = CustomerBuilder.ACustomer.StartingWithNothing.Build
         ClearCustomerDetails()

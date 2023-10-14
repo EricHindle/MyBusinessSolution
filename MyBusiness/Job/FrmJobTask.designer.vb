@@ -274,7 +274,7 @@ Partial Class FrmJobTask
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(32, 409)
         Me.PicUpdate.Name = "PicUpdate"
@@ -310,7 +310,7 @@ Partial Class FrmJobTask
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add_database
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(32, 409)
         Me.PicAdd.Name = "PicAdd"

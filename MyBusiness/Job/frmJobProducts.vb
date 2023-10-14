@@ -48,7 +48,9 @@ Public Class FrmJobProducts
             SelectSupplier(_selectedJobProduct.ThisProduct.ProductSupplierId)
             SelectProduct(_selectedJobProduct.ThisProduct.ProductId)
             SelectJobProduct(_selectedJobProduct.JobProductId)
+            RemoveProducts(_selectedJobProduct.ThisProduct.ProductSupplierId)
             FillProductDetails()
+            SetButtonsVisible(False, True, True)
         End If
         isLoading = False
     End Sub

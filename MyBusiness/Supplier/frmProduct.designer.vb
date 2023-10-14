@@ -286,7 +286,7 @@ Partial Class FrmProduct
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(14, 458)
         Me.PicUpdate.Name = "PicUpdate"

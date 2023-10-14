@@ -212,6 +212,7 @@ Partial Class FrmJobTemplates
         '
         'SplitContainer2.Panel1
         '
+        Me.SplitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label3)
         Me.SplitContainer2.Panel1.Controls.Add(Me.btnAddTask)
         Me.SplitContainer2.Panel1.Controls.Add(Me.DgvTasks)
@@ -219,6 +220,7 @@ Partial Class FrmJobTemplates
         '
         'SplitContainer2.Panel2
         '
+        Me.SplitContainer2.Panel2.BackColor = System.Drawing.Color.Snow
         Me.SplitContainer2.Panel2.Controls.Add(Me.btnMaintProducts)
         Me.SplitContainer2.Panel2.Controls.Add(Me.Label4)
         Me.SplitContainer2.Panel2.Controls.Add(Me.dgvProducts)
@@ -245,7 +247,7 @@ Partial Class FrmJobTemplates
         Me.DgvTasks.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.DgvTasks.BackgroundColor = System.Drawing.Color.LavenderBlush
         Me.DgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvTasks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.taskId, Me.taskName, Me.taskHours, Me.taskPrice})
         Me.DgvTasks.Location = New System.Drawing.Point(8, 39)
@@ -317,7 +319,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvProducts.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.dgvProducts.BackgroundColor = System.Drawing.Color.SeaShell
         Me.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.tpId, Me.tpSupp, Me.tpProdId, Me.tpProdName, Me.tpQty, Me.tpCost})
         Me.dgvProducts.Location = New System.Drawing.Point(8, 35)
@@ -326,7 +328,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 120)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 118)
         Me.dgvProducts.TabIndex = 73
         '
         'tpId
@@ -388,7 +390,7 @@ Partial Class FrmJobTemplates
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(60, 520)
         Me.PicUpdate.Name = "PicUpdate"
@@ -425,7 +427,7 @@ Partial Class FrmJobTemplates
         'PicAddTemplate
         '
         Me.PicAddTemplate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAddTemplate.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAddTemplate.Image = Global.MyBusiness.My.Resources.Resources.add_database
         Me.PicAddTemplate.InitialImage = Nothing
         Me.PicAddTemplate.Location = New System.Drawing.Point(12, 520)
         Me.PicAddTemplate.Name = "PicAddTemplate"
@@ -436,7 +438,7 @@ Partial Class FrmJobTemplates
         'PicDeleteTemplate
         '
         Me.PicDeleteTemplate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicDeleteTemplate.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicDeleteTemplate.Image = Global.MyBusiness.My.Resources.Resources.delete_database
         Me.PicDeleteTemplate.InitialImage = Nothing
         Me.PicDeleteTemplate.Location = New System.Drawing.Point(108, 520)
         Me.PicDeleteTemplate.Name = "PicDeleteTemplate"

@@ -29,6 +29,7 @@ Partial Class FrmSelectTemplate
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSelectTemplate))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -37,6 +38,7 @@ Partial Class FrmSelectTemplate
         Me.tmplName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicSelectTemplate = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvTemplates, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,11 +115,12 @@ Partial Class FrmSelectTemplate
         Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicClose.TabIndex = 97
         Me.PicClose.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicClose, "Cancel")
         '
         'PicSelectTemplate
         '
         Me.PicSelectTemplate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicSelectTemplate.Image = Global.MyBusiness.My.Resources.Resources.createfromtemplate
+        Me.PicSelectTemplate.Image = Global.MyBusiness.My.Resources.Resources._select
         Me.PicSelectTemplate.InitialImage = Nothing
         Me.PicSelectTemplate.Location = New System.Drawing.Point(14, 443)
         Me.PicSelectTemplate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -126,6 +129,7 @@ Partial Class FrmSelectTemplate
         Me.PicSelectTemplate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSelectTemplate.TabIndex = 98
         Me.PicSelectTemplate.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicSelectTemplate, "Select Template")
         '
         'FrmSelectTemplate
         '
@@ -161,4 +165,5 @@ Partial Class FrmSelectTemplate
     Friend WithEvents tmplName As DataGridViewTextBoxColumn
     Friend WithEvents PicClose As PictureBox
     Friend WithEvents PicSelectTemplate As PictureBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

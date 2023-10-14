@@ -483,7 +483,7 @@ Partial Class FrmJobProducts
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(82, 580)
         Me.PicUpdate.Name = "PicUpdate"
@@ -495,7 +495,7 @@ Partial Class FrmJobProducts
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add_database
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(18, 579)
         Me.PicAdd.Name = "PicAdd"
@@ -507,7 +507,7 @@ Partial Class FrmJobProducts
         'PicRemove
         '
         Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
+        Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.delete_database
         Me.PicRemove.InitialImage = Nothing
         Me.PicRemove.Location = New System.Drawing.Point(149, 580)
         Me.PicRemove.Name = "PicRemove"

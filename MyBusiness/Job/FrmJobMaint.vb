@@ -102,25 +102,7 @@ Public Class FrmJobMaint
             _custForm.ShowDialog()
         End Using
     End Sub
-    Private Sub BtnAddJobTask_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddJobTask.Click
-        LogUtil.Debug("Add task to job", Name)
-        Using _taskForm As New FrmJobTask
-            _taskForm.JobTaskId = -1
-            _taskForm.CustomerJob = _job
-            _taskForm.Template = Nothing
-            _taskForm.ShowDialog()
-        End Using
-        FillJobTaskList(_currentJobId)
-    End Sub
-    Private Sub BtnMaintProduct_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMaintProducts.Click
-        LogUtil.Debug("Maintain products on job", Name)
-        Using _jobProductForm As New FrmJobProducts
-            _jobProductForm.TheJob = _job
-            _jobProductForm.SelectedJobProduct = Nothing
-            _jobProductForm.ShowDialog()
-        End Using
-        FillProductList(_currentJobId)
-    End Sub
+
 
     Private Sub CbCust_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbCust.SelectedIndexChanged
         If Not isLoading Then
@@ -138,22 +120,7 @@ Public Class FrmJobMaint
             _currentCust = CustomerBuilder.ACustomer.StartingWithNothing.Build
         End If
     End Sub
-    Private Sub BtnRemoveTask_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveTask.Click
-        If dgvTasks.SelectedRows.Count = 1 Then
-            LogUtil.Debug("Deleting task", Name)
-            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
-            Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
-            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
-            If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
-                If DeleteJobTask(_taskId) = 1 Then
-                    ShowStatus(LblStatus, "Task removed OK", Name, True)
-                Else
-                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
-                End If
-                FillJobTaskList(_currentJobId)
-            End If
-        End If
-    End Sub
+
     Private Sub DgvTasks_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvTasks.CellDoubleClick
         If dgvTasks.SelectedRows.Count = 1 Then
             LogUtil.Debug("Updating task", Name)
@@ -328,6 +295,7 @@ Public Class FrmJobMaint
         End If
         _job = JobBuilder.AJob.StartingWithNothing.Build
         cbUser.SelectedValue = currentUser.UserId
+        PicUpdate.Image = My.Resources.add_database
         LblAction.Text = "Adding a new job"
     End Sub
     Private Function Amendjob() As Boolean
@@ -414,6 +382,46 @@ Public Class FrmJobMaint
             End If
         End If
     End Sub
+
+
+    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
+        LogUtil.Debug("Maintain products on job", Name)
+        Using _jobProductForm As New FrmJobProducts
+            _jobProductForm.TheJob = _job
+            _jobProductForm.SelectedJobProduct = Nothing
+            _jobProductForm.ShowDialog()
+        End Using
+        FillProductList(_currentJobId)
+    End Sub
+
+    Private Sub BtnAddJobTask_Click(sender As Object, e As EventArgs) Handles BtnAddJobTask.Click
+        LogUtil.Debug("Add task to job", Name)
+        Using _taskForm As New FrmJobTask
+            _taskForm.JobTaskId = -1
+            _taskForm.CustomerJob = _job
+            _taskForm.Template = Nothing
+            _taskForm.ShowDialog()
+        End Using
+        FillJobTaskList(_currentJobId)
+    End Sub
+
+    Private Sub BtnRemoveJobTask_Click(sender As Object, e As EventArgs) Handles BtnRemoveJobTask.Click
+        If dgvTasks.SelectedRows.Count = 1 Then
+            LogUtil.Debug("Deleting task", Name)
+            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
+            Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
+            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
+            If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
+                If DeleteJobTask(_taskId) = 1 Then
+                    ShowStatus(LblStatus, "Task removed OK", Name, True)
+                Else
+                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
+                End If
+                FillJobTaskList(_currentJobId)
+            End If
+        End If
+    End Sub
+
 
 #End Region
 End Class

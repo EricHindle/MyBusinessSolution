@@ -33,6 +33,7 @@ Partial Class FrmSupplier
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.pnlSupplier = New System.Windows.Forms.Panel()
+        Me.PicOpenWeb = New System.Windows.Forms.PictureBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TxtWeb = New System.Windows.Forms.TextBox()
         Me.ChkAmazon = New System.Windows.Forms.CheckBox()
@@ -56,7 +57,6 @@ Partial Class FrmSupplier
         Me.LblAction = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.pnlProducts = New System.Windows.Forms.Panel()
-        Me.PicAddProduct = New System.Windows.Forms.PictureBox()
         Me.spProducts = New System.Windows.Forms.SplitContainer()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
         Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -70,17 +70,17 @@ Partial Class FrmSupplier
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PicOpenWeb = New System.Windows.Forms.PictureBox()
+        Me.BtnAddJobProduct = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.pnlProducts.SuspendLayout()
-        CType(Me.PicAddProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spProducts.Panel1.SuspendLayout()
         Me.spProducts.Panel2.SuspendLayout()
@@ -89,7 +89,6 @@ Partial Class FrmSupplier
         Me.Panel1.SuspendLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -167,6 +166,19 @@ Partial Class FrmSupplier
         Me.pnlSupplier.Name = "pnlSupplier"
         Me.pnlSupplier.Size = New System.Drawing.Size(440, 480)
         Me.pnlSupplier.TabIndex = 0
+        '
+        'PicOpenWeb
+        '
+        Me.PicOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicOpenWeb.Image = Global.MyBusiness.My.Resources.Resources.www
+        Me.PicOpenWeb.InitialImage = Nothing
+        Me.PicOpenWeb.Location = New System.Drawing.Point(404, 281)
+        Me.PicOpenWeb.Name = "PicOpenWeb"
+        Me.PicOpenWeb.Size = New System.Drawing.Size(24, 24)
+        Me.PicOpenWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicOpenWeb.TabIndex = 110
+        Me.PicOpenWeb.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PicOpenWeb, "Update the product")
         '
         'Label8
         '
@@ -386,7 +398,7 @@ Partial Class FrmSupplier
         'pnlProducts
         '
         Me.pnlProducts.BackColor = System.Drawing.Color.Snow
-        Me.pnlProducts.Controls.Add(Me.PicAddProduct)
+        Me.pnlProducts.Controls.Add(Me.BtnAddJobProduct)
         Me.pnlProducts.Controls.Add(Me.spProducts)
         Me.pnlProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -394,19 +406,6 @@ Partial Class FrmSupplier
         Me.pnlProducts.Name = "pnlProducts"
         Me.pnlProducts.Size = New System.Drawing.Size(374, 480)
         Me.pnlProducts.TabIndex = 1
-        '
-        'PicAddProduct
-        '
-        Me.PicAddProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAddProduct.Image = Global.MyBusiness.My.Resources.Resources.addany
-        Me.PicAddProduct.InitialImage = Nothing
-        Me.PicAddProduct.Location = New System.Drawing.Point(4, 452)
-        Me.PicAddProduct.Name = "PicAddProduct"
-        Me.PicAddProduct.Size = New System.Drawing.Size(24, 24)
-        Me.PicAddProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicAddProduct.TabIndex = 97
-        Me.PicAddProduct.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicAddProduct, "Add a new product")
         '
         'spProducts
         '
@@ -576,7 +575,7 @@ Partial Class FrmSupplier
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(14, 558)
         Me.PicUpdate.Name = "PicUpdate"
@@ -585,18 +584,22 @@ Partial Class FrmSupplier
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the supplier")
         '
-        'PicOpenWeb
+        'BtnAddJobProduct
         '
-        Me.PicOpenWeb.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PicOpenWeb.Image = Global.MyBusiness.My.Resources.Resources.www
-        Me.PicOpenWeb.InitialImage = Nothing
-        Me.PicOpenWeb.Location = New System.Drawing.Point(404, 281)
-        Me.PicOpenWeb.Name = "PicOpenWeb"
-        Me.PicOpenWeb.Size = New System.Drawing.Size(24, 24)
-        Me.PicOpenWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicOpenWeb.TabIndex = 110
-        Me.PicOpenWeb.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicOpenWeb, "Update the product")
+        Me.BtnAddJobProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddJobProduct.AutoSize = True
+        Me.BtnAddJobProduct.FlatAppearance.BorderSize = 0
+        Me.BtnAddJobProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnAddJobProduct.Image = Global.MyBusiness.My.Resources.Resources.addany
+        Me.BtnAddJobProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.BtnAddJobProduct.Location = New System.Drawing.Point(4, 449)
+        Me.BtnAddJobProduct.Margin = New System.Windows.Forms.Padding(0)
+        Me.BtnAddJobProduct.Name = "BtnAddJobProduct"
+        Me.BtnAddJobProduct.Size = New System.Drawing.Size(68, 27)
+        Me.BtnAddJobProduct.TabIndex = 100
+        Me.BtnAddJobProduct.Text = "Add"
+        Me.BtnAddJobProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BtnAddJobProduct.UseVisualStyleBackColor = True
         '
         'FrmSupplier
         '
@@ -622,13 +625,14 @@ Partial Class FrmSupplier
         Me.StatusStrip1.PerformLayout()
         Me.pnlSupplier.ResumeLayout(False)
         Me.pnlSupplier.PerformLayout()
+        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudSuppDiscount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.pnlProducts.ResumeLayout(False)
-        CType(Me.PicAddProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlProducts.PerformLayout()
         Me.spProducts.Panel1.ResumeLayout(False)
         Me.spProducts.Panel2.ResumeLayout(False)
         CType(Me.spProducts, System.ComponentModel.ISupportInitialize).EndInit()
@@ -638,7 +642,6 @@ Partial Class FrmSupplier
         Me.Panel1.PerformLayout()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PicOpenWeb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -685,6 +688,6 @@ Partial Class FrmSupplier
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents txtProductDesc As TextBox
-    Friend WithEvents PicAddProduct As PictureBox
     Friend WithEvents PicOpenWeb As PictureBox
+    Friend WithEvents BtnAddJobProduct As Button
 End Class

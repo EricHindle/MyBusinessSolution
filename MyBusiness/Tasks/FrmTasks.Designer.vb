@@ -45,12 +45,14 @@ Partial Class FrmTasks
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClear, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'CbTask
@@ -59,10 +61,10 @@ Partial Class FrmTasks
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CbTask.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbTask.FormattingEnabled = True
-        Me.CbTask.Location = New System.Drawing.Point(91, 83)
+        Me.CbTask.Location = New System.Drawing.Point(91, 10)
         Me.CbTask.Margin = New System.Windows.Forms.Padding(4)
         Me.CbTask.Name = "CbTask"
-        Me.CbTask.Size = New System.Drawing.Size(284, 24)
+        Me.CbTask.Size = New System.Drawing.Size(288, 24)
         Me.CbTask.TabIndex = 130
         '
         'PicClose
@@ -81,7 +83,7 @@ Partial Class FrmTasks
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
+        Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update_database
         Me.PicUpdate.InitialImage = Nothing
         Me.PicUpdate.Location = New System.Drawing.Point(66, 371)
         Me.PicUpdate.Margin = New System.Windows.Forms.Padding(4)
@@ -94,7 +96,7 @@ Partial Class FrmTasks
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
+        Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add_database
         Me.PicAdd.InitialImage = Nothing
         Me.PicAdd.Location = New System.Drawing.Point(16, 371)
         Me.PicAdd.Margin = New System.Windows.Forms.Padding(4)
@@ -108,7 +110,7 @@ Partial Class FrmTasks
         '
         Me.PicClear.Image = Global.MyBusiness.My.Resources.Resources.refresh
         Me.PicClear.InitialImage = Nothing
-        Me.PicClear.Location = New System.Drawing.Point(16, 83)
+        Me.PicClear.Location = New System.Drawing.Point(10, 10)
         Me.PicClear.Margin = New System.Windows.Forms.Padding(4)
         Me.PicClear.Name = "PicClear"
         Me.PicClear.Size = New System.Drawing.Size(24, 24)
@@ -144,10 +146,10 @@ Partial Class FrmTasks
         Me.txtTaskName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTaskName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTaskName.Location = New System.Drawing.Point(91, 115)
+        Me.txtTaskName.Location = New System.Drawing.Point(91, 46)
         Me.txtTaskName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTaskName.Name = "txtTaskName"
-        Me.txtTaskName.Size = New System.Drawing.Size(284, 27)
+        Me.txtTaskName.Size = New System.Drawing.Size(288, 27)
         Me.txtTaskName.TabIndex = 108
         '
         'rtbDescription
@@ -155,17 +157,17 @@ Partial Class FrmTasks
         Me.rtbDescription.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbDescription.Location = New System.Drawing.Point(16, 178)
+        Me.rtbDescription.Location = New System.Drawing.Point(9, 105)
         Me.rtbDescription.Margin = New System.Windows.Forms.Padding(4)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(376, 185)
+        Me.rtbDescription.Size = New System.Drawing.Size(372, 169)
         Me.rtbDescription.TabIndex = 109
         Me.rtbDescription.Text = ""
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 158)
+        Me.Label3.Location = New System.Drawing.Point(7, 84)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(76, 17)
@@ -175,7 +177,7 @@ Partial Class FrmTasks
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 121)
+        Me.Label2.Location = New System.Drawing.Point(7, 52)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(74, 17)
@@ -208,21 +210,34 @@ Partial Class FrmTasks
         Me.lblScreenName.Text = "Task"
         Me.lblScreenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.CbTask)
+        Me.Panel1.Controls.Add(Me.PicClear)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.rtbDescription)
+        Me.Panel1.Controls.Add(Me.txtTaskName)
+        Me.Panel1.Location = New System.Drawing.Point(5, 77)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(393, 287)
+        Me.Panel1.TabIndex = 134
+        '
         'FrmTasks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(405, 439)
-        Me.Controls.Add(Me.PicClear)
-        Me.Controls.Add(Me.CbTask)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
         Me.Controls.Add(Me.PicAdd)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.txtTaskName)
-        Me.Controls.Add(Me.rtbDescription)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblScreenName)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -237,6 +252,8 @@ Partial Class FrmTasks
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -255,4 +272,5 @@ Partial Class FrmTasks
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblScreenName As Label
     Friend WithEvents PicClear As PictureBox
+    Friend WithEvents Panel1 As Panel
 End Class

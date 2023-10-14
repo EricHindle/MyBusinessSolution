@@ -127,7 +127,7 @@ Public Class FrmSupplier
 #Region "subroutines"
     Private Sub FillSupplierDetails()
         LblAction.Text = "Updating a supplier"
-        PicUpdate.Image = My.Resources.update
+        PicUpdate.Image = My.Resources.update_database
         ToolTip1.SetToolTip(PicUpdate, "Update the supplier")
         With _currentSupplier
             LogUtil.Info("Amending supplier " & _supplierId & " : " & .SupplierName, MyBase.Name)
@@ -178,7 +178,7 @@ Public Class FrmSupplier
     Private Sub NewSupplier()
         LogUtil.Info("New supplier", MyBase.Name())
         LblAction.Text = "Adding a new supplier"
-        PicUpdate.Image = My.Resources.add
+        PicUpdate.Image = My.Resources.add_database
         ToolTip1.SetToolTip(PicUpdate, "Add a new supplier")
         _currentSupplier = SupplierBuilder.ASupplier.StartingWithNothing.Build
         ClearSupplierDetails()
@@ -229,7 +229,7 @@ Public Class FrmSupplier
         Return isOK
     End Function
 
-    Private Sub PicAddProduct_Click(sender As Object, e As EventArgs) Handles PicAddProduct.Click
+    Private Sub PicAddProduct_Click(sender As Object, e As EventArgs)
         ShowProductForm(-1)
     End Sub
 
@@ -237,6 +237,10 @@ Public Class FrmSupplier
         If Not String.IsNullOrWhiteSpace(TxtWeb.Text) Then
             Process.Start(TxtWeb.Text)
         End If
+    End Sub
+
+    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
+        ShowProductForm(-1)
     End Sub
 
 #End Region

@@ -100,7 +100,7 @@ Public Class FrmProduct
 #Region "subroutines"
     Private Sub FillProductDetails()
         LblAction.Text = "Updating Product"
-        PicUpdate.Image = My.Resources.update
+        PicUpdate.Image = My.Resources.update_database
         ToolTip1.SetToolTip(PicUpdate, "Update the product")
         With _product
             LogUtil.Info("Amending product " & _productId & " : " & .ProductName, MyBase.Name)
@@ -126,7 +126,7 @@ Public Class FrmProduct
         LogUtil.Info("New product", MyBase.Name())
         ClearProductDetails()
         LblAction.Text = "Adding New Product"
-        PicUpdate.Image = My.Resources.add
+        PicUpdate.Image = My.Resources.add_database
         ToolTip1.SetToolTip(PicUpdate, "Add a new product")
         _product = ProductBuilder.AProduct.StartingWithNothing.Build
     End Sub
