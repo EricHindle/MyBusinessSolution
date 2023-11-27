@@ -45,6 +45,7 @@ Partial Class FrmJobMaint
         Me.prodPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jobPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlJob = New System.Windows.Forms.Panel()
+        Me.LblJobSeq = New System.Windows.Forms.Label()
         Me.GrpInvoice = New System.Windows.Forms.GroupBox()
         Me.LblTerms = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -308,6 +309,7 @@ Partial Class FrmJobMaint
         'pnlJob
         '
         Me.pnlJob.BackColor = System.Drawing.Color.GhostWhite
+        Me.pnlJob.Controls.Add(Me.LblJobSeq)
         Me.pnlJob.Controls.Add(Me.GrpInvoice)
         Me.pnlJob.Controls.Add(Me.cbUser)
         Me.pnlJob.Controls.Add(Me.Label10)
@@ -329,6 +331,15 @@ Partial Class FrmJobMaint
         Me.pnlJob.Name = "pnlJob"
         Me.pnlJob.Size = New System.Drawing.Size(494, 457)
         Me.pnlJob.TabIndex = 69
+        '
+        'LblJobSeq
+        '
+        Me.LblJobSeq.AutoSize = True
+        Me.LblJobSeq.Location = New System.Drawing.Point(131, 93)
+        Me.LblJobSeq.Name = "LblJobSeq"
+        Me.LblJobSeq.Size = New System.Drawing.Size(59, 14)
+        Me.LblJobSeq.TabIndex = 15
+        Me.LblJobSeq.Text = "99/9999/"
         '
         'GrpInvoice
         '
@@ -534,10 +545,10 @@ Partial Class FrmJobMaint
         Me.TxtJobReference.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtJobReference.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtJobReference.Location = New System.Drawing.Point(134, 89)
+        Me.TxtJobReference.Location = New System.Drawing.Point(189, 89)
         Me.TxtJobReference.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TxtJobReference.Name = "TxtJobReference"
-        Me.TxtJobReference.Size = New System.Drawing.Size(175, 22)
+        Me.TxtJobReference.Size = New System.Drawing.Size(120, 22)
         Me.TxtJobReference.TabIndex = 2
         '
         'TxtPurchaseOrder
@@ -918,4 +929,5 @@ Partial Class FrmJobMaint
     Friend WithEvents BtnAddJobProduct As Button
     Friend WithEvents BtnAddJobTask As Button
     Friend WithEvents BtnRemoveJobTask As Button
+    Friend WithEvents LblJobSeq As Label
 End Class

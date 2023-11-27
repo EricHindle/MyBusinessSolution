@@ -7,7 +7,9 @@
 Imports HindlewareLib.Logging
 
 Public Class FrmJobMaint
-
+#Region "constants"
+    Private JOBSEQ_SETTING As String = "jobseq"
+#End Region
 #Region "variables"
 
     Private isLoading As Boolean = False
@@ -18,9 +20,11 @@ Public Class FrmJobMaint
     Private _job As Job
     Private _currentJobId As Integer = -1
     Private _customerId As Integer
-    Private _currentCust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
-    Private _newJob As Job
-    Private _currentJobProduct As JobProduct
+    Private oCurrentCust As Customer = CustomerBuilder.ACustomer.StartingWithNothing.Build
+    Private oNextJobSeq As GlobalSetting = Nothing
+    Private isUpdJobSeq As Boolean = False
+    Private oNewJob As Job
+    Private oCurrentJobProduct As JobProduct
 #End Region
 #Region "properties"
     Public Property CustomerId() As Integer
@@ -79,48 +83,41 @@ Public Class FrmJobMaint
         LblAction.Visible = Not IsView
         If _job IsNot Nothing Then
             _currentJobId = _job.JobId
+            isUpdJobSeq = False
             FillJobDetails()
         Else
+            isUpdJobSeq = True
             NewJob()
             _currentJobId = -1
         End If
-
-        If _currentCust.Terms = 0 Then
+        If oCurrentCust.Terms = 0 Then
             LblTerms.Text = "Immediate"
         Else
-            LblTerms.Text = _currentCust.Terms & " days"
+            LblTerms.Text = oCurrentCust.Terms & " days"
         End If
-
         SpellCheckUtil.EnableSpellChecking({rtbJobNotes})
         isLoading = False
     End Sub
-
     Private Sub BtnViewCust_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewCust.Click
         LogUtil.Debug("View customer " & CStr(cbCust.SelectedValue), Name)
         Using _custForm As New FrmViewCust
-            _custForm.TheCustomer = _currentCust
+            _custForm.TheCustomer = oCurrentCust
             _custForm.ShowDialog()
         End Using
     End Sub
-
-
     Private Sub CbCust_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cbCust.SelectedIndexChanged
         If Not isLoading Then
             GetCurrentCustomer()
+            If _job IsNot Nothing Then
+                Dim _jobref As String() = Split(_job.JobReference, "/")
+                If _jobref.Length = 3 Then
+                    LblJobSeq.Text = CStr(oCurrentCust.CustomerId) & "/" & _jobref(1) & "/"
+                End If
+            End If
         Else
             btnViewCust.Enabled = False
         End If
     End Sub
-    Private Sub GetCurrentCustomer()
-        If cbCust.SelectedIndex > -1 Then
-            btnViewCust.Enabled = True
-            _currentCust = GetCustomer(cbCust.SelectedValue)
-        Else
-            btnViewCust.Enabled = False
-            _currentCust = CustomerBuilder.ACustomer.StartingWithNothing.Build
-        End If
-    End Sub
-
     Private Sub DgvTasks_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvTasks.CellDoubleClick
         If dgvTasks.SelectedRows.Count = 1 Then
             LogUtil.Debug("Updating task", Name)
@@ -139,10 +136,10 @@ Public Class FrmJobMaint
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DgvProducts.CellDoubleClick
         LogUtil.Debug("Maintain products on job", Name)
         Dim _jpId As Integer = DgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
-        _currentJobProduct = GetJobProductById(_jpId)
+        oCurrentJobProduct = GetJobProductById(_jpId)
         Using _jobProductForm As New FrmJobProducts
             _jobProductForm.TheJob = _job
-            _jobProductForm.SelectedJobProduct = _currentJobProduct
+            _jobProductForm.SelectedJobProduct = oCurrentJobProduct
             _jobProductForm.ShowDialog()
         End Using
         FillProductList(_currentJobId)
@@ -163,13 +160,109 @@ Public Class FrmJobMaint
         If DgvProducts.SelectedRows.Count > 0 Then
             Dim _row As DataGridViewRow = DgvProducts.SelectedRows(0)
             Dim _id As Integer = _row.Cells(jpId.Name).Value
-            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
+            oCurrentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
         Else
-            _currentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
+            oCurrentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
+        End If
+    End Sub
+    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
+        Close()
+    End Sub
+    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
+        If IsValidJob() Then
+            With _job
+                oNewJob = JobBuilder.AJob.StartingWithNothing.WithJobName(txtJobName.Text.Trim) _
+                .WithJobDescription(rtbJobNotes.Text.Trim) _
+                .WithJobCustomerId(cbCust.SelectedValue) _
+                .WithJobCompleted(chkCompleted.Checked) _
+                .WithJobReference(LblJobSeq.Text & TxtJobReference.Text) _
+                .WithJobInvoiceNumber(TxtInvoiceNumber.Text) _
+                .WithJobInvoiceDate(DtpInvoiceDate.Value) _
+                .WithJobPoNumber(TxtPurchaseOrder.Text) _
+                .WithJobCreated(.JobCreated) _
+                .WithJobChanged(.JobChanged) _
+                .WithJobUser(cbUser.SelectedValue) _
+                .WithJobPaymentDue(DtpPaymentDue.Value) _
+                .WithJobId(_currentJobId) _
+                .Build
+            End With
+            Dim newJobId As Integer = -1
+            If _currentJobId > 0 Then
+                Amendjob()
+            Else
+                CreateJob()
+                ScJob.Panel2Collapsed = False
+                GrpInvoice.Enabled = True
+            End If
+        End If
+        Close()
+    End Sub
+    Private Function IsValidJob() As Boolean
+        Dim isOK As Boolean = True
+        If cbCust.SelectedIndex = -1 Then
+            isOK = False
+        End If
+        If String.IsNullOrWhiteSpace(txtJobName.Text) Then
+            isOK = False
+        End If
+        Return isOK
+    End Function
+
+    Private Sub PicDeleteJob_Click(sender As Object, e As EventArgs) Handles PicDeleteJob.Click
+        If TheJob IsNot Nothing Then
+            If MsgBox("Do you want to remove this job?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
+                LogUtil.Info("Removing Job")
+                DeleteAllJob(TheJob.JobId)
+                Close()
+            End If
+        End If
+    End Sub
+    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
+        LogUtil.Debug("Maintain products on job", Name)
+        Using _jobProductForm As New FrmJobProducts
+            _jobProductForm.TheJob = _job
+            _jobProductForm.SelectedJobProduct = Nothing
+            _jobProductForm.ShowDialog()
+        End Using
+        FillProductList(_currentJobId)
+    End Sub
+    Private Sub BtnAddJobTask_Click(sender As Object, e As EventArgs) Handles BtnAddJobTask.Click
+        LogUtil.Debug("Add task to job", Name)
+        Using _taskForm As New FrmJobTask
+            _taskForm.JobTaskId = -1
+            _taskForm.CustomerJob = _job
+            _taskForm.Template = Nothing
+            _taskForm.ShowDialog()
+        End Using
+        FillJobTaskList(_currentJobId)
+    End Sub
+    Private Sub BtnRemoveJobTask_Click(sender As Object, e As EventArgs) Handles BtnRemoveJobTask.Click
+        If dgvTasks.SelectedRows.Count = 1 Then
+            LogUtil.Debug("Deleting task", Name)
+            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
+            Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
+            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
+            If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
+                If DeleteJobTask(_taskId) = 1 Then
+                    ShowStatus(LblStatus, "Task removed OK", Name, True)
+                Else
+                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
+                End If
+                FillJobTaskList(_currentJobId)
+            End If
         End If
     End Sub
 #End Region
 #Region "functions"
+    Private Sub GetCurrentCustomer()
+        If cbCust.SelectedIndex > -1 Then
+            btnViewCust.Enabled = True
+            oCurrentCust = GetCustomer(cbCust.SelectedValue)
+        Else
+            btnViewCust.Enabled = False
+            oCurrentCust = CustomerBuilder.ACustomer.StartingWithNothing.Build
+        End If
+    End Sub
     Private Sub FillJobDetails()
         ScJob.Panel2Collapsed = False
         GrpInvoice.Enabled = True
@@ -181,7 +274,15 @@ Public Class FrmJobMaint
             rtbJobNotes.Text = .JobDescription
             cbUser.SelectedValue = .JobUserId
             TxtInvoiceNumber.Text = .JobInvoiceNumber
-            TxtJobReference.Text = .JobReference
+            Dim _jobref As String() = Split(.JobReference, "/")
+            If _jobref.Length = 3 Then
+                LblJobSeq.Text = _jobref(0) & "/" & _jobref(1) & "/"
+                TxtJobReference.Text = _jobref(2)
+            Else
+                LblJobSeq.Text = ""
+                isUpdJobSeq = True
+                TxtJobReference.Text = .JobReference
+            End If
             TxtPurchaseOrder.Text = .JobPoNumber
             DtpInvoiceDate.Value = If(.JobInvoiceDate, New Date(Now.Year, 1, 1))
             DtpPaymentDue.Value = If(.JobPaymentDue, New Date(Now.Year, 1, 1))
@@ -228,7 +329,6 @@ Public Class FrmJobMaint
         Dim _taskList As List(Of JobTask) = GetJobTasksByJob(pJobId)
         FillTableFromTaskList(_taskList)
     End Sub
-
     Private Sub FillTableFromTaskList(_taskList As List(Of JobTask))
         For Each oTask As JobTask In _taskList
             Dim tRow As DataGridViewRow = dgvTasks.Rows(dgvTasks.Rows.Add)
@@ -242,19 +342,13 @@ Public Class FrmJobMaint
             tRow.Cells(taskPrice.Name).Value = oTask.TaskCost
         Next
     End Sub
-
     Private Sub FillProductList(ByVal pJobId As Integer)
         DgvProducts.Rows.Clear()
-
         LogUtil.Debug("Finding products", Name)
-
         Dim _job As Job = GetJobById(pJobId)
         Dim _jobProductList As List(Of JobProduct) = GetJobProductByJob(_job)
-
         FillTableFromJobProductList(_jobProductList)
-
     End Sub
-
     Private Sub FillTableFromJobProductList(_jobProductList As List(Of JobProduct))
         For Each _jobProduct As JobProduct In _jobProductList
             Dim _jpId As Integer = _jobProduct.JobProductId
@@ -265,7 +359,6 @@ Public Class FrmJobMaint
             Dim _supplierId As Integer = _jobProduct.ThisProduct.ProductSupplierId
             Dim _cost As Decimal = _jobProduct.ThisProduct.ProductCost / _jobProduct.ThisProduct.PurchaseUnits
             Dim _price As Decimal = _jobProduct.ThisProduct.ProductPrice
-
             If _supplierId > 0 Then
                 Dim _supplier As Supplier = GetSupplierById(_supplierId)
                 _supplierName = _supplier.SupplierName
@@ -290,6 +383,7 @@ Public Class FrmJobMaint
         End If
         GrpInvoice.Enabled = False
         ClearJobdetails()
+        LblJobSeq.Text = ""
         If _customerId > 0 Then
             cbCust.SelectedValue = _customerId
         End If
@@ -301,7 +395,10 @@ Public Class FrmJobMaint
     Private Function Amendjob() As Boolean
         Dim isAmendOk As Boolean
         LogUtil.Debug("Updating job " & _currentJobId, Name)
-        Dim _ct As Integer = UpdateJob(_newJob)
+        If isUpdJobSeq Then
+            oNewJob.JobReference = CreateJobReference(oNewJob)
+        End If
+        Dim _ct As Integer = UpdateJob(oNewJob)
         If _ct > 0 Then
             isAmendOk = True
             ShowStatus(LblStatus, "Job updated OK", Name, True)
@@ -311,12 +408,25 @@ Public Class FrmJobMaint
         End If
         Return isAmendOk
     End Function
+
+    Private Function CreateJobReference(pNewJob As Job) As String
+        Dim _newReference As String
+        oNextJobSeq = GetSetting(JOBSEQ_SETTING)
+        _newReference = CStr(pNewJob.JobCustomerId) & "/" & oNextJobSeq.SettingValue & "/" & TxtJobReference.Text
+        oNextJobSeq.SettingValue += 1
+        UpdateSetting(oNextJobSeq)
+        Return _newReference
+    End Function
+
     Private Function CreateJob() As Boolean
         Dim isInsertOk As Boolean
         LogUtil.Debug("Inserting job", Name)
-        _currentJobId = InsertJob(_newJob)
+        If isUpdJobSeq Then
+            oNewJob.JobReference = CreateJobReference(oNewJob)
+        End If
+        _currentJobId = InsertJob(oNewJob)
         If _currentJobId > 0 Then
-            _newJob.JobId = _currentJobId
+            oNewJob.JobId = _currentJobId
             isInsertOk = True
             LblAction.Text = "Added the new customer"
             ShowStatus(LblStatus, "Job " & _currentJobId & " Created OK", Name, True)
@@ -327,10 +437,11 @@ Public Class FrmJobMaint
         End If
         Return isInsertOk
     End Function
+
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
             _diary.ForJobId = _currentJobId
-            _diary.ForCustomerId = _currentCust.CustomerId
+            _diary.ForCustomerId = oCurrentCust.CustomerId
             _diary.ShowDialog()
         End Using
     End Sub
@@ -340,88 +451,5 @@ Public Class FrmJobMaint
             _images.ShowDialog()
         End Using
     End Sub
-
-    Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
-        Close()
-    End Sub
-
-    Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
-        With _job
-            _newJob = JobBuilder.AJob.WithJobName(txtJobName.Text.Trim) _
-            .WithJobDescription(rtbJobNotes.Text.Trim) _
-            .WithJobCustomerId(cbCust.SelectedValue) _
-            .WithJobCompleted(chkCompleted.Checked) _
-            .WithJobReference(TxtJobReference.Text) _
-            .WithJobInvoiceNumber(TxtInvoiceNumber.Text) _
-            .WithJobInvoiceDate(DtpInvoiceDate.Value) _
-            .WithJobPoNumber(TxtPurchaseOrder.Text) _
-            .WithJobCreated(.JobCreated) _
-            .WithJobChanged(.JobChanged) _
-            .WithJobUser(cbUser.SelectedValue) _
-            .WithJobPaymentDue(DtpPaymentDue.Value) _
-            .WithJobId(_currentJobId) _
-            .Build
-        End With
-        Dim newJobId As Integer = -1
-        If _currentJobId > 0 Then
-            Amendjob()
-        Else
-            CreateJob()
-            ScJob.Panel2Collapsed = False
-            GrpInvoice.Enabled = True
-        End If
-        Close()
-    End Sub
-
-    Private Sub PicDeleteJob_Click(sender As Object, e As EventArgs) Handles PicDeleteJob.Click
-        If TheJob IsNot Nothing Then
-            If MsgBox("Do you want to remove this job?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
-                LogUtil.Info("Removing Job")
-                DeleteAllJob(TheJob.JobId)
-                Close()
-            End If
-        End If
-    End Sub
-
-
-    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
-        LogUtil.Debug("Maintain products on job", Name)
-        Using _jobProductForm As New FrmJobProducts
-            _jobProductForm.TheJob = _job
-            _jobProductForm.SelectedJobProduct = Nothing
-            _jobProductForm.ShowDialog()
-        End Using
-        FillProductList(_currentJobId)
-    End Sub
-
-    Private Sub BtnAddJobTask_Click(sender As Object, e As EventArgs) Handles BtnAddJobTask.Click
-        LogUtil.Debug("Add task to job", Name)
-        Using _taskForm As New FrmJobTask
-            _taskForm.JobTaskId = -1
-            _taskForm.CustomerJob = _job
-            _taskForm.Template = Nothing
-            _taskForm.ShowDialog()
-        End Using
-        FillJobTaskList(_currentJobId)
-    End Sub
-
-    Private Sub BtnRemoveJobTask_Click(sender As Object, e As EventArgs) Handles BtnRemoveJobTask.Click
-        If dgvTasks.SelectedRows.Count = 1 Then
-            LogUtil.Debug("Deleting task", Name)
-            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
-            Dim taskName As String = oRow.Cells(Me.taskName.Name).Value
-            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
-            If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
-                If DeleteJobTask(_taskId) = 1 Then
-                    ShowStatus(LblStatus, "Task removed OK", Name, True)
-                Else
-                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
-                End If
-                FillJobTaskList(_currentJobId)
-            End If
-        End If
-    End Sub
-
-
 #End Region
 End Class

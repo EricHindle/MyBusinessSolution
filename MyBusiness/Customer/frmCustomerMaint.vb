@@ -35,7 +35,6 @@ Public Class FrmCustomerMaint
     End Property
 #End Region
 #Region "form handlers"
-
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Started", Name)
         If GetFormPos(Me, My.Settings.CustFormPos) Then
@@ -131,6 +130,7 @@ Public Class FrmCustomerMaint
         LblAction.Text = "Updating a customer"
         Dim _custId As Integer = 0
         With _currentCustomer
+            LblCustNo.Text = CStr(_currentCustomer.CustomerId)
             txtCustName.Text = .CustName
             txtCustAddr1.Text = .Address.Address1
             txtCustAddr2.Text = .Address.Address2
@@ -166,7 +166,6 @@ Public Class FrmCustomerMaint
         PicUpdate.Image = My.Resources.update_database
         ToolTip1.SetToolTip(PicUpdate, "Update the customer")
         With _newCustomer
-
             If UpdateCustomer(_newCustomer) = 1 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
@@ -189,6 +188,7 @@ Public Class FrmCustomerMaint
         DgvJobs.Rows.Clear()
     End Sub
     Private Sub ClearCustomerDetails()
+        LblCustNo.Text = -1
         txtCustName.Text = ""
         txtCustAddr1.Text = ""
         txtCustAddr2.Text = ""

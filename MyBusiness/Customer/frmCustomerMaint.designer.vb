@@ -63,6 +63,8 @@ Partial Class FrmCustomerMaint
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.LblAction = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.LblCustNo = New System.Windows.Forms.Label()
         Me.pnlCustomer.SuspendLayout()
         CType(Me.nudDays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCustDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +85,8 @@ Partial Class FrmCustomerMaint
         'pnlCustomer
         '
         Me.pnlCustomer.BackColor = System.Drawing.Color.FloralWhite
+        Me.pnlCustomer.Controls.Add(Me.LblCustNo)
+        Me.pnlCustomer.Controls.Add(Me.Label11)
         Me.pnlCustomer.Controls.Add(Me.Label10)
         Me.pnlCustomer.Controls.Add(Me.Label9)
         Me.pnlCustomer.Controls.Add(Me.nudDays)
@@ -106,13 +110,13 @@ Partial Class FrmCustomerMaint
         Me.pnlCustomer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlCustomer.Location = New System.Drawing.Point(0, 0)
         Me.pnlCustomer.Name = "pnlCustomer"
-        Me.pnlCustomer.Size = New System.Drawing.Size(501, 416)
+        Me.pnlCustomer.Size = New System.Drawing.Size(501, 427)
         Me.pnlCustomer.TabIndex = 0
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(391, 302)
+        Me.Label10.Location = New System.Drawing.Point(391, 325)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(37, 17)
         Me.Label10.TabIndex = 19
@@ -121,7 +125,7 @@ Partial Class FrmCustomerMaint
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(265, 302)
+        Me.Label9.Location = New System.Drawing.Point(265, 325)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(46, 17)
         Me.Label9.TabIndex = 18
@@ -129,7 +133,7 @@ Partial Class FrmCustomerMaint
         '
         'nudDays
         '
-        Me.nudDays.Location = New System.Drawing.Point(318, 298)
+        Me.nudDays.Location = New System.Drawing.Point(318, 321)
         Me.nudDays.Name = "nudDays"
         Me.nudDays.Size = New System.Drawing.Size(67, 24)
         Me.nudDays.TabIndex = 9
@@ -137,7 +141,7 @@ Partial Class FrmCustomerMaint
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(14, 339)
+        Me.Label7.Location = New System.Drawing.Point(14, 354)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(43, 17)
         Me.Label7.TabIndex = 17
@@ -148,16 +152,16 @@ Partial Class FrmCustomerMaint
         Me.rtbCustNotes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.rtbCustNotes.Location = New System.Drawing.Point(112, 336)
+        Me.rtbCustNotes.Location = New System.Drawing.Point(112, 354)
         Me.rtbCustNotes.Name = "rtbCustNotes"
-        Me.rtbCustNotes.Size = New System.Drawing.Size(386, 71)
+        Me.rtbCustNotes.Size = New System.Drawing.Size(386, 64)
         Me.rtbCustNotes.TabIndex = 10
         Me.rtbCustNotes.Text = ""
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(14, 302)
+        Me.Label6.Location = New System.Drawing.Point(14, 325)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(80, 17)
         Me.Label6.TabIndex = 16
@@ -166,7 +170,7 @@ Partial Class FrmCustomerMaint
         'nudCustDiscount
         '
         Me.nudCustDiscount.DecimalPlaces = 2
-        Me.nudCustDiscount.Location = New System.Drawing.Point(112, 298)
+        Me.nudCustDiscount.Location = New System.Drawing.Point(112, 321)
         Me.nudCustDiscount.Name = "nudCustDiscount"
         Me.nudCustDiscount.Size = New System.Drawing.Size(120, 24)
         Me.nudCustDiscount.TabIndex = 8
@@ -175,7 +179,7 @@ Partial Class FrmCustomerMaint
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(14, 251)
+        Me.Label5.Location = New System.Drawing.Point(14, 274)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(36, 17)
         Me.Label5.TabIndex = 15
@@ -185,7 +189,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustEmail.Location = New System.Drawing.Point(112, 248)
+        Me.txtCustEmail.Location = New System.Drawing.Point(112, 271)
         Me.txtCustEmail.Name = "txtCustEmail"
         Me.txtCustEmail.Size = New System.Drawing.Size(285, 24)
         Me.txtCustEmail.TabIndex = 7
@@ -193,7 +197,7 @@ Partial Class FrmCustomerMaint
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(14, 222)
+        Me.Label4.Location = New System.Drawing.Point(14, 245)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(47, 17)
         Me.Label4.TabIndex = 14
@@ -203,7 +207,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustPhone.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustPhone.Location = New System.Drawing.Point(112, 219)
+        Me.txtCustPhone.Location = New System.Drawing.Point(112, 242)
         Me.txtCustPhone.Name = "txtCustPhone"
         Me.txtCustPhone.Size = New System.Drawing.Size(285, 24)
         Me.txtCustPhone.TabIndex = 6
@@ -211,7 +215,7 @@ Partial Class FrmCustomerMaint
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(14, 182)
+        Me.Label3.Location = New System.Drawing.Point(14, 205)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(65, 17)
         Me.Label3.TabIndex = 13
@@ -220,7 +224,7 @@ Partial Class FrmCustomerMaint
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(14, 60)
+        Me.Label2.Location = New System.Drawing.Point(14, 83)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 17)
         Me.Label2.TabIndex = 12
@@ -228,7 +232,7 @@ Partial Class FrmCustomerMaint
         '
         'txtCustPostcode
         '
-        Me.txtCustPostcode.Location = New System.Drawing.Point(112, 175)
+        Me.txtCustPostcode.Location = New System.Drawing.Point(112, 198)
         Me.txtCustPostcode.Name = "txtCustPostcode"
         Me.txtCustPostcode.Size = New System.Drawing.Size(158, 24)
         Me.txtCustPostcode.TabIndex = 5
@@ -237,7 +241,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustAddr4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustAddr4.Location = New System.Drawing.Point(112, 145)
+        Me.txtCustAddr4.Location = New System.Drawing.Point(112, 168)
         Me.txtCustAddr4.Name = "txtCustAddr4"
         Me.txtCustAddr4.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr4.TabIndex = 4
@@ -246,7 +250,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustAddr3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustAddr3.Location = New System.Drawing.Point(112, 115)
+        Me.txtCustAddr3.Location = New System.Drawing.Point(112, 138)
         Me.txtCustAddr3.Name = "txtCustAddr3"
         Me.txtCustAddr3.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr3.TabIndex = 3
@@ -255,7 +259,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustAddr2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustAddr2.Location = New System.Drawing.Point(112, 86)
+        Me.txtCustAddr2.Location = New System.Drawing.Point(112, 109)
         Me.txtCustAddr2.Name = "txtCustAddr2"
         Me.txtCustAddr2.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr2.TabIndex = 2
@@ -264,7 +268,7 @@ Partial Class FrmCustomerMaint
         '
         Me.txtCustAddr1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCustAddr1.Location = New System.Drawing.Point(112, 57)
+        Me.txtCustAddr1.Location = New System.Drawing.Point(112, 80)
         Me.txtCustAddr1.Name = "txtCustAddr1"
         Me.txtCustAddr1.Size = New System.Drawing.Size(285, 24)
         Me.txtCustAddr1.TabIndex = 1
@@ -272,7 +276,7 @@ Partial Class FrmCustomerMaint
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 19)
+        Me.Label1.Location = New System.Drawing.Point(14, 42)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 17)
         Me.Label1.TabIndex = 11
@@ -283,7 +287,7 @@ Partial Class FrmCustomerMaint
         Me.txtCustName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustName.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCustName.Location = New System.Drawing.Point(112, 16)
+        Me.txtCustName.Location = New System.Drawing.Point(112, 39)
         Me.txtCustName.Name = "txtCustName"
         Me.txtCustName.Size = New System.Drawing.Size(386, 27)
         Me.txtCustName.TabIndex = 0
@@ -300,7 +304,7 @@ Partial Class FrmCustomerMaint
         Me.pnlJobs.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlJobs.Location = New System.Drawing.Point(0, 0)
         Me.pnlJobs.Name = "pnlJobs"
-        Me.pnlJobs.Size = New System.Drawing.Size(404, 416)
+        Me.pnlJobs.Size = New System.Drawing.Size(404, 427)
         Me.pnlJobs.TabIndex = 1
         '
         'PicAddJob
@@ -308,7 +312,7 @@ Partial Class FrmCustomerMaint
         Me.PicAddJob.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicAddJob.Image = Global.MyBusiness.My.Resources.Resources.addany
         Me.PicAddJob.InitialImage = Nothing
-        Me.PicAddJob.Location = New System.Drawing.Point(3, 387)
+        Me.PicAddJob.Location = New System.Drawing.Point(3, 398)
         Me.PicAddJob.Name = "PicAddJob"
         Me.PicAddJob.Size = New System.Drawing.Size(24, 24)
         Me.PicAddJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -322,7 +326,7 @@ Partial Class FrmCustomerMaint
         Me.ChkCompleted.AutoSize = True
         Me.ChkCompleted.Checked = True
         Me.ChkCompleted.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkCompleted.Location = New System.Drawing.Point(254, 389)
+        Me.ChkCompleted.Location = New System.Drawing.Point(254, 400)
         Me.ChkCompleted.Name = "ChkCompleted"
         Me.ChkCompleted.Size = New System.Drawing.Size(145, 18)
         Me.ChkCompleted.TabIndex = 3
@@ -355,7 +359,7 @@ Partial Class FrmCustomerMaint
         Me.DgvJobs.ReadOnly = True
         Me.DgvJobs.RowHeadersVisible = False
         Me.DgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvJobs.Size = New System.Drawing.Size(396, 357)
+        Me.DgvJobs.Size = New System.Drawing.Size(396, 368)
         Me.DgvJobs.TabIndex = 2
         '
         'jobId
@@ -410,7 +414,7 @@ Partial Class FrmCustomerMaint
         '
         Me.StatusStrip1.BackgroundImage = Global.MyBusiness.My.Resources.Resources.statusstrip
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 531)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 542)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(941, 22)
         Me.StatusStrip1.TabIndex = 4
@@ -442,7 +446,7 @@ Partial Class FrmCustomerMaint
         'ScCustomer.Panel2
         '
         Me.ScCustomer.Panel2.Controls.Add(Me.pnlJobs)
-        Me.ScCustomer.Size = New System.Drawing.Size(917, 420)
+        Me.ScCustomer.Size = New System.Drawing.Size(917, 431)
         Me.ScCustomer.SplitterDistance = 505
         Me.ScCustomer.TabIndex = 68
         '
@@ -451,7 +455,7 @@ Partial Class FrmCustomerMaint
         Me.picDiary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picDiary.Image = Global.MyBusiness.My.Resources.Resources.diary
         Me.picDiary.InitialImage = Nothing
-        Me.picDiary.Location = New System.Drawing.Point(819, 486)
+        Me.picDiary.Location = New System.Drawing.Point(819, 497)
         Me.picDiary.Name = "picDiary"
         Me.picDiary.Size = New System.Drawing.Size(42, 42)
         Me.picDiary.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -464,7 +468,7 @@ Partial Class FrmCustomerMaint
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
         Me.PicUpdate.InitialImage = Nothing
-        Me.PicUpdate.Location = New System.Drawing.Point(12, 486)
+        Me.PicUpdate.Location = New System.Drawing.Point(12, 497)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -477,7 +481,7 @@ Partial Class FrmCustomerMaint
         Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
         Me.PicClose.InitialImage = Nothing
-        Me.PicClose.Location = New System.Drawing.Point(885, 486)
+        Me.PicClose.Location = New System.Drawing.Point(885, 497)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -499,13 +503,31 @@ Partial Class FrmCustomerMaint
         Me.LblAction.TabIndex = 96
         Me.LblAction.Text = "Adding new customer"
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(14, 9)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(97, 17)
+        Me.Label11.TabIndex = 20
+        Me.Label11.Text = "Customer no.:"
+        '
+        'LblCustNo
+        '
+        Me.LblCustNo.AutoSize = True
+        Me.LblCustNo.Location = New System.Drawing.Point(117, 9)
+        Me.LblCustNo.Name = "LblCustNo"
+        Me.LblCustNo.Size = New System.Drawing.Size(21, 17)
+        Me.LblCustNo.TabIndex = 21
+        Me.LblCustNo.Text = "-1"
+        '
         'FrmCustomerMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(941, 553)
+        Me.ClientSize = New System.Drawing.Size(941, 564)
         Me.Controls.Add(Me.LblAction)
         Me.Controls.Add(Me.PicClose)
         Me.Controls.Add(Me.PicUpdate)
@@ -582,4 +604,6 @@ Partial Class FrmCustomerMaint
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents PicAddJob As PictureBox
     Friend WithEvents LblAction As Label
+    Friend WithEvents LblCustNo As Label
+    Friend WithEvents Label11 As Label
 End Class

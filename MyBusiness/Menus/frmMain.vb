@@ -326,6 +326,11 @@ Public Class FrmMain
             DgvSupp.ClearSelection()
         End If
     End Sub
+    Private Sub MnuTasks_Click(sender As Object, e As EventArgs) Handles MnuTasks.Click
+        Using _taskForm As New FrmTasks
+            _taskForm.ShowDialog()
+        End Using
+    End Sub
 
 #End Region
 #Region "subroutines"
@@ -535,12 +540,5 @@ Public Class FrmMain
         LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
         slice.Show()
     End Sub
-
-    Private Sub MnuTasks_Click(sender As Object, e As EventArgs) Handles MnuTasks.Click
-        Using _taskForm As New FrmTasks
-            _taskForm.ShowDialog()
-        End Using
-    End Sub
-
 #End Region
 End Class

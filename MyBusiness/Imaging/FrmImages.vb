@@ -6,6 +6,7 @@
 '
 
 Imports System.ComponentModel
+Imports System.IO
 Imports HindlewareLib.Imaging
 Imports HindlewareLib.Logging
 Public Class FrmImages
@@ -20,9 +21,14 @@ Public Class FrmImages
         End Set
     End Property
 #End Region
+#Region "constants"
+    Private IMGFOLDER_SETTING As String = "imagefolder"
+#End Region
 #Region "variables"
     Private oImageList As List(Of JobImage)
     Private _selectedImage As JobImage
+    Private oImageFolderName As String
+    Private oJobImageFolder As String
 #End Region
 #Region "form control handlers"
     Private Sub FrmImages_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -33,7 +39,19 @@ Public Class FrmImages
     Private Sub FrmImages_Load(sender As Object, e As EventArgs) Handles Me.Load
         LogUtil.Debug("Started", Name)
         GetFormPos(Me, My.Settings.ImagesFormPos)
+        oImageFolderName = GetSetting(IMGFOLDER_SETTING).SettingValue
+        If _job IsNot Nothing Then
+            CreateImageFolder()
+        Else
+            oJobImageFolder = oImageFolderName
+        End If
         RefreshImageTable()
+    End Sub
+    Private Sub CreateImageFolder()
+        oJobImageFolder = Path.Combine(oImageFolderName, "Job" & CStr(_job.JobId))
+        If Not My.Computer.FileSystem.DirectoryExists(oJobImageFolder) Then
+            My.Computer.FileSystem.CreateDirectory(oJobImageFolder)
+        End If
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()
@@ -147,6 +165,14 @@ Public Class FrmImages
         Dim oCell As DataGridViewImageCell = oRow.Cells(_col)
         oRow.Height = oCell.Size.Width
         For Each _image As JobImage In oImageList
+            If _image.ImagePath <> oJobImageFolder Then
+                If MsgBox("Move image to job image folder?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Move Image") = MsgBoxResult.Yes Then
+                    Dim newPath As String = Path.Combine(oJobImageFolder, Path.GetFileName(_image.ImagePath))
+                    My.Computer.FileSystem.MoveFile(_image.ImagePath, newPath)
+                    _image.ImagePath = newPath
+                    UpdateJobImage(_image)
+                End If
+            End If
             If _col >= oRow.Cells.Count Then
                 oRow = DgvImages.Rows(DgvImages.Rows.Add())
                 oRow.Height = oCell.Size.Width

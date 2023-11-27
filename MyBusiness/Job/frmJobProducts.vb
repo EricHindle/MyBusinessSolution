@@ -93,14 +93,6 @@ Public Class FrmJobProducts
             End If
         End If
     End Sub
-    Private Sub RemoveProducts(pSupplierId As Integer)
-        For Each oRow As DataGridViewRow In dgvProducts.Rows
-            Dim _productId As Integer = oRow.Cells(prodId.Name).Value
-            If GetProductById(_productId).ProductSupplierId <> pSupplierId Then
-                oRow.Visible = False
-            End If
-        Next
-    End Sub
     Private Sub DgvSupplier_SelectionChanged(sender As Object, e As EventArgs) Handles DgvSupplier.SelectionChanged
         If Not isLoading Then
             isLoading = True
@@ -136,13 +128,6 @@ Public Class FrmJobProducts
             End If
         End If
     End Sub
-
-    Private Sub SetButtonsVisible(pAdd As Boolean, pUpdate As Boolean, pDelete As Boolean)
-        PicAdd.Visible = pAdd
-        PicUpdate.Visible = pUpdate
-        PicRemove.Visible = pDelete
-    End Sub
-
     Private Sub LblF5_Click(sender As Object, e As EventArgs) Handles LblF5.Click
         AddSupplier()
     End Sub
@@ -235,6 +220,19 @@ Public Class FrmJobProducts
     End Sub
 #End Region
 #Region "subroutines"
+    Private Sub RemoveProducts(pSupplierId As Integer)
+        For Each oRow As DataGridViewRow In dgvProducts.Rows
+            Dim _productId As Integer = oRow.Cells(prodId.Name).Value
+            If GetProductById(_productId).ProductSupplierId <> pSupplierId Then
+                oRow.Visible = False
+            End If
+        Next
+    End Sub
+    Private Sub SetButtonsVisible(pAdd As Boolean, pUpdate As Boolean, pDelete As Boolean)
+        PicAdd.Visible = pAdd
+        PicUpdate.Visible = pUpdate
+        PicRemove.Visible = pDelete
+    End Sub
     Private Sub FillProductDetails()
         NudQuantity.Value = _selectedJobProduct.Quantity
         lblProductName.Text = _selectedJobProduct.ThisProduct.ProductName
@@ -267,7 +265,6 @@ Public Class FrmJobProducts
         Catch ex As Exception
             Debug.Print(ex.Message)
         End Try
-
         Dim _supplierList As List(Of Supplier) = GetSuppliers()
         For Each _supplier As Supplier In _supplierList
             Dim tRow As DataGridViewRow = DgvSupplier.Rows(DgvSupplier.Rows.Add())
@@ -278,7 +275,6 @@ Public Class FrmJobProducts
     End Sub
     Private Sub FillProductList()
         Dim _productList As List(Of Product)
-
         dgvProducts.Rows.Clear()
         If _currentSupplierId > 0 Then
             _productList = GetProductsBySupplier(_currentSupplierId)
@@ -300,7 +296,6 @@ Public Class FrmJobProducts
     Private Sub FillJobProductList(ByRef dgv As DataGridView)
         dgv.Rows.Clear()
         Dim _jobProductList As List(Of FullJobProduct) = GetJobProductViewByJob(_job.JobId)
-
         For Each _jobProduct As FullJobProduct In _jobProductList
             With _jobProduct
                 Dim _jpId As Integer = .JobProductId

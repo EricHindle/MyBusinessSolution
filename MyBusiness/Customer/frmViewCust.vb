@@ -29,6 +29,7 @@ Public Class FrmViewCust
     Private Sub FrmViewCust_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         GetFormPos(Me, My.Settings.CustViewFormPos)
         If _customer IsNot Nothing Then
+            txtCustNo.Text = CStr(_customer.CustomerId)
             txtCustAddr1.Text = _customer.Address.Address1
             txtCustAddr2.Text = _customer.Address.Address2
             txtCustAddr3.Text = _customer.Address.Address3

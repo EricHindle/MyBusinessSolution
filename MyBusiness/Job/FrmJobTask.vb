@@ -113,22 +113,52 @@ Public Class FrmJobTask
         End If
         Close()
     End Sub
-
-    Private Function CreateNewJobTaskFromForm() As JobTask
-        Return JobTaskBuilder.AJobTask.WithTask(_task) _
-                                    .WithTaskCost(nudCost.Value) _
-                                    .WithTaskTime(nudTime.Value) _
-                                    .WithTaskCompleted(chkCompleted.Checked) _
-                                    .WithTaskStartDue(dtpStartDate.Value.Date) _
-                                    .WithTaskStarted(chkStarted.Checked) _
-                                    .WithTaskCreated(_jobtask.TaskCreated) _
-                                    .WithTaskChanged(_jobtask.TaskChanged) _
-                                    .WithTaskJobId(_jobId) _
-                                    .WithTaskTaxable(chkTaxable.Checked) _
-                                    .WithTaskTaxRate(nudTaxRate.Value) _
-                                    .WithJobTaskId(_jobtaskId) _
-                                    .Build()
-    End Function
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Using _taskForm As New FrmTasks
+            _taskForm.ShowDialog()
+            _taskId = _taskForm.TaskId
+        End Using
+        LoadTaskList()
+    End Sub
+    Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
+        If Not IsLoading Then
+            If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
+                _taskId = CbTask.SelectedValue
+                _task = GetTaskById(_taskId)
+                rtbDescription.Text = _task.TaskDescription
+                Dim _existingId As Integer
+                If IsTemplateTask Then
+                    Dim _existingTemplateTask As TemplateTask = GetTemplateTaskByTemplateAndTask(_template.TemplateId, _taskId)
+                    FillTemplateTaskDetails(_existingTemplateTask)
+                    _existingId = _existingTemplateTask.TemplateTaskId
+                Else
+                    Dim _existingJobTask As JobTask = GetJobTaskByJobAndTask(_jobId, _taskId)
+                    FillJobTaskDetails(_existingJobTask)
+                    _existingId = _existingJobTask.JobTaskId
+                End If
+                _jobtaskId = _existingId
+                SetButtonVisibility(_existingId < 0)
+            Else
+                rtbDescription.Text = String.Empty
+                _taskId = -1
+                _task = TaskBuilder.ATask.StartingWithNothing.Build
+            End If
+        End If
+    End Sub
+    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
+        If CbTask.SelectedIndex > -1 Then
+            _newJobTask = CreateNewJobTaskFromForm()
+            If IsTemplateTask Then
+                _newTemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_newJobTask).WithTemplateId(_tmplId).Build
+                CreateTemplateTask()
+            Else
+                CreateJobTask()
+            End If
+            Close()
+        Else
+            ShowStatus(lblStatus, "Missing values. No action")
+        End If
+    End Sub
 #End Region
 #Region "subroutines"
     Private Sub LoadTaskList()
@@ -234,55 +264,21 @@ Public Class FrmJobTask
         End If
         Return isInsertOk
     End Function
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        Using _taskForm As New FrmTasks
-            _taskForm.ShowDialog()
-            _taskId = _taskForm.TaskId
-        End Using
-        LoadTaskList()
-    End Sub
-
-    Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
-        If Not IsLoading Then
-            If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
-                _taskId = CbTask.SelectedValue
-                _task = GetTaskById(_taskId)
-                rtbDescription.Text = _task.TaskDescription
-                Dim _existingId As Integer
-                If IsTemplateTask Then
-                    Dim _existingTemplateTask As TemplateTask = GetTemplateTaskByTemplateAndTask(_template.TemplateId, _taskId)
-                    FillTemplateTaskDetails(_existingTemplateTask)
-                    _existingId = _existingTemplateTask.TemplateTaskId
-                Else
-                    Dim _existingJobTask As JobTask = GetJobTaskByJobAndTask(_jobId, _taskId)
-                    FillJobTaskDetails(_existingJobTask)
-                    _existingId = _existingJobTask.JobTaskId
-                End If
-                _jobtaskId = _existingId
-                SetButtonVisibility(_existingId < 0)
-            Else
-                rtbDescription.Text = String.Empty
-                _taskId = -1
-                _task = TaskBuilder.ATask.StartingWithNothing.Build
-            End If
-        End If
-    End Sub
-
-    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
-        If CbTask.SelectedIndex > -1 Then
-            _newJobTask = CreateNewJobTaskFromForm()
-            If IsTemplateTask Then
-                _newTemplateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(_newJobTask).WithTemplateId(_tmplId).Build
-                CreateTemplateTask()
-            Else
-                CreateJobTask()
-            End If
-            Close()
-        Else
-            ShowStatus(lblStatus, "Missing values. No action")
-        End If
-    End Sub
-
+    Private Function CreateNewJobTaskFromForm() As JobTask
+        Return JobTaskBuilder.AJobTask.WithTask(_task) _
+                                    .WithTaskCost(nudCost.Value) _
+                                    .WithTaskTime(nudTime.Value) _
+                                    .WithTaskCompleted(chkCompleted.Checked) _
+                                    .WithTaskStartDue(dtpStartDate.Value.Date) _
+                                    .WithTaskStarted(chkStarted.Checked) _
+                                    .WithTaskCreated(_jobtask.TaskCreated) _
+                                    .WithTaskChanged(_jobtask.TaskChanged) _
+                                    .WithTaskJobId(_jobId) _
+                                    .WithTaskTaxable(chkTaxable.Checked) _
+                                    .WithTaskTaxRate(nudTaxRate.Value) _
+                                    .WithJobTaskId(_jobtaskId) _
+                                    .Build()
+    End Function
     Private Sub SetButtonVisibility(IsAddVisible As Boolean)
         PicAdd.Visible = IsAddVisible
         PicUpdate.Visible = Not IsAddVisible
