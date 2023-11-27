@@ -165,7 +165,7 @@ Public Class FrmImages
         Dim oCell As DataGridViewImageCell = oRow.Cells(_col)
         oRow.Height = oCell.Size.Width
         For Each _image As JobImage In oImageList
-            If _image.ImagePath <> oJobImageFolder Then
+            If Path.GetDirectoryName(_image.ImagePath) <> oJobImageFolder Then
                 If MsgBox("Move image to job image folder?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Move Image") = MsgBoxResult.Yes Then
                     Dim newPath As String = Path.Combine(oJobImageFolder, Path.GetFileName(_image.ImagePath))
                     My.Computer.FileSystem.MoveFile(_image.ImagePath, newPath)
