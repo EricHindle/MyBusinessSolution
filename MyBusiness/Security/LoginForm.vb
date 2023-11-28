@@ -135,7 +135,7 @@ Public Class LoginForm
             GlobalSettings.LoadGlobalSettings()
             Try
                 setFolderNames()
-                createMissingFolders()
+                CreateMissingFolders()
                 LogUtil.LogFolder = sLogFolder
                 LogUtil.StartLogging(My.Settings.netwyrksConnectionString)
                 If isVersionChange Then
@@ -167,7 +167,7 @@ Public Class LoginForm
         AuditUtil.AddAudit("", AuditUtil.RecordType.User, currentUser.UserId, AuditUtil.AuditableAction.login, My.Application.Info.Version.ToString, "")
         'For Citrix: allocate individual temporary folders
         If GlobalSettings.getBooleanSetting(GlobalSettings.PERSONAL_FOLDERS) Then
-            SetPersonalisedFolderNames()
+            SetPersonalisedFolderNames(Nothing, MyBase.Name)
         End If
         ' housekeeping
         If My.Settings.AutoTidy Then

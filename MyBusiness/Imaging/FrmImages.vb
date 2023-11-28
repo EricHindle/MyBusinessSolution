@@ -7,6 +7,7 @@
 
 Imports System.ComponentModel
 Imports System.IO
+Imports HindlewareLib.Domain.Objects
 Imports HindlewareLib.Imaging
 Imports HindlewareLib.Logging
 Public Class FrmImages
@@ -22,7 +23,6 @@ Public Class FrmImages
     End Property
 #End Region
 #Region "constants"
-    Private IMGFOLDER_SETTING As String = "imagefolder"
 #End Region
 #Region "variables"
     Private oImageList As List(Of JobImage)
@@ -39,19 +39,17 @@ Public Class FrmImages
     Private Sub FrmImages_Load(sender As Object, e As EventArgs) Handles Me.Load
         LogUtil.Debug("Started", Name)
         GetFormPos(Me, My.Settings.ImagesFormPos)
-        oImageFolderName = GetSetting(IMGFOLDER_SETTING).SettingValue
+        oImageFolderName = My.Settings.ImageFolder
         If _job IsNot Nothing Then
-            CreateImageFolder()
+            oJobImageFolder = Path.Combine(oImageFolderName, "Job" & _job.JobId)
+            Dim _resp As SuccessResponse = CreateFolder(oJobImageFolder)
+            If Not String.IsNullOrEmpty(_resp.Message) Then
+                ShowStatus(LblStatus, _resp, MyBase.Name, True)
+            End If
         Else
             oJobImageFolder = oImageFolderName
         End If
         RefreshImageTable()
-    End Sub
-    Private Sub CreateImageFolder()
-        oJobImageFolder = Path.Combine(oImageFolderName, "Job" & CStr(_job.JobId))
-        If Not My.Computer.FileSystem.DirectoryExists(oJobImageFolder) Then
-            My.Computer.FileSystem.CreateDirectory(oJobImageFolder)
-        End If
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()

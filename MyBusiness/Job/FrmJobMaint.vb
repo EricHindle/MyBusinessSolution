@@ -111,7 +111,7 @@ Public Class FrmJobMaint
             If _job IsNot Nothing Then
                 Dim _jobref As String() = Split(_job.JobReference, "/")
                 If _jobref.Length = 3 Then
-                    LblJobSeq.Text = CStr(oCurrentCust.CustomerId) & "/" & _jobref(1) & "/"
+                    LblJobSeq.Text = oCurrentCust.CustomerId & "/" & _jobref(1) & "/"
                 End If
             End If
         Else
@@ -412,7 +412,7 @@ Public Class FrmJobMaint
     Private Function CreateJobReference(pNewJob As Job) As String
         Dim _newReference As String
         oNextJobSeq = GetSetting(JOBSEQ_SETTING)
-        _newReference = CStr(pNewJob.JobCustomerId) & "/" & oNextJobSeq.SettingValue & "/" & TxtJobReference.Text
+        _newReference = pNewJob.JobCustomerId & "/" & oNextJobSeq.SettingValue & "/" & TxtJobReference.Text
         oNextJobSeq.SettingValue += 1
         UpdateSetting(oNextJobSeq)
         Return _newReference

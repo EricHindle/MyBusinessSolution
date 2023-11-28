@@ -6,8 +6,11 @@
 '
 
 Imports System.IO
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Domain.Builders
 Imports HindlewareLib.Logging
 Imports HindlewareLib.NetwyrksErrorCodes
+Imports iTextSharp.text.pdf
 
 ''' <summary>
 ''' Globally available functions
@@ -126,7 +129,7 @@ Public Module netwyrksCommon
     '''       a new user code will be added to the paths each time and the folder structure could get bigger and bigger.
     '''       A warning message will be displayed when this happens.
     '''       The paths can be corrected in preferences. </remarks>
-    Public Sub SetPersonalisedFolderNames()
+    Public Sub SetPersonalisedFolderNames(pStatus As ToolStripStatusLabel, pOrigin As String)
         Dim userId As String = currentUser.User_code
         Dim isPathChanged As Boolean = False
         If userId.Length > 0 Then
@@ -160,49 +163,51 @@ Public Module netwyrksCommon
     ''' Create any missing standard folders
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub CreateMissingFolders()
-        Try
-            My.Computer.FileSystem.CreateDirectory(sLogFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sLogFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sTempFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sTempFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sReportFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sReportFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sInvoiceFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sInvoiceFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sCacheFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sCacheFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sBackupFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sBackupFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-
-        Try
-            My.Computer.FileSystem.CreateDirectory(sImageFolder)
-        Catch ex As Exception
-            MsgBox("Cannot create " & sImageFolder, MsgBoxStyle.Exclamation, "Folder Creation")
-        End Try
-    End Sub
+    Public Function CreateMissingFolders() As List(Of SuccessResponse)
+        Dim _resp As New List(Of SuccessResponse) From {
+            CreateFolder(sLogFolder),
+            CreateFolder(sTempFolder),
+            CreateFolder(sReportFolder),
+            CreateFolder(sInvoiceFolder),
+            CreateFolder(sCacheFolder),
+            CreateFolder(sBackupFolder),
+            CreateFolder(sImageFolder)
+        }
+        For Each _response As SuccessResponse In _resp
+            If Not String.IsNullOrEmpty(_response.Message) Then
+                If _response.IsOk Then
+                    LogUtil.Info(_response.Message)
+                Else
+                    LogUtil.Exception(_response.Message, _response.SystemException)
+                End If
+            End If
+        Next
+        Return _resp
+    End Function
+    Public Function CreateFolder(pDirectoryName As String) As SuccessResponse
+        Dim isOk As Boolean = False
+        Dim _response As SuccessResponseBuilder = SuccessResponseBuilder.ASuccessResponseBuilder.StartingWithNothing
+        Dim _ex As Exception = Nothing
+        If Not My.Computer.FileSystem.DirectoryExists(pDirectoryName) Then
+            Try
+                My.Computer.FileSystem.CreateDirectory(pDirectoryName)
+                _response.WithException(Nothing).WithMessage(pDirectoryName & " " & " Created")
+                isOk = True
+            Catch ex As ArgumentException
+                _response.WithException(ex).WithMessage(pDirectoryName & " " & " Invalid Arguement")
+            Catch ex As PathTooLongException
+                _response.WithException(ex).WithMessage(pDirectoryName & " " & " Path Too Long")
+            Catch ex As NotSupportedException
+                _response.WithException(ex).WithMessage(pDirectoryName & " " & " Not Supported")
+            Catch ex As IOException
+                _response.WithException(ex).WithMessage(pDirectoryName & " " & " IO Exception")
+            Catch ex As UnauthorizedAccessException
+                _response.WithException(ex).WithMessage(pDirectoryName & " " & " Unauthorized Access")
+            End Try
+            _response.WithIsOk(isOk)
+        End If
+        Return _response.Build
+    End Function
 #End Region
 #Region "cache"
     Public Enum CacheType
@@ -384,6 +389,10 @@ Public Module netwyrksCommon
         splash.Close()
         splash.Dispose()
     End Sub
+    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sResp As SuccessResponse, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
+        ShowStatus(oStatusLabel, sResp.Message, oFormName, isLogged, sResp.SystemException)
+    End Sub
+
     Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False, Optional pEx As Exception = Nothing)
         oStatusLabel.Text = sText
         If isLogged Then
