@@ -613,6 +613,7 @@
     <None Include="Images\www.png" />
     <None Include="Images\update-database.png" />
     <None Include="Images\select.png" />
+    <None Include="Images\updateany.png" />
     <Content Include="MyBusiness5.ico" />
     <None Include="packages.config" />
     <None Include="Resources\MyBusiness.png" />

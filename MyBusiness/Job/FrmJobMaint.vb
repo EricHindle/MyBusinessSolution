@@ -25,6 +25,7 @@ Public Class FrmJobMaint
     Private isUpdJobSeq As Boolean = False
     Private oNewJob As Job
     Private oCurrentJobProduct As JobProduct
+    Private _isView As Boolean
 #End Region
 #Region "properties"
     Public Property CustomerId() As Integer
@@ -43,7 +44,6 @@ Public Class FrmJobMaint
             _job = value
         End Set
     End Property
-    Private _isView As Boolean
     Public Property IsView() As Boolean
         Get
             Return _isView
@@ -119,30 +119,10 @@ Public Class FrmJobMaint
         End If
     End Sub
     Private Sub DgvTasks_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvTasks.CellDoubleClick
-        If dgvTasks.SelectedRows.Count = 1 Then
-            LogUtil.Debug("Updating task", Name)
-            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
-            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
-            Using _taskForm As New FrmJobTask
-                _taskForm.CustomerJob = _job
-                _taskForm.JobTaskId = _taskId
-                _taskForm.Template = Nothing
-                _taskForm.ShowDialog()
-            End Using
-            ClearJobdetails()
-            FillJobDetails()
-        End If
+        UpdateSelectedTask()
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DgvProducts.CellDoubleClick
-        LogUtil.Debug("Maintain products on job", Name)
-        Dim _jpId As Integer = DgvProducts.Rows(e.RowIndex).Cells(jpId.Name).Value
-        oCurrentJobProduct = GetJobProductById(_jpId)
-        Using _jobProductForm As New FrmJobProducts
-            _jobProductForm.TheJob = _job
-            _jobProductForm.SelectedJobProduct = oCurrentJobProduct
-            _jobProductForm.ShowDialog()
-        End Using
-        FillProductList(_currentJobId)
+        UpdateSelectedProduct()
     End Sub
     Private Sub BtnInvoice_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInvoice.Click
         If _job IsNot Nothing Then
@@ -197,17 +177,6 @@ Public Class FrmJobMaint
         End If
         Close()
     End Sub
-    Private Function IsValidJob() As Boolean
-        Dim isOK As Boolean = True
-        If cbCust.SelectedIndex = -1 Then
-            isOK = False
-        End If
-        If String.IsNullOrWhiteSpace(txtJobName.Text) Then
-            isOK = False
-        End If
-        Return isOK
-    End Function
-
     Private Sub PicDeleteJob_Click(sender As Object, e As EventArgs) Handles PicDeleteJob.Click
         If TheJob IsNot Nothing Then
             If MsgBox("Do you want to remove this job?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
@@ -252,8 +221,53 @@ Public Class FrmJobMaint
             End If
         End If
     End Sub
+    Private Sub BtnUpdateJobTask_Click(sender As Object, e As EventArgs) Handles BtnUpdateJobTask.Click
+        UpdateSelectedTask()
+    End Sub
+    Private Sub BtnUpdateJobProduct_Click(sender As Object, e As EventArgs) Handles BtnUpdateJobProduct.Click
+        UpdateSelectedProduct()
+    End Sub
 #End Region
 #Region "functions"
+    Private Sub UpdateSelectedTask()
+        If dgvTasks.SelectedRows.Count = 1 Then
+            LogUtil.Debug("Updating task", Name)
+            Dim oRow As DataGridViewRow = dgvTasks.SelectedRows(0)
+            Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
+            Using _taskForm As New FrmJobTask
+                _taskForm.CustomerJob = _job
+                _taskForm.JobTaskId = _taskId
+                _taskForm.Template = Nothing
+                _taskForm.ShowDialog()
+            End Using
+            ClearJobdetails()
+            FillJobDetails()
+        End If
+    End Sub
+    Private Sub UpdateSelectedProduct()
+        If DgvProducts.SelectedRows.Count = 1 Then
+            LogUtil.Debug("Maintain products on job", Name)
+            Dim oRow As DataGridViewRow = DgvProducts.SelectedRows(0)
+            Dim _jpId As Integer = oRow.Cells(jpId.Name).Value
+            oCurrentJobProduct = GetJobProductById(_jpId)
+            Using _jobProductForm As New FrmJobProducts
+                _jobProductForm.TheJob = _job
+                _jobProductForm.SelectedJobProduct = oCurrentJobProduct
+                _jobProductForm.ShowDialog()
+            End Using
+            FillProductList(_currentJobId)
+        End If
+    End Sub
+    Private Function IsValidJob() As Boolean
+        Dim isOK As Boolean = True
+        If cbCust.SelectedIndex = -1 Then
+            isOK = False
+        End If
+        If String.IsNullOrWhiteSpace(txtJobName.Text) Then
+            isOK = False
+        End If
+        Return isOK
+    End Function
     Private Sub GetCurrentCustomer()
         If cbCust.SelectedIndex > -1 Then
             btnViewCust.Enabled = True
@@ -408,7 +422,6 @@ Public Class FrmJobMaint
         End If
         Return isAmendOk
     End Function
-
     Private Function CreateJobReference(pNewJob As Job) As String
         Dim _newReference As String
         oNextJobSeq = GetSetting(JOBSEQ_SETTING)
@@ -417,7 +430,6 @@ Public Class FrmJobMaint
         UpdateSetting(oNextJobSeq)
         Return _newReference
     End Function
-
     Private Function CreateJob() As Boolean
         Dim isInsertOk As Boolean
         LogUtil.Debug("Inserting job", Name)
@@ -437,7 +449,6 @@ Public Class FrmJobMaint
         End If
         Return isInsertOk
     End Function
-
     Private Sub ShowDiary()
         Using _diary As New FrmDiary
             _diary.ForJobId = _currentJobId

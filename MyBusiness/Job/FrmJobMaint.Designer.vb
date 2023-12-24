@@ -23,7 +23,7 @@ Partial Class FrmJobMaint
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnInvoice = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblScreenName = New System.Windows.Forms.Label()
@@ -72,9 +72,11 @@ Partial Class FrmJobMaint
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ScJobItems = New System.Windows.Forms.SplitContainer()
+        Me.BtnUpdateJobTask = New System.Windows.Forms.Button()
         Me.BtnRemoveJobTask = New System.Windows.Forms.Button()
         Me.BtnAddJobTask = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.BtnUpdateJobProduct = New System.Windows.Forms.Button()
         Me.BtnAddJobProduct = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ScJob = New System.Windows.Forms.SplitContainer()
@@ -226,14 +228,14 @@ Partial Class FrmJobMaint
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvProducts.BackgroundColor = System.Drawing.Color.SeaShell
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Snow
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jpId, Me.prodSupp, Me.prodId, Me.prodName, Me.prodQty, Me.prodCost, Me.prodPrice, Me.jobPrice})
         Me.DgvProducts.Location = New System.Drawing.Point(7, 40)
@@ -639,6 +641,7 @@ Partial Class FrmJobMaint
         'ScJobItems.Panel1
         '
         Me.ScJobItems.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.ScJobItems.Panel1.Controls.Add(Me.BtnUpdateJobTask)
         Me.ScJobItems.Panel1.Controls.Add(Me.BtnRemoveJobTask)
         Me.ScJobItems.Panel1.Controls.Add(Me.BtnAddJobTask)
         Me.ScJobItems.Panel1.Controls.Add(Me.Label3)
@@ -647,12 +650,30 @@ Partial Class FrmJobMaint
         'ScJobItems.Panel2
         '
         Me.ScJobItems.Panel2.BackColor = System.Drawing.Color.Snow
+        Me.ScJobItems.Panel2.Controls.Add(Me.BtnUpdateJobProduct)
         Me.ScJobItems.Panel2.Controls.Add(Me.BtnAddJobProduct)
         Me.ScJobItems.Panel2.Controls.Add(Me.Label4)
         Me.ScJobItems.Panel2.Controls.Add(Me.DgvProducts)
         Me.ScJobItems.Size = New System.Drawing.Size(548, 461)
         Me.ScJobItems.SplitterDistance = 197
         Me.ScJobItems.TabIndex = 77
+        '
+        'BtnUpdateJobTask
+        '
+        Me.BtnUpdateJobTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdateJobTask.AutoSize = True
+        Me.BtnUpdateJobTask.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateJobTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnUpdateJobTask.Image = Global.MyBusiness.My.Resources.Resources.updateany
+        Me.BtnUpdateJobTask.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.BtnUpdateJobTask.Location = New System.Drawing.Point(75, 162)
+        Me.BtnUpdateJobTask.Margin = New System.Windows.Forms.Padding(0)
+        Me.BtnUpdateJobTask.Name = "BtnUpdateJobTask"
+        Me.BtnUpdateJobTask.Size = New System.Drawing.Size(82, 27)
+        Me.BtnUpdateJobTask.TabIndex = 102
+        Me.BtnUpdateJobTask.Text = "Update"
+        Me.BtnUpdateJobTask.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BtnUpdateJobTask.UseVisualStyleBackColor = True
         '
         'BtnRemoveJobTask
         '
@@ -662,7 +683,7 @@ Partial Class FrmJobMaint
         Me.BtnRemoveJobTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnRemoveJobTask.Image = Global.MyBusiness.My.Resources.Resources.deleteany
         Me.BtnRemoveJobTask.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.BtnRemoveJobTask.Location = New System.Drawing.Point(87, 162)
+        Me.BtnRemoveJobTask.Location = New System.Drawing.Point(157, 162)
         Me.BtnRemoveJobTask.Margin = New System.Windows.Forms.Padding(0)
         Me.BtnRemoveJobTask.Name = "BtnRemoveJobTask"
         Me.BtnRemoveJobTask.Size = New System.Drawing.Size(82, 27)
@@ -698,6 +719,23 @@ Partial Class FrmJobMaint
         Me.Label3.Size = New System.Drawing.Size(49, 19)
         Me.Label3.TabIndex = 71
         Me.Label3.Text = "Tasks"
+        '
+        'BtnUpdateJobProduct
+        '
+        Me.BtnUpdateJobProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdateJobProduct.AutoSize = True
+        Me.BtnUpdateJobProduct.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateJobProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnUpdateJobProduct.Image = Global.MyBusiness.My.Resources.Resources.updateany
+        Me.BtnUpdateJobProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.BtnUpdateJobProduct.Location = New System.Drawing.Point(75, 223)
+        Me.BtnUpdateJobProduct.Margin = New System.Windows.Forms.Padding(0)
+        Me.BtnUpdateJobProduct.Name = "BtnUpdateJobProduct"
+        Me.BtnUpdateJobProduct.Size = New System.Drawing.Size(82, 27)
+        Me.BtnUpdateJobProduct.TabIndex = 103
+        Me.BtnUpdateJobProduct.Text = "Update"
+        Me.BtnUpdateJobProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BtnUpdateJobProduct.UseVisualStyleBackColor = True
         '
         'BtnAddJobProduct
         '
@@ -930,4 +968,6 @@ Partial Class FrmJobMaint
     Friend WithEvents BtnAddJobTask As Button
     Friend WithEvents BtnRemoveJobTask As Button
     Friend WithEvents LblJobSeq As Label
+    Friend WithEvents BtnUpdateJobTask As Button
+    Friend WithEvents BtnUpdateJobProduct As Button
 End Class

@@ -81,9 +81,11 @@ Partial Class FrmMain
         Me.MnuAddJob = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuShowJob = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddCustomer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddSupplier = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuShowSupplier = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddDiary = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowReminder = New System.Windows.Forms.ToolStripMenuItem()
         Me.Gap1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuJobFromTemplate = New System.Windows.Forms.ToolStripMenuItem()
@@ -116,8 +118,6 @@ Partial Class FrmMain
         Me.MnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
-        Me.MnuShowCustomer = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MnuShowReminder = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -671,10 +671,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJob, Me.MnuShowJob, Me.MnuAddCustomer, Me.MnuShowCustomer, Me.MnuAddSupplier, Me.MnuShowSupplier, Me.MnuAddDiary, Me.MnuShowReminder, Me.Gap1, Me.MnuTemplates, Me.MnuSettings, Me.MnuAdmin, Me.Gap2, Me.MnuClose})
-        Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(1154, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(131, 849)
+        Me.MenuStrip1.Size = New System.Drawing.Size(101, 849)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -698,7 +698,7 @@ Partial Class FrmMain
         Me.MnuShowJob.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.MnuShowJob.Name = "MnuShowJob"
         Me.MnuShowJob.Size = New System.Drawing.Size(90, 45)
-        Me.MnuShowJob.Text = "Show Job"
+        Me.MnuShowJob.Text = "Update Job"
         Me.MnuShowJob.Visible = False
         '
         'MnuAddCustomer
@@ -712,6 +712,18 @@ Partial Class FrmMain
         Me.MnuAddCustomer.Size = New System.Drawing.Size(90, 90)
         Me.MnuAddCustomer.Text = "+Customer"
         Me.MnuAddCustomer.ToolTipText = "Add a customer"
+        '
+        'MnuShowCustomer
+        '
+        Me.MnuShowCustomer.AutoSize = False
+        Me.MnuShowCustomer.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowCustomer.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowCustomer.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowCustomer.Name = "MnuShowCustomer"
+        Me.MnuShowCustomer.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowCustomer.Text = "Update Cust"
+        Me.MnuShowCustomer.Visible = False
         '
         'MnuAddSupplier
         '
@@ -734,7 +746,7 @@ Partial Class FrmMain
         Me.MnuShowSupplier.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.MnuShowSupplier.Name = "MnuShowSupplier"
         Me.MnuShowSupplier.Size = New System.Drawing.Size(90, 45)
-        Me.MnuShowSupplier.Text = "Show Supplier"
+        Me.MnuShowSupplier.Text = "Update Supplier"
         Me.MnuShowSupplier.Visible = False
         '
         'MnuAddDiary
@@ -748,11 +760,23 @@ Partial Class FrmMain
         Me.MnuAddDiary.Size = New System.Drawing.Size(90, 90)
         Me.MnuAddDiary.Text = "+Diary"
         '
+        'MnuShowReminder
+        '
+        Me.MnuShowReminder.AutoSize = False
+        Me.MnuShowReminder.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowReminder.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowReminder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowReminder.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowReminder.Name = "MnuShowReminder"
+        Me.MnuShowReminder.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowReminder.Text = "Update Diary"
+        Me.MnuShowReminder.Visible = False
+        '
         'Gap1
         '
         Me.Gap1.Name = "Gap1"
         Me.Gap1.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.Gap1.Size = New System.Drawing.Size(108, 19)
+        Me.Gap1.Size = New System.Drawing.Size(78, 19)
         Me.Gap1.Text = " "
         '
         'MnuTemplates
@@ -935,7 +959,7 @@ Partial Class FrmMain
         '
         Me.Gap2.Name = "Gap2"
         Me.Gap2.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded
-        Me.Gap2.Size = New System.Drawing.Size(108, 19)
+        Me.Gap2.Size = New System.Drawing.Size(78, 19)
         Me.Gap2.Text = " "
         '
         'MnuClose
@@ -956,30 +980,6 @@ Partial Class FrmMain
         '
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
-        '
-        'MnuShowCustomer
-        '
-        Me.MnuShowCustomer.AutoSize = False
-        Me.MnuShowCustomer.BackColor = System.Drawing.SystemColors.Control
-        Me.MnuShowCustomer.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.MnuShowCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.MnuShowCustomer.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.MnuShowCustomer.Name = "MnuShowCustomer"
-        Me.MnuShowCustomer.Size = New System.Drawing.Size(90, 45)
-        Me.MnuShowCustomer.Text = "Show Customer"
-        Me.MnuShowCustomer.Visible = False
-        '
-        'MnuShowReminder
-        '
-        Me.MnuShowReminder.AutoSize = False
-        Me.MnuShowReminder.BackColor = System.Drawing.SystemColors.Control
-        Me.MnuShowReminder.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
-        Me.MnuShowReminder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.MnuShowReminder.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.MnuShowReminder.Name = "MnuShowReminder"
-        Me.MnuShowReminder.Size = New System.Drawing.Size(90, 45)
-        Me.MnuShowReminder.Text = "Show Diary"
-        Me.MnuShowReminder.Visible = False
         '
         'FrmMain
         '
