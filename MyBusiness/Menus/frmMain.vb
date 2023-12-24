@@ -50,6 +50,8 @@ Public Class FrmMain
     End Sub
     Private Sub DgvCust_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DgvCust.SelectionChanged
         spCustomer.Panel2Collapsed = True
+        MnuShowCustomer.Visible = DgvCust.SelectedRows.Count > 0
+        MnuAddCustomer.Height = If(DgvCust.SelectedRows.Count > 0, 45, 90)
         If Not isLoading Then
             If DgvCust.SelectedRows.Count = 1 Then
                 Dim cRow As DataGridViewRow = DgvCust.SelectedRows(0)
@@ -70,6 +72,8 @@ Public Class FrmMain
     End Sub
     Private Sub DgvDiary_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dgvDiary.SelectionChanged
         If Not isLoading Then
+            MnuShowReminder.Visible = dgvDiary.SelectedRows.Count > 0
+            MnuAddDiary.Height = If(dgvDiary.SelectedRows.Count > 0, 45, 90)
             If dgvDiary.SelectedRows.Count = 1 Then
                 Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
                 Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
@@ -78,7 +82,8 @@ Public Class FrmMain
             End If
         End If
     End Sub
-    Private Sub DgvDiary_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvDiary.CellDoubleClick
+
+    Private Sub ShowSelectedDiary()
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = dgvDiary.SelectedRows(0)
             Dim _diaryId As Integer = dRow.Cells(dremId.Name).Value
@@ -92,7 +97,15 @@ Public Class FrmMain
             isLoading = False
         End If
     End Sub
+
+    Private Sub DgvDiary_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvDiary.CellDoubleClick
+        ShowSelectedDiary()
+    End Sub
     Private Sub DgvCust_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvCust.CellDoubleClick
+        ShowSelectedCustomer()
+    End Sub
+
+    Private Sub ShowSelectedCustomer()
         If DgvCust.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = DgvCust.SelectedRows(0)
             Dim _custId As Integer = dRow.Cells(custId.Name).Value
@@ -104,7 +117,12 @@ Public Class FrmMain
             FillDiaryTable()
         End If
     End Sub
+
     Private Sub DgvSupp_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvSupp.CellDoubleClick
+        ShowSelectedSupplier()
+    End Sub
+
+    Private Sub ShowSelectedSupplier()
         If DgvSupp.SelectedRows.Count = 1 Then
             Dim dRow As DataGridViewRow = DgvSupp.SelectedRows(0)
             Dim _suppId As Integer = dRow.Cells(suppId.Name).Value
@@ -117,9 +135,14 @@ Public Class FrmMain
             isLoading = False
         End If
     End Sub
-    Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvJobs.CellDoubleClick
-        If dgvJobs.SelectedRows.Count = 1 Then
-            Dim dRow As DataGridViewRow = dgvJobs.SelectedRows(0)
+
+    Private Sub DgvJobs_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DgvJobs.CellDoubleClick
+        ShowSelectedJob()
+    End Sub
+
+    Private Sub ShowSelectedJob()
+        If DgvJobs.SelectedRows.Count = 1 Then
+            Dim dRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _jobId As Integer = dRow.Cells(jobId.Name).Value
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_jobId)
@@ -133,8 +156,11 @@ Public Class FrmMain
             isLoading = False
         End If
     End Sub
+
     Private Sub DgvSupp_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles DgvSupp.SelectionChanged
         spSupplier.Panel2Collapsed = True
+        MnuShowSupplier.Visible = DgvSupp.SelectedRows.Count > 0
+        MnuAddSupplier.Height = If(DgvSupp.SelectedRows.Count > 0, 45, 90)
         If Not isLoading Then
             If DgvSupp.SelectedRows.Count = 1 Then
                 Dim sRow As DataGridViewRow = DgvSupp.SelectedRows(0)
@@ -250,8 +276,8 @@ Public Class FrmMain
         MsgBox("Tidy complete", MsgBoxStyle.Information, "Housekeeping")
     End Sub
     Private Sub MnuTemplateFromJob_Click(sender As Object, e As EventArgs) Handles MnuTemplateFromJob.Click
-        If dgvJobs.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvJobs.SelectedRows(0)
+        If DgvJobs.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _job As Job = GetJobById(oRow.Cells(jobId.Name).Value)
             Dim _jobproducts As List(Of JobProduct) = GetJobProductByJob(_job)
             Dim _jobtasks As List(Of JobTask) = GetJobTasksByJob(_job.JobId)
@@ -326,6 +352,11 @@ Public Class FrmMain
             DgvSupp.ClearSelection()
         End If
     End Sub
+    Private Sub DgvDiary_MouseDown(sender As Object, e As MouseEventArgs) Handles dgvDiary.MouseDown
+        If e.Button = MouseButtons.Right Then
+            dgvDiary.ClearSelection()
+        End If
+    End Sub
     Private Sub MnuTasks_Click(sender As Object, e As EventArgs) Handles MnuTasks.Click
         Using _taskForm As New FrmTasks
             _taskForm.ShowDialog()
@@ -386,7 +417,7 @@ Public Class FrmMain
         Next
     End Sub
     Private Sub FillJobTable(ByVal custId As Integer, ByVal showAllJobs As Boolean)
-        dgvJobs.Rows.Clear()
+        DgvJobs.Rows.Clear()
         Dim ojobstable As List(Of Job)
         If custId > 0 Then
             ojobstable = GetJobsForCustomer(custId)
@@ -394,7 +425,7 @@ Public Class FrmMain
             ojobstable = GetAllJobs()
         End If
         For Each ojob As Job In ojobstable
-            Dim tRow As DataGridViewRow = dgvJobs.Rows(dgvJobs.Rows.Add)
+            Dim tRow As DataGridViewRow = DgvJobs.Rows(DgvJobs.Rows.Add)
             tRow.Visible = showAllJobs Or (ojob.JobUserId = currentUser.UserId)
             tRow.Cells(jobId.Name).Value = ojob.JobId
             tRow.Cells(jobName.Name).Value = ojob.JobName
@@ -405,7 +436,7 @@ Public Class FrmMain
                 tRow.Cells(jobCompleted.Name).Value = "Yes"
             End If
         Next
-        dgvJobs.ClearSelection()
+        DgvJobs.ClearSelection()
     End Sub
     Private Sub FillDiaryTable()
         Dim oReminderList As New List(Of Reminder)
@@ -539,6 +570,27 @@ Public Class FrmMain
     }
         LogUtil.Info("About to show " & slice.Guid.ToString, MyBase.Name)
         slice.Show()
+    End Sub
+
+    Private Sub DgvJobs_SelectionChanged(sender As Object, e As EventArgs) Handles DgvJobs.SelectionChanged
+        MnuShowJob.Visible = DgvJobs.SelectedRows.Count > 0
+        MnuAddJob.Height = If(DgvJobs.SelectedRows.Count > 0, 45, 90)
+    End Sub
+
+    Private Sub MnuShowJob_Click(sender As Object, e As EventArgs) Handles MnuShowJob.Click
+        ShowSelectedJob()
+    End Sub
+
+    Private Sub MnuShowSupplier_Click(sender As Object, e As EventArgs) Handles MnuShowSupplier.Click
+        ShowSelectedSupplier()
+    End Sub
+
+    Private Sub MnuShowCustomer_Click(sender As Object, e As EventArgs) Handles MnuShowCustomer.Click
+        ShowSelectedCustomer()
+    End Sub
+
+    Private Sub MnuShowReminder_Click(sender As Object, e As EventArgs) Handles MnuShowReminder.Click
+        ShowSelectedDiary()
     End Sub
 #End Region
 End Class

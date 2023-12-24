@@ -6,6 +6,7 @@
 '
 
 Imports System.ComponentModel
+Imports System.Security.Cryptography
 
 Public Class FrmJobProducts
 #Region "variables"
@@ -68,7 +69,7 @@ Public Class FrmJobProducts
                 dgvJobProducts.ClearSelection()
                 Dim _jpId As Integer = SelectJobProductByProduct(_ProductId)
                 If _jpId > 0 Then
-                    _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWith(_jpId).Build
+                    _selectedJobProduct = GetJobProductById(_jpId)
                 Else
                     Dim _product As Product = GetProductById(_ProductId)
                     _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing _
@@ -113,7 +114,7 @@ Public Class FrmJobProducts
         If Not isLoading Then
             If dgvJobProducts.SelectedRows.Count = 1 Then
                 Dim tRow As DataGridViewRow = dgvJobProducts.SelectedRows(0)
-                _selectedJobProduct = JobProductBuilder.AJobProduct.StartingWith(tRow.Cells(jpId.Name).Value).Build
+                _selectedJobProduct = GetJobProductById(tRow.Cells(jpId.Name).Value)
                 isLoading = True
                 _currentSupplierId = _selectedJobProduct.ThisProduct.ProductSupplierId
                 SelectSupplier(_currentSupplierId)

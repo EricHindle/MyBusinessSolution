@@ -160,7 +160,7 @@ Public Class FrmJobMaint
         If DgvProducts.SelectedRows.Count > 0 Then
             Dim _row As DataGridViewRow = DgvProducts.SelectedRows(0)
             Dim _id As Integer = _row.Cells(jpId.Name).Value
-            oCurrentJobProduct = JobProductBuilder.AJobProduct.StartingWith(_id).Build
+            oCurrentJobProduct = GetJobProductById(_id)
         Else
             oCurrentJobProduct = JobProductBuilder.AJobProduct.StartingWithNothing.Build
         End If
@@ -357,7 +357,7 @@ Public Class FrmJobMaint
             Dim _productName As String = _jobProduct.ThisProduct.ProductName
             Dim _supplierName As String = "** Missing"
             Dim _supplierId As Integer = _jobProduct.ThisProduct.ProductSupplierId
-            Dim _cost As Decimal = _jobProduct.ThisProduct.ProductCost / _jobProduct.ThisProduct.PurchaseUnits
+            Dim _unitCost As Decimal = _jobProduct.ThisProduct.ProductCost / _jobProduct.ThisProduct.PurchaseUnits
             Dim _price As Decimal = _jobProduct.ThisProduct.ProductPrice
             If _supplierId > 0 Then
                 Dim _supplier As Supplier = GetSupplierById(_supplierId)
@@ -369,7 +369,7 @@ Public Class FrmJobMaint
             tRow.Cells(prodId.Name).Value = _productId
             tRow.Cells(jpId.Name).Value = _jpId
             tRow.Cells(prodQty.Name).Value = _qty
-            tRow.Cells(prodCost.Name).Value = _cost
+            tRow.Cells(prodCost.Name).Value = _unitCost
             tRow.Cells(prodPrice.Name).Value = _price
             tRow.Cells(jobPrice.Name).Value = _jobProduct.Price
         Next

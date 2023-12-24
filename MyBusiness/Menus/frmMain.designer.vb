@@ -56,7 +56,7 @@ Partial Class FrmMain
         Me.suppAmazon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.txtSuppAddress = New System.Windows.Forms.TextBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
-        Me.dgvJobs = New System.Windows.Forms.DataGridView()
+        Me.DgvJobs = New System.Windows.Forms.DataGridView()
         Me.jobId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jobName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.jobDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -79,8 +79,10 @@ Partial Class FrmMain
         Me.rtbDiaryBody = New System.Windows.Forms.RichTextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.MnuAddJob = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowJob = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddSupplier = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowSupplier = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuAddDiary = New System.Windows.Forms.ToolStripMenuItem()
         Me.Gap1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuTemplates = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,6 +101,8 @@ Partial Class FrmMain
         Me.UserControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuChangePassword = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuTasks = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.MnuShowAudit = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.MnuTidyFiles = New System.Windows.Forms.ToolStripMenuItem()
@@ -112,8 +116,8 @@ Partial Class FrmMain
         Me.MnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerCallBackReminders = New System.Windows.Forms.Timer(Me.components)
         Me.CallbackReminderBackgroundWorker = New System.ComponentModel.BackgroundWorker()
-        Me.MnuTasks = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MnuShowCustomer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuShowReminder = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -136,7 +140,7 @@ Partial Class FrmMain
         Me.SplitContainer3.Panel1.SuspendLayout()
         Me.SplitContainer3.Panel2.SuspendLayout()
         Me.SplitContainer3.SuspendLayout()
-        CType(Me.dgvJobs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spDiary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spDiary.Panel1.SuspendLayout()
         Me.spDiary.Panel2.SuspendLayout()
@@ -419,7 +423,7 @@ Partial Class FrmMain
         'SplitContainer3.Panel1
         '
         Me.SplitContainer3.Panel1.BackColor = System.Drawing.Color.Gainsboro
-        Me.SplitContainer3.Panel1.Controls.Add(Me.dgvJobs)
+        Me.SplitContainer3.Panel1.Controls.Add(Me.DgvJobs)
         '
         'SplitContainer3.Panel2
         '
@@ -429,13 +433,13 @@ Partial Class FrmMain
         Me.SplitContainer3.SplitterDistance = 459
         Me.SplitContainer3.TabIndex = 0
         '
-        'dgvJobs
+        'DgvJobs
         '
-        Me.dgvJobs.AllowUserToAddRows = False
-        Me.dgvJobs.AllowUserToDeleteRows = False
-        Me.dgvJobs.AllowUserToResizeRows = False
-        Me.dgvJobs.BackgroundColor = System.Drawing.Color.AliceBlue
-        Me.dgvJobs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.DgvJobs.AllowUserToAddRows = False
+        Me.DgvJobs.AllowUserToDeleteRows = False
+        Me.DgvJobs.AllowUserToResizeRows = False
+        Me.DgvJobs.BackgroundColor = System.Drawing.Color.AliceBlue
+        Me.DgvJobs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.Color.GhostWhite
         DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -443,8 +447,8 @@ Partial Class FrmMain
         DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.AliceBlue
         DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.DarkBlue
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvJobs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
-        Me.dgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobDesc, Me.jobAssigned, Me.jobCompleted, Me.jobUser})
+        Me.DgvJobs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        Me.DgvJobs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.jobId, Me.jobName, Me.jobDesc, Me.jobAssigned, Me.jobCompleted, Me.jobUser})
         DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -452,20 +456,20 @@ Partial Class FrmMain
         DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvJobs.DefaultCellStyle = DataGridViewCellStyle10
-        Me.dgvJobs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvJobs.EnableHeadersVisualStyles = False
-        Me.dgvJobs.Location = New System.Drawing.Point(0, 0)
-        Me.dgvJobs.MultiSelect = False
-        Me.dgvJobs.Name = "dgvJobs"
-        Me.dgvJobs.ReadOnly = True
-        Me.dgvJobs.RowHeadersVisible = False
+        Me.DgvJobs.DefaultCellStyle = DataGridViewCellStyle10
+        Me.DgvJobs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvJobs.EnableHeadersVisualStyles = False
+        Me.DgvJobs.Location = New System.Drawing.Point(0, 0)
+        Me.DgvJobs.MultiSelect = False
+        Me.DgvJobs.Name = "DgvJobs"
+        Me.DgvJobs.ReadOnly = True
+        Me.DgvJobs.RowHeadersVisible = False
         DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
         DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.dgvJobs.RowsDefaultCellStyle = DataGridViewCellStyle11
-        Me.dgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvJobs.Size = New System.Drawing.Size(783, 455)
-        Me.dgvJobs.TabIndex = 0
+        Me.DgvJobs.RowsDefaultCellStyle = DataGridViewCellStyle11
+        Me.DgvJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvJobs.Size = New System.Drawing.Size(783, 455)
+        Me.DgvJobs.TabIndex = 0
         '
         'jobId
         '
@@ -666,7 +670,7 @@ Partial Class FrmMain
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJob, Me.MnuAddCustomer, Me.MnuAddSupplier, Me.MnuAddDiary, Me.Gap1, Me.MnuTemplates, Me.MnuSettings, Me.MnuAdmin, Me.Gap2, Me.MnuClose})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuAddJob, Me.MnuShowJob, Me.MnuAddCustomer, Me.MnuShowCustomer, Me.MnuAddSupplier, Me.MnuShowSupplier, Me.MnuAddDiary, Me.MnuShowReminder, Me.Gap1, Me.MnuTemplates, Me.MnuSettings, Me.MnuAdmin, Me.Gap2, Me.MnuClose})
         Me.MenuStrip1.Location = New System.Drawing.Point(1124, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 5, 5, 2)
@@ -684,6 +688,18 @@ Partial Class FrmMain
         Me.MnuAddJob.Name = "MnuAddJob"
         Me.MnuAddJob.Size = New System.Drawing.Size(90, 90)
         Me.MnuAddJob.Text = "+Order/Job"
+        '
+        'MnuShowJob
+        '
+        Me.MnuShowJob.AutoSize = False
+        Me.MnuShowJob.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowJob.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowJob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowJob.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowJob.Name = "MnuShowJob"
+        Me.MnuShowJob.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowJob.Text = "Show Job"
+        Me.MnuShowJob.Visible = False
         '
         'MnuAddCustomer
         '
@@ -708,6 +724,18 @@ Partial Class FrmMain
         Me.MnuAddSupplier.Size = New System.Drawing.Size(90, 90)
         Me.MnuAddSupplier.Text = "+Supplier"
         Me.MnuAddSupplier.ToolTipText = "Add a supplier"
+        '
+        'MnuShowSupplier
+        '
+        Me.MnuShowSupplier.AutoSize = False
+        Me.MnuShowSupplier.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowSupplier.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowSupplier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowSupplier.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowSupplier.Name = "MnuShowSupplier"
+        Me.MnuShowSupplier.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowSupplier.Text = "Show Supplier"
+        Me.MnuShowSupplier.Visible = False
         '
         'MnuAddDiary
         '
@@ -827,69 +855,80 @@ Partial Class FrmMain
         'UserControlToolStripMenuItem
         '
         Me.UserControlToolStripMenuItem.Name = "UserControlToolStripMenuItem"
-        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UserControlToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.UserControlToolStripMenuItem.Text = "User Control"
         '
         'MnuChangePassword
         '
         Me.MnuChangePassword.Name = "MnuChangePassword"
-        Me.MnuChangePassword.Size = New System.Drawing.Size(180, 22)
+        Me.MnuChangePassword.Size = New System.Drawing.Size(168, 22)
         Me.MnuChangePassword.Text = "Change password"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(165, 6)
+        '
+        'MnuTasks
+        '
+        Me.MnuTasks.Name = "MnuTasks"
+        Me.MnuTasks.Size = New System.Drawing.Size(168, 22)
+        Me.MnuTasks.Text = "Maintain Tasks"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(165, 6)
         '
         'MnuShowAudit
         '
         Me.MnuShowAudit.Name = "MnuShowAudit"
-        Me.MnuShowAudit.Size = New System.Drawing.Size(180, 22)
+        Me.MnuShowAudit.Size = New System.Drawing.Size(168, 22)
         Me.MnuShowAudit.Text = "Show Audit"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(165, 6)
         '
         'MnuTidyFiles
         '
         Me.MnuTidyFiles.Name = "MnuTidyFiles"
-        Me.MnuTidyFiles.Size = New System.Drawing.Size(180, 22)
+        Me.MnuTidyFiles.Size = New System.Drawing.Size(168, 22)
         Me.MnuTidyFiles.Text = "Tidy Files"
         '
         'MnuBackup
         '
         Me.MnuBackup.Name = "MnuBackup"
-        Me.MnuBackup.Size = New System.Drawing.Size(180, 22)
+        Me.MnuBackup.Size = New System.Drawing.Size(168, 22)
         Me.MnuBackup.Text = "Backup"
         '
         'MnuRestore
         '
         Me.MnuRestore.Name = "MnuRestore"
-        Me.MnuRestore.Size = New System.Drawing.Size(180, 22)
+        Me.MnuRestore.Size = New System.Drawing.Size(168, 22)
         Me.MnuRestore.Text = "Restore"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(165, 6)
         '
         'MnuLogView
         '
         Me.MnuLogView.Name = "MnuLogView"
-        Me.MnuLogView.Size = New System.Drawing.Size(180, 22)
+        Me.MnuLogView.Size = New System.Drawing.Size(168, 22)
         Me.MnuLogView.Text = "Log Viewer"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(165, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'Gap2
@@ -918,16 +957,29 @@ Partial Class FrmMain
         Me.CallbackReminderBackgroundWorker.WorkerReportsProgress = True
         Me.CallbackReminderBackgroundWorker.WorkerSupportsCancellation = True
         '
-        'MnuTasks
+        'MnuShowCustomer
         '
-        Me.MnuTasks.Name = "MnuTasks"
-        Me.MnuTasks.Size = New System.Drawing.Size(180, 22)
-        Me.MnuTasks.Text = "Maintain Tasks"
+        Me.MnuShowCustomer.AutoSize = False
+        Me.MnuShowCustomer.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowCustomer.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowCustomer.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowCustomer.Name = "MnuShowCustomer"
+        Me.MnuShowCustomer.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowCustomer.Text = "Show Customer"
+        Me.MnuShowCustomer.Visible = False
         '
-        'ToolStripSeparator8
+        'MnuShowReminder
         '
-        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(177, 6)
+        Me.MnuShowReminder.AutoSize = False
+        Me.MnuShowReminder.BackColor = System.Drawing.SystemColors.Control
+        Me.MnuShowReminder.BackgroundImage = Global.MyBusiness.My.Resources.Resources.glossy_button
+        Me.MnuShowReminder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MnuShowReminder.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.MnuShowReminder.Name = "MnuShowReminder"
+        Me.MnuShowReminder.Size = New System.Drawing.Size(90, 45)
+        Me.MnuShowReminder.Text = "Show Diary"
+        Me.MnuShowReminder.Visible = False
         '
         'FrmMain
         '
@@ -966,7 +1018,7 @@ Partial Class FrmMain
         Me.SplitContainer3.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.ResumeLayout(False)
-        CType(Me.dgvJobs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvJobs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spDiary.Panel1.ResumeLayout(False)
         Me.spDiary.Panel2.ResumeLayout(False)
         CType(Me.spDiary, System.ComponentModel.ISupportInitialize).EndInit()
@@ -983,7 +1035,7 @@ Partial Class FrmMain
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents DgvSupp As DataGridView
     Friend WithEvents SplitContainer3 As SplitContainer
-    Friend WithEvents dgvJobs As DataGridView
+    Friend WithEvents DgvJobs As DataGridView
     Friend WithEvents dgvDiary As DataGridView
     Friend WithEvents dremId As DataGridViewTextBoxColumn
     Friend WithEvents dremCustId As DataGridViewTextBoxColumn
@@ -1055,4 +1107,8 @@ Partial Class FrmMain
     Friend WithEvents MnuShowAllJobs As ToolStripMenuItem
     Friend WithEvents MnuTasks As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
+    Friend WithEvents MnuShowJob As ToolStripMenuItem
+    Friend WithEvents MnuShowSupplier As ToolStripMenuItem
+    Friend WithEvents MnuShowCustomer As ToolStripMenuItem
+    Friend WithEvents MnuShowReminder As ToolStripMenuItem
 End Class

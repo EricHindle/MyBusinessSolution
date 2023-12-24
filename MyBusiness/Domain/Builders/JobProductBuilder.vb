@@ -5,6 +5,8 @@
 ' Author Eric Hindle
 '
 
+Imports System.Security.Cryptography
+
 Public Class JobProductBuilder
     Private _jobProductId As Integer
     Private _job As Job
@@ -17,18 +19,6 @@ Public Class JobProductBuilder
     Private _price As Decimal
     Public Shared Function AJobProduct() As JobProductBuilder
         Return New JobProductBuilder
-    End Function
-    Public Function StartingWith(ByVal jobProductId As Integer) As JobProductBuilder
-        Dim oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
-        Dim oJobProductTable As New netwyrksDataSet.job_productDataTable
-        If oJobProductTa.FillById(oJobProductTable, jobProductId) > 0 Then
-            StartingWith(oJobProductTable.Rows(0))
-        Else
-            StartingWithNothing()
-        End If
-        oJobProductTa.Dispose()
-        oJobProductTable.Dispose()
-        Return Me
     End Function
     Public Function StartingWith(ByVal oJobProduct As JobProduct) As JobProductBuilder
         With oJobProduct
