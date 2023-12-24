@@ -40,6 +40,7 @@ Public Class FrmImages
         LogUtil.Debug("Started", Name)
         GetFormPos(Me, My.Settings.ImagesFormPos)
         oImageFolderName = My.Settings.ImageFolder
+
         If _job IsNot Nothing Then
             oJobImageFolder = Path.Combine(oImageFolderName, "Job" & _job.JobId)
             Dim _resp As SuccessResponse = CreateFolder(oJobImageFolder)
@@ -50,6 +51,7 @@ Public Class FrmImages
             oJobImageFolder = oImageFolderName
         End If
         RefreshImageTable()
+        TxtImagePath.Text = oJobImageFolder
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()

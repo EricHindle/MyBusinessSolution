@@ -60,7 +60,7 @@ Partial Class FrmJobProducts
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.nudPrice = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.NudUnitPrice = New System.Windows.Forms.NumericUpDown()
+        Me.NudUnitCost = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.PicAdd = New System.Windows.Forms.PictureBox()
@@ -83,7 +83,7 @@ Partial Class FrmJobProducts
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudUnitCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -461,14 +461,14 @@ Partial Class FrmJobProducts
         '
         'NudUnitPrice
         '
-        Me.NudUnitPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.NudUnitPrice.DecimalPlaces = 2
-        Me.NudUnitPrice.Enabled = False
-        Me.NudUnitPrice.Location = New System.Drawing.Point(488, 516)
-        Me.NudUnitPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.NudUnitPrice.Name = "NudUnitPrice"
-        Me.NudUnitPrice.Size = New System.Drawing.Size(82, 24)
-        Me.NudUnitPrice.TabIndex = 90
+        Me.NudUnitCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudUnitCost.DecimalPlaces = 2
+        Me.NudUnitCost.Enabled = False
+        Me.NudUnitCost.Location = New System.Drawing.Point(488, 516)
+        Me.NudUnitCost.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NudUnitCost.Name = "NudUnitPrice"
+        Me.NudUnitCost.Size = New System.Drawing.Size(82, 24)
+        Me.NudUnitCost.TabIndex = 90
         '
         'Label3
         '
@@ -476,9 +476,9 @@ Partial Class FrmJobProducts
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(417, 518)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(65, 17)
+        Me.Label3.Size = New System.Drawing.Size(64, 17)
         Me.Label3.TabIndex = 91
-        Me.Label3.Text = "Unit Price"
+        Me.Label3.Text = "Unit Cost"
         '
         'PicUpdate
         '
@@ -538,7 +538,7 @@ Partial Class FrmJobProducts
         Me.Controls.Add(Me.PicAdd)
         Me.Controls.Add(Me.PicRemove)
         Me.Controls.Add(Me.PicClose)
-        Me.Controls.Add(Me.NudUnitPrice)
+        Me.Controls.Add(Me.NudUnitCost)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.nudPrice)
         Me.Controls.Add(Me.Label5)
@@ -576,7 +576,7 @@ Partial Class FrmJobProducts
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudUnitCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicAdd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicRemove, System.ComponentModel.ISupportInitialize).EndInit()
@@ -619,7 +619,7 @@ Partial Class FrmJobProducts
     Friend WithEvents prodTaxable As DataGridViewTextBoxColumn
     Friend WithEvents prodTaxRate As DataGridViewTextBoxColumn
     Friend WithEvents prodPrice As DataGridViewTextBoxColumn
-    Friend WithEvents NudUnitPrice As NumericUpDown
+    Friend WithEvents NudUnitCost As NumericUpDown
     Friend WithEvents Label3 As Label
     Friend WithEvents PicUpdate As PictureBox
     Friend WithEvents PicAdd As PictureBox

@@ -31,7 +31,7 @@ Partial Class FrmProduct
         Me.lblSuppName = New System.Windows.Forms.Label()
         Me.txtProductName = New System.Windows.Forms.TextBox()
         Me.rtbDescription = New System.Windows.Forms.RichTextBox()
-        Me.nudCost = New System.Windows.Forms.NumericUpDown()
+        Me.NudCost = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -51,7 +51,7 @@ Partial Class FrmProduct
         Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.nudCost, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,13 +140,13 @@ Partial Class FrmProduct
         '
         'nudCost
         '
-        Me.nudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.nudCost.DecimalPlaces = 2
-        Me.nudCost.Location = New System.Drawing.Point(104, 231)
-        Me.nudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.nudCost.Name = "nudCost"
-        Me.nudCost.Size = New System.Drawing.Size(120, 24)
-        Me.nudCost.TabIndex = 2
+        Me.NudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudCost.DecimalPlaces = 2
+        Me.NudCost.Location = New System.Drawing.Point(104, 229)
+        Me.NudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.NudCost.Name = "nudCost"
+        Me.NudCost.Size = New System.Drawing.Size(120, 24)
+        Me.NudCost.TabIndex = 2
         '
         'Label5
         '
@@ -154,9 +154,9 @@ Partial Class FrmProduct
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(280, 266)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 17)
+        Me.Label5.Size = New System.Drawing.Size(64, 17)
         Me.Label5.TabIndex = 18
-        Me.Label5.Text = "Unit Price"
+        Me.Label5.Text = "Unit Cost"
         '
         'Label4
         '
@@ -200,7 +200,7 @@ Partial Class FrmProduct
         '
         Me.nudPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.nudPrice.DecimalPlaces = 2
-        Me.nudPrice.Location = New System.Drawing.Point(351, 264)
+        Me.nudPrice.Location = New System.Drawing.Point(351, 262)
         Me.nudPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudPrice.Name = "nudPrice"
         Me.nudPrice.Size = New System.Drawing.Size(120, 24)
@@ -253,7 +253,7 @@ Partial Class FrmProduct
         'NudPurchaseUnits
         '
         Me.NudPurchaseUnits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.NudPurchaseUnits.Location = New System.Drawing.Point(104, 261)
+        Me.NudPurchaseUnits.Location = New System.Drawing.Point(104, 262)
         Me.NudPurchaseUnits.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NudPurchaseUnits.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NudPurchaseUnits.Name = "NudPurchaseUnits"
@@ -265,7 +265,7 @@ Partial Class FrmProduct
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(2, 263)
+        Me.Label6.Location = New System.Drawing.Point(2, 266)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(98, 17)
         Me.Label6.TabIndex = 17
@@ -320,7 +320,7 @@ Partial Class FrmProduct
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.NudPurchaseUnits)
-        Me.Panel1.Controls.Add(Me.nudCost)
+        Me.Panel1.Controls.Add(Me.NudCost)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.nudPrice)
         Me.Panel1.Controls.Add(Me.rtbDescription)
@@ -357,7 +357,7 @@ Partial Class FrmProduct
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.nudCost, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).EndInit()
@@ -377,7 +377,7 @@ Partial Class FrmProduct
     Friend WithEvents lblSuppName As System.Windows.Forms.Label
     Friend WithEvents txtProductName As System.Windows.Forms.TextBox
     Friend WithEvents rtbDescription As System.Windows.Forms.RichTextBox
-    Friend WithEvents nudCost As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NudCost As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label

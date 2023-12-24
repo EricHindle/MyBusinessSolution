@@ -410,7 +410,7 @@ Module ModDatabase
         Dim _ct As Integer
         Try
             With pJobProduct
-                _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .JobProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
+                _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .ThisProduct.ProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
             End With
         Catch ex As Exception
             DisplayException(ex, "Exception updating job product", MODULE_NAME)

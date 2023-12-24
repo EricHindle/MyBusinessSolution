@@ -149,7 +149,7 @@ Public Class FrmJobProducts
         My.Settings.Save()
     End Sub
     Private Sub NudQuantity_ValueChanged(sender As Object, e As EventArgs) Handles NudQuantity.ValueChanged
-        nudPrice.Value = NudUnitPrice.Value * NudQuantity.Value
+        nudPrice.Value = NudUnitCost.Value * NudQuantity.Value
     End Sub
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()
@@ -239,13 +239,13 @@ Public Class FrmJobProducts
         chkTaxable.Checked = _selectedJobProduct.Taxable
         nudTaxRate.Value = _selectedJobProduct.Tax_Rate
         nudPrice.Value = _selectedJobProduct.Price
-        NudUnitPrice.Value = _selectedJobProduct.ThisProduct.ProductPrice
+        NudUnitCost.Value = _selectedJobProduct.ThisProduct.ProductPrice
     End Sub
     Private Sub ClearProductDetails()
         lblProductName.Text = "Select a product"
         NudQuantity.Value = 1
         nudPrice.Value = 0.00
-        NudUnitPrice.Value = 0.00
+        NudUnitCost.Value = 0.00
         nudTaxRate.Value = 0.00
         chkTaxable.Checked = False
     End Sub

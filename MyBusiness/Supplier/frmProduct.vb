@@ -172,5 +172,11 @@ Public Class FrmProduct
             Process.Start(_supplier.SupplierUrl.ToString)
         End If
     End Sub
+
+    Private Sub NudCost_ValueChanged(sender As Object, e As EventArgs) Handles NudCost.ValueChanged, NudPurchaseUnits.ValueChanged
+        If NudCost.Value > 0 AndAlso NudPurchaseUnits.Value > 0 Then
+            nudPrice.Value = NudCost.Value / NudPurchaseUnits.Value
+        End If
+    End Sub
 #End Region
 End Class
