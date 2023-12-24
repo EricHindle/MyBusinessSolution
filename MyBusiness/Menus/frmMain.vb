@@ -434,6 +434,7 @@ Public Class FrmMain
             tRow.Cells(jobAssigned.Name).Value = UserBuilder.AUser.StartingWith(ojob.JobUserId).Build.User_code
             If ojob.IsJobCompleted Then
                 tRow.Cells(jobCompleted.Name).Value = "Yes"
+                tRow.DefaultCellStyle.ForeColor = Color.Gainsboro
             End If
         Next
         DgvJobs.ClearSelection()
