@@ -988,6 +988,42 @@ Namespace My
                 Me("JobTaskFormPos") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LogViewPos() As String
+            Get
+                Return CType(Me("LogViewPos"),String)
+            End Get
+            Set
+                Me("LogViewPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public Property logZoomValue() As Integer
+            Get
+                Return CType(Me("logZoomValue"),Integer)
+            End Get
+            Set
+                Me("logZoomValue") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property logZoomOn() As Boolean
+            Get
+                Return CType(Me("logZoomOn"),Boolean)
+            End Get
+            Set
+                Me("logZoomOn") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
