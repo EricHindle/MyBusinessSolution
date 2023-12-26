@@ -37,7 +37,7 @@ Partial Class FrmProduct
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.nudPrice = New System.Windows.Forms.NumericUpDown()
+        Me.NudUnitCost = New System.Windows.Forms.NumericUpDown()
         Me.chkTaxable = New System.Windows.Forms.CheckBox()
         Me.nudTaxRate = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -52,7 +52,7 @@ Partial Class FrmProduct
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.NudCost, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NudUnitCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,13 +138,13 @@ Partial Class FrmProduct
         Me.rtbDescription.TabIndex = 1
         Me.rtbDescription.Text = ""
         '
-        'nudCost
+        'NudCost
         '
         Me.NudCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.NudCost.DecimalPlaces = 2
         Me.NudCost.Location = New System.Drawing.Point(104, 229)
         Me.NudCost.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NudCost.Name = "nudCost"
+        Me.NudCost.Name = "NudCost"
         Me.NudCost.Size = New System.Drawing.Size(120, 24)
         Me.NudCost.TabIndex = 2
         '
@@ -196,15 +196,15 @@ Partial Class FrmProduct
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Supplier"
         '
-        'nudPrice
+        'NudUnitCost
         '
-        Me.nudPrice.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.nudPrice.DecimalPlaces = 2
-        Me.nudPrice.Location = New System.Drawing.Point(351, 262)
-        Me.nudPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudPrice.Name = "nudPrice"
-        Me.nudPrice.Size = New System.Drawing.Size(120, 24)
-        Me.nudPrice.TabIndex = 4
+        Me.NudUnitCost.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NudUnitCost.DecimalPlaces = 2
+        Me.NudUnitCost.Location = New System.Drawing.Point(351, 262)
+        Me.NudUnitCost.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NudUnitCost.Name = "NudUnitCost"
+        Me.NudUnitCost.Size = New System.Drawing.Size(120, 24)
+        Me.NudUnitCost.TabIndex = 4
         '
         'chkTaxable
         '
@@ -322,7 +322,7 @@ Partial Class FrmProduct
         Me.Panel1.Controls.Add(Me.NudPurchaseUnits)
         Me.Panel1.Controls.Add(Me.NudCost)
         Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.nudPrice)
+        Me.Panel1.Controls.Add(Me.NudUnitCost)
         Me.Panel1.Controls.Add(Me.rtbDescription)
         Me.Panel1.Controls.Add(Me.chkTaxable)
         Me.Panel1.Controls.Add(Me.txtProductName)
@@ -358,7 +358,7 @@ Partial Class FrmProduct
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.NudCost, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NudUnitCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudTaxRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NudPurchaseUnits, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicClose, System.ComponentModel.ISupportInitialize).EndInit()
@@ -383,7 +383,7 @@ Partial Class FrmProduct
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents nudPrice As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NudUnitCost As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents chkTaxable As System.Windows.Forms.CheckBox
     Friend WithEvents nudTaxRate As System.Windows.Forms.NumericUpDown

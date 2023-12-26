@@ -59,7 +59,12 @@ Public Class ValidationUtil
         errmsg.Append(errorText).Append(vbCrLf)
         Return False
     End Function
-    Public Function IsValidLoyaltySchemeMembership(ByVal schemeId As Integer?, ByVal sEmail As String, ByVal sMemberNo As String, ByVal sCardNo As String, ByVal sPhone As String, ByRef sInvalid As String) As Boolean
+    Public Function IsValidLoyaltySchemeMembership(ByVal schemeId As Integer?,
+                                                   ByVal sEmail As String,
+                                                   ByVal sMemberNo As String,
+                                                   ByVal sCardNo As String,
+                                                   ByVal sPhone As String,
+                                                   ByRef sInvalid As String) As Boolean
         Dim sb As New StringBuilder
         Dim rtnval As Boolean = True
         If schemeId Is Nothing OrElse schemeId <= 0 Then rtnval = SetError("No scheme selected", sb)
@@ -74,7 +79,12 @@ Public Class ValidationUtil
         sInvalid = sb.ToString
         Return rtnval
     End Function
-    Public Function IsValidCustomerAccount(ByVal opId As Integer?, ByVal accTypeId As Integer?, ByVal sAccEmail As String, ByVal sAccRef As String, ByVal sAccUserName As String, ByRef sInvalid As String) As Boolean
+    Public Function IsValidCustomerAccount(ByVal opId As Integer?,
+                                           ByVal accTypeId As Integer?,
+                                           ByVal sAccEmail As String,
+                                           ByVal sAccRef As String,
+                                           ByVal sAccUserName As String,
+                                           ByRef sInvalid As String) As Boolean
         Dim sb As New StringBuilder
         Dim rtnval As Boolean = True
         If opId Is Nothing OrElse opId <= 0 Then rtnval = SetError("No bookmaker selected", sb)
@@ -99,7 +109,9 @@ Public Class ValidationUtil
         End Try
         Return isValid
     End Function
-    Public Function IsValidMandatoryText(ByVal sText As String, Optional ByVal minLength As Integer = 1, Optional ByVal maxLength As Integer = 0) As Boolean
+    Public Function IsValidMandatoryText(ByVal sText As String,
+                                         Optional ByVal minLength As Integer = 1,
+                                         Optional ByVal maxLength As Integer = 0) As Boolean
         If String.IsNullOrEmpty(sText) Then Return False
         Dim isValid As Boolean = True
         If sText.Length < minLength Then

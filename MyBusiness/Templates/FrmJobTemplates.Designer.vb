@@ -113,12 +113,14 @@ Partial Class FrmJobTemplates
         '
         Me.btnAddTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddTask.Image = Global.MyBusiness.My.Resources.Resources.addany
         Me.btnAddTask.Location = New System.Drawing.Point(410, 4)
         Me.btnAddTask.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAddTask.Name = "btnAddTask"
-        Me.btnAddTask.Size = New System.Drawing.Size(86, 28)
+        Me.btnAddTask.Size = New System.Drawing.Size(86, 30)
         Me.btnAddTask.TabIndex = 73
         Me.btnAddTask.Text = "Add"
+        Me.btnAddTask.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ToolTip1.SetToolTip(Me.btnAddTask, "Add a task")
         Me.btnAddTask.UseVisualStyleBackColor = True
         '
@@ -126,12 +128,14 @@ Partial Class FrmJobTemplates
         '
         Me.btnRemoveTask.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveTask.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRemoveTask.Image = Global.MyBusiness.My.Resources.Resources.deleteany
         Me.btnRemoveTask.Location = New System.Drawing.Point(504, 4)
         Me.btnRemoveTask.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRemoveTask.Name = "btnRemoveTask"
-        Me.btnRemoveTask.Size = New System.Drawing.Size(86, 28)
+        Me.btnRemoveTask.Size = New System.Drawing.Size(86, 30)
         Me.btnRemoveTask.TabIndex = 74
         Me.btnRemoveTask.Text = "Remove"
+        Me.btnRemoveTask.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ToolTip1.SetToolTip(Me.btnRemoveTask, "Remove the selected task")
         Me.btnRemoveTask.UseVisualStyleBackColor = True
         '
@@ -293,12 +297,14 @@ Partial Class FrmJobTemplates
         '
         Me.btnMaintProducts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnMaintProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMaintProducts.Image = Global.MyBusiness.My.Resources.Resources.updateany
         Me.btnMaintProducts.Location = New System.Drawing.Point(504, 4)
         Me.btnMaintProducts.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMaintProducts.Name = "btnMaintProducts"
-        Me.btnMaintProducts.Size = New System.Drawing.Size(86, 24)
+        Me.btnMaintProducts.Size = New System.Drawing.Size(86, 30)
         Me.btnMaintProducts.TabIndex = 74
         Me.btnMaintProducts.Text = "Update"
+        Me.btnMaintProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnMaintProducts.UseVisualStyleBackColor = True
         '
         'Label4
@@ -328,7 +334,7 @@ Partial Class FrmJobTemplates
         Me.dgvProducts.ReadOnly = True
         Me.dgvProducts.RowHeadersVisible = False
         Me.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvProducts.Size = New System.Drawing.Size(582, 118)
+        Me.dgvProducts.Size = New System.Drawing.Size(582, 117)
         Me.dgvProducts.TabIndex = 73
         '
         'tpId

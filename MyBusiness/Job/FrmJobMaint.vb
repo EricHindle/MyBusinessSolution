@@ -467,7 +467,7 @@ Public Class FrmJobMaint
         End Using
     End Sub
 
-    Private Sub dgvTasks_SelectionChanged(sender As Object, e As EventArgs) Handles DgvTasks.SelectionChanged
+    Private Sub DgvTasks_SelectionChanged(sender As Object, e As EventArgs) Handles DgvTasks.SelectionChanged
         BtnUpdateJobTask.Visible = DgvTasks.SelectedRows.Count > 0
         BtnRemoveJobTask.Visible = DgvTasks.SelectedRows.Count > 0
     End Sub
@@ -486,7 +486,7 @@ Public Class FrmJobMaint
         If DgvProducts.SelectedRows.Count = 1 Then
             LogUtil.Debug("Deleting product from job", Name)
             Dim oRow As DataGridViewRow = DgvProducts.SelectedRows(0)
-            Dim _productName As String = oRow.Cells(Me.prodName.Name).Value
+            Dim _productName As String = oRow.Cells(prodName.Name).Value
             Dim _jobProductId As Integer = oRow.Cells(jpId.Name).Value
             If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this product?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & _productName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
                 If DeleteJobProduct(_jobproductId) = 1 Then

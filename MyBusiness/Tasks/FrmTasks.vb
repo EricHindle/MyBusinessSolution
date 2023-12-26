@@ -54,6 +54,33 @@ Public Class FrmTasks
             ShowStatus(lblStatus, "No task selected. No action")
         End If
     End Sub
+    Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
+        If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
+            _taskId = CbTask.SelectedValue
+            _task = GetTaskById(_taskId)
+            txtTaskName.Text = _task.TaskName
+            rtbDescription.Text = _task.TaskDescription
+            PicUpdate.Visible = True
+        Else
+            txtTaskName.Text = String.Empty
+            rtbDescription.Text = String.Empty
+            _taskId = -1
+            _task = TaskBuilder.ATask.StartingWithNothing.Build
+            PicUpdate.Visible = False
+        End If
+    End Sub
+    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
+        If Not String.IsNullOrEmpty(txtTaskName.Text) Then
+            _newTask = CreateNewTaskFromForm()
+            CreateTask(_newTask)
+            Close()
+        Else
+            ShowStatus(lblStatus, "Missing values. No action")
+        End If
+    End Sub
+    Private Sub PicClear_Click(sender As Object, e As EventArgs) Handles PicClear.Click
+        ClearTaskDetails()
+    End Sub
 #End Region
 #Region "subroutines"
     Private Function CreateNewTaskFromForm() As Task
@@ -103,9 +130,7 @@ Public Class FrmTasks
         Dim isInsertOk As Boolean
         LogUtil.Info("Inserting task", Name)
         With pTask
-
             _taskId = InsertTask(pTask)
-
             If _taskId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
@@ -117,35 +142,5 @@ Public Class FrmTasks
         End With
         Return isInsertOk
     End Function
-
-    Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
-        If IsTasksLoaded AndAlso CbTask.SelectedIndex > -1 Then
-            _taskId = CbTask.SelectedValue
-            _task = GetTaskById(_taskId)
-            txtTaskName.Text = _task.TaskName
-            rtbDescription.Text = _task.TaskDescription
-            PicUpdate.Visible = True
-        Else
-            txtTaskName.Text = String.Empty
-            rtbDescription.Text = String.Empty
-            _taskId = -1
-            _task = TaskBuilder.ATask.StartingWithNothing.Build
-            PicUpdate.Visible = False
-        End If
-    End Sub
-
-    Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
-        If Not String.IsNullOrEmpty(txtTaskName.Text) Then
-            _newTask = CreateNewTaskFromForm()
-            CreateTask(_newTask)
-            Close()
-        Else
-            ShowStatus(lblStatus, "Missing values. No action")
-        End If
-    End Sub
-
-    Private Sub PicClear_Click(sender As Object, e As EventArgs) Handles PicClear.Click
-        ClearTaskDetails()
-    End Sub
 #End Region
 End Class

@@ -10,7 +10,7 @@ Imports HindlewareLib.Logging
 ''' Allows user to set personal preferences
 ''' </summary>
 ''' <remarks></remarks>
-Public Class frmOptions
+Public Class FrmOptions
     Private ReadOnly encryptedPwd As String = ""
     Private ReadOnly fieldmarkers(,) As String
     Private isLoading As Boolean = True

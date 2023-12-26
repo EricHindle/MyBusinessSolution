@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmOptions
+Partial Class FrmOptions
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -28,6 +28,7 @@ Partial Class frmOptions
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.chkShowAllReminders = New System.Windows.Forms.CheckBox()
         Me.ChkShowDiary = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -117,7 +118,6 @@ Partial Class frmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.chkShowAllReminders = New System.Windows.Forms.CheckBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -210,6 +210,19 @@ Partial Class frmOptions
         Me.GroupBox6.TabIndex = 10
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Diary"
+        '
+        'chkShowAllReminders
+        '
+        Me.chkShowAllReminders.AutoSize = True
+        Me.chkShowAllReminders.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkShowAllReminders.ForeColor = System.Drawing.Color.Black
+        Me.chkShowAllReminders.Location = New System.Drawing.Point(10, 43)
+        Me.chkShowAllReminders.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.chkShowAllReminders.Name = "chkShowAllReminders"
+        Me.chkShowAllReminders.Size = New System.Drawing.Size(128, 18)
+        Me.chkShowAllReminders.TabIndex = 2
+        Me.chkShowAllReminders.Text = "Show all reminders"
+        Me.chkShowAllReminders.UseVisualStyleBackColor = True
         '
         'ChkShowDiary
         '
@@ -1185,7 +1198,7 @@ Partial Class frmOptions
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnCancel.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.Black
         Me.btnCancel.Location = New System.Drawing.Point(268, 532)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -1270,20 +1283,7 @@ Partial Class frmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'chkShowAllReminders
-        '
-        Me.chkShowAllReminders.AutoSize = True
-        Me.chkShowAllReminders.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowAllReminders.ForeColor = System.Drawing.Color.Black
-        Me.chkShowAllReminders.Location = New System.Drawing.Point(10, 43)
-        Me.chkShowAllReminders.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.chkShowAllReminders.Name = "chkShowAllReminders"
-        Me.chkShowAllReminders.Size = New System.Drawing.Size(128, 18)
-        Me.chkShowAllReminders.TabIndex = 2
-        Me.chkShowAllReminders.Text = "Show all reminders"
-        Me.chkShowAllReminders.UseVisualStyleBackColor = True
-        '
-        'frmOptions
+        'FrmOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1303,7 +1303,7 @@ Partial Class frmOptions
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(450, 509)
-        Me.Name = "frmOptions"
+        Me.Name = "FrmOptions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()

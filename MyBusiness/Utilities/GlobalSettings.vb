@@ -19,11 +19,9 @@ Public Class GlobalSettings
     Public Const COMPANY_EMAIL As String = "companyemail"
     Public Const COMPANY_WEBSITE As String = "companyurl"
     Public Const COMPANY_LOGOFILE As String = "companylogofile"
-
     Public Const INVOICE_NUMBER As String = "invoicenumber"
 
     Private Shared RECORD_TYPE As AuditUtil.RecordType
-
     Private Shared ReadOnly className As String = "GlobalSettings"
     ''' <summary>
     ''' Get a setting

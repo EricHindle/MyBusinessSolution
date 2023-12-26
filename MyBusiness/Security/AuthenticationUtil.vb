@@ -6,7 +6,11 @@
 '
 
 Imports System.Linq
+Imports System.Net.Mail
 Imports System.Security.Cryptography
+Imports HindlewareLib.Domain.Builders
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Email.EmailUtil
 Imports i00SpellCheck
 ''' <summary>
 ''' Functions used in authenticating users
@@ -24,7 +28,7 @@ Public Class AuthenticationUtil
 #End Region
 #Region "Variables"
     Private Shared ReadOnly sha1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
-    Private Shared ReadOnly minPwdLen As Integer = GlobalSettings.getIntegerSetting("minPwdLen")
+    Private Shared ReadOnly minPwdLen As Integer = GlobalSettings.GetIntegerSetting("minPwdLen")
     Private Shared oDict As FlatFileDictionary = Nothing
 #End Region
 #Region "Salt"
@@ -212,13 +216,17 @@ Public Class AuthenticationUtil
             If validate.IsValidEmail(emailAddress) Then
                 If UpdateTempPassword(userId, newTempPassword, True, salt) = 1 Then
                     AuditUtil.AddAudit(_usercode, AuditUtil.RecordType.User, userId, AuditUtil.AuditableAction.update, "Temporary password created", newTempPassword)
+                    Dim _smtp As SmtpAccount = MakeSmtpFromGlobalValues()
+                    Dim oFrom As New MailAddress(sentOnBehalfOf, "Do Not Reply")
                     Dim userEmailAddress As String = emailAddress
-                    If EmailUtil.SendMail(sentOnBehalfOf,
-                            userEmailAddress,
-                            {},
-                            "Temporary Password",
-                            PASSWORD_CHANGE_EMAIL.Replace("{}",
-                            newTempPassword), GlobalSettings.GetSettingValue(EmailUtil.SMTP_FROMNAME)) Then
+                    Dim oEmail As Email = EmailBuilder.AnEmail.StartingWithNothing _
+                    .WithTo(userEmailAddress) _
+                    .WithSubject("Temporary Password") _
+                    .WithBody(PASSWORD_CHANGE_EMAIL.Replace("{}", newTempPassword)) _
+                    .WithFromAddress(oFrom) _
+                    .WithAttachments(New List(Of Attachment)) _
+                    .Build
+                    If SendMailViaSMTP(oEmail, _smtp) Then
                         isCreatedOK = True
                         MsgBox("An email has been sent to your registered address.", , "Password Reset")
                     Else

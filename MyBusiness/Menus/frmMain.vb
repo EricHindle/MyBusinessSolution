@@ -203,7 +203,7 @@ Public Class FrmMain
         Close()
     End Sub
     Private Sub PreferencesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuPreferences.Click
-        Using _settings As New frmOptions
+        Using _settings As New FrmOptions
             _settings.ShowDialog()
         End Using
         If My.Settings.ShowDiaryBody Then

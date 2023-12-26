@@ -57,6 +57,7 @@ Partial Class FrmSupplier
         Me.LblAction = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.pnlProducts = New System.Windows.Forms.Panel()
+        Me.BtnAddJobProduct = New System.Windows.Forms.Button()
         Me.spProducts = New System.Windows.Forms.SplitContainer()
         Me.dgvProducts = New System.Windows.Forms.DataGridView()
         Me.prodId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -70,7 +71,7 @@ Partial Class FrmSupplier
         Me.PicClose = New System.Windows.Forms.PictureBox()
         Me.PicUpdate = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtnAddJobProduct = New System.Windows.Forms.Button()
+        Me.BtnUpdateJobProduct = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.pnlSupplier.SuspendLayout()
@@ -398,6 +399,7 @@ Partial Class FrmSupplier
         'pnlProducts
         '
         Me.pnlProducts.BackColor = System.Drawing.Color.Snow
+        Me.pnlProducts.Controls.Add(Me.BtnUpdateJobProduct)
         Me.pnlProducts.Controls.Add(Me.BtnAddJobProduct)
         Me.pnlProducts.Controls.Add(Me.spProducts)
         Me.pnlProducts.Dock = System.Windows.Forms.DockStyle.Fill
@@ -406,6 +408,23 @@ Partial Class FrmSupplier
         Me.pnlProducts.Name = "pnlProducts"
         Me.pnlProducts.Size = New System.Drawing.Size(374, 480)
         Me.pnlProducts.TabIndex = 1
+        '
+        'BtnAddJobProduct
+        '
+        Me.BtnAddJobProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddJobProduct.AutoSize = True
+        Me.BtnAddJobProduct.FlatAppearance.BorderSize = 0
+        Me.BtnAddJobProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnAddJobProduct.Image = Global.MyBusiness.My.Resources.Resources.addany
+        Me.BtnAddJobProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.BtnAddJobProduct.Location = New System.Drawing.Point(4, 449)
+        Me.BtnAddJobProduct.Margin = New System.Windows.Forms.Padding(0)
+        Me.BtnAddJobProduct.Name = "BtnAddJobProduct"
+        Me.BtnAddJobProduct.Size = New System.Drawing.Size(68, 27)
+        Me.BtnAddJobProduct.TabIndex = 100
+        Me.BtnAddJobProduct.Text = "Add"
+        Me.BtnAddJobProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BtnAddJobProduct.UseVisualStyleBackColor = True
         '
         'spProducts
         '
@@ -584,22 +603,23 @@ Partial Class FrmSupplier
         Me.PicUpdate.TabStop = False
         Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update the supplier")
         '
-        'BtnAddJobProduct
+        'BtnUpdateJobProduct
         '
-        Me.BtnAddJobProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnAddJobProduct.AutoSize = True
-        Me.BtnAddJobProduct.FlatAppearance.BorderSize = 0
-        Me.BtnAddJobProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnAddJobProduct.Image = Global.MyBusiness.My.Resources.Resources.addany
-        Me.BtnAddJobProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.BtnAddJobProduct.Location = New System.Drawing.Point(4, 449)
-        Me.BtnAddJobProduct.Margin = New System.Windows.Forms.Padding(0)
-        Me.BtnAddJobProduct.Name = "BtnAddJobProduct"
-        Me.BtnAddJobProduct.Size = New System.Drawing.Size(68, 27)
-        Me.BtnAddJobProduct.TabIndex = 100
-        Me.BtnAddJobProduct.Text = "Add"
-        Me.BtnAddJobProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.BtnAddJobProduct.UseVisualStyleBackColor = True
+        Me.BtnUpdateJobProduct.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdateJobProduct.AutoSize = True
+        Me.BtnUpdateJobProduct.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateJobProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnUpdateJobProduct.Image = Global.MyBusiness.My.Resources.Resources.updateany
+        Me.BtnUpdateJobProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.BtnUpdateJobProduct.Location = New System.Drawing.Point(72, 449)
+        Me.BtnUpdateJobProduct.Margin = New System.Windows.Forms.Padding(0)
+        Me.BtnUpdateJobProduct.Name = "BtnUpdateJobProduct"
+        Me.BtnUpdateJobProduct.Size = New System.Drawing.Size(82, 27)
+        Me.BtnUpdateJobProduct.TabIndex = 103
+        Me.BtnUpdateJobProduct.Text = "Update"
+        Me.BtnUpdateJobProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ToolTip1.SetToolTip(Me.BtnUpdateJobProduct, "Show task for update")
+        Me.BtnUpdateJobProduct.UseVisualStyleBackColor = True
         '
         'FrmSupplier
         '
@@ -690,4 +710,5 @@ Partial Class FrmSupplier
     Friend WithEvents txtProductDesc As TextBox
     Friend WithEvents PicOpenWeb As PictureBox
     Friend WithEvents BtnAddJobProduct As Button
+    Friend WithEvents BtnUpdateJobProduct As Button
 End Class

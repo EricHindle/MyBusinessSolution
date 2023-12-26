@@ -6,7 +6,6 @@
 '
 
 Imports System.ComponentModel
-Imports System.Security.Cryptography
 
 Public Class FrmJobProducts
 #Region "variables"

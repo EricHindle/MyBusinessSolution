@@ -74,66 +74,6 @@ Public Class FrmJobTemplates
             End If
         End If
     End Sub
-#End Region
-#Region "subroutines"
-    Private Sub LoadTemplateTable()
-
-        IsLoading = True
-        DgvTemplates.Rows.Clear()
-        Dim _templates As List(Of Template) = GetAllTemplates()
-        For Each _template As Template In _templates
-            Dim oRow As DataGridViewRow = DgvTemplates.Rows(DgvTemplates.Rows.Add())
-            oRow.Cells(tmplId.Name).Value = _template.TemplateId
-            oRow.Cells(tmplName.Name).Value = _template.TemplateName
-        Next
-
-        DgvTemplates.ClearSelection()
-        IsLoading = False
-
-    End Sub
-    Private Sub LoadFormFromSelectedTemplate()
-        With SelectedTemplate
-            LblId.Text = .TemplateId
-            TxtTmplName.Text = .TemplateName
-            TxtTmplDesc.Text = .TemplateDescription
-            LoadProductTable()
-            LoadTaskTable()
-            SplitContainer1.Panel2Collapsed = False
-            PicAddTemplate.Visible = False
-            PicUpdate.Visible = True
-            PicDeleteTemplate.Visible = True
-        End With
-
-    End Sub
-
-    Private Sub LoadProductTable()
-        dgvProducts.Rows.Clear()
-        SelectedProducts = GetTemplateProductViewbyTemplateId(SelectedTemplate.TemplateId)
-        For Each _tmplproduct As FullTemplateProduct In SelectedProducts
-            Dim _Product As Product = _tmplproduct.Product
-            Dim _supplier As Supplier = _tmplproduct.Supplier
-            Dim oRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add())
-            oRow.Cells(tpId.Name).Value = _tmplproduct.TemplateProductId
-            oRow.Cells(tpProdId.Name).Value = _Product.ProductId
-            oRow.Cells(tpSupp.Name).Value = _supplier.SupplierName
-            oRow.Cells(tpProdName.Name).Value = _Product.ProductName
-            oRow.Cells(tpQty.Name).Value = _tmplproduct.Quantity
-            oRow.Cells(tpCost.Name).Value = _Product.ProductCost
-        Next
-
-    End Sub
-    Private Sub LoadTaskTable()
-        DgvTasks.Rows.Clear()
-        SelectedTasks = GetTemplateTasksForTemplate(SelectedTemplate.TemplateId)
-        For Each _templatetask As TemplateTask In SelectedTasks
-            Dim oRow As DataGridViewRow = DgvTasks.Rows(DgvTasks.Rows.Add())
-            oRow.Cells(taskId.Name).Value = _templatetask.TemplateTaskId
-            oRow.Cells(taskName.Name).Value = _templatetask.Task.TaskName
-            oRow.Cells(taskHours.Name).Value = _templatetask.Hours
-            oRow.Cells(taskPrice.Name).Value = _templatetask.Cost
-        Next
-    End Sub
-
     Private Sub PicDeleteTemplate_Click(sender As Object, e As EventArgs) Handles PicDeleteTemplate.Click
         If DgvTemplates.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvTemplates.SelectedRows(0)
@@ -144,7 +84,6 @@ Public Class FrmJobTemplates
             ShowStatus(LblStatus, "Templated deleted", MyBase.Name, True)
         End If
     End Sub
-
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If DgvTemplates.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvTemplates.SelectedRows(0)
@@ -158,7 +97,6 @@ Public Class FrmJobTemplates
             ShowStatus(LblStatus, "Templated updated", MyBase.Name, True)
         End If
     End Sub
-
     Private Sub PicAddTemplate_Click(sender As Object, e As EventArgs) Handles PicAddTemplate.Click
         If Not String.IsNullOrWhiteSpace(TxtTmplName.Text) Then
 
@@ -191,26 +129,6 @@ Public Class FrmJobTemplates
             ShowStatus(LblStatus, "Missing values. No action.", MyBase.Name, True)
         End If
     End Sub
-
-    Private Sub BtnClearForm_Click(sender As Object, e As EventArgs)
-        DgvTemplates.ClearSelection()
-    End Sub
-
-    Private Sub ClearForm()
-        LblId.Text = ""
-        dgvProducts.Rows.Clear()
-        DgvTasks.Rows.Clear()
-        SelectedTasks.Clear()
-        SelectedProducts.Clear()
-        SelectedTemplate = Nothing
-        TxtTmplDesc.Text = ""
-        TxtTmplName.Text = ""
-        PicAddTemplate.Visible = True
-        PicUpdate.Visible = False
-        PicDeleteTemplate.Visible = False
-        SplitContainer1.Panel2Collapsed = True
-    End Sub
-
     Private Sub BtnRemoveTask_Click(sender As Object, e As EventArgs) Handles btnRemoveTask.Click
         If DgvTasks.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvTasks.SelectedRows(0)
@@ -219,7 +137,6 @@ Public Class FrmJobTemplates
             LoadTaskTable()
         End If
     End Sub
-
     Private Sub BtnAddTask_Click(sender As Object, e As EventArgs) Handles btnAddTask.Click
         If SelectedTemplate IsNot Nothing AndAlso SelectedTemplate.TemplateId > 0 Then
             LogUtil.Debug("Add task to template", Name)
@@ -233,7 +150,6 @@ Public Class FrmJobTemplates
             ShowStatus(LblStatus, "Add Template before adding tasks", MyBase.Name, False)
         End If
     End Sub
-
     Private Sub DgvTasks_CellDoubleClick(sender As Object, e As EventArgs) Handles DgvTasks.CellDoubleClick
         If DgvTasks.SelectedRows.Count = 1 Then
             LogUtil.Debug("Updating task", Name)
@@ -248,9 +164,83 @@ Public Class FrmJobTemplates
             LoadTaskTable()
         End If
     End Sub
-
     Private Sub PicClear_Click(sender As Object, e As EventArgs) Handles PicClear.Click
         DgvTemplates.ClearSelection()
+    End Sub
+#End Region
+#Region "subroutines"
+    Private Sub LoadTemplateTable()
+
+        IsLoading = True
+        DgvTemplates.Rows.Clear()
+        Dim _templates As List(Of Template) = GetAllTemplates()
+        For Each _template As Template In _templates
+            Dim oRow As DataGridViewRow = DgvTemplates.Rows(DgvTemplates.Rows.Add())
+            oRow.Cells(tmplId.Name).Value = _template.TemplateId
+            oRow.Cells(tmplName.Name).Value = _template.TemplateName
+        Next
+
+        DgvTemplates.ClearSelection()
+        IsLoading = False
+
+    End Sub
+    Private Sub LoadFormFromSelectedTemplate()
+        With SelectedTemplate
+            LblId.Text = .TemplateId
+            TxtTmplName.Text = .TemplateName
+            TxtTmplDesc.Text = .TemplateDescription
+            LoadProductTable()
+            LoadTaskTable()
+            SplitContainer1.Panel2Collapsed = False
+            PicAddTemplate.Visible = False
+            PicUpdate.Visible = True
+            PicDeleteTemplate.Visible = True
+        End With
+
+    End Sub
+    Private Sub LoadProductTable()
+        dgvProducts.Rows.Clear()
+        SelectedProducts = GetTemplateProductViewbyTemplateId(SelectedTemplate.TemplateId)
+        For Each _tmplproduct As FullTemplateProduct In SelectedProducts
+            Dim _Product As Product = _tmplproduct.Product
+            Dim _supplier As Supplier = _tmplproduct.Supplier
+            Dim oRow As DataGridViewRow = dgvProducts.Rows(dgvProducts.Rows.Add())
+            oRow.Cells(tpId.Name).Value = _tmplproduct.TemplateProductId
+            oRow.Cells(tpProdId.Name).Value = _Product.ProductId
+            oRow.Cells(tpSupp.Name).Value = _supplier.SupplierName
+            oRow.Cells(tpProdName.Name).Value = _Product.ProductName
+            oRow.Cells(tpQty.Name).Value = _tmplproduct.Quantity
+            oRow.Cells(tpCost.Name).Value = _Product.ProductCost
+        Next
+
+    End Sub
+    Private Sub LoadTaskTable()
+        DgvTasks.Rows.Clear()
+        SelectedTasks = GetTemplateTasksForTemplate(SelectedTemplate.TemplateId)
+        For Each _templatetask As TemplateTask In SelectedTasks
+            Dim oRow As DataGridViewRow = DgvTasks.Rows(DgvTasks.Rows.Add())
+            oRow.Cells(taskId.Name).Value = _templatetask.TemplateTaskId
+            oRow.Cells(taskName.Name).Value = _templatetask.Task.TaskName
+            oRow.Cells(taskHours.Name).Value = _templatetask.Hours
+            oRow.Cells(taskPrice.Name).Value = _templatetask.Cost
+        Next
+    End Sub
+    Private Sub BtnClearForm_Click(sender As Object, e As EventArgs)
+        DgvTemplates.ClearSelection()
+    End Sub
+    Private Sub ClearForm()
+        LblId.Text = ""
+        dgvProducts.Rows.Clear()
+        DgvTasks.Rows.Clear()
+        SelectedTasks.Clear()
+        SelectedProducts.Clear()
+        SelectedTemplate = Nothing
+        TxtTmplDesc.Text = ""
+        TxtTmplName.Text = ""
+        PicAddTemplate.Visible = True
+        PicUpdate.Visible = False
+        PicDeleteTemplate.Visible = False
+        SplitContainer1.Panel2Collapsed = True
     End Sub
 
 #End Region

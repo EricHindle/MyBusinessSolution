@@ -78,8 +78,8 @@ Public Class FrmProduct
             _newproduct = ProductBuilder.AProduct.StartingWith(_product) _
                                 .WithProductName(txtProductName.Text.Trim) _
                                 .WithProductDescription(rtbDescription.Text.Trim) _
-                                .WithProductCost(nudCost.Value) _
-                                .WithProductPrice(nudPrice.Value) _
+                                .WithProductCost(NudCost.Value) _
+                                .WithProductPrice(NudUnitCost.Value) _
                                 .WithProductSupplierId(_supplierId) _
                                 .WithProductTaxable(chkTaxable.Checked) _
                                 .WithProductTaxRate(nudTaxRate.Value) _
@@ -96,6 +96,16 @@ Public Class FrmProduct
         End If
 
     End Sub
+    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
+        If Not String.IsNullOrWhiteSpace(_supplier.SupplierUrl) Then
+            Process.Start(_supplier.SupplierUrl.ToString)
+        End If
+    End Sub
+    Private Sub NudCost_ValueChanged(sender As Object, e As EventArgs) Handles NudCost.ValueChanged, NudPurchaseUnits.ValueChanged
+        If NudCost.Value > 0 AndAlso NudPurchaseUnits.Value > 0 Then
+            NudUnitCost.Value = NudCost.Value / NudPurchaseUnits.Value
+        End If
+    End Sub
 #End Region
 #Region "subroutines"
     Private Sub FillProductDetails()
@@ -106,8 +116,8 @@ Public Class FrmProduct
             LogUtil.Info("Amending product " & _productId & " : " & .ProductName, MyBase.Name)
             txtProductName.Text = .ProductName
             rtbDescription.Text = .ProductDescription
-            nudCost.Value = .ProductCost
-            nudPrice.Value = .ProductPrice
+            NudCost.Value = .ProductCost
+            NudUnitCost.Value = .ProductPrice
             chkTaxable.Checked = .IsProductTaxable
             nudTaxRate.Value = .ProductTaxRate
             NudPurchaseUnits.Value = .PurchaseUnits
@@ -116,8 +126,8 @@ Public Class FrmProduct
     Private Sub ClearProductDetails()
         txtProductName.Text = ""
         rtbDescription.Text = ""
-        nudCost.Value = 0
-        nudPrice.Value = 0
+        NudCost.Value = 0
+        NudUnitCost.Value = 0
         chkTaxable.Checked = False
         nudTaxRate.Value = 0.0
         NudPurchaseUnits.Value = 1
@@ -166,17 +176,5 @@ Public Class FrmProduct
         End If
         Return isOk
     End Function
-
-    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
-        If Not String.IsNullOrWhiteSpace(_supplier.SupplierUrl) Then
-            Process.Start(_supplier.SupplierUrl.ToString)
-        End If
-    End Sub
-
-    Private Sub NudCost_ValueChanged(sender As Object, e As EventArgs) Handles NudCost.ValueChanged, NudPurchaseUnits.ValueChanged
-        If NudCost.Value > 0 AndAlso NudPurchaseUnits.Value > 0 Then
-            nudPrice.Value = NudCost.Value / NudPurchaseUnits.Value
-        End If
-    End Sub
 #End Region
 End Class

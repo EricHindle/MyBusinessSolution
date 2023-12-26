@@ -5,8 +5,6 @@
 ' Author Eric Hindle
 '
 
-Imports System.Security.Cryptography
-
 Public Class JobProductBuilder
     Private _jobProductId As Integer
     Private _job As Job

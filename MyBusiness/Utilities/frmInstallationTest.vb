@@ -6,6 +6,10 @@
 '
 
 Imports System.IO
+Imports System.Net.Mail
+Imports HindlewareLib.Domain.Builders
+Imports HindlewareLib.Domain.Objects
+Imports HindlewareLib.Email.EmailUtil
 Imports HindlewareLib.Logging
 Imports HindlewareLib.Utilities
 Public Class FrmInstallationTest
@@ -22,7 +26,7 @@ Public Class FrmInstallationTest
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Starting", MyBase.Name)
         lblFormName.Text = FORM_NAME
-        txtFrom.Text = GlobalSettings.GetSettingValue(EmailUtil.SMTP_FROMNAME)
+        txtFrom.Text = GlobalSettings.GetSettingValue(ModEmailUtil.SMTP_FROMNAME)
         myReportDef = New ReportDefinition()
         InitialiseDgv()
         rtbLog.Text = ""
@@ -30,8 +34,17 @@ Public Class FrmInstallationTest
     Private Sub BtnSMTP_Click(sender As Object, e As EventArgs) Handles btnSMTP.Click
         lblSMTPResult.Text = "Sending SMTP email..."
         Refresh()
-        Dim fromEmail As String = GlobalSettings.GetSettingValue(EmailUtil.SMTP_USERNAME)
-        Dim mailResultOK As Boolean = EmailUtil.SendMail(fromEmail, txtTo.Text, New String() {}, "SMTP email test", "Test", txtFrom.Text)
+        Dim fromEmail As String = GlobalSettings.GetSettingValue(ModEmailUtil.SMTP_USERNAME)
+        Dim _smtp As SmtpAccount = MakeSmtpFromGlobalValues()
+        Dim oFrom As New MailAddress(fromEmail, "Do Not Reply")
+        Dim oEmail As Email = EmailBuilder.AnEmail.StartingWithNothing _
+                    .WithTo(txtTo.Text) _
+                    .WithSubject("SMTP email test") _
+                    .WithBody("Test") _
+                    .WithFromAddress(oFrom) _
+                    .WithAttachments(New List(Of Attachment)) _
+                    .Build
+        Dim mailResultOK As Boolean = SendMailViaSMTP(oEmail, _smtp)
         lblSMTPResult.Text = If(mailResultOK, "OK", "Failed")
 
     End Sub
@@ -41,7 +54,7 @@ Public Class FrmInstallationTest
         myReportDef.TabStops = prtUtil.SetTabStopsFromColumns(dgv)
         myReportDef.ReportHead = "Installation Test"
         Refresh()
-        prtUtil.printGrid(dgv, myReportDef)
+        prtUtil.PrintGrid(dgv, myReportDef)
         lblPrintResult.Text = "Done"
     End Sub
     Private Sub BtnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click

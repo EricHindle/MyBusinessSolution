@@ -19,11 +19,11 @@ Public Class ITextManager
     Public Sub New()
         Dim _fontFolder As String = Path.Combine(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System)).FullName, "Fonts")
         FontFactory.RegisterDirectory(_fontFolder)
-        headerFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvHdrFont.Name, My.Settings.InvHdrFont.Size)
-        bodyFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvBodyLargeFont.Name, My.Settings.InvBodyLargeFont.Size)
-        companyNameFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvCmpyNameFont.Name, My.Settings.InvCmpyNameFont.Size)
-        companyAddressFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvCmpyAddrFont.Name, My.Settings.InvCmpyAddrFont.Size)
-        bodyLargeFont = iTextSharp.text.FontFactory.GetFont(My.Settings.InvBodyLargeFont.Name, My.Settings.InvBodyLargeFont.Size)
+        headerFont = FontFactory.GetFont(My.Settings.InvHdrFont.Name, My.Settings.InvHdrFont.Size)
+        bodyFont = FontFactory.GetFont(My.Settings.InvBodyLargeFont.Name, My.Settings.InvBodyLargeFont.Size)
+        companyNameFont = FontFactory.GetFont(My.Settings.InvCmpyNameFont.Name, My.Settings.InvCmpyNameFont.Size)
+        companyAddressFont = FontFactory.GetFont(My.Settings.InvCmpyAddrFont.Name, My.Settings.InvCmpyAddrFont.Size)
+        bodyLargeFont = FontFactory.GetFont(My.Settings.InvBodyLargeFont.Name, My.Settings.InvBodyLargeFont.Size)
     End Sub
     Public Function CreateImageCell(ByVal path As String) As PdfPCell
         Dim img As iTextSharp.text.Image = Nothing
@@ -42,7 +42,7 @@ Public Class ITextManager
     End Function
     Public Function BuildTableHeaderCell(ByVal pCellValue As String) As PdfPCell
         Dim _hdrCellValue As New Paragraph(pCellValue, bodyFont)
-        Dim _tableHdrCell As New iTextSharp.text.pdf.PdfPCell(_hdrCellValue) With {
+        Dim _tableHdrCell As New PdfPCell(_hdrCellValue) With {
             .BackgroundColor = New BaseColor(194, 217, 255),
             .HorizontalAlignment = Element.ALIGN_RIGHT,
             .Border = iTextSharp.text.Rectangle.NO_BORDER
@@ -51,24 +51,24 @@ Public Class ITextManager
     End Function
     Public Function BuildTableCell(ByVal pCellValue As String, Optional ByVal pAlignment As Integer = Element.ALIGN_RIGHT) As PdfPCell
         Dim _cellValue As New Paragraph(pCellValue, bodyFont)
-        Dim _tableCell As New iTextSharp.text.pdf.PdfPCell(_cellValue) With {
+        Dim _tableCell As New PdfPCell(_cellValue) With {
             .HorizontalAlignment = pAlignment,
             .Border = iTextSharp.text.Rectangle.NO_BORDER
         }
         Return _tableCell
     End Function
     Public Function BuildTable(ByVal columnWidths As Single()) As PdfPTable
-        Dim _table As New iTextSharp.text.pdf.PdfPTable(columnWidths.Length) With {
+        Dim _table As New PdfPTable(columnWidths.Length) With {
             .WidthPercentage = 100.0F
         }
         _table.SetWidths(columnWidths)
-        _table.HorizontalAlignment = iTextSharp.text.Element.ALIGN_RIGHT
+        _table.HorizontalAlignment = Element.ALIGN_RIGHT
         _table.SpacingAfter = 10.0F
         Return _table
     End Function
     Public Function EmptyCell() As PdfPCell
-        Dim _emptyCell As New iTextSharp.text.pdf.PdfPCell(New Paragraph(" ")) With {
-            .Border = iTextSharp.text.Rectangle.NO_BORDER
+        Dim _emptyCell As New PdfPCell(New Paragraph(" ")) With {
+            .Border = Rectangle.NO_BORDER
         }
         Return _emptyCell
     End Function

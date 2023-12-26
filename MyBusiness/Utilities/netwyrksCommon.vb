@@ -6,11 +6,10 @@
 '
 
 Imports System.IO
-Imports HindlewareLib.Domain.Objects
 Imports HindlewareLib.Domain.Builders
+Imports HindlewareLib.Domain.Objects
 Imports HindlewareLib.Logging
 Imports HindlewareLib.NetwyrksErrorCodes
-Imports iTextSharp.text.pdf
 
 ''' <summary>
 ''' Globally available functions
@@ -357,7 +356,7 @@ Public Module netwyrksCommon
         End If
     End Sub
     Public Sub SplashMessage(ByVal message As String, Optional ByVal lifeTime As Integer = 2000)
-        Using _splash As New frmInfoSplash
+        Using _splash As New FrmInfoSplash
             With _splash
                 .Location = New Point((Screen.PrimaryScreen.WorkingArea.Width - .Width) / 2,
                                         (Screen.PrimaryScreen.WorkingArea.Height - .Height) / 2)
@@ -367,9 +366,9 @@ Public Module netwyrksCommon
             End With
         End Using
     End Sub
-    Private splash As frmInfoSplash
+    Private splash As FrmInfoSplash
     Public Sub ShowSplash(ByVal sMessage As String, ByVal oParentSize As Size, ByVal oParentLocation As Point)
-        splash = New frmInfoSplash
+        splash = New FrmInfoSplash
         With splash
             .Message = sMessage
             If oParentSize.IsEmpty Then

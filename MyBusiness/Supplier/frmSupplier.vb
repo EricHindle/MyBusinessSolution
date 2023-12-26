@@ -49,11 +49,7 @@ Public Class FrmSupplier
         My.Settings.Save()
     End Sub
     Private Sub DgvProducts_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvProducts.CellDoubleClick
-        If dgvProducts.SelectedRows.Count = 1 Then
-            Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
-            Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
-            ShowProductForm(oProductId)
-        End If
+        ShowProductForm()
     End Sub
     Private Sub BtnAddProduct_Click(ByVal sender As Object, ByVal e As EventArgs)
         ShowProductForm(-1)
@@ -122,7 +118,17 @@ Public Class FrmSupplier
         End If
 
     End Sub
-
+    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
+        If Not String.IsNullOrWhiteSpace(TxtWeb.Text) Then
+            Process.Start(TxtWeb.Text)
+        End If
+    End Sub
+    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
+        ShowProductForm(-1)
+    End Sub
+    Private Sub BtnUpdateJobTask_Click(sender As Object, e As EventArgs) Handles BtnUpdateJobProduct.Click
+        ShowProductForm()
+    End Sub
 #End Region
 #Region "subroutines"
     Private Sub FillSupplierDetails()
@@ -221,6 +227,13 @@ Public Class FrmSupplier
         End Using
         FillProductsList(_supplierId)
     End Sub
+    Private Sub ShowProductForm()
+        If dgvProducts.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = dgvProducts.SelectedRows(0)
+            Dim oProductId As Integer = oRow.Cells(prodId.Name).Value
+            ShowProductForm(oProductId)
+        End If
+    End Sub
     Private Function IsValidSupplier() As Boolean
         Dim isOk As Boolean = True
         If String.IsNullOrWhiteSpace(txtSuppName.Text) Then
@@ -228,20 +241,5 @@ Public Class FrmSupplier
         End If
         Return isOK
     End Function
-
-    Private Sub PicAddProduct_Click(sender As Object, e As EventArgs)
-        ShowProductForm(-1)
-    End Sub
-
-    Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
-        If Not String.IsNullOrWhiteSpace(TxtWeb.Text) Then
-            Process.Start(TxtWeb.Text)
-        End If
-    End Sub
-
-    Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click
-        ShowProductForm(-1)
-    End Sub
-
 #End Region
 End Class

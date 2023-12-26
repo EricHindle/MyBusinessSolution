@@ -17,10 +17,11 @@ Module ModTemplate
         End Using
         Return _selectedTemplate
     End Function
-
     Public Sub CreateJobFromTemplate(pTemplate As Template)
         LogUtil.Info("Create job from template", "ModTemplate")
-        Dim _newJob As Job = JobBuilder.AJob.StartingWithNothing.WithJobName(pTemplate.TemplateName).WithJobUser(currentUser.UserId).Build
+        Dim _newJob As Job = JobBuilder.AJob.StartingWithNothing _
+                                        .WithJobName(pTemplate.TemplateName) _
+                                        .WithJobUser(currentUser.UserId).Build
         Dim _jobId = CreateJob(_newJob)
         If _jobId > 0 Then
             Dim _templateProducts As List(Of FullTemplateProduct) = GetTemplateProductViewbyTemplateId(pTemplate.TemplateId)
@@ -39,7 +40,6 @@ Module ModTemplate
             Next
             AddJobProductsToJob(_products)
             AddTasksToJob(_jobtasks)
-
         End If
     End Sub
     Private Sub AddTasksToJob(pTaskList As List(Of JobTask))

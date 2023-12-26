@@ -5,7 +5,7 @@
 ' Author Eric Hindle
 '
 
-Public Class frmInfoSplash
+Public Class FrmInfoSplash
 #Region "private variables"
     Private _message As String
     Private _lifeTime As Integer

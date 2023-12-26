@@ -36,9 +36,7 @@ Public Class FileTransformer
         Return toBytes
     End Function
     Private Shared Sub CloseStreams()
-        If fsInput IsNot Nothing Then
-            fsInput.Close()
-        End If
+        fsInput?.Close()
     End Sub
 #End Region
 End Class
