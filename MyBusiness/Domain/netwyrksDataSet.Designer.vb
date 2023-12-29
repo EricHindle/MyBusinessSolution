@@ -26581,7 +26581,7 @@ Namespace netwyrksDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(6) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(7) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        imageid, jobid, imagepath, imagedesc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_image"
@@ -26613,11 +26613,20 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(param)
             Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT imagedesc, imageid, imagepath, jobid FROM job_image WHERE (jobid = @jobId)"& _ 
-                ""
+            Me._commandCollection(3).CommandText = "SELECT        imageid, jobid, imagepath, imagedesc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WH"& _ 
+                "ERE        (imagepath = @imagefile) AND (jobid = @jobid)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@jobId"
+            param.ParameterName = "@imagefile"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 256
+            param.IsNullable = true
+            param.SourceColumn = "imagepath"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@jobid"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -26626,9 +26635,8 @@ Namespace netwyrksDataSetTableAdapters
             Me._commandCollection(3).Parameters.Add(param)
             Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "INSERT INTO job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jobid, imagepath, imagedesc)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VA"& _ 
-                "LUES        (@jobId, @imagePath, @imageDesc);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT"& _ 
-                "        LAST_INSERT_ID()"
+            Me._commandCollection(4).CommandText = "SELECT imagedesc, imageid, imagepath, jobid FROM job_image WHERE (jobid = @jobId)"& _ 
+                ""
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
@@ -26638,6 +26646,20 @@ Namespace netwyrksDataSetTableAdapters
             param.SourceColumn = "jobid"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
             Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "INSERT INTO job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (jobid, imagepath, imagedesc)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VA"& _ 
+                "LUES        (@jobId, @imagePath, @imageDesc);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           SELECT"& _ 
+                "        LAST_INSERT_ID()"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@jobId"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "jobid"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Current
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@imagePath"
             param.DbType = Global.System.Data.DbType.[String]
@@ -26646,7 +26668,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "imagepath"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@imageDesc"
             param.DbType = Global.System.Data.DbType.[String]
@@ -26655,16 +26677,16 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "imagedesc"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(4).Parameters.Add(param)
-            Me._commandCollection(5) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "TRUNCATE job_image"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(param)
             Me._commandCollection(6) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "UPDATE       job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                jobid = @jobId, imagepath = @ImagePath"& _ 
-                ", imagedesc = @ImageDesc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (imageid = @imageId)"
+            Me._commandCollection(6).CommandText = "TRUNCATE job_image"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(7) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(7).Connection = Me.Connection
+            Me._commandCollection(7).CommandText = "UPDATE       job_image"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                jobid = @jobId, imagepath = @ImagePath"& _ 
+                ", imagedesc = @ImageDesc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (imageid = @imageId)"
+            Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@jobId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -26672,7 +26694,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "jobid"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ImagePath"
             param.DbType = Global.System.Data.DbType.[String]
@@ -26681,7 +26703,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "imagepath"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ImageDesc"
             param.DbType = Global.System.Data.DbType.[String]
@@ -26690,7 +26712,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "imagedesc"
             param.SourceVersion = Global.System.Data.DataRowVersion.Current
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@imageId"
             param.DbType = Global.System.Data.DbType.Int32
@@ -26698,7 +26720,7 @@ Namespace netwyrksDataSetTableAdapters
             param.IsNullable = true
             param.SourceColumn = "imageid"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(7).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26743,8 +26765,27 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByJobId(ByVal dataTable As netwyrksDataSet.job_imageDataTable, ByVal jobId As Integer) As Integer
+        Public Overloads Overridable Function FillByJobFilename(ByVal dataTable As netwyrksDataSet.job_imageDataTable, ByVal imagefile As String, ByVal jobid As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            If (imagefile Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("imagefile")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(imagefile,String)
+            End If
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(jobid,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByJobId(ByVal dataTable As netwyrksDataSet.job_imageDataTable, ByVal jobId As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(jobId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -26915,7 +26956,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
         Public Overloads Overridable Function InsertJobImage(ByVal jobId As Integer, ByVal imagePath As String, ByVal imageDesc As String) As Object
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
             command.Parameters(0).Value = CType(jobId,Integer)
             If (imagePath Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("imagePath")
@@ -26953,7 +26994,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function TruncateJobImage() As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(5)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -26975,7 +27016,7 @@ Namespace netwyrksDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateJobImage(ByVal jobId As Integer, ByVal ImagePath As String, ByVal ImageDesc As String, ByVal imageId As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(6)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
             command.Parameters(0).Value = CType(jobId,Integer)
             If (ImagePath Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("ImagePath")

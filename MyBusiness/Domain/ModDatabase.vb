@@ -455,6 +455,14 @@ Module ModDatabase
         Next
         Return _jobImageList
     End Function
+    Public Function GetJobImageByJobFile(pJob As Job, pFilename As String) As List(Of JobImage)
+        Dim _jobImageList As New List(Of JobImage)
+        oJobImageTa.FillByJobFilename(oJobImageTable, pFilename, pJob.JobId)
+        For Each oRow As netwyrksDataSet.job_imageRow In oJobImageTable.Rows
+            _jobImageList.Add(JobImageBuilder.aJobImage.StartingWith(oRow).Build)
+        Next
+        Return _jobImageList
+    End Function
     Public Function InsertJobImage(pJobImage As JobImage) As Integer
         Dim _jobImageId As Integer
         Try

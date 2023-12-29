@@ -50,6 +50,7 @@ Partial Class FrmImages
         Me.BtnFindFile = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.BtnAddToJobFolder = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.DgvImages, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +90,7 @@ Partial Class FrmImages
         '
         Me.StatusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 478)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 412)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(530, 22)
         Me.StatusStrip1.TabIndex = 85
@@ -121,7 +122,7 @@ Partial Class FrmImages
         Me.DgvImages.ReadOnly = True
         Me.DgvImages.RowHeadersVisible = False
         Me.DgvImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DgvImages.Size = New System.Drawing.Size(505, 258)
+        Me.DgvImages.Size = New System.Drawing.Size(505, 154)
         Me.DgvImages.TabIndex = 86
         '
         'col1
@@ -161,7 +162,7 @@ Partial Class FrmImages
         Me.PicClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PicClose.Image = Global.MyBusiness.My.Resources.Resources.exitbutton
         Me.PicClose.InitialImage = Nothing
-        Me.PicClose.Location = New System.Drawing.Point(476, 432)
+        Me.PicClose.Location = New System.Drawing.Point(476, 366)
         Me.PicClose.Name = "PicClose"
         Me.PicClose.Size = New System.Drawing.Size(42, 42)
         Me.PicClose.TabIndex = 93
@@ -172,7 +173,7 @@ Partial Class FrmImages
         '
         Me.TxtImagePath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtImagePath.Location = New System.Drawing.Point(91, 353)
+        Me.TxtImagePath.Location = New System.Drawing.Point(91, 265)
         Me.TxtImagePath.Name = "TxtImagePath"
         Me.TxtImagePath.Size = New System.Drawing.Size(397, 24)
         Me.TxtImagePath.TabIndex = 94
@@ -181,9 +182,9 @@ Partial Class FrmImages
         '
         Me.TxtImageDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtImageDesc.Location = New System.Drawing.Point(91, 383)
+        Me.TxtImageDesc.Location = New System.Drawing.Point(91, 324)
         Me.TxtImageDesc.Name = "TxtImageDesc"
-        Me.TxtImageDesc.Size = New System.Drawing.Size(406, 24)
+        Me.TxtImageDesc.Size = New System.Drawing.Size(397, 24)
         Me.TxtImageDesc.TabIndex = 95
         '
         'PicRemove
@@ -191,43 +192,43 @@ Partial Class FrmImages
         Me.PicRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicRemove.Image = Global.MyBusiness.My.Resources.Resources.remove
         Me.PicRemove.InitialImage = Nothing
-        Me.PicRemove.Location = New System.Drawing.Point(143, 433)
+        Me.PicRemove.Location = New System.Drawing.Point(143, 367)
         Me.PicRemove.Name = "PicRemove"
         Me.PicRemove.Size = New System.Drawing.Size(42, 42)
         Me.PicRemove.TabIndex = 96
         Me.PicRemove.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicRemove, "Remove Image")
+        Me.ToolTip1.SetToolTip(Me.PicRemove, "Remove Image from Job")
         '
         'PicAdd
         '
         Me.PicAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicAdd.Image = Global.MyBusiness.My.Resources.Resources.add
         Me.PicAdd.InitialImage = Nothing
-        Me.PicAdd.Location = New System.Drawing.Point(12, 432)
+        Me.PicAdd.Location = New System.Drawing.Point(12, 366)
         Me.PicAdd.Name = "PicAdd"
         Me.PicAdd.Size = New System.Drawing.Size(42, 42)
         Me.PicAdd.TabIndex = 97
         Me.PicAdd.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Image")
+        Me.ToolTip1.SetToolTip(Me.PicAdd, "Add Image to Job Folder")
         '
         'PicUpdate
         '
         Me.PicUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PicUpdate.Image = Global.MyBusiness.My.Resources.Resources.update
         Me.PicUpdate.InitialImage = Nothing
-        Me.PicUpdate.Location = New System.Drawing.Point(76, 433)
+        Me.PicUpdate.Location = New System.Drawing.Point(76, 367)
         Me.PicUpdate.Name = "PicUpdate"
         Me.PicUpdate.Size = New System.Drawing.Size(42, 42)
         Me.PicUpdate.TabIndex = 98
         Me.PicUpdate.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Image")
+        Me.ToolTip1.SetToolTip(Me.PicUpdate, "Update Image in Job Folder")
         '
         'BtnFindFile
         '
         Me.BtnFindFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnFindFile.BackgroundImage = Global.MyBusiness.My.Resources.Resources.left24
         Me.BtnFindFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.BtnFindFile.Location = New System.Drawing.Point(494, 353)
+        Me.BtnFindFile.Location = New System.Drawing.Point(494, 265)
         Me.BtnFindFile.Name = "BtnFindFile"
         Me.BtnFindFile.Size = New System.Drawing.Size(24, 24)
         Me.BtnFindFile.TabIndex = 99
@@ -238,28 +239,39 @@ Partial Class FrmImages
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 357)
+        Me.Label1.Location = New System.Drawing.Point(10, 269)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(36, 17)
+        Me.Label1.Size = New System.Drawing.Size(26, 17)
         Me.Label1.TabIndex = 100
-        Me.Label1.Text = "Path"
+        Me.Label1.Text = "File"
         '
         'Label2
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 386)
+        Me.Label2.Location = New System.Drawing.Point(10, 327)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(76, 17)
         Me.Label2.TabIndex = 101
         Me.Label2.Text = "Description"
+        '
+        'BtnAddToJobFolder
+        '
+        Me.BtnAddToJobFolder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddToJobFolder.Location = New System.Drawing.Point(91, 295)
+        Me.BtnAddToJobFolder.Name = "BtnAddToJobFolder"
+        Me.BtnAddToJobFolder.Size = New System.Drawing.Size(162, 23)
+        Me.BtnAddToJobFolder.TabIndex = 102
+        Me.BtnAddToJobFolder.Text = "Add to Job Folder"
+        Me.BtnAddToJobFolder.UseVisualStyleBackColor = True
         '
         'FrmImages
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(530, 500)
+        Me.ClientSize = New System.Drawing.Size(530, 434)
+        Me.Controls.Add(Me.BtnAddToJobFolder)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnFindFile)
@@ -310,4 +322,5 @@ Partial Class FrmImages
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents LblStatus As ToolStripStatusLabel
+    Friend WithEvents BtnAddToJobFolder As Button
 End Class
