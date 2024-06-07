@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2022-23 Eric Hindle
+' Copyright (c) 2022-24 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Imports HindlewareLib.Logging
 
 ''' <summary>
@@ -15,7 +16,7 @@ Public Class FrmOptions
     Private ReadOnly fieldmarkers(,) As String
     Private isLoading As Boolean = True
     Private Const FORM_NAME As String = "preferences"
-
+    Private zoomValue As Decimal
 #Region "Form event handlers"
     ''' <summary>
     ''' Close form without saving changes
@@ -40,6 +41,7 @@ Public Class FrmOptions
         LoadFolderOptions()
         SpellCheckUtil.EnableSpellChecking(New System.Windows.Forms.Control() {txtSpellTest})
         LoadSpellcheckOptions()
+        LoadLoggingOptions()
         SetTooltips()
         isLoading = False
     End Sub
@@ -58,11 +60,16 @@ Public Class FrmOptions
             SaveInvoiceOptions()
             SaveFolderOptions()
             SaveSpellcheckOptions()
+            SaveLoggingOptions
             My.Settings.Save()
             Close()
         Else
             MsgBox("Some values are invalid", MsgBoxStyle.Exclamation, "Option errors")
         End If
+    End Sub
+    Private Sub TrackBar1_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TrackBar1.ValueChanged
+        zoomValue = TrackBar1.Value / 10
+        TxtZoomValue.Text = CStr(zoomValue)
     End Sub
     ''' <summary>
     ''' Add tooltips to folder path fields
@@ -369,7 +376,14 @@ Public Class FrmOptions
         My.Settings.splchkMistakeColor = lblMistakeColor.BackColor
         My.Settings.splchkIgnoreColor = lblIgnoreColor.BackColor
     End Sub
-
+    Private Sub SaveLoggingOptions()
+        My.Settings.logZoomOn = ChkZoomOn.Checked
+        My.Settings.logZoomValue = TrackBar1.Value / 10
+    End Sub
+    Private Sub LoadLoggingOptions()
+        ChkZoomOn.Checked = My.Settings.logZoomOn
+        TrackBar1.Value = My.Settings.logZoomValue * 10
+    End Sub
     ''' <summary>
     ''' If the option to do Spell Checking is changed, save the setting and spellcheck the test field
     ''' </summary>

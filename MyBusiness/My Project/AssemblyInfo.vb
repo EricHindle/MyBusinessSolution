@@ -18,7 +18,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Customers, Jobs, Suppliers")>
 <Assembly: AssemblyCompany("netWYrks")>
 <Assembly: AssemblyProduct("MyBusiness")>
-<Assembly: AssemblyCopyright("Copyright © Eric Hindle 2022-23")>
+<Assembly: AssemblyCopyright("Copyright © Eric Hindle 2022-24")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

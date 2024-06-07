@@ -993,9 +993,9 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
-        Public Property logZoomValue() As Integer
+        Public Property logZoomValue() As Decimal
             Get
-                Return CType(Me("logZoomValue"),Integer)
+                Return CType(Me("logZoomValue"),Decimal)
             End Get
             Set
                 Me("logZoomValue") = value

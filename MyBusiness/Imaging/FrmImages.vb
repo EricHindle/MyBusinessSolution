@@ -7,7 +7,6 @@
 
 Imports System.ComponentModel
 Imports System.IO
-Imports System.Runtime.InteropServices
 Imports HindlewareLib.Domain.Objects
 Imports HindlewareLib.Imaging
 Imports HindlewareLib.Logging

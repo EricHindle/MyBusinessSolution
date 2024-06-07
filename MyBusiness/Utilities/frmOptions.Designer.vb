@@ -107,6 +107,11 @@ Partial Class FrmOptions
         Me.cbSplchkRemove = New System.Windows.Forms.CheckBox()
         Me.cbSplchkIgnore = New System.Windows.Forms.CheckBox()
         Me.cbSplchkAdd = New System.Windows.Forms.CheckBox()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.ChkZoomOn = New System.Windows.Forms.CheckBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.mFieldSelect = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -118,6 +123,7 @@ Partial Class FrmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.TxtZoomValue = New System.Windows.Forms.TextBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -135,6 +141,9 @@ Partial Class FrmOptions
         Me.GroupBox2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.grpSplChk.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -175,6 +184,7 @@ Partial Class FrmOptions
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(6, 66)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TabControl1.Multiline = True
@@ -1189,6 +1199,64 @@ Partial Class FrmOptions
         Me.cbSplchkAdd.Text = "Allow words to be added to the dictionary"
         Me.cbSplchkAdd.UseVisualStyleBackColor = True
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.GroupBox7)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(480, 432)
+        Me.TabPage4.TabIndex = 7
+        Me.TabPage4.Text = "Logging"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.TxtZoomValue)
+        Me.GroupBox7.Controls.Add(Me.TrackBar1)
+        Me.GroupBox7.Controls.Add(Me.ChkZoomOn)
+        Me.GroupBox7.Controls.Add(Me.Label15)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(396, 87)
+        Me.GroupBox7.TabIndex = 1
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Log Viewer"
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.Location = New System.Drawing.Point(88, 47)
+        Me.TrackBar1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TrackBar1.Maximum = 30
+        Me.TrackBar1.Minimum = 5
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(154, 23)
+        Me.TrackBar1.TabIndex = 3
+        Me.TrackBar1.TickFrequency = 5
+        Me.TrackBar1.Value = 10
+        '
+        'ChkZoomOn
+        '
+        Me.ChkZoomOn.AutoSize = True
+        Me.ChkZoomOn.Location = New System.Drawing.Point(12, 21)
+        Me.ChkZoomOn.Name = "ChkZoomOn"
+        Me.ChkZoomOn.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.ChkZoomOn.Size = New System.Drawing.Size(77, 18)
+        Me.ChkZoomOn.TabIndex = 2
+        Me.ChkZoomOn.Text = "Zoom On"
+        Me.ChkZoomOn.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(10, 51)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(72, 14)
+        Me.Label15.TabIndex = 0
+        Me.Label15.Text = "Zoom Value"
+        '
         'mFieldSelect
         '
         Me.mFieldSelect.Name = "mFieldSelect"
@@ -1283,6 +1351,13 @@ Partial Class FrmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
+        'TxtZoomValue
+        '
+        Me.TxtZoomValue.Location = New System.Drawing.Point(261, 47)
+        Me.TxtZoomValue.Name = "TxtZoomValue"
+        Me.TxtZoomValue.Size = New System.Drawing.Size(42, 22)
+        Me.TxtZoomValue.TabIndex = 5
+        '
         'FrmOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1332,6 +1407,10 @@ Partial Class FrmOptions
         Me.TabPage3.PerformLayout()
         Me.grpSplChk.ResumeLayout(False)
         Me.grpSplChk.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
@@ -1434,4 +1513,10 @@ Partial Class FrmOptions
     Friend WithEvents ChkShowTask As CheckBox
     Friend WithEvents ChkShowProduct As CheckBox
     Friend WithEvents chkShowAllReminders As CheckBox
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents ChkZoomOn As CheckBox
+    Friend WithEvents TrackBar1 As TrackBar
+    Friend WithEvents TxtZoomValue As TextBox
 End Class
