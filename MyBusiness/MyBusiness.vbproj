@@ -185,6 +185,11 @@
     <Compile Include="Domain\Builders\TemplateProductBuilder.vb" />
     <Compile Include="Domain\Builders\TemplateTaskBuilder.vb" />
     <Compile Include="Domain\Builders\AddressBuilder.vb" />
+    <Compile Include="Domain\netwyrksDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Objects\AuditEntry.vb" />
     <Compile Include="Domain\Objects\Customer.vb" />
     <Compile Include="Domain\Builders\CustomerBuilder.vb" />
@@ -226,6 +231,11 @@
     <Compile Include="Domain\Objects\User.vb" />
     <Compile Include="Domain\Builders\UserBuilder.vb" />
     <Compile Include="Email\ModEmailUtil.vb" />
+    <Compile Include="MyBusinessDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyBusinessDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\FrmTasks.Designer.vb">
       <DependentUpon>FrmTasks.vb</DependentUpon>
     </Compile>
@@ -537,6 +547,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MyBusinessDataSet.xsc">
+      <DependentUpon>MyBusinessDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MyBusinessDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>MyBusinessDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="MyBusinessDataSet.xss">
+      <DependentUpon>MyBusinessDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Utilities\.editorconfig" />
     <None Include="app.config" />
     <None Include="My Project\app.manifest" />
@@ -554,8 +575,8 @@
     </None>
     <None Include="Domain\netwyrksDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>netwyrksDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>netwyrksDataSet1.Designer.vb</LastGenOutput>
     </None>
     <None Include="Domain\netwyrksDataSet.xss">
       <DependentUpon>netwyrksDataSet.xsd</DependentUpon>
