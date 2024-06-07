@@ -18,8 +18,8 @@ Public Class FrmGlobalSettings
 #End Region
 #Region "Private variable instances"
     Private ReadOnly RECORD_TYPE As AuditUtil.RecordType = AuditUtil.RecordType.Setting
-    'Private ReadOnly oTa As New netwyrksDataSetTableAdapters.configurationTableAdapter
-    Private oTable As New netwyrksDataSet.configurationDataTable
+    'Private ReadOnly oTa As New MyBusinessDataSetTableAdapters.configurationTableAdapter
+    Private oTable As New MyBusinessDataSet.configurationDataTable
 #End Region
 #Region "Form"
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

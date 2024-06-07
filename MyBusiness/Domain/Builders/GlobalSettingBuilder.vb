@@ -19,7 +19,7 @@ Public Class GlobalSettingBuilder
         _settingId = ""
         Return Me
     End Function
-    Public Function StartingWith(oRow As netwyrksDataSet.configurationRow) As GlobalSettingBuilder
+    Public Function StartingWith(oRow As MyBusinessDataSet.configurationRow) As GlobalSettingBuilder
         _settingId = oRow.configuration_id
         _settingType = oRow.configuration_type
         _settingValue = oRow.configuration_value

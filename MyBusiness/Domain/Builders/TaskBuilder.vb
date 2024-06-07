@@ -20,7 +20,7 @@ Public Class TaskBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTask As netwyrksDataSet.taskRow) As TaskBuilder
+    Public Function StartingWith(ByVal oTask As MyBusinessDataSet.taskRow) As TaskBuilder
 
         With oTask
             _taskId = .taskid

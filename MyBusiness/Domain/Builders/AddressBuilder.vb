@@ -14,7 +14,7 @@ Public Class AddressBuilder
     Public Overloads Shared Function AnAddress() As AddressBuilder
         Return New AddressBuilder
     End Function
-    Public Overloads Function StartingWith(ByVal oRow As netwyrksDataSet.customerRow) As AddressBuilder
+    Public Overloads Function StartingWith(ByVal oRow As MyBusinessDataSet.customerRow) As AddressBuilder
         WithAddress1(If(oRow.Iscustomer_address_1Null, "", oRow.customer_address_1))
         WithAddress2(If(oRow.Iscustomer_address_2Null, "", oRow.customer_address_2))
         WithAddress3(If(oRow.Iscustomer_address_3Null, "", oRow.customer_address_3))
@@ -22,7 +22,7 @@ Public Class AddressBuilder
         WithPostcode(If(oRow.Iscustomer_postcodeNull, "", oRow.customer_postcode))
         Return Me
     End Function
-    Public Overloads Function StartingWith(ByVal oRow As netwyrksDataSet.supplierRow) As AddressBuilder
+    Public Overloads Function StartingWith(ByVal oRow As MyBusinessDataSet.supplierRow) As AddressBuilder
         WithAddress1(If(oRow.Issupplier_address_1Null, "", oRow.supplier_address_1))
         WithAddress2(If(oRow.Issupplier_address_2Null, "", oRow.supplier_address_2))
         WithAddress3(If(oRow.Issupplier_address_3Null, "", oRow.supplier_address_3))
@@ -30,7 +30,7 @@ Public Class AddressBuilder
         WithPostcode(If(oRow.Issupplier_postcodeNull, "", oRow.supplier_postcode))
         Return Me
     End Function
-    Public Overloads Function StartingWith(ByVal oRow As netwyrksDataSet.v_jobproductRow) As AddressBuilder
+    Public Overloads Function StartingWith(ByVal oRow As MyBusinessDataSet.v_jobproductRow) As AddressBuilder
         WithAddress1(If(oRow.Issupplier_address_1Null, "", oRow.supplier_address_1))
         WithAddress2(If(oRow.Issupplier_address_2Null, "", oRow.supplier_address_2))
         WithAddress3(If(oRow.Issupplier_address_3Null, "", oRow.supplier_address_3))

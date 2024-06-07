@@ -91,8 +91,8 @@ Public Class FrmTasks
                                     .Build()
     End Function
     Private Sub LoadTaskList()
-        Dim oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-        Dim oTaskTable As netwyrksDataSet.taskDataTable = oTaskTa.GetData()
+        Dim oTaskTa As New MyBusinessDataSetTableAdapters.taskTableAdapter
+        Dim oTaskTable As MyBusinessDataSet.taskDataTable = oTaskTa.GetData()
         CbTask.DataSource = oTaskTable
         CbTask.ValueMember = "taskid"
         CbTask.DisplayMember = "task_name"

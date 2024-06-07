@@ -44,7 +44,7 @@ Public Class TemplateTaskBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTemplateTask As netwyrksDataSet.template_taskRow) As TemplateTaskBuilder
+    Public Function StartingWith(ByVal oTemplateTask As MyBusinessDataSet.template_taskRow) As TemplateTaskBuilder
         With oTemplateTask
             _templatetaskId = .templatetask_id
             _templateId = .template_id

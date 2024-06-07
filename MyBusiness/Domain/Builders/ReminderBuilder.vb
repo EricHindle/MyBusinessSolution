@@ -51,7 +51,7 @@ Public Class ReminderBuilder
         _callback = False
         Return Me
     End Function
-    Public Function StartingWith(ByVal oReminder As netwyrksDataSet.diaryRow) As ReminderBuilder
+    Public Function StartingWith(ByVal oReminder As MyBusinessDataSet.diaryRow) As ReminderBuilder
         If oReminder IsNot Nothing Then
             With oReminder
                 _diaryId = .diary_id

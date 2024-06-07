@@ -13,10 +13,10 @@ Public Class FrmJobMaint
 #Region "variables"
 
     Private isLoading As Boolean = False
-    Private ReadOnly oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
-    Private ReadOnly oCustListTable As New netwyrksDataSet.customerDataTable
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
+    Private ReadOnly oCustTa As New MyBusinessDataSetTableAdapters.customerTableAdapter
+    Private ReadOnly oCustListTable As New MyBusinessDataSet.customerDataTable
+    Private ReadOnly oUserTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
+    Private ReadOnly oUserTable As New MyBusinessDataSet.usersDataTable
     Private _job As Job
     Private _currentJobId As Integer = -1
     Private _customerId As Integer

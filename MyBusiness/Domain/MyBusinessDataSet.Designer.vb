@@ -16111,7 +16111,7 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function TruncateCustomer() As Integer
+        Public Overloads Overridable Function TruncateCustomers() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -19106,9 +19106,9 @@ Namespace MyBusinessDataSetTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        job_product_id, jp_quantity, jp_created, jp_changed, jp_product_id,"& _ 
-                " jp_job_id, jp_taxable, jp_tax_rate, jp_price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            job_product"
+            Me._commandCollection(1).CommandText = "DELETE FROM job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (job_product_id = @id)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "job_product_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "DELETE FROM job_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (jp_job_id = @jobId)"
@@ -19574,8 +19574,9 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeleteJobProduct() As Integer
+        Public Overloads Overridable Function DeleteJobProduct(ByVal id As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
+            command.Parameters(0).Value = CType(id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -20629,7 +20630,7 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeleteJobTaskByJob(ByVal jobId As Integer) As Integer
+        Public Overloads Overridable Function DeleteJobTasksByJob(ByVal jobId As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             command.Parameters(0).Value = CType(jobId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
@@ -21663,7 +21664,7 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function TruncateTable() As Integer
+        Public Overloads Overridable Function TruncateProducts() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -22115,33 +22116,6 @@ Namespace MyBusinessDataSetTableAdapters
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "TRUNCATE TABLE supplier"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_name", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_name", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_name", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_name", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_address_1", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_1", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_address_1", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_1", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_address_2", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_2", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_address_2", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_2", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_address_3", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_3", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_address_3", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_3", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_address_4", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_4", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_address_4", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_address_4", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_postcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_postcode", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_postcode", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_postcode", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_telephone", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_telephone", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_telephone", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_telephone", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_email", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_email", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_discount_percent", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_discount_percent", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_discount_percent", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 9, 2, "supplier_discount_percent", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_created", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_created", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_created", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_created", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_changed", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_changed", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_changed", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_changed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_amazon", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_amazon", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_amazon", Global.System.Data.SqlDbType.TinyInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_amazon", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_supplier_url", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_url", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_supplier_url", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "supplier_url", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "UPDATE       supplier"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                supplier_name = @supplier_name, supplie"& _ 
@@ -22804,166 +22778,8 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function TruncateSupplier( _
-                    ByVal Original_supplier_id As Integer,  _
-                    ByVal IsNull_supplier_name As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_name As String,  _
-                    ByVal IsNull_supplier_address_1 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_address_1 As String,  _
-                    ByVal IsNull_supplier_address_2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_address_2 As String,  _
-                    ByVal IsNull_supplier_address_3 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_address_3 As String,  _
-                    ByVal IsNull_supplier_address_4 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_address_4 As String,  _
-                    ByVal IsNull_supplier_postcode As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_postcode As String,  _
-                    ByVal IsNull_supplier_telephone As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_telephone As String,  _
-                    ByVal IsNull_supplier_email As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_email As String,  _
-                    ByVal IsNull_supplier_discount_percent As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_discount_percent As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_supplier_created As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_created As Global.System.Nullable(Of Date),  _
-                    ByVal IsNull_supplier_changed As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_changed As Global.System.Nullable(Of Date),  _
-                    ByVal IsNull_supplier_amazon As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_amazon As Global.System.Nullable(Of Byte),  _
-                    ByVal IsNull_supplier_url As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_supplier_url As String) As Integer
+        Public Overloads Overridable Function TruncateSuppliers() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
-            command.Parameters(0).Value = CType(Original_supplier_id,Integer)
-            If (IsNull_supplier_name.HasValue = true) Then
-                command.Parameters(1).Value = CType(IsNull_supplier_name.Value,Integer)
-            Else
-                command.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_name Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(2).Value = CType(Original_supplier_name,String)
-            End If
-            If (IsNull_supplier_address_1.HasValue = true) Then
-                command.Parameters(3).Value = CType(IsNull_supplier_address_1.Value,Integer)
-            Else
-                command.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_address_1 Is Nothing) Then
-                command.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(4).Value = CType(Original_supplier_address_1,String)
-            End If
-            If (IsNull_supplier_address_2.HasValue = true) Then
-                command.Parameters(5).Value = CType(IsNull_supplier_address_2.Value,Integer)
-            Else
-                command.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_address_2 Is Nothing) Then
-                command.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(6).Value = CType(Original_supplier_address_2,String)
-            End If
-            If (IsNull_supplier_address_3.HasValue = true) Then
-                command.Parameters(7).Value = CType(IsNull_supplier_address_3.Value,Integer)
-            Else
-                command.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_address_3 Is Nothing) Then
-                command.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(8).Value = CType(Original_supplier_address_3,String)
-            End If
-            If (IsNull_supplier_address_4.HasValue = true) Then
-                command.Parameters(9).Value = CType(IsNull_supplier_address_4.Value,Integer)
-            Else
-                command.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_address_4 Is Nothing) Then
-                command.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(10).Value = CType(Original_supplier_address_4,String)
-            End If
-            If (IsNull_supplier_postcode.HasValue = true) Then
-                command.Parameters(11).Value = CType(IsNull_supplier_postcode.Value,Integer)
-            Else
-                command.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_postcode Is Nothing) Then
-                command.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(12).Value = CType(Original_supplier_postcode,String)
-            End If
-            If (IsNull_supplier_telephone.HasValue = true) Then
-                command.Parameters(13).Value = CType(IsNull_supplier_telephone.Value,Integer)
-            Else
-                command.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_telephone Is Nothing) Then
-                command.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(14).Value = CType(Original_supplier_telephone,String)
-            End If
-            If (IsNull_supplier_email.HasValue = true) Then
-                command.Parameters(15).Value = CType(IsNull_supplier_email.Value,Integer)
-            Else
-                command.Parameters(15).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_email Is Nothing) Then
-                command.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(16).Value = CType(Original_supplier_email,String)
-            End If
-            If (IsNull_supplier_discount_percent.HasValue = true) Then
-                command.Parameters(17).Value = CType(IsNull_supplier_discount_percent.Value,Integer)
-            Else
-                command.Parameters(17).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_discount_percent.HasValue = true) Then
-                command.Parameters(18).Value = CType(Original_supplier_discount_percent.Value,Decimal)
-            Else
-                command.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_supplier_created.HasValue = true) Then
-                command.Parameters(19).Value = CType(IsNull_supplier_created.Value,Integer)
-            Else
-                command.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_created.HasValue = true) Then
-                command.Parameters(20).Value = CType(Original_supplier_created.Value,Date)
-            Else
-                command.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_supplier_changed.HasValue = true) Then
-                command.Parameters(21).Value = CType(IsNull_supplier_changed.Value,Integer)
-            Else
-                command.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_changed.HasValue = true) Then
-                command.Parameters(22).Value = CType(Original_supplier_changed.Value,Date)
-            Else
-                command.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_supplier_amazon.HasValue = true) Then
-                command.Parameters(23).Value = CType(IsNull_supplier_amazon.Value,Integer)
-            Else
-                command.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_amazon.HasValue = true) Then
-                command.Parameters(24).Value = CType(Original_supplier_amazon.Value,Byte)
-            Else
-                command.Parameters(24).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_supplier_url.HasValue = true) Then
-                command.Parameters(25).Value = CType(IsNull_supplier_url.Value,Integer)
-            Else
-                command.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            If (Original_supplier_url Is Nothing) Then
-                command.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(26).Value = CType(Original_supplier_url,String)
-            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -24276,10 +24092,6 @@ Namespace MyBusinessDataSetTableAdapters
             Me._commandCollection(7).Connection = Me.Connection
             Me._commandCollection(7).CommandText = "TRUNCATE TABLE template_product"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_template_product_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "template_product_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_quantity", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "quantity", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_product_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "product_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_template_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "template_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
             Me._commandCollection(8).CommandText = "UPDATE       template_product"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                quantity = @quantity, product_i"& _ 
@@ -24549,12 +24361,8 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function TruncateTemplateProduct(ByVal Original_template_product_id As Integer, ByVal Original_quantity As Integer, ByVal Original_product_id As Integer, ByVal Original_template_id As Integer) As Integer
+        Public Overloads Overridable Function TruncateTemplateProduct() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
-            command.Parameters(0).Value = CType(Original_template_product_id,Integer)
-            command.Parameters(1).Value = CType(Original_quantity,Integer)
-            command.Parameters(2).Value = CType(Original_product_id,Integer)
-            command.Parameters(3).Value = CType(Original_template_id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -24841,9 +24649,11 @@ Namespace MyBusinessDataSetTableAdapters
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "SELECT        template_id, templatetask_cost, templatetask_id, templatetask_task_"& _ 
                 "id, templatetask_tax_rate, templatetask_taxable, templatetask_time"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        "& _ 
-                "    template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (template_id = @templateId)"
+                "    template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (template_id = @templateId) AND (templatetask_ta"& _ 
+                "sk_id = @taskId)"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@templateId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "template_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@taskId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "templatetask_task_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
             Me._commandCollection(6).CommandText = "INSERT INTO template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (templatetask_task_id, templa"& _ 
@@ -24861,13 +24671,6 @@ Namespace MyBusinessDataSetTableAdapters
             Me._commandCollection(7).Connection = Me.Connection
             Me._commandCollection(7).CommandText = "TRUNCATE TABLE template_task"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "templatetask_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_task_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "templatetask_task_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_cost", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 9, 2, "templatetask_cost", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_time", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 9, 2, "templatetask_time", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_template_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "template_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_tax_rate", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 9, 2, "templatetask_tax_rate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_templatetask_taxable", Global.System.Data.SqlDbType.TinyInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "templatetask_taxable", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
             Me._commandCollection(8).CommandText = "UPDATE       template_task"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                templatetask_task_id = @taskid, te"& _ 
@@ -24940,9 +24743,10 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByTemplateTask(ByVal dataTable As MyBusinessDataSet.template_taskDataTable, ByVal templateId As Integer) As Integer
+        Public Overloads Overridable Function FillByTemplateTask(ByVal dataTable As MyBusinessDataSet.template_taskDataTable, ByVal templateId As Integer, ByVal taskId As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(5)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(templateId,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(taskId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -25156,15 +24960,8 @@ Namespace MyBusinessDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function TruncateTemplateTask(ByVal Original_templatetask_id As Integer, ByVal Original_templatetask_task_id As Integer, ByVal Original_templatetask_cost As Decimal, ByVal Original_templatetask_time As Decimal, ByVal Original_template_id As Integer, ByVal Original_templatetask_tax_rate As Decimal, ByVal Original_templatetask_taxable As Byte) As Object
+        Public Overloads Overridable Function TruncateTemplateTask() As Object
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
-            command.Parameters(0).Value = CType(Original_templatetask_id,Integer)
-            command.Parameters(1).Value = CType(Original_templatetask_task_id,Integer)
-            command.Parameters(2).Value = CType(Original_templatetask_cost,Decimal)
-            command.Parameters(3).Value = CType(Original_templatetask_time,Decimal)
-            command.Parameters(4).Value = CType(Original_template_id,Integer)
-            command.Parameters(5).Value = CType(Original_templatetask_tax_rate,Decimal)
-            command.Parameters(6).Value = CType(Original_templatetask_taxable,Byte)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

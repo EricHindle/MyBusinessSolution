@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Data.SqlClient
 Imports HindlewareLib.Logging
 Imports HindlewareLib.NetwyrksErrorCodes
 
@@ -37,7 +38,7 @@ Public Class GlobalSettings
             'Dim i As Integer = oTa.FillById(oTable, settingName)
 
             If _setting IsNot Nothing Then
-                'Dim oRow As netwyrksDataSet.configurationRow = oTable.Rows(0)
+                'Dim oRow As MyBusinessDataSet.configurationRow = oTable.Rows(0)
                 'Dim value As String = oRow.configuration_value
                 Try
                     Select Case _setting.ValueType
@@ -66,7 +67,7 @@ Public Class GlobalSettings
                 InsertSetting(_setting)
                 rtnValue = ""
             End If
-        Catch ex As MySql.Data.MySqlClient.MySqlException
+        Catch ex As SqlException
             LogUtil.Exception("Database exception", ex, className, GetErrorCode(SystemModule.SETTINGS, ErrorType.DATABASE, FailedAction.GLOBAL_SETTINGS_EXCEPTION))
             Throw
         End Try

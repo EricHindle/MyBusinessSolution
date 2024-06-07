@@ -45,7 +45,7 @@ Public Class JobBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oJob As netwyrksDataSet.jobRow) As JobBuilder
+    Public Function StartingWith(ByVal oJob As MyBusinessDataSet.jobRow) As JobBuilder
         With oJob
             _jobId = .job_id
             _jobName = .job_name
@@ -74,7 +74,7 @@ Public Class JobBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oJp As netwyrksDataSet.v_jobproductRow) As JobBuilder
+    Public Function StartingWith(ByVal oJp As MyBusinessDataSet.v_jobproductRow) As JobBuilder
         With oJp
             _jobId = .job_id
             _jobName = .job_name

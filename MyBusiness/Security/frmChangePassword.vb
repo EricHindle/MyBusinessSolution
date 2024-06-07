@@ -18,8 +18,8 @@ Public Class FrmChangePassword
     Private userId As Integer = 0
     Private ReadOnly salt As String = ""
     Private myIdentity As NetwyrksIIdentity = Nothing
-    '  Private ReadOnly oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    '  Private ReadOnly oTable As New netwyrksDataSet.userDataTable
+    '  Private ReadOnly oTa As New MyBusinessDataSetTableAdapters.userTableAdapter
+    '  Private ReadOnly oTable As New MyBusinessDataSet.userDataTable
 #End Region
 #Region "properties"
     Private _forceChange As Boolean

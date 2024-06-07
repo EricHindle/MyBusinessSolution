@@ -53,8 +53,8 @@ Public Class NetwyrksIIdentity
         Dim storedHashedTempPW As String = ""
         Dim salt As String = ""
         Dim role As String = "Guest"
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
+        Dim oTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
+        Dim oTable As New MyBusinessDataSet.usersDataTable
         Try
             hashedUser = AuthenticationUtil.hashedUsername(username)
         Catch ex As Exception
@@ -66,7 +66,7 @@ Public Class NetwyrksIIdentity
                 Throw New AuthenticationException("No registered users")
             End If
             If oTa.FillByLogin(oTable, hashedUser) = 1 Then
-                Dim oRow As netwyrksDataSet.userRow = oTable.Rows(0)
+                Dim oRow As MyBusinessDataSet.usersRow = oTable.Rows(0)
                 storedHashedPW = oRow.user_password
                 storedHashedTempPW = If(oRow.Istemp_passwordNull, Nothing, oRow.temp_password)
                 salt = oRow.salt
@@ -101,6 +101,8 @@ Public Class NetwyrksIIdentity
                 '    roleValue = ApplicationServices.BuiltInRole.Administrator
                 rtnVal = True
             End If
+            'roleValue = ApplicationServices.BuiltInRole.Administrator
+            'rtnVal = True
         Catch ex As Exception
             MsgBox("Exception occurred during authentication:" & vbCrLf & ex.Message, MsgBoxStyle.Exclamation, "Access Error")
         End Try

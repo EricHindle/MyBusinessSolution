@@ -11,8 +11,8 @@ Public Class FrmDisplayAudit
     Private Const FORM_NAME As String = "audit"
 #End Region
 #Region "variables"
-    Private ReadOnly oTa As New netwyrksDataSetTableAdapters.auditTableAdapter
-    Private ReadOnly oTable As New netwyrksDataSet.auditDataTable
+    Private ReadOnly oTa As New MyBusinessDataSetTableAdapters.auditTableAdapter
+    Private ReadOnly oTable As New MyBusinessDataSet.auditDataTable
 #End Region
 #Region "form handlers"
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

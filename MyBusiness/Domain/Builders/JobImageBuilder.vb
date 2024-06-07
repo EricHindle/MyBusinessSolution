@@ -35,7 +35,7 @@ Public Class JobImageBuilder
         Return Me
     End Function
 
-    Public Function StartingWith(pRow As netwyrksDataSet.job_imageRow) As JobImageBuilder
+    Public Function StartingWith(pRow As MyBusinessDataSet.job_imageRow) As JobImageBuilder
         With pRow
             _imageId = .imageid
             _jobId = .jobid

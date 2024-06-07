@@ -14,40 +14,40 @@ Module ModDatabase
     Private Const MODULE_NAME As String = "DataFunctions"
 #End Region
 #Region "adapters"
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
-    Private ReadOnly oAuditTa As New netwyrksDataSetTableAdapters.auditTableAdapter
-    Private ReadOnly oAuditTable As New netwyrksDataSet.auditDataTable
-    Private ReadOnly oConfigurationTa As New netwyrksDataSetTableAdapters.configurationTableAdapter
-    Private ReadOnly oConfigurationTable As New netwyrksDataSet.configurationDataTable
-    Private ReadOnly oCustomerTa As New netwyrksDataSetTableAdapters.customerTableAdapter
-    Private ReadOnly oCustomerTable As New netwyrksDataSet.customerDataTable
-    Private ReadOnly oJobTa As New netwyrksDataSetTableAdapters.jobTableAdapter
-    Private ReadOnly oJobTable As New netwyrksDataSet.jobDataTable
-    Private ReadOnly oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
-    Private ReadOnly oJobProductTable As New netwyrksDataSet.job_productDataTable
-    Private ReadOnly oProductTa As New netwyrksDataSetTableAdapters.productTableAdapter
-    Private ReadOnly oProductTable As New netwyrksDataSet.productDataTable
-    Private ReadOnly oJobTaskTa As New netwyrksDataSetTableAdapters.job_taskTableAdapter
-    Private ReadOnly oJobTaskTable As New netwyrksDataSet.job_taskDataTable
-    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.taskTableAdapter
-    Private ReadOnly oTaskTable As New netwyrksDataSet.taskDataTable
-    Private ReadOnly oDiaryTa As New netwyrksDataSetTableAdapters.diaryTableAdapter
-    Private ReadOnly oDiaryTable As New netwyrksDataSet.diaryDataTable
-    Private ReadOnly oSupplierTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-    Private ReadOnly oSupplierTable As New netwyrksDataSet.supplierDataTable
-    Private ReadOnly oJobProductViewTa As New netwyrksDataSetTableAdapters.v_jobproductTableAdapter
-    Private ReadOnly oJobProductViewTable As New netwyrksDataSet.v_jobproductDataTable
-    Private ReadOnly oJobImageTa As New netwyrksDataSetTableAdapters.job_imageTableAdapter
-    Private ReadOnly oJobImageTable As New netwyrksDataSet.job_imageDataTable
-    Private ReadOnly oTemplateTa As New netwyrksDataSetTableAdapters.templateTableAdapter
-    Private ReadOnly oTemplateTable As New netwyrksDataSet.templateDataTable
-    Private ReadOnly oTemplateTaskTa As New netwyrksDataSetTableAdapters.template_taskTableAdapter
-    Private ReadOnly oTemplateTaskTable As New netwyrksDataSet.template_taskDataTable
-    Private ReadOnly oTemplateProductTa As New netwyrksDataSetTableAdapters.template_productTableAdapter
-    Private ReadOnly oTemplateProductTable As New netwyrksDataSet.template_productDataTable
-    Private ReadOnly oTemplateProductViewTa As New netwyrksDataSetTableAdapters.v_templateproductTableAdapter
-    Private ReadOnly oTemplateProductViewTable As New netwyrksDataSet.v_templateproductDataTable
+    Private ReadOnly oUserTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
+    Private ReadOnly oUserTable As New MyBusinessDataSet.usersDataTable
+    Private ReadOnly oAuditTa As New MyBusinessDataSetTableAdapters.auditTableAdapter
+    Private ReadOnly oAuditTable As New MyBusinessDataSet.auditDataTable
+    Private ReadOnly oConfigurationTa As New MyBusinessDataSetTableAdapters.configurationTableAdapter
+    Private ReadOnly oConfigurationTable As New MyBusinessDataSet.configurationDataTable
+    Private ReadOnly oCustomerTa As New MyBusinessDataSetTableAdapters.customerTableAdapter
+    Private ReadOnly oCustomerTable As New MyBusinessDataSet.customerDataTable
+    Private ReadOnly oJobTa As New MyBusinessDataSetTableAdapters.jobTableAdapter
+    Private ReadOnly oJobTable As New MyBusinessDataSet.jobDataTable
+    Private ReadOnly oJobProductTa As New MyBusinessDataSetTableAdapters.job_productTableAdapter
+    Private ReadOnly oJobProductTable As New MyBusinessDataSet.job_productDataTable
+    Private ReadOnly oProductTa As New MyBusinessDataSetTableAdapters.productTableAdapter
+    Private ReadOnly oProductTable As New MyBusinessDataSet.productDataTable
+    Private ReadOnly oJobTaskTa As New MyBusinessDataSetTableAdapters.job_taskTableAdapter
+    Private ReadOnly oJobTaskTable As New MyBusinessDataSet.job_taskDataTable
+    Private ReadOnly oTaskTa As New MyBusinessDataSetTableAdapters.taskTableAdapter
+    Private ReadOnly oTaskTable As New MyBusinessDataSet.taskDataTable
+    Private ReadOnly oDiaryTa As New MyBusinessDataSetTableAdapters.diaryTableAdapter
+    Private ReadOnly oDiaryTable As New MyBusinessDataSet.diaryDataTable
+    Private ReadOnly oSupplierTa As New MyBusinessDataSetTableAdapters.supplierTableAdapter
+    Private ReadOnly oSupplierTable As New MyBusinessDataSet.supplierDataTable
+    Private ReadOnly oJobProductViewTa As New MyBusinessDataSetTableAdapters.v_jobproductTableAdapter
+    Private ReadOnly oJobProductViewTable As New MyBusinessDataSet.v_jobproductDataTable
+    Private ReadOnly oJobImageTa As New MyBusinessDataSetTableAdapters.job_imageTableAdapter
+    Private ReadOnly oJobImageTable As New MyBusinessDataSet.job_imageDataTable
+    Private ReadOnly oTemplateTa As New MyBusinessDataSetTableAdapters.templateTableAdapter
+    Private ReadOnly oTemplateTable As New MyBusinessDataSet.templateDataTable
+    Private ReadOnly oTemplateTaskTa As New MyBusinessDataSetTableAdapters.template_taskTableAdapter
+    Private ReadOnly oTemplateTaskTable As New MyBusinessDataSet.template_taskDataTable
+    Private ReadOnly oTemplateProductTa As New MyBusinessDataSetTableAdapters.template_productTableAdapter
+    Private ReadOnly oTemplateProductTable As New MyBusinessDataSet.template_productDataTable
+    Private ReadOnly oTemplateProductViewTa As New MyBusinessDataSetTableAdapters.v_templateproductTableAdapter
+    Private ReadOnly oTemplateProductViewTable As New MyBusinessDataSet.v_templateproductDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -70,7 +70,7 @@ Module ModDatabase
         Dim _auditList As New List(Of AuditEntry)
         Try
             oAuditTa.FillByUserDateType(oAuditTable, pUsercode, pRecordType, pFromDate, pToDate)
-            For Each oRow As netwyrksDataSet.auditRow In oAuditTable.Rows
+            For Each oRow As MyBusinessDataSet.auditRow In oAuditTable.Rows
                 Dim _audit As AuditEntry = AuditEntryBuilder.AnAuditEntry.StartingWith(oRow).Build
                 _auditList.Add(_audit)
             Next
@@ -117,7 +117,7 @@ Module ModDatabase
     Public Function GetAllUsers() As List(Of User)
         Dim _userList As New List(Of User)
         oUserTa.Fill(oUserTable)
-        For Each oRow As netwyrksDataSet.userRow In oUserTable.Rows
+        For Each oRow As MyBusinessDataSet.usersRow In oUserTable.Rows
             _userList.Add(UserBuilder.AUser.StartingWith(oRow).Build)
         Next
         Return _userList
@@ -189,7 +189,7 @@ Module ModDatabase
         Try
             oJobTa.FillById(oJobTable, pId)
             If oJobTable.Rows.Count > 0 Then
-                Dim _row As netwyrksDataSet.jobRow = oJobTable.Rows(0)
+                Dim _row As MyBusinessDataSet.jobRow = oJobTable.Rows(0)
                 _job = JobBuilder.AJob.StartingWith(_row).Build
             End If
         Catch ex As DbException
@@ -201,7 +201,7 @@ Module ModDatabase
     Public Function GetAllJobs() As List(Of Job)
         Dim _jobList As New List(Of Job)
         oJobTa.Fill(oJobTable)
-        For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
+        For Each oRow As MyBusinessDataSet.jobRow In oJobTable.Rows
             _jobList.Add(JobBuilder.AJob.StartingWith(oRow).Build)
         Next
         Return _jobList
@@ -209,7 +209,7 @@ Module ModDatabase
     Public Function GetJobsForCustomer(ByVal pCustomerId As Integer) As List(Of Job)
         Dim _jobList As New List(Of Job)
         oJobTa.FillByCust(oJobTable, pCustomerId)
-        For Each oRow As netwyrksDataSet.jobRow In oJobTable.Rows
+        For Each oRow As MyBusinessDataSet.jobRow In oJobTable.Rows
             _jobList.Add(JobBuilder.AJob.StartingWith(oRow).Build)
         Next
         Return _jobList
@@ -284,7 +284,7 @@ Module ModDatabase
         Dim _taskList As New List(Of JobTask)
         Try
             oJobTaskTa.FillByJob(oJobTaskTable, _jobId)
-            For Each oRow As netwyrksDataSet.job_taskRow In oJobTaskTable.Rows
+            For Each oRow As MyBusinessDataSet.job_taskRow In oJobTaskTable.Rows
                 _taskList.Add(JobTaskBuilder.AJobTask.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
@@ -349,7 +349,7 @@ Module ModDatabase
     Public Function GetJobProductByJob(_job As Job) As List(Of JobProduct)
         Dim _jobProductList As New List(Of JobProduct)
         oJobProductTa.FillByJob(oJobProductTable, _job.JobId)
-        For Each oRow As netwyrksDataSet.job_productRow In oJobProductTable.Rows
+        For Each oRow As MyBusinessDataSet.job_productRow In oJobProductTable.Rows
             _jobProductList.Add(JobProductBuilder.AJobProduct.StartingWith(oRow).Build)
         Next
         Return _jobProductList
@@ -371,7 +371,7 @@ Module ModDatabase
 
         Try
             oJobProductViewTa.FillByJobId(oJobProductViewTable, _id)
-            For Each oRow As netwyrksDataSet.v_jobproductRow In oJobProductViewTable.Rows
+            For Each oRow As MyBusinessDataSet.v_jobproductRow In oJobProductViewTable.Rows
                 _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
@@ -384,7 +384,7 @@ Module ModDatabase
 
         Try
             oJobProductViewTa.FillByCustomerId(oJobProductViewTable, _id)
-            For Each oRow As netwyrksDataSet.v_jobproductRow In oJobProductViewTable.Rows
+            For Each oRow As MyBusinessDataSet.v_jobproductRow In oJobProductViewTable.Rows
                 _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
@@ -450,7 +450,7 @@ Module ModDatabase
     Public Function GetJobImageByJob(_job As Job) As List(Of JobImage)
         Dim _jobImageList As New List(Of JobImage)
         oJobImageTa.FillByJobId(oJobImageTable, _job.JobId)
-        For Each oRow As netwyrksDataSet.job_imageRow In oJobImageTable.Rows
+        For Each oRow As MyBusinessDataSet.job_imageRow In oJobImageTable.Rows
             _jobImageList.Add(JobImageBuilder.aJobImage.StartingWith(oRow).Build)
         Next
         Return _jobImageList
@@ -458,7 +458,7 @@ Module ModDatabase
     Public Function GetJobImageByJobFile(pJob As Job, pFilename As String) As List(Of JobImage)
         Dim _jobImageList As New List(Of JobImage)
         oJobImageTa.FillByJobFilename(oJobImageTable, pFilename, pJob.JobId)
-        For Each oRow As netwyrksDataSet.job_imageRow In oJobImageTable.Rows
+        For Each oRow As MyBusinessDataSet.job_imageRow In oJobImageTable.Rows
             _jobImageList.Add(JobImageBuilder.aJobImage.StartingWith(oRow).Build)
         Next
         Return _jobImageList
@@ -503,7 +503,7 @@ Module ModDatabase
         Dim _product As Product = ProductBuilder.AProduct.StartingWithNothing.Build
         oProductTa.FillById(oProductTable, pId)
         If oProductTable.Rows.Count > 0 Then
-            Dim _row As netwyrksDataSet.productRow = oProductTable.Rows(0)
+            Dim _row As MyBusinessDataSet.productRow = oProductTable.Rows(0)
             _product = ProductBuilder.AProduct.StartingWith(_row).Build
         End If
         Return _product
@@ -511,7 +511,7 @@ Module ModDatabase
     Public Function GetAllProducts() As List(Of Product)
         Dim _productList As New List(Of Product)
         oProductTa.Fill(oProductTable)
-        For Each oRow As netwyrksDataSet.productRow In oProductTable.Rows
+        For Each oRow As MyBusinessDataSet.productRow In oProductTable.Rows
             _productList.Add(ProductBuilder.AProduct.StartingWith(oRow).Build)
         Next
         Return _productList
@@ -519,7 +519,7 @@ Module ModDatabase
     Public Function GetProductsBySupplier(ByVal _suppId) As List(Of Product)
         Dim _productList As New List(Of Product)
         oProductTa.FillBySupplier(oProductTable, _suppId)
-        For Each oRow As netwyrksDataSet.productRow In oProductTable.Rows
+        For Each oRow As MyBusinessDataSet.productRow In oProductTable.Rows
             _productList.Add(ProductBuilder.AProduct.StartingWith(oRow).Build)
         Next
         Return _productList
@@ -543,7 +543,7 @@ Module ModDatabase
     Public Function GetCustomers() As List(Of Customer)
         Dim _customerList As New List(Of Customer)
         oCustomerTa.Fill(oCustomerTable)
-        For Each oRow As netwyrksDataSet.customerRow In oCustomerTable.Rows
+        For Each oRow As MyBusinessDataSet.customerRow In oCustomerTable.Rows
             _customerList.Add(CustomerBuilder.ACustomer.StartingWith(oRow).Build)
         Next
         Return _customerList
@@ -553,7 +553,7 @@ Module ModDatabase
         Try
             oCustomerTa.FillById(oCustomerTable, pCustId)
             If oCustomerTable.Rows.Count > 0 Then
-                Dim _row As netwyrksDataSet.customerRow = oCustomerTable.Rows(0)
+                Dim _row As MyBusinessDataSet.customerRow = oCustomerTable.Rows(0)
                 _cust = CustomerBuilder.ACustomer.StartingWith(_row).Build
             End If
         Catch ex As DbException
@@ -615,7 +615,7 @@ Module ModDatabase
     Public Function GetSuppliers() As List(Of Supplier)
         Dim _supplierList As New List(Of Supplier)
         oSupplierTa.Fill(oSupplierTable)
-        For Each oRow As netwyrksDataSet.supplierRow In oSupplierTable.Rows
+        For Each oRow As MyBusinessDataSet.supplierRow In oSupplierTable.Rows
             _supplierList.Add(SupplierBuilder.ASupplier.StartingWith(oRow).Build)
         Next
         Return _supplierList
@@ -625,7 +625,7 @@ Module ModDatabase
         Try
             oSupplierTa.FillById(oSupplierTable, pSuppId)
             If oSupplierTable.Rows.Count > 0 Then
-                Dim _row As netwyrksDataSet.supplierRow = oSupplierTable.Rows(0)
+                Dim _row As MyBusinessDataSet.supplierRow = oSupplierTable.Rows(0)
                 _supp = SupplierBuilder.ASupplier.StartingWith(_row).Build
             End If
         Catch ex As DbException
@@ -732,7 +732,7 @@ Module ModDatabase
     Public Function GetAllReminders() As List(Of Reminder)
         Dim _remList As New List(Of Reminder)
         oDiaryTa.Fill(oDiaryTable)
-        For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+        For Each oRow As MyBusinessDataSet.diaryRow In oDiaryTable.Rows
             _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
         Next
         Return _remList
@@ -740,7 +740,7 @@ Module ModDatabase
     Public Function GetRemindersForUser(ByVal pUserId As Integer) As List(Of Reminder)
         Dim _remList As New List(Of Reminder)
         oDiaryTa.FillByUserId(oDiaryTable, pUserId)
-        For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+        For Each oRow As MyBusinessDataSet.diaryRow In oDiaryTable.Rows
             _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
         Next
         Return _remList
@@ -832,7 +832,7 @@ Module ModDatabase
         Dim _alertList As New List(Of Reminder)
         Try
             oDiaryTa.FillByCallbackAlert(oDiaryTable, Now, DateAdd(DateInterval.Minute, My.Settings.alertNotice * 1.5, Now), userId)
-            For Each oRow As netwyrksDataSet.diaryRow In oDiaryTable.Rows
+            For Each oRow As MyBusinessDataSet.diaryRow In oDiaryTable.Rows
                 Dim _alert As Reminder = ReminderBuilder.AReminder.StartingWith(oRow).Build
                 _alertList.Add(_alert)
             Next
@@ -987,63 +987,63 @@ Module ModDatabase
     End Function
 #End Region
 #Region "getdata"
-    Public Function GetAuditTable() As netwyrksDataSet.auditDataTable
+    Public Function GetAuditTable() As MyBusinessDataSet.auditDataTable
         LogUtil.Info("Getting Audit table", MODULE_NAME)
         Return oAuditTa.GetData()
     End Function
-    Public Function GetConfigurationTable() As netwyrksDataSet.configurationDataTable
+    Public Function GetConfigurationTable() As MyBusinessDataSet.configurationDataTable
         LogUtil.Info("Getting Configuration table", MODULE_NAME)
         Return oConfigurationTa.GetData()
     End Function
-    Public Function GetCustomerTable() As netwyrksDataSet.customerDataTable
+    Public Function GetCustomerTable() As MyBusinessDataSet.customerDataTable
         LogUtil.Info("Getting Customer table", MODULE_NAME)
         Return oCustomerTa.GetData()
     End Function
-    Public Function GetJobTable() As netwyrksDataSet.jobDataTable
+    Public Function GetJobTable() As MyBusinessDataSet.jobDataTable
         LogUtil.Info("Getting Job table", MODULE_NAME)
         Return oJobTa.GetData()
     End Function
-    Public Function GetJob_ProductTable() As netwyrksDataSet.job_productDataTable
+    Public Function GetJob_ProductTable() As MyBusinessDataSet.job_productDataTable
         LogUtil.Info("Getting Job_Product table", MODULE_NAME)
         Return oJobProductTa.GetData()
     End Function
-    Public Function GetJob_TaskTable() As netwyrksDataSet.job_taskDataTable
+    Public Function GetJob_TaskTable() As MyBusinessDataSet.job_taskDataTable
         LogUtil.Info("Getting Job_Task table", MODULE_NAME)
         Return oJobTaskTa.GetData()
     End Function
-    Public Function GetJob_ImageTable() As netwyrksDataSet.job_imageDataTable
+    Public Function GetJob_ImageTable() As MyBusinessDataSet.job_imageDataTable
         LogUtil.Info("Getting Job_Image table", MODULE_NAME)
         Return oJobImageTa.GetData()
     End Function
-    Public Function GetProductTable() As netwyrksDataSet.productDataTable
+    Public Function GetProductTable() As MyBusinessDataSet.productDataTable
         LogUtil.Info("Getting Product table", MODULE_NAME)
         Return oProductTa.GetData()
     End Function
-    Public Function GetTaskTable() As netwyrksDataSet.taskDataTable
+    Public Function GetTaskTable() As MyBusinessDataSet.taskDataTable
         LogUtil.Info("Getting Task table", MODULE_NAME)
         Return oTaskTa.GetData()
     End Function
-    Public Function GetUserTable() As netwyrksDataSet.userDataTable
+    Public Function GetUserTable() As MyBusinessDataSet.usersDataTable
         LogUtil.Info("Getting User table", MODULE_NAME)
         Return oUserTa.GetData()
     End Function
-    Public Function GetDiaryTable() As netwyrksDataSet.diaryDataTable
+    Public Function GetDiaryTable() As MyBusinessDataSet.diaryDataTable
         LogUtil.Info("Getting Diary table", MODULE_NAME)
         Return oDiaryTa.GetData()
     End Function
-    Public Function GetSupplierTable() As netwyrksDataSet.supplierDataTable
+    Public Function GetSupplierTable() As MyBusinessDataSet.supplierDataTable
         LogUtil.Info("Getting Supplier table", MODULE_NAME)
         Return oSupplierTa.GetData()
     End Function
-    Public Function GetTemplateTable() As netwyrksDataSet.templateDataTable
+    Public Function GetTemplateTable() As MyBusinessDataSet.templateDataTable
         LogUtil.Info("Getting Template table", MODULE_NAME)
         Return oTemplateTa.GetData
     End Function
-    Public Function GetTemplate_TaskTable() As netwyrksDataSet.template_taskDataTable
+    Public Function GetTemplate_TaskTable() As MyBusinessDataSet.template_taskDataTable
         LogUtil.Info("Getting Template Task table", MODULE_NAME)
         Return oTemplateTaskTa.GetData
     End Function
-    Public Function GetTemplate_ProductTable() As netwyrksDataSet.template_productDataTable
+    Public Function GetTemplate_ProductTable() As MyBusinessDataSet.template_productDataTable
         LogUtil.Info("Getting Template Product table", MODULE_NAME)
         Return oTemplateProductTa.GetData
     End Function
@@ -1054,7 +1054,7 @@ Module ModDatabase
         Dim _templateList As New List(Of Template)
         Try
             oTemplateTa.Fill(oTemplateTable)
-            For Each oRow As netwyrksDataSet.templateRow In oTemplateTable.Rows
+            For Each oRow As MyBusinessDataSet.templateRow In oTemplateTable.Rows
                 _templateList.Add(TemplateBuilder.ATemplate.StartingWith(oRow).Build)
             Next
         Catch ex As DbException
@@ -1122,7 +1122,7 @@ Module ModDatabase
         Dim _templateProductList As New List(Of TemplateProduct)
         Try
             oTemplateProductTa.FillByTemplateId(oTemplateProductTable, pTemplateId)
-            For Each oRow As netwyrksDataSet.template_productRow In oTemplateProductTable.Rows
+            For Each oRow As MyBusinessDataSet.template_productRow In oTemplateProductTable.Rows
                 _templateProductList.Add(TemplateProductBuilder.ATemplateProduct.StartingWith(oRow).Build)
             Next
         Catch ex As DbException
@@ -1158,7 +1158,7 @@ Module ModDatabase
         Dim oFullTemplateProductList As New List(Of FullTemplateProduct)
         Try
             oTemplateProductViewTa.FillByTemplateId(oTemplateProductViewTable, pId)
-            For Each oRow As netwyrksDataSet.v_templateproductRow In oTemplateProductViewTable.Rows
+            For Each oRow As MyBusinessDataSet.v_templateproductRow In oTemplateProductViewTable.Rows
                 oFullTemplateProductList.Add(FullTemplateProductBuilder.ATemplateProduct.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
@@ -1212,7 +1212,7 @@ Module ModDatabase
         Dim _templateTaskList As New List(Of TemplateTask)
         Try
             oTemplateTaskTa.FillByTemplateId(oTemplateTaskTable, pTemplateId)
-            For Each oRow As netwyrksDataSet.template_taskRow In oTemplateTaskTable.Rows
+            For Each oRow As MyBusinessDataSet.template_taskRow In oTemplateTaskTable.Rows
                 _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
             Next
         Catch ex As DbException
@@ -1292,7 +1292,7 @@ Module ModDatabase
         Try
             oConfigurationTa.FillById(oConfigurationTable, pSettingName)
             If oConfigurationTable.Rows.Count = 1 Then
-                Dim orow As netwyrksDataSet.configurationRow = oConfigurationTable.Rows(0)
+                Dim orow As MyBusinessDataSet.configurationRow = oConfigurationTable.Rows(0)
                 rtnValue = GlobalSettingBuilder.AGlobalSetting.StartingWith(orow).Build
             End If
         Catch ex As DbException

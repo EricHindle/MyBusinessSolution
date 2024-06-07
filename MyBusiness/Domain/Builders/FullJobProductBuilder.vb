@@ -36,7 +36,7 @@ Public Class FullJobProductBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oRow As netwyrksDataSet.v_jobproductRow) As FullJobProductBuilder
+    Public Function StartingWith(ByVal oRow As MyBusinessDataSet.v_jobproductRow) As FullJobProductBuilder
         With oRow
             _jobProductId = .job_product_id
             _job = JobBuilder.AJob.StartingWith(oRow).Build

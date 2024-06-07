@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports System.Data.SqlClient
 Imports HindlewareLib.Logging
 
 Public Class LoginForm
@@ -23,15 +24,15 @@ Public Class LoginForm
     End Sub
 
     Private Sub LoginForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        _companyName = GlobalSettings.getStringSetting(GlobalSettings.COMPANY_NAME)
+        _companyName = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_NAME)
         InitialiseLoginForm()
         Show()
         Refresh()
         If InitialiseApplication() Then
-            logutil.info("Settings:")
-            logutil.info(" Auto Tidy           : " & My.Settings.AutoTidy)
-            logutil.info(" Retention period    : " & My.Settings.RetentionPeriod)
-            logutil.info(" Spell Check enabled : " & My.Settings.splchkEnabled)
+            LogUtil.Info("Settings:")
+            LogUtil.Info(" Auto Tidy           : " & My.Settings.AutoTidy)
+            LogUtil.Info(" Retention period    : " & My.Settings.RetentionPeriod)
+            LogUtil.Info(" Spell Check enabled : " & My.Settings.splchkEnabled)
         Else
             Close()
         End If
@@ -134,7 +135,7 @@ Public Class LoginForm
         Try
             GlobalSettings.LoadGlobalSettings()
             Try
-                setFolderNames()
+                SetFolderNames()
                 CreateMissingFolders()
                 LogUtil.LogFolder = sLogFolder
                 LogUtil.StartLogging(My.Settings.netwyrksConnectionString)
@@ -151,7 +152,7 @@ Public Class LoginForm
                 MsgBox("Error initialising the application:" & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Initialisation Error")
                 rtnVal = False
             End Try
-        Catch ex1 As MySql.Data.MySqlClient.MySqlException
+        Catch ex1 As SqlException
             MsgBox(ex1.Message & vbCrLf & vbCrLf & "Contact support to:-" & vbCrLf & "  Check that the application has been activated" & vbCrLf & "  Check that the database is available" & vbCrLf & vbCrLf & "*** SERS will now close ***", MsgBoxStyle.Critical, "SERS Database Error")
             rtnVal = False
         Catch ex As Exception

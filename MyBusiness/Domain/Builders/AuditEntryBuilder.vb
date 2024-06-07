@@ -45,7 +45,7 @@ Public Class AuditEntryBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(_auditRow As netwyrksDataSet.auditRow) As AuditEntryBuilder
+    Public Function StartingWith(_auditRow As MyBusinessDataSet.auditRow) As AuditEntryBuilder
         With _auditRow
             _auditId = .audit_id
             _auditUsercode = If(.Isaudit_user_idNull, "", .audit_user_id)

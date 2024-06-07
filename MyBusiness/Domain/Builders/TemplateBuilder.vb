@@ -27,7 +27,7 @@ Public Class TemplateBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTemplate As netwyrksDataSet.templateRow) As TemplateBuilder
+    Public Function StartingWith(ByVal oTemplate As MyBusinessDataSet.templateRow) As TemplateBuilder
         With oTemplate
             _templateId = .template_id
             _templateName = .template_name

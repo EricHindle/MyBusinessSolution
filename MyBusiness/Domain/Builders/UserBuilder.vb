@@ -28,8 +28,8 @@ Public Class UserBuilder
         Return New UserBuilder
     End Function
     Public Function StartingWith(ByVal pUserId As Integer) As UserBuilder
-        Dim oUserTable As New netwyrksDataSet.userDataTable
-        Dim oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
+        Dim oUserTable As New MyBusinessDataSet.usersDataTable
+        Dim oUserTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
         If oUserTa.FillById(oUserTable, pUserId) > 0 Then
             StartingWith(oUserTable.Rows(0))
         Else
@@ -39,7 +39,7 @@ Public Class UserBuilder
         oUserTa.Dispose()
         Return Me
     End Function
-    Public Function StartingWith(ByRef pUserRow As netwyrksDataSet.userRow) As UserBuilder
+    Public Function StartingWith(ByRef pUserRow As MyBusinessDataSet.usersRow) As UserBuilder
         If pUserRow IsNot Nothing Then
             With pUserRow
                 _userId = .user_id

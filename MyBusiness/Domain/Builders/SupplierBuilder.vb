@@ -21,10 +21,10 @@ Public Class SupplierBuilder
         Return New SupplierBuilder
     End Function
     Public Function StartingWith(ByVal SupplierId As Integer) As SupplierBuilder
-        Dim oSupplierTa As New netwyrksDataSetTableAdapters.supplierTableAdapter
-        Dim oSupplierTable As New netwyrksDataSet.supplierDataTable
+        Dim oSupplierTa As New MyBusinessDataSetTableAdapters.supplierTableAdapter
+        Dim oSupplierTable As New MyBusinessDataSet.supplierDataTable
         If oSupplierTa.FillById(oSupplierTable, SupplierId) > 0 Then
-            Dim _row As netwyrksDataSet.supplierRow = oSupplierTable.Rows(0)
+            Dim _row As MyBusinessDataSet.supplierRow = oSupplierTable.Rows(0)
             StartingWith(_row)
         Else
             StartingWithNothing()
@@ -49,7 +49,7 @@ Public Class SupplierBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oSupplier As netwyrksDataSet.supplierRow) As SupplierBuilder
+    Public Function StartingWith(ByVal oSupplier As MyBusinessDataSet.supplierRow) As SupplierBuilder
 
         With oSupplier
             _supplierId = .supplier_id
@@ -70,7 +70,7 @@ Public Class SupplierBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal ojp As netwyrksDataSet.v_jobproductRow) As SupplierBuilder
+    Public Function StartingWith(ByVal ojp As MyBusinessDataSet.v_jobproductRow) As SupplierBuilder
 
         With ojp
             _supplierId = .supplier_id

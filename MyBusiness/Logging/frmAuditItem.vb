@@ -12,8 +12,8 @@ Public Class FrmAuditItem
 
 #End Region
 #Region "Private variable instances"
-    Private ReadOnly oAuditTa As New netwyrksDataSetTableAdapters.auditTableAdapter
-    Private ReadOnly oAuditTable As New netwyrksDataSet.auditDataTable
+    Private ReadOnly oAuditTa As New MyBusinessDataSetTableAdapters.auditTableAdapter
+    Private ReadOnly oAuditTable As New MyBusinessDataSet.auditDataTable
 #End Region
 #Region "Properties"
     Private _auditItemId As Integer
@@ -57,7 +57,7 @@ Public Class FrmAuditItem
         If islogged Then LogUtil.AddLog(sText, level, FORM_NAME, errorCode)
     End Sub
     Private Sub FillAuditItem()
-        Dim oRow As netwyrksDataSet.auditRow = oAuditTable.Rows(0)
+        Dim oRow As MyBusinessDataSet.auditRow = oAuditTable.Rows(0)
         lblAction.Text = oRow.audit_action.ToUpper
         lblComputerName.Text = oRow.audit_computer_name
         lblDateChanged.Text = Format(oRow.audit_date, "dd MMM yyyy  HH:mm:ss")

@@ -33,7 +33,7 @@ Public Class FrmUserControl
             Exit Sub
         End If
 
-        '     Dim oRow As netwyrksDataSet.userRow = Nothing
+        '     Dim oRow As MyBusinessDataSet.userRow = Nothing
         oUser = UserBuilder.AUser.StartingWithNothing.Build
         If currentUserId > 0 Then
             oUser = GetUserById(currentUserId)

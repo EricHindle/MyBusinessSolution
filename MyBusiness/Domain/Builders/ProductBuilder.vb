@@ -36,7 +36,7 @@ Public Class ProductBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oProduct As netwyrksDataSet.productRow) As ProductBuilder
+    Public Function StartingWith(ByVal oProduct As MyBusinessDataSet.productRow) As ProductBuilder
         With oProduct
             _productId = .product_id
             _productName = .product_name
@@ -56,7 +56,7 @@ Public Class ProductBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oJp As netwyrksDataSet.v_jobproductRow) As ProductBuilder
+    Public Function StartingWith(ByVal oJp As MyBusinessDataSet.v_jobproductRow) As ProductBuilder
         With oJp
             _productId = .product_id
             _productName = .product_name

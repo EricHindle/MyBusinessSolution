@@ -53,7 +53,7 @@ Public Class JobTaskBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oTask As netwyrksDataSet.job_taskRow) As JobTaskBuilder
+    Public Function StartingWith(ByVal oTask As MyBusinessDataSet.job_taskRow) As JobTaskBuilder
         With oTask
             _jobtaskId = .jobtask_id
             _jobId = .jobtask_job_id

@@ -27,10 +27,10 @@ Public Class InvoicePrinter
     Private ReadOnly _companyAddress As String() = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_ADDRESS).Split("/")
     Private ReadOnly _companyEmail As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_EMAIL)
     Private ReadOnly _companyUrl As String = GlobalSettings.GetStringSetting(GlobalSettings.COMPANY_WEBSITE)
-    Private ReadOnly oTaskTa As New netwyrksDataSetTableAdapters.job_taskTableAdapter
-    Private ReadOnly oTaskTable As New netwyrksDataSet.job_taskDataTable
-    Private ReadOnly oJobProductTa As New netwyrksDataSetTableAdapters.job_productTableAdapter
-    Private ReadOnly oJobProductTable As New netwyrksDataSet.job_productDataTable
+    Private ReadOnly oTaskTa As New MyBusinessDataSetTableAdapters.job_taskTableAdapter
+    Private ReadOnly oTaskTable As New MyBusinessDataSet.job_taskDataTable
+    Private ReadOnly oJobProductTa As New MyBusinessDataSetTableAdapters.job_productTableAdapter
+    Private ReadOnly oJobProductTable As New MyBusinessDataSet.job_productDataTable
     Private Const LEFT_MARGIN As Integer = 32
     Private Const RIGHT_MARGIN As Integer = 32
     Private Const TOP_MARGIN As Integer = 32
@@ -109,7 +109,7 @@ Public Class InvoicePrinter
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax rate"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _taskTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
-        For Each oTaskRow As netwyrksDataSet.job_taskRow In oTaskTable.Rows
+        For Each oTaskRow As MyBusinessDataSet.job_taskRow In oTaskTable.Rows
             Dim oJobTask As JobTask = JobTaskBuilder.AJobTask.StartingWith(oTaskRow).Build
             Dim taxAmount As Decimal = CalcTax(oJobTask.TaskCost, oJobTask.TaskTaxRate)
             _taskTable.AddCell(_iTextManager.BuildTableCell(oJobTask.Task.TaskDescription, Element.ALIGN_LEFT))
@@ -128,7 +128,7 @@ Public Class InvoicePrinter
         _productTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax rate"))
         _productTable.AddCell(_iTextManager.BuildTableHeaderCell("Tax (£)"))
         _productTable.AddCell(_iTextManager.BuildTableHeaderCell("Total (£)"))
-        For Each oJobProduct As netwyrksDataSet.job_productRow In oJobProductTable.Rows
+        For Each oJobProduct As MyBusinessDataSet.job_productRow In oJobProductTable.Rows
             Dim oProduct As Product = GetProductById(oJobProduct.jp_product_id)
             Dim taxAmount As Decimal = CalcTax(oProduct.ProductPrice, oJobProduct.jp_tax_rate)
             _productTable.AddCell(_iTextManager.BuildTableCell(oProduct.ProductName))

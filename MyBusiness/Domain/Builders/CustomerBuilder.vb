@@ -28,10 +28,10 @@ Public Class CustomerBuilder
         Return Me
     End Function
     Public Function StartingWith(ByVal custId As Integer) As CustomerBuilder
-        Dim oCustTa As New netwyrksDataSetTableAdapters.customerTableAdapter
-        Dim oCustTable As New netwyrksDataSet.customerDataTable
+        Dim oCustTa As New MyBusinessDataSetTableAdapters.customerTableAdapter
+        Dim oCustTable As New MyBusinessDataSet.customerDataTable
         If oCustTa.FillById(oCustTable, custId) > 0 Then
-            Dim _row As netwyrksDataSet.customerRow = oCustTable.Rows(0)
+            Dim _row As MyBusinessDataSet.customerRow = oCustTable.Rows(0)
             StartingWith(_row)
         Else
             StartingWithNothing()
@@ -56,7 +56,7 @@ Public Class CustomerBuilder
 
         Return Me
     End Function
-    Public Function StartingWith(ByVal oRow As netwyrksDataSet.customerRow) As CustomerBuilder
+    Public Function StartingWith(ByVal oRow As MyBusinessDataSet.customerRow) As CustomerBuilder
         If oRow Is Nothing Then
             StartingWithNothing()
         Else
@@ -79,7 +79,7 @@ Public Class CustomerBuilder
         End If
         Return Me
     End Function
-    Public Function StartingWith(ByVal oRow As netwyrksDataSet.v_jobproductRow) As CustomerBuilder
+    Public Function StartingWith(ByVal oRow As MyBusinessDataSet.v_jobproductRow) As CustomerBuilder
         If oRow Is Nothing Then
             StartingWithNothing()
         Else

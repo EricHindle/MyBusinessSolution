@@ -87,8 +87,8 @@ Public Class AuthenticationUtil
     ''' Either password will grant access</remarks>
     Public Shared Function IsPasswordOK(ByVal string1 As String, ByVal myIdentity As NetwyrksIIdentity) As Boolean
         Dim rtnval As Boolean = False
-        Dim oTa As New netwyrksDataSetTableAdapters.userTableAdapter
-        Dim oTable As New netwyrksDataSet.userDataTable
+        Dim oTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
+        Dim oTable As New MyBusinessDataSet.usersDataTable
         Dim userId As Integer = myIdentity.UserId
         Dim salt As String
 

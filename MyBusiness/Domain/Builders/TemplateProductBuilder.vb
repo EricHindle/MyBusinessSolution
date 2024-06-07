@@ -38,7 +38,7 @@ Public Class TemplateProductBuilder
         End With
         Return Me
     End Function
-    Public Function StartingWith(ByVal oRow As netwyrksDataSet.template_productRow) As TemplateProductBuilder
+    Public Function StartingWith(ByVal oRow As MyBusinessDataSet.template_productRow) As TemplateProductBuilder
         With oRow
             _templateProductId = .template_product_id
             _product = GetProductById(.product_id)

@@ -11,8 +11,8 @@ Public Class FrmResetUserPassword
     Private Const FORM_NAME As String = "reset user password"
 #End Region
 #Region "Private variable instances"
-    Private ReadOnly oUserTa As New netwyrksDataSetTableAdapters.userTableAdapter
-    Private ReadOnly oUserTable As New netwyrksDataSet.userDataTable
+    Private ReadOnly oUserTa As New MyBusinessDataSetTableAdapters.usersTableAdapter
+    Private ReadOnly oUserTable As New MyBusinessDataSet.usersDataTable
     Private ReadOnly userItem As New Dictionary(Of Integer, String)()
 #End Region
 #Region "Form"
@@ -28,7 +28,7 @@ Public Class FrmResetUserPassword
         logutil.info("Starting", FORM_NAME)
         lblFormName.Text = FORM_NAME
         oUserTa.Fill(oUserTable)
-        For Each oUserRow As netwyrksDataSet.userRow In oUserTable.Rows
+        For Each oUserRow As MyBusinessDataSet.usersRow In oUserTable.Rows
             Dim sUsername As String = oUserRow.user_name
             Dim userId As Integer = oUserRow.user_id
             userItem.Add(userId, sUsername)
@@ -40,7 +40,7 @@ Public Class FrmResetUserPassword
     Private Sub BtnChange_Click(sender As Object, e As EventArgs) Handles btnChange.Click
         If cbSelect.SelectedIndex > -1 Then
             If oUserTa.FillById(oUserTable, cbSelect.SelectedValue) = 1 Then
-                Dim userRow As netwyrksDataSet.userRow = oUserTable.Rows(0)
+                Dim userRow As MyBusinessDataSet.usersRow = oUserTable.Rows(0)
 
                 If Not userRow.Isuser_emailNull Then
                     If AuthenticationUtil.createUserTemporaryPassword(userRow.user_id, userRow.salt, userRow.user_email) Then
