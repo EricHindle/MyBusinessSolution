@@ -138,7 +138,7 @@ Public Class LoginForm
                 SetFolderNames()
                 CreateMissingFolders()
                 LogUtil.LogFolder = sLogFolder
-                LogUtil.StartLogging(My.Settings.netwyrksConnectionString)
+                LogUtil.StartLogging(My.Settings.MyBusinessConnectionString)
                 If isVersionChange Then
                     LogUtil.Info("Version change " & oldVersion & " >> " & My.Settings.Version)
                     LogUtil.Info("Upgrading settings")

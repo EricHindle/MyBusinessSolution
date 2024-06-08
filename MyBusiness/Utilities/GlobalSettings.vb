@@ -31,7 +31,7 @@ Public Class GlobalSettings
     ''' <returns>Value of setting</returns>
     ''' <remarks></remarks>
     Public Shared Function GetSettingValue(ByVal settingName As String) As Object
-        LogUtil.Info("Getting global setting " & settingName, className)
+        LogUtil.Info("Getting setting", className)
         Dim rtnValue As Object = Nothing
         Try
             Dim _setting As GlobalSetting = GetSetting(settingName)
