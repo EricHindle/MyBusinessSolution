@@ -88,17 +88,17 @@ Public Class FrmChangePassword
             If AuthenticationUtil.isPasswordOK(txtCurrent.Text.Trim) Then
                 'Changing password
                 If txtNew.Text.Trim.Length < iMinLen Then
-                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (length)")
+                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (length)", Name)
                     MsgBox("Password must be at least " & iMinLen & " characters", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
                     Exit Sub
                 End If
                 If txtCopy.Text.Trim <> txtNew.Text.Trim Then
-                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (mis-match)")
+                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (mis-match)", Name)
                     MsgBox("Mis-matched passwords", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
                     Exit Sub
                 End If
                 If txtCurrent.Text.Trim = txtNew.Text.Trim Then
-                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (same password)")
+                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (same password)", Name)
                     MsgBox("Password must be changed", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
                     Exit Sub
                 End If
@@ -110,15 +110,15 @@ Public Class FrmChangePassword
                     DialogResult = DialogResult.OK
                     Close()
                 Else
-                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (store)")
+                    LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (store)", Name)
                     MsgBox("Unable to store new password", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
                 End If
             Else
-                LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (current password)")
+                LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (current password)", Name)
                 MsgBox("Current password is not correct", MsgBoxStyle.Exclamation, INVALID_PASSWORD)
             End If
         Catch ex As Exception
-            LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (store)")
+            LogUtil.Warn(PASSWORD_CHANGE_ERROR & " (store)", Name)
             MsgBox("Unable to store new password", MsgBoxStyle.Exclamation, "Exception")
             SetTextboxToDefault(txtCurrent, CURRENT_TEXT)
             SetTextboxToDefault(txtNew, NEW_TEXT)

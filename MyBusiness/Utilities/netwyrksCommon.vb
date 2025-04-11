@@ -175,9 +175,9 @@ Public Module netwyrksCommon
         For Each _response As SuccessResponse In _resp
             If Not String.IsNullOrEmpty(_response.Message) Then
                 If _response.IsOk Then
-                    LogUtil.Info(_response.Message)
+                    LogUtil.LogInfo(_response.Message, "")
                 Else
-                    LogUtil.Exception(_response.Message, _response.SystemException)
+                    LogUtil.LogException(_response.SystemException, _response.Message, "")
                 End If
             End If
         Next

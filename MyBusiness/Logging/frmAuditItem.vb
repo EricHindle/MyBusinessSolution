@@ -54,7 +54,7 @@ Public Class FrmAuditItem
 #Region "Subroutines"
     Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information, Optional ByVal errorCode As String = Nothing)
         lblStatus.Text = sText
-        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME, errorCode)
+        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME, errorCode, 0)
     End Sub
     Private Sub FillAuditItem()
         Dim oRow As MyBusinessDataSet.auditRow = oAuditTable.Rows(0)

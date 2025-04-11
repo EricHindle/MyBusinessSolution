@@ -47,7 +47,7 @@ Public Class LoginForm
             Dim customPrincipal As New NetwyrksIPrincipal(UsernameTextBox.Text, PasswordTextBox.Text)
             If Not customPrincipal.Identity.IsAuthenticated Then
                 ' The user is still not validated.
-                LogUtil.Warn(NOT_AUTHENTICATED)
+                LogUtil.Warn(NOT_AUTHENTICATED, Name)
                 MsgBox("The username and password pair is incorrect", MsgBoxStyle.Exclamation, "Authentication Error")
                 InitialiseLoginForm()
                 lblInitMessage.Visible = False
@@ -64,7 +64,7 @@ Public Class LoginForm
                         MsgBox("Required password change not complete", MsgBoxStyle.Exclamation, "Access Error")
                     End If
                 Else
-                    LogUtil.Warn(NOT_AUTHORISED)
+                    LogUtil.Warn(NOT_AUTHORISED, Name)
                     Throw New ApplicationException(AUTHORISATION_ERROR)
                 End If
             End If
