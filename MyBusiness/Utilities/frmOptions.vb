@@ -146,6 +146,7 @@ Public Class FrmOptions
         ChkShowTask.Checked = My.Settings.ShowTask
         NudAlertDuration.Value = My.Settings.alertDuration
         NudAlertNotice.Value = My.Settings.alertNotice
+        ChkShowClosed.Checked = My.Settings.ShowCompletedDiaryEntries
     End Sub
 
     ''' <summary>
@@ -167,6 +168,7 @@ Public Class FrmOptions
         My.Settings.ShowAllReminders = chkShowAllReminders.Checked
         My.Settings.ShowTask = ChkShowTask.Checked
         My.Settings.ShowProduct = ChkShowProduct.Checked
+        My.Settings.ShowCompletedDiaryEntries = ChkShowClosed.Checked
     End Sub
 
     ''' <summary>

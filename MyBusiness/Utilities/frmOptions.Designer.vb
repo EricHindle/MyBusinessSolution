@@ -109,6 +109,7 @@ Partial Class FrmOptions
         Me.cbSplchkAdd = New System.Windows.Forms.CheckBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.TxtZoomValue = New System.Windows.Forms.TextBox()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.ChkZoomOn = New System.Windows.Forms.CheckBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -123,7 +124,7 @@ Partial Class FrmOptions
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.txtStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.TxtZoomValue = New System.Windows.Forms.TextBox()
+        Me.ChkShowClosed = New System.Windows.Forms.CheckBox()
         Me.GroupBox10.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -211,12 +212,13 @@ Partial Class FrmOptions
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.ChkShowClosed)
         Me.GroupBox6.Controls.Add(Me.chkShowAllReminders)
         Me.GroupBox6.Controls.Add(Me.ChkShowDiary)
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(122, 6)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(200, 73)
+        Me.GroupBox6.Size = New System.Drawing.Size(200, 96)
         Me.GroupBox6.TabIndex = 10
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Diary"
@@ -257,7 +259,7 @@ Partial Class FrmOptions
         Me.GroupBox5.Controls.Add(Me.ChkCheckCallbacks)
         Me.GroupBox5.Controls.Add(Me.Label1)
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(171, 190)
+        Me.GroupBox5.Location = New System.Drawing.Point(171, 213)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(237, 105)
         Me.GroupBox5.TabIndex = 9
@@ -340,7 +342,7 @@ Partial Class FrmOptions
         Me.grpDiary.Controls.Add(Me.chkShowCustomer)
         Me.grpDiary.Controls.Add(Me.chkShowDiaryBody)
         Me.grpDiary.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpDiary.Location = New System.Drawing.Point(13, 190)
+        Me.grpDiary.Location = New System.Drawing.Point(13, 213)
         Me.grpDiary.Name = "grpDiary"
         Me.grpDiary.Size = New System.Drawing.Size(142, 186)
         Me.grpDiary.TabIndex = 8
@@ -421,7 +423,7 @@ Partial Class FrmOptions
         Me.GroupBox3.Controls.Add(Me.nudRetention)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox3.Location = New System.Drawing.Point(13, 85)
+        Me.GroupBox3.Location = New System.Drawing.Point(13, 108)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -1223,6 +1225,13 @@ Partial Class FrmOptions
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Log Viewer"
         '
+        'TxtZoomValue
+        '
+        Me.TxtZoomValue.Location = New System.Drawing.Point(261, 47)
+        Me.TxtZoomValue.Name = "TxtZoomValue"
+        Me.TxtZoomValue.Size = New System.Drawing.Size(42, 22)
+        Me.TxtZoomValue.TabIndex = 5
+        '
         'TrackBar1
         '
         Me.TrackBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -1351,12 +1360,18 @@ Partial Class FrmOptions
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(4, 17)
         '
-        'TxtZoomValue
+        'ChkShowClosed
         '
-        Me.TxtZoomValue.Location = New System.Drawing.Point(261, 47)
-        Me.TxtZoomValue.Name = "TxtZoomValue"
-        Me.TxtZoomValue.Size = New System.Drawing.Size(42, 22)
-        Me.TxtZoomValue.TabIndex = 5
+        Me.ChkShowClosed.AutoSize = True
+        Me.ChkShowClosed.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkShowClosed.ForeColor = System.Drawing.Color.Black
+        Me.ChkShowClosed.Location = New System.Drawing.Point(10, 67)
+        Me.ChkShowClosed.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.ChkShowClosed.Name = "ChkShowClosed"
+        Me.ChkShowClosed.Size = New System.Drawing.Size(136, 18)
+        Me.ChkShowClosed.TabIndex = 3
+        Me.ChkShowClosed.Text = "Show closed entries"
+        Me.ChkShowClosed.UseVisualStyleBackColor = True
         '
         'FrmOptions
         '
@@ -1519,4 +1534,5 @@ Partial Class FrmOptions
     Friend WithEvents ChkZoomOn As CheckBox
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents TxtZoomValue As TextBox
+    Friend WithEvents ChkShowClosed As CheckBox
 End Class
