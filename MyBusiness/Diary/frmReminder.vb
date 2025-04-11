@@ -57,12 +57,12 @@ Public Class FrmReminder
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closed", FORM_NAME)
+        LogUtil.LogInfo("Closed", FORM_NAME)
         My.Settings.ReminderFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Info("Starting", FORM_NAME)
+        LogUtil.LogInfo("Starting", FORM_NAME)
         GetFormPos(Me, My.Settings.ReminderFormPos)
         dtpSelectDate.Value = Today
         lblName.Text = currentUser.UserName
@@ -105,16 +105,16 @@ Public Class FrmReminder
         Try
             ct = UpdateDiary(MakeReminderFromForm)
         Catch ex As Exception
-            LogUtil.Exception(RECORD_TYPE & " update exception", ex, FORM_NAME, GetErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION))
+            LogUtil.LogException(ex, RECORD_TYPE & " update exception", FORM_NAME, TraceEventType.Error, GetErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.UPDATE_EXCEPTION), 0)
             ct = 0
         End Try
         Dim _oldReminder As Reminder = _reminder
         _reminder = GetReminderById(recordId)
         If ct = 1 Then
             AuditUtil.AddAudit(currentUser.User_code, RECORD_TYPE, recordId, AuditUtil.AuditableAction.update, _oldReminder.ToString, _reminder.ToString)
-            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " updated", True)
+            LogUtil.LogInfo(RECORD_TYPE.ToString() & " " & txtSubject.Text & " updated", Name)
         Else
-            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT updated", True, TraceEventType.Warning)
+            LogUtil.LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT updated", Name, TraceEventType.Warning)
         End If
         Close()
 
@@ -127,14 +127,14 @@ Public Class FrmReminder
             _diaryId = CreateDiary(_reminder)
 
         Catch ex As Exception
-            LogUtil.Exception(RECORD_TYPE & " creation exception", ex, FORM_NAME, GetErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.CREATION_EXCEPTION))
+            LogUtil.LogException(ex, RECORD_TYPE & " creation exception", FORM_NAME, TraceEventType.Error, GetErrorCode(SystemModule.DIARY, ErrorType.DATABASE, FailedAction.CREATION_EXCEPTION), 0)
             _diaryId = 0
         End Try
         If _diaryId > 0 Then
             AuditUtil.AddAudit(currentUser.User_code, RECORD_TYPE, _diaryId, AuditUtil.AuditableAction.create,, _reminder.ToString)
-            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " added", True)
+            LogUtil.LogInfo(RECORD_TYPE.ToString() & " " & txtSubject.Text & " added", Name)
         Else
-            LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT added", True, TraceEventType.Warning)
+            LogUtil.LogStatus(RECORD_TYPE.ToString() & " " & txtSubject.Text & " NOT added", Name, TraceEventType.Warning)
         End If
         Close()
 

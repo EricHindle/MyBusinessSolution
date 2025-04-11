@@ -68,8 +68,7 @@ Public Class FrmJobTask
             lblScreenName.Text = "Template Task"
             LogUtil.Info("Template Task", Name)
         Else
-            ShowStatus(lblStatus, "No job/template selected", Name, True)
-            MsgBox("Error: no job selected", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayStatus("No job/template selected", lblStatus, Name, True)
             Close()
         End If
         _jobtask = JobTaskBuilder.AJobTask.StartingWithNothing.Build
@@ -156,7 +155,7 @@ Public Class FrmJobTask
             End If
             Close()
         Else
-            ShowStatus(lblStatus, "Missing values. No action")
+            LogUtil.ShowStatus("Missing values. No action", lblStatus)
         End If
     End Sub
 #End Region
@@ -214,53 +213,53 @@ Public Class FrmJobTask
         Dim isAmendOk As Boolean
         If _ct = 1 Then
             isAmendOk = True
-            ShowStatus(lblStatus, "Job Task updated OK", Name, True)
+            LogUtil.ShowStatus("Job Task updated OK", lblStatus, Name)
         Else
             isAmendOk = False
-            ShowStatus(lblStatus, "Job Task NOT updated", Name, True)
+            LogUtil.ShowStatus("Job Task NOT updated", lblStatus, Name)
         End If
         Return isAmendOk
     End Function
     Private Function AmendTemplateTask() As Boolean
-        LogUtil.Info("Updating template task", Name)
+        LogUtil.LogInfo("Updating template task", Name)
         Dim _ct As Integer
         _ct = UpdateTemplateTask(_newTemplateTask)
         AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.TemplateTask, _newTemplateTask.TemplateTaskId, AuditUtil.AuditableAction.create, _templateTask.ToString, _newTemplateTask.ToString)
         Dim isAmendOk As Boolean
         If _ct = 1 Then
             isAmendOk = True
-            ShowStatus(lblStatus, "Template Task updated OK", Name, True)
+            LogUtil.ShowStatus("Template Task updated OK", lblStatus, Name)
         Else
             isAmendOk = False
-            ShowStatus(lblStatus, "Template Task NOT updated", Name, True)
+            LogUtil.ShowStatus("Template Task NOT updated", lblStatus, Name)
         End If
         Return isAmendOk
     End Function
     Private Function CreateJobTask() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting job task", Name)
+        LogUtil.LogInfo("Inserting job task", Name)
         _jobtaskId = InsertJobTask(_newJobTask)
         AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.JobTask, _jobtaskId, AuditUtil.AuditableAction.create, "", _newJobTask.ToString)
         If _jobtaskId > 0 Then
             isInsertOk = True
-            ShowStatus(lblStatus, "Job Task " & _jobtaskId & " Created OK", Name, True)
+            LogUtil.ShowStatus("Job Task " & _jobtaskId & " Created OK", lblStatus, Name)
         Else
             isInsertOk = False
-            ShowStatus(lblStatus, "Job Task NOT created", Name, True)
+            LogUtil.ShowStatus("Job Task NOT created", lblStatus, Name)
         End If
         Return isInsertOk
     End Function
     Private Function CreateTemplateTask() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting template task", Name)
+        LogUtil.LogInfo("Inserting template task", Name)
         _jobtaskId = InsertTemplatetask(_newTemplateTask)
         AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.TemplateTask, _jobtaskId, AuditUtil.AuditableAction.create, "", _newTemplateTask.ToString)
         If _jobtaskId > 0 Then
             isInsertOk = True
-            ShowStatus(lblStatus, "Template Task " & _jobtaskId & " Created OK", Name, True)
+            LogUtil.ShowStatus("Template Task " & _jobtaskId & " Created OK", lblStatus, Name)
         Else
             isInsertOk = False
-            ShowStatus(lblStatus, "Template Task NOT created", Name, True)
+            LogUtil.ShowStatus("Template Task NOT created", lblStatus, Name)
         End If
         Return isInsertOk
     End Function

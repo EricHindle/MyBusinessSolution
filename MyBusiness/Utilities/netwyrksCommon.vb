@@ -388,26 +388,6 @@ Public Module netwyrksCommon
         splash.Close()
         splash.Dispose()
     End Sub
-    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sResp As SuccessResponse, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False)
-        ShowStatus(oStatusLabel, sResp.Message, oFormName, isLogged, sResp.SystemException)
-    End Sub
-
-    Public Sub ShowStatus(ByRef oStatusLabel As Windows.Forms.ToolStripStatusLabel, ByVal sText As String, Optional ByRef oFormName As String = "", Optional ByVal isLogged As Boolean = False, Optional pEx As Exception = Nothing)
-        oStatusLabel.Text = sText
-        If isLogged Then
-            If pEx Is Nothing Then
-                LogUtil.Info(sText, oFormName)
-            Else
-                DisplayException(pEx, sText, oFormName)
-            End If
-        End If
-    End Sub
-    Public Sub DisplayException(pException As Exception, pExceptionText As String, Optional pSub As String = "")
-        LogUtil.Exception(pExceptionText, pException, pSub)
-        If pException.InnerException IsNot Nothing Then
-            LogUtil.Problem(pException.InnerException.Message, pSub)
-        End If
-    End Sub
     Public Function GetFormPosValue(ByVal sPos As String, pFormPos As FormPos) As Integer
         Dim rtnval As Integer = -1
         If sPos <> "max" AndAlso sPos <> "min" Then

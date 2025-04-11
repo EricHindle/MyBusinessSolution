@@ -120,7 +120,11 @@ Public Class FrmSupplier
     End Sub
     Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
         If Not String.IsNullOrWhiteSpace(TxtWeb.Text) Then
-            Process.Start(TxtWeb.Text)
+            Try
+                Process.Start(TxtWeb.Text)
+            Catch ex As Exception
+                LogUtil.ShowException(ex, "Exception opening web site", LblStatus, Name)
+            End Try
         End If
     End Sub
     Private Sub BtnAddJobProduct_Click(sender As Object, e As EventArgs) Handles BtnAddJobProduct.Click

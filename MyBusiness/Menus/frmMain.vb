@@ -458,7 +458,7 @@ Public Class FrmMain
         End If
         dgvDiary.Rows.Clear()
         Try
-            oReminderList = If(isShowAll, GetAllReminders(), GetRemindersForUser(currentUser.UserId))
+            oReminderList = If(isShowAll, GetAllReminders(My.Settings.ShowCompletedDiaryEntries), GetRemindersForUser(currentUser.UserId, My.Settings.ShowCompletedDiaryEntries))
             If oReminderList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
                 For Each oReminder As Reminder In oReminderList

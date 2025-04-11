@@ -22,7 +22,7 @@ Public Class FrmViewCust
 #End Region
 #Region "form handlers"
     Private Sub FrmViewCust_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", Name)
+        LogUtil.LogInfo("Closing", Name)
         My.Settings.CustViewFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub

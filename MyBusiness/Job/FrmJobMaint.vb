@@ -216,9 +216,9 @@ Public Class FrmJobMaint
             Dim _taskId As Integer = oRow.Cells(taskId.Name).Value
             If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this task?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & taskName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
                 If DeleteJobTask(_taskId) = 1 Then
-                    ShowStatus(LblStatus, "Task removed OK", Name, True)
+                    LogUtil.ShowStatus("Task removed OK", LblStatus, Name)
                 Else
-                    ShowStatus(LblStatus, "Task NOT removed", Name, True)
+                    LogUtil.ShowStatus("Task NOT removed", LblStatus, Name)
                 End If
                 FillJobTaskList(_currentJobId)
             End If
@@ -419,10 +419,10 @@ Public Class FrmJobMaint
         Dim _ct As Integer = UpdateJob(oNewJob)
         If _ct > 0 Then
             isAmendOk = True
-            ShowStatus(LblStatus, "Job updated OK", Name, True)
+            LogUtil.ShowStatus("Job updated OK", LblStatus, Name)
         Else
             isAmendOk = False
-            ShowStatus(LblStatus, "Job NOT updated", Name, True)
+            LogUtil.ShowStatus("Job NOT updated", LblStatus, Name)
         End If
         Return isAmendOk
     End Function
@@ -445,11 +445,11 @@ Public Class FrmJobMaint
             oNewJob.JobId = _currentJobId
             isInsertOk = True
             LblAction.Text = "Added the new customer"
-            ShowStatus(LblStatus, "Job " & _currentJobId & " Created OK", Name, True)
+            LogUtil.ShowStatus("Job " & _currentJobId & " Created OK", LblStatus, Name)
         Else
             isInsertOk = False
             LblAction.Text = "Job NOT created"
-            ShowStatus(LblStatus, "Job NOT created", Name, True)
+            LogUtil.ShowStatus("Job NOT created", LblStatus, Name)
         End If
         Return isInsertOk
     End Function
@@ -490,9 +490,9 @@ Public Class FrmJobMaint
             Dim _jobProductId As Integer = oRow.Cells(jpId.Name).Value
             If Global.Microsoft.VisualBasic.Interaction.MsgBox("Do you want to remove this product?" & Global.Microsoft.VisualBasic.Constants.vbCrLf & Global.MyBusiness.netwyrksConstants.QUOTES & _productName & Global.MyBusiness.netwyrksConstants.QUOTES, Global.Microsoft.VisualBasic.MsgBoxStyle.Question Or Global.Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Confirm") = Global.Microsoft.VisualBasic.MsgBoxResult.Yes Then
                 If DeleteJobProduct(_jobproductId) = 1 Then
-                    ShowStatus(LblStatus, "Product removed OK", Name, True)
+                    LogUtil.ShowStatus("Product removed OK", LblStatus, Name)
                 Else
-                    ShowStatus(LblStatus, "Product NOT removed", Name, True)
+                    LogUtil.ShowStatus("Product NOT removed", LblStatus, Name)
                 End If
                 FillProductList(_currentJobId)
             End If

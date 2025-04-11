@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2022-23 Eric Hindle
+' Copyright (c) 2022-24 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -59,7 +59,7 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closed", FORM_NAME)
+        LogUtil.LogInfo("Closed", FORM_NAME)
         My.Settings.DiaryFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
@@ -70,7 +70,7 @@ Public Class FrmDiary
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Info("Starting", FORM_NAME)
+        LogUtil.LogInfo("Starting", FORM_NAME)
         GetFormPos(Me, My.Settings.DiaryFormPos)
         lblDate.Text = Format(Today, "dd MMMM yyyy")
         lblStatus.Text = ""
@@ -93,7 +93,6 @@ Public Class FrmDiary
         FillDiaryTable()
         SpellCheckUtil.EnableSpellChecking({rtbBody, txtSubject})
     End Sub
-
     ''' <summary>
     ''' Refill the diary grid and position the selected row as before
     ''' </summary>
@@ -303,17 +302,6 @@ Public Class FrmDiary
 #End Region
 #Region "Subroutines"
     ''' <summary>
-    ''' Display mesasage on the status bar and log it
-    ''' </summary>
-    ''' <param name="sText"></param>
-    ''' <param name="islogged"></param>
-    ''' <param name="level"></param>
-    ''' <remarks></remarks>
-    Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
-        lblStatus.Text = sText
-        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME)
-    End Sub
-    ''' <summary>
     ''' Fill the diary grid with diary entries
     ''' </summary>
     ''' <remarks></remarks>
@@ -324,9 +312,9 @@ Public Class FrmDiary
         Try
             Dim remCt As Integer = 0
             If isShowAll Then
-                _RemList = GetAllReminders()
+                _RemList = GetAllReminders(chkComplete.Checked)
             Else
-                _RemList = GetRemindersForUser(userId)
+                _RemList = GetRemindersForUser(userId, chkComplete.Checked)
             End If
             If _RemList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
@@ -334,49 +322,47 @@ Public Class FrmDiary
                     If Not IsRequiredCustomer(_reminder) OrElse Not IsRequiredJob(_reminder) Then
                         Continue For
                     End If
-                    If chkComplete.Checked Or Not _reminder.IsClosed Then
-                        If _reminder.IsReminder Or Not chkReminders.Checked Then
-                            Dim rRow As DataGridViewRow = Nothing
-                            If isFirstRow Then
-                                Dim oFirstRow As Reminder = _RemList(0)
-                                Dim firstRowdate As Date = oFirstRow.ReminderDate.Date
-                                rRow = dgvDiary.Rows(dgvDiary.Rows.Add())
-                                dateSection = GetNextSection(firstRowdate, rRow)
-                                isFirstRow = False
-                            End If
-                            Dim remId As Integer = _reminder.Diary_id
+                    If _reminder.IsReminder Or Not chkReminders.Checked Then
+                        Dim rRow As DataGridViewRow = Nothing
+                        If isFirstRow Then
+                            Dim oFirstRow As Reminder = _RemList(0)
+                            Dim firstRowdate As Date = oFirstRow.ReminderDate.Date
                             rRow = dgvDiary.Rows(dgvDiary.Rows.Add())
-                            If _reminder.ReminderDate.Date >= dateSectionEnds(dateSection).Date Then
-                                dateSection = GetNextSection(_reminder.ReminderDate.Date, rRow)
-                                rRow = dgvDiary.Rows(dgvDiary.Rows.Add() + 1)
-                            End If
-                            Dim isReminder As Boolean = _reminder.IsReminder
-                            Dim isComplete As Boolean = _reminder.IsClosed
-                            Dim isCallBack As Boolean = _reminder.CallBack
-
-                            rRow.Cells(dremUserCode.Name).Value = _reminder.DiaryUser.User_code
-                            rRow.Cells(dremHeader.Name).Value = False
-                            rRow.Cells(dremId.Name).Value = _reminder.Diary_id
-                            rRow.Cells(dremSubject.Name).Value = _reminder.Subject
-                            rRow.Cells(dremDate.Name).Value = Format(_reminder.ReminderDate, "dd/MM/yyyy")
-                            rRow.Cells(dremDate.Name).Style.ForeColor = Color.Gray
-                            rRow.Cells(dremCustId.Name).Value = _reminder.CustomerId
-                            rRow.Cells(dremJobId.Name).Value = _reminder.JobId
-                            Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
-                            oRemCell.Style.Font = New Font("Wingdings", 11)
-                            oRemCell.Value = If(isReminder, Chr(185), "")
-                            Dim oCompCell As DataGridViewCell = rRow.Cells(dremClosed.Name)
-                            oCompCell.Style.Font = New Font("Wingdings", 11)
-                            oCompCell.Value = If(isComplete, Chr(254), "")
-                            Dim oCallCell As DataGridViewCell = rRow.Cells(dremCallback.Name)
-                            oCallCell.Style.Font = New Font("Wingdings", 11)
-                            oCallCell.Value = If(isCallBack, Chr(40), "")
+                            dateSection = GetNextSection(firstRowdate, rRow)
+                            isFirstRow = False
                         End If
+                        Dim remId As Integer = _reminder.Diary_id
+                        rRow = dgvDiary.Rows(dgvDiary.Rows.Add())
+                        If _reminder.ReminderDate.Date >= dateSectionEnds(dateSection).Date Then
+                            dateSection = GetNextSection(_reminder.ReminderDate.Date, rRow)
+                            rRow = dgvDiary.Rows(dgvDiary.Rows.Add() + 1)
+                        End If
+                        Dim isReminder As Boolean = _reminder.IsReminder
+                        Dim isComplete As Boolean = _reminder.IsClosed
+                        Dim isCallBack As Boolean = _reminder.CallBack
+
+                        rRow.Cells(dremUserCode.Name).Value = _reminder.DiaryUser.User_code
+                        rRow.Cells(dremHeader.Name).Value = False
+                        rRow.Cells(dremId.Name).Value = _reminder.Diary_id
+                        rRow.Cells(dremSubject.Name).Value = _reminder.Subject
+                        rRow.Cells(dremDate.Name).Value = Format(_reminder.ReminderDate, "dd/MM/yyyy")
+                        rRow.Cells(dremDate.Name).Style.ForeColor = Color.Gray
+                        rRow.Cells(dremCustId.Name).Value = _reminder.CustomerId
+                        rRow.Cells(dremJobId.Name).Value = _reminder.JobId
+                        Dim oRemCell As DataGridViewCell = rRow.Cells(dremRem.Name)
+                        oRemCell.Style.Font = New Font("Wingdings", 11)
+                        oRemCell.Value = If(isReminder, Chr(185), "")
+                        Dim oCompCell As DataGridViewCell = rRow.Cells(dremClosed.Name)
+                        oCompCell.Style.Font = New Font("Wingdings", 11)
+                        oCompCell.Value = If(isComplete, Chr(254), "")
+                        Dim oCallCell As DataGridViewCell = rRow.Cells(dremCallback.Name)
+                        oCallCell.Style.Font = New Font("Wingdings", 11)
+                        oCallCell.Value = If(isCallBack, Chr(40), "")
                     End If
                 Next
             End If
         Catch ex As Exception
-            LogUtil.Exception("Error loading reminders", ex, "loadReminders", GetErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS))
+            LogUtil.LogException(ex, "Error loading reminders", "loadReminders", TraceEventType.Error, GetErrorCode(SystemModule.DIARY, ErrorType.TABLE, FailedAction.ERROR_LOADING_RECORDS), 0)
         End Try
         dgvDiary.ClearSelection()
     End Sub
@@ -444,7 +430,6 @@ Public Class FrmDiary
         isLoading = False
         RebuildDiaryList()
     End Sub
-
     Private Sub PicSetReminder_Click(sender As Object, e As EventArgs) Handles PicSetReminder.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
@@ -456,7 +441,6 @@ Public Class FrmDiary
             RebuildDiaryList()
         End If
     End Sub
-
     Private Sub PicToggleComplete_Click(sender As Object, e As EventArgs) Handles PicToggleComplete.Click
         If dgvDiary.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = dgvDiary.SelectedRows(0)
@@ -466,16 +450,13 @@ Public Class FrmDiary
             RebuildDiaryList()
         End If
     End Sub
-
     Private Sub PicCancelCustLink_Click(sender As Object, e As EventArgs) Handles PicCancelCustLink.Click
         _forCustomerId = -1
         LblCustName.Text = String.Empty
     End Sub
-
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         _forJobId = -1
         LblJobName.Text = String.Empty
     End Sub
-
 #End Region
 End Class

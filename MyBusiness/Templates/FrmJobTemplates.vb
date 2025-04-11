@@ -81,7 +81,7 @@ Public Class FrmJobTemplates
             DeleteAllTemplate(_tmplId)
             LoadTemplateTable()
             ClearForm()
-            ShowStatus(LblStatus, "Templated deleted", MyBase.Name, True)
+            LogUtil.ShowStatus("Templated deleted", LblStatus, Name)
         End If
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
@@ -94,7 +94,7 @@ Public Class FrmJobTemplates
             .WithTemplateDescription(TxtTmplDesc.Text) _
             .Build
             UpdateTemplate(_tmpl)
-            ShowStatus(LblStatus, "Templated updated", MyBase.Name, True)
+            LogUtil.ShowStatus("Templated updated", LblStatus, Name)
         End If
     End Sub
     Private Sub PicAddTemplate_Click(sender As Object, e As EventArgs) Handles PicAddTemplate.Click
@@ -124,9 +124,9 @@ Public Class FrmJobTemplates
                 _templates.TemplateId = _templateId
                 _templates.ShowDialog()
             End Using
-            ShowStatus(LblStatus, "Templated added", MyBase.Name, True)
+            LogUtil.ShowStatus("Templated added", LblStatus, Name)
         Else
-            ShowStatus(LblStatus, "Missing values. No action.", MyBase.Name, True)
+            LogUtil.ShowStatus("Missing values. No action.", LblStatus, Name)
         End If
     End Sub
     Private Sub BtnRemoveTask_Click(sender As Object, e As EventArgs) Handles btnRemoveTask.Click
@@ -147,7 +147,7 @@ Public Class FrmJobTemplates
             End Using
             LoadTaskTable()
         Else
-            ShowStatus(LblStatus, "Add Template before adding tasks", MyBase.Name, False)
+            LogUtil.ShowStatus("Add Template before adding tasks", LblStatus, False, Name, True)
         End If
     End Sub
     Private Sub DgvTasks_CellDoubleClick(sender As Object, e As EventArgs) Handles DgvTasks.CellDoubleClick

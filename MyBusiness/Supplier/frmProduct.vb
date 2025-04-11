@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 '
+Imports System.ComponentModel
+Imports System.IO
 Imports HindlewareLib.Logging
 
 Public Class FrmProduct
@@ -92,13 +94,19 @@ Public Class FrmProduct
             End If
             Close()
         Else
-            ShowStatus(lblStatus, "Invalid Product details", MyBase.Name, True)
+            LogUtil.ShowStatus("Invalid Product details", lblStatus, Name)
         End If
 
     End Sub
     Private Sub PicOpenWeb_Click(sender As Object, e As EventArgs) Handles PicOpenWeb.Click
         If Not String.IsNullOrWhiteSpace(_supplier.SupplierUrl) Then
-            Process.Start(_supplier.SupplierUrl.ToString)
+            Try
+                Process.Start(_supplier.SupplierUrl.ToString)
+            Catch ex As Win32Exception
+                LogUtil.ShowException(ex, "Exception opening image", lblStatus, Name)
+            Catch ex As FileNotFoundException
+                LogUtil.ShowException(ex, "Exception opening image", lblStatus, Name)
+            End Try
         End If
     End Sub
     Private Sub NudCost_ValueChanged(sender As Object, e As EventArgs) Handles NudCost.ValueChanged, NudPurchaseUnits.ValueChanged
@@ -147,25 +155,25 @@ Public Class FrmProduct
         If UpdateProduct(_newproduct) = 1 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _newproduct.ProductId, AuditUtil.AuditableAction.create, _product.ToString, _newproduct.ToString)
             isAmendOk = True
-            ShowStatus(lblStatus, "Product updated OK", MyBase.Name, True)
+            LogUtil.ShowStatus("Product updated OK", lblStatus, MyBase.Name)
         Else
             isAmendOk = False
-            ShowStatus(lblStatus, "Product NOT updated", MyBase.Name, True)
+            LogUtil.ShowStatus("Product NOT updated", lblStatus, MyBase.Name)
         End If
         Return isAmendOk
     End Function
     Private Function CreateProduct() As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting", Name)
+        LogUtil.LogInfo("Inserting", Name)
         _newproduct.ProductCreated = Now
         _productId = InsertProduct(_newproduct)
         If _productId > 0 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Product, _productId, AuditUtil.AuditableAction.create, "", _newproduct.ToString)
             isInsertOk = True
-            ShowStatus(lblStatus, "Product " & _productId & " Created OK", MyBase.Name, True)
+            LogUtil.ShowStatus("Product " & _productId & " Created OK", lblStatus, Name)
         Else
             isInsertOk = False
-            ShowStatus(lblStatus, "Product NOT created", MyBase.Name, True)
+            LogUtil.ShowStatus("Product NOT created", lblStatus, Name)
         End If
         Return isInsertOk
     End Function

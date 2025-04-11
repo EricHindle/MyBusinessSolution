@@ -60,8 +60,7 @@ Module ModDatabase
                 _auditId = oAuditTa.InsertAudit(.AuditUsercode, .RecordType, .RecordId, .AuditDate, .Action, .Before, .After, .ComputerName)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting audit", MODULE_NAME)
-            MsgBox("Error:Audit not added.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception inserting audit", "InsertAudit")
         End Try
         Return _auditId
 
@@ -75,9 +74,8 @@ Module ModDatabase
                 _auditList.Add(_audit)
             Next
         Catch ex As Exception
-            DisplayException(ex, "Exception getting audit", MODULE_NAME)
+            LogUtil.DisplayException(ex, "Exception getting audit", MODULE_NAME)
         End Try
-
         Return _auditList
     End Function
 #End Region
@@ -90,19 +88,19 @@ Module ModDatabase
                 _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Exception getting user", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting user", MODULE_NAME)
         End Try
         Return _user
     End Function
     Public Function GetUserByUsercode(_usercode As String) As User
         Dim _user As User = UserBuilder.AUser.StartingWithNothing.Build
         Try
-            oUserTa.FillByUsercode(oUserTable, _usercode)
+            oUserTa.FillByUserCode(oUserTable, _usercode)
             If oUserTable.Rows.Count > 0 Then
                 _user = UserBuilder.AUser.StartingWith(oUserTable.Rows(0)).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Exception getting user", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting user", MODULE_NAME)
         End Try
         Return _user
     End Function
@@ -143,8 +141,7 @@ Module ModDatabase
             Dim forceChange As Integer = If(force, 1, 0)
             _ct = oUserTa.UpdatePassword(hashedPW, Now, force, _userId)
         Catch ex As Exception
-            DisplayException(ex, "Exception updating password", MODULE_NAME)
-            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            LogUtil.DisplayException(ex, "Exception updating password", MODULE_NAME)
             Throw New ApplicationException("Exception saving password : " & ex.Message)
         End Try
         Return _ct
@@ -156,8 +153,7 @@ Module ModDatabase
             Dim forceChange As Integer = If(force, 1, 0)
             _ct = oUserTa.UpdateTempPassword(hashedPW, Now, force, _userId)
         Catch ex As Exception
-            DisplayException(ex, "Exception ", MODULE_NAME)
-            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            LogUtil.DisplayException(ex, "Exception saving password ", MODULE_NAME)
             Throw New ApplicationException("Exception saving password : " & ex.Message)
         End Try
         Return _ct
@@ -167,8 +163,7 @@ Module ModDatabase
         Try
             _ct = oUserTa.UpdateTempPassword(Nothing, Now, False, pUserId)
         Catch ex As Exception
-            DisplayException(ex, "Exception updating temp password", MODULE_NAME)
-            LogUtil.Exception("Exception saving password : " & ex.Message, ex, MODULE_NAME)
+            LogUtil.DisplayException(ex, "Exception updating temp password", MODULE_NAME)
             Throw New ApplicationException("Exception saving password : " & ex.Message)
         End Try
         Return _ct
@@ -178,7 +173,7 @@ Module ModDatabase
         Try
             _ct = oUserTa.DeleteUser(pUserId)
         Catch ex As Exception
-            DisplayException(ex, "Exception deleting user", MODULE_NAME)
+            LogUtil.DisplayException(ex, "Exception deleting user", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -225,9 +220,8 @@ Module ModDatabase
                 End If
             End With
         Catch ex As Exception
-            DisplayException(ex, "Error inserting job", "ModDatabase")
+            LogUtil.DisplayException(ex, "Error inserting job", "ModDatabase")
         End Try
-
         Return _jobId
     End Function
     Public Function UpdateJob(pJob As Job) As Integer
@@ -264,7 +258,7 @@ Module ModDatabase
                 _task = JobTaskBuilder.AJobTask.StartingWith(oJobTaskTable.Rows(0)).Build
             End If
         Catch ex As Exception
-            DisplayException(ex, "Exception getting jobtask", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting jobtask", MODULE_NAME)
         End Try
         Return _task
     End Function
@@ -276,7 +270,7 @@ Module ModDatabase
                 _task = JobTaskBuilder.AJobTask.StartingWith(oJobTaskTable.Rows(0)).Build
             End If
         Catch ex As Exception
-            DisplayException(ex, "Exception getting jobtask", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting jobtask", MODULE_NAME)
         End Try
         Return _task
     End Function
@@ -288,7 +282,7 @@ Module ModDatabase
                 _taskList.Add(JobTaskBuilder.AJobTask.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "Exception getting tasks", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting tasks", MODULE_NAME)
         End Try
         Return _taskList
     End Function
@@ -300,7 +294,7 @@ Module ModDatabase
                                                       .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception inserting task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting task", MODULE_NAME)
         End Try
         Return _jobtaskId
     End Function
@@ -311,7 +305,7 @@ Module ModDatabase
                 _rtn = oJobTaskTa.UpdateJobTask(.TaskId, .TaskCost, .TaskHours, .TaskStartDue, .IsTaskStarted, .IstaskCompleted, Now, .JobId, .IsTaskTaxable, .TaskTaxRate, .JobTaskId)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception updating task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating task", MODULE_NAME)
         End Try
         Return _rtn
     End Function
@@ -320,7 +314,7 @@ Module ModDatabase
         Try
             _ct = oJobTaskTa.DeleteJobTask(pTaskId)
         Catch ex As Exception
-            DisplayException(ex, "Exception deleting task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception deleting task", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -362,7 +356,7 @@ Module ModDatabase
                 _jobProduct = FullJobProductBuilder.AJobProduct.StartingWith(oJobProductTable.Rows(0)).Build
             End If
         Catch ex As Exception
-            DisplayException(ex, "Exception getting job product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting job product", MODULE_NAME)
         End Try
         Return _jobProduct
     End Function
@@ -375,7 +369,7 @@ Module ModDatabase
                 _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "Exception getting job product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting job product", MODULE_NAME)
         End Try
         Return _jobProductList
     End Function
@@ -388,7 +382,7 @@ Module ModDatabase
                 _jobProductList.Add(FullJobProductBuilder.AJobProduct.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "Exception getting job products", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting job products", MODULE_NAME)
         End Try
         Return _jobProductList
     End Function
@@ -402,7 +396,7 @@ Module ModDatabase
                 End If
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting job product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting job product", MODULE_NAME)
         End Try
         Return _jobproductId
     End Function
@@ -413,7 +407,7 @@ Module ModDatabase
                 _ct = oJobProductTa.UpdateJobProduct(.Quantity, Now, .ThisProduct.ProductId, .ThisJob.JobId, .Taxable, .Tax_Rate, .Price, .JobProductId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception updating job product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating job product", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -422,7 +416,7 @@ Module ModDatabase
         Try
             _ct = oJobProductTa.DeleteJobProduct(pJobProductId)
         Catch ex As Exception
-            DisplayException(ex, "Exception deleting job product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception deleting job product", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -473,7 +467,7 @@ Module ModDatabase
                 End If
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception inserting image", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting image", MODULE_NAME)
         End Try
         Return _jobImageId
     End Function
@@ -482,7 +476,7 @@ Module ModDatabase
         Try
             _ct = oJobImageTa.DeleteImage(pJobImageId)
         Catch ex As DbException
-            DisplayException(ex, "Exception deleting image", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception deleting image", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -493,7 +487,7 @@ Module ModDatabase
                 _ct = oJobImageTa.UpdateJobImage(.JobId, .ImagePath, .ImageDesc, .ImageId)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception updating image", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating image", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -557,7 +551,7 @@ Module ModDatabase
                 _cust = CustomerBuilder.ACustomer.StartingWith(_row).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Exception getting customer", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting customer", MODULE_NAME)
         End Try
         Return _cust
     End Function
@@ -581,8 +575,7 @@ Module ModDatabase
 
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception inserting customer", MODULE_NAME)
-            MsgBox("Error:Customer not added.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception inserting customer", MODULE_NAME)
         End Try
         Return _custId
     End Function
@@ -605,8 +598,7 @@ Module ModDatabase
                                            .CustomerId)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception updating image", MODULE_NAME)
-            MsgBox("Error:Customer not updated", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating image", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -629,7 +621,7 @@ Module ModDatabase
                 _supp = SupplierBuilder.ASupplier.StartingWith(_row).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Exception getting supplier", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting supplier", MODULE_NAME)
         End Try
         Return _supp
     End Function
@@ -648,12 +640,11 @@ Module ModDatabase
                                            .SupplierDiscount,
                                            .SupplierNotes,
                                            .SupplierCreated,
-                                           .IsSupplierAmazon,
+                                           If(.IsSupplierAmazon, 1, 0),
                                            .SupplierUrl)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting supplier", MODULE_NAME)
-            MsgBox("Error:Supplier not added.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception inserting supplier", MODULE_NAME)
         End Try
         Return newId
     End Function
@@ -672,13 +663,12 @@ Module ModDatabase
                                            .SupplierDiscount,
                                            .SupplierNotes,
                                            .SupplierCreated,
-                                           .IsSupplierAmazon,
+                                           If(.IsSupplierAmazon, 1, 0),
                                            .SupplierUrl,
                                            .SupplierId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception updating supplier", MODULE_NAME)
-            MsgBox("Error:Supplier not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating supplier", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -703,7 +693,7 @@ Module ModDatabase
                 _taskId = oTaskTa.InsertTask(.TaskName, .TaskDescription)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception inserting task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting task", MODULE_NAME)
         End Try
         Return _taskId
     End Function
@@ -714,7 +704,7 @@ Module ModDatabase
                 _rtn = oTaskTa.UpdateTask(.TaskName, .TaskDescription, .TaskId)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception updating task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating task", MODULE_NAME)
         End Try
         Return _rtn
     End Function
@@ -723,25 +713,29 @@ Module ModDatabase
         Try
             _ct = oTaskTa.DeleteTask(pTaskId)
         Catch ex As Exception
-            DisplayException(ex, "Exception deleting task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception deleting task", MODULE_NAME)
         End Try
         Return _ct
     End Function
 #End Region
 #Region "diary"
-    Public Function GetAllReminders() As List(Of Reminder)
+    Public Function GetAllReminders(IsIncludeCompleted As Boolean) As List(Of Reminder)
         Dim _remList As New List(Of Reminder)
         oDiaryTa.Fill(oDiaryTable)
         For Each oRow As MyBusinessDataSet.diaryRow In oDiaryTable.Rows
-            _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+            If oRow.diary_closed = 0 Or IsIncludeCompleted Then
+                _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+            End If
         Next
         Return _remList
     End Function
-    Public Function GetRemindersForUser(ByVal pUserId As Integer) As List(Of Reminder)
+    Public Function GetRemindersForUser(ByVal pUserId As Integer, IsIncludeCompleted As Boolean) As List(Of Reminder)
         Dim _remList As New List(Of Reminder)
         oDiaryTa.FillByUserId(oDiaryTable, pUserId)
         For Each oRow As MyBusinessDataSet.diaryRow In oDiaryTable.Rows
-            _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+            If oRow.diary_closed = 0 Or IsIncludeCompleted Then
+                _remList.Add(ReminderBuilder.AReminder.StartingWith(oRow).Build)
+            End If
         Next
         Return _remList
     End Function
@@ -753,7 +747,7 @@ Module ModDatabase
                 _rem = ReminderBuilder.AReminder.StartingWith(oDiaryTable.Rows(0)).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Exception getting reminder", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting reminder", MODULE_NAME)
         End Try
         Return _rem
     End Function
@@ -762,8 +756,7 @@ Module ModDatabase
         Try
             _ct = oDiaryTa.UpdateClosed(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
-            DisplayException(ex, "Exception updating reminder", MODULE_NAME)
-            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating reminder", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -772,8 +765,7 @@ Module ModDatabase
         Try
             _ct = oDiaryTa.UpdateReminder(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
-            DisplayException(ex, "Exception updating reminder", MODULE_NAME)
-            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating reminder", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -782,8 +774,7 @@ Module ModDatabase
         Try
             _ct = oDiaryTa.UpdateCallback(If(pValue, 1, 0), pRemId)
         Catch ex As Exception
-            DisplayException(ex, "Exception updating reminder", MODULE_NAME)
-            MsgBox("Error:Reminder not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating reminder", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -803,8 +794,7 @@ Module ModDatabase
                                            .Diary_id)
             End With
         Catch ex As DbException
-            DisplayException(ex, "Exception updating diary", MODULE_NAME)
-            MsgBox("Error:Diary not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception updating diary", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -823,8 +813,7 @@ Module ModDatabase
                                            If(.CallBack, 1, 0))
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting diary", MODULE_NAME)
-            MsgBox("Error:Diary not updated.", MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception inserting diary", MODULE_NAME)
         End Try
         Return _id
     End Function
@@ -837,7 +826,7 @@ Module ModDatabase
                 _alertList.Add(_alert)
             Next
         Catch ex As Exception
-            DisplayException(ex, "Exception getting call backs", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception getting call backs", MODULE_NAME)
         End Try
         Return _alertList
     End Function
@@ -958,8 +947,7 @@ Module ModDatabase
                     End If
             End Select
         Catch ex As Exception
-            DisplayException(ex, "Exception restoring table", MODULE_NAME)
-            MsgBox(GetMessage(ex), MsgBoxStyle.Exclamation, "Error")
+            LogUtil.DisplayException(ex, "Exception restoring table", MODULE_NAME)
         End Try
         Return rowCount
     End Function
@@ -976,8 +964,7 @@ Module ModDatabase
                     isTableOK = True
                 End If
             Catch ex As Exception
-                DisplayException(ex, "Exception recreating table", MODULE_NAME)
-                MsgBox(GetMessage(ex), MsgBoxStyle.Exclamation, "Error")
+                LogUtil.DisplayException(ex, "Exception recreating table", MODULE_NAME)
             End Try
         End If
         Return isTableOK
@@ -1081,7 +1068,7 @@ Module ModDatabase
                 _id = oTemplateTa.InsertTemplate(.TemplateName, .TemplateDescription)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting template", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting template", MODULE_NAME)
         End Try
         Return _id
     End Function
@@ -1092,7 +1079,7 @@ Module ModDatabase
                 _ct = oTemplateTa.UpdateTemplate(.TemplateName, .TemplateDescription, .TemplateId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception updating template", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating template", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -1173,7 +1160,7 @@ Module ModDatabase
                 _id = oTemplateProductTa.InsertTemplateProduct(.Quantity, .ProductId, .TemplateId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting template product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting template product", MODULE_NAME)
         End Try
         Return _id
     End Function
@@ -1184,7 +1171,7 @@ Module ModDatabase
                 _ct = oTemplateProductTa.UpdateTemplateProduct(.Quantity, .ProductId, .TemplateId, .TemplateProductId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception updating template product", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating template product", MODULE_NAME)
         End Try
         Return _ct
     End Function
@@ -1216,7 +1203,7 @@ Module ModDatabase
                 _templateTaskList.Add(TemplateTaskBuilder.ATemplateTask.StartingWith(oRow).Build)
             Next
         Catch ex As DbException
-            DisplayException(ex, "Error getting template tasks", "GetTemplateTasksForTemplate")
+            LogUtil.LogException(ex, "Error getting template tasks", "GetTemplateTasksForTemplate")
         End Try
         Return _templateTaskList
     End Function
@@ -1228,7 +1215,7 @@ Module ModDatabase
                 _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Error getting template tasks", "GetTemplateTaskById")
+            LogUtil.LogException(ex, "Error getting template tasks", "GetTemplateTaskById")
         End Try
         Return _templateTask
     End Function
@@ -1240,7 +1227,7 @@ Module ModDatabase
                 _templateTask = TemplateTaskBuilder.ATemplateTask.StartingWith(oTemplateTaskTable.Rows(0)).Build
             End If
         Catch ex As DbException
-            DisplayException(ex, "Error getting template task", "GetTemplateTaskByTemplateAndTask")
+            LogUtil.LogException(ex, "Error getting template task", "GetTemplateTaskByTemplateAndTask")
         End Try
         Return _templateTask
     End Function
@@ -1251,7 +1238,7 @@ Module ModDatabase
                 _id = oTemplateTaskTa.InsertTemplateTask(.TaskId, .Cost, .Hours, .TemplateId, .TaxRate, .IsTaskTaxable)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception inserting template task", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception inserting template task", MODULE_NAME)
         End Try
         Return _id
     End Function
@@ -1262,7 +1249,7 @@ Module ModDatabase
                 _ct = oTemplateTaskTa.UpdateTemplateTask(.TaskId, .Cost, .Hours, .TemplateId, .TaxRate, If(.IsTaskTaxable, 1, 0), .TemplateTaskId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "Exception updating template", MODULE_NAME)
+            LogUtil.LogException(ex, "Exception updating template", MODULE_NAME)
         End Try
         Return _ct
     End Function

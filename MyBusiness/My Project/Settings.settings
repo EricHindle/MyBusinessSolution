@@ -258,5 +258,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=LAPTOP-11NSK703\SQLEXPRESS;Initial Catalog=MyBusiness;Persist Security Info=True;User ID=sa;Password=dkk.sql;TrustServerCertificate=True</Value>
     </Setting>
+    <Setting Name="ShowCompletedDiaryEntries" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

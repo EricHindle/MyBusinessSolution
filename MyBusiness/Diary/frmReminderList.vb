@@ -169,7 +169,7 @@ Public Class FrmReminderList
         DgvReminders.Rows.Clear()
         Dim remCt As Integer = 0
         Try
-            _remList = GetRemindersForUser(currentUser.UserId)
+            _remList = GetRemindersForUser(currentUser.UserId, My.Settings.ShowCompletedDiaryEntries)
             If _remList.Count > 0 Then
                 Dim isFirstRow As Boolean = True
                 For Each oRem As Reminder In _remList
@@ -212,28 +212,21 @@ Public Class FrmReminderList
         End Try
         Return remCt
     End Function
-    Private Sub LogStatus(ByVal sText As String, Optional ByVal islogged As Boolean = False, Optional ByVal level As TraceEventType = TraceEventType.Information)
-        LblStatus.Text = sText
-        If islogged Then LogUtil.AddLog(sText, level, FORM_NAME)
-    End Sub
     Private Sub ClearStatus()
-        LogStatus("")
+        LogUtil.ClearStatus(LblStatus)
     End Sub
-
     Private Sub PicClose_Click(sender As Object, e As EventArgs) Handles PicClose.Click
         Close()
     End Sub
-
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicToggleReminder.Click
         currentReminder.IsReminder = Not currentReminder.IsReminder
         UpdateIsReminder(currentReminder.IsReminder, currentReminder.Diary_id)
-        LogStatus("Updated reminder flag", True)
+        LogUtil.ShowStatus("Updated reminder flag", LblStatus, Name)
         LoadReminders()
     End Sub
-
     Private Sub PicRemove_Click(sender As Object, e As EventArgs) Handles PicSetComplete.Click
         UpdateReminderClosed(True, currentReminder.Diary_id)
-        LogStatus("Closed reminder", True)
+        LogUtil.ShowStatus("Closed reminder", LblStatus, Name)
         LoadReminders()
     End Sub
 #End Region

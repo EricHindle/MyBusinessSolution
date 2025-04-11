@@ -331,7 +331,7 @@ Public Class FrmOptions
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub BtnCreateFolders_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnCreateFolders.Click
-        LogUtil.Info("Creating any missing folders")
+        LogUtil.Info("Creating any missing folders", MyBase.Name)
         SaveFolderOptions()
         CreateMissingFolders()
         txtStatus.Text = "Missing folders created"

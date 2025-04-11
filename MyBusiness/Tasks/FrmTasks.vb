@@ -48,10 +48,10 @@ Public Class FrmTasks
                 AmendTask(_newTask)
                 Close()
             Else
-                ShowStatus(lblStatus, "Missing values. No action")
+                LogUtil.ShowStatus("Missing values. No action", lblStatus, False, Name, True)
             End If
         Else
-            ShowStatus(lblStatus, "No task selected. No action")
+            LogUtil.ShowStatus("No task selected. No action", lblStatus, False, Name, True)
         End If
     End Sub
     Private Sub CbTask_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbTask.SelectedIndexChanged
@@ -75,7 +75,7 @@ Public Class FrmTasks
             CreateTask(_newTask)
             Close()
         Else
-            ShowStatus(lblStatus, "Missing values. No action")
+            LogUtil.ShowStatus("Missing values. No action", lblStatus, False, Name, True)
         End If
     End Sub
     Private Sub PicClear_Click(sender As Object, e As EventArgs) Handles PicClear.Click
@@ -111,33 +111,33 @@ Public Class FrmTasks
     End Sub
     Private Function AmendTask(pTask As Task) As Boolean
         Dim isAmendOk As Boolean = False
-        LogUtil.Info("Updating task", Name)
+        LogUtil.LogInfo("Updating task", Name)
         With pTask
             Dim _ct As Integer
             _ct = UpdateTask(pTask)
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, .TaskId, AuditUtil.AuditableAction.create, _task.ToString, .ToString)
             If _ct = 1 Then
                 isAmendOk = True
-                ShowStatus(lblStatus, "Task updated OK", Name, True)
+                LogUtil.ShowStatus("Task updated OK", lblStatus, Name)
             Else
                 isAmendOk = False
-                ShowStatus(lblStatus, "Task NOT updated", Name, True)
+                LogUtil.ShowStatus("Task NOT updated", lblStatus, True, Name, True)
             End If
         End With
         Return isAmendOk
     End Function
     Private Function CreateTask(pTask As Task) As Boolean
         Dim isInsertOk As Boolean
-        LogUtil.Info("Inserting task", Name)
+        LogUtil.LogInfo("Inserting task", Name)
         With pTask
             _taskId = InsertTask(pTask)
             If _taskId > 0 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Task, _taskId, AuditUtil.AuditableAction.create, "", .ToString)
                 isInsertOk = True
-                ShowStatus(lblStatus, "Task " & _taskId & " Created OK", Name, True)
+                LogUtil.ShowStatus("Task " & _taskId & " Created OK", lblStatus, Name)
             Else
                 isInsertOk = False
-                ShowStatus(lblStatus, "Task NOT created", Name, True)
+                LogUtil.ShowStatus("Task NOT created", lblStatus, True, Name, True)
             End If
         End With
         Return isInsertOk

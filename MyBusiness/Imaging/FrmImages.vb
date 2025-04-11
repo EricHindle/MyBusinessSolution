@@ -48,7 +48,7 @@ Public Class FrmImages
             oJobImageFolder = Path.Combine(oImageFolderName, "Job" & _job.JobId)
             Dim _resp As SuccessResponse = CreateFolder(oJobImageFolder)
             If Not String.IsNullOrEmpty(_resp.Message) Then
-                ShowStatus(LblStatus, _resp, MyBase.Name, True)
+                LogUtil.ShowStatus(_resp.Message, LblStatus, True, Name, False)
             End If
         Else
             oJobImageFolder = oImageFolderName
@@ -69,19 +69,21 @@ Public Class FrmImages
     Private Sub DgvImages_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvImages.CellDoubleClick
         Dim _imageNo As Integer = (e.RowIndex * DgvImages.ColumnCount) + e.ColumnIndex
         If _imageNo < oImageList.Count Then
-            ShowStatus(LblStatus, "Opening Image", MyBase.Name, True)
+            LogUtil.ShowStatus("Opening Image", LblStatus, MyBase.Name)
             Dim _filepath As String = oImageList(_imageNo).ImagePath
             Try
                 If My.Computer.FileSystem.FileExists(_filepath) Then
                     Process.Start(_filepath)
                 End If
             Catch ex As Win32Exception
-                ShowStatus(LblStatus, "Exception opening image", MyBase.Name, True, ex)
+                LogUtil.ShowException(ex, "Exception opening image", LblStatus, MyBase.Name)
+            Catch ex As FileNotFoundException
+                LogUtil.ShowException(ex, "Exception opening image", LblStatus, MyBase.Name)
             End Try
         End If
     End Sub
     Private Sub DgvImages_SelectionChanged(sender As Object, e As EventArgs) Handles DgvImages.SelectionChanged
-        ShowStatus(LblStatus, "")
+        LogUtil.ClearStatus(LblStatus)
         If Not isLoading Then
             If oImageList.Count > 0 AndAlso DgvImages.SelectedCells.Count > 0 Then
                 Dim _selectedCell As DataGridViewCell = DgvImages.SelectedCells(0)
@@ -100,7 +102,7 @@ Public Class FrmImages
     End Sub
     Private Sub PicAdd_Click(sender As Object, e As EventArgs) Handles PicAdd.Click
         If My.Computer.FileSystem.FileExists(TxtImagePath.Text) Then
-            ShowStatus(LblStatus, "Adding Image to Job", MyBase.Name, True)
+            LogUtil.ShowStatus("Adding Image to Job", LblStatus, MyBase.Name)
             Dim _jobimg As JobImage = JobImageBuilder.aJobImage _
                                                     .StartingWithNothing() _
                                                     .WithJobId(_job.JobId) _
@@ -108,35 +110,35 @@ Public Class FrmImages
                                                     .WithImageDesc(TxtImageDesc.Text).Build
             If InsertJobImage(_jobimg) > 0 Then
                 RefreshImageTable()
-                ShowStatus(LblStatus, "Inserted Image", MyBase.Name, True)
+                LogUtil.ShowStatus("Inserted Image", LblStatus, MyBase.Name)
             Else
-                ShowStatus(LblStatus, "Insert failed", MyBase.Name, True)
+                LogUtil.ShowStatus("Insert failed", LblStatus, MyBase.Name)
             End If
         Else
-            ShowStatus(LblStatus, "File not found", MyBase.Name, False)
+            LogUtil.ShowStatus("File not found", LblStatus)
         End If
     End Sub
     Private Sub PicRemove_Click(sender As Object, e As EventArgs) Handles PicRemove.Click
         If _selectedImage IsNot Nothing Then
-            ShowStatus(LblStatus, "Removing Image from Job", MyBase.Name, True)
+            LogUtil.ShowStatus("Removing Image from Job", LblStatus, MyBase.Name)
             If MsgBox("Remove " & _selectedImage.ImageDesc _
                     & " (" & IO.Path.GetFileName(_selectedImage.ImagePath) & ")?" _
                    & vbCrLf & "Image file will not be deleted.",
                           MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
                 If DeleteJobImage(_selectedImage.ImageId) = 1 Then
                     RefreshImageTable()
-                    ShowStatus(LblStatus, "Removed Image", MyBase.Name, True)
+                    LogUtil.ShowStatus("Removed Image", LblStatus, MyBase.Name)
                 Else
-                    ShowStatus(LblStatus, "Removal failed", MyBase.Name, True)
+                    LogUtil.ShowStatus("Removal failed", LblStatus, MyBase.Name)
                 End If
             End If
         Else
-            ShowStatus(LblStatus, "No Image Selected", MyBase.Name, True)
+            LogUtil.ShowStatus("No Image Selected", LblStatus, MyBase.Name)
         End If
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
         If _selectedImage IsNot Nothing AndAlso My.Computer.FileSystem.FileExists(TxtImagePath.Text) Then
-            ShowStatus(LblStatus, "Updating Image in Job Folder", MyBase.Name, True)
+            LogUtil.ShowStatus("Updating Image in Job Folder", LblStatus, MyBase.Name)
             Dim _jobimg As JobImage = JobImageBuilder.aJobImage _
                                                     .StartingWithNothing() _
                                                     .WithImageId(_selectedImage.ImageId) _
@@ -145,12 +147,12 @@ Public Class FrmImages
                                                     .WithImageDesc(TxtImageDesc.Text).Build
             If UpdateJobImage(_jobimg) = 1 Then
                 RefreshImageTable()
-                ShowStatus(LblStatus, "Updated Image", MyBase.Name, True)
+                LogUtil.ShowStatus("Updated Image", LblStatus, MyBase.Name)
             Else
-                ShowStatus(LblStatus, "Update failed", MyBase.Name, True)
+                LogUtil.ShowStatus("Update failed", LblStatus, MyBase.Name)
             End If
         Else
-            ShowStatus(LblStatus, "File not found", MyBase.Name, False)
+            LogUtil.ShowStatus("File not found", LblStatus, MyBase.Name)
         End If
     End Sub
     Private Sub BtnFindFile_Click(sender As Object, e As EventArgs) Handles BtnFindFile.Click
@@ -175,7 +177,7 @@ Public Class FrmImages
             AddImageToGrid(_image)
             If Path.GetDirectoryName(_image.ImagePath) <> oJobImageFolder Then
                 If MsgBox("Load image into job image folder?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Copy Image") = MsgBoxResult.Yes Then
-                    _image = CopyFileToJobFolder(_image)
+                    CopyFileToJobFolder(_image)
                 End If
             End If
         Next
@@ -199,8 +201,8 @@ Public Class FrmImages
         End If
         oCell = oNextImageRow.Cells(oNextImageCol)
         Dim _pic As Image = Image.FromFile(_image.ImagePath)
-        Dim _wmultiplier As Decimal = 1
-        Dim _hmultiplier As Decimal = 1
+        Dim _wmultiplier As Decimal
+        Dim _hmultiplier As Decimal
         Dim _newWidth As Integer = oCell.Size.Width
         Dim _newHeight As Integer = oNextImageRow.Height
         If _pic.Size.Width > _pic.Size.Height Then
@@ -211,7 +213,7 @@ Public Class FrmImages
             _newWidth = oCell.Size.Width * _wmultiplier
         End If
         Dim _cell As DataGridViewImageCell = oNextImageRow.Cells(oNextImageCol)
-        Dim _bitmap As Bitmap = New Bitmap(_pic)
+        Dim _bitmap As New Bitmap(_pic)
         If pIsPale Then
             _bitmap = ImageUtil.MakeImageOpaque(_bitmap, OPACITY_VALUE)
         End If

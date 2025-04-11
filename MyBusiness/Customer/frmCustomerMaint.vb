@@ -36,7 +36,7 @@ Public Class FrmCustomerMaint
 #End Region
 #Region "form handlers"
     Private Sub FrmCustomerMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LogUtil.Info("Started", Name)
+        LogUtil.LogInfo("Started", Name)
         If GetFormPos(Me, My.Settings.CustFormPos) Then
             ScCustomer.SplitterDistance = CInt("0" & My.Settings.CustSplitterDist1)
         End If
@@ -55,7 +55,7 @@ Public Class FrmCustomerMaint
         isLoading = False
     End Sub
     Private Sub FrmCustomerMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", Name)
+        LogUtil.LogInfo("Closing", Name)
         My.Settings.CustFormPos = SetFormPos(Me)
         My.Settings.CustSplitterDist1 = ScCustomer.SplitterDistance
         My.Settings.Save()
@@ -69,7 +69,7 @@ Public Class FrmCustomerMaint
         If DgvJobs.SelectedRows.Count = 1 Then
             Dim oRow As DataGridViewRow = DgvJobs.SelectedRows(0)
             Dim _JobId As Integer = oRow.Cells(jobId.Name).Value
-            LogUtil.Info("Updating job " & _JobId, Name)
+            LogUtil.LogInfo("Updating job " & _JobId, Name)
             Using _jobForm As New FrmJobMaint
                 _jobForm.TheJob = GetJobById(_JobId)
                 _jobForm.CustomerId = _customerId
@@ -89,7 +89,7 @@ Public Class FrmCustomerMaint
         Close()
     End Sub
     Private Sub PicUpdate_Click(sender As Object, e As EventArgs) Handles PicUpdate.Click
-        LogUtil.Info("Updating", Name)
+        LogUtil.LogInfo("Updating", Name)
         Dim _custAdd As Address = AddressBuilder.AnAddress.WithAddress1(txtCustAddr1.Text.Trim) _
                                                 .WithAddress2(txtCustAddr2.Text.Trim) _
                                                 .WithAddress3(txtCustAddr3.Text.Trim) _
@@ -116,7 +116,7 @@ Public Class FrmCustomerMaint
         End If
     End Sub
     Private Sub PicAddJob_Click(sender As Object, e As EventArgs) Handles PicAddJob.Click
-        LogUtil.Info("Adding job", Name)
+        LogUtil.LogInfo("Adding job", Name)
         Using _jobForm As New FrmJobMaint
             _jobForm.TheJob = Nothing
             _jobForm.CustomerId = _customerId
@@ -145,7 +145,7 @@ Public Class FrmCustomerMaint
             _custId = .CustomerId
         End With
         ScCustomer.Panel2Collapsed = False
-        LogUtil.Info("Existing customer " & _custId, Name)
+        LogUtil.LogInfo("Existing customer " & _custId, Name)
         FillJobsList(_custId)
     End Sub
     Private Function CreateCustomer() As Boolean
@@ -154,10 +154,10 @@ Public Class FrmCustomerMaint
         If _customerId > 0 Then
             AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.create, "", _newCustomer.ToString)
             isInsertOK = True
-            ShowStatus(lblStatus, "Customer " & _customerId & " created OK", Name, True)
+            LogUtil.ShowStatus("Customer " & _customerId & " created OK", lblStatus, True, Name,  False)
         Else
             isInsertOK = False
-            ShowStatus(lblStatus, "Customer NOT created", Name, True)
+            LogUtil.ShowStatus("Customer NOT created", lblStatus, True, Name, False)
         End If
         Return isInsertOK
     End Function
@@ -169,16 +169,16 @@ Public Class FrmCustomerMaint
             If UpdateCustomer(_newCustomer) = 1 Then
                 AuditUtil.AddAudit(currentUser.User_code, AuditUtil.RecordType.Customer, _customerId, AuditUtil.AuditableAction.update, _currentCustomer.ToString, .ToString)
                 isAmendOK = True
-                ShowStatus(lblStatus, "Customer updated OK", Name, True)
+                LogUtil.ShowStatus("Customer " & _customerId & " updated OK", lblStatus, True, Name, False)
             Else
                 isAmendOK = False
-                ShowStatus(lblStatus, "Customer NOT updated", Name, True)
+                LogUtil.ShowStatus("Customer NOT updated", lblStatus, True, Name, False)
             End If
         End With
         Return isAmendOK
     End Function
     Private Sub NewCustomer()
-        LogUtil.Info("New customer", Name)
+        LogUtil.LogInfo("New customer", Name)
         LblAction.Text = "Adding a new customer"
         PicUpdate.Image = My.Resources.add_database
         ToolTip1.SetToolTip(PicUpdate, "Add a new customer")
@@ -203,7 +203,7 @@ Public Class FrmCustomerMaint
     End Sub
     Private Sub FillJobsList(ByVal custId As Integer)
         DgvJobs.Rows.Clear()
-        LogUtil.Info("Finding jobs", MyBase.Name)
+        LogUtil.LogInfo("Finding jobs", MyBase.Name)
         Dim oJobList As List(Of Job) = GetJobsForCustomer(custId)
         For Each oJob As Job In oJobList
             Dim tRow As DataGridViewRow = DgvJobs.Rows(DgvJobs.Rows.Add)
